@@ -158,6 +158,20 @@
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('assets.photo.index')}}" class="nav-link">
+                                <i class="far fa-image nav-icon"></i>
+                                <p>Photo</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('assets.video.index')}}" class="nav-link">
+                                <i class="fa fa-video nav-icon"></i>
+                                <p>Video</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 
                 <li class="nav-item">

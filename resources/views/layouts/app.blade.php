@@ -80,7 +80,6 @@
 <script src="{{url('assets/AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{url('assets/AdminLTE')}}/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{url('assets/AdminLTE')}}/dist/js/demo.js"></script>
+
 </body>
 </html>

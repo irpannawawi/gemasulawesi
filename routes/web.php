@@ -37,7 +37,11 @@ Route::middleware('auth')->group(function () {
     //videos
     Route::get('/video', [VideoController::class, 'index'])->name('assets.video.index');
     Route::get('/video/add', [VideoController::class, 'add'])->name('assets.video.add');
-    Route::post('/video', [VideoController::class, 'insert'])->name('assets.video.insert');
+    Route::post('/video', [VideoController::class, 'insert'])->name('assets.video.insert')
+    ;
+    Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('assets.video.edit');
+    Route::put('/video/edit', [VideoController::class, 'update'])->name('assets.video.update');
+    Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('assets.video.delete');
 });
 
 require __DIR__.'/auth.php';

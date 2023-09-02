@@ -13,7 +13,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('assets/AdminLTE')}}/dist/css/adminlte.min.css">
   @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+@stack('extra-css')
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -80,6 +80,6 @@
 <script src="{{url('assets/AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{url('assets/AdminLTE')}}/dist/js/adminlte.min.js"></script>
-
+@stack('custom-scripts')
 </body>
 </html>

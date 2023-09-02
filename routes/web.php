@@ -4,6 +4,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\VideoController;
+use App\Models\Image;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +21,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/browse', function () {
+    $data['images'] = Image::get();
+    return view('browse', $data);
+});
 Route::get('/test',[TestController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -42,6 +49,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('assets.video.edit');
     Route::put('/video/edit', [VideoController::class, 'update'])->name('assets.video.update');
     Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('assets.video.delete');
+
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/editorial.php';

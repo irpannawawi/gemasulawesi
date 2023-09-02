@@ -44,31 +44,31 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="{{route('editorial.create')}}" class="nav-link">
                                   <i class="far fa-file nav-icon"></i>
                                   <p>Create Article</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="{{route('editorial.draft')}}" class="nav-link">
                                   <i class="fa fa-copy nav-icon"></i>
                                   <p>Draft</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="{{route('editorial.published')}}" class="nav-link">
                                   <i class="fa fa-check-square nav-icon"></i>
                                   <p>Published</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="{{route('editorial.scheduled')}}" class="nav-link">
                                   <i class="fa fa-calendar nav-icon"></i>
                                   <p>Scheduled</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="{{route('editorial.trash')}}" class="nav-link">
                                   <i class="fa fa-trash nav-icon"></i>
                                   <p>Trash</p>
                               </a>

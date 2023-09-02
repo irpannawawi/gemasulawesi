@@ -50,13 +50,54 @@
                     <div class="form-group">
                         <label for="tag">Tag</label>
                         <select class="form-control select2" id="select2Tag" multiple>
-                            <option value="Rubrik1" >Rubrik1</option>
-                            <option value="Rubrik2">Rubrik2</option>
-                            <option value="Rubrik3">Rubrik3</option>
-                            <option value="Rubrik4">Rubrik4</option>
+                            <option value="Sample Tag 1" >Sample Tag 1</option>
+                            <option value="Sample Tag 2">Sample Tag 2</option>
+                            <option value="Sample Tag 3">Sample Tag 3</option>
+                            <option value="Sample Tag 4">Sample Tag 4</option>
                         </select>
                     </div>
                     {{-- ./Tags input --}}
+
+
+                    {{-- Source input --}}
+                    <div class="form-group">
+                        <label for="select2Source">Source</label>
+                        <select class="form-control select2" id="select2Source" multiple>
+                            <option value="Sample Source 1" >Sample Source 1</option>
+                            <option value="Sample Source 2">Sample Source 2</option>
+                            <option value="Sample Source 3">Sample Source 3</option>
+                            <option value="Sample Source 4">Sample Source 4</option>
+                        </select>
+                    </div>
+                    {{-- ./Source input --}}
+
+                    
+                    {{-- Author input --}}
+                    <div class="form-group">
+                        <label for="select2Author">Author</label>
+                        <select class="form-control select2" id="select2Author" multiple>
+                            <option value="Sample Author 1" >Sample Author 1</option>
+                            <option value="Sample Author 2">Sample Author 2</option>
+                            <option value="Sample Author 3">Sample Author 3</option>
+                            <option value="Sample Author 4">Sample Author 4</option>
+                        </select>
+                    </div>
+                    {{-- ./Author input --}}
+
+                    
+                    {{-- Topic input --}}
+                    <div class="form-group">
+                        <label for="select2Topic">Topic</label>
+                        <select class="form-control select2" id="select2Topic" multiple>
+                            <option value="Sample Topic 1" >Sample Topic 1</option>
+                            <option value="Sample Topic 2">Sample Topic 2</option>
+                            <option value="Sample Topic 3">Sample Topic 3</option>
+                            <option value="Sample Topic 4">Sample Topic 4</option>
+                        </select>
+                    </div>
+                    {{-- ./Topic input --}}
+
+
                 </div>
             </div>
         </div>
@@ -97,7 +138,7 @@
                     theme: "bootstrap4",
                     allowClear: true
                 });
-                $('#select2Tag').select2({
+                $('.select2').select2({
                     theme: "bootstrap4",
                     allowClear: true
                 });

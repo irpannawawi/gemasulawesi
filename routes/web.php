@@ -22,10 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/browse', function () {
-    $data['images'] = Image::get();
-    return view('browse', $data);
-});
+Route::get('/browse', [PhotoController::class, 'browse']);
+
 Route::get('/test',[TestController::class, 'index']);
 
 Route::get('/dashboard', function () {
@@ -40,6 +38,7 @@ Route::middleware('auth')->group(function () {
 
     // assets photo
     Route::get('/photo', [PhotoController::class, 'index'])->name('assets.photo.index');
+    Route::post('/photo/upload', [PhotoController::class, 'upload'])->name('assets.photo.upload');
     
     //videos
     Route::get('/video', [VideoController::class, 'index'])->name('assets.video.index');

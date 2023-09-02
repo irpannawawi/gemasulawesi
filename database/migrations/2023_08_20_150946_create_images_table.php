@@ -24,10 +24,10 @@ return new class extends Migration
             $table->foreign('uploader_id')
             ->references('id')
             ->on('users');
-            $table->string('author', 155);
-            $table->text('caption');
-            $table->string('credit', 255);
-            $table->string('source', 255);
+            $table->string('author', 155)->nullable();
+            $table->text('caption')->nullable();
+            $table->string('credit', 255)->nullable();
+            $table->string('source', 255)->nullable();
             $table->timestamps();
         });
     }

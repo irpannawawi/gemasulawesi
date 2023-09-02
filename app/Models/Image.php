@@ -14,10 +14,12 @@ class Image extends Model
     protected $primaryKey = 'image_id';
     public $fillable = [
         'image_id',
+        'asset_id',
         'uploader_id',
         'author',	
         'caption',	
         'credit',	
+        'source',	
     ];
 
     public function asset(): HasOne

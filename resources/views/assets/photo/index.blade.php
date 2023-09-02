@@ -47,10 +47,10 @@
                                             <button type="button" class="btn btn-xs btn-default btn-edit"
                                                 data-id="7381762" title="Use/Edit"><i class="fa fa-edit"
                                                     aria-hidden="true"></i>
-                                            </button><button type="button"
+                                            </button><a type="button"
                                                 class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
-                                                data-src="https://picsum.photos/200" data-id="7381762" title="Delete"><i
-                                                    class="fa fa-trash" aria-hidden="true"></i></button>
+                                                href="{{route('assets.photo.delete', ['id'=> $photo->image_id])}}" onclick="return confirm('Hapus foto?')" title="Delete"><i
+                                                    class="fa fa-trash" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>

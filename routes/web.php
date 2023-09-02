@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     // assets photo
     Route::get('/photo', [PhotoController::class, 'index'])->name('assets.photo.index');
     Route::post('/photo/upload', [PhotoController::class, 'upload'])->name('assets.photo.upload');
+    Route::get('/photo/delete/{id}', [PhotoController::class, 'delete'])->name('assets.photo.delete');
     
     //videos
     Route::get('/video', [VideoController::class, 'index'])->name('assets.video.index');

@@ -67,7 +67,7 @@
                                                     aria-hidden="true"></i>
                                             </button><button type="button"
                                                 class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
-                                                data-src="https://picsum.photos/200" data-id="7381762" title="Delete"><i
+                                                data-src="{{route('assets.photo.delete', ['id', $photo->id])}}" data-id="7381762" title="Delete"><i
                                                     class="fa fa-trash" aria-hidden="true"></i></button>
                                         </div>
                                     </div>

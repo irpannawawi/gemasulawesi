@@ -40,4 +40,16 @@ class PhotoController extends Controller
         Image::create($imageDetails);
         return redirect()->route('assets.photo.index');  
     }
+
+    public function delete($id)
+    {
+        $image = Image::find($id);
+
+        // insert to file table
+        $image->delete();
+        $asset_id = $image->asset_id;
+        Asset::where(['asset_id'=>$asset_id])->delete();
+
+        return redirect()->route('assets.photo.index');  
+    }
 }

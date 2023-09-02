@@ -32,7 +32,7 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group p-1">
                         <label for="rubruk">Rubrik</label>
-                        <select class="form-control select2-single" id="select2Rubrik" >
+                        <select class="form-control select2-single select2"  >
                             <option value="Rubrik1" >Rubrik1</option>
                             <option value="Rubrik2">Rubrik2</option>
                             <option value="Rubrik3">Rubrik3</option>
@@ -135,12 +135,12 @@
 
             $(document).ready(function() {
                 $('#select2Rubrik').select2({
-                    theme: "bootstrap4",
+                    // theme: "bootstrap",
                     allowClear: true
                 });
                 $('.select2').select2({
                     theme: "bootstrap4",
-                    allowClear: true
+                    // allowClear: true
                 });
             });
 

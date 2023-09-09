@@ -15,11 +15,11 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    
 </head>
 
 <body>
-    <div class="card">
+    <div class="card" data-widget="iframe">
         <div class="card-header">
             <div data-module="photo/upload" class="form-group float-left">
                 <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#uploadModal">
@@ -59,16 +59,17 @@
                                         <br><small title="Zona Bandung">Author Name</small>
                                         <div class="float-right">
                                             <button type="button" class="btn btn-xs bg-primary btn-primary btn-edit"
-                                                data-id="7381762" title="Quick use"><i class="fa fa-check"
-                                                    aria-hidden="true"></i>
+                                                onclick="sendImageData('{{ $photo->asset->asset_id }}', '{{ url('storage/photos').'/'.$photo->asset->file_name }}')"
+                                                title="Quick use"><i class="fa fa-check" aria-hidden="true"></i>
                                             </button>
                                             <button type="button" class="btn btn-xs btn-default btn-edit"
                                                 data-id="7381762" title="Use/Edit"><i class="fa fa-edit"
                                                     aria-hidden="true"></i>
                                             </button><button type="button"
                                                 class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
-                                                data-src="{{route('assets.photo.delete', ['id', $photo->id])}}" data-id="7381762" title="Delete"><i
-                                                    class="fa fa-trash" aria-hidden="true"></i></button>
+                                                data-src="{{ route('assets.photo.delete', ['id', $photo->id]) }}"
+                                                data-id="7381762" title="Delete"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -130,6 +131,30 @@
     <!-- AdminLTE App -->
     <script src="{{ url('assets/AdminLTE') }}/dist/js/adminlte.min.js"></script>
 
+
+    <script>
+        // insert image 
+        function sendImageData(id, url) {
+            console.log({
+                id: id,
+            })
+            window.parent.postMessage({
+                mceAction: 'insertImage',
+                data: {
+                    imageUrl: url,
+                    imageId: id
+                }
+            }, "*")
+        }
+
+        window.addEventListener('message', (event) => {
+  var data = event.data;
+
+  // Do something with the data received here
+  console.log('message received from TinyMCE', data);
+});
+      
+    </script>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
@@ -23,6 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/browse', [PhotoController::class, 'browse']);
+Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 
 Route::get('/test',[TestController::class, 'index']);
 

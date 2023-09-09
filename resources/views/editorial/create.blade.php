@@ -1,11 +1,10 @@
 @push('extra-css')
-{{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" integrity="sha512-aD9ophpFQ61nFZP6hXYu4Q/b/USW7rpLCQLX6Bi0WJHXNO7Js/fUENpBQf/+P4NtpzNX0jSgR5zVvPOJp+W2Kg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" integrity="sha512-aD9ophpFQ61nFZP6hXYu4Q/b/USW7rpLCQLX6Bi0WJHXNO7Js/fUENpBQf/+P4NtpzNX0jSgR5zVvPOJp+W2Kg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  --}}
 
 
-<link rel="stylesheet" href="{{url('assets/AdminLTE')}}/plugins/select2/css/select2.min.css">
-<link rel="stylesheet" href="{{url('assets/AdminLTE')}}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-
+    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 @endpush
 <x-app-layout>
     <x-slot name="header">
@@ -32,8 +31,8 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group p-1">
                         <label for="rubruk">Rubrik</label>
-                        <select class="form-control select2-single select2"  >
-                            <option value="Rubrik1" >Rubrik1</option>
+                        <select class="form-control select2-single select2">
+                            <option value="Rubrik1">Rubrik1</option>
                             <option value="Rubrik2">Rubrik2</option>
                             <option value="Rubrik3">Rubrik3</option>
                             <option value="Rubrik4">Rubrik4</option>
@@ -50,7 +49,7 @@
                     <div class="form-group">
                         <label for="tag">Tag</label>
                         <select class="form-control select2" id="select2Tag" multiple>
-                            <option value="Sample Tag 1" >Sample Tag 1</option>
+                            <option value="Sample Tag 1">Sample Tag 1</option>
                             <option value="Sample Tag 2">Sample Tag 2</option>
                             <option value="Sample Tag 3">Sample Tag 3</option>
                             <option value="Sample Tag 4">Sample Tag 4</option>
@@ -63,7 +62,7 @@
                     <div class="form-group">
                         <label for="select2Source">Source</label>
                         <select class="form-control select2" id="select2Source" multiple>
-                            <option value="Sample Source 1" >Sample Source 1</option>
+                            <option value="Sample Source 1">Sample Source 1</option>
                             <option value="Sample Source 2">Sample Source 2</option>
                             <option value="Sample Source 3">Sample Source 3</option>
                             <option value="Sample Source 4">Sample Source 4</option>
@@ -71,12 +70,12 @@
                     </div>
                     {{-- ./Source input --}}
 
-                    
+
                     {{-- Author input --}}
                     <div class="form-group">
                         <label for="select2Author">Author</label>
                         <select class="form-control select2" id="select2Author" multiple>
-                            <option value="Sample Author 1" >Sample Author 1</option>
+                            <option value="Sample Author 1">Sample Author 1</option>
                             <option value="Sample Author 2">Sample Author 2</option>
                             <option value="Sample Author 3">Sample Author 3</option>
                             <option value="Sample Author 4">Sample Author 4</option>
@@ -84,12 +83,12 @@
                     </div>
                     {{-- ./Author input --}}
 
-                    
+
                     {{-- Topic input --}}
                     <div class="form-group">
                         <label for="select2Topic">Topic</label>
                         <select class="form-control select2" id="select2Topic" multiple>
-                            <option value="Sample Topic 1" >Sample Topic 1</option>
+                            <option value="Sample Topic 1">Sample Topic 1</option>
                             <option value="Sample Topic 2">Sample Topic 2</option>
                             <option value="Sample Topic 3">Sample Topic 3</option>
                             <option value="Sample Topic 4">Sample Topic 4</option>
@@ -108,28 +107,68 @@
 
 
     @push('custom-scripts')
-    <script src="{{ url('/') }}/build/public/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+        <script src="{{ url('/') }}/build/public/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+        <script src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 
         <script>
+            const configBacaJuga = {
+                title: 'Baca Juga',
+                url: "{{ url('/browse_baca_juga') }}",
+                width: 720,
+                height: 480,
+                onMessage: (instance, data) => {
+                    tinymce.activeEditor.execCommand('insertHTML', false,
+                        `<p><strong>Baca Juga: <a href="${data.data.url}" >${data.data.title}</a></strong></p>`);
+                    instance.close();
+                }
+            }
+
             tinymce.init({
                 selector: '.editor',
                 skin: 'oxide',
                 promotion: false,
                 plugins: 'image link code media preview lists table',
                 toolbar1: 'styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table',
-                toolbar2: ' code preview | link  dialog-insert-image media',
+                toolbar2: ' code preview | link  dialog-insert-image media dialog-insert-baca-juga',
+                image_title: true,
                 setup: (editor) => {
+                    // insert image
                     editor.ui.registry.addButton('dialog-insert-image', {
                         icon: 'image',
-                        onAction: () => editor.windowManager.openUrl({
-                            title: 'Just a title',
-                            url: "{{ url('/browse') }}",
-                            width: 720,
-                            height: 480,
-                        })
+                        onAction: () => {
+                            const instanceApi = editor.windowManager.openUrl({
+                                title: 'Photos',
+                                url: "{{ url('/browse') }}",
+                                width: 720,
+                                height: 480,
+                                onMessage: (instance, data) => {
+                                    tinymce.activeEditor.execCommand('insertImage', false,
+                                        data.data.imageUrl);
+                                    instance.close();
+                                    switch (data.mceAction) {
+                                        case 'insertImage':
+                                            break;
+                                    }
+                                }
+                            });
+                        },
+                    });
+
+                    // insert baca juga
+                    editor.ui.registry.addButton('dialog-insert-baca-juga', {
+                        icon: 'new-tab',
+                        title: 'Baca Juga',
+                        onAction: () => {
+                            const instanceApiBacaJuga = editor.windowManager.openUrl(configBacaJuga)
+                        },
+
+
                     })
+
+
+
+                    editor.on('')
                 }
             });
 
@@ -143,8 +182,6 @@
                     // allowClear: true
                 });
             });
-
-
         </script>
     @endpush
 </x-app-layout>

@@ -4,6 +4,7 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\WebController;
 use App\Models\Image;
 use Illuminate\Support\Facades\Route;
 
@@ -18,13 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WebController::class, 'index']);
 
 Route::get('/browse', [PhotoController::class, 'browse']);
 
-Route::get('/test',[TestController::class, 'index']);
+Route::get('/test', [TestController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -40,17 +39,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/photo', [PhotoController::class, 'index'])->name('assets.photo.index');
     Route::post('/photo/upload', [PhotoController::class, 'upload'])->name('assets.photo.upload');
     Route::get('/photo/delete/{id}', [PhotoController::class, 'delete'])->name('assets.photo.delete');
-    
+
     //videos
     Route::get('/video', [VideoController::class, 'index'])->name('assets.video.index');
     Route::get('/video/add', [VideoController::class, 'add'])->name('assets.video.add');
-    Route::post('/video', [VideoController::class, 'insert'])->name('assets.video.insert')
-    ;
+    Route::post('/video', [VideoController::class, 'insert'])->name('assets.video.insert');
     Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('assets.video.edit');
     Route::put('/video/edit', [VideoController::class, 'update'])->name('assets.video.update');
     Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('assets.video.delete');
-
 });
 
-require __DIR__.'/auth.php';
-require __DIR__.'/editorial.php';
+require __DIR__ . '/auth.php';
+require __DIR__ . '/editorial.php';

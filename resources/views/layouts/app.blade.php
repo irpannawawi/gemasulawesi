@@ -14,6 +14,35 @@
   <link rel="stylesheet" href="{{url('assets/AdminLTE')}}/dist/css/adminlte.min.css">
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 @stack('extra-css')
+  <style>
+    .btn-primary{
+      background-color: #007BFF;
+    }
+    .btn-secondary{
+      background-color: #6C757d;
+    }
+
+    
+    .btn-warning{
+      background-color: #ffc107;
+    }
+    .btn-success{
+      background-color: #28A745;
+    }
+    .select2-selection__choice{
+      background-color: #28A745;
+      text: white;
+    }
+    .nav-sidebar .nav-item>.nav-link{
+      padding: 7px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+
+    .nav-sidebar .nav-treeview{
+      margin-left: 10px;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->

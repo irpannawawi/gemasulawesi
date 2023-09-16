@@ -84,30 +84,37 @@
                           </p>
                       </a>
                       <ul class="nav nav-treeview">
-                          <li class="nav-item">
+                          <li class="nav-item ">
                               <a href="#" class="nav-link">
                                   <i class="far fa-file nav-icon"></i>
                                   <p>Headline WP</p>
                               </a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item ">
                               <a href="#" class="nav-link">
                                   <i class="fa fa-copy nav-icon"></i>
                                   <p>Headline Rubrik</p>
                               </a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item ">
                               <a href="#" class="nav-link">
                                   <i class="fa fa-check-square nav-icon"></i>
                                   <p>Pilihan Editor</p>
                               </a>
                           </li>
-                          <li class="nav-item">
+                          <li class="nav-item ">
                               <a href="#" class="nav-link">
                                   <i class="fa fa-calendar nav-icon"></i>
                                   <p>Topik Khusus</p>
                               </a>
                           </li>
+                          
+                          <li class="nav-item ">
+                            <a href="{{route('rubrik.index')}}" class="nav-link">
+                                <i class="fa fa-cogs nav-icon"></i>
+                                <p>Rubrik Management</p>
+                            </a>
+                        </li>
                       </ul>
                   </li>
                   <li class="nav-item">

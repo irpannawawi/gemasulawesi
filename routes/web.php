@@ -3,6 +3,8 @@
 use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RubrikController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\VideoController;
 use App\Models\Image;
@@ -37,6 +39,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // rubrik management
+    Route::get('/rubrik', [RubrikController::class, 'index'])->name('rubrik.index');
+    Route::post('/rubrik_add', [RubrikController::class, 'insert'])->name('rubrik.add');
+    Route::put('/rubrik_edit', [RubrikController::class, 'edit'])->name('rubrik.edit');
+    Route::get('/rubrik_delete/{id}', [RubrikController::class, 'delete'])->name('rubrik.delete');
+
+    // tags management
+    Route::get('/tags', [TagsController::class, 'index'])->name('tags.index');
+    Route::post('/tags_add', [TagsController::class, 'insert'])->name('tags.add');
+    Route::put('/tags_edit', [TagsController::class, 'edit'])->name('tags.edit');
+    Route::get('/tags_delete/{id}', [TagsController::class, 'delete'])->name('tags.delete');
+    // modals
+    Route::get('/modal_tags', [TagsController::class, 'modal_tags'])->name('modal.tags');
+
+    
 
     // assets photo
     Route::get('/photo', [PhotoController::class, 'index'])->name('assets.photo.index');

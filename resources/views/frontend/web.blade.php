@@ -257,7 +257,174 @@
                 <div class="col-lg-8 order-lg-2">
 
                     <section>
-                        <article class="entry thumb--size-3 ">
+                        <div class="owl-carousel owl-carousel-thumbs" data-slider-id="5">
+                            <div>
+                                <article class="entry thumb--size-3 mb-0">
+                                    <div class="entry__img-holder thumb__img-holder"
+                                        style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_5.jpg');">
+                                        <div class="bottom-gradient"></div>
+                                        <div class="thumb-text-holder thumb-text-holder--2">
+                                            <ul class="entry__meta">
+                                                <li>
+                                                    <a href="#" class="entry__meta-category">politics</a>
+                                                </li>
+                                            </ul>
+                                            <h2 class="thumb-entry-title">
+                                                <a href="single-post-politics.html">Trump endorses raising minimum age
+                                                    for more
+                                                    weapons, revives idea of arming teachers</a>
+                                            </h2>
+                                            <ul class="entry__meta">
+                                                <li class="entry__meta-views">
+                                                    <i class="ui-eye"></i>
+                                                    <span>1356</span>
+                                                </li>
+                                                <li class="entry__meta-comments">
+                                                    <a href="#">
+                                                        <i class="ui-chat-empty"></i>13
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="single-post-politics.html" class="thumb-url"></a>
+                                    </div>
+                                </article>
+                            </div>
+                            <div>
+                                <article class="entry thumb--size-3 mb-0">
+                                    <div class="entry__img-holder thumb__img-holder"
+                                        style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_13.jpg');">
+                                        <div class="bottom-gradient"></div>
+                                        <div class="thumb-text-holder thumb-text-holder--2">
+                                            <ul class="entry__meta">
+                                                <li>
+                                                    <a href="#" class="entry__meta-category">politics</a>
+                                                </li>
+                                            </ul>
+                                            <h2 class="thumb-entry-title">
+                                                <a href="single-post-politics.html">Extreme Heat Waves Will Change How
+                                                    We Live. We're Not Ready</a>
+                                            </h2>
+                                            <ul class="entry__meta">
+                                                <li class="entry__meta-views">
+                                                    <i class="ui-eye"></i>
+                                                    <span>1356</span>
+                                                </li>
+                                                <li class="entry__meta-comments">
+                                                    <a href="#">
+                                                        <i class="ui-chat-empty"></i>13
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="single-post-politics.html" class="thumb-url"></a>
+                                    </div>
+                                </article>
+                            </div>
+                            <div>
+                                <article class="entry thumb--size-3 mb-0">
+                                    <div class="entry__img-holder thumb__img-holder"
+                                        style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_20.jpg');">
+                                        <div class="bottom-gradient"></div>
+                                        <div class="thumb-text-holder thumb-text-holder--2">
+                                            <ul class="entry__meta">
+                                                <li>
+                                                    <a href="#" class="entry__meta-category">politics</a>
+                                                </li>
+                                            </ul>
+                                            <h2 class="thumb-entry-title">
+                                                <a href="single-post-politics.html">Trump endorses raising minimum age
+                                                    for more
+                                                    weapons, revives idea of arming teachers</a>
+                                            </h2>
+                                            <ul class="entry__meta">
+                                                <li class="entry__meta-views">
+                                                    <i class="ui-eye"></i>
+                                                    <span>1356</span>
+                                                </li>
+                                                <li class="entry__meta-comments">
+                                                    <a href="#">
+                                                        <i class="ui-chat-empty"></i>13
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="single-post-politics.html" class="thumb-url"></a>
+                                    </div>
+                                </article>
+                            </div>
+                            <div>
+                                <article class="entry thumb--size-3 mb-0">
+                                    <div class="entry__img-holder thumb__img-holder"
+                                        style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_21.jpg');">
+                                        <div class="bottom-gradient"></div>
+                                        <div class="thumb-text-holder thumb-text-holder--2">
+                                            <ul class="entry__meta">
+                                                <li>
+                                                    <a href="#" class="entry__meta-category">politics</a>
+                                                </li>
+                                            </ul>
+                                            <h2 class="thumb-entry-title">
+                                                <a href="single-post-politics.html">Trump endorses raising minimum age
+                                                    for more
+                                                    weapons, revives idea of arming teachers</a>
+                                            </h2>
+                                            <ul class="entry__meta">
+                                                <li class="entry__meta-views">
+                                                    <i class="ui-eye"></i>
+                                                    <span>1356</span>
+                                                </li>
+                                                <li class="entry__meta-comments">
+                                                    <a href="#">
+                                                        <i class="ui-chat-empty"></i>13
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a href="single-post-politics.html" class="thumb-url"></a>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                        <div class="owl-thumbs row mb-4 d-none d-md-flex w-100 mx-auto" data-slider-id="5">
+                            <button class="owl-thumb-item col-3 p-0">
+                                <div class="thumb-item">
+                                    <img src="{{ asset('/') }}assets/frontend/img/content/hero/hero_post_5.jpg"
+                                        class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
+                                        alt="">
+                                    <a href="1" class="bg-black p-2">Trump endorses raising minimum age for more
+                                        weapons, revives </a>
+                                </div>
+                            </button>
+                            <button class="owl-thumb-item col-3 p-0 ">
+                                <div class="thumb-item">
+                                    <img src="{{ asset('/') }}assets/frontend/img/content/hero/hero_post_13.jpg"
+                                        class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
+                                        alt="">
+                                    <a class="bg-black p-2" href="">Extreme Heat Waves Will Change How
+                                        We Live. We're Not Ready</a>
+                                </div>
+                            </button>
+                            <button class="owl-thumb-item col-3 p-0">
+                                <div class="thumb-item">
+                                    <img src="{{ asset('/') }}assets/frontend/img/content/hero/hero_post_20.jpg"
+                                        class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
+                                        alt="">
+                                    <a class="bg-black p-2" href="">Extreme Heat Waves Will Change How
+                                        We Live. We're Not Ready</a>
+                                </div>
+                            </button>
+                            <button class="owl-thumb-item col-3 p-0">
+                                <div class="thumb-item">
+                                    <img src="{{ asset('/') }}assets/frontend/img/content/hero/hero_post_21.jpg"
+                                        class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
+                                        alt="">
+                                    <a class="bg-black p-2" href="">Extreme Heat Waves Will Change How
+                                        We Live. We're Not Ready</a>
+                                </div>
+                            </button>
+                        </div>
+                        <!-- <article class="entry thumb--size-3 mb-0">
                             <div class="entry__img-holder thumb__img-holder"
                                 style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_5.jpg');">
                                 <div class="bottom-gradient"></div>
@@ -285,139 +452,162 @@
                                 </div>
                                 <a href="single-post-politics.html" class="thumb-url"></a>
                             </div>
-                        </article>
-                        <div class="title-wrap title-wrap--line title-wrap--pr">
-                            <h3 class="section-title">pilihan editor</h3>
-                        </div>
+                        </article> -->
+                        <div class="title-wrap--line"></div>
+                        <div class="pilihan-editor">
+                            <div class="title-wrap">
+                                <h3 class="section-title">pilihan editor</h3>
+                            </div>
 
-                        <!-- Slider -->
-                        <div id="owl-posts-3-items" class="owl-carousel owl-theme owl-carousel--arrows-outside">
-                            <article class="entry">
-                                <div class="entry__img-holder">
-                                    <a href="single-post-politics.html">
-                                        <div class="thumb-container thumb-65">
-                                            <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_5.jpg"
-                                                src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                class="entry__img lazyload" alt="">
+                            <!-- Slider -->
+                            <div class="wrap-owl">
+                                <div id="owl-posts-3-items"
+                                    class="owl-carousel owl-theme owl-carousel--arrows-outside">
+                                    <article class="entry">
+                                        <div class="entry__img-holder">
+                                            <a href="single-post-politics.html">
+                                                <div class="thumb-container thumb-65">
+                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_5.jpg"
+                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                        class="entry__img lazyload" alt="">
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                                <div class="entry__body">
-                                    <div class="entry__header">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">category</a>
-                                            </li>
-                                        </ul>
-                                        <h2 class="entry__title">
-                                            <a href="single-post-politics.html">Federal budget to spend up to $1
-                                                billion on cybersecurity</a>
-                                        </h2>
-                                        <p class="bt__date">14 September 2023, 15:41 WIB</p>
+                                        <div class="entry__body">
+                                            <div class="entry__header">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">category</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="entry__title">
+                                                    <a href="single-post-politics.html">Federal budget to spend up to
+                                                        $1
+                                                        billion on cybersecurity</a>
+                                                </h2>
+                                                <p class="bt__date">14 September 2023, 15:41 WIB</p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="entry">
+                                        <div class="entry__img-holder">
+                                            <a href="single-post-politics.html">
+                                                <div class="thumb-container thumb-65">
+                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_6.jpg"
+                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                        class="entry__img lazyload" alt="">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="entry__body">
+                                            <div class="entry__header">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">elizabeth
+                                                            Green</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="entry__title">
+                                                    <a href="single-post-politics.html">US Administration is Waging a
+                                                        Silent
+                                                        War on Asylum Seekers</a>
+                                                </h2>
+                                                <p class="bt__date">14 September 2023, 15:41 WIB</p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="entry">
+                                        <div class="entry__img-holder">
+                                            <a href="single-post-politics.html">
+                                                <div class="thumb-container thumb-65">
+                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_7.jpg"
+                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                        class="entry__img lazyload" alt="">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="entry__body">
+                                            <div class="entry__header">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">john doe</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="entry__title">
+                                                    <a href="single-post-politics.html">U.S. To Expel 60 Russian
+                                                        Foreign
+                                                        Service Officers</a>
+                                                </h2>
+                                                <p class="bt__date">14 September 2023, 15:41 WIB</p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="entry">
+                                        <div class="entry__img-holder">
+                                            <a href="single-post-politics.html">
+                                                <div class="thumb-container thumb-65">
+                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_8.jpg"
+                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                        class="entry__img lazyload" alt="">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="entry__body">
+                                            <div class="entry__header">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">kathlyn
+                                                            wood</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="entry__title">
+                                                    <a href="single-post-politics.html">John Bolton, North Korea and
+                                                        the
+                                                        Art
+                                                        of the Deal</a>
+                                                </h2>
+                                                <p class="bt__date">14 September 2023, 15:41 WIB</p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                    <article class="entry">
+                                        <div class="entry__img-holder">
+                                            <a href="single-post-politics.html">
+                                                <div class="thumb-container thumb-65">
+                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_6.jpg"
+                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                        class="entry__img lazyload" alt="">
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="entry__body">
+                                            <div class="entry__header">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">elizabeth
+                                                            Green</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="entry__title">
+                                                    <a href="single-post-politics.html">US Administration is Waging a
+                                                        Silent
+                                                        War on Asylum Seekers</a>
+                                                </h2>
+                                                <p class="bt__date">14 September 2023, 15:41 WIB</p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </div> <!-- end slider -->
+                                <div class="wrap-btn-slider">
+                                    <div class="btn-slider">
+                                        <button class="btn-prev" id="prevPost3"><i
+                                                class="ui-arrow-left"></i></button>
+                                        <button class="btn-nect" id="nextPost3"><i
+                                                class="ui-arrow-right"></i></button>
                                     </div>
                                 </div>
-                            </article>
-                            <article class="entry">
-                                <div class="entry__img-holder">
-                                    <a href="single-post-politics.html">
-                                        <div class="thumb-container thumb-65">
-                                            <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_6.jpg"
-                                                src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                class="entry__img lazyload" alt="">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="entry__body">
-                                    <div class="entry__header">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">elizabeth Green</a>
-                                            </li>
-                                        </ul>
-                                        <h2 class="entry__title">
-                                            <a href="single-post-politics.html">US Administration is Waging a Silent
-                                                War on Asylum Seekers</a>
-                                        </h2>
-                                        <p class="bt__date">14 September 2023, 15:41 WIB</p>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="entry">
-                                <div class="entry__img-holder">
-                                    <a href="single-post-politics.html">
-                                        <div class="thumb-container thumb-65">
-                                            <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_7.jpg"
-                                                src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                class="entry__img lazyload" alt="">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="entry__body">
-                                    <div class="entry__header">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">john doe</a>
-                                            </li>
-                                        </ul>
-                                        <h2 class="entry__title">
-                                            <a href="single-post-politics.html">U.S. To Expel 60 Russian Foreign
-                                                Service Officers</a>
-                                        </h2>
-                                        <p class="bt__date">14 September 2023, 15:41 WIB</p>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="entry">
-                                <div class="entry__img-holder">
-                                    <a href="single-post-politics.html">
-                                        <div class="thumb-container thumb-65">
-                                            <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_8.jpg"
-                                                src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                class="entry__img lazyload" alt="">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="entry__body">
-                                    <div class="entry__header">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">kathlyn wood</a>
-                                            </li>
-                                        </ul>
-                                        <h2 class="entry__title">
-                                            <a href="single-post-politics.html">John Bolton, North Korea and the Art of
-                                                the Deal</a>
-                                        </h2>
-                                        <p class="bt__date">14 September 2023, 15:41 WIB</p>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="entry">
-                                <div class="entry__img-holder">
-                                    <a href="single-post-politics.html">
-                                        <div class="thumb-container thumb-65">
-                                            <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_6.jpg"
-                                                src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                class="entry__img lazyload" alt="">
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="entry__body">
-                                    <div class="entry__header">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">elizabeth Green</a>
-                                            </li>
-                                        </ul>
-                                        <h2 class="entry__title">
-                                            <a href="single-post-politics.html">US Administration is Waging a Silent
-                                                War on Asylum Seekers</a>
-                                        </h2>
-                                        <p class="bt__date">14 September 2023, 15:41 WIB</p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div> <!-- end slider -->
+                            </div>
+                        </div>
                     </section>
                 </div> <!-- end slider -->
 
@@ -463,7 +653,8 @@
                                     <div class="post-list-small__body">
                                         <h3 class="post-list-small__entry-title">
                                             <a href="single-post-politics.html">Liberals to outline long-term
-                                                Indigenous housing plan in budge</a>
+                                                Indigenous
+                                                housing plan in budge</a>
                                         </h3>
                                     </div>
                                 </article>
@@ -501,7 +692,8 @@
                                     <div class="post-list-small__body">
                                         <h3 class="post-list-small__entry-title">
                                             <a href="single-post-politics.html">Liberals to outline long-term
-                                                Indigenous housing plan in budge</a>
+                                                Indigenous
+                                                housing plan in budge</a>
                                         </h3>
                                     </div>
                                 </article>
@@ -539,7 +731,8 @@
                                     <div class="post-list-small__body">
                                         <h3 class="post-list-small__entry-title">
                                             <a href="single-post-politics.html">California Democrats' snub of party
-                                                icon Dianne Feinstein</a>
+                                                icon
+                                                Dianne Feinstein</a>
                                         </h3>
                                     </div>
                                 </article>
@@ -780,7 +973,8 @@
                                 &copy;
                                 <script>
                                     document.querySelector(".copyright").innerHTML += new Date().getFullYear();
-                                </script> Gema Sulawesi</a>
+                                </script>
+                                Gema Sulawesi</a>
                             </p>
                         </div>
 
@@ -809,11 +1003,12 @@
     </main> <!-- end main-wrapper -->
 
     <!-- jQuery Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="{{ asset('/') }}assets/frontend/js/jquery.min.js"></script>
     <script src="{{ asset('/') }}assets/frontend/js/bootstrap.min.js"></script>
     <script src="{{ asset('/') }}assets/frontend/js/easing.min.js"></script>
     <script src="{{ asset('/') }}assets/frontend/js/owl-carousel.min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/flickity.pkgd.min.js"></script>
+    <script src="js/flickity.pkgd.min.js"></script>
     <script src="{{ asset('/') }}assets/frontend/js/twitterFetcher_min.js"></script>
     <script src="{{ asset('/') }}assets/frontend/js/jquery.newsTicker.min.js"></script>
     <script src="{{ asset('/') }}assets/frontend/js/modernizr.min.js"></script>

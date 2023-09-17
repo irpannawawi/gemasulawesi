@@ -22,9 +22,7 @@
 
 <body>
     <div class="card" data-widget="iframe">
-        <div class="card-header">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTagModal">Tambah data</button>
-        </div>
+       
         <div class="card-body">
             <div class="table-responsive no-margin">
                 <table class="table table-striped datatables">
@@ -33,6 +31,8 @@
                             <th style="width: 10%;">#</th>
                             <th style="width: 10%;">No</th>
                             <th>Name</th>
+                            <th>Ddescription</th>
+                            <th>Images</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,17 +40,19 @@
                         @php
                             $i = 1;
                         @endphp
-                        @foreach ($tags as $tag)
+                        @foreach ($topics as $topic)
                             <tr>
                                 <td>
-                                    <input onchange="check_tags(this, {{ $tag->tag_id }}, '{{ $tag->tag_name }}')"
-                                        type="checkbox" name="tagSelection[]" class="form-control" value="1">
+                                    <input onchange="check_topics(this, {{ $topic->topic_id }}, '{{ $topic->topic_name }}')"
+                                        type="checkbox" name="topicSelection[]" class="form-control" value="1">
                                 </td>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $tag->tag_name }}</td>
+                                <td>{{ $topic->topic_name }}</td>
+                                <td>{{ $topic->topic_description }}</td>
+                                <td><img src="{{ $topic->topic_image }}" alt="Topik images" class="img-fluid"></td>
                                 <td>
-                                    <button class="btn btn-default " data-toggle="modal" data-target="#editTagModal"
-                                        onclick="edit_tag('{{ $tag->tag_id }}', '{{ $tag->tag_name }}')"><i
+                                    <button class="btn btn-default " data-toggle="modal" data-target="#editTopicModal-ds"
+                                        onclick="edit_topic('{{ $topic->topic_id }}', '{{ $topic->topic_name }}', '{{ $topic->topic_description }}')"><i
                                             class="fa fa-edit"></i></button>
                                     <button class="btn btn-danger bg-danger"><i class="fa fa-trash"></i></button>
                                 </td>
@@ -140,25 +142,24 @@
         <script>
             $('.datatables').dataTable();
             // check or uncheck tags
-            function check_tags(elm, id, text) {
+            function check_topics(elm, id, text) {
                 var data = {
                     id: id,
                     text: text
                 };
 
                 var newOption = new Option(data.text, data.id, true, true);
-                $('#select2Tag', window.parent.document).append(newOption).trigger('change');
+                $('#select2Topic', window.parent.document).append(newOption).trigger('change');
 
                 if ($(elm, window.parent.document).is(':checked')) {
                     // add to selected 
-                    let last_value = $('#select2Tag', window.parent.document).val();
+                    let last_value = $('#select2Topic', window.parent.document).val();
                     last_value.push(id);
                     console.log(last_value)
                 } else {
                     // remove from selected
-                    alert('uncheck')
                 }
-                $('#select2Tag', window.parent.document).trigger('change');
+                $('#select2Topic', window.parent.document).trigger('change');
             }
 
             function edit_tag(id, name) {

@@ -17,9 +17,25 @@ class TagsController extends Controller
 
     public function insert(Request $request)
     {
-        if(Tags::create(['tag_name'=>$request->tag_name, 'tag_link'=>$request->tag_link]))
+        if(Tags::create(['tag_name'=>$request->tag_name]))
         {
             return redirect()->back()->with('message-success', 'Berhasil menambah tag');
+        }
+    }
+
+    public function edit(Request $request)
+    {
+        if(Tags::where('tag_id', $request->tag_id)->update(['tag_name'=>$request->tag_name]))
+        {
+            return redirect()->back()->with('message-success', 'Berhasil menambah tag');
+        }
+    }
+
+    public function delete($id)
+    {
+        if(Tags::where('tag_id', $id)->delete())
+        {
+            return redirect()->back()->with('message-success', 'Berhasil menghapus tag');
         }
     }
 }

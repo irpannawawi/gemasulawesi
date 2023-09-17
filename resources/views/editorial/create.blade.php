@@ -8,7 +8,7 @@
 @endpush
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-lg text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Create Article') }}
         </h2>
     </x-slot>
@@ -31,10 +31,10 @@
                             <textarea class="editor" name="content" id="content" class="form-control" cols="2"></textarea>
                         </div>
 
-                        {{-- Tags input --}}
+                        {{-- Related input --}}
                         <div class="form-group">
                             <label>Related article</label>
-                            <select class="form-control select2" id="select2Related" name="related[]" multiple>
+                            <select class="form-control select2-multiple" id="select2Related" name="related[]" multiple>
                                 <option value="Sample Related article 1">Sample Related article 1</option>
                                 <option value="Sample Related article 2">Sample Related article 2</option>
                                 <option value="Sample Related article 3">Sample Related article 3</option>
@@ -42,9 +42,9 @@
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
-                                data-target="#modalTags"><i class="fa fa-plus"></i> Add/Select more</button>
+                                data-target="#modalRelated"><i class="fa fa-plus"></i> Add/Select more</button>
                         </div>
-                        {{-- ./Tags input --}}
+                        {{-- ./Related input --}}
 
                     </div>
                     <div class="col-lg-4 col-md-4">
@@ -83,13 +83,14 @@
                         {{-- Source input --}}
                         <div class="form-group">
                             <label for="select2Source">Source</label>
-                            <select class="form-control select2" id="select2Source" name="sources[]" multiple>
+                            <select class="form-control select2-multiple" id="select2source" name="sources[]" multiple>
                                 <option value="Sample Source 1">Sample Source 1</option>
                                 <option value="Sample Source 2">Sample Source 2</option>
                                 <option value="Sample Source 3">Sample Source 3</option>
                                 <option value="Sample Source 4">Sample Source 4</option>
                             </select>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add/Select more</button>
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
+                                data-target="#modalSource"><i class="fa fa-plus"></i> Add/Select more</button>
 
                         </div>
                         {{-- ./Source input --}}
@@ -98,13 +99,14 @@
                         {{-- Author input --}}
                         <div class="form-group">
                             <label for="select2Author">Author</label>
-                            <select class="form-control select2" id="select2Author" name="author" multiple>
-                                <option value="Sample Author 1">Sample Author 1</option>
+                            <select class="form-control select2-multiple" id="select2Author" name="author" multiple>
+                                <option value="Sample Author 1" selected>Sample Author 1</option>
                                 <option value="Sample Author 2">Sample Author 2</option>
                                 <option value="Sample Author 3">Sample Author 3</option>
                                 <option value="Sample Author 4">Sample Author 4</option>
                             </select>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add/Select more</button>
+                            <button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add/Select
+                                more</button>
 
                         </div>
                         {{-- ./Author input --}}
@@ -113,19 +115,16 @@
                         {{-- Topic input --}}
                         <div class="form-group">
                             <label for="select2Topic">Topic</label>
-                            <select class="form-control select2" id="select2Topic" name="topics[]" multiple>
-                                <option value="Sample Topic 1">Sample Topic 1</option>
-                                <option value="Sample Topic 2">Sample Topic 2</option>
-                                <option value="Sample Topic 3">Sample Topic 3</option>
-                                <option value="Sample Topic 4">Sample Topic 4</option>
+                            <select class="form-control select2-multiple" id="select2Topic" name="topics[]" multiple>
                             </select>
-                            <button class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add/Select more</button>
+                            <button type="button" class="btn btn-default btn-sm" data-target="#modalTopic"
+                                data-toggle="modal"><i class="fa fa-plus"></i> Add/Select more</button>
 
                         </div>
                         {{-- ./Topic input --}}
 
                         {{-- other input --}}
-                        <div class="form-group">
+                        <div class="form-group m-0">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" id="allow_comment" name="allow_comment" value="1">
@@ -135,7 +134,7 @@
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="form-group m-0">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" id="view_in_welcome_page" name="view_in_welcome_page"
@@ -159,7 +158,8 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-success bg-success" type="submit"><i class="fa fa-save"></i> Simpan</button>
+                <button class="btn btn-primary bg-primary" type="submit"><i class="fa fa-paper-plane"></i> Publish</button>
+                <button class="btn btn-secondary bg-secondary" type="button"><i class="fa fa-save"></i> Simpan</button>
             </div>
         </form>
     </div>
@@ -168,7 +168,7 @@
     {{-- modals --}}
     <!-- Button trigger modal -->
 
-    <!-- Modal -->
+    <!-- Modal Tags -->
     <div class="modal fade" id="modalTags" tabindex="-1" role="dialog" aria-labelledby="modalTagsLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
@@ -180,15 +180,89 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="{{route('modal.tags')}}" frameborder="0" style="width: 100%; height: 750px;"></iframe>
+                    <iframe src="{{ route('modal.tags') }}" frameborder="0"
+                        style="width: 100%; height: 750px;"></iframe>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn bg-primary btn-primary">Save changes</button>
+                    <button type="button" data-dismiss="modal" class="btn bg-primary btn-primary">Save
+                        changes</button>
                 </div>
             </div>
         </div>
     </div>
 
+
+
+    <!-- Modal Source-->
+    <div class="modal fade" id="modalSource" tabindex="-1" role="dialog" aria-labelledby="modalSourceLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalSourceLabel">Source management</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="{{ route('modal.source') }}" frameborder="0"
+                        style="width: 100%; height: 750px;"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn bg-primary btn-primary">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Related article -->
+    <div class="modal fade" id="modalRelated" tabindex="-1" role="dialog" aria-labelledby="modalRelatedLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalRelatedLabel">Related article</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="{{ route('modal.related') }}" frameborder="0"
+                        style="width: 100%; height: 750px;"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn bg-primary btn-primary">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <!-- Modal Topic -->
+    <div class="modal fade" id="modalTopic" tabindex="-1" role="dialog" aria-labelledby="modalTopicLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTopicLabel">Topic management</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="{{ route('modal.topic') }}" frameborder="0"
+                        style="width: 100%; height: 750px;"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal" class="btn bg-primary btn-primary">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{-- Scripts --}}
     @push('custom-scripts')
@@ -281,8 +355,14 @@
                 return $state;
             }
 
+            $('#description').on('keyup', () => {
+                count_word_description();
+            })
 
-            
+            function count_word_description() {
+                let desc_len = $('#description').val().length
+                $('#counter_word_description').text(140 - desc_len)
+            }
         </script>
     @endpush
 </x-app-layout>

@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\BrowseController;
+use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RubrikController;
+use App\Http\Controllers\SourceController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\TopicController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WebController;
 use App\Models\Image;
@@ -38,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     // rubrik management
     Route::get('/rubrik', [RubrikController::class, 'index'])->name('rubrik.index');
     Route::post('/rubrik_add', [RubrikController::class, 'insert'])->name('rubrik.add');
@@ -53,7 +56,25 @@ Route::middleware('auth')->group(function () {
     // modals
     Route::get('/modal_tags', [TagsController::class, 'modal_tags'])->name('modal.tags');
 
+    // source management
+    Route::get('/source', [SourceController::class, 'index'])->name('sources.index');
+    Route::post('/source_add', [SourceController::class, 'insert'])->name('sources.add');
+    Route::put('/source_edit', [SourceController::class, 'edit'])->name('sources.edit');
+    Route::get('/source_delete/{id}', [SourceController::class, 'delete'])->name('sources.delete');
+    // modals
+    Route::get('/modal_source', [SourceController::class, 'modal_source'])->name('modal.source');
+
+
+    // TOPICS management
+    Route::get('/topic', [TopicController::class, 'index'])->name('topics.index');
+    Route::post('/topic_add', [TopicController::class, 'insert'])->name('topics.add');
+    Route::put('/topic_edit', [TopicController::class, 'edit'])->name('topics.edit');
+    Route::get('/topic_delete/{id}', [TopicController::class, 'delete'])->name('topics.delete');
+    // modals
+    Route::get('/modal_topic', [TopicController::class, 'modal_topic'])->name('modal.topic');
     
+    Route::get('/modal_related', [EditorialController::class, 'modal_related'])->name('modal.related');
+
 
     // assets photo
     Route::get('/photo', [PhotoController::class, 'index'])->name('assets.photo.index');

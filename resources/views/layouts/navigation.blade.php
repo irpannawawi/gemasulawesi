@@ -109,6 +109,12 @@
                                   <p>Topik Khusus</p>
                               </a>
                           </li>
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="fa fa-cogs nav-icon"></i>
+                                  <p>Rubrik Managament</p>
+                              </a>
+                          </li>
                       </ul>
                   </li>
                   <li class="nav-item">

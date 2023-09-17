@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->increments('tag_id')->primary;
-            $table->string('tag_name');
+        Schema::create('source', function (Blueprint $table) {
+            $table->increments('source_id')->primary;
+            $table->string('source_name');
+            $table->string('source_alias')->nullable();
+            $table->string('source_website')->nullable();
+            $table->string('source_logo_url')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('source');
     }
 };

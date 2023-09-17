@@ -23,7 +23,13 @@ class Posts extends Model
         'view_in_welcome_page',
         'author_id',
         'editor_id',
-        'status'
+        'status',
+        'tags',
+        'related_articles',
+        'topics',
+        'schedul_time',
+        'published_at',
+        'is_deleted',
     ];
 
     public function editor(): HasOne
@@ -33,5 +39,10 @@ class Posts extends Model
     public function author(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'author_id');
+    }
+
+    public function rubrik(): HasOne
+    {
+        return $this->hasOne(Rubrik::class, 'rubrik_id', 'category');
     }
 }

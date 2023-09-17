@@ -23,7 +23,7 @@
 <body>
     <div class="card" data-widget="iframe">
         <div class="card-header">
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTagModal">Tambah data</button>
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addsourceModal">Tambah data</button>
         </div>
         <div class="card-body">
             <div class="table-responsive no-margin">
@@ -40,17 +40,17 @@
                         @php
                             $i = 1;
                         @endphp
-                        @foreach ($tags as $tag)
+                        @foreach ($sources as $source)
                             <tr>
                                 <td>
-                                    <input onchange="check_tags(this, {{ $tag->tag_id }}, '{{ $tag->tag_name }}')"
-                                        type="checkbox" name="tagSelection[]" class="form-control" value="1">
+                                    <input onchange="check_sources(this, {{ $source->source_id }}, '{{ $source->source_name }}')"
+                                        type="checkbox" name="sourceSelection[]" class="form-control" value="1">
                                 </td>
                                 <td>{{ $i++ }}</td>
-                                <td>{{ $tag->tag_name }}</td>
+                                <td>{{ $source->source_name }}</td>
                                 <td>
-                                    <button class="btn btn-default " data-toggle="modal" data-target="#editTagModal"
-                                        onclick="edit_tag('{{ $tag->tag_id }}', '{{ $tag->tag_name }}')"><i
+                                    <button class="btn btn-default " data-toggle="modal" data-target="#editsourceModal"
+                                        onclick="edit_source('{{ $source->source_id }}', '{{ $source->source_name }}', '{{ $source->source_alias }}', '{{ $source->source_website }}', '{{ $source->source_logo_url }}')"><i
                                             class="fa fa-edit"></i></button>
                                     <button class="btn btn-danger bg-danger"><i class="fa fa-trash"></i></button>
                                 </td>
@@ -62,25 +62,40 @@
 
         </div>
 
-        {{-- Modals add tags --}}
+        {{-- Modals add sources --}}
 
-        <div class="modal fade" id="addTagModal" tabindex="-1" role="dialog" aria-labelledby="addTagModalLabel"
+        <div class="modal fade" id="addsourceModal" tabindex="-1" role="dialog" aria-labelledby="addsourceModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addTagModalLabel">Tambah data</h5>
+                        <h5 class="modal-title" id="addsourceModalLabel">Tambah data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('tags.add') }}" method="POST">
+                        <form action="{{ route('sources.add') }}" method="POST">
                             @csrf
                             <div class="form-group mb-2">
-                                <label for="tagName">Tag</label>
-                                <input type="text" id="tagName" name="tag_name" class="form-control" required
-                                    autocomplete="off">
+                                <label for="sourceName">Name <sup>* </sup></label>
+                                <input type="text" id="sourceName" name="source_name" class="form-control" required
+                                    autocomplete="off" >
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="sourcealias">Alias</label>
+                                <input type="text" id="sourcealias" name="source_alias" class="form-control" 
+                                    autocomplete="off" >
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="sourcewebsite">Website</label>
+                                <input type="text" id="sourcewebsite" name="source_website" class="form-control" 
+                                    autocomplete="off" >
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="sourcelogo_url">Logo url</label>
+                                <input type="url" id="sourcelogo_url" name="source_logo_url" class="form-control" 
+                                    autocomplete="off" >
                             </div>
                             <div class="form-group mb-2">
                                 <button type="button" class="btn bg-secondary btn-secondary"
@@ -94,27 +109,38 @@
             </div>
         </div>
 
-        {{-- Modal edit tag --}}
-        <div class="modal fade" id="editTagModal" tabindex="-1" role="dialog" aria-labelledby="editTagModalLabel"
+        {{-- Modal edit source --}}
+        <div class="modal fade" id="editsourceModal" tabindex="-1" role="dialog" aria-labelledby="editsourceModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="editTagModalLabel">Tambah data</h5>
+                        <h5 class="modal-title" id="editsourceModalLabel">Ubah data</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('tags.edit') }}" method="POST">
+                        <form action="{{ route('sources.edit') }}" method="POST">
                             @csrf
                             @method('put')
                             <div class="form-group mb-2">
-                                <label for="Tag">Nama Tag</label>
-                                <input type="text" name="tag_name" class="form-control" required autocomplete="off"
-                                    id="input-Tag-name">
-                                <input type="hidden" name="tag_id" class="form-control" required autocomplete="off"
-                                    id="input-Tag-id">
+                                <label for="source">Name <sup>*</sup></label>
+                                <input type="text" name="source_name" class="form-control" required autocomplete="off" id="input-source-name">
+                                <input type="hidden" name="source_id" class="form-control" required autocomplete="off"
+                                    id="input-source-id">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="sourcealias">Alias</label>
+                                <input type="text" name="source_alias" class="form-control"  autocomplete="off" id="input-source-alias">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="sourcewebsite">Website</label>
+                                <input type="text" name="source_website" class="form-control"  autocomplete="off" id="input-source-website">
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="sourcelogo">Logo</label>
+                                <input type="text" name="source_logo" class="form-control"  autocomplete="off" id="input-source-logo">
                             </div>
                             <div class="form-group mb-2">
                                 <button type="button" class="btn bg-secondary btn-secondary"
@@ -139,31 +165,34 @@
         <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
         <script>
             $('.datatables').dataTable();
-            // check or uncheck tags
-            function check_tags(elm, id, text) {
+            // check or uncheck sources
+            function check_sources(elm, id, text) {
                 var data = {
                     id: id,
                     text: text
                 };
 
                 var newOption = new Option(data.text, data.id, true, true);
-                $('#select2Tag', window.parent.document).append(newOption).trigger('change');
+                $('#select2source', window.parent.document).append(newOption).trigger('change');
 
                 if ($(elm, window.parent.document).is(':checked')) {
                     // add to selected 
-                    let last_value = $('#select2Tag', window.parent.document).val();
+                    let last_value = $('#select2source', window.parent.document).val();
                     last_value.push(id);
                     console.log(last_value)
                 } else {
                     // remove from selected
                     alert('uncheck')
                 }
-                $('#select2Tag', window.parent.document).trigger('change');
+                $('#select2source', window.parent.document).trigger('change');
             }
 
-            function edit_tag(id, name) {
-                $('#input-Tag-name').val(name)
-                $('#input-Tag-id').val(id)
+            function edit_source(id, name, alias, web, logo) {
+                $('#input-source-name').val(name)
+                $('#input-source-alias').val(alias)
+                $('#input-source-website').val(web)
+                $('#input-source-logo').val(logo)
+                $('#input-source-id').val(id)
             }
         </script>
 </body>

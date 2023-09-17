@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->increments('tag_id')->primary;
-            $table->string('tag_name');
+        Schema::create('topics', function (Blueprint $table) {
+            $table->increments('topic_id')->primary;
+            $table->string('topic_name');
+            $table->text('topic_description')->nullable();
+            $table->string('topic_image')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('topics');
     }
 };

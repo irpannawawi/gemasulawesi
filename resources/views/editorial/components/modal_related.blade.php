@@ -14,7 +14,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
-    @vite(['reposts/css/app.css', 'reposts/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
 </head>

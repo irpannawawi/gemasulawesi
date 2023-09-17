@@ -17,8 +17,8 @@
   setTimeout(function() {
     initFlickity();
   }, 1000);
-  
-  
+
+
 
   $window.on('resize', function() {
     hideSidenav();
@@ -82,7 +82,7 @@
     } else {
       $stickyNav.removeClass('scrolling');
     }
-    
+
   });
 
 
@@ -100,7 +100,7 @@
   $navIconToggle.on('click', function(e) {
     e.stopPropagation();
     $(this).toggleClass('nav-icon-toggle--is-open');
-    $sidenav.toggleClass('sidenav--is-open');   
+    $sidenav.toggleClass('sidenav--is-open');
     $contentOverlay.toggleClass('content-overlay--is-visible');
   });
 
@@ -124,7 +124,7 @@
   $sidenavCloseButton.on('click', function() {
     resetNav();
   });
-  
+
 
   var $dropdownTrigger = $('.nav__dropdown-trigger'),
       $navDropdownMenu = $('.nav__dropdown-menu'),
@@ -152,16 +152,16 @@
   -------------------------------------------------------*/
   $('.sidenav__menu-toggle').on('click', function(e) {
     e.preventDefault();
-    
+
     var $this = $(this);
-    
+
     $this.parent().siblings().removeClass('sidenav__menu--is-open');
     $this.parent().siblings().find('li').removeClass('sidenav__menu--is-open');
     $this.parent().find('li').removeClass('sidenav__menu--is-open');
-    $this.parent().toggleClass('sidenav__menu--is-open');       
-    
+    $this.parent().toggleClass('sidenav__menu--is-open');
+
     if ($this.next().hasClass('show')) {
-      $this.next().removeClass('show').slideUp(350);    
+      $this.next().removeClass('show').slideUp(350);
     } else {
       $this.parent().parent().find('li .sidenav__menu-dropdown').removeClass('show').slideUp(350);
       $this.next().toggleClass('show').slideToggle(350);
@@ -173,10 +173,10 @@
   -------------------------------------------------------*/
   // (function() {
   //   var navSearchTrigger = $('.nav__search-trigger'),
-  //       navSearchBox = $('.nav__search-box'), 
-  //       navSearchInput = $('.nav__search-input'); 
+  //       navSearchBox = $('.nav__search-box'),
+  //       navSearchInput = $('.nav__search-input');
   //   var isOpen = false; // Tambahkan variabel isOpen untuk melacak status form
-  
+
   //   navSearchTrigger.on('click', function(e){
   //     e.preventDefault();
   //     if (isOpen) {
@@ -188,7 +188,7 @@
   //     isOpen = !isOpen; // Toggle status form
   //   });
   // })();
-  
+
 
 
   /* Mega Menu
@@ -206,7 +206,7 @@
       $this.css('left', -offset);
     });
   }
-  
+
 
   /* Twitter Feed
   -------------------------------------------------------*/
@@ -230,9 +230,9 @@
 
   /* YouTube Video Playlist
   -------------------------------------------------------*/
-  (function(){ 
+  (function(){
     var videoPlaylistListItem = $('.video-playlist__list-item'),
-        videoPlaylistContentVideo = $('.video-playlist__content-video');     
+        videoPlaylistContentVideo = $('.video-playlist__content-video');
 
     videoPlaylistListItem.on('click', function(e){
       e.preventDefault();
@@ -261,8 +261,8 @@
       prevButton: $('#newsticker-button--prev'),
       nextButton: $('#newsticker-button--next')
     });
-  }  
-  
+  }
+
 
   /* Tabs
   -------------------------------------------------------*/
@@ -272,7 +272,7 @@
     $(this).parent('li').addClass('tabs__item--active').siblings().removeClass('tabs__item--active');
     e.preventDefault();
   });
-  
+
 
   /* Owl Carousel
   -------------------------------------------------------*/
@@ -326,14 +326,13 @@
     // Related Posts
     $("#owl-posts-3-items").owlCarousel({
       center: false,
-      items: 1,
+      items: 2,
       loop: true,
       nav: true,
       dots: false,
       margin: 20,
       lazyLoad: true,
       navSpeed: 500,
-      navText: ['<i class="ui-arrow-left">','<i class="ui-arrow-right">'],
       responsive:{
         768:{
           items:3
@@ -342,6 +341,13 @@
           items:2
         }
       }
+    });
+    $('#prevPost3').on('click', function(){
+        console.log('adadad');
+         $('#owl-posts-3-items .owl-prev').trigger('prev.owl.carousel');
+    });
+    $('#nextPost3').on('click', function(){
+         $('#owl-posts-3-items .owl-next').trigger('next.owl.carousel');
     });
 
     // Headlines
@@ -459,7 +465,7 @@
         }
       });
     }
-    
+
 
     if ( $video.length > 0 ) {
       $video.magnificPopup({
@@ -468,14 +474,14 @@
           patterns: {
             youtube: {
               index: 'youtube.com',
-              id: 'v=', 
+              id: 'v=',
               src: '//www.youtube.com/embed/%id%?rel=0&autoplay=1'
             }
           }
         }
       });
     }
-    
+
   })();
 
 
@@ -490,7 +496,7 @@
     e.preventDefault();
 
     var $this = $(this);
-    
+
     $.ajax({
       type: "POST",
       url: 'contact.php',
@@ -528,3 +534,15 @@
   });
 
 })(jQuery);
+$(document).ready(function(){
+    $('.owl-carousel-thumbs').owlCarousel({
+        dots:true,
+      items: 1,
+      nav: true,
+      thumbs: true,
+      thumbImage: false,
+      thumbsPrerendered: true,
+      thumbContainerClass: 'owl-thumbs',
+    //   thumbItemClass: 'owl-thumb-item',
+    });
+  });

@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- Lazyload (must be placed in head in order to work) -->
-    <script src="js/lazysizes.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
 
 </head>
 
@@ -1009,7 +1009,7 @@
         </div> <!-- end main container -->
 
         <!-- Footer -->
-        <footer class="footer footer--dark">
+        <footer class="footer footer--grey">
             <div class="container">
                 <div class="footer__widgets">
                     <div class="row">
@@ -1017,8 +1017,8 @@
                         <div class="col-lg-3 col-md-6">
                             <aside class="widget widget-logo">
                                 <a href="index.html">
-                                    <img src="{{ url('assets/frontend') }}/{{ url('assets/frontend') }}/img/logo_default_white.png"
-                                        srcset="{{ url('assets/frontend') }}/{{ url('assets/frontend') }}/img/logo_default_white.png 1x, {{ url('assets/frontend') }}/{{ url('assets/frontend') }}/img/logo_default_white@2x.png 2x"
+                                    <img src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
+                                        srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
                                         class="logo__img" alt="">
                                 </a>
                                 <p class="copyright">
@@ -1027,7 +1027,7 @@
                                         document.querySelector(".copyright").innerHTML += new Date().getFullYear();
                                     </script> Gema Sulawesi
                                 </p>
-                                <div class="socials socials--medium socials--rounded mb-24">
+                                <div class="socials socials--medium socials--rounded">
                                     <a href="#" class="social social-facebook" aria-label="facebook"><i
                                             class="ui-facebook"></i></a>
                                     <a href="#" class="social social-twitter" aria-label="twitter"><i
@@ -1065,8 +1065,8 @@
                                             <div class="post-list-small__img-holder">
                                                 <div class="thumb-container thumb-100">
                                                     <a href="single-post.html">
-                                                        <img data-src="{{ url('assets/frontend') }}/{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
-                                                            src="{{ url('assets/frontend') }}/{{ url('assets/frontend') }}/img/empty.png"
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
                                                             alt=""
                                                             class="post-list-small__img--roundedlazyload">
                                                     </a>
@@ -1094,8 +1094,8 @@
                                             <div class="post-list-small__img-holder">
                                                 <div class="thumb-container thumb-100">
                                                     <a href="single-post.html">
-                                                        <img data-src="{{ url('assets/frontend') }}/{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg"
-                                                            src="{{ url('assets/frontend') }}/{{ url('assets/frontend') }}/img/empty.png"
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
                                                             alt=""
                                                             class="post-list-small__img--roundedlazyload">
                                                     </a>

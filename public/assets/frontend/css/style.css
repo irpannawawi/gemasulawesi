@@ -1730,7 +1730,8 @@ img.mfp-img {
 		display: none; }
 
 .entry__meta a {
-	color: #2D95E3; }
+	color: #2D95E3;
+	text-decoration: underline;}
 	.entry__meta a:hover {
 		color: #171821; }
 
@@ -1839,6 +1840,7 @@ img.mfp-img {
 		left: 0;
 		width: 100%;
 		min-height: 100%;
+		border-radius: 5px;
 		-webkit-backface-visibility: hidden;
 		        backface-visibility: hidden; }
 	.footer--dark .thumb-container {
@@ -1940,7 +1942,8 @@ img.mfp-img {
 	margin-bottom: 0; }
 	.thumb-entry-title:hover a,
 	.thumb-entry-title a:focus {
-		color: #fff; }
+		color: #fff; 
+		text-decoration: underline;}
 
 .thumb-50 {
 	padding-bottom: 50%; }
@@ -2215,14 +2218,14 @@ img.mfp-img {
 .title-wrap {
 	position: relative;
 	overflow: hidden;
-	margin-bottom: 32px; }
+	margin-bottom: 15px; }
 	.title-wrap--line {
 		border-top: 3px solid #888994;
 		padding-top: 32px; }
 	.title-wrap--pr {
 		padding-right: 62px; }
 
-.section-title {
+.section-title{
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	margin-bottom: 0;
@@ -2234,7 +2237,22 @@ img.mfp-img {
 		font-size: 18px; }
 	@media only screen and (max-width: 767px) {
 		.section-title {
-			float: none; } }
+			float: none; } 
+}
+.section-title-editor{
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	margin-bottom: 0;
+	font-size: 21px;
+	display: inline-block;
+	float: left;
+	font-weight: 700; }
+	.section-title-editor--sm {
+		font-size: 18px; }
+	@media only screen and (max-width: 767px) {
+		.section-title-editor {
+			float: none; } 
+}
 
 .all-posts-url {
 	float: right;
@@ -2569,7 +2587,8 @@ img.mfp-img {
 	margin-bottom: 40px;
 	background-color: #fff;
 	padding: 32px;
-	border: 1px solid #E3E4E8; }
+	border: 1px solid #E3E4E8; 
+	border-radius: 10px;}
 
 .sidebar .widget_mc4wp_form_widget {
 	padding: 32px !important; }
@@ -2579,7 +2598,10 @@ img.mfp-img {
 	.sidebar--right {
 		float: right; }
 	.sidebar--right {
-		padding-left: 35px; } }
+		padding-left: 35px; } 
+	.sidebar .widget {
+		width: 100%;
+	}}
 
 /*-------------------------------------------------------*/
 /* Widgets
@@ -4794,6 +4816,9 @@ dd {
 	.style-politics .widget-title,
 	.style-politics .section-title {
 		color: #34c5cb; }
+	.section-title-editor {
+		color: black;
+	}
 	.style-politics .widget-title {
 		font-size: 14px; }
 	.style-politics .entry__title {
@@ -4831,7 +4856,7 @@ dd {
 		color: #171821; }
 	.style-fashion .entry__meta a,
 	.style-fashion .entry__meta li {
-		color: #171821; }
+		color: #171821;}
 	.style-fashion .entry__meta {
 		margin-bottom: 12px; }
 	.style-fashion .entry__meta li {
@@ -4840,13 +4865,13 @@ dd {
 		background-color: rgba(0, 0, 0, 0.5);
 		border-radius: 5px; }
 	.style-fashion .widget-title,
-	.style-fashion .section-title {
+	.style-fashion .section-title .section-title-editor {
 		text-transform: none; }
 	.style-fashion .widget-title {
 		font-size: 20px; }
 	.style-fashion .title-wrap {
 		margin-bottom: 24px; }
-	.style-fashion .section-title {
+	.style-fashion .section-title .section-title-editor {
 		font-size: 24px; }
 	.style-fashion .entry__meta-author {
 		font-family: "Lora", serif;
@@ -4919,7 +4944,7 @@ dd {
 		letter-spacing: normal;
 		font-family: "Poppins", sans-serif;
 		font-weight: 500; }
-	.style-videos .section-title,
+	.style-videos .section-title .section-title-editor, 
 	.style-videos .widget-title {
 		font-weight: 700; }
 	.style-videos .btn,
@@ -4978,10 +5003,17 @@ dd {
     display: none;
   }
 
+  .pilihan-editor{
+    background: #d9dbe9;
+    border-radius: 10px;
+	padding: 20px 0 20px 0;
+	margin-bottom: 20px;
+  }
+
   @media only screen and (min-width: 768px) {
     .pilihan-editor {
-      border: 1px solid #E3E4E8;
       padding: 20px;
+	  width: 100%;
     }
   }
   .pilihan-editor .entry {
@@ -5010,17 +5042,48 @@ dd {
     color: white;
   }
 
+.wrapper-owl{
+    position: relative;
+  }
+
+.headline{
+    position: absolute;
+    z-index: 99;
+    color: white;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 20px;
+    background-color: #000;
+    top: 5%;
+    letter-spacing: 3px;
+    padding: 5px 24px;
+  }
+
 .owl-thumb-item {
     background: black;
     color: white;
     border: 0.5px solid white;
+    outline: none;
+    box-shadow: none;
   }
   .owl-thumb-item.active {
     border-top: 3px solid #34c5cb;
   }
+  .owl-thumb-item .thumb-item {
+    color: white;
+    text-align: left;
+    line-height: 16px;
+    font-size: 12px;
+  }
   .owl-thumb-item .thumb-item a {
     color: white;
-    text-align: left !important;
+    line-height: 0px;
+    padding: 0px;
+  }
+
+  .thumb-item a:hover{
+	text-decoration: underline;
   }
 
   .owl-dots {

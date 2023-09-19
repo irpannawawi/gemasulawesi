@@ -13,24 +13,22 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
 
     <!-- Css -->
-    <link rel="stylesheet" href="{{ asset('/') }}assets/frontend/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{ asset('/') }}assets/frontend/css/font-icons.css" />
-    <link rel="stylesheet" href="{{ asset('/') }}assets/frontend/css/style.css" />
-    <link rel="stylesheet" href="{{ asset('/') }}assets/frontend/css/colors/red.css" />
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="{{ asset('/') }}assets/frontend/img/favicon.ico">
-    <link rel="apple-touch-icon" href="{{ asset('/') }}assets/frontend/img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72"
-        href="{{ asset('/') }}assets/frontend/img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114"
-        href="{{ asset('/') }}assets/frontend/img/apple-touch-icon-114x114.png">
+    <link rel="shortcut icon" href="{{ url('assets/frontend') }}/img/favicon.ico">
+    <link rel="apple-touch-icon" href="{{ url('assets/frontend') }}/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ url('assets/frontend') }}/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ url('assets/frontend') }}/img/apple-touch-icon-114x114.png">
 
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- Lazyload (must be placed in head in order to work) -->
-    <script src="{{ asset('/') }}assets/frontend/js/lazysizes.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
 
 </head>
 
@@ -127,8 +125,8 @@
                         <!-- Logo -->
                         <a href="index.html" class="logo">
                             <img class="logo__img"
-                                src="{{ asset('/') }}assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ asset('/') }}assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ asset('/') }}assets/frontend/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
+                                src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
+                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
                                 alt="logo" width="280" height="280">
                         </a>
                     </div>
@@ -208,8 +206,8 @@
                         <!-- Logo Mobile -->
                         <a href="index.html" class="logo logo-mobile d-lg-none">
                             <img class="logo__img"
-                                src="{{ asset('/') }}assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ asset('/') }}assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ asset('/') }}assets/frontend/img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
+                                src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
+                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
                                 alt="logo">
                         </a>
 
@@ -245,7 +243,7 @@
         <!-- Ad Banner 728 -->
         <div class="text-center pb-48">
             <a href="#">
-                <img src="{{ asset('/') }}assets/frontend/img/content/placeholder_728.jpg" alt="">
+                <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
             </a>
         </div>
 
@@ -257,206 +255,196 @@
                 <div class="col-lg-8 order-lg-2">
 
                     <section>
-                        <div class="owl-carousel owl-carousel-thumbs" data-slider-id="5">
-                            <div>
-                                <article class="entry thumb--size-3 mb-0">
-                                    <div class="entry__img-holder thumb__img-holder"
-                                        style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_5.jpg');">
-                                        <div class="bottom-gradient"></div>
-                                        <div class="thumb-text-holder thumb-text-holder--2">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">politics</a>
-                                                </li>
-                                            </ul>
-                                            <h2 class="thumb-entry-title">
-                                                <a href="single-post-politics.html">Trump endorses raising minimum age
-                                                    for more
-                                                    weapons, revives idea of arming teachers</a>
-                                            </h2>
-                                            <ul class="entry__meta">
-                                                <li class="entry__meta-views">
-                                                    <i class="ui-eye"></i>
-                                                    <span>1356</span>
-                                                </li>
-                                                <li class="entry__meta-comments">
-                                                    <a href="#">
-                                                        <i class="ui-chat-empty"></i>13
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <a href="single-post-politics.html" class="thumb-url"></a>
-                                    </div>
-                                </article>
+                        <div class="wrapper-owl">
+                            <div class="headline">
+                                headline
                             </div>
-                            <div>
-                                <article class="entry thumb--size-3 mb-0">
-                                    <div class="entry__img-holder thumb__img-holder"
-                                        style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_13.jpg');">
-                                        <div class="bottom-gradient"></div>
-                                        <div class="thumb-text-holder thumb-text-holder--2">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">politics</a>
-                                                </li>
-                                            </ul>
-                                            <h2 class="thumb-entry-title">
-                                                <a href="single-post-politics.html">Extreme Heat Waves Will Change How
-                                                    We Live. We're Not Ready</a>
-                                            </h2>
-                                            <ul class="entry__meta">
-                                                <li class="entry__meta-views">
-                                                    <i class="ui-eye"></i>
-                                                    <span>1356</span>
-                                                </li>
-                                                <li class="entry__meta-comments">
-                                                    <a href="#">
-                                                        <i class="ui-chat-empty"></i>13
-                                                    </a>
-                                                </li>
-                                            </ul>
+                            <div class="owl-carousel owl-carousel-thumbs" data-slider-id="5">
+                                <div>
+                                    <article class="entry thumb--size-3 mb-0">
+                                        <div class="entry__img-holder thumb__img-holder"
+                                            style="background-image: url('{{ url('assets/frontend') }}/img/content/hero/hero_post_5.jpg');">
+                                            <div class="bottom-gradient"></div>
+                                            <div class="thumb-text-holder thumb-text-holder--2">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">politics</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="thumb-entry-title">
+                                                    <a href="single-post-politics.html">Trump endorses raising minimum
+                                                        age
+                                                        for more
+                                                        weapons, revives idea of arming teachers</a>
+                                                </h2>
+                                                <ul class="entry__meta">
+                                                    <li class="entry__meta-views">
+                                                        <i class="ui-eye"></i>
+                                                        <span>1356</span>
+                                                    </li>
+                                                    <li class="entry__meta-comments">
+                                                        <a href="#">
+                                                            <i class="ui-chat-empty"></i>13
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="single-post-politics.html" class="thumb-url"></a>
                                         </div>
-                                        <a href="single-post-politics.html" class="thumb-url"></a>
-                                    </div>
-                                </article>
-                            </div>
-                            <div>
-                                <article class="entry thumb--size-3 mb-0">
-                                    <div class="entry__img-holder thumb__img-holder"
-                                        style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_20.jpg');">
-                                        <div class="bottom-gradient"></div>
-                                        <div class="thumb-text-holder thumb-text-holder--2">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">politics</a>
-                                                </li>
-                                            </ul>
-                                            <h2 class="thumb-entry-title">
-                                                <a href="single-post-politics.html">Trump endorses raising minimum age
-                                                    for more
-                                                    weapons, revives idea of arming teachers</a>
-                                            </h2>
-                                            <ul class="entry__meta">
-                                                <li class="entry__meta-views">
-                                                    <i class="ui-eye"></i>
-                                                    <span>1356</span>
-                                                </li>
-                                                <li class="entry__meta-comments">
-                                                    <a href="#">
-                                                        <i class="ui-chat-empty"></i>13
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                    </article>
+                                </div>
+                                <div>
+                                    <article class="entry thumb--size-3 mb-0">
+                                        <div class="entry__img-holder thumb__img-holder"
+                                            style="background-image: url('{{ url('assets/frontend') }}/img/content/hero/hero_post_13.jpg');">
+                                            <div class="bottom-gradient"></div>
+                                            <div class="thumb-text-holder thumb-text-holder--2">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">politics</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="thumb-entry-title">
+                                                    <a href="single-post-politics.html">Extreme Heat Waves Will Change
+                                                        How
+                                                        We Live. We're Not Ready</a>
+                                                </h2>
+                                                <ul class="entry__meta">
+                                                    <li class="entry__meta-views">
+                                                        <i class="ui-eye"></i>
+                                                        <span>1356</span>
+                                                    </li>
+                                                    <li class="entry__meta-comments">
+                                                        <a href="#">
+                                                            <i class="ui-chat-empty"></i>13
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="single-post-politics.html" class="thumb-url"></a>
                                         </div>
-                                        <a href="single-post-politics.html" class="thumb-url"></a>
-                                    </div>
-                                </article>
-                            </div>
-                            <div>
-                                <article class="entry thumb--size-3 mb-0">
-                                    <div class="entry__img-holder thumb__img-holder"
-                                        style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_21.jpg');">
-                                        <div class="bottom-gradient"></div>
-                                        <div class="thumb-text-holder thumb-text-holder--2">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">politics</a>
-                                                </li>
-                                            </ul>
-                                            <h2 class="thumb-entry-title">
-                                                <a href="single-post-politics.html">Trump endorses raising minimum age
-                                                    for more
-                                                    weapons, revives idea of arming teachers</a>
-                                            </h2>
-                                            <ul class="entry__meta">
-                                                <li class="entry__meta-views">
-                                                    <i class="ui-eye"></i>
-                                                    <span>1356</span>
-                                                </li>
-                                                <li class="entry__meta-comments">
-                                                    <a href="#">
-                                                        <i class="ui-chat-empty"></i>13
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                    </article>
+                                </div>
+                                <div>
+                                    <article class="entry thumb--size-3 mb-0">
+                                        <div class="entry__img-holder thumb__img-holder"
+                                            style="background-image: url('{{ url('assets/frontend') }}/img/content/hero/hero_post_20.jpg');">
+                                            <div class="bottom-gradient"></div>
+                                            <div class="thumb-text-holder thumb-text-holder--2">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">politics</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="thumb-entry-title">
+                                                    <a href="single-post-politics.html">Trump endorses raising minimum
+                                                        age
+                                                        for more
+                                                        weapons, revives idea of arming teachers</a>
+                                                </h2>
+                                                <ul class="entry__meta">
+                                                    <li class="entry__meta-views">
+                                                        <i class="ui-eye"></i>
+                                                        <span>1356</span>
+                                                    </li>
+                                                    <li class="entry__meta-comments">
+                                                        <a href="#">
+                                                            <i class="ui-chat-empty"></i>13
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="single-post-politics.html" class="thumb-url"></a>
                                         </div>
-                                        <a href="single-post-politics.html" class="thumb-url"></a>
-                                    </div>
-                                </article>
+                                    </article>
+                                </div>
+                                <div>
+                                    <article class="entry thumb--size-3 mb-0">
+                                        <div class="entry__img-holder thumb__img-holder"
+                                            style="background-image: url('{{ url('assets/frontend') }}/img/content/hero/hero_post_21.jpg');">
+                                            <div class="bottom-gradient"></div>
+                                            <div class="thumb-text-holder thumb-text-holder--2">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">politics</a>
+                                                    </li>
+                                                </ul>
+                                                <h2 class="thumb-entry-title">
+                                                    <a href="single-post-politics.html">Trump endorses raising minimum
+                                                        age
+                                                        for more
+                                                        weapons, revives idea of arming teachers</a>
+                                                </h2>
+                                                <ul class="entry__meta">
+                                                    <li class="entry__meta-views">
+                                                        <i class="ui-eye"></i>
+                                                        <span>1356</span>
+                                                    </li>
+                                                    <li class="entry__meta-comments">
+                                                        <a href="#">
+                                                            <i class="ui-chat-empty"></i>13
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <a href="single-post-politics.html" class="thumb-url"></a>
+                                        </div>
+                                    </article>
+                                </div>
                             </div>
                         </div>
                         <div class="owl-thumbs row mb-4 d-none d-md-flex w-100 mx-auto" data-slider-id="5">
                             <button class="owl-thumb-item col-3 p-0">
                                 <div class="thumb-item">
-                                    <img src="{{ asset('/') }}assets/frontend/img/content/hero/hero_post_5.jpg"
+                                    <img src="{{ url('assets/frontend') }}/img/content/hero/hero_post_5.jpg"
                                         class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
                                         alt="">
-                                    <a href="1" class="bg-black p-2">Trump endorses raising minimum age for more
-                                        weapons, revives </a>
+                                    <div class="bg-black p-2">
+                                        <a href="">Trump endorses raising minimum age for more
+                                            weapons, revives </a>
+                                    </div>
                                 </div>
                             </button>
                             <button class="owl-thumb-item col-3 p-0 ">
                                 <div class="thumb-item">
-                                    <img src="{{ asset('/') }}assets/frontend/img/content/hero/hero_post_13.jpg"
+                                    <img src="{{ url('assets/frontend') }}/img/content/hero/hero_post_13.jpg"
                                         class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
                                         alt="">
-                                    <a class="bg-black p-2" href="">Extreme Heat Waves Will Change How
-                                        We Live. We're Not Ready</a>
+                                    <div class="bg-black p-2">
+                                        <a href="">Extreme Heat Waves Will Change How
+                                            We Live. We're Not Ready</a>
+                                    </div>
                                 </div>
                             </button>
                             <button class="owl-thumb-item col-3 p-0">
                                 <div class="thumb-item">
-                                    <img src="{{ asset('/') }}assets/frontend/img/content/hero/hero_post_20.jpg"
+                                    <img src="{{ url('assets/frontend') }}/img/content/hero/hero_post_20.jpg"
                                         class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
                                         alt="">
-                                    <a class="bg-black p-2" href="">Extreme Heat Waves Will Change How
-                                        We Live. We're Not Ready</a>
+                                    <div class="bg-black p-2">
+                                        <a href="">Extreme Heat Waves Will Change How
+                                            We Live. We're Not Ready</a>
+                                    </div>
                                 </div>
                             </button>
                             <button class="owl-thumb-item col-3 p-0">
                                 <div class="thumb-item">
-                                    <img src="{{ asset('/') }}assets/frontend/img/content/hero/hero_post_21.jpg"
+                                    <img src="{{ url('assets/frontend') }}/img/content/hero/hero_post_21.jpg"
                                         class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
                                         alt="">
-                                    <a class="bg-black p-2" href="">Extreme Heat Waves Will Change How
-                                        We Live. We're Not Ready</a>
+                                    <div class="bg-black p-2">
+                                        <a href="">Extreme Heat Waves Will Change How
+                                            We Live. We're Not Ready</a>
+                                    </div>
                                 </div>
                             </button>
                         </div>
-                        <!-- <article class="entry thumb--size-3 mb-0">
-                            <div class="entry__img-holder thumb__img-holder"
-                                style="background-image: url('{{ asset('/') }}assets/frontend/img/content/hero/hero_post_5.jpg');">
-                                <div class="bottom-gradient"></div>
-                                <div class="thumb-text-holder thumb-text-holder--2">
-                                    <ul class="entry__meta">
-                                        <li>
-                                            <a href="#" class="entry__meta-category">politics</a>
-                                        </li>
-                                    </ul>
-                                    <h2 class="thumb-entry-title">
-                                        <a href="single-post-politics.html">Trump endorses raising minimum age for more
-                                            weapons, revives idea of arming teachers</a>
-                                    </h2>
-                                    <ul class="entry__meta">
-                                        <li class="entry__meta-views">
-                                            <i class="ui-eye"></i>
-                                            <span>1356</span>
-                                        </li>
-                                        <li class="entry__meta-comments">
-                                            <a href="#">
-                                                <i class="ui-chat-empty"></i>13
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <a href="single-post-politics.html" class="thumb-url"></a>
-                            </div>
-                        </article> -->
+
                         <div class="title-wrap--line"></div>
+
                         <div class="pilihan-editor">
                             <div class="title-wrap">
-                                <h3 class="section-title">pilihan editor</h3>
+                                <h3 class="section-title-editor">PILIHAN EDITOR</h3>
                             </div>
 
                             <!-- Slider -->
@@ -467,8 +455,8 @@
                                         <div class="entry__img-holder">
                                             <a href="single-post-politics.html">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_5.jpg"
-                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                    <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_5.jpg"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="">
                                                 </div>
                                             </a>
@@ -493,8 +481,8 @@
                                         <div class="entry__img-holder">
                                             <a href="single-post-politics.html">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_6.jpg"
-                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                    <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_6.jpg"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="">
                                                 </div>
                                             </a>
@@ -520,8 +508,8 @@
                                         <div class="entry__img-holder">
                                             <a href="single-post-politics.html">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_7.jpg"
-                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                    <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_7.jpg"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="">
                                                 </div>
                                             </a>
@@ -546,8 +534,8 @@
                                         <div class="entry__img-holder">
                                             <a href="single-post-politics.html">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_8.jpg"
-                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                    <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_8.jpg"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="">
                                                 </div>
                                             </a>
@@ -574,8 +562,8 @@
                                         <div class="entry__img-holder">
                                             <a href="single-post-politics.html">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ asset('/') }}assets/frontend/img/content/carousel/carousel_post_6.jpg"
-                                                        src="{{ asset('/') }}assets/frontend/img/empty.png"
+                                                    <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_6.jpg"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="">
                                                 </div>
                                             </a>
@@ -608,11 +596,182 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Berita Terkini -->
+                        <div class="berita-terkini">
+                            <div class="title-wrap title-wrap--line">
+                                <h3 class="section-title">Berita Terkini</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_3.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_4.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_5.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Ad Banner 728 -->
+                                    <div class="text-center pb-48">
+                                        <a href="#">
+                                            <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
+                                                alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </section>
                 </div> <!-- end slider -->
-
-                <!-- Sidebar -->
-                <!-- end sidebar -->
 
                 <!-- Sidebar -->
                 <aside class="col-lg sidebar order-lg-3">
@@ -625,9 +784,9 @@
                                     <div class="post-list-small__img-holder">
                                         <div class="thumb-container thumb-80">
                                             <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/post_small/post_small_5.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
                                             </a>
                                         </div>
                                     </div>
@@ -644,9 +803,9 @@
                                     <div class="post-list-small__img-holder">
                                         <div class="thumb-container thumb-80">
                                             <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/post_small/post_small_6.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_6.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
                                             </a>
                                         </div>
                                     </div>
@@ -664,9 +823,9 @@
                                     <div class="post-list-small__img-holder">
                                         <div class="thumb-container thumb-80">
                                             <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/post_small/post_small_7.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_7.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
                                             </a>
                                         </div>
                                     </div>
@@ -683,9 +842,9 @@
                                     <div class="post-list-small__img-holder">
                                         <div class="thumb-container thumb-80">
                                             <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/post_small/post_small_8.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_8.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
                                             </a>
                                         </div>
                                     </div>
@@ -703,9 +862,9 @@
                                     <div class="post-list-small__img-holder">
                                         <div class="thumb-container thumb-80">
                                             <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/post_small/post_small_9.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_9.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
                                             </a>
                                         </div>
                                     </div>
@@ -722,9 +881,9 @@
                                     <div class="post-list-small__img-holder">
                                         <div class="thumb-container thumb-80">
                                             <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/post_small/post_small_10.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_10.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
                                             </a>
                                         </div>
                                     </div>
@@ -742,9 +901,9 @@
                                     <div class="post-list-small__img-holder">
                                         <div class="thumb-container thumb-80">
                                             <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/post_small/post_small_11.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_11.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
                                             </a>
                                         </div>
                                     </div>
@@ -761,9 +920,66 @@
                                     <div class="post-list-small__img-holder">
                                         <div class="thumb-container thumb-80">
                                             <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/post_small/post_small_12.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
+                                                Live. We’re Not Ready</a>
+                                        </h3>
+                                    </div>
+                                </article>
+                            </li>
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-80">
+                                            <a href="single-post-politics.html">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
+                                                Live. We’re Not Ready</a>
+                                        </h3>
+                                    </div>
+                                </article>
+                            </li>
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-80">
+                                            <a href="single-post-politics.html">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
+                                                Live. We’re Not Ready</a>
+                                        </h3>
+                                    </div>
+                                </article>
+                            </li>
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-80">
+                                            <a href="single-post-politics.html">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
                                             </a>
                                         </div>
                                     </div>
@@ -777,218 +993,154 @@
                             </li>
                         </ul>
                     </aside> <!-- end widget popular posts -->
+                    <div class="col-lg-4 text-right text-md-center">
+                        <a href="#">
+                            <img src="{{ url('assets/frontend') }}/img/content/placeholder_300_600.jpg"
+                                alt="">
+                        </a>
+                    </div>
                 </aside> <!-- end sidebar -->
-
             </div> <!-- end content -->
 
-            <!-- Pilihan Editor -->
             <section class=" mb-24 col-lg-8">
 
             </section> <!-- end carousel posts -->
 
-            <!-- Berita Terkini -->
-            <section class=" mb-32">
-                <div class="title-wrap title-wrap--line">
-                    <h3 class="section-title">Berita Terkini</h3>
-                </div>
-                <div class="row">
-                    <div class="col-lg-8">
-                        <ul class="post-list-small post-list-small--2 mb-32">
-                            <li class="post-list-small__item">
-                                <article class="post-list-small__entry clearfix">
-                                    <div class="post-list-small__img-holder">
-                                        <div class="thumb-container thumb-70">
-                                            <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/grid/grid_post_1.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="post-list-small__body">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">Category</a>
-                                            </li>
-                                        </ul>
-                                        <h3 class="post-list-small__entry-title">
-                                            <a href="single-post-politics.html">'It's not a concentration camp':
-                                                Bangladesh defends plan to house Rohingya on island with armed
-                                                police</a>
-                                        </h3>
-                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
-                                    </div>
-                                </article>
-                            </li>
-                        </ul>
-                        <ul class="post-list-small post-list-small--2 mb-32">
-                            <li class="post-list-small__item">
-                                <article class="post-list-small__entry clearfix">
-                                    <div class="post-list-small__img-holder">
-                                        <div class="thumb-container thumb-70">
-                                            <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/grid/grid_post_2.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="post-list-small__body">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">Category</a>
-                                            </li>
-                                        </ul>
-                                        <h3 class="post-list-small__entry-title">
-                                            <a href="single-post-politics.html">'It's not a concentration camp':
-                                                Bangladesh defends plan to house Rohingya on island with armed
-                                                police</a>
-                                        </h3>
-                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
-                                    </div>
-                                </article>
-                            </li>
-                        </ul>
-                        <ul class="post-list-small post-list-small--2 mb-32">
-                            <li class="post-list-small__item">
-                                <article class="post-list-small__entry clearfix">
-                                    <div class="post-list-small__img-holder">
-                                        <div class="thumb-container thumb-70">
-                                            <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/grid/grid_post_3.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="post-list-small__body">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">Category</a>
-                                            </li>
-                                        </ul>
-                                        <h3 class="post-list-small__entry-title">
-                                            <a href="single-post-politics.html">'It's not a concentration camp':
-                                                Bangladesh defends plan to house Rohingya on island with armed
-                                                police</a>
-                                        </h3>
-                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
-                                    </div>
-                                </article>
-                            </li>
-                        </ul>
-                        <ul class="post-list-small post-list-small--2 mb-32">
-                            <li class="post-list-small__item">
-                                <article class="post-list-small__entry clearfix">
-                                    <div class="post-list-small__img-holder">
-                                        <div class="thumb-container thumb-70">
-                                            <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/grid/grid_post_4.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="post-list-small__body">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">Category</a>
-                                            </li>
-                                        </ul>
-                                        <h3 class="post-list-small__entry-title">
-                                            <a href="single-post-politics.html">'It's not a concentration camp':
-                                                Bangladesh defends plan to house Rohingya on island with armed
-                                                police</a>
-                                        </h3>
-                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
-                                    </div>
-                                </article>
-                            </li>
-                        </ul>
-                        <ul class="post-list-small post-list-small--2 mb-32">
-                            <li class="post-list-small__item">
-                                <article class="post-list-small__entry clearfix">
-                                    <div class="post-list-small__img-holder">
-                                        <div class="thumb-container thumb-70">
-                                            <a href="single-post-politics.html">
-                                                <img data-src="{{ asset('/') }}assets/frontend/img/content/grid/grid_post_5.jpg"
-                                                    src="{{ asset('/') }}assets/frontend/img/empty.png"
-                                                    alt="" class=" lazyload">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="post-list-small__body">
-                                        <ul class="entry__meta">
-                                            <li>
-                                                <a href="#" class="entry__meta-category">Category</a>
-                                            </li>
-                                        </ul>
-                                        <h3 class="post-list-small__entry-title">
-                                            <a href="single-post-politics.html">'It's not a concentration camp':
-                                                Bangladesh defends plan to house Rohingya on island with armed
-                                                police</a>
-                                        </h3>
-                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
-                                    </div>
-                                </article>
-                            </li>
-                        </ul>
-
-                        <!-- Ad Banner 728 -->
-                        <div class="text-center pb-48">
-                            <a href="#">
-                                <img src="{{ asset('/') }}assets/frontend/img/content/placeholder_728.jpg"
-                                    alt="">
-                            </a>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-4 text-right text-md-center">
-                        <a href="#">
-                            <img src="{{ asset('/') }}assets/frontend/img/content/placeholder_300_600.jpg"
-                                alt="">
-                        </a>
-                    </div>
-                </div>
-            </section> <!-- end most viewed -->
-
         </div> <!-- end main container -->
 
         <!-- Footer -->
-        <footer class="footer footer--1">
+        <footer class="footer footer--grey">
             <div class="container">
-                <div class="footer__widgets footer__widgets--short top-divider">
+                <div class="footer__widgets">
                     <div class="row">
 
-                        <div class="col-lg-6">
-                            <ul class="footer__nav-menu">
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="contact.html">News</a></li>
-                                <li><a href="categories.html">Advertise</a></li>
-                                <li><a href="shortcodes.html">Support</a></li>
-                                <li><a href="shortcodes.html">Features</a></li>
-                                <li><a href="shortcodes.html">Contact</a></li>
-                            </ul>
-                            <p class="copyright">
-                                &copy;
-                                <script>
-                                    document.querySelector(".copyright").innerHTML += new Date().getFullYear();
-                                </script>
-                                Gema Sulawesi</a>
-                            </p>
+                        <div class="col-lg-3 col-md-6">
+                            <aside class="widget widget-logo">
+                                <a href="index.html">
+                                    <img src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
+                                        srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
+                                        class="logo__img" alt="">
+                                </a>
+                                <p class="copyright">
+                                    &copy;
+                                    <script>
+                                        document.querySelector(".copyright").innerHTML += new Date().getFullYear();
+                                    </script> Gema Sulawesi
+                                </p>
+                                <div class="socials socials--medium socials--rounded">
+                                    <a href="#" class="social social-facebook" aria-label="facebook"><i
+                                            class="ui-facebook"></i></a>
+                                    <a href="#" class="social social-twitter" aria-label="twitter"><i
+                                            class="ui-twitter"></i></a>
+                                    <a href="#" class="social social-google-plus" aria-label="google+"><i
+                                            class="ui-google"></i></a>
+                                    <a href="#" class="social social-youtube" aria-label="youtube"><i
+                                            class="ui-youtube"></i></a>
+                                    <a href="#" class="social social-instagram" aria-label="instagram"><i
+                                            class="ui-instagram"></i></a>
+                                </div>
+                            </aside>
                         </div>
 
-                        <div class="col-lg-6">
-                            <div class="socials socials--large socials--rounded justify-content-lg-end">
-                                <a href="#" class="social social-facebook" aria-label="facebook"><i
-                                        class="fa-brands fa-facebook"></i></i></a>
-                                <a href="#" class="social social-twitter" aria-label="twitter"><i
-                                        class="fa-brands fa-square-x-twitter"></i></a>
-                                <a href="#" class="social social-youtube" aria-label="youtube"><i
-                                        class="fa-brands fa-youtube"></i></a>
-                                <a href="#" class="social social-instagram" aria-label="instagram"><i
-                                        class="fa-brands fa-square-instagram"></i></a>
-                            </div>
+                        <div class="col-lg-2 col-md-6">
+                            <aside class="widget widget_nav_menu">
+                                <h4 class="widget-title">Useful Links</h4>
+                                <ul>
+                                    <li><a href="about.html">About</a></li>
+                                    <li><a href="contact.html">News</a></li>
+                                    <li><a href="categories.html">Advertise</a></li>
+                                    <li><a href="shortcodes.html">Support</a></li>
+                                    <li><a href="shortcodes.html">Features</a></li>
+                                    <li><a href="shortcodes.html">Contact</a></li>
+                                </ul>
+                            </aside>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6">
+                            <aside class="widget widget-popular-posts">
+                                <h4 class="widget-title">Popular Posts</h4>
+                                <ul class="post-list-small">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-100">
+                                                    <a href="single-post.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt=""
+                                                            class="post-list-small__img--roundedlazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post.html">Follow These Smartphone Habits of
+                                                        Successful Entrepreneurs</a>
+                                                </h3>
+                                                <ul class="entry__meta">
+                                                    <li class="entry__meta-author">
+                                                        <span>by</span>
+                                                        <a href="#">DeoThemes</a>
+                                                    </li>
+                                                    <li class="entry__meta-date">
+                                                        Jan 21, 2018
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </article>
+                                    </li>
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-100">
+                                                    <a href="single-post.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt=""
+                                                            class="post-list-small__img--roundedlazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post.html">Lose These 12 Bad Habits If You're
+                                                        Serious About Becoming a Millionaire</a>
+                                                </h3>
+                                                <ul class="entry__meta">
+                                                    <li class="entry__meta-author">
+                                                        <span>by</span>
+                                                        <a href="#">DeoThemes</a>
+                                                    </li>
+                                                    <li class="entry__meta-date">
+                                                        Jan 21, 2018
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                            </aside>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <aside class="widget widget_mc4wp_form_widget">
+                                <h4 class="widget-title">Newsletter</h4>
+                                <p class="newsletter__text">
+                                    <i class="ui-email newsletter__icon"></i>
+                                    Subscribe for our daily news
+                                </p>
+                                <form class="mc4wp-form" method="post">
+                                    <div class="mc4wp-form-fields">
+                                        <div class="form-group">
+                                            <input type="email" name="EMAIL" placeholder="Your email"
+                                                required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-lg btn-color" value="Sign Up">
+                                        </div>
+                                    </div>
+                                </form>
+                            </aside>
                         </div>
 
                     </div>
@@ -1003,16 +1155,16 @@
     </main> <!-- end main-wrapper -->
 
     <!-- jQuery Scripts -->
+    <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/jquery.min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/bootstrap.min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/easing.min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/owl-carousel.min.js"></script>
-    <script src="js/flickity.pkgd.min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/twitterFetcher_min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/jquery.newsTicker.min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/modernizr.min.js"></script>
-    <script src="{{ asset('/') }}assets/frontend/js/scripts.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
 </body>
 

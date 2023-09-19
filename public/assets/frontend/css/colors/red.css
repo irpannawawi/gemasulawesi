@@ -31,7 +31,7 @@
 .video-playlist__list-item:hover .video-playlist__list-item-title,
 .comment-reply:hover,
 .entry-navigation a:hover {
-  color: #34c5cb;
+  color: red;
 }
 
 .btn-color,
@@ -55,15 +55,15 @@
 .style-videos .nav__dropdown.active,
 .final-review__score-number,
 .final-review__text-holder:before {
-  background-color: #34c5cb;
+  background-color: red;
 }
 
 .widget_tag_cloud a:hover,
 .entry__tags a:hover {
-  background-color: #34c5cb !important;
+  background-color: red !important;
 }
 
 
 input:focus, textarea:focus {
-  border-color: #34c5cb;
+  border-color: red;
 }

@@ -123,7 +123,7 @@
 
                     <div class="flex-child text-center mt-3 mb-3">
                         <!-- Logo -->
-                        <a href="index.html" class="logo">
+                        <a href="{{ url('') }}" class="logo">
                             <img class="logo__img"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
                                 srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
@@ -204,10 +204,10 @@
                         </nav> <!-- end nav-wrap -->
 
                         <!-- Logo Mobile -->
-                        <a href="index.html" class="logo logo-mobile d-lg-none">
+                        <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
                             <img class="logo__img"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
+                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
                                 alt="logo">
                         </a>
 
@@ -238,6 +238,8 @@
 
                 </div>
             </div>
+
+            {{-- nav mobile --}}
             <div class="py-2 mt-2 category_under_nav d-sm-none">
                 <div class="container">
                     <ul class="d-flex" style="gap: 20px;">
@@ -305,7 +307,8 @@
                                             <div class="thumb-text-holder thumb-text-holder--2">
                                                 <ul class="entry__meta">
                                                     <li>
-                                                        <a href="#" class="entry__meta-category">politics</a>
+                                                        <a href="#"
+                                                            class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">politics</a>
                                                     </li>
                                                 </ul>
                                                 <h2 class="thumb-entry-title">
@@ -314,7 +317,7 @@
                                                         for more
                                                         weapons, revives idea of arming teachers</a>
                                                 </h2>
-                                                <ul class="entry__meta">
+                                                {{-- <ul class="entry__meta">
                                                     <li class="entry__meta-views">
                                                         <i class="ui-eye"></i>
                                                         <span>1356</span>
@@ -324,7 +327,7 @@
                                                             <i class="ui-chat-empty"></i>13
                                                         </a>
                                                     </li>
-                                                </ul>
+                                                </ul> --}}
                                             </div>
                                             <a href="single-post-politics.html" class="thumb-url"></a>
                                         </div>

@@ -1677,6 +1677,7 @@ img.mfp-img {
 	position: relative;
 	margin-bottom: 30px; }
 	.entry__img-holder {
+		border-radius: 10px 10px 0 0;
 		position: relative;
 		overflow: hidden;
 		margin-bottom: 20px;

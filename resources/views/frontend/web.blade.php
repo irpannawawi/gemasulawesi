@@ -126,7 +126,7 @@
                         <a href="index.html" class="logo">
                             <img class="logo__img"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
+                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
                                 alt="logo" width="280" height="280">
                         </a>
                     </div>
@@ -158,7 +158,7 @@
         <header class="nav nav--colored mb-3">
             <div class="nav__holder nav--sticky">
                 <div class="container relative">
-                    <div class="flex-parent">
+                    <div class="flex-parent mb-5">
 
                         <div class="flex-child">
                             <!-- Side Menu Button Mobile -->
@@ -207,7 +207,7 @@
                         <a href="index.html" class="logo logo-mobile d-lg-none">
                             <img class="logo__img"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
+                                srcset="img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
                                 alt="logo">
                         </a>
 
@@ -236,6 +236,43 @@
                         </div>
                     </div> <!-- end flex-parent -->
 
+                </div>
+            </div>
+            <div class="py-2 mt-2 category_under_nav d-sm-none">
+                <div class="container">
+                    <ul class="d-flex" style="gap: 20px;">
+                        <!-- Categories -->
+                        <li>
+                            <a href="#" class="">World</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Business</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Fashion</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Lifestyle</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Advertise</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">World</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Business</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Fashion</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Lifestyle</a>
+                        </li>
+                        <li>
+                            <a href="#" class="">Advertise</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </header> <!-- end navigation -->
@@ -394,50 +431,49 @@
                             </div>
                         </div>
                         <div class="owl-thumbs row mb-4 d-none d-md-flex w-100 mx-auto" data-slider-id="5">
-                            <button class="owl-thumb-item col-3 p-0">
-                                <div class="thumb-item">
+                            <div class="owl-thumb-item col-3 p-0">
+                                <div class="card">
                                     <img src="{{ url('assets/frontend') }}/img/content/hero/hero_post_5.jpg"
-                                        class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
-                                        alt="">
-                                    <div class="bg-black p-2">
-                                        <a href="">Trump endorses raising minimum age for more
+                                        class="card-img-top w-100"
+                                        style="object-fit: cover;height: 80px;object-position: top;" alt="">
+                                    <div class="card-body">
+                                        <a href=""> minimum age for more
                                             weapons, revives </a>
                                     </div>
                                 </div>
-                            </button>
-                            <button class="owl-thumb-item col-3 p-0 ">
-                                <div class="thumb-item">
+                            </div>
+                            <div class="owl-thumb-item col-3 p-0">
+                                <div class="card">
                                     <img src="{{ url('assets/frontend') }}/img/content/hero/hero_post_13.jpg"
-                                        class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
-                                        alt="">
-                                    <div class="bg-black p-2">
-                                        <a href="">Extreme Heat Waves Will Change How
-                                            We Live. We're Not Ready</a>
+                                        class="card-img-top w-100"
+                                        style="object-fit: cover;height: 80px;object-position: top;" alt="">
+                                    <div class="card-body">
+                                        <a href=""> Extreme </a>
                                     </div>
                                 </div>
-                            </button>
-                            <button class="owl-thumb-item col-3 p-0">
-                                <div class="thumb-item">
+                            </div>
+                            <div class="owl-thumb-item col-3 p-0">
+                                <div class="card">
                                     <img src="{{ url('assets/frontend') }}/img/content/hero/hero_post_20.jpg"
-                                        class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
-                                        alt="">
-                                    <div class="bg-black p-2">
+                                        class="card-img-top w-100"
+                                        style="object-fit: cover;height: 80px;object-position: top;" alt="">
+                                    <div class="card-body">
                                         <a href="">Extreme Heat Waves Will Change How
                                             We Live. We're Not Ready</a>
                                     </div>
                                 </div>
-                            </button>
-                            <button class="owl-thumb-item col-3 p-0">
-                                <div class="thumb-item">
+                            </div>
+                            <div class="owl-thumb-item col-3 p-0">
+                                <div class="card">
                                     <img src="{{ url('assets/frontend') }}/img/content/hero/hero_post_21.jpg"
-                                        class="w-100" style="object-fit: cover;height: 149px;object-position: top;"
-                                        alt="">
-                                    <div class="bg-black p-2">
+                                        class="card-img-top w-100"
+                                        style="object-fit: cover;height: 80px;object-position: top;" alt="">
+                                    <div class="card-body">
                                         <a href="">Extreme Heat Waves Will Change How
                                             We Live. We're Not Ready</a>
                                     </div>
                                 </div>
-                            </button>
+                            </div>
                         </div>
 
                         <div class="title-wrap--line"></div>
@@ -449,7 +485,7 @@
 
                             <!-- Slider -->
                             <div class="wrap-owl">
-                                <div id="owl-posts-3-items"
+                                <div id="owl-pilihan-editor"
                                     class="owl-carousel owl-theme owl-carousel--arrows-outside">
                                     <article class="entry">
                                         <div class="entry__img-holder">
@@ -596,6 +632,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Berita Terkini -->
                         <div class="berita-terkini">
                             <div class="title-wrap title-wrap--line">
@@ -766,10 +803,410 @@
                                                 alt="">
                                         </a>
                                     </div>
+
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_3.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_3.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_4.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+
+                                    <!-- Ad Banner 728 -->
+                                    <div class="text-center pb-48">
+                                        <a href="#">
+                                            <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
+                                                alt="">
+                                        </a>
+                                    </div>
+
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_5.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a href="single-post-politics.html">
+                                                            <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="#"
+                                                                class="entry__meta-category">Category</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="single-post-politics.html">'It's not a concentration
+                                                            camp':
+                                                            Bangladesh defends plan to house Rohingya on island with
+                                                            armed
+                                                            police</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
+
+
+                                    <div class="pilihan-editor">
+                                        <div class="title-wrap">
+                                            <h3 class="section-title-editor">TOPIK KHUSUS</h3>
+                                        </div>
+
+                                        <!-- Slider -->
+                                        <div class="wrap-owl">
+                                            <div id="owl-posts-4-items"
+                                                class="owl-carousel owl-theme owl-carousel--arrows-outside">
+                                                <article class="entry">
+                                                    <div class="entry__img-holder">
+                                                        <a href="single-post-politics.html">
+                                                            <div class="thumb-container thumb-65">
+                                                                <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_5.jpg"
+                                                                    src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                    class="entry__img lazyload" alt="">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="entry__body">
+                                                        <div class="entry__header">
+                                                            <ul class="entry__meta">
+                                                                <li>
+                                                                    <a href="#"
+                                                                        class="entry__meta-category">category</a>
+                                                                </li>
+                                                            </ul>
+                                                            <h2 class="entry__title">
+                                                                <a href="single-post-politics.html">Federal budget to
+                                                                    spend up to
+                                                                    $1
+                                                                    billion on cybersecurity</a>
+                                                            </h2>
+                                                            <p class="bt__date">14 September 2023, 15:41 WIB</p>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </div> <!-- end slider -->
+                                            <div class="wrap-btn-slider">
+                                                <div class="btn-slider">
+                                                    <button class="btn-prev" id="prevPost4"><i
+                                                            class="ui-arrow-left"></i></button>
+                                                    <button class="btn-nect" id="nextPost4"><i
+                                                            class="ui-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </section>
                 </div> <!-- end slider -->
 
@@ -972,25 +1409,6 @@
                                     </div>
                                 </article>
                             </li>
-                            <li class="post-list-small__item">
-                                <article class="post-list-small__entry clearfix">
-                                    <div class="post-list-small__img-holder">
-                                        <div class="thumb-container thumb-80">
-                                            <a href="single-post-politics.html">
-                                                <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                    class=" lazyload">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="post-list-small__body">
-                                        <h3 class="post-list-small__entry-title">
-                                            <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                                Live. We’re Not Ready</a>
-                                        </h3>
-                                    </div>
-                                </article>
-                            </li>
                         </ul>
                     </aside> <!-- end widget popular posts -->
                     <div class="col-lg-4 text-right text-md-center">
@@ -1002,9 +1420,480 @@
                 </aside> <!-- end sidebar -->
             </div> <!-- end content -->
 
-            <section class=" mb-24 col-lg-8">
+            {{-- row bawah --}}
+            <div class="row row-20">
+                <div class="col-lg-8 order-lg-2">
+                    <section>
+                        <div class="row">
+                            <div class="col">
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_3.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_3.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_4.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_5.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
 
-            </section> <!-- end carousel posts -->
+                                <!-- Ad Banner 728 -->
+                                <div class="text-center pb-48">
+                                    <a href="#">
+                                        <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
+                                            alt="">
+                                    </a>
+                                </div>
+
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_3.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="single-post-politics.html">
+                                                        <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="#" class="entry__meta-category">Category</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="single-post-politics.html">'It's not a concentration
+                                                        camp':
+                                                        Bangladesh defends plan to house Rohingya on island with
+                                                        armed
+                                                        police</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                                <div class="loadmore">
+                                    <a href="#" class="tombolmore">Lihat Semua</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section> <!-- end carousel posts -->
+                </div>
+
+            </div>
 
         </div> <!-- end main container -->
 
@@ -1018,9 +1907,11 @@
                             <aside class="widget widget-logo">
                                 <a href="index.html">
                                     <img src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                        srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
+                                        srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
                                         class="logo__img" alt="">
                                 </a>
+                                <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi
+                                    Kabupaten Parigi moutong Provinsi Sulawesi tengah.</p>
                                 <p class="copyright">
                                     &copy;
                                     <script>
@@ -1056,7 +1947,7 @@
                             </aside>
                         </div>
 
-                        <div class="col-lg-4 col-md-6">
+                        <!-- <div class="col-lg-4 col-md-6">
                             <aside class="widget widget-popular-posts">
                                 <h4 class="widget-title">Popular Posts</h4>
                                 <ul class="post-list-small">
@@ -1066,8 +1957,7 @@
                                                 <div class="thumb-container thumb-100">
                                                     <a href="single-post.html">
                                                         <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png"
-                                                            alt=""
+                                                            src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg" alt=""
                                                             class="post-list-small__img--roundedlazyload">
                                                     </a>
                                                 </div>
@@ -1095,8 +1985,7 @@
                                                 <div class="thumb-container thumb-100">
                                                     <a href="single-post.html">
                                                         <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png"
-                                                            alt=""
+                                                            src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg" alt=""
                                                             class="post-list-small__img--roundedlazyload">
                                                     </a>
                                                 </div>
@@ -1120,28 +2009,7 @@
                                     </li>
                                 </ul>
                             </aside>
-                        </div>
-
-                        <div class="col-lg-3 col-md-6">
-                            <aside class="widget widget_mc4wp_form_widget">
-                                <h4 class="widget-title">Newsletter</h4>
-                                <p class="newsletter__text">
-                                    <i class="ui-email newsletter__icon"></i>
-                                    Subscribe for our daily news
-                                </p>
-                                <form class="mc4wp-form" method="post">
-                                    <div class="mc4wp-form-fields">
-                                        <div class="form-group">
-                                            <input type="email" name="EMAIL" placeholder="Your email"
-                                                required="">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="submit" class="btn btn-lg btn-color" value="Sign Up">
-                                        </div>
-                                    </div>
-                                </form>
-                            </aside>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>

@@ -30,7 +30,7 @@
 .video-playlist__list-item--active .video-playlist__list-item-title,
 .video-playlist__list-item:hover .video-playlist__list-item-title,
 .comment-reply:hover,
-.entry-navigation a:hover {
+.entry-navigation a:hover{
   color: #34c5cb;
 }
 

@@ -1579,7 +1579,11 @@ img.mfp-img {
 		line-height: 40px;
 		font-size: 16px; }
 	.socials--large a {
-		/* height: 46px; */
+		height: 46px;
+		width: 25px;
+		line-height: 46px;
+		font-size: 23px; }
+	.socials--nav a {
 		width: 25px;
 		line-height: 46px;
 		font-size: 23px; }

@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         \App\Models\User::create([
             'username' => 'admin',
             'display_name' => 'Administrator',

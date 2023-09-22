@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [WebController::class, 'index']);
+Route::get('/single-post', [WebController::class, 'singlePost']);
 
 Route::get('/browse', [PhotoController::class, 'browse']);
 Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);

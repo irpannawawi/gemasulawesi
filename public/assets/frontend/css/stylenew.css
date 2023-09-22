@@ -3305,11 +3305,11 @@ img.mfp-img {
 .single-post__title-single-post {
   max-width: 570px;
 }
-
 .entry__article-wrap {
   margin-top: 40px;
   margin-bottom: 40px;
 }
+
 @media only screen and (min-width: 992px) {
   .entry__article-wrap .entry__article {
     padding-left: 30px;

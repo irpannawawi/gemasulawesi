@@ -2,6 +2,7 @@
 
 namespace Web\View\Components;
 
+use Illuminate\Support\Carbon;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -12,6 +13,7 @@ class WebLayout extends Component
      */
     public function render(): View
     {
-        return view('layouts.Web');
+        $date = Carbon::now()->isoFormat('dddd, D MMMM Y');
+        return view('layouts.Web', $date);
     }
 }

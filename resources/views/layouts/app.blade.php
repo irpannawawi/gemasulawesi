@@ -7,15 +7,45 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @stack('extra-css')
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{{url('assets/AdminLTE')}}/plugins/fontawesome-free/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{url('assets/AdminLTE')}}/dist/css/adminlte.min.css">
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+@stack('extra-css')
+  <style>
+    .btn-primary{
+      background-color: #007BFF;
+    }
+    .btn-secondary{
+      background-color: #6C757d;
+    }
+
+    
+    .btn-warning{
+      background-color: #ffc107;
+    }
+    .btn-success{
+      background-color: #28A745;
+    }
+    .select2-selection__choice{
+      background-color: #28A745;
+      text: white;
+    }
+    .nav-sidebar .nav-item>.nav-link{
+      padding: 7px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+
+    .nav-sidebar .nav-treeview{
+      margin-left: 10px;
+    }
+  </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini">

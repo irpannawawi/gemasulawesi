@@ -3302,6 +3302,9 @@ img.mfp-img {
 .single-post__thumb-entry-title {
   max-width: 570px;
 }
+.single-post__title-single-post {
+  max-width: 570px;
+}
 
 .entry__article-wrap {
   margin-top: 40px;

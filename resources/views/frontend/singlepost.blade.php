@@ -4,94 +4,51 @@
     <div class="container">
         <ul class="breadcrumbs">
             <li class="breadcrumbs__item">
-                <a href="index.html" class="breadcrumbs__url">Home</a>
+                <a href="index.html" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
             </li>
             <li class="breadcrumbs__item">
-                <a href="index.html" class="breadcrumbs__url">News</a>
-            </li>
-            <li class="breadcrumbs__item breadcrumbs__item--current">
-                World
+                <a href="index.html" class="breadcrumbs__url">Category</a>
             </li>
         </ul>
     </div>
 
     <div class="main-container container" id="main-container">
 
-        <!-- Entry Image -->
-        <div class="thumb thumb--size-6">
-            <div class="entry__img-holder thumb__img-holder"
-                style="background-image: url('img/content/single/single_post_politics_featured_img.jpg');">
-                <div class="bottom-gradient"></div>
-                <div class="thumb-text-holder thumb-text-holder--2">
-                    <ul class="entry__meta">
-                        <li>
-                            <a href="#" class="entry__meta-category">politics</a>
-                        </li>
-                    </ul>
-                    <h1 class="thumb-entry-title single-post__thumb-entry-title">
-                        Trump endorses raising minimum age for more weapons, revives idea of arming teachers
-                    </h1>
-                    <div class="entry__meta-holder">
-                        <ul class="entry__meta">
-                            <li class="entry__meta-author">
-                                <span>by</span>
-                                <a href="#">DeoThemes</a>
-                            </li>
-                            <li class="entry__meta-date">
-                                Jan 21, 2018
-                            </li>
-                        </ul>
-                        <ul class="entry__meta">
-                            <li class="entry__meta-views">
-                                <i class="ui-eye"></i>
-                                <span>1356</span>
-                            </li>
-                            <li class="entry__meta-comments">
-                                <a href="#">
-                                    <i class="ui-chat-empty"></i>13
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
         <!-- Content -->
         <div class="row">
 
             <!-- post content -->
             <div class="col-lg-8 blog__content mb-72">
+                <div class="meta-single-post">
+                    <h1 class="title-single-post single-post__title-single-post">
+                        Trump endorses raising minimum age for more weapons, revives idea of arming teachers
+                    </h1>
+                    <div class="entry__meta-holder">
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <span>by sandi maulidika</span>
+                            </li>
+                            <li class="entry__meta-date">
+                                Jan 21, 2018
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Entry Image -->
+                <div class="thumb thumb--size-4">
+                    <div class="entry__img-holder thumb__img-holder"
+                        style="background-image: url('{{ url('assets/frontend') }}/img/content/single/single_post_politics_featured_img.jpg');">
+                        <div class="bottom-gradient"></div>
+                        <div class="thumb-text-holder thumb-text-holder--2">
+
+
+                        </div>
+                    </div>
+                </div>
+
                 <!-- standard post -->
                 <article class="entry mb-0">
-
                     <div class="entry__article-wrap mt-0">
-
-                        <!-- Share -->
-                        <div class="entry__share">
-                            <div class="sticky-col">
-                                <div class="socials socials--rounded socials--large">
-                                    <a class="social social-facebook" href="#" title="facebook" target="_blank"
-                                        aria-label="facebook">
-                                        <i class="ui-facebook"></i>
-                                    </a>
-                                    <a class="social social-twitter" href="#" title="twitter" target="_blank"
-                                        aria-label="twitter">
-                                        <i class="ui-twitter"></i>
-                                    </a>
-                                    <a class="social social-google-plus" href="#" title="google" target="_blank"
-                                        aria-label="google">
-                                        <i class="ui-google"></i>
-                                    </a>
-                                    <a class="social social-pinterest" href="#" title="pinterest" target="_blank"
-                                        aria-label="pinterest">
-                                        <i class="ui-pinterest"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div> <!-- share -->
-
                         <div class="entry__article">
                             <p>iPrice Group report offers insights on <a href="#">daily e-commerce</a> activity in the
                                 Philippines and Southeast. Statistically, you stand a better chance for success if you have
@@ -456,8 +413,8 @@
                                 <div class="post-list-small__img-holder">
                                     <div class="thumb-container thumb-100">
                                         <a href="single-post.html">
-                                            <img data-src="img/content/post_small/post_small_1.jpg" src="img/empty.png"
-                                                alt="" class=" lazyload">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
+                                                src="img/empty.png" alt="" class=" lazyload">
                                         </a>
                                     </div>
                                 </div>
@@ -483,8 +440,8 @@
                                 <div class="post-list-small__img-holder">
                                     <div class="thumb-container thumb-100">
                                         <a href="single-post.html">
-                                            <img data-src="img/content/post_small/post_small_2.jpg" src="img/empty.png"
-                                                alt="" class=" lazyload">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg"
+                                                src="img/empty.png" alt="" class=" lazyload">
                                         </a>
                                     </div>
                                 </div>
@@ -510,8 +467,8 @@
                                 <div class="post-list-small__img-holder">
                                     <div class="thumb-container thumb-100">
                                         <a href="single-post.html">
-                                            <img data-src="img/content/post_small/post_small_3.jpg" src="img/empty.png"
-                                                alt="" class=" lazyload">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_3.jpg"
+                                                src="img/empty.png" alt="" class=" lazyload">
                                         </a>
                                     </div>
                                 </div>
@@ -537,8 +494,8 @@
                                 <div class="post-list-small__img-holder">
                                     <div class="thumb-container thumb-100">
                                         <a href="single-post.html">
-                                            <img data-src="img/content/post_small/post_small_4.jpg" src="img/empty.png"
-                                                alt="" class=" lazyload">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_4.jpg"
+                                                src="img/empty.png" alt="" class=" lazyload">
                                         </a>
                                     </div>
                                 </div>
@@ -561,68 +518,6 @@
                         </li>
                     </ul>
                 </aside> <!-- end widget popular posts -->
-
-                <!-- Widget Newsletter -->
-                <aside class="widget widget_mc4wp_form_widget">
-                    <h4 class="widget-title">Newsletter</h4>
-                    <p class="newsletter__text">
-                        <i class="ui-email newsletter__icon"></i>
-                        Subscribe for our daily news
-                    </p>
-                    <form class="mc4wp-form" method="post">
-                        <div class="mc4wp-form-fields">
-                            <div class="form-group">
-                                <input type="email" name="EMAIL" placeholder="Your email" required="">
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-lg btn-color" value="Sign Up">
-                            </div>
-                        </div>
-                    </form>
-                </aside> <!-- end widget newsletter -->
-
-                <!-- Widget Socials -->
-                <aside class="widget widget-socials">
-                    <h4 class="widget-title">Let's hang out on social</h4>
-                    <div class="socials socials--wide socials--large">
-                        <div class="row row-16">
-                            <div class="col">
-                                <a class="social social-facebook" href="#" title="facebook" target="_blank"
-                                    aria-label="facebook">
-                                    <i class="ui-facebook"></i>
-                                    <span class="social__text">Facebook</span>
-                                </a>
-                                <a class="social social-twitter" href="#" title="twitter" target="_blank"
-                                    aria-label="twitter">
-                                    <i class="ui-twitter"></i>
-                                    <span class="social__text">Twitter</span>
-                                </a>
-                                <a class="social social-youtube" href="#" title="youtube" target="_blank"
-                                    aria-label="youtube">
-                                    <i class="ui-youtube"></i>
-                                    <span class="social__text">Youtube</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="social social-google-plus" href="#" title="google" target="_blank"
-                                    aria-label="google">
-                                    <i class="ui-google"></i>
-                                    <span class="social__text">Google+</span>
-                                </a>
-                                <a class="social social-instagram" href="#" title="instagram" target="_blank"
-                                    aria-label="instagram">
-                                    <i class="ui-instagram"></i>
-                                    <span class="social__text">Instagram</span>
-                                </a>
-                                <a class="social social-rss" href="#" title="rss" target="_blank"
-                                    aria-label="rss">
-                                    <i class="ui-rss"></i>
-                                    <span class="social__text">Rss</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </aside> <!-- end widget socials -->
 
             </aside> <!-- end sidebar -->
 

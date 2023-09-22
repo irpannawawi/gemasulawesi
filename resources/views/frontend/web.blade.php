@@ -1110,11 +1110,6 @@
                         </li>
                     </ul>
                 </aside> <!-- end widget popular posts -->
-                <div class="col-lg-4 text-right text-md-center">
-                    <a href="#">
-                        <img src="{{ url('assets/frontend') }}/img/content/placeholder_300_600.jpg" alt="">
-                    </a>
-                </div>
             </aside> <!-- end sidebar -->
         </div> <!-- end content -->
 

@@ -27,100 +27,106 @@
                 data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-edit"></i>
-                        <p>
-                            Editorial
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('editorial.create') }}" class="nav-link">
-                                <i class="far fa-file nav-icon"></i>
-                                <p>Create Article</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('editorial.draft') }}" class="nav-link">
-                                <i class="fa fa-copy nav-icon"></i>
-                                <p>Draft</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('editorial.published') }}" class="nav-link">
-                                <i class="fa fa-check-square nav-icon"></i>
-                                <p>Published</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('editorial.scheduled') }}" class="nav-link">
-                                <i class="fa fa-calendar nav-icon"></i>
-                                <p>Scheduled</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('editorial.trash') }}" class="nav-link">
-                                <i class="fa fa-trash nav-icon"></i>
-                                <p>Trash</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-clipboard-list"></i>
-                        <p>
-                            Web Management
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="far fa-file nav-icon"></i>
-                                <p>Headline WP</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-copy nav-icon"></i>
-                                <p>Headline Rubrik</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-check-square nav-icon"></i>
-                                <p>Pilihan Editor</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="fa fa-calendar nav-icon"></i>
-                                <p>Topik Khusus</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-image"></i>
-                        <p>
-                            Galeri
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                </li>
-
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fas fa-tachometer-alt"></i>
+                          <p>
+                              Dashboard
+                          </p>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fas fa-edit"></i>
+                          <p>
+                              Editorial
+                              <i class="fas fa-angle-left right"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="{{route('editorial.create')}}" class="nav-link">
+                                  <i class="far fa-file nav-icon"></i>
+                                  <p>Create Article</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{route('editorial.draft')}}" class="nav-link">
+                                  <i class="fa fa-copy nav-icon"></i>
+                                  <p>Draft</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{route('editorial.published')}}" class="nav-link">
+                                  <i class="fa fa-check-square nav-icon"></i>
+                                  <p>Published</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{route('editorial.scheduled')}}" class="nav-link">
+                                  <i class="fa fa-calendar nav-icon"></i>
+                                  <p>Scheduled</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{route('editorial.trash')}}" class="nav-link">
+                                  <i class="fa fa-trash nav-icon"></i>
+                                  <p>Trash</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fa fa-clipboard-list"></i>
+                          <p>
+                              Web Management
+                              <i class="fas fa-angle-left right"></i>
+                          </p>
+                      </a>
+                      <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="far fa-file nav-icon"></i>
+                                  <p>Headline WP</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="fa fa-copy nav-icon"></i>
+                                  <p>Headline Rubrik</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="fa fa-check-square nav-icon"></i>
+                                  <p>Pilihan Editor</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="#" class="nav-link">
+                                  <i class="fa fa-calendar nav-icon"></i>
+                                  <p>Topik Khusus</p>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a href="{{route('rubrik.index')}}" class="nav-link">
+                                  <i class="fa fa-cogs nav-icon"></i>
+                                  <p>Rubrik Managament</p>
+                              </a>
+                          </li>
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                      <a href="#" class="nav-link">
+                          <i class="nav-icon fa fa-image"></i>
+                          <p>
+                              Galeri
+                              <i class="fas fa-angle-left right"></i>
+                          </p>
+                      </a>
+                  </li>
+                
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fa fa-envelope"></i>

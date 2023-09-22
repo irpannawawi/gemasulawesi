@@ -1567,6 +1567,9 @@ img.mfp-img {
 	.socials--dark .social-instagram:hover,
 	.socials--dark .social-instagram:focus {
 		color: #e1306c !important; }
+	.socials--dark .social-telegram:hover,
+	.socials--dark .social-telegram:focus {
+		color: #089be4 !important; }
 	.socials--dark .social-rss:hover,
 	.socials--dark .social-rss:focus {
 		color: #ef822a !important; }
@@ -1666,6 +1669,11 @@ img.mfp-img {
 		background-color: #e1306c; }
 	.social-instagram:hover {
 		background-color: #d81f5e !important;
+		color: #fff !important; }
+	.social-telegram {
+		background-color: #089be4; }
+	.social-telegram:hover {
+		background-color: #0688c8 !important;
 		color: #fff !important; }
 	.social-rss {
 		background-color: #ef822a; }
@@ -1945,8 +1953,19 @@ img.mfp-img {
 	z-index: 2; }
 .title-single-post{
 	color: #000;
-	font-size: 32px;
-	line-height: 1.4; }
+	font-weight: 700;
+	font-size: 34px;
+	line-height: 1.4; 
+}
+
+@media only screen and (max-width: 767px) {
+	.title-single-post{
+	color: #000;
+	font-weight: 700;
+	font-size: 26px;
+	line-height: 1.4; 
+	}
+}
 .thumb-entry-title{
 	color: #fff;
 	font-size: 32px;
@@ -2604,12 +2623,20 @@ img.mfp-img {
 .sidebar .widget_mc4wp_form_widget {
 	padding: 32px !important; }
 
+.meta-single-post{
+	margin-bottom: 22px;
+}
+.social-post{
+	text-align: center;
+	margin-top: 22px;
+}
+
 @media only screen and (min-width: 1200px) {
 	.blog__content--right,
 	.sidebar--right {
 		float: right; }
 	.sidebar--right {
-		padding-left: 35px; }
+		padding-left: 0; }
 	.sidebar .widget {
 		width: 100%;
 	}}
@@ -2911,7 +2938,7 @@ border-radius: 0 10px 10px 0;}
 	max-width: 570px; }
 
 .single-post__title-single-post {
-	max-width: 570px; }
+	max-width: 760px; }
 
 .entry__article-wrap {
 	margin-top: 40px;

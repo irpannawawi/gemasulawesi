@@ -29,7 +29,6 @@
 
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
-    @stack('extra-css')
 </head>
 
 <body class="home style-politics">
@@ -115,7 +114,7 @@
                     <!-- Menu -->
                     <nav class="flex-child header__menu d-none d-lg-block">
                         <ul class="header__menu-list">
-                            <li><a>Rabu, 13 September 2023</a></li>
+                            <li><a>{{ date('D, d M Y') }}</a></li>
                         </ul>
                     </nav>
                     <!-- end menu -->
@@ -311,15 +310,15 @@
                                 </p>
                                 <div class="socials socials--medium socials--rounded">
                                     <a href="#" class="social social-facebook" aria-label="facebook"><i
-                                            class="ui-facebook"></i></a>
+                                            class="fa-brands fa-facebook-f"></i></a>
                                     <a href="#" class="social social-twitter" aria-label="twitter"><i
-                                            class="ui-twitter"></i></a>
-                                    <a href="#" class="social social-google-plus" aria-label="google+"><i
-                                            class="ui-google"></i></a>
+                                            class="fa-brands fa-x-twitter"></i></a>
                                     <a href="#" class="social social-youtube" aria-label="youtube"><i
-                                            class="ui-youtube"></i></a>
+                                            class="fa-brands fa-youtube"></i></a>
                                     <a href="#" class="social social-instagram" aria-label="instagram"><i
                                             class="ui-instagram"></i></a>
+                                    <a href="#" class="social social-telegram" aria-label="instagram"><i
+                                            class="fa-brands fa-telegram"></i></a>
                                 </div>
                             </aside>
                         </div>
@@ -414,18 +413,17 @@
     </main> <!-- end main-wrapper -->
 
     <!-- jQuery Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
-    @stack('custom-scripts')
 
 </body>
 

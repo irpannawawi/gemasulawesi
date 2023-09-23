@@ -86,19 +86,31 @@
                       </a>
                       <ul class="nav nav-treeview">
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
-                                  <i class="far fa-file nav-icon"></i>
+                              <a href="{{route('wp-headline-management', ['id'=>'wp'])}}" class="nav-link">
+                                  <i class="fas fa-bars nav-icon"></i>
                                   <p>Headline WP</p>
                               </a>
                           </li>
                           <li class="nav-item">
                               <a href="#" class="nav-link">
-                                  <i class="fa fa-copy nav-icon"></i>
+                                  <i class="fas fa-bars nav-icon"></i>
                                   <p>Headline Rubrik</p>
+                              <i class="fas fa-angle-left right"></i>
                               </a>
+                              <ul class="nav nav-treeview">
+                                @foreach (\App\Models\Rubrik::get() as $rubrik )
+                                    
+                                <li class="nav-item">
+                                    <a href="{{route('rubrik-headline-management', ['id'=>$rubrik->rubrik_id])}}" class="nav-link">
+                                        <i class="fas fa-bars nav-icon"></i>
+                                        <p>{{$rubrik->rubrik_name}}</p>
+                                    </a>
+                                </li>
+                                @endforeach
+                              </ul>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="{{route('editor-choice')}}" class="nav-link">
                                   <i class="fa fa-check-square nav-icon"></i>
                                   <p>Pilihan Editor</p>
                               </a>

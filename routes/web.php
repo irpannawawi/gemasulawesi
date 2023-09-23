@@ -74,6 +74,7 @@ Route::middleware('auth')->group(function () {
     // modals
     Route::get('/modal_topic', [TopicController::class, 'modal_topic'])->name('modal.topic');
     
+    // related articles
     Route::get('/modal_related', [EditorialController::class, 'modal_related'])->name('modal.related');
 
 
@@ -93,3 +94,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/editorial.php';
+require __DIR__ . '/web-management.php';

@@ -59,7 +59,7 @@
 
                         <div class="form-group">
                             <label for="descriptions">Description</label>
-                            <textarea maxlength="140" name="description" id="description" class="form-control" onchange="count_word_description()"></textarea>
+                            <textarea maxlength="140" name="description" id="description" class="form-control" onchange="count_word_description()" required></textarea>
                             <span class="badge badge-info"><span id="counter_word_description">140</span> Character
                                 left</span>
                         </div>

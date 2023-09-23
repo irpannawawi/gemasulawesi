@@ -27,4 +27,12 @@ if(!function_exists('getYoutubeData'))
         return $value = json_decode(json_encode($data))->items[0];
     }
 
+    function get_string_between($string, $start, $end){
+        $string = ' ' . $string;
+        $ini = strpos($string, $start);
+        if ($ini == 0) return '';
+        $ini += strlen($start);
+        $len = strpos($string, $end, $ini) - $ini;
+        return substr($string, $ini, $len);
+    }
 }

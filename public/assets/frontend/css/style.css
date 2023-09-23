@@ -3298,9 +3298,33 @@ figcaption {
 	.pagination__icon {
 		font-size: 12px; }
 /*-------------------------------------------------------*/
-/* Editor
+/* berita terkait
 /*-------------------------------------------------------*/
-
+.title-terkait {
+    padding: 0 0 10px;
+    text-align: left;
+	font-size: 21px;
+    color: #34c5cb;
+	letter-spacing: 2px;
+    font-weight: 700;
+    position: relative;
+    text-transform: uppercase;
+}
+.berita__terkait{
+	position: relative;
+}
+.terkait__list li .terkait__title {
+    font-size: 16px;
+    font-weight: 700;
+	border-bottom: 2px solid #E3E4E8;
+}
+.terkait__list li a {
+    display: block;
+    padding: 15px 0;
+}
+.terkait__list a:hover{
+	color: #34c5cb;
+}
 /*-------------------------------------------------------*/
 /* Page Title
 /*-------------------------------------------------------*/

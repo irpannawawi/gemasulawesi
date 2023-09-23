@@ -171,33 +171,35 @@
                         <nav class="flex-child nav__wrap d-none d-lg-block">
                             <ul class="nav__menu">
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">World</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Business</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Fashion</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Lifestyle</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Advertise</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">World</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Business</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Fashion</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Lifestyle</a>
                                 </li>
-
+                                <li>
+                                    <a href="#" class="">Advertise</a>
+                                </li>
                             </ul> <!-- end menu -->
                         </nav> <!-- end nav-wrap -->
 
@@ -205,7 +207,7 @@
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
                             <img class="logo__img"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
+                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
                                 alt="logo">
                         </a>
 
@@ -297,7 +299,7 @@
                             <aside class="widget widget-logo">
                                 <a href="index.html">
                                     <img src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                        srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
+                                        srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
                                         class="logo__img" alt="">
                                 </a>
                                 <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi

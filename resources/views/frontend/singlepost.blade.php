@@ -576,5 +576,204 @@
             </aside> <!-- end sidebar -->
 
         </div> <!-- end content -->
+
+        <div class="row row-20">
+            <div class="col-lg-8 order-lg-2">
+
+                <h3 class="title-terkait"><span>Berita Terkait</span></h3>
+                <div class="berita__terkait">
+                    <ul class="terkait__list">
+                        <li>
+                            <h2 class="terkait__title">
+                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
+                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 class="terkait__title">
+                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
+                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 class="terkait__title">
+                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
+                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 class="terkait__title">
+                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
+                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
+                            </h2>
+                        </li>
+                        <li>
+                            <h2 class="terkait__title">
+                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
+                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
+                            </h2>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-8 order-lg-2 mt-4">
+
+                <h3 class="title-terkait"><span>Terkini</span></h3>
+                <div class="row">
+                    <div class="col">
+                        <ul class="post-list-small post-list-small--2 mb-32">
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-70">
+                                            <a href="single-post-politics.html">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <ul class="entry__meta">
+                                            <li>
+                                                <a href="#" class="entry__meta-category">Category</a>
+                                            </li>
+                                        </ul>
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="single-post-politics.html">'It's not a concentration
+                                                camp':
+                                                Bangladesh defends plan to house Rohingya on island with
+                                                armed
+                                                police</a>
+                                        </h3>
+                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                    </div>
+                                </article>
+                            </li>
+                        </ul>
+                        <ul class="post-list-small post-list-small--2 mb-32">
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-70">
+                                            <a href="single-post-politics.html">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_2.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <ul class="entry__meta">
+                                            <li>
+                                                <a href="#" class="entry__meta-category">Category</a>
+                                            </li>
+                                        </ul>
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="single-post-politics.html">'It's not a concentration
+                                                camp':
+                                                Bangladesh defends plan to house Rohingya on island with
+                                                armed
+                                                police</a>
+                                        </h3>
+                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                    </div>
+                                </article>
+                            </li>
+                        </ul>
+                        <ul class="post-list-small post-list-small--2 mb-32">
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-70">
+                                            <a href="single-post-politics.html">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_3.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <ul class="entry__meta">
+                                            <li>
+                                                <a href="#" class="entry__meta-category">Category</a>
+                                            </li>
+                                        </ul>
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="single-post-politics.html">'It's not a concentration
+                                                camp':
+                                                Bangladesh defends plan to house Rohingya on island with
+                                                armed
+                                                police</a>
+                                        </h3>
+                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                    </div>
+                                </article>
+                            </li>
+                        </ul>
+                        <ul class="post-list-small post-list-small--2 mb-32">
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-70">
+                                            <a href="single-post-politics.html">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_4.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <ul class="entry__meta">
+                                            <li>
+                                                <a href="#" class="entry__meta-category">Category</a>
+                                            </li>
+                                        </ul>
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="single-post-politics.html">'It's not a concentration
+                                                camp':
+                                                Bangladesh defends plan to house Rohingya on island with
+                                                armed
+                                                police</a>
+                                        </h3>
+                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                    </div>
+                                </article>
+                            </li>
+                        </ul>
+                        <ul class="post-list-small post-list-small--2 mb-32">
+                            <li class="post-list-small__item">
+                                <article class="post-list-small__entry clearfix">
+                                    <div class="post-list-small__img-holder">
+                                        <div class="thumb-container thumb-70">
+                                            <a href="single-post-politics.html">
+                                                <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_5.jpg"
+                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                    class=" lazyload">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-list-small__body">
+                                        <ul class="entry__meta">
+                                            <li>
+                                                <a href="#" class="entry__meta-category">Category</a>
+                                            </li>
+                                        </ul>
+                                        <h3 class="post-list-small__entry-title">
+                                            <a href="single-post-politics.html">'It's not a concentration
+                                                camp':
+                                                Bangladesh defends plan to house Rohingya on island with
+                                                armed
+                                                police</a>
+                                        </h3>
+                                        <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                    </div>
+                                </article>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

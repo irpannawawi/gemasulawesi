@@ -25,8 +25,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WebController::class, 'index']);
-Route::get('/single-post', [WebController::class, 'singlePost']);
 
 Route::get('/browse', [PhotoController::class, 'browse']);
 Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
@@ -92,6 +90,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('assets.video.delete');
 });
 
+require __DIR__ . '/public.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/editorial.php';
 require __DIR__ . '/web-management.php';

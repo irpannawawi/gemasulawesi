@@ -47,23 +47,16 @@
 
         <!-- Nav -->
         <nav class="sidenav__menu-container">
+            @php
+                $rubriks = \App\Models\Rubrik::get();
+            @endphp
             <ul class="sidenav__menu" role="menubar">
                 <!-- Categories -->
-                <li>
-                    <a href="#" class="sidenav__menu-url">World</a>
-                </li>
-                <li>
-                    <a href="#" class="sidenav__menu-url">Business</a>
-                </li>
-                <li>
-                    <a href="#" class="sidenav__menu-url">Fashion</a>
-                </li>
-                <li>
-                    <a href="#" class="sidenav__menu-url">Lifestyle</a>
-                </li>
-                <li>
-                    <a href="#" class="sidenav__menu-url">Advertise</a>
-                </li>
+                @foreach ($rubriks as $rubrik)
+                    <li>
+                        <a href="#" class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
+                    </li>
+                @endforeach
             </ul>
         </nav>
 
@@ -170,36 +163,12 @@
                         <!-- Nav-wrap -->
                         <nav class="flex-child nav__wrap d-none d-lg-block">
                             <ul class="nav__menu">
-                                <li>
-                                    <a href="#" class="">World</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">Business</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">Lifestyle</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">Advertise</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">World</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">Business</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">Fashion</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">Lifestyle</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="">Advertise</a>
-                                </li>
+                                @foreach ($rubriks as $rubrik)
+                                    <li>
+                                        <a href="#" style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                    </li>
+                                @endforeach
+
                             </ul> <!-- end menu -->
                         </nav> <!-- end nav-wrap -->
 
@@ -244,36 +213,11 @@
                 <div class="container">
                     <ul class="d-flex" style="gap: 20px;">
                         <!-- Categories -->
-                        <li>
-                            <a href="#" class="">World</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Business</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Fashion</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Lifestyle</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Advertise</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">World</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Business</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Fashion</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Lifestyle</a>
-                        </li>
-                        <li>
-                            <a href="#" class="">Advertise</a>
-                        </li>
+                        @foreach ($rubriks as $rubrik)
+                                    <li>
+                                        <a href="#" style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                    </li>
+                                @endforeach
                     </ul>
                 </div>
             </div>

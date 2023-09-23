@@ -7,7 +7,7 @@
                 <a href="index.html" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
             </li>
             <li class="breadcrumbs__item">
-                <a href="index.html" class="breadcrumbs__url">Category</a>
+                <a href="index.html" class="breadcrumbs__url">{{$post->rubrik->rubrik_name}}</a>
             </li>
         </ul>
     </div>
@@ -21,7 +21,7 @@
             <div class="col-lg-8 blog__content mb-72">
                 <div class="meta-single-post">
                     <h1 class="title-single-post single-post__title-single-post">
-                        Bos AdaKami Akan Tempuh Jalur Hukum Usai Dihujat karena Diduga Nasabahnya Bunuh Diri: Masa Kita Diam
+                        {{$post->title}}
                     </h1>
                     <div class="entry__meta-holder">
                         <ul class="entry__meta">
@@ -47,33 +47,21 @@
                     </div>
                 </div>
                 <!-- Entry Image -->
-                <div class="thumb image-single-post">
+                {{-- <div class="thumb image-single-post">
                     <div class="entry__img-holder thumb__img-holder"
-                        style="background-image: url('{{ url('assets/frontend') }}/img/content/single/single_post_politics_featured_img.jpg');">
+                        style="background-image: url('{{ get_string_between($post->article, '<img src="', '">') }}');">
                     </div>
-                    <p class="photo__caption">Direktur Utama PT Pembiayaan Digital Indonesia (AdaKami) Bernardino Moningka
-                        Vega (kiri) dan Sekretaris Jenderal Asosiasi Fintech Pendanaan Bersama Indonesia (AFPI) Sunu
-                        Widyatmoko (kanan) /ANTARA/Bayu Saputra</p>
-                </div>
+                    <p class="photo__caption">Photo caption unavailable</p>
+                </div> --}}
 
                 <!-- standard post -->
                 <article class="entry mb-0">
                     <div class="entry__article-wrap mt-0">
                         <div class="entry__article">
                             <article class="read__content">
-                                <p>
-                                    <strong>Gema Sulawesi </strong>– Bos <a href="#">AdaKami</a> <a
-                                        href="#">Bernardino
-                                        Vega</a> mengatakan buntut
-                                    viralnya kasus diduga nasabahnya yang melakukan bunuh diri, ia mendapatkan banyak
-                                    hujatan
-                                    dari netizen.
-                                </p>
-                                <p>Tak hanya dirinya, Bernardino juga mengatakan keluarganya turut mendapatkan getahnya.</p>
-                                <p>
-                                    <strong>Baca Juga: </strong> <a href="#">Kereta Cepat Jakarta-Bandung Dinamai
-                                        Whoosh, Ini Kepanjangan dan Makna Filosofinya</a>
-                                </p>
+                                @php 
+                                echo $post->article 
+                                @endphp
 
                                 <!-- halaman -->
                                 <div class="halaman">

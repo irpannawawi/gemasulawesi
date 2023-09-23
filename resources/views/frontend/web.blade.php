@@ -204,13 +204,14 @@
                         <!-- Slider -->
                         <div class="wrap-owl">
                             <div id="owl-pilihan-editor" class="owl-carousel owl-theme owl-carousel--arrows-outside">
+                                @foreach ($editorCohice as $choice)
                                 <article class="entry">
                                     <div class="entry__img-holder">
                                         <a href="single-post-politics.html">
                                             <div class="thumb-container thumb-65">
-                                                <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_5.jpg"
+                                                <img data-src="{{get_string_between($choice->post->article, '<img src="', '">')}}"
                                                     src="{{ url('assets/frontend') }}/img/empty.png"
-                                                    class="entry__img lazyload" alt="">
+                                                    class="entry__img lazyload" alt="{{$choice->post->title}}">
                                             </div>
                                         </a>
                                     </div>
@@ -218,126 +219,19 @@
                                         <div class="entry__header">
                                             <ul class="entry__meta">
                                                 <li>
-                                                    <a href="#" class="entry__meta-category">category</a>
+                                                    <a href="{{route('singlePost',[
+                                                        'rubrik'=>$choice->post->rubrik->rubrik_name, 'post_id'=>$choice->post_id
+                                                        ])}}" class="entry__meta-category">{{$choice->post->rubrik->rubrik_name}}</a>
                                                 </li>
                                             </ul>
                                             <h2 class="entry__title">
-                                                <a href="single-post-politics.html">Federal budget to spend up to
-                                                    $1
-                                                    billion on cybersecurity</a>
+                                                <a href="{{route('singlePost',['rubrik'=>strtolower($choice->post->rubrik->rubrik_name), 'post_id'=>$choice->post_id])}}">{{$choice->post->title}}</a>
                                             </h2>
                                             <p class="bt__date">14 September 2023, 15:41 WIB</p>
                                         </div>
                                     </div>
                                 </article>
-                                <article class="entry">
-                                    <div class="entry__img-holder">
-                                        <a href="single-post-politics.html">
-                                            <div class="thumb-container thumb-65">
-                                                <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_6.jpg"
-                                                    src="{{ url('assets/frontend') }}/img/empty.png"
-                                                    class="entry__img lazyload" alt="">
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="entry__body">
-                                        <div class="entry__header">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">elizabeth
-                                                        Green</a>
-                                                </li>
-                                            </ul>
-                                            <h2 class="entry__title">
-                                                <a href="single-post-politics.html">US Administration is Waging a
-                                                    Silent
-                                                    War on Asylum Seekers</a>
-                                            </h2>
-                                            <p class="bt__date">14 September 2023, 15:41 WIB</p>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="entry">
-                                    <div class="entry__img-holder">
-                                        <a href="single-post-politics.html">
-                                            <div class="thumb-container thumb-65">
-                                                <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_7.jpg"
-                                                    src="{{ url('assets/frontend') }}/img/empty.png"
-                                                    class="entry__img lazyload" alt="">
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="entry__body">
-                                        <div class="entry__header">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">john doe</a>
-                                                </li>
-                                            </ul>
-                                            <h2 class="entry__title">
-                                                <a href="single-post-politics.html">U.S. To Expel 60 Russian
-                                                    Foreign
-                                                    Service Officers</a>
-                                            </h2>
-                                            <p class="bt__date">14 September 2023, 15:41 WIB</p>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="entry">
-                                    <div class="entry__img-holder">
-                                        <a href="single-post-politics.html">
-                                            <div class="thumb-container thumb-65">
-                                                <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_8.jpg"
-                                                    src="{{ url('assets/frontend') }}/img/empty.png"
-                                                    class="entry__img lazyload" alt="">
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="entry__body">
-                                        <div class="entry__header">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">kathlyn
-                                                        wood</a>
-                                                </li>
-                                            </ul>
-                                            <h2 class="entry__title">
-                                                <a href="single-post-politics.html">John Bolton, North Korea and
-                                                    the
-                                                    Art
-                                                    of the Deal</a>
-                                            </h2>
-                                            <p class="bt__date">14 September 2023, 15:41 WIB</p>
-                                        </div>
-                                    </div>
-                                </article>
-                                <article class="entry">
-                                    <div class="entry__img-holder">
-                                        <a href="single-post-politics.html">
-                                            <div class="thumb-container thumb-65">
-                                                <img data-src="{{ url('assets/frontend') }}/img/content/carousel/carousel_post_6.jpg"
-                                                    src="{{ url('assets/frontend') }}/img/empty.png"
-                                                    class="entry__img lazyload" alt="">
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div class="entry__body">
-                                        <div class="entry__header">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">elizabeth
-                                                        Green</a>
-                                                </li>
-                                            </ul>
-                                            <h2 class="entry__title">
-                                                <a href="single-post-politics.html">US Administration is Waging a
-                                                    Silent
-                                                    War on Asylum Seekers</a>
-                                            </h2>
-                                            <p class="bt__date">14 September 2023, 15:41 WIB</p>
-                                        </div>
-                                    </div>
-                                </article>
+                                @endforeach
                             </div> <!-- end slider -->
                             <div class="wrap-btn-slider">
                                 <div class="btn-slider">

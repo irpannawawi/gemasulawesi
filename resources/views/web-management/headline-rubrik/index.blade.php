@@ -12,9 +12,9 @@
                     <label>Headline 1</label>
                     <img id="imgheadline1"
                         src="{{@$img_url}}"
-                        class="img-responsive"
+                        class="img img-responsive"
                         title="{{@$headline->post->title}}"
-                        style="height:150px !important">
+                        style="">
                     <input id="hdheadline1" type="hidden" name="hdHeadline[]" value="9606620">
                     <input type="text" class="form-control p-1" name="title[]"
                         title="{{@$headline->post->title}}"

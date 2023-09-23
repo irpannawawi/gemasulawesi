@@ -14,6 +14,11 @@ class WebController extends Controller
         $data['editorCohice'] = Editorcoice::get();
         return view('frontend.web', $data);
     }
+    public function showCategory(): View
+    {
+        $data['editorCohice'] = Editorcoice::get();
+        return view('frontend.web', $data);
+    }
 
     public function singlePost($rubrik_name, $post_id): View
     {

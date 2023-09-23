@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Deus | Home 2 Politics</title>
+    <title>gemasulawesi.com Berita Terkini Indonesia Hari Ini</title>
 
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="{{ url('assets/frontend') }}/img/favicon.ico">
+    <link rel="shortcut icon" href="{{ url('assets/frontend') }}/img/favicon.png">
     <link rel="apple-touch-icon" href="{{ url('assets/frontend') }}/img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ url('assets/frontend') }}/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="{{ url('assets/frontend') }}/img/apple-touch-icon-114x114.png">
@@ -171,33 +171,35 @@
                         <nav class="flex-child nav__wrap d-none d-lg-block">
                             <ul class="nav__menu">
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">World</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Business</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Fashion</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Lifestyle</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Advertise</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">World</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Business</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Fashion</a>
                                 </li>
                                 <li>
-                                    <a href="#">Category</a>
+                                    <a href="#" class="">Lifestyle</a>
                                 </li>
-
+                                <li>
+                                    <a href="#" class="">Advertise</a>
+                                </li>
                             </ul> <!-- end menu -->
                         </nav> <!-- end nav-wrap -->
 
@@ -205,7 +207,7 @@
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
                             <img class="logo__img"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
+                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
                                 alt="logo">
                         </a>
 
@@ -297,7 +299,7 @@
                             <aside class="widget widget-logo">
                                 <a href="index.html">
                                     <img src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                        srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
+                                        srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
                                         class="logo__img" alt="">
                                 </a>
                                 <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi

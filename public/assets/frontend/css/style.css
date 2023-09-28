@@ -2438,7 +2438,7 @@ img.mfp-img {
 .post-list-small__img-holder {
 	width: 88px;
 	float: left;
-	border-radius: 50%;
+	border-radius: 10px;
 	overflow: hidden;
 	margin-right: 16px; }
 	@media only screen and (max-width: 575px) {
@@ -3324,6 +3324,12 @@ figcaption {
 }
 .terkait__list a:hover{
 	color: #34c5cb;
+}
+
+@media only screen and (max-width: 768px) {
+	.berita-terkini{
+		padding-top: 20%;
+	}
 }
 /*-------------------------------------------------------*/
 /* Page Title

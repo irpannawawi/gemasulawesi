@@ -25,4 +25,9 @@ class WebController extends Controller
         $data['post'] = Posts::find($post_id);
         return view('frontend.singlepost', $data);
     }
+
+    public function category(): View
+    {
+        return view('frontend.category');
+    }
 }

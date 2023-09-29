@@ -1800,6 +1800,9 @@ img.mfp-img {
 .entry__meta + .entry__meta,
 .entry__meta-category--label + .entry__meta {
 	margin-top: 16px; }
+	.entry__meta a{
+		text-decoration: none;
+	}
 
 .entry__meta + .entry__img-holder {
 	margin-top: 20px; }
@@ -2438,7 +2441,7 @@ img.mfp-img {
 .post-list-small__img-holder {
 	width: 88px;
 	float: left;
-	border-radius: 50%;
+	border-radius: 10px;
 	overflow: hidden;
 	margin-right: 16px; }
 	@media only screen and (max-width: 575px) {
@@ -3275,7 +3278,10 @@ figcaption {
 /*-------------------------------------------------------*/
 .pagination {
 	margin-top: 40px;
-	text-align: center; }
+	text-align: center; 
+	padding: 10px;
+	border: 2px solid #c9c9c9;
+	border-radius: 10px;}
 	.pagination__page {
 		font-size: 15px;
 		display: inline-block;
@@ -3324,6 +3330,12 @@ figcaption {
 }
 .terkait__list a:hover{
 	color: #34c5cb;
+}
+
+@media only screen and (max-width: 768px) {
+	.berita-terkini-category{
+		padding-top: 20%;
+	}
 }
 /*-------------------------------------------------------*/
 /* Page Title
@@ -5290,8 +5302,7 @@ dd {
   /* tombol load more */
 
   .loadmore{
-	margin: -10px 0 40px;
-    padding: 0 0 20px;
+    padding: 20px 0 60px;
 	text-align: center;
   }
 

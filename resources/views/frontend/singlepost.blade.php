@@ -292,12 +292,12 @@
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">
                                 <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
                                                 src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="post-list-small__body">
                                     <h3 class="post-list-small__entry-title">
@@ -319,93 +319,12 @@
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">
                                 <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg"
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
                                                 src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post.html">Lose These 12 Bad Habits If You're Serious About
-                                            Becoming a Millionaire</a>
-                                    </h3>
-                                    <ul class="entry__meta">
-                                        <li class="entry__meta-author">
-                                            <span>by</span>
-                                            <a href="#">DeoThemes</a>
-                                        </li>
-                                        <li class="entry__meta-date">
-                                            Jan 21, 2018
-                                        </li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_3.jpg"
-                                                src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post.html">June in Africa: Taxi wars, smarter cities and increased
-                                            investments</a>
-                                    </h3>
-                                    <ul class="entry__meta">
-                                        <li class="entry__meta-author">
-                                            <span>by</span>
-                                            <a href="#">DeoThemes</a>
-                                        </li>
-                                        <li class="entry__meta-date">
-                                            Jan 21, 2018
-                                        </li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_4.jpg"
-                                                src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post.html">PUBG Desert Map Finally Revealed, Here Are All The
-                                            Details</a>
-                                    </h3>
-                                    <ul class="entry__meta">
-                                        <li class="entry__meta-author">
-                                            <span>by</span>
-                                            <a href="#">DeoThemes</a>
-                                        </li>
-                                        <li class="entry__meta-date">
-                                            Jan 21, 2018
-                                        </li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
-                                                src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="post-list-small__body">
                                     <h3 class="post-list-small__entry-title">
@@ -427,39 +346,12 @@
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">
                                 <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_4.jpg"
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
                                                 src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post.html">PUBG Desert Map Finally Revealed, Here Are All The
-                                            Details</a>
-                                    </h3>
-                                    <ul class="entry__meta">
-                                        <li class="entry__meta-author">
-                                            <span>by</span>
-                                            <a href="#">DeoThemes</a>
-                                        </li>
-                                        <li class="entry__meta-date">
-                                            Jan 21, 2018
-                                        </li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
-                                                src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="post-list-small__body">
                                     <h3 class="post-list-small__entry-title">
@@ -481,17 +373,17 @@
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">
                                 <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg"
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
                                                 src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="post-list-small__body">
                                     <h3 class="post-list-small__entry-title">
-                                        <a href="single-post.html">Lose These 12 Bad Habits If You're Serious About
-                                            Becoming a Millionaire</a>
+                                        <a href="single-post.html">Follow These Smartphone Habits of Successful
+                                            Entrepreneurs</a>
                                     </h3>
                                     <ul class="entry__meta">
                                         <li class="entry__meta-author">
@@ -508,17 +400,17 @@
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">
                                 <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_3.jpg"
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
                                                 src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="post-list-small__body">
                                     <h3 class="post-list-small__entry-title">
-                                        <a href="single-post.html">June in Africa: Taxi wars, smarter cities and increased
-                                            investments</a>
+                                        <a href="single-post.html">Follow These Smartphone Habits of Successful
+                                            Entrepreneurs</a>
                                     </h3>
                                     <ul class="entry__meta">
                                         <li class="entry__meta-author">
@@ -535,17 +427,98 @@
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">
                                 <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-100">
-                                        <a href="single-post.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_4.jpg"
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
                                                 src="img/empty.png" alt="" class="lazyload">
-                                        </a>
-                                    </div>
+                                        </div>
+                                    </a>
                                 </div>
                                 <div class="post-list-small__body">
                                     <h3 class="post-list-small__entry-title">
-                                        <a href="single-post.html">PUBG Desert Map Finally Revealed, Here Are All The
-                                            Details</a>
+                                        <a href="single-post.html">Follow These Smartphone Habits of Successful
+                                            Entrepreneurs</a>
+                                    </h3>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-author">
+                                            <span>by</span>
+                                            <a href="#">DeoThemes</a>
+                                        </li>
+                                        <li class="entry__meta-date">
+                                            Jan 21, 2018
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="post-list-small__item">
+                            <article class="post-list-small__entry clearfix">
+                                <div class="post-list-small__img-holder">
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
+                                                src="img/empty.png" alt="" class="lazyload">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="post-list-small__body">
+                                    <h3 class="post-list-small__entry-title">
+                                        <a href="single-post.html">Follow These Smartphone Habits of Successful
+                                            Entrepreneurs</a>
+                                    </h3>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-author">
+                                            <span>by</span>
+                                            <a href="#">DeoThemes</a>
+                                        </li>
+                                        <li class="entry__meta-date">
+                                            Jan 21, 2018
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="post-list-small__item">
+                            <article class="post-list-small__entry clearfix">
+                                <div class="post-list-small__img-holder">
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
+                                                src="img/empty.png" alt="" class="lazyload">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="post-list-small__body">
+                                    <h3 class="post-list-small__entry-title">
+                                        <a href="single-post.html">Follow These Smartphone Habits of Successful
+                                            Entrepreneurs</a>
+                                    </h3>
+                                    <ul class="entry__meta">
+                                        <li class="entry__meta-author">
+                                            <span>by</span>
+                                            <a href="#">DeoThemes</a>
+                                        </li>
+                                        <li class="entry__meta-date">
+                                            Jan 21, 2018
+                                        </li>
+                                    </ul>
+                                </div>
+                            </article>
+                        </li>
+                        <li class="post-list-small__item">
+                            <article class="post-list-small__entry clearfix">
+                                <div class="post-list-small__img-holder">
+                                    <a href="single-post.html">
+                                        <div class="thumb-container thumb-80">
+                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
+                                                src="img/empty.png" alt="" class="lazyload">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="post-list-small__body">
+                                    <h3 class="post-list-small__entry-title">
+                                        <a href="single-post.html">Follow These Smartphone Habits of Successful
+                                            Entrepreneurs</a>
                                     </h3>
                                     <ul class="entry__meta">
                                         <li class="entry__meta-author">

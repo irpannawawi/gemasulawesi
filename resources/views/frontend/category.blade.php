@@ -10,7 +10,7 @@
 
                 <section>
                     <div class="title-wrap">
-                        <h3 class="section-title mb-3">Berita Terkini</h3>
+                        <h3 class="section-title mb-3">Name Category</h3>
                     </div>
                     <div class="thumb image-single-post">
                         <div>
@@ -26,27 +26,24 @@
                                             </li>
                                         </ul>
                                         <h2 class="thumb-entry-title">
-                                            <a href="single-post-politics.html">Trump endorses raising minimum
+                                            <a href="#">Trump endorses raising minimum
                                                 age
                                                 for more
                                                 weapons, revives idea of arming teachers</a>
                                         </h2>
                                         <ul class="entry__meta">
                                             <li class="entry__meta-comments">
-                                                <a href="#">
-                                                    Kamis, 13 Oktober 2023 | 07:30 WIB
-                                                </a>
+                                                <a> Kamis, 13 Oktober 2023 | 07:30 WIB </a>
                                             </li>
                                         </ul>
                                     </div>
-                                    <a href="single-post-politics.html" class="thumb-url"></a>
                                 </div>
                             </article>
                         </div>
                     </div>
 
                     <!-- Berita Terkini -->
-                    <div class="berita-terkini">
+                    <div class="berita-terkini-category">
                         <div class="title-wrap title-wrap--line">
                             <h3 class="section-title">Berita Terkini</h3>
                         </div>
@@ -1043,7 +1040,15 @@
                                 </li>
                             </ul>
                             <div class="loadmore">
-                                <a href="#" class="tombolmore">Lihat Semua</a>
+                                <!-- Pagination -->
+                                <nav class="pagination">
+                                    <span class="pagination__page pagination__page--current">1</span>
+                                    <a href="#" class="pagination__page">2</a>
+                                    <a href="#" class="pagination__page">3</a>
+                                    <a href="#" class="pagination__page">4</a>
+                                    <a href="#" class="pagination__page pagination__icon pagination__page--next"><i
+                                            class="ui-arrow-right"></i></a>
+                                </nav>
                             </div>
                         </div>
                     </div>

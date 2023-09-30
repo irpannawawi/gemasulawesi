@@ -60,7 +60,15 @@
                         <div class="entry__article">
                             <article class="read__content">
                                 @php 
-                                echo $post->article 
+                                $article = $post->article;
+                                
+                                foreach(json_decode($post->tags) as $tags){
+                                    $tag = \App\Models\Tags::find($tags);
+                                    str_replace($article, $tag->tag_name, "<a href=\"#\" >".$tag->tag_name."</a>");
+                                    // dd($article);
+                                }
+
+                                echo $article;
                                 @endphp
 
                                 <!-- halaman -->

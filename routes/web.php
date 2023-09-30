@@ -25,13 +25,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-<<<<<<< HEAD
-=======
-Route::get('/', [WebController::class, 'index']);
-Route::get('/single-post', [WebController::class, 'singlePost']);
-Route::get('/category', [WebController::class, 'category']);
->>>>>>> af49723 (fix gambar terpopuler & create halaman category)
-
 Route::get('/browse', [PhotoController::class, 'browse']);
 Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 
@@ -77,12 +70,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/topic_delete/{id}', [TopicController::class, 'delete'])->name('topics.delete');
     // modals
     Route::get('/modal_topic', [TopicController::class, 'modal_topic'])->name('modal.topic');
-<<<<<<< HEAD
     
     // related articles
-=======
-
->>>>>>> af49723 (fix gambar terpopuler & create halaman category)
     Route::get('/modal_related', [EditorialController::class, 'modal_related'])->name('modal.related');
 
 

@@ -35,4 +35,12 @@ if(!function_exists('getYoutubeData'))
         $len = strpos($string, $end, $ini) - $ini;
         return substr($string, $ini, $len);
     }
+
+    function convert_date_to_ID($date)
+    {
+        setlocale(LC_TIME, 'id_ID');
+        \Carbon\Carbon::setLocale('id');
+        $converted = \Carbon\Carbon::parse($date, 'id_ID');
+        return $converted->isoFormat('D MMMM Y H:mm [WIB]');
+    }
 }

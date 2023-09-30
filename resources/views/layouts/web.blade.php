@@ -54,7 +54,7 @@
                 <!-- Categories -->
                 @foreach ($rubriks as $rubrik)
                     <li>
-                        <a href="#" class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
+                        <a href="{{route('category', ['rubrik_name'=>$rubrik->rubrik_name])}}" class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
                     </li>
                 @endforeach
             </ul>
@@ -165,7 +165,7 @@
                             <ul class="nav__menu">
                                 @foreach ($rubriks as $rubrik)
                                     <li>
-                                        <a href="#" style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                        <a href="{{route('category', ['rubrik_name'=>$rubrik->rubrik_name])}}" style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
 
@@ -215,7 +215,7 @@
                         <!-- Categories -->
                         @foreach ($rubriks as $rubrik)
                                     <li>
-                                        <a href="#" style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                        <a href="{{route('category', ['rubrik_name'=>$rubrik->rubrik_name])}}" style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
                     </ul>

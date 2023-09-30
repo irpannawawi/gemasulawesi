@@ -183,7 +183,7 @@
                 </article> <!-- end standard post -->
 
                 <!-- Comments -->
-                {{-- <div class="entry-comments">
+                <div class="entry-comments">
                     <div class="title-wrap title-wrap--line">
                         <h3 class="section-title">3 comments</h3>
                     </div>
@@ -246,10 +246,10 @@
                         </li> <!-- end 3 comment -->
 
                     </ul>
-                </div> <!-- end comments --> --}}
+                </div> <!-- end comments -->
 
                 <!-- Comment Form -->
-                {{-- <div id="respond" class="comment-respond">
+                <div id="respond" class="comment-respond">
                     <div class="title-wrap">
                         <h5 class="comment-respond__title section-title">Leave a Reply</h5>
                     </div>
@@ -280,7 +280,7 @@
                         </p>
 
                     </form>
-                </div> <!-- end comment form --> --}}
+                </div> <!-- end comment form -->
             </div> <!-- end post content -->
 
             <!-- Sidebar -->

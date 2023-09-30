@@ -67,8 +67,8 @@
                                     str_replace($article, $tag->tag_name, "<a href=\"#\" >".$tag->tag_name."</a>");
                                     // dd($article);
                                 }
-
-                                echo $article;
+                                $article = str_replace('../', ''.url('').'/',$article);
+                                echo($article);
                                 @endphp
 
                                 <!-- halaman -->

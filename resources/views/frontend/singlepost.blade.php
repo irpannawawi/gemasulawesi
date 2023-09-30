@@ -64,7 +64,7 @@
                                 
                                 foreach(json_decode($post->tags) as $tags){
                                     $tag = \App\Models\Tags::find($tags);
-                                    str_replace($article, $tag->tag_name, "<a href=\"#\" >".$tag->tag_name."</a>");
+                                    str_replace($tag->tag_name, "<a href=\"#\" >".$tag->tag_name."</a>", $article);
                                     // dd($article);
                                 }
                                 $article = str_replace('../', ''.url('').'/',$article);

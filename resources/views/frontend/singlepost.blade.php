@@ -92,8 +92,13 @@
                                 <div class="entry__tags">
                                     <i class="ui-tags"></i>
                                     <span class="entry__tags-label">Tags:</span>
-                                    <a href="#" rel="tag">mobile</a><a href="#"
-                                        rel="tag">gadgets</a><a href="#" rel="tag">satelite</a>
+                                    
+                                    @php 
+                                    foreach(json_decode($post->tags) as $tags){
+                                        $tag = \App\Models\Tags::find($tags);
+                                        echo '<a href="#" rel="tag">'.$tag->tag_name.'</a>';
+                                    }
+                                    @endphp
                                 </div> <!-- end tags -->
                             </article>
 

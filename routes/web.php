@@ -30,12 +30,14 @@ Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 
 Route::get('/test', [TestController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -87,6 +89,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('assets.video.edit');
     Route::put('/video/edit', [VideoController::class, 'update'])->name('assets.video.update');
     Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('assets.video.delete');
+});
+Route::prefix('admin')->group(function (){
+
 });
 
 require __DIR__ . '/public.php';

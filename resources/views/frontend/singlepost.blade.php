@@ -29,7 +29,7 @@
                                 <span>Tim Gema</span>
                             </li>
                             <li class="entry__meta-date">
-                                {{ date('D, d M Y | H:i') }} WIB
+                                {{ convert_date_to_ID($post->created_at) }}
                             </li>
                         </ul>
                     </div>

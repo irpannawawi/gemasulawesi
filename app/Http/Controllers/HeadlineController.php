@@ -7,6 +7,7 @@ use App\Models\Headlinerubrik;
 use App\Models\Headlinewp;
 use App\Models\Posts;
 use App\Models\Rubrik;
+use Illuminate\Console\View\Components\Choice;
 use Illuminate\Http\Request;
 
 class HeadlineController extends Controller
@@ -76,9 +77,9 @@ class HeadlineController extends Controller
     }
 
 
-    public function wp_headline($id)
+    public function wp_headline()
     {
-        $data['headline_list'] = Headlinewp::get();
+        $data['headline_list'] = Headlinewp::orderBy('headline_wp_id', 'ASC')->get();
         // dd($data['headline_list']);
         for($i=0; $i<=3; $i++)
         {
@@ -99,13 +100,22 @@ class HeadlineController extends Controller
         return view('web-management.headline-wp.index', $data);
     }
 
+    public function wp_headline_delete($headline_id)
+    {
+        $headline = Headlinewp::where(
+            ['headline_wp_id'=>$headline_id]
+        )->delete();
+        // $data['post_image'] = get_string_between($post->article);
+        return redirect()->route('wp-headline-management');
+    }
+
     public function editor_choice()
     {
         $data['editor_choice'] = Editorcoice::get();
         // dd($data['headline_list']);
         for($i=0; $i<=5; $i++)
         {
-            if(!empty($data['editor_choice'][$i]))
+            if(!empty($data['editor_choice'][$i]->post))
             {
                 $data['headline'][$i] = $data['editor_choice'][$i];
                 $post = $data['editor_choice'][$i]->post;
@@ -130,5 +140,14 @@ class HeadlineController extends Controller
         );
         // $data['post_image'] = get_string_between($post->article);
         return redirect()->back();
+    }
+
+    public function editor_choice_delete($headline_id)
+    {
+        $headline = Editorcoice::where(
+            ['editor_choice_id'=>$headline_id]
+        )->update(['post_id'=>'0']);
+        // $data['post_image'] = get_string_between($post->article);
+        return redirect()->route('editor-choice');
     }
 }

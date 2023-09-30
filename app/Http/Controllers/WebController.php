@@ -17,7 +17,7 @@ class WebController extends Controller
     {
         $data['editorCohice'] = Editorcoice::get();
         $data['headlineWp'] = Headlinewp::get();
-        $data['beritaTerkini'] = Posts::orderBy('creted_at','DESC')->where('status','published')->get();
+        $data['beritaTerkini'] = Posts::orderBy('cretaed_at','DESC')->where('status','published')->get();
         $data['topikKhusus'] = Topic::get();
 
         return view('frontend.web', $data);

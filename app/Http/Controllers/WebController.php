@@ -17,7 +17,7 @@ class WebController extends Controller
     {
         $data['editorCohice'] = Editorcoice::get();
         $data['headlineWp'] = Headlinewp::get();
-        $data['beritaTerkini'] = Posts::where('status','published')->get();
+        $data['beritaTerkini'] = Posts::orderBy('creted_at','DESC')->where('status','published')->get();
         $data['topikKhusus'] = Topic::get();
 
         return view('frontend.web', $data);
@@ -39,7 +39,7 @@ class WebController extends Controller
         $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->get()[0];
         $data['rubrik_name'] = $rubrik_name;
         $data['headlineRubrik'] = Headlinerubrik::where('rubrik_id', $rubrik->rubrik_id)->get()[0];
-        $data['beritaTerkini'] = Posts::where(['status'=>'published', 'category'=>$rubrik->rubrik_id])->get();
+        $data['beritaTerkini'] = Posts::orderBy('created_at', 'DESC')->where(['status'=>'published', 'category'=>$rubrik->rubrik_id])->get();
         $data['topikKhusus'] = Topic::get();
         return view('frontend.category', $data);
     }

@@ -25,7 +25,7 @@
                 <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#uploadModal">
                     <i class="fa fa-plus"></i> Upload Files
                 </button>
-                <a href="{{ route('assets.photo.index') }}" class="btn btn-default btn-sm"><i class="fa fa-reload"></i>
+                <a href="{{ route('browseImage') }}" class="btn btn-default btn-sm"><i class="fa fa-reload"></i>
                     Refresh</a>
             </div>
             <div class="float-right">

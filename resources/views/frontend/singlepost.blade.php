@@ -4,10 +4,10 @@
     <div class="container">
         <ul class="breadcrumbs">
             <li class="breadcrumbs__item">
-                <a href="index.html" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
+                <a href="{{ url('/') }}" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
             </li>
             <li class="breadcrumbs__item">
-                <a href="index.html" class="breadcrumbs__url">{{$post->rubrik->rubrik_name}}</a>
+                <a href="index.html" class="breadcrumbs__url">{{ $post->rubrik->rubrik_name }}</a>
             </li>
         </ul>
     </div>
@@ -21,7 +21,7 @@
             <div class="col-lg-8 blog__content mb-72">
                 <div class="meta-single-post">
                     <h1 class="title-single-post single-post__title-single-post">
-                        {{$post->title}}
+                        {{ $post->title }}
                     </h1>
                     <div class="entry__meta-holder">
                         <ul class="entry__meta">
@@ -59,18 +59,20 @@
                     <div class="entry__article-wrap mt-0">
                         <div class="entry__article">
                             <article class="read__content">
-                                @php 
-                                $article = $post->article;
-                                
-                                foreach(json_decode($post->tags) as $tags){
-                                    $tag = \App\Models\Tags::find($tags);
-                                    str_replace($tag->tag_name, "<a href=\"#\" >".$tag->tag_name."</a>", $article);
-                                    // dd($article);
-                                }
-                                $article = str_replace('../', ''.url('').'/',$article);
-                                echo($article);
+                                @php
+                                    $article = $post->article;
+                                    if ($post->tags != null) {
+                                        foreach (json_decode($post->tags) as $tags) {
+                                            $tag = \App\Models\Tags::find($tags);
+                                    
+                                            $tagName = $tag->tag_name;
+                                            $article = str_ireplace($tagName, "<a href=\"" . route('tags', ['tag_name' => str_replace(' ', '-', $tagName)]) . "\" >" . ucwords($tag->tag_name) . '</a>', $article);
+                                            // dd($article);
+                                        }
+                                    }
+                                    $article = str_replace('../', '' . url('') . '/', $article);
                                 @endphp
-
+                                {!! $article !!}
                                 <!-- halaman -->
                                 <div class="halaman">
                                     <divs class="halaman__teaser">Halaman: </divs>
@@ -92,12 +94,12 @@
                                 <div class="entry__tags">
                                     <i class="ui-tags"></i>
                                     <span class="entry__tags-label">Tags:</span>
-                                    
-                                    @php 
-                                    foreach(json_decode($post->tags) as $tags){
-                                        $tag = \App\Models\Tags::find($tags);
-                                        echo '<a href="#" rel="tag">'.$tag->tag_name.'</a>';
-                                    }
+
+                                    @php
+                                        foreach (json_decode($post->tags) as $tags) {
+                                            $tag = \App\Models\Tags::find($tags);
+                                            echo '<a href="'.route('tags', ['tag_name'=>$tag->tag_name]).'" rel="tag">' . $tag->tag_name . '</a>';
+                                        }
                                     @endphp
                                 </div> <!-- end tags -->
                             </article>

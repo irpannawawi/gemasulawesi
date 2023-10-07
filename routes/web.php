@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/browse', [PhotoController::class, 'browse']);
+Route::get('/browse', [PhotoController::class, 'browse'])->name('browseImage');
 Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 
 Route::get('/test', [TestController::class, 'index']);

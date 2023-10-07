@@ -29,6 +29,20 @@
 
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
+
+    <style>
+        @media(max-width:480px) {
+            .post-title {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                /* display: inline-block; */
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body class="home style-politics">
@@ -54,7 +68,8 @@
                 <!-- Categories -->
                 @foreach ($rubriks as $rubrik)
                     <li>
-                        <a href="{{route('category', ['rubrik_name'=>$rubrik->rubrik_name])}}" class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
+                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                            class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
                     </li>
                 @endforeach
             </ul>
@@ -165,7 +180,8 @@
                             <ul class="nav__menu">
                                 @foreach ($rubriks as $rubrik)
                                     <li>
-                                        <a href="{{route('category', ['rubrik_name'=>$rubrik->rubrik_name])}}" style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
 
@@ -214,10 +230,11 @@
                     <ul class="d-flex" style="gap: 20px;">
                         <!-- Categories -->
                         @foreach ($rubriks as $rubrik)
-                                    <li>
-                                        <a href="{{route('category', ['rubrik_name'=>$rubrik->rubrik_name])}}" style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                    </li>
-                                @endforeach
+                            <li>
+                                <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                    style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

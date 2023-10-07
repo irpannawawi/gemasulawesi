@@ -70,7 +70,11 @@
                                         <td>{{ $post->editor->display_name }}</td>
                                         <td>{{ $post->created_at }}</td>
                                         <td>
-                                            <button class="btn btn-default btn-sm" onclick="sendBacaJuga('{{$post->title}}', '{{url('/').'/'.$post->title}}')">Choose</button>
+                                            <button class="btn btn-default btn-sm" onclick="sendBacaJuga('{{$post->title}}', '{{ route('singlePost', [
+                                                'rubrik' => $post->rubrik->rubrik_name,
+                                                'post_id' => $post->post_id,
+                                                'slug' => $post->slug,
+                                            ]) }}')">Choose</button>
                                         </td>
                                     </tr>
                                 @endforeach

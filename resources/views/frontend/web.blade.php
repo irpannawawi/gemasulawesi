@@ -133,7 +133,7 @@
                         <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
-                                    @foreach ($beritaTerkini as $post)
+                                    @foreach ($beritaTerkini[0] as $post)
                                     <li class="post-list-small__item">
                                         <article class="post-list-small__entry clearfix">
                                             <div class="post-list-small__img-holder">
@@ -143,7 +143,7 @@
                                                         'post_id'=>$post->post_id,
                                                         'slug'=>$post->slug
                                                     ])}}">
-                                                        <img data-src="{{get_string_between($post->article, '<img src="', '">')}}"
+                                                        <img data-src="{{@get_string_between($post->article, '<img src="', '">')}}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                             class=" lazyload">
                                                     </a>
@@ -160,7 +160,7 @@
                                                         'rubrik'=>$post->rubrik->rubrik_name,
                                                         'post_id'=>$post->post_id,
                                                         'slug'=>$post->slug
-                                                    ])}}">{{$post->title}}</a>
+                                                    ])}}" class="post-title">{{$post->title}}</a>
                                                 </h3>
                                                 <p class="bt__date">14 September 2023, 13:56 WIB</p>
                                             </div>
@@ -178,6 +178,7 @@
                                 </div>
 
                                 <x-topik_khusus :$topikKhusus/>
+                                
                             </div>
                         </div>
                     </div>
@@ -396,37 +397,43 @@
                         <div class="col">
 
                             <ul class="post-list-small post-list-small--2 mb-32">
-                                <li class="post-list-small__item">
-                                    <article class="post-list-small__entry clearfix">
-                                        <div class="post-list-small__img-holder">
-                                            <div class="thumb-container thumb-70">
-                                                <a href="single-post-politics.html">
-                                                    <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
-                                                        src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                        class=" lazyload">
-                                                </a>
+                                @foreach ($beritaTerkini[0] as $post)
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post-list-small__img-holder">
+                                                <div class="thumb-container thumb-70">
+                                                    <a href="{{route('singlePost', [
+                                                        'rubrik'=>$post->rubrik->rubrik_name,
+                                                        'post_id'=>$post->post_id,
+                                                        'slug'=>$post->slug
+                                                    ])}}">
+                                                        <img data-src="{{@get_string_between($post->article, '<img src="', '">')}}"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                            class=" lazyload">
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="post-list-small__body">
-                                            <ul class="entry__meta">
-                                                <li>
-                                                    <a href="#" class="entry__meta-category">Category</a>
-                                                </li>
-                                            </ul>
-                                            <h3 class="post-list-small__entry-title">
-                                                <a href="single-post-politics.html">'It's not a concentration
-                                                    camp':
-                                                    Bangladesh defends plan to house Rohingya on island with
-                                                    armed
-                                                    police</a>
-                                            </h3>
-                                            <p class="bt__date">14 September 2023, 13:56 WIB</p>
-                                        </div>
-                                    </article>
-                                </li>
+                                            <div class="post-list-small__body">
+                                                <ul class="entry__meta">
+                                                    <li>
+                                                        <a href="{{route('category', ['rubrik_name'=>$post->rubrik->rubrik_name])}}" class="entry__meta-category">{{$post->rubrik->rubrik_name}}</a>
+                                                    </li>
+                                                </ul>
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="{{route('singlePost', [
+                                                        'rubrik'=>$post->rubrik->rubrik_name,
+                                                        'post_id'=>$post->post_id,
+                                                        'slug'=>$post->slug
+                                                    ])}}">{{$post->title}}</a>
+                                                </h3>
+                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            </div>
+                                        </article>
+                                    </li> 
+                                    @endforeach
                             </ul>
                             <div class="loadmore">
-                                <a href="#" class="tombolmore">Lihat Semua</a>
+                                {{$paginatedPost->links()}}
                             </div>
                         </div>
                     </div>

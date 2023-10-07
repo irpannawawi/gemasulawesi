@@ -7,7 +7,8 @@
                 <a href="{{ url('/') }}" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
             </li>
             <li class="breadcrumbs__item">
-                <a href="index.html" class="breadcrumbs__url">{{ $post->rubrik->rubrik_name }}</a>
+                <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
+                    class="breadcrumbs__url">{{ $post->rubrik->rubrik_name }}</a>
             </li>
         </ul>
     </div>
@@ -61,16 +62,14 @@
                             <article class="read__content">
                                 @php
                                     $article = $post->article;
-                                    if ($post->tags != null) {
-                                        foreach (json_decode($post->tags) as $tags) {
-                                            $tag = \App\Models\Tags::find($tags);
                                     
-                                            $tagName = $tag->tag_name;
-                                            $article = str_ireplace($tagName, "<a href=\"" . route('tags', ['tag_name' => str_replace(' ', '-', $tagName)]) . "\" >" . ucwords($tag->tag_name) . '</a>', $article);
-                                            // dd($article);
-                                        }
+                                    foreach (json_decode($post->tags) as $tags) {
+                                        $tag = \App\Models\Tags::find($tags);
+                                        str_replace($tag->tag_name, "<a href=\"#\" >" . $tag->tag_name . '</a>', $article);
+                                        // dd($article);
                                     }
                                     $article = str_replace('../', '' . url('') . '/', $article);
+                                    echo $article;
                                 @endphp
                                 {!! $article !!}
                                 <!-- halaman -->
@@ -100,7 +99,7 @@
 
                                         foreach (json_decode($post->tags) as $tags) {
                                             $tag = \App\Models\Tags::find($tags);
-                                            echo '<a href="'.route('tags', ['tag_name'=>$tag->tag_name]).'" rel="tag">' . $tag->tag_name . '</a>';
+                                            echo '<a href="#" rel="tag">' . $tag->tag_name . '</a>';
                                         }
                                     }
                                     @endphp

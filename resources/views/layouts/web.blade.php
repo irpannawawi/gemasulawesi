@@ -2,6 +2,7 @@
 <html lang="en">
 @php
     use Illuminate\Support\Str;
+    use Carbon\Carbon;
 @endphp
 
 <head>
@@ -111,9 +112,10 @@
                     <!-- Date -->
                     <nav class="flex-child header__menu d-none d-lg-block">
                         <ul class="header__menu-list">
-                            <li><a>{{ date('D, d M Y') }}</a></li>
+                            <li><a>{{ Carbon::now()->locale('id_ID')->isoFormat('dddd, DD MMMM YYYY') }}</a></li>
                         </ul>
                     </nav>
+
                     <!-- end date -->
 
                     <div class="flex-child text-center mt-3 mb-3">

@@ -33,20 +33,6 @@
 
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
-
-    <style>
-        @media(max-width:480px) {
-            .post-title {
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                /* display: inline-block; */
-                width: 100%;
-            }
-        }
-    </style>
 </head>
 
 <body class="home style-politics">

@@ -7,7 +7,6 @@ use App\Models\Headlinerubrik;
 use App\Models\Headlinewp;
 use App\Models\Posts;
 use App\Models\Rubrik;
-use App\Models\Tags;
 use App\Models\Topic;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -19,16 +18,9 @@ class WebController extends Controller
     {
         $data['editorCohice'] = Editorcoice::get();
         $data['headlineWp'] = Headlinewp::get();
+        $data['beritaTerkini'] = Posts::orderBy('created_at', 'DESC')->where('status', 'published')->get();
         $data['topikKhusus'] = Topic::get();
-        
 
-        // posts 1-20
-        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
-            ->where('status', 'published')
-            ->paginate(20);
-        $data['beritaTerkini'] = $data['paginatedPost']->split(2);
-
-        // dd($data['beritaTerkini']);
         return view('frontend.web', $data);
     }
     public function showCategory(): View
@@ -48,33 +40,14 @@ class WebController extends Controller
         $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->get()[0];
         $data['rubrik_name'] = $rubrik_name;
         $data['headlineRubrik'] = Headlinerubrik::where('rubrik_id', $rubrik->rubrik_id)->get()[0];
+        $data['beritaTerkini'] = Posts::orderBy('created_at', 'DESC')->where(['status' => 'published', 'category' => $rubrik->rubrik_id])->get();
         $data['topikKhusus'] = Topic::get();
-
-        // posts 1-20
-        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
-            ->where(['status' => 'published', 'category' => $rubrik->rubrik_id])
-            ->paginate(20);
-        $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.category', $data);
     }
 
-    public function tags($tag_name): View
+    public function tag(): View
     {
-        $tag_id = Tags::where('tag_name', $tag_name)->get()[0]->tag_id;
-
-        $data['tag_name'] = $tag_name;
-        $data['topikKhusus'] = Topic::get();
-
-        // posts 1-20
-        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
-            ->where(
-                [
-                    ['status', '=', 'published'],
-                    ['tags', 'like', '%"' . $tag_id . '"%']
-                ]
-            )
-            ->paginate(20);
-        $data['beritaTerkini'] = $data['paginatedPost']->split(2);
-        return view('frontend.tags', $data);
+        $data['beritaTerkini'] = Posts::orderBy('created_at', 'DESC')->where('status', 'published')->get();
+        return view('frontend.tag', $data);
     }
 }

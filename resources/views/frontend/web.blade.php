@@ -108,9 +108,9 @@
                                                             'rubrik' => strtolower($choice->post->rubrik->rubrik_name),
                                                             'post_id' => $choice->post_id,
                                                             'slug' => $choice->post->slug,
-                                                        ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 60) }}</a>
+                                                        ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 70) }}</a>
                                                 </h2>
-                                                <p class="bt__date">{{ convert_date_to_ID($choice->post->created_at) }}</p>
+                                                <p class="bt__date">14 September 2023, 15:41 WIB</p>
                                             </div>
                                         </div>
                                     </article>
@@ -133,7 +133,7 @@
                         <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
-                                    @foreach ($beritaTerkini[0] as $post)
+                                    @foreach ($beritaTerkini as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">
                                                 <div class="post-list-small__img-holder">
@@ -144,7 +144,7 @@
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}">
-                                                            <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
+                                                            <img data-src="{{ get_string_between($post->article, '<img src="', '">') }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.png"
                                                                 alt="" class=" lazyload">
                                                         </a>
@@ -158,12 +158,12 @@
                                                         </li>
                                                     </ul>
                                                     <h3 class="post-list-small__entry-title">
-                                                        <a href="{{ route('singlePost', [
-                                                            'rubrik' => $post->rubrik->rubrik_name,
-                                                            'post_id' => $post->post_id,
-                                                            'slug' => $post->slug,
-                                                        ]) }}"
-                                                            class="post-title">{{ $post->title }}</a>
+                                                        <a
+                                                            href="{{ route('singlePost', [
+                                                                'rubrik' => $post->rubrik->rubrik_name,
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}">{{ $post->title }}</a>
                                                     </h3>
                                                     <p class="bt__date">14 September 2023, 13:56 WIB</p>
                                                 </div>
@@ -171,63 +171,7 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                {{-- <x-topik_khusus :$topikKhusus /> --}}
-                                <div class="pilihan-editor">
-                                    <div class="title-wrap">
-                                        <h3 class="section-title-editor">TOPIK KHUSUS</h3>
-                                    </div>
 
-                                    <!-- Slider -->
-                                    <div class="wrap-owl">
-                                        <div id="owl-pilihan-editor"
-                                            class="owl-carousel owl-theme owl-carousel--arrows-outside owl-loaded owl-drag">
-
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage"
-                                                    style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 192px;">
-                                                    <div class="owl-item active" style="width: 172px; margin-right: 20px;">
-                                                        @foreach ($topikKhusus as $topik)
-                                                        <article class="entry"
-                                                            style="background-color: white; border-radius:10px;">
-                                                            <div class="entry__img-holder mb-0">
-                                                                <a href="#">
-                                                                    <div class="thumb-container thumb-65">
-                                                                        <img data-src="{{ $topik->topic_image}}"
-                                                                            src="{{ $topik->topic_image}}"
-                                                                            class="entry__img lazyloaded" alt="{{ $topik->topic_description}}">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="entry__body mt-0">
-                                                                <div class="entry__header text-center">
-                                                                    <h2 class="entry__title">
-                                                                        <a href="#">{{ $topik->topic_name}}</a>
-                                                                    </h2>
-                                                                    <p class="bt__date">{{convert_date_to_ID($topik->created_at)}}</p>
-                                                                </div>
-                                                            </div>
-                                                        </article>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-nav disabled">
-                                                <div class="owl-prev disabled">prev</div>
-                                                <div class="owl-next disabled">next</div>
-                                            </div>
-                                            <div class="owl-dots disabled"></div>
-                                            <div class="owl-thumbs"></div>
-                                        </div> <!-- end slider -->
-                                        <div class="wrap-btn-slider">
-                                            <div class="btn-slider">
-                                                <button class="btn-prev" id="prevPost3"><i
-                                                        class="ui-arrow-left"></i></button>
-                                                <button class="btn-nect" id="nextPost3"><i
-                                                        class="ui-arrow-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- Ad Banner 728 -->
                                 <div class="text-center pb-48">
                                     <a href="#">
@@ -236,6 +180,7 @@
                                     </a>
                                 </div>
 
+                                <x-topik_khusus :$topikKhusus />
                             </div>
                         </div>
                     </div>
@@ -454,46 +399,37 @@
                         <div class="col">
 
                             <ul class="post-list-small post-list-small--2 mb-32">
-                                @foreach ($beritaTerkini[0] as $post)
-                                    <li class="post-list-small__item">
-                                        <article class="post-list-small__entry clearfix">
-                                            <div class="post-list-small__img-holder">
-                                                <div class="thumb-container thumb-70">
-                                                    <a
-                                                        href="{{ route('singlePost', [
-                                                            'rubrik' => $post->rubrik->rubrik_name,
-                                                            'post_id' => $post->post_id,
-                                                            'slug' => $post->slug,
-                                                        ]) }}">
-                                                        <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png"
-                                                            alt="" class=" lazyload">
-                                                    </a>
-                                                </div>
+                                <li class="post-list-small__item">
+                                    <article class="post-list-small__entry clearfix">
+                                        <div class="post-list-small__img-holder">
+                                            <div class="thumb-container thumb-70">
+                                                <a href="single-post-politics.html">
+                                                    <img data-src="{{ url('assets/frontend') }}/img/content/grid/grid_post_1.jpg"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                        class=" lazyload">
+                                                </a>
                                             </div>
-                                            <div class="post-list-small__body">
-                                                <ul class="entry__meta">
-                                                    <li>
-                                                        <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
-                                                            class="entry__meta-category">{{ $post->rubrik->rubrik_name }}</a>
-                                                    </li>
-                                                </ul>
-                                                <h3 class="post-list-small__entry-title">
-                                                    <a href="{{ route('singlePost', [
-                                                        'rubrik' => $post->rubrik->rubrik_name,
-                                                        'post_id' => $post->post_id,
-                                                        'slug' => $post->slug,
-                                                    ]) }}"
-                                                        class="post-title">{{ $post->title }}</a>
-                                                </h3>
-                                                <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
-                                            </div>
-                                        </article>
-                                    </li>
-                                @endforeach
+                                        </div>
+                                        <div class="post-list-small__body">
+                                            <ul class="entry__meta">
+                                                <li>
+                                                    <a href="#" class="entry__meta-category">Category</a>
+                                                </li>
+                                            </ul>
+                                            <h3 class="post-list-small__entry-title">
+                                                <a href="single-post-politics.html">'It's not a concentration
+                                                    camp':
+                                                    Bangladesh defends plan to house Rohingya on island with
+                                                    armed
+                                                    police</a>
+                                            </h3>
+                                            <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                        </div>
+                                    </article>
+                                </li>
                             </ul>
                             <div class="loadmore">
-                                {{ $paginatedPost->links() }}
+                                <a href="#" class="tombolmore">Lihat Semua</a>
                             </div>
                         </div>
                     </div>

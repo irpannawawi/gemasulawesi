@@ -10,4 +10,4 @@ Route::get('/', [WebController::class, 'index']);
 // Route::get('/{rubrik}', [WebController::class, 'showCategory'])->name('showCategory');
 Route::get('/p/{rubrik}/{post_id}/{slug}', [WebController::class, 'singlePost'])->name('singlePost');
 Route::get('/category/{rubrik_name}', [WebController::class, 'category'])->name('category');
-Route::get('/tags/{tag_name}', [WebController::class, 'tags'])->name('tags');
+Route::get('/tag', [WebController::class, 'tag'])->name('tag');

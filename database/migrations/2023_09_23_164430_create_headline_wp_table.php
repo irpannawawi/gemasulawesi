@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('headline_wp', function (Blueprint $table) {
-            $table->integer('headline_wp_id')->primary();
+            $table->integer('headline_wp_id')->primary;
             $table->integer('post_id');
             $table->timestamps();
         });

@@ -96,10 +96,13 @@
                                     <span class="entry__tags-label">Tags:</span>
 
                                     @php
+                                    if($post->tags != null){
+
                                         foreach (json_decode($post->tags) as $tags) {
                                             $tag = \App\Models\Tags::find($tags);
                                             echo '<a href="'.route('tags', ['tag_name'=>$tag->tag_name]).'" rel="tag">' . $tag->tag_name . '</a>';
                                         }
+                                    }
                                     @endphp
                                 </div> <!-- end tags -->
                             </article>

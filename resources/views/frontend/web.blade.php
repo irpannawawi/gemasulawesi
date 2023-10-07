@@ -108,9 +108,9 @@
                                                             'rubrik' => strtolower($choice->post->rubrik->rubrik_name),
                                                             'post_id' => $choice->post_id,
                                                             'slug' => $choice->post->slug,
-                                                        ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 70) }}</a>
+                                                        ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 60) }}</a>
                                                 </h2>
-                                                <p class="bt__date">{{convert_date_to_ID($post->created_at)}}</p>
+                                                <p class="bt__date">{{convert_date_to_ID($choice->post->created_at)}}</p>
                                             </div>
                                         </div>
                                     </article>

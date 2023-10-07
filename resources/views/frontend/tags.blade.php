@@ -47,7 +47,7 @@
                                                         'rubrik'=>$post->rubrik?->rubrik_name,
                                                         'post_id'=>$post->post_id,
                                                         'slug'=>$post->slug
-                                                    ])}}">{{$post->title}}</a>
+                                                    ])}}" class="post-title">{{$post->title}}</a>
                                                 </h3>
                                                 <p class="bt__date">{{convert_date_to_ID($post->created_at)}}</p>
                                             </div>
@@ -306,7 +306,7 @@
                                                         'rubrik'=>$post->rubrik?->rubrik_name,
                                                         'post_id'=>$post->post_id,
                                                         'slug'=>$post->slug
-                                                    ])}}">{{$post->title}}</a>
+                                                    ])}}" class="post-title">{{$post->title}}</a>
                                                 </h3>
                                                 <p class="bt__date">14 September 2023, 13:56 WIB</p>
                                             </div>

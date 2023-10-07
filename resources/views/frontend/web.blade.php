@@ -110,7 +110,7 @@
                                                             'slug' => $choice->post->slug,
                                                         ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 70) }}</a>
                                                 </h2>
-                                                <p class="bt__date">14 September 2023, 15:41 WIB</p>
+                                                <p class="bt__date">{{convert_date_to_ID($post->created_at)}}</p>
                                             </div>
                                         </div>
                                     </article>
@@ -424,9 +424,9 @@
                                                         'rubrik'=>$post->rubrik->rubrik_name,
                                                         'post_id'=>$post->post_id,
                                                         'slug'=>$post->slug
-                                                    ])}}">{{$post->title}}</a>
+                                                    ])}}" class="post-title">{{$post->title}}</a>
                                                 </h3>
-                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                <p class="bt__date">{{convert_date_to_ID($post->created_at)}}</p>
                                             </div>
                                         </article>
                                     </li> 

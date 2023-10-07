@@ -20,6 +20,7 @@ class WebController extends Controller
         $data['editorCohice'] = Editorcoice::get();
         $data['headlineWp'] = Headlinewp::get();
         $data['topikKhusus'] = Topic::get();
+        
 
         // posts 1-20
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')

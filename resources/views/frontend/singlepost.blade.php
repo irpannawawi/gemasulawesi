@@ -62,14 +62,16 @@
                             <article class="read__content">
                                 @php
                                     $article = $post->article;
-                                    
-                                    foreach (json_decode($post->tags) as $tags) {
-                                        $tag = \App\Models\Tags::find($tags);
-                                        str_replace($tag->tag_name, "<a href=\"#\" >" . $tag->tag_name . '</a>', $article);
-                                        // dd($article);
+                                    if($post->tags!=null){
+
+                                        foreach (json_decode($post->tags) as $tags) {
+                                            $tag = \App\Models\Tags::find($tags);
+                                            $article = str_ireplace($tag->tag_name, "<a href=\"".route('tags', ['tag_name'=>$tag->tag_name])."\" >" . $tag->tag_name . '</a>', $article);
+                                            // dd($article);
+                                        }
                                     }
                                     $article = str_replace('../', '' . url('') . '/', $article);
-                                    echo $article;
+                                    // echo $article;
                                 @endphp
                                 {!! $article !!}
                                 <!-- halaman -->
@@ -99,7 +101,7 @@
 
                                         foreach (json_decode($post->tags) as $tags) {
                                             $tag = \App\Models\Tags::find($tags);
-                                            echo '<a href="#" rel="tag">' . $tag->tag_name . '</a>';
+                                            echo '<a href="'.route('tags', ['tag_name'=>$tag->tag_name]).'" rel="tag">' . $tag->tag_name . '</a>';
                                         }
                                     }
                                     @endphp

@@ -23,7 +23,7 @@
                                             <div class="thumb-text-holder thumb-text-holder--2">
                                                 <ul class="entry__meta">
                                                     <li>
-                                                        <a href="{{route('category', ['rubrik_name'=>$headline->post->rubrik->rubrik_name])}}"
+                                                        <a href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}"
                                                             class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headline->post->rubrik->rubrik_name }}</a>
                                                     </li>
                                                 </ul>
@@ -62,7 +62,8 @@
                                         class="card-img-top w-100"
                                         style="object-fit: cover;height: 80px;object-position: top;" alt="">
                                     <div class="card-body">
-                                        <a href=""> {{$headline->post->title}} </a>
+                                        <a href=""> {{ \Illuminate\Support\Str::limit($headline->post->title, 70) }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +71,6 @@
                     </div>
 
                     <div class="title-wrap--line"></div>
-
                     <div class="pilihan-editor">
                         <div class="title-wrap">
                             <h3 class="section-title-editor">PILIHAN EDITOR</h3>
@@ -108,7 +108,7 @@
                                                             'rubrik' => strtolower($choice->post->rubrik->rubrik_name),
                                                             'post_id' => $choice->post_id,
                                                             'slug' => $choice->post->slug,
-                                                        ]) }}">{{ $choice->post->title }}</a>
+                                                        ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 70) }}</a>
                                                 </h2>
                                                 <p class="bt__date">14 September 2023, 15:41 WIB</p>
                                             </div>

@@ -11,6 +11,7 @@ use App\Models\Tags;
 use App\Models\Topic;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class WebController extends Controller
 {

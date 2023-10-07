@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+@php
+    use Illuminate\Support\Str;
+    use Carbon\Carbon;
+@endphp
 
 <head>
     <title>gemasulawesi.com Berita Terkini Indonesia Hari Ini</title>
@@ -94,45 +98,46 @@
     <main class="main oh" id="main">
 
         <!-- Trending Now -->
-        <!-- <div class="container">
-      <div class="trending-now trending-now--1">
-        <span class="trending-now__label">
-          <i class="ui-flash"></i>
-          <span class="trending-now__text d-lg-inline-block d-none">Newsflash</span>
-        </span>
-        <div class="newsticker">
-          <ul class="newsticker__list">
-            <li class="newsticker__item"><a href="single-post-politics.html" class="newsticker__item-url">A-HA theme is multi-purpose solution for any kind of business</a></li>
-            <li class="newsticker__item"><a href="single-post-1.html" class="newsticker__item-url">Satelite cost tens of millions or even hundreds of millions of dollars to build</a></li>
-            <li class="newsticker__item"><a href="single-post-3.html" class="newsticker__item-url">8 Hidden Costs of Starting and Running a Business</a></li>
-          </ul>
+        <div class="container">
+            <div class="trending-now trending-now--1">
+                <span class="trending-now__label">
+                    <i class="ui-flash"></i>
+                    <span class="trending-now__text d-lg-inline-block d-none">Newsflash</span>
+                </span>
+                <div class="newsticker">
+                    <ul class="newsticker__list">
+                        <li class="newsticker__item"><a href="single-post-politics.html"
+                                class="newsticker__item-url">A-HA theme is multi-purpose solution for any kind of
+                                business</a></li>
+                        <li class="newsticker__item"><a href="single-post-1.html" class="newsticker__item-url">Satelite
+                                cost tens of millions or even hundreds of millions of dollars to build</a></li>
+                        <li class="newsticker__item"><a href="single-post-3.html" class="newsticker__item-url">8 Hidden
+                                Costs of Starting and Running a Business</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="newsticker-buttons">
-          <button class="newsticker-button newsticker-button--prev" id="newsticker-button--prev" aria-label="next article"><i class="ui-arrow-left"></i></button>
-          <button class="newsticker-button newsticker-button--next" id="newsticker-button--next" aria-label="previous article"><i class="ui-arrow-right"></i></button>
-        </div>
-      </div>
-    </div>     -->
 
         <!-- Header -->
         <header class="header d-lg-block d-none">
             <div class="container">
                 <div class="flex-parent">
 
-                    <!-- Menu -->
+                    <!-- Date -->
                     <nav class="flex-child header__menu d-none d-lg-block">
                         <ul class="header__menu-list">
-                            <li><a>{{ date('D, d M Y') }}</a></li>
+                            <li><a>{{ Carbon::now()->locale('id_ID')->isoFormat('dddd, DD MMMM YYYY') }}</a></li>
                         </ul>
                     </nav>
-                    <!-- end menu -->
+
+                    <!-- end date -->
 
                     <div class="flex-child text-center mt-3 mb-3">
                         <!-- Logo -->
                         <a href="{{ url('') }}" class="logo">
                             <img class="logo__img"
-                                src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
+                                src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
+                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
                                 alt="logo" width="280" height="280">
                         </a>
                     </div>
@@ -167,7 +172,7 @@
                     <div class="flex-parent mb-5">
 
                         <div class="flex-child">
-                            <!-- Side Menu Button Mobile -->
+                            <!-- Side Menu Button -->
                             <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open side menu">
                                 <span class="nav-icon-toggle__box">
                                     <span class="nav-icon-toggle__inner"></span>
@@ -181,6 +186,7 @@
                                 @foreach ($rubriks as $rubrik)
                                     <li>
                                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                            class="link-nav__menu"
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
@@ -192,7 +198,7 @@
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
                             <img class="logo__img"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp 2x"
+                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
                                 alt="logo">
                         </a>
 
@@ -241,10 +247,12 @@
         </header> <!-- end navigation -->
 
         <!-- Ad Banner 728 -->
-        <div class="text-center pb-48">
-            <a href="#">
-                <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
-            </a>
+        <div class="container">
+            <div class="text-center pb-48">
+                <a href="#">
+                    <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
+                </a>
+            </div>
         </div>
 
         {{-- konten --}}
@@ -299,70 +307,6 @@
                                 </ul>
                             </aside>
                         </div>
-
-                        <!-- <div class="col-lg-4 col-md-6">
-                            <aside class="widget widget-popular-posts">
-                                <h4 class="widget-title">Popular Posts</h4>
-                                <ul class="post-list-small">
-                                    <li class="post-list-small__item">
-                                        <article class="post-list-small__entry clearfix">
-                                            <div class="post-list-small__img-holder">
-                                                <div class="thumb-container thumb-100">
-                                                    <a href="single-post.html">
-                                                        <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg"
-                                                            src="{{ url('assets/frontend') }}/img/content/post_small/post_small_1.jpg" alt=""
-                                                            class="post-list-small__img--roundedlazyload">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="post-list-small__body">
-                                                <h3 class="post-list-small__entry-title">
-                                                    <a href="single-post.html">Follow These Smartphone Habits of
-                                                        Successful Entrepreneurs</a>
-                                                </h3>
-                                                <ul class="entry__meta">
-                                                    <li class="entry__meta-author">
-                                                        <span>by</span>
-                                                        <a href="#">DeoThemes</a>
-                                                    </li>
-                                                    <li class="entry__meta-date">
-                                                        Jan 21, 2018
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </article>
-                                    </li>
-                                    <li class="post-list-small__item">
-                                        <article class="post-list-small__entry clearfix">
-                                            <div class="post-list-small__img-holder">
-                                                <div class="thumb-container thumb-100">
-                                                    <a href="single-post.html">
-                                                        <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg"
-                                                            src="{{ url('assets/frontend') }}/img/content/post_small/post_small_2.jpg" alt=""
-                                                            class="post-list-small__img--roundedlazyload">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="post-list-small__body">
-                                                <h3 class="post-list-small__entry-title">
-                                                    <a href="single-post.html">Lose These 12 Bad Habits If You're
-                                                        Serious About Becoming a Millionaire</a>
-                                                </h3>
-                                                <ul class="entry__meta">
-                                                    <li class="entry__meta-author">
-                                                        <span>by</span>
-                                                        <a href="#">DeoThemes</a>
-                                                    </li>
-                                                    <li class="entry__meta-date">
-                                                        Jan 21, 2018
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </article>
-                                    </li>
-                                </ul>
-                            </aside>
-                        </div> -->
 
                     </div>
                 </div>

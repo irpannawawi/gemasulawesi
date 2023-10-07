@@ -62,7 +62,8 @@
                                         class="card-img-top w-100"
                                         style="object-fit: cover;height: 80px;object-position: top;" alt="">
                                     <div class="card-body">
-                                        <a href=""> {{ $headline->post->title }} </a>
+                                        <a href=""> {{ \Illuminate\Support\Str::limit($headline->post->title, 70) }}
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -258,8 +258,6 @@
     $newsTicker.newsTicker({
       row_height: 34,
       max_rows: 1,
-      prevButton: $('#newsticker-button--prev'),
-      nextButton: $('#newsticker-button--next')
     });
   }
 

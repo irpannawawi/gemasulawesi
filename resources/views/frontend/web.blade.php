@@ -23,7 +23,7 @@
                                             <div class="thumb-text-holder thumb-text-holder--2">
                                                 <ul class="entry__meta">
                                                     <li>
-                                                        <a href="{{route('category', ['rubrik_name'=>$headline->post->rubrik->rubrik_name])}}"
+                                                        <a href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}"
                                                             class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headline->post->rubrik->rubrik_name }}</a>
                                                     </li>
                                                 </ul>
@@ -62,7 +62,7 @@
                                         class="card-img-top w-100"
                                         style="object-fit: cover;height: 80px;object-position: top;" alt="">
                                     <div class="card-body">
-                                        <a href=""> {{$headline->post->title}} </a>
+                                        <a href=""> {{ $headline->post->title }} </a>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +70,6 @@
                     </div>
 
                     <div class="title-wrap--line"></div>
-
                     <div class="pilihan-editor">
                         <div class="title-wrap">
                             <h3 class="section-title-editor">PILIHAN EDITOR</h3>
@@ -108,7 +107,7 @@
                                                             'rubrik' => strtolower($choice->post->rubrik->rubrik_name),
                                                             'post_id' => $choice->post_id,
                                                             'slug' => $choice->post->slug,
-                                                        ]) }}">{{ $choice->post->title }}</a>
+                                                        ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 70) }}</a>
                                                 </h2>
                                                 <p class="bt__date">14 September 2023, 15:41 WIB</p>
                                             </div>
@@ -134,38 +133,41 @@
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
                                     @foreach ($beritaTerkini as $post)
-                                    <li class="post-list-small__item">
-                                        <article class="post-list-small__entry clearfix">
-                                            <div class="post-list-small__img-holder">
-                                                <div class="thumb-container thumb-70">
-                                                    <a href="{{route('singlePost', [
-                                                        'rubrik'=>$post->rubrik->rubrik_name,
-                                                        'post_id'=>$post->post_id,
-                                                        'slug'=>$post->slug
-                                                    ])}}">
-                                                        <img data-src="{{get_string_between($post->article, '<img src="', '">')}}"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class=" lazyload">
-                                                    </a>
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a
+                                                            href="{{ route('singlePost', [
+                                                                'rubrik' => $post->rubrik->rubrik_name,
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}">
+                                                            <img data-src="{{ get_string_between($post->article, '<img src="', '">') }}"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="post-list-small__body">
-                                                <ul class="entry__meta">
-                                                    <li>
-                                                        <a href="{{route('category', ['rubrik_name'=>$post->rubrik->rubrik_name])}}" class="entry__meta-category">{{$post->rubrik->rubrik_name}}</a>
-                                                    </li>
-                                                </ul>
-                                                <h3 class="post-list-small__entry-title">
-                                                    <a href="{{route('singlePost', [
-                                                        'rubrik'=>$post->rubrik->rubrik_name,
-                                                        'post_id'=>$post->post_id,
-                                                        'slug'=>$post->slug
-                                                    ])}}">{{$post->title}}</a>
-                                                </h3>
-                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
-                                            </div>
-                                        </article>
-                                    </li> 
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
+                                                                class="entry__meta-category">{{ $post->rubrik->rubrik_name }}</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a
+                                                            href="{{ route('singlePost', [
+                                                                'rubrik' => $post->rubrik->rubrik_name,
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}">{{ $post->title }}</a>
+                                                    </h3>
+                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                </div>
+                                            </article>
+                                        </li>
                                     @endforeach
                                 </ul>
 
@@ -177,7 +179,7 @@
                                     </a>
                                 </div>
 
-                                <x-topik_khusus :$topikKhusus/>
+                                <x-topik_khusus :$topikKhusus />
                             </div>
                         </div>
                     </div>

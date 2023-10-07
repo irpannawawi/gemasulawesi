@@ -3425,7 +3425,7 @@ figcaption {
 			position: relative;
 			line-height: 48px; }
 			.nav__menu > li > a:hover {
-				color: #2D95E3; }
+				color: #000; }
 			.nav__menu > li > a:before {
 				content: '';
 				display: block;
@@ -3769,71 +3769,81 @@ header .flex-child {
 -------------------------------------------------------*/
 /* Aturan CSS untuk tampilan dekstop (lebar layar > 767px) */
 .nav-icon-toggle {
-	display: none; /* Menyembunyikan elemen di dekstop */
-  }
+	padding: 0;
+	display: inline-block;
+	cursor: pointer;
+	-webkit-transition: 0.15s linear;
+	transition: 0.15s linear;
+	font: inherit;
+	color: inherit;
+	text-transform: none;
+	background-color: transparent;
+	border: 0;
+	margin-right: 20px;
+	overflow: visible;
+	}
 
-  /* Aturan CSS untuk tampilan mobile (lebar layar <= 767px) */
-  @media (max-width: 767px) {
-	.nav-icon-toggle {
-	  padding: 0;
-	  display: inline-block;
-	  cursor: pointer;
-	  -webkit-transition: 0.15s linear;
-	  transition: 0.15s linear;
-	  font: inherit;
-	  color: inherit;
-	  text-transform: none;
-	  background-color: transparent;
-	  border: 0;
-	  margin-right: 20px;
-	  overflow: visible;
-	  /* Aturan tambahan untuk tampilan mobile di sini */
+	/* Aturan CSS untuk tampilan mobile (lebar layar <= 767px) */
+	@media (max-width: 767px) {
+		.nav-icon-toggle {
+		padding: 0;
+		display: inline-block;
+		cursor: pointer;
+		-webkit-transition: 0.15s linear;
+		transition: 0.15s linear;
+		font: inherit;
+		color: inherit;
+		text-transform: none;
+		background-color: transparent;
+		border: 0;
+		margin-right: 20px;
+		overflow: visible;}
+		
+		.nav-icon-toggle:focus {
+		outline: none;
+		}
+		.nav-icon-toggle__box {
+		width: 18px;
+		height: 20px;
+		position: relative;
+		display: block;
+		}
+		.nav-icon-toggle__inner {
+		display: block;
+		top: 50%;
+		margin-top: -1px;
+		margin-left: 3px;
+		width: 15px;
+		}
+		.nav-icon-toggle__inner,
+		.nav-icon-toggle__inner:before,
+		.nav-icon-toggle__inner:after {
+		height: 2px;
+		background-color: #171821;
+		position: absolute;
+		-webkit-transition: 0.2s all;
+		transition: 0.2s all;
+		}
+		.nav-icon-toggle:hover .nav-icon-toggle__inner,
+		.nav-icon-toggle:hover .nav-icon-toggle__inner:before,
+		.nav-icon-toggle:hover .nav-icon-toggle__inner:after {
+		background-color: #2D95E3;
+		}
+		.nav-icon-toggle__inner:before,
+		.nav-icon-toggle__inner:after {
+		content: "";
+		display: block;
+		margin-left: -3px;
+		}
+		.nav-icon-toggle__inner:before {
+		top: -6px;
+		width: 18px;
+		}
+		.nav-icon-toggle__inner:after {
+		bottom: -6px;
+		width: 18px;
+		}
 	}
-	.nav-icon-toggle:focus {
-	  outline: none;
-	}
-	.nav-icon-toggle__box {
-	  width: 18px;
-	  height: 20px;
-	  position: relative;
-	  display: block;
-	}
-	.nav-icon-toggle__inner {
-	  display: block;
-	  top: 50%;
-	  margin-top: -1px;
-	  margin-left: 3px;
-	  width: 15px;
-	}
-	.nav-icon-toggle__inner,
-	.nav-icon-toggle__inner:before,
-	.nav-icon-toggle__inner:after {
-	  height: 2px;
-	  background-color: #171821;
-	  position: absolute;
-	  -webkit-transition: 0.2s all;
-	  transition: 0.2s all;
-	}
-	.nav-icon-toggle:hover .nav-icon-toggle__inner,
-	.nav-icon-toggle:hover .nav-icon-toggle__inner:before,
-	.nav-icon-toggle:hover .nav-icon-toggle__inner:after {
-	  background-color: #2D95E3;
-	}
-	.nav-icon-toggle__inner:before,
-	.nav-icon-toggle__inner:after {
-	  content: "";
-	  display: block;
-	  margin-left: -3px;
-	}
-	.nav-icon-toggle__inner:before {
-	  top: -6px;
-	  width: 18px;
-	}
-	.nav-icon-toggle__inner:after {
-	  bottom: -6px;
-	  width: 18px;
-	}
-  }
 
 
 /* Sidenav Menu
@@ -3939,8 +3949,9 @@ header .flex-child {
 	.nav--sticky.offset {
 		-webkit-transform: translate3d(0, -100%, 0);
 		transform: translate3d(0, -100%, 0);
-		-webkit-transition: all 0.3s ease-in-out;
-		transition: all 0.3s ease-in-out; }
+		/* -webkit-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;  */
+	}
 	.nav--sticky.scrolling {
 		-webkit-transform: translate3d(0, 0px, 0);
 		transform: translate3d(0, 0px, 0); }
@@ -3973,16 +3984,23 @@ header .flex-child {
 @media only screen and (max-width: 480px) {
     .nav--colored .nav__holder {
         background-color: #fff !important;
-    }
+    } .nav--sticky .nav__holder{
+		box-shadow: 1px 0;
+	}
 }
 
 
 .nav--colored .nav__menu > li > a,
-.nav--colored .nav__menu > li > a:hover,
 .nav--colored .nav__search-trigger,
 .nav--colored .nav__right a:hover,
 .nav--colored .nav__right a:focus {
     color: #fff; }
+.nav--colored .nav__menu > li > a:hover{
+	-webkit-transition: all 0.2s ease-in;
+	transition: all 0.2s ease-in;
+	color: #000;
+}
+
 @media only screen and (max-width: 480px) {
     .nav--colored .nav__menu > li > a,
     .nav--colored .nav__menu > li > a:hover,
@@ -5355,3 +5373,10 @@ dd {
         text-align: center;
     }
   }
+  .entry__title:hover a{
+	text-decoration: underline;
+	-webkit-transition: all 0.1s ease-in;
+	transition: all 0.1s ease-in;
+  }
+
+

@@ -61,6 +61,8 @@
 .widget_tag_cloud a:hover,
 .entry__tags a:hover {
   background-color: #34c5cb !important;
+  -webkit-transition: all 0.2s ease-in;
+	transition: all 0.2s ease-in;
 }
 
 input:focus, textarea:focus {

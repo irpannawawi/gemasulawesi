@@ -2628,6 +2628,11 @@ img.mfp-img {
 /*-------------------------------------------------------*/
 /* Sidebar
 /*-------------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+	.sidebar .widget{
+		display: none;
+	}
+}
 .sidebar .widget {
 	margin-bottom: 40px;
 	background-color: #fff;

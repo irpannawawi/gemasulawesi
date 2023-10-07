@@ -44,4 +44,10 @@ class WebController extends Controller
         $data['topikKhusus'] = Topic::get();
         return view('frontend.category', $data);
     }
+
+    public function tag(): View
+    {
+        $data['beritaTerkini'] = Posts::orderBy('created_at', 'DESC')->where('status', 'published')->get();
+        return view('frontend.tag', $data);
+    }
 }

@@ -75,7 +75,7 @@
                     <div class="title-wrap--line"></div>
                     <div class="pilihan-editor">
                         <div class="title-wrap">
-                            <h3 class="section-title-editor">PILIHAN EDITOR</h3>
+                            <h3 class="section-title-editor">Editorial</h3>
                         </div>
 
                         <!-- Slider -->

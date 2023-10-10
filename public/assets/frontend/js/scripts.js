@@ -560,10 +560,14 @@
 })(jQuery);
 $(document).ready(function(){
     $('.owl-carousel-thumbs').owlCarousel({
-        dots:true,
+      dots:true,
+      loop: true,
       items: 1,
+      autoplay:true,
+      slideSpeed : 300,
+      paginationSpeed : 300,
       nav: true,
-      thumbs: true,
+      thumbs: false,
       thumbImage: false,
       thumbsPrerendered: true,
       thumbContainerClass: 'owl-thumbs',

@@ -62,7 +62,9 @@
                                         class="card-img-top w-100"
                                         style="object-fit: cover;height: 80px;object-position: top;" alt="">
                                     <div class="card-body">
-                                        <a href=""> {{ \Illuminate\Support\Str::limit($headline->post->title, 70) }}
+                                        <a
+                                            href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}">
+                                            {{ \Illuminate\Support\Str::limit($headline->post->title, 70) }}
                                         </a>
                                     </div>
                                 </div>
@@ -73,7 +75,7 @@
                     <div class="title-wrap--line"></div>
                     <div class="pilihan-editor">
                         <div class="title-wrap">
-                            <h3 class="section-title-editor">PILIHAN EDITOR</h3>
+                            <h3 class="section-title-editor">Editorial</h3>
                         </div>
 
                         <!-- Slider -->
@@ -187,26 +189,29 @@
                                                     style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 192px;">
                                                     <div class="owl-item active" style="width: 172px; margin-right: 20px;">
                                                         @foreach ($topikKhusus as $topik)
-                                                        <article class="entry"
-                                                            style="background-color: white; border-radius:10px;">
-                                                            <div class="entry__img-holder mb-0">
-                                                                <a href="#">
-                                                                    <div class="thumb-container thumb-65">
-                                                                        <img data-src="{{ $topik->topic_image}}"
-                                                                            src="{{ $topik->topic_image}}"
-                                                                            class="entry__img lazyloaded" alt="{{ $topik->topic_description}}">
-                                                                    </div>
-                                                                </a>
-                                                            </div>
-                                                            <div class="entry__body mt-0">
-                                                                <div class="entry__header text-center">
-                                                                    <h2 class="entry__title">
-                                                                        <a href="#">{{ $topik->topic_name}}</a>
-                                                                    </h2>
-                                                                    <p class="bt__date">{{convert_date_to_ID($topik->created_at)}}</p>
+                                                            <article class="entry"
+                                                                style="background-color: white; border-radius:10px;">
+                                                                <div class="entry__img-holder mb-0">
+                                                                    <a href="#">
+                                                                        <div class="thumb-container thumb-65">
+                                                                            <img data-src="{{ $topik->topic_image }}"
+                                                                                src="{{ $topik->topic_image }}"
+                                                                                class="entry__img lazyloaded"
+                                                                                alt="{{ $topik->topic_description }}">
+                                                                        </div>
+                                                                    </a>
                                                                 </div>
-                                                            </div>
-                                                        </article>
+                                                                <div class="entry__body mt-0">
+                                                                    <div class="entry__header text-center">
+                                                                        <h2 class="entry__title">
+                                                                            <a href="#">{{ $topik->topic_name }}</a>
+                                                                        </h2>
+                                                                        <p class="bt__date">
+                                                                            {{ convert_date_to_ID($topik->created_at) }}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </article>
                                                         @endforeach
                                                     </div>
                                                 </div>

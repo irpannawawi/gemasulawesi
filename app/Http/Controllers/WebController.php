@@ -20,7 +20,7 @@ class WebController extends Controller
         $data['editorCohice'] = Editorcoice::get();
         $data['headlineWp'] = Headlinewp::get();
         $data['topikKhusus'] = Topic::get();
-        
+
 
         // posts 1-20
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
@@ -31,6 +31,7 @@ class WebController extends Controller
         // dd($data['beritaTerkini']);
         return view('frontend.web', $data);
     }
+
     public function showCategory(): View
     {
         $data['editorCohice'] = Editorcoice::get();
@@ -76,5 +77,10 @@ class WebController extends Controller
             ->paginate(20);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.tags', $data);
+    }
+
+    public function search(): View
+    {
+        return view('frontend.search');
     }
 }

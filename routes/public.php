@@ -11,3 +11,4 @@ Route::get('/', [WebController::class, 'index']);
 Route::get('/p/{rubrik}/{post_id}/{slug}', [WebController::class, 'singlePost'])->name('singlePost');
 Route::get('/category/{rubrik_name}', [WebController::class, 'category'])->name('category');
 Route::get('/tags/{tag_name}', [WebController::class, 'tags'])->name('tags');
+Route::get('/search', [WebController::class, 'search'])->name('search');

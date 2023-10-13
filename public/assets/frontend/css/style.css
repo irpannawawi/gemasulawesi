@@ -5384,4 +5384,19 @@ dd {
 	transition: all 0.1s ease-in;
   }
 
+  .result-search{
+	padding: 0 0 30px;
+  }
+  .search{
+	display: flex;
+  }
+  .search i{
+	font-size: 18px;
+	margin-top: 15px;
+	color: #47c5cb;
+  }
+  .search input{
+	border-radius: 10px;
+	border-bottom: 2px solid #47c5cb;
+  }
 

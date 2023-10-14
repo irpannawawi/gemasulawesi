@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HeadlineController;
+use App\Http\Controllers\TopicController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -25,6 +26,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/editor-choice-change/{wpid}/{post_id}', [HeadlineController::class, 'editor_choice_change'])->name('editor-choice-change');
     Route::get('/editor-choice-delete/{id}', [HeadlineController::class, 'editor_choice_delete'])->name('editor-choice-delete');
     
+    Route::get('/topik-khusus', [TopicController::class, 'topik_khusus'])->name('topik-khusus');
+    Route::get('/topik-khusus/{id}', [TopicController::class, 'delete'])->name('topik-khusus.delete');
+    Route::post('/topik-khusus', [TopicController::class, 'insert'])->name('topik-khusus.add');
+    Route::put('/topik-khusus', [TopicController::class, 'edit'])->name('topik-khusus.edit');
     
 });
 Route::prefix('admin')->group(function(){

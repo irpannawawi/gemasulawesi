@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('breaking_news', function (Blueprint $table) {
-            $table->increments('breaking_news_id')->primary;
-            $table->bigInteger('post_id')->nullable();
-            $table->string('title')->nullable();
-            $table->string('url')->nullable();
+        Schema::create('gallery_collection', function (Blueprint $table) {
+            $table->increments('collection_id')->primary;
+            $table->bigInteger('galery_id');
+            $table->bigInteger('file_id');
+            $table->enum('type', ['image', 'video']);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('breaking_news');
+        Schema::dropIfExists('gallery_collection');
     }
 };

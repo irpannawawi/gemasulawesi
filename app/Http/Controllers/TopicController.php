@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TopicController extends Controller
 {
     //
+
+    public function topik_khusus()
+    {
+        $data['topiks'] = Topic::orderBy('topic_id','desc')->get();
+        return view('web-management.topik-khusus.index', $data);
+    }
 
     public function modal_topic()
     {
@@ -17,22 +24,39 @@ class TopicController extends Controller
 
     public function insert(Request $request)
     {
+        $filename = date('dmyHis').'.jpg';
         $topicData = [
             'topic_name'=>$request->topic_name,
             'topic_description'=>$request->topic_description,
-            'topic_image'=>'-',//$request->topic_image,
+            'topic_image'=>$filename
         ];
+
+        // upload image
+        $path = $request->file('topic_image')->storeAs('public/topic-images', $filename);
+
         if(Topic::create($topicData))
         {
-            return redirect()->back()->with('message-success', 'Berhasil menambah tag');
+            return redirect()->back()->with('message-success', 'Berhasil menambah topik');
         }
     }
 
     public function edit(Request $request)
     {
-        if(Topic::where('topic_id', $request->topic_id)->update(['topic_name'=>$request->topic_name]))
+        $topic = Topic::find($request->topic_id);
+        if($request->file('topic_image')){
+            $filename = date('dmYHis').'.jpg';
+            $request->file('topic_image')->storeAs('public/topic-images', $filename);
+            // remove old image
+            Storage::delete('public/topic-images/'.$topic->topic_image);
+            $topic->topic_image = $filename;
+        }
+
+        $topic->topic_name = $request->topic_name;
+        $topic->topic_description = $request->topic_description;
+
+        if($topic->save())
         {
-            return redirect()->back()->with('message-success', 'Berhasil menambah tag');
+            return redirect()->back()->with('message-success', 'Berhasil merubah topik');
         }
     }
 
@@ -40,7 +64,7 @@ class TopicController extends Controller
     {
         if(Topic::where('topic_id', $id)->delete())
         {
-            return redirect()->back()->with('message-success', 'Berhasil menghapus tag');
+            return redirect()->back()->with('message-success', 'Berhasil menghapus topik');
         }
     }
 }

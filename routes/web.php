@@ -98,3 +98,6 @@ require __DIR__ . '/public.php';
 require __DIR__ . '/auth.php';
 require __DIR__ . '/editorial.php';
 require __DIR__ . '/web-management.php';
+require __DIR__ . '/galeri.php';
+require __DIR__ . '/breakingNews.php';
+require __DIR__ . '/administrator.php';

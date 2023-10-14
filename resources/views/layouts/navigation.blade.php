@@ -116,7 +116,7 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="{{route('topik-khusus')}}" class="nav-link">
                                   <i class="fa fa-calendar nav-icon"></i>
                                   <p>Topik Khusus</p>
                               </a>
@@ -130,7 +130,7 @@
                       </ul>
                   </li>
                   <li class="nav-item">
-                      <a href="#" class="nav-link">
+                      <a href="{{route('galeri')}}" class="nav-link">
                           <i class="nav-icon fa fa-image"></i>
                           <p>
                               Galeri
@@ -150,7 +150,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('breakingNews')}}" class="nav-link">
                         <i class="nav-icon fa fa-envelope"></i>
                         <p>
                             Breaking News
@@ -194,7 +194,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('users')}}" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
                         <p>
                             Administartor

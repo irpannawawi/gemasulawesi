@@ -3,6 +3,7 @@
 @php
     use Illuminate\Support\Str;
     use Carbon\Carbon;
+    $breakingNews = App\Models\Breakingnews::get();
 @endphp
 
 <head>
@@ -98,25 +99,30 @@
     <main class="main oh" id="main">
 
         <!-- Trending Now -->
+        @if ($breakingNews->count()>0)
         <div class="container">
             <div class="trending-now trending-now--1">
                 <span class="trending-now__label">
                     <i class="ui-flash"></i>
-                    <span class="trending-now__text d-lg-inline-block d-none">Newsflash</span>
+                    <span class="trending-now__text d-lg-inline-block d-none">Breaking News</span>
                 </span>
                 <div class="newsticker">
                     <ul class="newsticker__list">
-                        <li class="newsticker__item"><a href="single-post-politics.html"
-                                class="newsticker__item-url">A-HA theme is multi-purpose solution for any kind of
-                                business</a></li>
-                        <li class="newsticker__item"><a href="single-post-1.html" class="newsticker__item-url">Satelite
-                                cost tens of millions or even hundreds of millions of dollars to build</a></li>
-                        <li class="newsticker__item"><a href="single-post-3.html" class="newsticker__item-url">8 Hidden
-                                Costs of Starting and Running a Business</a></li>
+                        @foreach ($breakingNews as $news)
+                        <li class="newsticker__item"><a href="{{ route('singlePost', [
+                            'rubrik' => $news->post->rubrik->rubrik_name,
+                            'post_id' => $news->post->post_id,
+                            'slug' => $news->post->slug,
+                        ]) }}"
+                                class="newsticker__item-url">{{$news->title}}</a></li>
+                            
+                        @endforeach
                     </ul>
                 </div>
             </div>
         </div>
+            
+        @endif
 
         <!-- Header -->
         <header class="header d-lg-block d-none">

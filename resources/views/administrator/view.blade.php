@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800   leading-tight">
-            {{ __('Rubrik Management') }}
+            {{ __('User Management') }}
         </h2>
     </x-slot>
 
     <div class="card">
         <div class="card-header">
-            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addRubrikModal"><i
+            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addUserModal"><i
                     class="fa fa-plus"></i>Tambah data</button>
         </div>
         <div class="card-body table-responsive">
@@ -15,7 +15,11 @@
                 <thead class="text-center">
                     <tr>
                         <th>No</th>
-                        <th>Rubrik</th>
+                        <th>Username</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Avatar</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -23,14 +27,18 @@
                     @php
                         $n = 1;
                     @endphp
-                    @foreach ($rubriks as $rubrik)
+                    @foreach ($users as $user)
                         <tr>
                             <td>{{ $n++ }}</td>
-                            <td>{{ $rubrik->rubrik_name }}</td>
+                            <td>{{ $user->username }}</td>
+                            <td>{{ $user->display_name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->role }}</td>
+                            <td><img src="{{ Storage::url('public/avatars/'.$user->avatar) }}" alt=""></td>
                             <td>
-                                <button class="btn btn-info" data-target="#editRubrikModal" data-toggle="modal" onclick="edit_rubrik('{{$rubrik->rubrik_id}}','{{$rubrik->rubrik_name}}')">Edit</button>
-                                <a class="btn btn-danger" onclick="return confirm('Hapus rubrik?')"
-                                    href="{{ route('rubrik.delete', ['id' => $rubrik->rubrik_id]) }}">Hapus</a>
+                                <button class="btn btn-info" data-target="#edituserModal" data-toggle="modal" onclick="edit_user('{{$user->id}}','{{$user->username}}')">Edit</button>
+                                <a class="btn btn-danger" onclick="return confirm('Hapus user?')"
+                                    href="{{ route('users.delete', ['id' => $user->id]) }}">Hapus</a>
                             </td>
                         </tr>
                     @endforeach
@@ -40,24 +48,24 @@
     </div>
 
 
-    {{-- Modals add rubrik --}}
+    {{-- Modals add user --}}
 
-    <div class="modal fade" id="addRubrikModal" tabindex="-1" role="dialog" aria-labelledby="addRubrikModalLabel"
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addRubrikModalLabel">Tambah data</h5>
+                    <h5 class="modal-title" id="addUserLabel">Tambah data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('rubrik.add') }}" method="POST">
+                    <form action="{{ route('users.add') }}" method="POST">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="rubrik">Nama rubrik</label>
-                            <input type="text" name="rubrik_name" class="form-control" required autocomplete="off">
+                            <label for="user">Nama user</label>
+                            <input type="text" name="user_name" class="form-control" required autocomplete="off">
                         </div>
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -70,25 +78,25 @@
         </div>
     </div>
 
-    {{-- Modal edit rubrik --}}
-    <div class="modal fade" id="editRubrikModal" tabindex="-1" role="dialog" aria-labelledby="editRubrikModalLabel"
+    {{-- Modal edit user --}}
+    <div class="modal fade" id="edituserModal" tabindex="-1" role="dialog" aria-labelledby="edituserModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editRubrikModalLabel">Tambah data</h5>
+                    <h5 class="modal-title" id="edituserModalLabel">Tambah data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('rubrik.edit') }}" method="POST">
+                    <form action="{{ route('users.edit') }}" method="POST">
                         @csrf
                         @method('put')
                         <div class="form-group mb-2">
-                            <label for="rubrik">Nama rubrik</label>
-                            <input type="text" name="rubrik_name" class="form-control" required autocomplete="off" id="input-rubrik-name">
-                            <input type="hidden" name="rubrik_id" class="form-control" required autocomplete="off" id="input-rubrik-id">
+                            <label for="user">Nama user</label>
+                            <input type="text" name="user_name" class="form-control" required autocomplete="off" id="input-user-name">
+                            <input type="hidden" name="id" class="form-control" required autocomplete="off" id="input-user-id">
                         </div>
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -103,9 +111,9 @@
 
     @push('custom-scripts')
         <script>
-            function edit_rubrik(id, name) {
-                $('#input-rubrik-name').val(name)
-                $('#input-rubrik-id').val(id)
+            function edit_user(id, name) {
+                $('#input-user-name').val(name)
+                $('#input-user-id').val(id)
             }
         </script>
     @endpush

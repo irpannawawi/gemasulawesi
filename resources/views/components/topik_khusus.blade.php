@@ -11,7 +11,7 @@
                 <div class="entry__img-holder mb-0">
                     <a href="#">
                         <div class="thumb-container thumb-65">
-                            <img data-src="{{ $topik->topic_image}}"
+                            <img data-src="{{ Storage::url('public/topic-image/'.$topik->topic_image)}}"
                                 src="{{ url('assets/frontend') }}/img/empty.png"
                                 class="entry__img lazyload" alt="{{ $topik->description }}">
                         </div>

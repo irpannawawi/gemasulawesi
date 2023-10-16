@@ -62,11 +62,10 @@
                             <article class="read__content">
                                 @php
                                     $article = $post->article;
-                                    if($post->tags!=null){
-
+                                    if ($post->tags != null) {
                                         foreach (json_decode($post->tags) as $tags) {
                                             $tag = \App\Models\Tags::find($tags);
-                                            $article = str_ireplace($tag->tag_name, "<a href=\"".route('tags', ['tag_name'=>$tag->tag_name])."\" >" . $tag->tag_name . '</a>', $article);
+                                            $article = str_ireplace($tag->tag_name, "<a href=\"" . route('tags', ['tag_name' => $tag->tag_name]) . "\" >" . $tag->tag_name . '</a>', $article);
                                             // dd($article);
                                         }
                                     }
@@ -97,13 +96,12 @@
                                     <span class="entry__tags-label">Tags:</span>
 
                                     @php
-                                    if($post->tags != null){
-
-                                        foreach (json_decode($post->tags) as $tags) {
-                                            $tag = \App\Models\Tags::find($tags);
-                                            echo '<a href="'.route('tags', ['tag_name'=>$tag->tag_name]).'" rel="tag">' . $tag->tag_name . '</a>';
+                                        if ($post->tags != null) {
+                                            foreach (json_decode($post->tags) as $tags) {
+                                                $tag = \App\Models\Tags::find($tags);
+                                                echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                            }
                                         }
-                                    }
                                     @endphp
                                 </div> <!-- end tags -->
                             </article>
@@ -203,8 +201,8 @@
 
                 <!-- Comments -->
                 <div class="entry-comments">
-                    <div class="title-wrap title-wrap--line">
-                        <h3 class="section-title">3 comments</h3>
+                    <div class="title-post">
+                        <span>3 comments</span>
                     </div>
                     <ul class="comment-list">
                         <li class="comment">
@@ -304,9 +302,11 @@
 
             <!-- Sidebar -->
             <aside class="col-lg-4 sidebar sidebar--right">
+                <div class="title-post">
+                    <span>Terpopuler</span>
+                </div>
                 <!-- Widget Terpopuler -->
                 <aside class="widget widget-popular-posts">
-                    <h4 class="widget-title">Terpopuler</h4>
                     <ul class="post-list-small">
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">
@@ -560,7 +560,9 @@
         <div class="row row-20">
             <div class="col-lg-8 order-lg-2">
 
-                <h3 class="title-terkait"><span>Berita Terkait</span></h3>
+                <div class="title-post">
+                    <span>Berita Terkait</span>
+                </div>
                 <div class="berita__terkait">
                     <ul class="terkait__list">
                         <li>
@@ -598,7 +600,9 @@
             </div>
             <div class="col-lg-8 order-lg-2 mt-4">
 
-                <h3 class="title-terkait"><span>Terkini</span></h3>
+                <div class="title-post">
+                    <span>Berita Terkini</span>
+                </div>
                 <div class="row">
                     <div class="col">
                         <ul class="post-list-small post-list-small--2 mb-32">

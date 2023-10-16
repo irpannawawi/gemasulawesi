@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/custom.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
 
     <!-- Favicons -->
@@ -99,29 +100,29 @@
     <main class="main oh" id="main">
 
         <!-- Trending Now -->
-        @if ($breakingNews->count()>0)
-        <div class="container">
-            <div class="trending-now trending-now--1">
-                <span class="trending-now__label">
-                    <i class="ui-flash"></i>
-                    <span class="trending-now__text d-lg-inline-block d-none">Breaking News</span>
-                </span>
-                <div class="newsticker">
-                    <ul class="newsticker__list">
-                        @foreach ($breakingNews as $news)
-                        <li class="newsticker__item"><a href="{{ route('singlePost', [
-                            'rubrik' => $news->post->rubrik->rubrik_name,
-                            'post_id' => $news->post->post_id,
-                            'slug' => $news->post->slug,
-                        ]) }}"
-                                class="newsticker__item-url">{{$news->title}}</a></li>
-                            
-                        @endforeach
-                    </ul>
+        @if ($breakingNews->count() > 0)
+            <div class="container">
+                <div class="trending-now trending-now--1">
+                    <span class="trending-now__label">
+                        <i class="ui-flash"></i>
+                        <span class="trending-now__text d-lg-inline-block d-none">Breaking News</span>
+                    </span>
+                    <div class="newsticker">
+                        <ul class="newsticker__list">
+                            @foreach ($breakingNews as $news)
+                                <li class="newsticker__item"><a
+                                        href="{{ route('singlePost', [
+                                            'rubrik' => $news->post->rubrik->rubrik_name,
+                                            'post_id' => $news->post->post_id,
+                                            'slug' => $news->post->slug,
+                                        ]) }}"
+                                        class="newsticker__item-url">{{ $news->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-            
+
         @endif
 
         <!-- Header -->

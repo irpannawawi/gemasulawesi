@@ -11,13 +11,13 @@
                 <section>
                     <!-- #TagName -->
                     <div class="berita-terkini">
-                        <div class="title-wrap title-wrap--line">
-                            <h3 class="section-title">#TagName</h3>
+                        <div class="title-post">
+                            <h3 class="section-title">#{{ $tag_name }}</h3>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
-                                    @foreach ($beritaTerkini as $post)
+                                    @foreach ($beritaTerkini[0] as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">
                                                 <div class="post-list-small__img-holder">
@@ -72,8 +72,10 @@
             <!-- Sidebar -->
             <aside class="col-lg sidebar order-lg-3">
                 <!-- Widget Popular Posts -->
+                <div class="title-sidebar">
+                    <span>Terpopuler</span>
+                </div>
                 <aside class="widget widget-popular-posts">
-                    <h4 class="widget-title">Terpopular</h4>
                     <ul class="post-list-small post-list-small--1">
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">

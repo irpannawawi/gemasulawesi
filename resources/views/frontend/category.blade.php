@@ -1,7 +1,6 @@
 @extends('layouts.web')
 @section('content')
     <div class="main-container container" id="main-container">
-
         <!-- Content -->
         <div class="row row-20">
 
@@ -9,8 +8,8 @@
             <div class="col-lg-8 order-lg-2">
 
                 <section>
-                    <div class="title-wrap">
-                        <h3 class="section-title mb-3">{{$rubrik_name}}</h3>
+                    <div class="title-post">
+                        <span>{{ $rubrik_name }}</span>
                     </div>
                     <div class="thumb image-single-post">
                         <div>
@@ -21,7 +20,7 @@
                                     <div class="thumb-text-holder thumb-text-holder--2">
                                         <ul class="entry__meta">
                                             <li>
-                                                <a href="{{route('category', ['rubrik_name'=>$headlineRubrik->post->rubrik->rubrik_name])}}"
+                                                <a href="{{ route('category', ['rubrik_name' => $headlineRubrik->post->rubrik->rubrik_name]) }}"
                                                     class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headlineRubrik->post->rubrik->rubrik_name }}</a>
                                             </li>
                                         </ul>
@@ -35,7 +34,7 @@
                                         </h2>
                                         <ul class="entry__meta">
                                             <li class="entry__meta-comments">
-                                                <a> {{convert_date_to_ID($headlineRubrik->created_at)}} </a>
+                                                <a> {{ convert_date_to_ID($headlineRubrik->created_at) }} </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -46,45 +45,48 @@
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
-                        <div class="title-wrap title-wrap--line">
-                            <h3 class="section-title">Berita Terkini</h3>
+                        <div class="title-post">
+                            <span>Berita Terkini</span>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
                                     @foreach ($beritaTerkini[0] as $post)
-                                    <li class="post-list-small__item">
-                                        <article class="post-list-small__entry clearfix">
-                                            <div class="post-list-small__img-holder">
-                                                <div class="thumb-container thumb-70">
-                                                    <a href="{{route('singlePost', [
-                                                        'rubrik'=>$post->rubrik?->rubrik_name,
-                                                        'post_id'=>$post->post_id,
-                                                        'slug'=>$post->slug
-                                                    ])}}">
-                                                        <img data-src="{{get_string_between($post->article, '<img src="', '">')}}"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class=" lazyload">
-                                                    </a>
+                                        <li class="post-list-small__item">
+                                            <article class="post-list-small__entry clearfix">
+                                                <div class="post-list-small__img-holder">
+                                                    <div class="thumb-container thumb-70">
+                                                        <a
+                                                            href="{{ route('singlePost', [
+                                                                'rubrik' => $post->rubrik?->rubrik_name,
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}">
+                                                            <img data-src="{{ get_string_between($post->article, '<img src="', '">') }}"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class=" lazyload">
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="post-list-small__body">
-                                                <ul class="entry__meta">
-                                                    <li>
-                                                        <a href="{{route('category', ['rubrik_name'=>$post->rubrik?->rubrik_name])}}" class="entry__meta-category">{{$post->rubrik?->rubrik_name}}</a>
-                                                    </li>
-                                                </ul>
-                                                <h3 class="post-list-small__entry-title">
-                                                    <a href="{{route('singlePost', [
-                                                        'rubrik'=>$post->rubrik?->rubrik_name,
-                                                        'post_id'=>$post->post_id,
-                                                        'slug'=>$post->slug
-                                                    ])}}" class="post-title">{{$post->title}}</a>
-                                                </h3>
-                                                <p class="bt__date">{{convert_date_to_ID($post->created_at)}}</p>
-                                            </div>
-                                        </article>
-                                    </li> 
+                                                <div class="post-list-small__body">
+                                                    <ul class="entry__meta">
+                                                        <li>
+                                                            <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
+                                                                class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 class="post-list-small__entry-title">
+                                                        <a href="{{ route('singlePost', [
+                                                            'rubrik' => $post->rubrik?->rubrik_name,
+                                                            'post_id' => $post->post_id,
+                                                            'slug' => $post->slug,
+                                                        ]) }}"
+                                                            class="post-title">{{ $post->title }}</a>
+                                                    </h3>
+                                                    <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                                </div>
+                                            </article>
+                                        </li>
                                     @endforeach
                                 </ul>
 
@@ -106,8 +108,10 @@
             <!-- Sidebar -->
             <aside class="col-lg sidebar order-lg-3">
                 <!-- Widget Popular Posts -->
+                <div class="title-sidebar">
+                    <span>Terpopuler</span>
+                </div>
                 <aside class="widget widget-popular-posts">
-                    <h4 class="widget-title">Terpopular</h4>
                     <ul class="post-list-small post-list-small--1">
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">
@@ -316,35 +320,38 @@
                                         <article class="post-list-small__entry clearfix">
                                             <div class="post-list-small__img-holder">
                                                 <div class="thumb-container thumb-70">
-                                                    <a href="{{route('singlePost', [
-                                                        'rubrik'=>$post->rubrik?->rubrik_name,
-                                                        'post_id'=>$post->post_id,
-                                                        'slug'=>$post->slug
-                                                    ])}}">
-                                                        <img data-src="{{@get_string_between($post->article, '<img src="', '">')}}"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class=" lazyload">
+                                                    <a
+                                                        href="{{ route('singlePost', [
+                                                            'rubrik' => $post->rubrik?->rubrik_name,
+                                                            'post_id' => $post->post_id,
+                                                            'slug' => $post->slug,
+                                                        ]) }}">
+                                                        <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="" class=" lazyload">
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="post-list-small__body">
                                                 <ul class="entry__meta">
                                                     <li>
-                                                        <a href="{{route('category', ['rubrik_name'=>$post->rubrik?->rubrik_name])}}" class="entry__meta-category">{{$post->rubrik?->rubrik_name}}</a>
+                                                        <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
+                                                            class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
                                                     </li>
                                                 </ul>
                                                 <h3 class="post-list-small__entry-title">
-                                                    <a href="{{route('singlePost', [
-                                                        'rubrik'=>$post->rubrik?->rubrik_name,
-                                                        'post_id'=>$post->post_id,
-                                                        'slug'=>$post->slug
-                                                    ])}}" class="post-title">{{$post->title}}</a>
+                                                    <a href="{{ route('singlePost', [
+                                                        'rubrik' => $post->rubrik?->rubrik_name,
+                                                        'post_id' => $post->post_id,
+                                                        'slug' => $post->slug,
+                                                    ]) }}"
+                                                        class="post-title">{{ $post->title }}</a>
                                                 </h3>
                                                 <p class="bt__date">14 September 2023, 13:56 WIB</p>
                                             </div>
                                         </article>
-                                    </li> 
-                                    @endforeach
+                                    </li>
+                                @endforeach
                             </ul>
 
 
@@ -357,7 +364,7 @@
                             </div>
 
                             <div class="loadmore">
-                                {{$paginatedPost->links()}}
+                                {{ $paginatedPost->links() }}
                             </div>
                         </div>
                     </div>

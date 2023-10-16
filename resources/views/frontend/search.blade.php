@@ -11,7 +11,7 @@
                 <section>
                     <!-- Pencarian -->
                     <div class="berita-terkini">
-                        <div class="title-wrap title-wrap--line">
+                        <div class="title-post">
                             <h3 class="section-title">Pencarian</h3>
                         </div>
                         <!-- Search form -->
@@ -69,8 +69,10 @@
             <!-- Sidebar -->
             <aside class="col-lg sidebar order-lg-3">
                 <!-- Widget Popular Posts -->
+                <div class="title-sidebar">
+                    <span>Terpopuler</span>
+                </div>
                 <aside class="widget widget-popular-posts">
-                    <h4 class="widget-title">Terpopular</h4>
                     <ul class="post-list-small post-list-small--1">
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">

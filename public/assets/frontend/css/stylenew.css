@@ -5871,6 +5871,8 @@ dd {
 .pilihan-editor .wrap-owl .wrap-btn-slider .btn-slider {
   display: flex;
   justify-content: space-between;
+  position: relative;
+
 }
 .pilihan-editor .wrap-owl .wrap-btn-slider .btn-slider button {
   padding: 3px 12px;

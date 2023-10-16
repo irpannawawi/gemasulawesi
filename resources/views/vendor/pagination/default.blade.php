@@ -11,7 +11,7 @@
         <ul class="pagination">
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-        <span class="pagination__page pagination__page--current">1</span>
+                <span class="pagination__page pagination__page--current">1</span>
                 {{-- <li class="disabled" aria-disabled="true" aria-label="@lang('pagination.previous')">
                     <span aria-hidden="true">&lsaquo;</span>
                 </li> --}}
@@ -20,8 +20,8 @@
                     <a href="{{ $paginator->previousPageUrl() }}" rel="prev"
                         aria-label="@lang('pagination.previous')">&lsaquo;</a>
                 </li> --}}
-                <a href="{{ $paginator->previousPageUrl() }}" class="pagination__page pagination__icon pagination__page--next"><i
-                    class="ui-arrow-right"></i></a>
+                <a href="{{ $paginator->previousPageUrl() }}"
+                    class="pagination__page pagination__icon pagination__page--next"><i class="ui-arrow-right"></i></a>
             @endif
 
             {{-- Pagination Elements --}}

@@ -47,7 +47,7 @@
                                                     </li>
                                                 </ul> --}}
                                             </div>
-                                            <a href="single-post-politics.html" class="thumb-url"></a>
+                                            <a class="thumb-url"></a>
                                         </div>
                                     </article>
                                 </div>
@@ -63,8 +63,12 @@
                                         style="object-fit: cover;height: 80px;object-position: top;" alt="">
                                     <div class="card-body">
                                         <a
-                                            href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}">
-                                            {{ \Illuminate\Support\Str::limit($headline->post->title, 70) }}
+                                            href="{{ route('singlePost', [
+                                                'rubrik' => $headline->post->rubrik->rubrik_name,
+                                                'post_id' => $headline->post->post_id,
+                                                'slug' => $headline->post->slug,
+                                            ]) }}">
+                                            {{ Str::limit($headline->post->title, 70) }}
                                         </a>
                                     </div>
                                 </div>
@@ -72,10 +76,9 @@
                         @endforeach
                     </div>
 
-                    <div class="title-wrap--line"></div>
                     <div class="pilihan-editor">
-                        <div class="title-wrap">
-                            <h3 class="section-title-editor">Editorial</h3>
+                        <div class="title-post">
+                            <span>Editorial</span>
                         </div>
 
                         <!-- Slider -->
@@ -110,7 +113,7 @@
                                                             'rubrik' => strtolower($choice->post->rubrik->rubrik_name),
                                                             'post_id' => $choice->post_id,
                                                             'slug' => $choice->post->slug,
-                                                        ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 60) }}</a>
+                                                        ]) }}">{{ Str::limit($choice->post->title, 60) }}</a>
                                                 </h2>
                                                 <p class="bt__date">{{ convert_date_to_ID($choice->post->created_at) }}</p>
                                             </div>
@@ -129,12 +132,12 @@
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
-                        <div class="title-wrap title-wrap--line">
-                            <h3 class="section-title">Berita Terkini</h3>
+                        <div class="title-post">
+                            <span>Berita Terkini</span>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <ul class="post-list-small post-list-small--2 mb-32">
+                                <ul class="post-list-small post-list-small--2 mb-32 mt-3">
                                     @foreach ($beritaTerkini[0] as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">
@@ -173,66 +176,9 @@
                                         </li>
                                     @endforeach
                                 </ul>
-                                {{-- <x-topik_khusus :$topikKhusus /> --}}
-                                <div class="pilihan-editor">
-                                    <div class="title-wrap">
-                                        <h3 class="section-title-editor">TOPIK KHUSUS</h3>
-                                    </div>
 
-                                    <!-- Slider -->
-                                    <div class="wrap-owl">
-                                        <div id="owl-pilihan-editor"
-                                            class="owl-carousel owl-theme owl-carousel--arrows-outside owl-loaded owl-drag">
+                                <x-topik_khusus :$topikKhusus />
 
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage"
-                                                    style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 192px;">
-                                                    <div class="owl-item active" style="width: 172px; margin-right: 20px;">
-                                                        @foreach ($topikKhusus as $topik)
-                                                            <article class="entry"
-                                                                style="background-color: white; border-radius:10px;">
-                                                                <div class="entry__img-holder mb-0">
-                                                                    <a href="#">
-                                                                        <div class="thumb-container thumb-65">
-                                                                            <img data-src="{{ Storage::url('public/topic-images/'.$topik->topic_image)}}"
-                                                                                src="{{ Storage::url('public/topic-images/'.$topik->topic_image)}}"
-                                                                                class="entry__img lazyloaded"
-                                                                                alt="{{ $topik->topic_description }}">
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="entry__body mt-0">
-                                                                    <div class="entry__header text-center">
-                                                                        <h2 class="entry__title">
-                                                                            <a href="#">{{ $topik->topic_name }}</a>
-                                                                        </h2>
-                                                                        <p class="bt__date">
-                                                                            {{ convert_date_to_ID($topik->created_at) }}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </article>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-nav disabled">
-                                                <div class="owl-prev disabled">prev</div>
-                                                <div class="owl-next disabled">next</div>
-                                            </div>
-                                            <div class="owl-dots disabled"></div>
-                                            <div class="owl-thumbs"></div>
-                                        </div> <!-- end slider -->
-                                        <div class="wrap-btn-slider">
-                                            <div class="btn-slider">
-                                                <button class="btn-prev" id="prevPost3"><i
-                                                        class="ui-arrow-left"></i></button>
-                                                <button class="btn-nect" id="nextPost3"><i
-                                                        class="ui-arrow-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- Ad Banner 728 -->
                                 <div class="text-center pb-48">
                                     <a href="#">
@@ -250,8 +196,10 @@
             <!-- Sidebar -->
             <aside class="col-lg sidebar order-lg-3">
                 <!-- Widget Popular Posts -->
+                <div class="title-sidebar">
+                    <span>Terpopuler</span>
+                </div>
                 <aside class="widget widget-popular-posts">
-                    <h4 class="widget-title">Weekly Popular</h4>
                     <ul class="post-list-small post-list-small--1">
                         <li class="post-list-small__item">
                             <article class="post-list-small__entry clearfix">

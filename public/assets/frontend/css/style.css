@@ -1808,13 +1808,8 @@ img.mfp-img {
 	margin-top: 20px; }
 
 .entry__meta-holder {
-	margin-top: 16px;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-pack: justify;
-	    -ms-flex-pack: justify;
-	        justify-content: space-between; }
+	text-align: center;
+	margin-top: 16px; }
 	.entry__meta-holder .entry__meta {
 		margin-top: 0; }
 
@@ -1968,6 +1963,7 @@ img.mfp-img {
 	bottom: 0;
 	z-index: 2; }
 .title-single-post{
+	text-align: center;
 	color: #000;
 	font-weight: 700;
 	font-size: 34px;
@@ -1976,6 +1972,7 @@ img.mfp-img {
 
 @media only screen and (max-width: 767px) {
 	.title-single-post{
+	text-align: center;
 	color: #000;
 	font-weight: 700;
 	font-size: 26px;
@@ -2464,7 +2461,7 @@ img.mfp-img {
 	.post-list-small__entry-title a {
 		color: #171821; }
 		.post-list-small__entry-title a:hover, .post-list-small__entry-title a:focus {
-			color: #2D95E3; }
+		color: #34c5cb; }
 
 .post-list-small--border-top {
 	border-top: 1px solid #E3E4E8;
@@ -3988,14 +3985,6 @@ header .flex-child {
 	background-color: #34c5cb;
 	-webkit-box-shadow: none;
 	box-shadow: none; }
-@media only screen and (max-width: 480px) {
-    .nav--colored .nav__holder {
-        background-color: #fff !important;
-    } .nav--sticky .nav__holder{
-		box-shadow: 1px 0;
-	}
-}
-
 
 .nav--colored .nav__menu > li > a,
 .nav--colored .nav__search-trigger,
@@ -4024,24 +4013,6 @@ header .flex-child {
 .nav--colored .nav-icon-toggle:hover .nav-icon-toggle__inner:before,
 .nav--colored .nav-icon-toggle:hover .nav-icon-toggle__inner:after {
 	background-color: #34c5cb; }
-
-.category_under_nav{
-	background-color: #34c5cb;
-}
-
-.category_under_nav .d-flex{
-	overflow-x: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-.category_under_nav li a{
-    color: #fff;
-    font-weight: 700;
-}
-.category_under_nav li a:hover{
-    color: red;
-    font-weight: 700;
-}
 
 /* Go to Top
 -------------------------------------------------------*/
@@ -5005,7 +4976,7 @@ dd {
 -------------------------------------------------------*/
 .style-politics {
 	font-family: "Roboto", sans-serif; }
-	.style-politics h1, .style-politics h2, .style-politics h3, .style-politics h4, .style-politics h5, .style-politics h6 {
+	.style-politics h1, .style-politics h2:not(.most__title), .style-politics h3, .style-politics h4, .style-politics h5, .style-politics h6 {
 		letter-spacing: normal;
 		line-height: 1.2; }
 	.style-politics .entry__excerpt p {
@@ -5242,3 +5213,8 @@ dd {
 	position: relative;
 }
 
+/* custom */
+.most__wrap{
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}

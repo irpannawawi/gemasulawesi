@@ -124,7 +124,7 @@
                             <div class="wrap-btn-slider">
                                 <div class="btn-slider">
                                     <button class="btn-prev" id="prevPost3"><i class="ui-arrow-left"></i></button>
-                                    <button class="btn-nect" id="nextPost3"><i class="ui-arrow-right"></i></button>
+                                    <button class="btn-next" id="nextPost3"><i class="ui-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                                                             ]) }}">
                                                             <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                alt="" class=" lazyload">
+                                                                alt="" class="lazyload">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -170,7 +170,8 @@
                                                         ]) }}"
                                                             class="post-title">{{ $post->title }}</a>
                                                     </h3>
-                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                    <p class="bt__date">{{ convert_date_to_ID($choice->post->created_at) }}
+                                                    </p>
                                                 </div>
                                             </article>
                                         </li>
@@ -197,205 +198,100 @@
             <aside class="col-lg sidebar order-lg-3">
                 <!-- Widget Popular Posts -->
                 <div class="title-sidebar">
-                    <span>Terpopuler</span>
+                    <span>HOT &#128293;</span>
                 </div>
-                <aside class="widget widget-popular-posts">
-                    <ul class="post-list-small post-list-small--1">
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Barack Obama and Family Visit Balinese
-                                            Paddy Fields</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_6.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Liberals to outline long-term
-                                            Indigenous
-                                            housing plan in budge</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_7.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">5 Pieces of Hard-Won Wisdom From
-                                            Billionaire Warren Buffett</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_8.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Liberals to outline long-term
-                                            Indigenous
-                                            housing plan in budge</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_9.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">This Secret Room In Mount Rushmore Is
-                                            Having A Moment</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_10.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">California Democrats' snub of party
-                                            icon
-                                            Dianne Feinstein</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_11.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">How To Find Protests In Your City When
-                                            You Don’t Know Where To Start</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                    </ul>
-                </aside> <!-- end widget popular posts -->
+                <div class="most__wrap">
+                    <div class="most__item">
+                        <div class="most__number">1</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">2</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">3</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">4</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">5</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">6</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">7</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">8</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">9</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">10</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </aside> <!-- end sidebar -->
         </div> <!-- end content -->
 

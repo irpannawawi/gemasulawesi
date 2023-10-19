@@ -1840,7 +1840,6 @@ img.mfp-img {
 /* Post Thumbs
 /*-------------------------------------------------------*/
 .thumb-container {
-	background-color: #000;
 	position: relative;
 	overflow: hidden;
 	-webkit-transform: translateZ(0);
@@ -1887,7 +1886,7 @@ img.mfp-img {
 			margin-bottom: 8px; }
 			@media only screen and (max-width: 767px) {
 				.thumb-text-holder--2 .thumb-entry-title {
-					font-size: 20px; } }
+					font-size: 16px; } }
 		.thumb-text-holder--2 .entry__meta a {
 			color: #fff !important; }
 	.thumb-text-holder--3 {
@@ -2043,7 +2042,7 @@ img.mfp-img {
 			border: 1px solid #E3E4E8; }
 
 .newsticker {
-	padding-right: 80px;
+	padding-right: 9px;
 	padding-left: 20px;
 	overflow: hidden; }
 	.newsticker__item {
@@ -3949,35 +3948,37 @@ header .flex-child {
 /* Sticky Nav
 -------------------------------------------------------*/
 .nav--sticky {
-	height: 48px; }
-	.nav--sticky.offset {
-		-webkit-transform: translate3d(0, -100%, 0);
-		transform: translate3d(0, -100%, 0);
-		/* -webkit-transition: all 0.3s ease-in-out;
-		transition: all 0.3s ease-in-out;  */
-	}
-	.nav--sticky.scrolling {
-		-webkit-transform: translate3d(0, 0px, 0);
-		transform: translate3d(0, 0px, 0); }
-	.nav--sticky.sticky {
-		position: fixed;
-		background-color: #fff;
-		visibility: hidden;
-		opacity: 0;
-		left: 0;
-		right: 0;
-		height: 48px;
-		top: 0;
-		-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-		        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-		z-index: 120; }
-		.nav--sticky.sticky.scrolling {
-			opacity: 1;
-			visibility: visible; }
-		.nav--sticky.sticky .nav__menu > li > a {
-			line-height: 48px; }
-		.nav--sticky.sticky .logo-wrap a {
-			height: 48px; }
+    height: 48px;
+    transition: all 0.3s ease-in-out;
+    background-color: transparent;
+    position: relative;
+}
+
+.nav--sticky.sticky {
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    z-index: 100;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav--sticky.sticky.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav--sticky.sticky .nav__menu > li > a {
+    line-height: 48px;
+}
+
+.nav--sticky.sticky .logo-wrap a {
+    height: 48px;
+}
+
 
 /* Colored Nav
 -------------------------------------------------------*/

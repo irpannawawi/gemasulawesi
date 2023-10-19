@@ -87,7 +87,12 @@
                                 @foreach ($editorCohice as $choice)
                                     <article class="entry">
                                         <div class="entry__img-holder">
-                                            <a href="single-post-politics.html">
+                                            <a
+                                                href="{{ route('singlePost', [
+                                                    'rubrik' => $choice->post->rubrik->rubrik_name,
+                                                    'post_id' => $choice->post_id,
+                                                    'slug' => $choice->post->slug,
+                                                ]) }}">
                                                 <div class="thumb-container thumb-65">
                                                     <img data-src="{{ get_string_between($choice->post->article, '<img src="', '">') }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png"
@@ -181,7 +186,7 @@
                                 <x-topik_khusus :$topikKhusus />
 
                                 <!-- Ad Banner 728 -->
-                                <div class="text-center pb-48">
+                                <div class="text-center mt-4">
                                     <a href="#">
                                         <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
                                             alt="">
@@ -195,7 +200,7 @@
             </div> <!-- end slider -->
 
             <!-- Sidebar -->
-            <aside class="col-lg sidebar order-lg-3">
+            <aside class="col-lg sidebar order-lg-3 mb-4">
                 <!-- Widget Popular Posts -->
                 <div class="title-sidebar">
                     <span>HOT &#128293;</span>

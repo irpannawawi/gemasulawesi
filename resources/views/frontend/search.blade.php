@@ -11,8 +11,8 @@
                 <section>
                     <!-- Pencarian -->
                     <div class="berita-terkini">
-                        <div class="title-post">
-                            <h3 class="section-title">Pencarian</h3>
+                        <div class="title-sidebar">
+                            <span>Pencarian</span>
                         </div>
                         <!-- Search form -->
                         <form class="form-inline search">

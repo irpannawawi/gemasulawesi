@@ -51,7 +51,7 @@
     </style>
 </head>
 
-<body class="home style-politics">
+<body class="home style-politics ">
     <!-- Bg Overlay -->
     <div class="content-overlay"></div>
 
@@ -101,7 +101,7 @@
 
         <!-- Trending Now -->
         @if ($breakingNews->count() > 0)
-            <div class="container">
+            <div class="kontiner">
                 <div class="trending-now trending-now--1">
                     <span class="trending-now__label">
                         <i class="ui-flash"></i>
@@ -180,6 +180,12 @@
 
                         <div class="flex-child">
                             <!-- Side Menu Button -->
+                            <div class="nav__home">
+                                <a href="{{ url('/') }}" title="Home">
+                                    <span class="icon icons-home"></span>
+                                </a>
+                            </div>
+
                             <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open side menu">
                                 <span class="nav-icon-toggle__box">
                                     <span class="nav-icon-toggle__inner"></span>
@@ -325,7 +331,6 @@
         </div>
 
     </main> <!-- end main-wrapper -->
-
     <!-- jQuery Scripts -->
     <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>

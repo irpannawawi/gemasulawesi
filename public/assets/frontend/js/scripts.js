@@ -252,14 +252,14 @@
 
   /* News Ticker
   -------------------------------------------------------*/
-  var $newsTicker = $('.newsticker__list');
+  // var $newsTicker = $('.newsticker__list');
 
-  if($newsTicker.length) {
-    $newsTicker.newsTicker({
-      row_height: 34,
-      max_rows: 1,
-    });
-  }
+  // if($newsTicker.length) {
+  //   $newsTicker.newsTicker({
+  //     row_height: 34,
+  //     max_rows: 1,
+  //   });
+  // }
 
 
   /* Tabs
@@ -346,6 +346,33 @@
     });
     $('#nextPost3').on('click', function(){
          $('#owl-pilihan-editor .owl-next').trigger('next.owl.carousel');
+    });
+
+    // Related Posts
+    $("#owl-topik-khusus").owlCarousel({
+      center: false,
+      items: 2,
+      loop: false,
+      nav: true,
+      dots: false,
+      margin: 20,
+      lazyLoad: true,
+      navSpeed: 500,
+      responsive:{
+        768:{
+          items:3
+        },
+        540:{
+          items:2
+        }
+      }
+    });
+    $('#prevPost3').on('click', function(){
+        console.log('adadad');
+         $('#owl-topik-khusus .owl-prev').trigger('prev.owl.carousel');
+    });
+    $('#nextPost3').on('click', function(){
+         $('#owl-topik-khusus .owl-next').trigger('next.owl.carousel');
     });
 
     $("#owl-posts-4-items").owlCarousel({
@@ -574,3 +601,39 @@ $(document).ready(function(){
     //   thumbItemClass: 'owl-thumb-item',
     });
   });
+
+
+  function handleScroll() {
+    var navSticky = document.querySelector(".nav--sticky");
+    var scrollPosition = window.scrollY;
+  
+    // Gantilah nilai offset sesuai kebutuhan Anda
+    var offsetValue = 100; // Contoh offset 100, sesuaikan sesuai kebutuhan Anda
+  
+    if (scrollPosition > offsetValue) {
+      navSticky.classList.add("sticky", "active");
+    } else {
+      navSticky.classList.remove("sticky", "active");
+    }
+  }
+
+  function handleScroll() {
+    var scrollPosition = window.scrollY;
+    var body = document.body;
+    var navHome = document.querySelector(".nav__home");
+
+    if (scrollPosition > 0) {
+        body.classList.add("is--scroll");
+        navHome.style.opacity = 1;
+        navHome.style.visibility = "visible";
+    } else {
+        body.classList.remove("is--scroll");
+        navHome.style.opacity = 0;
+        navHome.style.visibility = "hidden";
+    }
+}
+
+// Tambahkan event listener untuk memanggil fungsi handleScroll saat terjadi scroll
+window.addEventListener("scroll", handleScroll);
+
+  

@@ -45,6 +45,11 @@ class WebController extends Controller
     public function singlePost($rubrik_name, $post_id, $slug): View
     {
         $data['post'] = Posts::find($post_id);
+        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
+            ->where('status', 'published')
+            ->paginate(20);
+        $data['beritaTerkini'] = $data['paginatedPost']->split(2);
+
         return view('frontend.singlepost', $data);
     }
 

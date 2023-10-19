@@ -11,8 +11,8 @@
                 <section>
                     <!-- Pencarian -->
                     <div class="berita-terkini">
-                        <div class="title-wrap title-wrap--line">
-                            <h3 class="section-title">Pencarian</h3>
+                        <div class="title-sidebar">
+                            <span>Pencarian</span>
                         </div>
                         <!-- Search form -->
                         <form class="form-inline search">
@@ -69,201 +69,101 @@
             <!-- Sidebar -->
             <aside class="col-lg sidebar order-lg-3">
                 <!-- Widget Popular Posts -->
-                <aside class="widget widget-popular-posts">
-                    <h4 class="widget-title">Terpopular</h4>
-                    <ul class="post-list-small post-list-small--1">
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Barack Obama and Family Visit Balinese
-                                            Paddy Fields</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                    </ul>
-                </aside> <!-- end widget popular posts -->
+                <div class="title-sidebar">
+                    <span>HOT &#128293;</span>
+                </div>
+                <div class="most__wrap">
+                    <div class="most__item">
+                        <div class="most__number">1</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">2</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">3</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">4</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">5</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">6</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">7</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">8</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">9</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">10</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </aside> <!-- end sidebar -->
         </div> <!-- end content -->
     </div> <!-- end main container -->

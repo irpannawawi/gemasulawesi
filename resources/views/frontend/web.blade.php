@@ -47,7 +47,7 @@
                                                     </li>
                                                 </ul> --}}
                                             </div>
-                                            <a href="single-post-politics.html" class="thumb-url"></a>
+                                            <a class="thumb-url"></a>
                                         </div>
                                     </article>
                                 </div>
@@ -63,8 +63,12 @@
                                         style="object-fit: cover;height: 80px;object-position: top;" alt="">
                                     <div class="card-body">
                                         <a
-                                            href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}">
-                                            {{ \Illuminate\Support\Str::limit($headline->post->title, 70) }}
+                                            href="{{ route('singlePost', [
+                                                'rubrik' => $headline->post->rubrik->rubrik_name,
+                                                'post_id' => $headline->post->post_id,
+                                                'slug' => $headline->post->slug,
+                                            ]) }}">
+                                            {{ Str::limit($headline->post->title, 70) }}
                                         </a>
                                     </div>
                                 </div>
@@ -72,10 +76,9 @@
                         @endforeach
                     </div>
 
-                    <div class="title-wrap--line"></div>
                     <div class="pilihan-editor">
-                        <div class="title-wrap">
-                            <h3 class="section-title-editor">Editorial</h3>
+                        <div class="title-post">
+                            <span>Editorial</span>
                         </div>
 
                         <!-- Slider -->
@@ -84,7 +87,12 @@
                                 @foreach ($editorCohice as $choice)
                                     <article class="entry">
                                         <div class="entry__img-holder">
-                                            <a href="single-post-politics.html">
+                                            <a
+                                                href="{{ route('singlePost', [
+                                                    'rubrik' => $choice->post->rubrik->rubrik_name,
+                                                    'post_id' => $choice->post_id,
+                                                    'slug' => $choice->post->slug,
+                                                ]) }}">
                                                 <div class="thumb-container thumb-65">
                                                     <img data-src="{{ get_string_between($choice->post->article, '<img src="', '">') }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png"
@@ -110,7 +118,7 @@
                                                             'rubrik' => strtolower($choice->post->rubrik->rubrik_name),
                                                             'post_id' => $choice->post_id,
                                                             'slug' => $choice->post->slug,
-                                                        ]) }}">{{ \Illuminate\Support\Str::limit($choice->post->title, 60) }}</a>
+                                                        ]) }}">{{ Str::limit($choice->post->title, 60) }}</a>
                                                 </h2>
                                                 <p class="bt__date">{{ convert_date_to_ID($choice->post->created_at) }}</p>
                                             </div>
@@ -121,7 +129,7 @@
                             <div class="wrap-btn-slider">
                                 <div class="btn-slider">
                                     <button class="btn-prev" id="prevPost3"><i class="ui-arrow-left"></i></button>
-                                    <button class="btn-nect" id="nextPost3"><i class="ui-arrow-right"></i></button>
+                                    <button class="btn-next" id="nextPost3"><i class="ui-arrow-right"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -129,12 +137,12 @@
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
-                        <div class="title-wrap title-wrap--line">
-                            <h3 class="section-title">Berita Terkini</h3>
+                        <div class="title-post">
+                            <span>Berita Terkini</span>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <ul class="post-list-small post-list-small--2 mb-32">
+                                <ul class="post-list-small post-list-small--2 mb-32 mt-3">
                                     @foreach ($beritaTerkini[0] as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">
@@ -148,7 +156,7 @@
                                                             ]) }}">
                                                             <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                alt="" class=" lazyload">
+                                                                alt="" class="lazyload">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -167,74 +175,18 @@
                                                         ]) }}"
                                                             class="post-title">{{ $post->title }}</a>
                                                     </h3>
-                                                    <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                    <p class="bt__date">{{ convert_date_to_ID($choice->post->created_at) }}
+                                                    </p>
                                                 </div>
                                             </article>
                                         </li>
                                     @endforeach
                                 </ul>
-                                {{-- <x-topik_khusus :$topikKhusus /> --}}
-                                <div class="pilihan-editor">
-                                    <div class="title-wrap">
-                                        <h3 class="section-title-editor">TOPIK KHUSUS</h3>
-                                    </div>
 
-                                    <!-- Slider -->
-                                    <div class="wrap-owl">
-                                        <div id="owl-pilihan-editor"
-                                            class="owl-carousel owl-theme owl-carousel--arrows-outside owl-loaded owl-drag">
+                                <x-topik_khusus :$topikKhusus />
 
-                                            <div class="owl-stage-outer">
-                                                <div class="owl-stage"
-                                                    style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 192px;">
-                                                    <div class="owl-item active" style="width: 172px; margin-right: 20px;">
-                                                        @foreach ($topikKhusus as $topik)
-                                                            <article class="entry"
-                                                                style="background-color: white; border-radius:10px;">
-                                                                <div class="entry__img-holder mb-0">
-                                                                    <a href="#">
-                                                                        <div class="thumb-container thumb-65">
-                                                                            <img data-src="{{ Storage::url('public/topic-images/'.$topik->topic_image)}}"
-                                                                                src="{{ Storage::url('public/topic-images/'.$topik->topic_image)}}"
-                                                                                class="entry__img lazyloaded"
-                                                                                alt="{{ $topik->topic_description }}">
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="entry__body mt-0">
-                                                                    <div class="entry__header text-center">
-                                                                        <h2 class="entry__title">
-                                                                            <a href="#">{{ $topik->topic_name }}</a>
-                                                                        </h2>
-                                                                        <p class="bt__date">
-                                                                            {{ convert_date_to_ID($topik->created_at) }}
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </article>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="owl-nav disabled">
-                                                <div class="owl-prev disabled">prev</div>
-                                                <div class="owl-next disabled">next</div>
-                                            </div>
-                                            <div class="owl-dots disabled"></div>
-                                            <div class="owl-thumbs"></div>
-                                        </div> <!-- end slider -->
-                                        <div class="wrap-btn-slider">
-                                            <div class="btn-slider">
-                                                <button class="btn-prev" id="prevPost3"><i
-                                                        class="ui-arrow-left"></i></button>
-                                                <button class="btn-nect" id="nextPost3"><i
-                                                        class="ui-arrow-right"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!-- Ad Banner 728 -->
-                                <div class="text-center pb-48">
+                                <div class="text-center mt-4">
                                     <a href="#">
                                         <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
                                             alt="">
@@ -248,206 +200,103 @@
             </div> <!-- end slider -->
 
             <!-- Sidebar -->
-            <aside class="col-lg sidebar order-lg-3">
+            <aside class="col-lg sidebar order-lg-3 mb-4">
                 <!-- Widget Popular Posts -->
-                <aside class="widget widget-popular-posts">
-                    <h4 class="widget-title">Weekly Popular</h4>
-                    <ul class="post-list-small post-list-small--1">
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_5.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Barack Obama and Family Visit Balinese
-                                            Paddy Fields</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_6.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Liberals to outline long-term
-                                            Indigenous
-                                            housing plan in budge</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_7.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">5 Pieces of Hard-Won Wisdom From
-                                            Billionaire Warren Buffett</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_8.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Liberals to outline long-term
-                                            Indigenous
-                                            housing plan in budge</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_9.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">This Secret Room In Mount Rushmore Is
-                                            Having A Moment</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_10.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">California Democrats' snub of party
-                                            icon
-                                            Dianne Feinstein</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_11.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">How To Find Protests In Your City When
-                                            You Don’t Know Where To Start</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                        <li class="post-list-small__item">
-                            <article class="post-list-small__entry clearfix">
-                                <div class="post-list-small__img-holder">
-                                    <div class="thumb-container thumb-80">
-                                        <a href="single-post-politics.html">
-                                            <img data-src="{{ url('assets/frontend') }}/img/content/post_small/post_small_12.jpg"
-                                                src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                class=" lazyload">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-list-small__body">
-                                    <h3 class="post-list-small__entry-title">
-                                        <a href="single-post-politics.html">Extreme Heat Waves Will Change How We
-                                            Live. We’re Not Ready</a>
-                                    </h3>
-                                </div>
-                            </article>
-                        </li>
-                    </ul>
-                </aside> <!-- end widget popular posts -->
+                <div class="title-sidebar">
+                    <span>HOT &#128293;</span>
+                </div>
+                <div class="most__wrap">
+                    <div class="most__item">
+                        <div class="most__number">1</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">2</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan visitor
+                                </h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">3</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">4</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">5</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">6</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">7</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">8</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">9</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="most__item">
+                        <div class="most__number">10</div>
+                        <div class="most__right">
+                            <a href="#" class="most__link">
+                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
+                                    visitor</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </aside> <!-- end sidebar -->
         </div> <!-- end content -->
 

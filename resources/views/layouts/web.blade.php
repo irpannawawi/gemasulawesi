@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/custom.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
 
     <!-- Favicons -->
@@ -50,7 +51,7 @@
     </style>
 </head>
 
-<body class="home style-politics">
+<body class="home style-politics ">
     <!-- Bg Overlay -->
     <div class="content-overlay"></div>
 
@@ -99,29 +100,29 @@
     <main class="main oh" id="main">
 
         <!-- Trending Now -->
-        @if ($breakingNews->count()>0)
-        <div class="container">
-            <div class="trending-now trending-now--1">
-                <span class="trending-now__label">
-                    <i class="ui-flash"></i>
-                    <span class="trending-now__text d-lg-inline-block d-none">Breaking News</span>
-                </span>
-                <div class="newsticker">
-                    <ul class="newsticker__list">
-                        @foreach ($breakingNews as $news)
-                        <li class="newsticker__item"><a href="{{ route('singlePost', [
-                            'rubrik' => $news->post->rubrik->rubrik_name,
-                            'post_id' => $news->post->post_id,
-                            'slug' => $news->post->slug,
-                        ]) }}"
-                                class="newsticker__item-url">{{$news->title}}</a></li>
-                            
-                        @endforeach
-                    </ul>
+        @if ($breakingNews->count() > 0)
+            <div class="kontiner">
+                <div class="trending-now trending-now--1">
+                    <span class="trending-now__label">
+                        <i class="ui-flash"></i>
+                        <span class="trending-now__text d-lg-inline-block d-none">Breaking News</span>
+                    </span>
+                    <div class="newsticker">
+                        <ul class="newsticker__list">
+                            @foreach ($breakingNews as $news)
+                                <li class="newsticker__item"><a
+                                        href="{{ route('singlePost', [
+                                            'rubrik' => $news->post->rubrik->rubrik_name,
+                                            'post_id' => $news->post->post_id,
+                                            'slug' => $news->post->slug,
+                                        ]) }}"
+                                        class="newsticker__item-url">{{ $news->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-            
+
         @endif
 
         <!-- Header -->
@@ -179,6 +180,12 @@
 
                         <div class="flex-child">
                             <!-- Side Menu Button -->
+                            <div class="nav__home">
+                                <a href="{{ url('/') }}" title="Home">
+                                    <span class="icon icons-home"></span>
+                                </a>
+                            </div>
+
                             <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open side menu">
                                 <span class="nav-icon-toggle__box">
                                     <span class="nav-icon-toggle__inner"></span>
@@ -324,7 +331,6 @@
         </div>
 
     </main> <!-- end main-wrapper -->
-
     <!-- jQuery Scripts -->
     <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>

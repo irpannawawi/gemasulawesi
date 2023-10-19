@@ -2038,20 +2038,8 @@ img.mfp-img {
 		-webkit-box-shadow: none;
 		        box-shadow: none;
 		margin-top: 0; }
-		.trending-now--1 .newsticker {
-			border: 1px solid #E3E4E8; }
-
-.newsticker {
-	padding-right: 9px;
-	padding-left: 20px;
-	overflow: hidden; }
-	.newsticker__item {
-		line-height: 36px;
-		white-space: nowrap; }
-	.newsticker__item-url {
-		color: #54555E; }
-		.newsticker__item-url:hover {
-			color: #2D95E3; }
+		
+	
 
 .newsticker-buttons {
 	position: absolute;

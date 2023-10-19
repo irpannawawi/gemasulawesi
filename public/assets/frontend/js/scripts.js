@@ -252,14 +252,14 @@
 
   /* News Ticker
   -------------------------------------------------------*/
-  var $newsTicker = $('.newsticker__list');
+  // var $newsTicker = $('.newsticker__list');
 
-  if($newsTicker.length) {
-    $newsTicker.newsTicker({
-      row_height: 34,
-      max_rows: 1,
-    });
-  }
+  // if($newsTicker.length) {
+  //   $newsTicker.newsTicker({
+  //     row_height: 34,
+  //     max_rows: 1,
+  //   });
+  // }
 
 
   /* Tabs

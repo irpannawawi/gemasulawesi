@@ -15,6 +15,10 @@ use Illuminate\Support\Str;
 
 class WebController extends Controller
 {
+    public function subscribe()
+    {
+        
+    }
     public function index(): View
     {
         $data['editorCohice'] = Editorcoice::get();

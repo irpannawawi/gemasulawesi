@@ -338,6 +338,62 @@
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+    apiKey: "AIzaSyB3UbArxJvs-eDcnq-dG5vk438-1kcx4jI",
+    authDomain: "notif-29ba1.firebaseapp.com",
+    databaseURL: "https://notif-29ba1.firebaseio.com",
+    projectId: "notif-29ba1",
+    storageBucket: "notif-29ba1.appspot.com",
+    messagingSenderId: "528841843805",
+    appId: "1:528841843805:web:b6a4adfc2bfb3b5765d9b4",
+    measurementId: "G-XD29THY8S3"
+  };
+
+//   // Initialize Firebase
+//   const app = initializeApp(firebaseConfig);
+//   const analytics = getAnalytics(app);
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const messaging = firebase.messaging();
+
+    function initFirebaseMessagingRegistration() {
+        messaging.requestPermission().then(function () {
+            return messaging.getToken()
+        }).then(function(token) {
+            
+            axios.post("{{ route('subscribe') }}",{
+                _method:"PATCH",
+                token
+            }).then(({data})=>{
+                console.log(data)
+            }).catch(({response:{data}})=>{
+                console.error(data)
+            })
+
+        }).catch(function (err) {
+            console.log(`Token Error :: ${err}`);
+        });
+    }
+
+    initFirebaseMessagingRegistration();
+  
+    messaging.onMessage(function({data:{body,title}}){
+        new Notification(title, {body});
+    });
+</script>
+
 </body>
 
 </html>

@@ -457,16 +457,14 @@
 
         initFirebaseMessagingRegistration();
 
-        messaging.onMessage(function({
-            data: {
-                body,
-                title
-            }
-        }) {
-            new Notification(title, {
-                body
-            });
-        });
+        messaging.onMessage(function (payload) {
+        const title = payload.notification.title;
+        const options = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(title, options);
+    });
     </script>
 
 </body>

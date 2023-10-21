@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Posts;
+use App\Models\PushNotification;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,9 @@ class PushNotificationController extends Controller
         }
     }
 
-    public function send(Request $request){
+    public function send(Request $request, $id){
+
+        $news = PushNotification::find($id);
         $url = 'https://fcm.googleapis.com/fcm/send';
         $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
           
@@ -33,8 +37,9 @@ class PushNotificationController extends Controller
         $data = [
             "registration_ids" => $FcmToken,
             "notification" => [
-                "title" => 'test judul',
-                "body" => 'test body',  
+                "title" => $news->title,
+                "body" => $news->body,  
+                "click_action" => $news->url,  
             ]
         ];
         $encodedData = json_encode($data);
@@ -63,6 +68,75 @@ class PushNotificationController extends Controller
         // Close connection
         curl_close($ch);
         // FCM response
-        dd($result); 
+        dd($result);
+        $news->status='sent';
+        $news->save();
+        return redirect()->back(); 
+    }
+
+
+    public function index()
+    {
+        $data['pushNotification'] = PushNotification::orderBy('notif_id', 'desc')->get();
+        return view('push-notification.index', $data);
+    }
+
+    public function add()
+    {
+        $data['posts'] = Posts::orderBy('post_id', 'desc')->where('status', 'published')->get();
+        return view('push-notification.add', $data);
+    }
+
+    public function store(Request $request)
+    {
+        $post = Posts::find($request->post_id);
+        $data = [
+            'post_id'=>$request->post_id,
+            'title'=>$request->title,
+            'body'=>$request->description,
+            'url'=>route('singlePost', [
+                'rubrik' => $post->rubrik->rubrik_name,
+                'post_id' => $post->post_id,
+                'slug' => $post->slug,
+            ]),
+            'status'=>'queue',
+        ];
+
+        if(PushNotification::create($data))
+        {
+            return redirect('pushNotification')->with('message', 'Berhasil tambah');
+        }
+
+    }
+    
+    
+    public function edit($id)
+    {
+        $data['posts'] = Posts::orderBy('post_id', 'desc')->where('status', 'published')->get();
+        $data['news'] = Breakingnews::find($id);
+        return view('push-notification.update', $data);
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $news = Breakingnews::find($id);
+        $news->post_id = $request->post_id;
+        $news->title = $request->title;
+
+        if($news->save())
+        {
+            return redirect('pushNotification')->with('message', 'Berhasil merubah breaking news');
+        }
+        
+    }
+
+    
+    public function delete($id)
+    {
+        if(Breakingnews::where('breaking_news_id', $id)->delete())
+        {
+            return redirect('pushNotification')->with('message', 'Berhasil menghapus breaking news');
+        }
+        
     }
 }

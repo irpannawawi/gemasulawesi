@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('push_notification', function (Blueprint $table) {
             $table->increments('notif_id')->primary;
             $table->bigInteger('post_id');
-            $table->bigInteger('title');
-            $table->bigInteger('description');
+            $table->string('title');
+            $table->text('body');
+            $table->string('url')->nullable();
+            $table->string('image')->nullable();
+            $table->enum('status', ['sent', 'queue']);
             $table->timestamps();
         });
     }

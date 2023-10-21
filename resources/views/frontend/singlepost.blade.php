@@ -257,7 +257,7 @@
                                                         'post_id' => $post->post_id,
                                                         'slug' => $post->slug,
                                                     ]) }}">
-                                                    <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
+                                                    <img data-src="{{str_replace('../',url('/').'/',get_string_between($post->article, '<img src="', '">'))}}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                         class=" lazyload">
                                                 </a>
@@ -272,7 +272,7 @@
                                                         'slug' => $post->slug,
                                                     ]) }}">{{ $post->title }}</a>
                                             </h3>
-                                            <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            <p class="bt__date">14 September 2023, 13:56 WIB </p>
                                         </div>
                                     </article>
                                 </li>

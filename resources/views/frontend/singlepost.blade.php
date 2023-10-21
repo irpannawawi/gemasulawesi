@@ -245,7 +245,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @foreach ($beritaTerkini as $key)
+                        @foreach ($beritaTerkini as $post)
                             <ul class="post-list-small post-list-small--2 mb-32">
                                 <li class="post-list-small__item">
                                     <article class="post-list-small__entry clearfix">

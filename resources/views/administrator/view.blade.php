@@ -34,9 +34,9 @@
                             <td>{{ $user->display_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
-                            <td><img src="{{ Storage::url('public/avatars/'.$user->avatar) }}" alt=""></td>
+                            <td class="text-center"><img class="mx-auto" width="70" src="{{ Storage::url('public/avatars/'.$user->avatar) }}" alt=""></td>
                             <td>
-                                <button class="btn btn-info" data-target="#edituserModal" data-toggle="modal" onclick="edit_user('{{$user->id}}','{{$user->username}}')">Edit</button>
+                                <a class="btn btn-info" href="{{route('users.edit', ['id'=>$user->id])}}">Edit</a>
                                 <a class="btn btn-danger" onclick="return confirm('Hapus user?')"
                                     href="{{ route('users.delete', ['id' => $user->id]) }}">Hapus</a>
                             </td>
@@ -101,7 +101,7 @@
 
                         <div class="form-group mb-2">
                             <label for="avatar">Avatar</label>
-                            <input type="file" id="avatar" name="avatar" class="form-control" required autocomplete="off">
+                            <input type="file" id="avatar" name="avatar" class="form-control" autocomplete="off">
                         </div>
 
                         <div class="form-group mb-2">
@@ -115,36 +115,6 @@
         </div>
     </div>
 
-    {{-- Modal edit user --}}
-    <div class="modal fade" id="edituserModal" tabindex="-1" role="dialog" aria-labelledby="edituserModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="edituserModalLabel">Tambah data</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="{{ route('users.edit') }}" method="POST">
-                        @csrf
-                        @method('put')
-                        <div class="form-group mb-2">
-                            <label for="user">Nama user</label>
-                            <input type="text" name="user_name" class="form-control" required autocomplete="off" id="input-user-name">
-                            <input type="hidden" name="id" class="form-control" required autocomplete="off" id="input-user-id">
-                        </div>
-                        <div class="form-group mb-2">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
     @push('custom-scripts')
         <script>

@@ -33,7 +33,6 @@ class PushNotificationController extends Controller
         $news = PushNotification::find($id);
         $url = 'https://fcm.googleapis.com/fcm/send';
         $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
-          
         $serverKey = 'AAAAeyFuJF0:APA91bETiDiOkQojH4yqYMF68XxJsmQyLW3lZTROeKx2s38M119llaDmNYE43Zcm3ragLN6ZXW363WUgBQ5BmaQ_pStK5kBB4YkFK-OXWPgRc1OL7sfCqTzVZe9-0VGg9W-ib_-xQ595';
   
         $data = [
@@ -70,7 +69,7 @@ class PushNotificationController extends Controller
         // Close connection
         curl_close($ch);
         // FCM response
-        dd($result);
+        // dd($result);
         $news->status='sent';
         $news->save();
         return redirect()->back(); 

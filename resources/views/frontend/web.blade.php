@@ -175,7 +175,7 @@
                                                         ]) }}"
                                                             class="post-title">{{ $post->title }}</a>
                                                     </h3>
-                                                    <p class="bt__date">{{ convert_date_to_ID($choice->post->created_at) }}
+                                                    <p class="bt__date">{{ convert_date_to_ID($post->post->created_at) }}
                                                     </p>
                                                 </div>
                                             </article>

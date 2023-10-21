@@ -12,6 +12,8 @@ use App\Models\Topic;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Sarfraznawaz2005\VisitLog\Facades\VisitLog;
+use Sarfraznawaz2005\VisitLog\Models\VisitLog as VisitLogModel;
 
 class WebController extends Controller
 {
@@ -21,6 +23,8 @@ class WebController extends Controller
     }
     public function index(): View
     {
+        VisitLog::save(request()->all());
+        
         $data['editorCohice'] = Editorcoice::get();
         $data['headlineWp'] = Headlinewp::get();
         $data['topikKhusus'] = Topic::get();
@@ -38,12 +42,25 @@ class WebController extends Controller
 
     public function showCategory(): View
     {
+        VisitLog::save(request()->all());
+
         $data['editorCohice'] = Editorcoice::get();
         return view('frontend.web', $data);
     }
 
-    public function singlePost($rubrik_name, $post_id, $slug): View
+    public function singlePost(Request $request, $rubrik_name, $post_id, $slug): View
     {
+        
+        // visitor counter
+        // jika ip sudah mengunjungi do nothing
+        if(VisitLog::save(request()->all())['type']=='create'){
+            $post = Posts::find($post_id);
+            $post->visit+=1;
+            $post->save();
+        }
+        // if(VisitLogModel::where('ip', $request->ip())->get()->count() < 0) {
+        // }
+
         $data['post'] = Posts::find($post_id);
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
             ->where('status', 'published')

@@ -199,252 +199,45 @@
 
                 </article> <!-- end standard post -->
 
-                <!-- Comments -->
-                {{-- <div class="entry-comments">
-                    <div class="title-post">
-                        <span>3 comments</span>
-                    </div>
-                    <ul class="comment-list">
-                        <li class="comment">
-                            <div class="comment-body">
-                                <div class="comment-avatar">
-                                    <img alt="" src="img/content/single/comment_1.jpg">
-                                </div>
-                                <div class="comment-text">
-                                    <h6 class="comment-author">Joeby Ragpa</h6>
-                                    <div class="comment-metadata">
-                                        <a href="#" class="comment-date">July 17, 2017 at 12:48 pm</a>
-                                    </div>
-                                    <p>This template is so awesome. I didn’t expect so many features inside. E-commerce
-                                        pages are very useful, you can launch your online store in few seconds. I will rate
-                                        5 stars.</p>
-                                    <a href="#" class="comment-reply">Reply</a>
-                                </div>
-                            </div>
-
-                            <ul class="children">
-                                <li class="comment">
-                                    <div class="comment-body">
-                                        <div class="comment-avatar">
-                                            <img alt="" src="img/content/single/comment_2.jpg">
-                                        </div>
-                                        <div class="comment-text">
-                                            <h6 class="comment-author">Alexander Samokhin</h6>
-                                            <div class="comment-metadata">
-                                                <a href="#" class="comment-date">July 17, 2017 at 12:48 pm</a>
-                                            </div>
-                                            <p>This template is so awesome. I didn’t expect so many features inside.
-                                                E-commerce pages are very useful, you can launch your online store in few
-                                                seconds. I will rate 5 stars.</p>
-                                            <a href="#" class="comment-reply">Reply</a>
-                                        </div>
-                                    </div>
-                                </li> <!-- end reply comment -->
-                            </ul>
-
-                        </li> <!-- end 1-2 comment -->
-
-                        <li>
-                            <div class="comment-body">
-                                <div class="comment-avatar">
-                                    <img alt="" src="img/content/single/comment_3.jpg">
-                                </div>
-                                <div class="comment-text">
-                                    <h6 class="comment-author">Chris Root</h6>
-                                    <div class="comment-metadata">
-                                        <a href="#" class="comment-date">July 17, 2017 at 12:48 pm</a>
-                                    </div>
-                                    <p>This template is so awesome. I didn’t expect so many features inside. E-commerce
-                                        pages are very useful, you can launch your online store in few seconds. I will rate
-                                        5 stars.</p>
-                                    <a href="#" class="comment-reply">Reply</a>
-                                </div>
-                            </div>
-                        </li> <!-- end 3 comment -->
-
-                    </ul>
-                </div> --}}
-                <!-- end comments -->
-
-                <!-- Comment Form -->
-                {{-- <div id="respond" class="comment-respond">
-                    <div class="title-wrap">
-                        <h5 class="comment-respond__title section-title">Leave a Reply</h5>
-                    </div>
-                    <form id="form" class="comment-form" method="post" action="#">
-                        <p class="comment-form-comment">
-                            <label for="comment">Comment</label>
-                            <textarea id="comment" name="comment" rows="5" required="required"></textarea>
-                        </p>
-
-                        <div class="row row-20">
-                            <div class="col-lg-4">
-                                <label for="name">Name: *</label>
-                                <input name="name" id="name" type="text">
-                            </div>
-                            <div class="col-lg-4">
-                                <label for="comment">Email: *</label>
-                                <input name="email" id="email" type="email">
-                            </div>
-                            <div class="col-lg-4">
-                                <label for="comment">Website:</label>
-                                <input name="website" id="website" type="text">
-                            </div>
-                        </div>
-
-                        <p class="comment-form-submit">
-                            <input type="submit" class="btn btn-lg btn-color btn-button" value="Post Comment"
-                                id="submit-message">
-                        </p>
-
-                    </form>
-                </div>  --}}
-                <!-- end comment form -->
+                @if ($post->allow_comment == 1)
+                    <x-comment />
+                @endif
             </div> <!-- end post content -->
 
             <!-- Sidebar -->
-            <aside class="col-lg sidebar order-lg-3">
-                <!-- Widget Popular Posts -->
-                <div class="title-sidebar">
-                    <span>HOT &#128293;</span>
-                </div>
-                <div class="most__wrap">
-                    <div class="most__item">
-                        <div class="most__number">1</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">2</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">3</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">4</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">5</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">6</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">7</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">8</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">9</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="most__item">
-                        <div class="most__number">10</div>
-                        <div class="most__right">
-                            <a href="#" class="most__link">
-                                <h2 class="most__title">Mohon maaf sidebar/hot belum selesai, masih dalam pengerjaan
-                                    visitor</h2>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </aside> <!-- end sidebar -->
+            <x-sidebar />
+            <!-- end sidebar -->
 
         </div> <!-- end content -->
 
         <div class="row row-20">
-            <div class="col-lg-8 order-lg-2">
+            @if ($post->related_articles != null and $post->related_articles != 'null')
+                <div class="col-lg-8 order-lg-2">
 
-                <div class="title-post">
-                    <span>Berita Terkait</span>
+                    <div class="title-post">
+                        <span>Berita Terkait</span>
+                    </div>
+                    <div class="berita__terkait">
+                        <ul class="terkait__list">
+                            @foreach (json_decode($post->related_articles) as $related)
+                                @php
+                                    $related = \App\Models\Posts::find($related);
+                                @endphp
+                                <li>
+                                    <h2 class="terkait__title">
+                                        <a href="{{ route('singlePost', [
+                                            'rubrik' => $related->rubrik->rubrik_name,
+                                            'post_id' => $related->post_id,
+                                            'slug' => $related->slug,
+                                        ]) }}"
+                                            class="terkait__link">{{ $related->title }}</a>
+                                    </h2>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <div class="berita__terkait">
-                    <ul class="terkait__list">
-                        <li>
-                            <h2 class="terkait__title">
-                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
-                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
-                            </h2>
-                        </li>
-                        <li>
-                            <h2 class="terkait__title">
-                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
-                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
-                            </h2>
-                        </li>
-                        <li>
-                            <h2 class="terkait__title">
-                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
-                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
-                            </h2>
-                        </li>
-                        <li>
-                            <h2 class="terkait__title">
-                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
-                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
-                            </h2>
-                        </li>
-                        <li>
-                            <h2 class="terkait__title">
-                                <a href="#" class="terkait__link">15 Twibbon Nuzulul Qur'an 1444 H, Spesial untuk
-                                    Memperingati Turunnya Kitab Suci ke Bumi</a>
-                            </h2>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            @endif
             <div class="col-lg-8 order-lg-2 mt-4">
 
                 <div class="title-post">

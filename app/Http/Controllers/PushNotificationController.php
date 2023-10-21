@@ -14,7 +14,9 @@ class PushNotificationController extends Controller
     public function subscribe(Request $request)
     {
         try{
+            if(Subscriber::where("token", $request->token)->exists()){
             Subscriber::create(['token'=>$request->token]);
+            }
             return response()->json([
                 'success'=>true
             ]);
@@ -110,32 +112,14 @@ class PushNotificationController extends Controller
     }
     
     
-    public function edit($id)
-    {
-        $data['posts'] = Posts::orderBy('post_id', 'desc')->where('status', 'published')->get();
-        $data['news'] = Breakingnews::find($id);
-        return view('push-notification.update', $data);
-    }
+
     
-    public function update(Request $request, $id)
-    {
-        $news = Breakingnews::find($id);
-        $news->post_id = $request->post_id;
-        $news->title = $request->title;
-
-        if($news->save())
-        {
-            return redirect('pushNotification')->with('message', 'Berhasil merubah breaking news');
-        }
-        
-    }
-
     
     public function delete($id)
     {
-        if(Breakingnews::where('breaking_news_id', $id)->delete())
+        if(PushNotification::where('notif_id', $id)->delete())
         {
-            return redirect('pushNotification')->with('message', 'Berhasil menghapus breaking news');
+            return redirect('pushNotification')->with('message', 'Berhasil menghapus news');
         }
         
     }

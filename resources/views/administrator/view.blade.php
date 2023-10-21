@@ -61,12 +61,49 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('users.add') }}" method="POST">
+                    <form action="{{ route('users.add') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group mb-2">
-                            <label for="user">Nama user</label>
-                            <input type="text" name="user_name" class="form-control" required autocomplete="off">
+                            <label for="username">Username<sup>*</sup> <small>(Tanpa spasi)</small></label>
+                            <input type="text" id="username" name="username" class="form-control" required autocomplete="off">
                         </div>
+                        
+                        <div class="form-group mb-2">
+                            <label for="display_name">Nama Pengguna<sup>*</sup></label>
+                            <input type="text" id="display_name" name="display_name" class="form-control" required autocomplete="off">
+                        </div>
+
+                        
+                        <div class="form-group mb-2">
+                            <label for="email">Email<sup>*</sup></label>
+                            <input type="email" id="email" name="email" class="form-control" required autocomplete="off">
+                        </div>
+
+                        
+                        <div class="form-group mb-2">
+                            <label for="password">Katasandi<sup>*</sup></label>
+                            <input type="password" id="password" name="password" class="form-control" required autocomplete="off">
+                        </div>
+                        
+                        <div class="form-group mb-2">
+                            <label for="confirm_password">Konfirmasi Katasandi<sup>*</sup></label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" required autocomplete="off">
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="role">Role</label>
+                            <select name="role" id="role" class="form-control" required>
+                                <option value="" selected disabled>--Pilih Role--</option>
+                                <option value="admin">Admin</option>
+                                <option value="editor">Editor</option>
+                                <option value="author">Author</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="avatar">Avatar</label>
+                            <input type="file" id="avatar" name="avatar" class="form-control" required autocomplete="off">
+                        </div>
+
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>

@@ -17,19 +17,30 @@ class AdministratorController extends Controller
 
     public function insert(Request $request)
     {
-        $filename = date('dmyHis').'.jpg';
-        $galeryData = [
-            'galery_name'=>$request->galery_name,
-            'galery_description'=>$request->galery_description,
-            'galery_thumbnail'=>$filename
-        ];
+        if($request->password === $request->confirm_password) {
+            if(!empty($_POST['avatar'])){
+                $filename = date('dmyHis').'.jpg';
+                // upload image
+                $path = $request->file('avatar')->storeAs('public/avatars', $filename);
+                
+            }else{
+                $filename = 'default.jpg';
+            }
 
-        // upload image
-        $path = $request->file('galery_thumbnail')->storeAs('public/galery-images', $filename);
-
-        if(User::create($galeryData))
-        {
-            return redirect()->back()->with('message-success', 'Berhasil menambah user');
+            $user = User::create([
+                'username'=> $request->username,
+                'display_name'=> $request->display_name,
+                'email'=> $request->email,
+                'password'=> $request->password,
+                'role'=> $request->role,
+                'avatar'=> $filename,
+            ]);
+            if($user)
+            {
+                return redirect()->back()->with('message-success', 'Berhasil menambah user');
+            }
+        }else{
+            return redirect()->back()->with('message-error', 'Gagal menambah user');
         }
     }
 

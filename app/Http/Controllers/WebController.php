@@ -64,8 +64,8 @@ class WebController extends Controller
         $data['post'] = Posts::find($post_id);
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
             ->where('status', 'published')
-            ->paginate(20);
-        $data['beritaTerkini'] = $data['paginatedPost']->split(2);
+            ->limit(10);
+        $data['beritaTerkini'] = $data['paginatedPost'];
 
         return view('frontend.singlepost', $data);
     }

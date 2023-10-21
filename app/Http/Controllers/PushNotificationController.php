@@ -14,7 +14,7 @@ class PushNotificationController extends Controller
     public function subscribe(Request $request)
     {
         try{
-            if(Subscriber::where("token", $request->token)->exists()){
+            if(!Subscriber::where("token", $request->token)->exists()){
             Subscriber::create(['token'=>$request->token]);
             }
             return response()->json([

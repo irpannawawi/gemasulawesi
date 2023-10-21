@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class topik_khusus extends Component
+class post_sidebar extends Component
 {
     /**
      * Create a new component instance.
@@ -12,7 +12,7 @@ class topik_khusus extends Component
      * @return void
      */
     public function __construct(
-        public string $topikKhusus,
+        public string $postSidebar,
     ) {
         //
 
@@ -25,6 +25,6 @@ class topik_khusus extends Component
      */
     public function render()
     {
-        return view('components.topik_khusus');
+        return view('components.post_sidebar');
     }
 }

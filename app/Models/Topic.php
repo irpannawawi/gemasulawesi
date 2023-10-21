@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Topic extends Model
 {
@@ -13,9 +14,9 @@ class Topic extends Model
     protected $primaryKey = 'topic_id';
     public $fillable = [
         'topic_id',
-        'topic_name',	
-        'topic_description',	
-        'topic_image',	
+        'topic_name',
+        'topic_description',
+        'topic_image',
     ];
     public function rubrik(): HasOne
     {

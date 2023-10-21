@@ -4,6 +4,18 @@
 	color: #000;
 }
 
+@media(max-width:480px) {
+  .post-title {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      /* display: inline-block; */
+      width: 100%;
+  }
+}
+
 @media only screen and (max-width: 480px) {
     .nav--colored .nav__holder {
         background-color: #fff !important;
@@ -50,7 +62,7 @@
 
   @media only screen and (max-width: 768px) {
     .pilihan-editor {
-      margin-top: 20px;
+      margin-top: 32px;
       padding-left: 10px;
       padding-right: 10px;
 	    width: 100%;
@@ -58,7 +70,7 @@
   }
   @media only screen and (min-width: 768px) {
     .pilihan-editor {
-      margin-top: 20px;
+      margin-top: 32px;
       padding: 0 20px 20px 20px;
 	    width: 100%;
     }
@@ -180,38 +192,10 @@
 	background-color: #34c5cb;
 	color: #fff;
   }
+  
+  /* footer */
   @media only screen and (max-width: 768px) {
-    footer .logo__img {
-	  width: 50%;
-      margin: auto;
-    }
-    footer p {
-        text-align: center;
-    }
-    footer p.copyright {
-        text-align: center;
-    }
-    footer .socials {
-        justify-content: center;
-    }
-    footer .widget {
-        text-align: center;
-    }
-    footer .widget ul {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        width: 40%;
-        margin: auto;
-        gap: 10px;
-    }
-    footer .widget ul li {
-        padding: 0px;
-    }
-    footer .widget ul li a{
-        text-align: center;
-    }
+    
   }
   .entry__title:hover a{
 	text-decoration: underline;
@@ -421,21 +405,6 @@
   transition: all .2s ease;
 }
 
-.icons-home:before {
-  content: '\e979';
-}
-
-[class*=" icons-"] {
-  font-family: icons!important;
-  font-style: normal;
-  font-weight: 400;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 @media (min-width: 576px){
   .kontiner {
     max-width: 540px;  
@@ -503,3 +472,62 @@ overflow: hidden; }
   color: #54555E; }
   .newsticker__item-url:hover {
     color: #2D95E3; }
+
+.row__bawah{
+  margin: 32px 0 0 0;
+}
+
+
+/*-------------------------------------------------------*/
+/* Footer
+/*-------------------------------------------------------*/
+
+/* .footer{
+	border-top: 4px solid #34c5cb;
+	background-color: #d9dbe9;
+	color: #000;
+	margin-top: 40px;
+    padding: 20px 0 120px;
+	font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+	display: block;
+}
+.col-bs10-4 {
+	width: 50%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+	position: relative;
+}
+.col-bs10-6 {
+	width: 50%;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    float: left;
+	position: relative;
+}
+.footer__logo {
+    padding: 0 0 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+	position: relative;
+}
+.footer__logo a {
+    z-index: 2;
+    padding: 0 10px 0 0;
+}
+.footer__contact{
+	font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+.footer p {
+    margin: 0;
+} */

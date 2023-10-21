@@ -54,7 +54,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="owl-thumbs row mb-4 d-none d-md-flex w-100 mx-auto" data-slider-id="5">
+                    <div class="owl-thumbs row mb-3 d-none d-md-flex w-100 mx-auto" data-slider-id="5">
                         @foreach ($headlineWp as $headline)
                             <div class="owl-thumb-item col-3 p-0">
                                 <div class="card">
@@ -186,7 +186,7 @@
                                 <x-topik_khusus :$topikKhusus />
 
                                 <!-- Ad Banner 728 -->
-                                <div class="text-center mt-4">
+                                <div class="text-center mt-3">
                                     <a href="#">
                                         <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
                                             alt="">
@@ -200,12 +200,14 @@
             </div> <!-- end slider -->
 
             <!-- Sidebar -->
+
             <x-sidebar />
             <!-- end sidebar -->
+
         </div> <!-- end content -->
 
         {{-- row bawah --}}
-        <div class="row row-20">
+        <div class="row row-20 row__bawah">
             <div class="col-lg-8 order-lg-2">
                 <section>
                     <div class="row">

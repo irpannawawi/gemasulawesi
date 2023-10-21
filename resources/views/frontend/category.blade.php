@@ -111,7 +111,7 @@
         </div> <!-- end content -->
 
         {{-- row bawah --}}
-        <div class="row row-20">
+        <div class="row row-20 mt-3">
             <div class="col-lg-8 order-lg-2">
                 <section>
                     <div class="row">

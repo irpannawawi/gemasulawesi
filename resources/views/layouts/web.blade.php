@@ -334,15 +334,16 @@
 
                         <div class="col-lg-2 col-md-6">
                             <aside class="widget widget_nav_menu">
-                                <h4 class="widget-title">Useful Links</h4>
-                                <ul>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">News</a></li>
-                                    <li><a href="categories.html">Advertise</a></li>
-                                    <li><a href="shortcodes.html">Support</a></li>
-                                    <li><a href="shortcodes.html">Features</a></li>
-                                    <li><a href="shortcodes.html">Contact</a></li>
-                                </ul>
+                                {{-- <h4 class="widget-title">Useful Links</h4> --}}
+                                <div class="footer__wrap">
+                                    @foreach ($rubriks as $rubrik)
+                                        <ul>
+                                            <li><a
+                                                    href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}">{{ $rubrik->rubrik_name }}</a>
+                                            </li>
+                                        </ul>
+                                    @endforeach
+                                </div>
                             </aside>
                         </div>
 
@@ -438,6 +439,7 @@
             messaging.requestPermission().then(function() {
                 return messaging.getToken()
             }).then(function(token) {
+
                 let url = "{{ route('subscribe') }}";
                 let data = {
                     _method: "PATCH",
@@ -447,7 +449,6 @@
 
                 $.post(url, data, function(data) {
                     console.log(data)
-
                 })
 
             }).catch(function(err) {
@@ -456,6 +457,7 @@
         }
 
         initFirebaseMessagingRegistration();
+
 
         messaging.onMessage(function (payload) {
         const title = payload.notification.title;

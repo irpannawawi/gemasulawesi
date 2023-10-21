@@ -96,7 +96,7 @@
                                     <span class="entry__tags-label">Tags:</span>
 
                                     @php
-                                        if ($post->tags != null and $post->tags != 'null' ) {
+                                        if ($post->tags != null and $post->tags != 'null') {
                                             foreach (json_decode($post->tags) as $tags) {
                                                 $tag = \App\Models\Tags::find($tags);
                                                 echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
@@ -126,74 +126,6 @@
                                         class="fa-brands fa-telegram"></i></a>
                             </div>
                         </div>
-
-                        <!-- Slider -->
-                        <div id="owl-posts-3-items" class="owl-carousel owl-theme owl-carousel--arrows-outside">
-                            <article class="entry thumb thumb--size-1">
-                                <div class="entry__img-holder thumb__img-holder"
-                                    style="background-image: url('img/content/carousel/carousel_post_1.jpg');">
-                                    <div class="bottom-gradient"></div>
-                                    <div class="thumb-text-holder">
-                                        <h2 class="thumb-entry-title">
-                                            <a href="single-post.html">9 Things to Consider Before Accepting a New Job</a>
-                                        </h2>
-                                    </div>
-                                    <a href="single-post.html" class="thumb-url"></a>
-                                </div>
-                            </article>
-                            <article class="entry thumb thumb--size-1">
-                                <div class="entry__img-holder thumb__img-holder"
-                                    style="background-image: url('img/content/carousel/carousel_post_2.jpg');">
-                                    <div class="bottom-gradient"></div>
-                                    <div class="thumb-text-holder">
-                                        <h2 class="thumb-entry-title">
-                                            <a href="single-post.html">Gov’t Toughens Rules to Ensure 3rd Telco Player
-                                                Doesn’t Slack Off</a>
-                                        </h2>
-                                    </div>
-                                    <a href="single-post.html" class="thumb-url"></a>
-                                </div>
-                            </article>
-                            <article class="entry thumb thumb--size-1">
-                                <div class="entry__img-holder thumb__img-holder"
-                                    style="background-image: url('img/content/carousel/carousel_post_3.jpg');">
-                                    <div class="bottom-gradient"></div>
-                                    <div class="thumb-text-holder">
-                                        <h2 class="thumb-entry-title">
-                                            <a href="single-post.html">(Infographic) Is Work-Life Balance Even
-                                                Possible?</a>
-                                        </h2>
-                                    </div>
-                                    <a href="single-post.html" class="thumb-url"></a>
-                                </div>
-                            </article>
-                            <article class="entry thumb thumb--size-1">
-                                <div class="entry__img-holder thumb__img-holder"
-                                    style="background-image: url('img/content/carousel/carousel_post_4.jpg');">
-                                    <div class="bottom-gradient"></div>
-                                    <div class="thumb-text-holder">
-                                        <h2 class="thumb-entry-title">
-                                            <a href="single-post.html">Is Uber Considering To Sell its Southeast Asia
-                                                Business to Grab?</a>
-                                        </h2>
-                                    </div>
-                                    <a href="single-post.html" class="thumb-url"></a>
-                                </div>
-                            </article>
-                            <article class="entry thumb thumb--size-1">
-                                <div class="entry__img-holder thumb__img-holder"
-                                    style="background-image: url('img/content/carousel/carousel_post_2.jpg');">
-                                    <div class="bottom-gradient"></div>
-                                    <div class="thumb-text-holder">
-                                        <h2 class="thumb-entry-title">
-                                            <a href="single-post.html">Gov’t Toughens Rules to Ensure 3rd Telco Player
-                                                Doesn’t Slack Off</a>
-                                        </h2>
-                                    </div>
-                                    <a href="single-post.html" class="thumb-url"></a>
-                                </div>
-                            </article>
-                        </div> <!-- end slider -->
 
                     </section> <!-- end related posts -->
 
@@ -265,12 +197,12 @@
                                         </div>
                                         <div class="post-list-small__body">
                                             <h3 class="post-list-small__entry-title">
-                                                <a
-                                                    href="{{ route('singlePost', [
-                                                        'rubrik' => $post->rubrik->rubrik_name,
-                                                        'post_id' => $post->post_id,
-                                                        'slug' => $post->slug,
-                                                    ]) }}">{{ $post->title }}</a>
+                                                <a href="{{ route('singlePost', [
+                                                    'rubrik' => $post->rubrik->rubrik_name,
+                                                    'post_id' => $post->post_id,
+                                                    'slug' => $post->slug,
+                                                ]) }}"
+                                                    class="post-title">{{ $post->title }}</a>
                                             </h3>
                                             <p class="bt__date">14 September 2023, 13:56 WIB </p>
                                         </div>

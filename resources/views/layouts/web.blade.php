@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="canonical" href="https://www.gemasulawesi.com" />
 
     <meta name="robots" content="index,follow" />
@@ -406,59 +406,68 @@
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-    apiKey: "AIzaSyB3UbArxJvs-eDcnq-dG5vk438-1kcx4jI",
-    authDomain: "notif-29ba1.firebaseapp.com",
-    databaseURL: "https://notif-29ba1.firebaseio.com",
-    projectId: "notif-29ba1",
-    storageBucket: "notif-29ba1.appspot.com",
-    messagingSenderId: "528841843805",
-    appId: "1:528841843805:web:b6a4adfc2bfb3b5765d9b4",
-    measurementId: "G-XD29THY8S3"
-  };
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB3UbArxJvs-eDcnq-dG5vk438-1kcx4jI",
+            authDomain: "notif-29ba1.firebaseapp.com",
+            databaseURL: "https://notif-29ba1.firebaseio.com",
+            projectId: "notif-29ba1",
+            storageBucket: "notif-29ba1.appspot.com",
+            messagingSenderId: "528841843805",
+            appId: "1:528841843805:web:b6a4adfc2bfb3b5765d9b4",
+            measurementId: "G-XD29THY8S3"
+        };
 
-//   // Initialize Firebase
-//   const app = initializeApp(firebaseConfig);
-//   const analytics = getAnalytics(app);
+        //   // Initialize Firebase
+        //   const app = initializeApp(firebaseConfig);
+        //   const analytics = getAnalytics(app);
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-    const messaging = firebase.messaging();
+        const messaging = firebase.messaging();
 
-    function initFirebaseMessagingRegistration() {
-        messaging.requestPermission().then(function () {
-            return messaging.getToken()
-        }).then(function(token) {
-            
-            axios.post("{{ route('subscribe') }}",{
-                _method:"PATCH",
-                token
-            }).then(({data})=>{
-                console.log(data)
-            }).catch(({response:{data}})=>{
-                console.error(data)
-            })
+        function initFirebaseMessagingRegistration() {
+            messaging.requestPermission().then(function() {
+                return messaging.getToken()
+            }).then(function(token) {
+                let url = "{{ route('subscribe') }}";
+                let data = {
+                    _method: "PATCH",
+                    token: token,
+                    _token: "{{csrf_token()}}"
+                }
 
-        }).catch(function (err) {
-            console.log(`Token Error :: ${err}`);
+                $.post(url, data, function(data) {
+                    console.log(data)
+
+                })
+
+            }).catch(function(err) {
+                console.log(`Token Error :: ${err}`);
+            });
+        }
+
+        initFirebaseMessagingRegistration();
+
+        messaging.onMessage(function({
+            data: {
+                body,
+                title
+            }
+        }) {
+            new Notification(title, {
+                body
+            });
         });
-    }
-
-    initFirebaseMessagingRegistration();
-  
-    messaging.onMessage(function({data:{body,title}}){
-        new Notification(title, {body});
-    });
-</script>
+    </script>
 
 </body>
 

@@ -334,15 +334,16 @@
 
                         <div class="col-lg-2 col-md-6">
                             <aside class="widget widget_nav_menu">
-                                <h4 class="widget-title">Useful Links</h4>
-                                <ul>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">News</a></li>
-                                    <li><a href="categories.html">Advertise</a></li>
-                                    <li><a href="shortcodes.html">Support</a></li>
-                                    <li><a href="shortcodes.html">Features</a></li>
-                                    <li><a href="shortcodes.html">Contact</a></li>
-                                </ul>
+                                {{-- <h4 class="widget-title">Useful Links</h4> --}}
+                                <div class="footer__wrap">
+                                    @foreach ($rubriks as $rubrik)
+                                        <ul>
+                                            <li><a
+                                                    href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}">{{ $rubrik->rubrik_name }}</a>
+                                            </li>
+                                        </ul>
+                                    @endforeach
+                                </div>
                             </aside>
                         </div>
 
@@ -406,59 +407,72 @@
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
+    <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
 
-<script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-    apiKey: "AIzaSyB3UbArxJvs-eDcnq-dG5vk438-1kcx4jI",
-    authDomain: "notif-29ba1.firebaseapp.com",
-    databaseURL: "https://notif-29ba1.firebaseio.com",
-    projectId: "notif-29ba1",
-    storageBucket: "notif-29ba1.appspot.com",
-    messagingSenderId: "528841843805",
-    appId: "1:528841843805:web:b6a4adfc2bfb3b5765d9b4",
-    measurementId: "G-XD29THY8S3"
-  };
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB3UbArxJvs-eDcnq-dG5vk438-1kcx4jI",
+            authDomain: "notif-29ba1.firebaseapp.com",
+            databaseURL: "https://notif-29ba1.firebaseio.com",
+            projectId: "notif-29ba1",
+            storageBucket: "notif-29ba1.appspot.com",
+            messagingSenderId: "528841843805",
+            appId: "1:528841843805:web:b6a4adfc2bfb3b5765d9b4",
+            measurementId: "G-XD29THY8S3"
+        };
 
-//   // Initialize Firebase
-//   const app = initializeApp(firebaseConfig);
-//   const analytics = getAnalytics(app);
+        //   // Initialize Firebase
+        //   const app = initializeApp(firebaseConfig);
+        //   const analytics = getAnalytics(app);
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-    const messaging = firebase.messaging();
+        const messaging = firebase.messaging();
 
-    function initFirebaseMessagingRegistration() {
-        messaging.requestPermission().then(function () {
-            return messaging.getToken()
-        }).then(function(token) {
-            
-            axios.post("{{ route('subscribe') }}",{
-                _method:"PATCH",
-                token
-            }).then(({data})=>{
-                console.log(data)
-            }).catch(({response:{data}})=>{
-                console.error(data)
-            })
+        function initFirebaseMessagingRegistration() {
+            messaging.requestPermission().then(function() {
+                return messaging.getToken()
+            }).then(function(token) {
 
-        }).catch(function (err) {
-            console.log(`Token Error :: ${err}`);
+                axios.post("{{ route('subscribe') }}", {
+                    _method: "PATCH",
+                    token
+                }).then(({
+                    data
+                }) => {
+                    console.log(data)
+                }).catch(({
+                    response: {
+                        data
+                    }
+                }) => {
+                    console.error(data)
+                })
+
+            }).catch(function(err) {
+                console.log(`Token Error :: ${err}`);
+            });
+        }
+
+        initFirebaseMessagingRegistration();
+
+        messaging.onMessage(function({
+            data: {
+                body,
+                title
+            }
+        }) {
+            new Notification(title, {
+                body
+            });
         });
-    }
-
-    initFirebaseMessagingRegistration();
-  
-    messaging.onMessage(function({data:{body,title}}){
-        new Notification(title, {body});
-    });
-</script>
+    </script>
 
 </body>
 

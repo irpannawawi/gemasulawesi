@@ -177,7 +177,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @foreach ($beritaTerkini as $key)
+                        @foreach ($beritaTerkini as $post)
                             <ul class="post-list-small post-list-small--2 mb-32">
                                 <li class="post-list-small__item">
                                     <article class="post-list-small__entry clearfix">
@@ -189,7 +189,7 @@
                                                         'post_id' => $post->post_id,
                                                         'slug' => $post->slug,
                                                     ]) }}">
-                                                    <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
+                                                    <img data-src="{{str_replace('../',url('/').'/',get_string_between($post->article, '<img src="', '">'))}}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                         class=" lazyload">
                                                 </a>
@@ -204,7 +204,7 @@
                                                 ]) }}"
                                                     class="post-title">{{ $post->title }}</a>
                                             </h3>
-                                            <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                            <p class="bt__date">14 September 2023, 13:56 WIB </p>
                                         </div>
                                     </article>
                                 </li>

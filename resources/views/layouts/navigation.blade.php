@@ -2,7 +2,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('dashboard') }}" class="brand-link">
-        <img src="{{ url('assets/AdminLTE') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+        <img src="{{ Storage::url('public/avatars/'.Auth::user()->avatar) }}" alt="avatar"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">Gemasulawesi</span>
     </a>
@@ -140,7 +140,7 @@
                   </li>
                 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('pushNotification.index')}}" class="nav-link">
                         <i class="nav-icon fa fa-envelope"></i>
                         <p>
                             Notification
@@ -198,6 +198,16 @@
                         <i class="nav-icon fa fa-users"></i>
                         <p>
                             Administartor
+                        </p>
+                    </a>
+                </li>
+
+                
+                <li class="nav-item">
+                    <a href="{{route('logout')}}" class="nav-link">
+                        <i class="nav-icon fas fa-key"></i>
+                        <p>
+                            Logout
                         </p>
                     </a>
                 </li>

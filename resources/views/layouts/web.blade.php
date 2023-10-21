@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="canonical" href="https://www.gemasulawesi.com" />
 
     <meta name="robots" content="index,follow" />
@@ -440,19 +440,15 @@
                 return messaging.getToken()
             }).then(function(token) {
 
-                axios.post("{{ route('subscribe') }}", {
+                let url = "{{ route('subscribe') }}";
+                let data = {
                     _method: "PATCH",
-                    token
-                }).then(({
-                    data
-                }) => {
+                    token: token,
+                    _token: "{{csrf_token()}}"
+                }
+
+                $.post(url, data, function(data) {
                     console.log(data)
-                }).catch(({
-                    response: {
-                        data
-                    }
-                }) => {
-                    console.error(data)
                 })
 
             }).catch(function(err) {
@@ -462,16 +458,15 @@
 
         initFirebaseMessagingRegistration();
 
-        messaging.onMessage(function({
-            data: {
-                body,
-                title
-            }
-        }) {
-            new Notification(title, {
-                body
-            });
-        });
+
+        messaging.onMessage(function (payload) {
+        const title = payload.notification.title;
+        const options = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(title, options);
+    });
     </script>
 
 </body>

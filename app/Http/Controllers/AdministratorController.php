@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdministratorController extends Controller
 {
@@ -17,40 +18,66 @@ class AdministratorController extends Controller
 
     public function insert(Request $request)
     {
-        $filename = date('dmyHis').'.jpg';
-        $galeryData = [
-            'galery_name'=>$request->galery_name,
-            'galery_description'=>$request->galery_description,
-            'galery_thumbnail'=>$filename
-        ];
+        if($request->password === $request->confirm_password) {
+            if(!empty($_POST['avatar'])){
+                $filename = date('dmyHis').'.jpg';
+                // upload image
+                $path = $request->file('avatar')->storeAs('public/avatars', $filename);
+                
+            }else{
+                $filename = 'default.jpg';
+            }
 
-        // upload image
-        $path = $request->file('galery_thumbnail')->storeAs('public/galery-images', $filename);
-
-        if(User::create($galeryData))
-        {
-            return redirect()->back()->with('message-success', 'Berhasil menambah user');
+            $user = User::create([
+                'username'=> $request->username,
+                'display_name'=> $request->display_name,
+                'email'=> $request->email,
+                'password'=> Hash::make($request->password),
+                'role'=> $request->role,
+                'avatar'=> $filename,
+            ]);
+            if($user)
+            {
+                return redirect()->back()->with('message-success', 'Berhasil menambah user');
+            }
+        }else{
+            return redirect()->back()->with('message-error', 'Gagal menambah user');
         }
     }
 
-    public function edit(Request $request)
+    public function edit($id){
+        $user = User::find($id);
+        return view('administrator.edit', compact('user'));
+    }
+    public function update(Request $request)
     {
-        $galery = User::find($request->id);
-        if($request->file('galery_thumbnail')){
-            $filename = date('dmYHis').'.jpg';
-            $request->file('galery_thumbnail')->storeAs('public/galery-images', $filename);
-            // remove old image
-            Storage::delete('public/galery-images/'.$galery->galery_thumbnail);
-            $galery->galery_thumbnail = $filename;
+        $user = User::find($request->id);
+        // jika password diisi
+        if($request->password!=null){
+            if($request->password === $request->confirm_password) {
+                $user->password = Hash::make($request->password);
+            }else{
+                return redirect()->route('users')->with('message-error', 'Gagal merubah user');
+            }
         }
+            if($request->hasFile('avatar')){
+                $filename = date('dmyHis').'.jpg';
+                // upload image
+                $path = $request->file('avatar')->storeAs('public/avatars', $filename);
+                
+            }else{
+                $filename = $user->avatar;
+            }
 
-        $galery->galery_name = $request->galery_name;
-        $galery->galery_description = $request->galery_description;
-
-        if($galery->save())
-        {
-            return redirect()->back()->with('message-success', 'Berhasil merubah user');
-        }
+                $user->username =  $request->username;
+                $user->display_name =  $request->display_name;
+                $user->email =  $request->email;
+                $user->role =  $request->role;
+                $user->avatar =  $filename;
+            if($user->save())
+            {
+                return redirect()->route('users')->with('message-success', 'Berhasil merubah user');
+            }
     }
 
     public function delete($id)

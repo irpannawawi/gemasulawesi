@@ -213,7 +213,7 @@ ul {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   margin-top: 0;
   margin-bottom: 10px;
   color: #171821;
@@ -643,7 +643,7 @@ select::-ms-expand {
 
 label {
   color: #171821;
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 13px;
   font-weight: 700;
   display: inline-block;
@@ -1974,7 +1974,7 @@ img.mfp-img {
   margin-right: 5px;
 }
 .entry__meta-category {
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   margin-bottom: 3px;
@@ -2049,7 +2049,7 @@ img.mfp-img {
   left: 16px;
   padding: 8px;
   text-align: center;
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 .entry-date-label__weekday, .entry-date-label__month {
   font-size: 8px;
@@ -2578,7 +2578,7 @@ img.mfp-img {
   float: right;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   color: #54555E;
   font-size: 11px;
   line-height: 28px;
@@ -3377,7 +3377,7 @@ figcaption {
   border: 5px solid #fff;
   font-size: 36px;
   font-weight: 700;
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   width: 100px;
   height: 100px;
   line-height: 90px;
@@ -3544,7 +3544,7 @@ figcaption {
   overflow: hidden;
 }
 .comment-author {
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 15px;
   display: inline-block;
   margin-bottom: 5px;
@@ -3810,7 +3810,7 @@ figcaption {
     font-size: 16px;
   }
   .nav__megamenu-list a {
-    font-family: "Montserrat", sans-serif;
+    font-family: Poppins, sans-serif;
     display: block;
     clear: both;
     padding: 4px 0;
@@ -4018,7 +4018,7 @@ header .flex-child {
   border: none;
   background-color: transparent;
   margin-bottom: 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 13px;
   color: #171821;
   border-radius: 0;
@@ -4250,7 +4250,7 @@ input.nav__search-mobile-input:-ms-input-placeholder {
   display: block;
   color: #54555E;
   padding: 12px 22px;
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 15px;
   font-weight: 600;
   transition: background 0.3s ease;
@@ -5493,7 +5493,7 @@ a img.aligncenter {
   line-height: 41px;
   font-size: 11px;
   padding: 0 24px;
-  font-family: "Montserrat", sans-serif;
+  font-family: Poppins, sans-serif;
   border: none;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -5604,7 +5604,7 @@ dd {
 /* Style Politics
 -------------------------------------------------------*/
 .style-politics {
-  font-family: "Roboto", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 .style-politics h1, .style-politics h2, .style-politics h3, .style-politics h4, .style-politics h5, .style-politics h6 {
   letter-spacing: normal;
@@ -5625,7 +5625,7 @@ dd {
 .style-politics .entry__tags a,
 .style-politics .entry-date-label,
 .style-politics label {
-  font-family: "Roboto", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 .style-politics .widget-title,
 .style-politics .section-title {
@@ -5782,11 +5782,11 @@ dd {
 /* Style Videos
 -------------------------------------------------------*/
 .style-videos {
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 .style-videos h1, .style-videos h2, .style-videos h3, .style-videos h4, .style-videos h5, .style-videos h6 {
   letter-spacing: normal;
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
   font-weight: 500;
 }
 .style-videos .section-title,
@@ -5802,7 +5802,7 @@ dd {
 .style-videos .entry__tags a,
 .style-videos .entry-date-label,
 .style-videos label {
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 .style-videos .nav__dropdown.active {
   background-color: #2D95E3;
@@ -5814,7 +5814,7 @@ dd {
 /* Style Music
 -------------------------------------------------------*/
 .style-music {
-  font-family: "Roboto", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 .style-music h1, .style-music h2, .style-music h3, .style-music h4, .style-music h5, .style-music h6 {
   letter-spacing: normal;
@@ -5826,7 +5826,7 @@ dd {
   font-family: "Rubik", sans-serif;
 }
 .style-music p {
-  font-family: "Roboto", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 .style-music .btn,
 .style-music .nav__menu > li > a,
@@ -5836,7 +5836,7 @@ dd {
 .style-music .widget_tag_cloud a,
 .style-music .entry__tags a,
 .style-music label {
-  font-family: "Roboto", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 .style-music .card__body {
   border: 1px solid #E3E4E8;

@@ -4,51 +4,76 @@
     use Illuminate\Support\Str;
     use Carbon\Carbon;
     $breakingNews = App\Models\Breakingnews::get();
+    use App\Models\Rubrik;
 @endphp
 
 <head>
-    <title>gemasulawesi.com Berita Terkini Indonesia Hari Ini</title>
-
     <meta charset="utf-8">
-    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="canonical" href="https://www.gemasulawesi.com" />
+
+    <meta name="robots" content="index,follow" />
+    <meta name="googlebot-news" content="index,follow" />
+    <meta name="googlebot" content="index,follow" />
+    <meta name="language" content="id" />
+    <meta name="geo.country" content="id" />
+    <meta http-equiv="content-language" content="In-Id" />
+    <meta name="geo.placename" content="Indonesia" />
+    <!-- s: fb meta -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://www.gemasulawesi.com" />
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="fb:app_id" content="" />
+    <meta property="fb:pages" content="" />
+    <!-- e: fb meta -->
+
+    <!-- S:tweeter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@promedia" />
+    <meta name="twitter:creator" content="@promedia">
+    <meta name="twitter:title" content="Teras Info - Bijak Bernarasi" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="" />
+    <!-- E:tweeter card -->
+
+    <meta name="content_PublishedDate" content="" />
+    <meta name="content_Category" content="" />
+    <meta name="content_Author" content="" />
+    <meta name="content_Editor" content="" />
+    <meta name="content_ID" content="" />
+    <meta name="content_Type" content="" />
+    <meta name="content_Source" content="" />
+    <meta name="content_Lipsus" content="" />
+    <meta name="content_Tag" content="" />
+    <meta name="content_AuthorID" content="" />
+    <meta name="content_EditorID" content="" />
+
+    <title>gemasulawesi.com Berita Terkini Indonesia Hari Ini</title>
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
-
     <!-- Css -->
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/custom.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
-
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ url('assets/frontend') }}/img/favicon.png">
     <link rel="apple-touch-icon" href="{{ url('assets/frontend') }}/img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="{{ url('assets/frontend') }}/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="{{ url('assets/frontend') }}/img/apple-touch-icon-114x114.png">
-
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
-
-    <style>
-        @media(max-width:480px) {
-            .post-title {
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                /* display: inline-block; */
-                width: 100%;
-            }
-        }
-    </style>
 </head>
 
 <body class="home style-politics ">
@@ -68,7 +93,7 @@
         <!-- Nav -->
         <nav class="sidenav__menu-container">
             @php
-                $rubriks = \App\Models\Rubrik::get();
+                $rubriks = Rubrik::get();
             @endphp
             <ul class="sidenav__menu" role="menubar">
                 <!-- Categories -->
@@ -182,7 +207,7 @@
                             <!-- Side Menu Button -->
                             <div class="nav__home">
                                 <a href="{{ url('/') }}" title="Home">
-                                    <span class="icon icons-home"></span>
+                                    <i class="icon fa fa-home"></i>
                                 </a>
                             </div>
 
@@ -325,6 +350,41 @@
                 </div>
             </div> <!-- end container -->
         </footer> <!-- end footer -->
+        {{-- <footer class="footer">
+            <div class="row container">
+                <div class="col-offset-fluid">
+                    <div class="col-bs10-4">
+                        <div class="footer__logo">
+                            <a href="{{ url('/') }}"><img height="240" width="240"
+                                    src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
+                                    srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
+                                    alt=""></a>
+                        </div>
+                        <div class="footer__contact">
+                            <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi<br>Kabupaten Parigi moutong Provinsi
+                                Sulawesi tengah. <br><br> 081342184833 <br> email@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="col-bs10-6">
+                        <div class="col-offset-fluid">
+                            <div class="col-bs10-3">
+                                <div class="footer__menu">
+                                    @php
+                                        $rubriks = \App\Models\Rubrik::get();
+                                    @endphp
+                                    <div class="footer__item">
+                                        @foreach ($rubriks as $rubrik)
+                                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                                class="footer__link">{{ $rubrik->rubrik_name }}</a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer> --}}
 
         <div id="back-to-top">
             <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>

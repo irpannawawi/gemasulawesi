@@ -161,7 +161,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="post-list-small__body">
-                                                    <ul class="entry__meta">
+                                                    <ul class="entry__meta category">
                                                         <li>
                                                             <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
                                                                 class="entry__meta-category">{{ $post->rubrik->rubrik_name }}</a>

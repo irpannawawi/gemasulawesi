@@ -142,7 +142,7 @@
                     <div class="newsticker">
                         <ul class="newsticker__list">
                             @foreach ($breakingNews as $news)
-                                <li class="newsticker__item"><a
+                                <li class="newsticker__item"><i class="fa-solid fa-newspaper"></i> <a
                                         href="{{ route('singlePost', [
                                             'rubrik' => $news->post->rubrik->rubrik_name,
                                             'post_id' => $news->post->post_id,
@@ -451,7 +451,7 @@
                 let data = {
                     _method: "PATCH",
                     token: token,
-                    _token: "{{csrf_token()}}"
+                    _token: "{{ csrf_token() }}"
                 }
 
                 $.post(url, data, function(data) {
@@ -466,14 +466,14 @@
         initFirebaseMessagingRegistration();
 
 
-        messaging.onMessage(function (payload) {
-        const title = payload.notification.title;
-        const options = {
-            body: payload.notification.body,
-            icon: payload.notification.icon,
-        };
-        new Notification(title, options);
-    });
+        messaging.onMessage(function(payload) {
+            const title = payload.notification.title;
+            const options = {
+                body: payload.notification.body,
+                icon: payload.notification.icon,
+            };
+            new Notification(title, options);
+        });
     </script>
 
 </body>

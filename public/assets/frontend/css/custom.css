@@ -124,6 +124,7 @@
     top: 5%;
     letter-spacing: 3px;
     padding: 5px 24px;
+    border-radius: 0 20px 20px 0;
 }
 
 .owl-thumb-item {
@@ -321,9 +322,9 @@
     font-weight: 600;
     font-style: italic;
     position: relative;
-    background-color: #bbbbbb;
+    background-color: #e0e0e0;
     border-radius: 10px;
-    color: rgb(225, 228, 244);
+    color: rgb(22, 22, 22);
 }
 
 .most__right {
@@ -352,9 +353,9 @@
     margin: 0;
 }
 
-.most__item:hover .most__number {
+/* .most__item:hover .most__number {
     color: #171821 !important;
-}
+} */
 
 .most__item:hover .most__title {
     color: #03f49b;
@@ -517,6 +518,14 @@
         /* display: inline-block; */
         width: 100%;
     }
+}
+
+.entry__meta > li{
+    border-radius: 10px;
+}
+
+.category{
+    text-decoration: underline;
 }
 
 /*-------------------------------------------------------*/

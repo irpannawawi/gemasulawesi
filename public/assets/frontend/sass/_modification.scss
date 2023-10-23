@@ -3,34 +3,34 @@
 }
 
 .pilihan-editor {
-    @media only screen and (min-width: 768px)  {
-        border: 1px solid #E3E4E8;
+    @media only screen and (min-width: 768px) {
+        border: 1px solid #e3e4e8;
         padding: 20px;
     }
 
-    .entry{
+    .entry {
         margin-bottom: 0px;
     }
 
-    .wrap-owl{
+    .wrap-owl {
         position: relative;
 
-        .wrap-btn-slider{
+        .wrap-btn-slider {
             position: absolute;
             z-index: 99;
             width: 100%;
             top: 18%;
-            .btn-slider{
+            .btn-slider {
                 display: flex;
                 justify-content: space-between;
 
-                button{
+                button {
                     padding: 3px 12px;
                     border-radius: 20px;
                     border: none;
 
-                    &:hover{
-                        background: #34C5CB;
+                    &:hover {
+                        background: #03f49b;
                         color: white;
                     }
                 }
@@ -39,16 +39,16 @@
     }
 }
 
-.owl-thumb-item{
+.owl-thumb-item {
     background: black;
     color: white;
     border: 0.5px solid white;
-    &.active{
+    &.active {
         // outline: 3px solid white;
-        border-top: 3px solid #34c5cb;
+        border-top: 3px solid #03f49b;
     }
-    .thumb-item{
-        a{
+    .thumb-item {
+        a {
             // text-decoration: none;
             color: white;
             text-align: left !important;
@@ -56,20 +56,20 @@
     }
 }
 
-.owl-dots{
+.owl-dots {
     position: absolute;
     bottom: 6%;
     right: 4%;
     z-index: 99;
-    .owl-dot{
-        span{
+    .owl-dot {
+        span {
             height: 10px;
             width: 10px;
             margin: 5px;
         }
         &.active {
-            span{
-                background-color: #34c5cb;
+            span {
+                background-color: #03f49b;
             }
         }
     }

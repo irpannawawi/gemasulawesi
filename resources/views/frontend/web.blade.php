@@ -226,8 +226,8 @@
                                                             'slug' => $post->slug,
                                                         ]) }}">
                                                         <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png"
-                                                            alt="" class=" lazyload">
+                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                            class=" lazyload">
                                                     </a>
                                                 </div>
                                             </div>

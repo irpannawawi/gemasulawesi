@@ -28,8 +28,8 @@
 .video-playlist__list-item--active .video-playlist__list-item-title,
 .video-playlist__list-item:hover .video-playlist__list-item-title,
 .comment-reply:hover,
-.entry-navigation a:hover{
-  color: #34c5cb;
+.entry-navigation a:hover {
+    color: #03f49b;
 }
 
 .btn-color,
@@ -53,16 +53,17 @@
 .style-videos .nav__dropdown.active,
 .final-review__score-number,
 .final-review__text-holder:before {
-  background-color: #34c5cb;
+    background-color: #03f49b;
 }
 
 .widget_tag_cloud a:hover,
 .entry__tags a:hover {
-  background-color: #34c5cb !important;
-  -webkit-transition: all 0.2s ease-in;
-	transition: all 0.2s ease-in;
+    background-color: #03f49b !important;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
 }
 
-input:focus, textarea:focus {
-  border-color: #34c5cb;
+input:focus,
+textarea:focus {
+    border-color: #03f49b;
 }

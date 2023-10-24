@@ -2363,9 +2363,8 @@ img.mfp-img {
     text-align: left;
 }
 .thumb-text-holder--2 .thumb-entry-title {
-    font-size: 34px;
-    margin-top: 14px;
-    margin-bottom: 8px;
+    font-size: 30px;
+    margin: 10px 0 30px;
 }
 @media only screen and (max-width: 767px) {
     .thumb-text-holder--2 .thumb-entry-title {
@@ -2496,7 +2495,7 @@ img.mfp-img {
 }
 .thumb-entry-title {
     color: #fff;
-    font-size: 32px;
+    font-size: 30px;
     line-height: 1.4;
 }
 .thumb-entry-title:hover a,
@@ -5917,27 +5916,8 @@ header .flex-child {
     height: 70%;
     bottom: 0;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.7);
-    /* Old browsers */
-    /* FF3.6+ */
-    /* Chrome,Safari4+ */
-    /* Chrome10+,Safari5.1+ */
-    /* Opera 11.10+ */
-    /* IE10+ */
-    background: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        from(rgba(0, 0, 0, 0.7)),
-        to(transparent)
-    );
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.7) 0%,
-        transparent 100%
-    );
-    /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 );
+    background: linear-gradient(90deg,#000,transparent);
+    background: -webkit-linear-gradient(90deg,#000,transparent);
     /* IE6-9 */
 }
 

@@ -53,7 +53,8 @@
 .entry__tags a:hover,
 .style-videos .nav__dropdown.active,
 .final-review__score-number,
-.final-review__text-holder:before {
+.final-review__text-holder:before,
+.headline {
     background-color: #03f49b;
 }
 

@@ -119,12 +119,11 @@
     text-transform: uppercase;
     font-style: italic;
     font-weight: 700;
-    font-size: 20px;
-    background-color: #000;
+    font-size: 18px;
     top: 5%;
     letter-spacing: 3px;
-    padding: 5px 24px;
-    border-radius: 0 20px 20px 0;
+    padding: 4px 18px;
+    /* border-radius: 0 20px 20px 0; */
 }
 
 .owl-thumb-item {

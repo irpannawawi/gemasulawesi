@@ -114,16 +114,20 @@
         </nav>
 
         <div class="socials sidenav__socials">
-            <a class="social social-facebook" href="#" target="_blank" aria-label="facebook">
+            <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/" target="_blank"
+                aria-label="facebook">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <a class="social social-twitter" href="#" target="_blank" aria-label="twitter">
+            <a class="social social-twitter" href="https://twitter.com/gemasulawesi" target="_blank"
+                aria-label="twitter">
                 <i class="fa-brands fa-square-x-twitter"></i>
             </a>
-            <a class="social social-youtube" href="#" target="_blank" aria-label="youtube">
+            <a class="social social-youtube" href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg"
+                target="_blank" aria-label="youtube">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a class="social social-instagram" href="#" target="_blank" aria-label="instagram">
+            <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/" target="_blank"
+                aria-label="instagram">
                 <i class="fa-brands fa-square-instagram"></i>
             </a>
         </div>
@@ -184,17 +188,21 @@
                     <!-- Socials -->
                     <div class="flex-child">
                         <div class="socials socials--nobase socials--nav socials--dark justify-content-end">
-                            <a class="social social-facebook" href="#" target="_blank" aria-label="facebook">
+                            <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
+                                target="_blank" aria-label="facebook">
                                 <i class="fa-brands fa-facebook"></i>
                             </a>
-                            <a class="social social-twitter" href="#" target="_blank" aria-label="twitter">
+                            <a class="social social-twitter" href="https://twitter.com/gemasulawesi" target="_blank"
+                                aria-label="twitter">
                                 <i class="fa-brands fa-square-x-twitter"></i>
                             </a>
-                            <a class="social social-youtube" href="#" target="_blank" aria-label="youtube">
+                            <a class="social social-youtube"
+                                href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg" target="_blank"
+                                aria-label="youtube">
                                 <i class="fa-brands fa-youtube"></i>
                             </a>
-                            <a class="social social-instagram" href="#" target="_blank"
-                                aria-label="instagram">
+                            <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
+                                target="_blank" aria-label="instagram">
                                 <i class="fa-brands fa-square-instagram"></i>
                             </a>
                         </div>
@@ -325,16 +333,23 @@
                                     </script> Gema Sulawesi
                                 </p>
                                 <div class="socials socials--medium socials--rounded">
-                                    <a href="#" class="social social-facebook" aria-label="facebook"><i
-                                            class="fa-brands fa-facebook-f"></i></a>
-                                    <a href="#" class="social social-twitter" aria-label="twitter"><i
-                                            class="fa-brands fa-x-twitter"></i></a>
-                                    <a href="#" class="social social-youtube" aria-label="youtube"><i
-                                            class="fa-brands fa-youtube"></i></a>
-                                    <a href="#" class="social social-instagram" aria-label="instagram"><i
-                                            class="ui-instagram"></i></a>
-                                    <a href="#" class="social social-telegram" aria-label="instagram"><i
-                                            class="fa-brands fa-telegram"></i></a>
+                                    <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
+                                        target="_blank" aria-label="facebook">
+                                        <i class="fa-brands fa-facebook"></i>
+                                    </a>
+                                    <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                        target="_blank" aria-label="twitter">
+                                        <i class="fa-brands fa-square-x-twitter"></i>
+                                    </a>
+                                    <a class="social social-youtube"
+                                        href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg"
+                                        target="_blank" aria-label="youtube">
+                                        <i class="fa-brands fa-youtube"></i>
+                                    </a>
+                                    <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
+                                        target="_blank" aria-label="instagram">
+                                        <i class="fa-brands fa-square-instagram"></i>
+                                    </a>
                                 </div>
                             </aside>
                         </div>
@@ -394,9 +409,9 @@
             </div>
         </footer> --}}
 
-        <div id="back-to-top">
+        {{-- <div id="back-to-top">
             <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
-        </div>
+        </div> --}}
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->

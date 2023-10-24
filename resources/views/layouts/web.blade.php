@@ -64,11 +64,18 @@
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/custom.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
+
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ url('assets/frontend') }}/img/favicon.png">
-    <link rel="apple-touch-icon" href="{{ url('assets/frontend') }}/img/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="{{ url('assets/frontend') }}/img/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{ url('assets/frontend') }}/img/apple-touch-icon-114x114.png">
+    <link rel="icon" href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-32x32.png"
+        sizes="32x32" />
+    <link rel="icon" href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-192x192.png"
+        sizes="192x192" />
+    <link rel="apple-touch-icon"
+        href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-180x180.png" />
+    <meta name="msapplication-TileImage"
+        content="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-270x270.png" />
+
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
@@ -135,7 +142,7 @@
                     <div class="newsticker">
                         <ul class="newsticker__list">
                             @foreach ($breakingNews as $news)
-                                <li class="newsticker__item"><a
+                                <li class="newsticker__item"><i class="fa-solid fa-newspaper"></i> <a
                                         href="{{ route('singlePost', [
                                             'rubrik' => $news->post->rubrik->rubrik_name,
                                             'post_id' => $news->post->post_id,
@@ -444,7 +451,7 @@
                 let data = {
                     _method: "PATCH",
                     token: token,
-                    _token: "{{csrf_token()}}"
+                    _token: "{{ csrf_token() }}"
                 }
 
                 $.post(url, data, function(data) {
@@ -459,14 +466,57 @@
         initFirebaseMessagingRegistration();
 
 
-        messaging.onMessage(function (payload) {
-        const title = payload.notification.title;
-        const options = {
-            body: payload.notification.body,
-            icon: payload.notification.icon,
-        };
-        new Notification(title, options);
-    });
+        messaging.onMessage(function(payload) {
+            const title = payload.notification.title;
+            const options = {
+                body: payload.notification.body,
+                icon: payload.notification.icon,
+            };
+            new Notification(title, options);
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const articleTitle = "{{ $article = $post->title }}"; // Gantilah dengan judul artikel yang sesuai
+            const currentURL = window.location.href;
+
+            // Share ke Facebook
+            const facebookButton = document.getElementById('share-facebook');
+            facebookButton.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+
+            // Share ke Twitter
+            const twitterButton = document.getElementById('share-twitter');
+            twitterButton.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+
+            // Share ke WhatsApp
+            const whatsappButton = document.getElementById('share-whatsapp');
+            whatsappButton.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+
+            // Share ke Telegram
+            const telegramButton = document.getElementById('share-telegram');
+            telegramButton.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+
+            // Copy ke Clipboard
+            const copyButton = document.getElementById('share-copy');
+            copyButton.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const copyText = `${articleTitle} | ${currentURL}`;
+                const textArea = document.createElement('textarea');
+                textArea.value = copyText;
+
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                alert('Artikel Berhasil disalin!');
+            });
+
+        });
     </script>
 
 </body>

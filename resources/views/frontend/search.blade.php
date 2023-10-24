@@ -44,7 +44,8 @@
                                                     </li>
                                                 </ul>
                                                 <h3 class="post-list-small__entry-title">
-                                                    <a href="#">Film horor Ready or Not adalah film horor yang dirilis
+                                                    <a href="#" class="">Film horor Ready or Not adalah film
+                                                        horor yang dirilis
                                                         pada tahun 2019 dengan menghadirkan dua bintang utama.</a>
                                                 </h3>
                                                 <p class="bt__date">Senin, 3 Juli 2023 | 21:47 WIB</p>

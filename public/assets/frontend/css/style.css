@@ -2057,6 +2057,20 @@ img.mfp-img {
     background-color: #b01a1f !important;
     color: #fff !important;
 }
+.social-whatsapp {
+    background-color: #25D366;
+}
+.social-whatsapp:hover {
+    background-color: #1cbc57 !important;
+    color: #fff !important;
+}
+.social-copy {
+    background-color: #04A4A4;
+}
+.social-copy:hover {
+    background-color: #039191 !important;
+    color: #fff !important;
+}
 .social-snapchat {
     background-color: #fffb01;
 }

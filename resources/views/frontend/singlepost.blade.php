@@ -35,16 +35,16 @@
                         </ul>
                     </div>
                     <div class="social-post socials--medium socials--rounded">
-                        <a href="#" class="social social-facebook" aria-label="facebook"><i
-                                class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="social social-twitter" aria-label="twitter"><i
-                                class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#" class="social social-youtube" aria-label="youtube"><i
-                                class="fa-brands fa-youtube"></i></a>
-                        <a href="#" class="social social-instagram" aria-label="instagram"><i
-                                class="ui-instagram"></i></a>
-                        <a href="#" class="social social-telegram" aria-label="instagram"><i
-                                class="fa-brands fa-telegram"></i></a>
+                        <a href="#" target="_blank" class="social social-facebook" id="share-facebook"
+                            aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social social-twitter" id="share-twitter"
+                            aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp"
+                            aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#" target="_blank" class="social social-telegram" id="share-telegram"
+                            aria-label="telegram"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" class="social social-copy" id="share-copy" aria-label="copy"><i
+                                class="fa-solid fa-link"></i></a>
                     </div>
                 </div>
                 <!-- Entry Image -->
@@ -114,16 +114,16 @@
                         <div class="title-wrap title-wrap--line">
                             <h4 style="text-align: center">SHARE:</h4>
                             <div class="social-post socials--medium socials--rounded">
-                                <a href="#" class="social social-facebook" aria-label="facebook"><i
-                                        class="fa-brands fa-facebook-f"></i></a>
-                                <a href="#" class="social social-twitter" aria-label="twitter"><i
-                                        class="fa-brands fa-x-twitter"></i></a>
-                                <a href="#" class="social social-youtube" aria-label="youtube"><i
-                                        class="fa-brands fa-youtube"></i></a>
-                                <a href="#" class="social social-instagram" aria-label="instagram"><i
-                                        class="ui-instagram"></i></a>
-                                <a href="#" class="social social-telegram" aria-label="instagram"><i
-                                        class="fa-brands fa-telegram"></i></a>
+                                <a href="#" target="_blank" class="social social-facebook" id="share-facebook"
+                                    aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#" target="_blank" class="social social-twitter" id="share-twitter"
+                                    aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                                <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp"
+                                    aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                                <a href="#" target="_blank" class="social social-telegram" id="share-telegram"
+                                    aria-label="telegram"><i class="fa-brands fa-telegram"></i></a>
+                                <a href="#" class="social social-copy" id="share-copy" aria-label="copy"><i
+                                        class="fa-solid fa-link"></i></a>
                             </div>
                         </div>
 
@@ -189,7 +189,7 @@
                                                         'post_id' => $post->post_id,
                                                         'slug' => $post->slug,
                                                     ]) }}">
-                                                    <img data-src="{{str_replace('../',url('/').'/',get_string_between($post->article, '<img src="', '">'))}}"
+                                                    <img data-src="{{ str_replace('../', url('/') . '/', get_string_between($post->article, '<img src="', '">')) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                         class=" lazyload">
                                                 </a>

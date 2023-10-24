@@ -475,6 +475,49 @@
             new Notification(title, options);
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const articleTitle = "{{ $article = $post->title }}"; // Gantilah dengan judul artikel yang sesuai
+            const currentURL = window.location.href;
+
+            // Share ke Facebook
+            const facebookButton = document.getElementById('share-facebook');
+            facebookButton.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+
+            // Share ke Twitter
+            const twitterButton = document.getElementById('share-twitter');
+            twitterButton.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+
+            // Share ke WhatsApp
+            const whatsappButton = document.getElementById('share-whatsapp');
+            whatsappButton.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+
+            // Share ke Telegram
+            const telegramButton = document.getElementById('share-telegram');
+            telegramButton.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+
+            // Copy ke Clipboard
+            const copyButton = document.getElementById('share-copy');
+            copyButton.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const copyText = `${articleTitle} | ${currentURL}`;
+                const textArea = document.createElement('textarea');
+                textArea.value = copyText;
+
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                alert('Artikel Berhasil disalin!');
+            });
+
+        });
+    </script>
 
 </body>
 

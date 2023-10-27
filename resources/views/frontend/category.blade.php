@@ -8,7 +8,7 @@
             <div class="col-lg-8 order-lg-2">
 
                 <section>
-                    <div class="title-post">
+                    <div class="title-list-berita">
                         <span>{{ $rubrik_name }}</span>
                     </div>
                     <div class="thumb image-single-post">
@@ -45,12 +45,12 @@
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
-                        <div class="title-post">
+                        <div class="title-list-berita">
                             <span>Berita Terkini</span>
                         </div>
                         <div class="row">
                             <div class="col">
-                                <ul class="post-list-small post-list-small--2 mb-32">
+                                <ul class="post-list-small post-list-small--2 mb-32 mt-3">
                                     @foreach ($beritaTerkini[0] as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">
@@ -69,7 +69,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="post-list-small__body">
-                                                    <ul class="entry__meta">
+                                                    <ul class="entry__meta category underline">
                                                         <li>
                                                             <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
                                                                 class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
@@ -129,13 +129,13 @@
                                                             'slug' => $post->slug,
                                                         ]) }}">
                                                         <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png"
-                                                            alt="" class=" lazyload">
+                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                            class=" lazyload">
                                                     </a>
                                                 </div>
                                             </div>
                                             <div class="post-list-small__body">
-                                                <ul class="entry__meta">
+                                                <ul class="entry__meta category underline">
                                                     <li>
                                                         <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
                                                             class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
@@ -160,8 +160,7 @@
                             <!-- Ad Banner 728 -->
                             <div class="text-center pb-48">
                                 <a href="#">
-                                    <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
-                                        alt="">
+                                    <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
                                 </a>
                             </div>
 

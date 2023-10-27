@@ -1,6 +1,6 @@
 <!-- Comments -->
 <div class="entry-comments">
-    <div class="title-post">
+    <div class="title-list-berita">
         <span>3 comments</span>
     </div>
     <ul class="comment-list">

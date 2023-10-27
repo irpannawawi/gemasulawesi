@@ -15,7 +15,7 @@
                             <span>Pencarian</span>
                         </div>
                         <!-- Search form -->
-                        <form class="form-inline search">
+                        <form class="form-inline search mt-3">
                             <i class="fas fa-search" aria-hidden="true"></i>
                             <input class="form-control form-control-sm ml-3" type="text" placeholder="Cari"
                                 aria-label="Search">
@@ -38,7 +38,7 @@
                                                 </div>
                                             </div>
                                             <div class="post-list-small__body">
-                                                <ul class="entry__meta">
+                                                <ul class="entry__meta category underline">
                                                     <li>
                                                         <a href="#link category" class="entry__meta-category">Category</a>
                                                     </li>

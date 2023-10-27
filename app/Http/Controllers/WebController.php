@@ -19,12 +19,11 @@ class WebController extends Controller
 {
     public function subscribe()
     {
-        
     }
     public function index(): View
     {
         VisitLog::save(request()->all());
-        
+
         $data['editorCohice'] = Editorcoice::get();
         $data['headlineWp'] = Headlinewp::get();
         $data['topikKhusus'] = Topic::get();
@@ -50,12 +49,12 @@ class WebController extends Controller
 
     public function singlePost(Request $request, $rubrik_name, $post_id, $slug): View
     {
-        
+
         // visitor counter
         // jika ip sudah mengunjungi do nothing
-        if(VisitLog::save(request()->all())['type']=='create'){
+        if (VisitLog::save(request()->all())['type'] == 'create') {
             $post = Posts::find($post_id);
-            $post->visit+=1;
+            $post->visit += 1;
             $post->save();
         }
         // if(VisitLogModel::where('ip', $request->ip())->get()->count() < 0) {

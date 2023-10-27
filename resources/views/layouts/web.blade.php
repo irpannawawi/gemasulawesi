@@ -491,32 +491,53 @@
         });
     </script>
     <script>
+        function encodeURL(url) {
+            return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const articleTitle = "{{ $article = $post->title }}"; // Gantilah dengan judul artikel yang sesuai
             const currentURL = window.location.href;
 
-            // Share ke Facebook
-            const facebookButton = document.getElementById('share-facebook');
-            facebookButton.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+            // Share ke Facebook (atas dan bawah)
+            const facebookButtonTop = document.getElementById('share-facebook-top');
+            facebookButtonTop.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
 
-            // Share ke Twitter
-            const twitterButton = document.getElementById('share-twitter');
-            twitterButton.href =
+            const facebookButtonBottom = document.getElementById('share-facebook-bottom');
+            facebookButtonBottom.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+
+            // Share ke Twitter (atas dan bawah)
+            const twitterButtonTop = document.getElementById('share-twitter-top');
+            twitterButtonTop.href =
                 `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
 
-            // Share ke WhatsApp
-            const whatsappButton = document.getElementById('share-whatsapp');
-            whatsappButton.href =
+            const twitterButtonBottom = document.getElementById('share-twitter-bottom');
+            twitterButtonBottom.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+
+            // Share ke WhatsApp (atas dan bawah)
+            const whatsappButtonTop = document.getElementById('share-whatsapp-top');
+            whatsappButtonTop.href =
                 `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
 
-            // Share ke Telegram
-            const telegramButton = document.getElementById('share-telegram');
-            telegramButton.href =
+            const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
+            whatsappButtonBottom.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+
+            // Share ke Telegram (atas dan bawah)
+            const telegramButtonTop = document.getElementById('share-telegram-top');
+            telegramButtonTop.href =
                 `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
 
-            // Copy ke Clipboard
-            const copyButton = document.getElementById('share-copy');
-            copyButton.addEventListener('click', function(event) {
+            const telegramButtonBottom = document.getElementById('share-telegram-bottom');
+            telegramButtonBottom.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+
+            // Copy ke Clipboard (atas dan bawah)
+            const copyButtonTop = document.getElementById('share-copy-top');
+            copyButtonTop.addEventListener('click', function(event) {
                 event.preventDefault();
 
                 const copyText = `${articleTitle} | ${currentURL}`;
@@ -531,6 +552,21 @@
                 alert('Artikel Berhasil disalin!');
             });
 
+            const copyButtonBottom = document.getElementById('share-copy-bottom');
+            copyButtonBottom.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const copyText = `${articleTitle} | ${currentURL}`;
+                const textArea = document.createElement('textarea');
+                textArea.value = copyText;
+
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                alert('Artikel Berhasil disalin!');
+            });
         });
     </script>
 

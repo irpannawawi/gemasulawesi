@@ -6014,7 +6014,7 @@ dd {
     border: none;
 }
 .pilihan-editor .wrap-owl .wrap-btn-slider .btn-slider button:hover {
-    background: #03f49b;
+    background: #2cc38b;
     color: white;
 }
 
@@ -6024,7 +6024,7 @@ dd {
     border: 0.5px solid white;
 }
 .owl-thumb-item.active {
-    border-top: 3px solid #03f49b;
+    border-top: 3px solid #2cc38b;
 }
 .owl-thumb-item .thumb-item a {
     color: white;
@@ -6043,5 +6043,5 @@ dd {
     margin: 5px;
 }
 .owl-dots .owl-dot.active span {
-    background-color: #03f49b;
+    background-color: #2cc38b;
 } /*# sourceMappingURL=style.css.map */

@@ -8,9 +8,9 @@
 @endphp
 <aside class="col-lg sidebar order-lg-3 mb-4">
     <!-- Widget Popular Posts -->
-    <div class="title-sidebar">
+    <h3 class="title-sidebar">
         <span>HOT TOPIC &#128293;</span>
-    </div>
+    </h3>
     <div class="most__wrap">
         @foreach ($hotPost as $post)
             <div class="most__item">

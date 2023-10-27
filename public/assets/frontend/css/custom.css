@@ -34,7 +34,7 @@
 }
 
 .category_under_nav {
-    background-color: #03f49b;
+    background-color: #2cc38b;
 }
 
 .category_under_nav .d-flex {
@@ -104,7 +104,7 @@
     left: -20px;
 }
 .pilihan-editor .wrap-owl .wrap-btn-slider .btn-slider button:hover {
-    background: #03f49b;
+    background: #2cc38b;
     color: white;
 }
 
@@ -134,7 +134,7 @@
     box-shadow: none;
 }
 .owl-thumb-item.active {
-    border-top: 3px solid #03f49b;
+    border-top: 3px solid #2cc38b;
 }
 .owl-thumb-item .card {
     cursor: pointer;
@@ -154,7 +154,7 @@
 
 .owl-thumb-item .card-body a:hover {
     text-decoration: underline;
-    color: #03f49b;
+    color: #2cc38b;
 }
 
 .owl-dots {
@@ -169,7 +169,7 @@
     margin: 5px;
 }
 .owl-dots .owl-dot.active span {
-    background-color: #03f49b;
+    background-color: #2cc38b;
 }
 
 /* tombol load more */
@@ -180,8 +180,8 @@
 }
 
 .tombolmore {
-    color: #03f49b;
-    border: 2px solid #03f49b;
+    color: #2cc38b;
+    border: 2px solid #2cc38b;
     padding: 10px 15px;
     text-transform: uppercase;
     border-radius: 30px;
@@ -192,7 +192,7 @@
     text-align: center;
 }
 .tombolmore:hover {
-    background-color: #03f49b;
+    background-color: #2cc38b;
     color: #fff;
 }
 
@@ -214,11 +214,11 @@
 .search i {
     font-size: 18px;
     margin-top: 15px;
-    color: #47c5cb;
+    color: #2cc38b;
 }
 .search input {
     border-radius: 10px;
-    border-bottom: 2px solid #47c5cb;
+    border-bottom: 2px solid #2cc38b;
 }
 
 /* title */
@@ -226,65 +226,65 @@
     border-top: none;
     position: relative;
     z-index: 2;
+    padding: 20px 0 15px;
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: 600;
 }
 .title-post span {
-    color: #fff;
+    color: #333;
     text-transform: capitalize;
     position: relative;
     z-index: 200;
-    padding-left: 5px;
+    padding-left: 15px;
     padding-right: 5px;
+    /* font-style: italic; */
 }
-.title-post span:after {
+.title-post span:before {
     content: "";
-    width: 100%;
-    height: 30px;
-    top: 1px;
-    left: 0;
+    display: block;
     position: absolute;
-    z-index: -1;
-    background-color: #03f49b;
+    width: 5px;
+    height: calc(100% + 2px);
+    top: -1px;
+    left: -1px;
+    background-color: #2cc38b;
 }
-.title-post:after {
-    background-color: #03f49b;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 15px;
-    height: 3px;
+
+/* title-list-berita */
+.title-list-berita {
+    font-size: 17px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #222;
+    border-bottom: 2px solid #d6d6d6;
+    height: 27px;
+    line-height: 19px;
+}
+.title-list-berita span{
+    border-bottom: 2px solid #2cc38b;
+    display: inline-block;
+    line-height: 17px;
+    height: 25px;
+    font-style: italic;
 }
 
 /* title sidebar */
 .title-sidebar {
-    border-top: none;
-    position: relative;
-    z-index: 2;
+    font-size: 17px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #222;
+    border-bottom: 2px solid #d6d6d6;
+    height: 27px;
+    line-height: 17px;
 }
-.title-sidebar span {
-    color: #fff;
-    text-transform: capitalize;
-    position: relative;
-    z-index: 200;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-.title-sidebar span:after {
-    content: "";
-    width: 100%;
-    height: 30px;
-    top: 1px;
-    left: 0;
-    position: absolute;
-    z-index: -1;
-    background-color: #03f49b;
-}
-.title-sidebar:after {
-    background-color: #03f49b;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    bottom: 15px;
-    height: 3px;
+.title-sidebar span{
+    border-bottom: 2px solid #2cc38b;
+    display: inline-block;
+    line-height: 17px;
+    height: 25px;
+    font-style: italic;
 }
 
 /* sidebar */
@@ -357,7 +357,7 @@
 } */
 
 .most__item:hover .most__title {
-    color: #03f49b;
+    color: #2cc38b;
 }
 
 /* home button */
@@ -519,10 +519,6 @@
     }
 }
 
-.entry__meta > li{
-    border-radius: 10px;
-}
-
 .category{
     text-decoration: underline;
 }
@@ -532,7 +528,7 @@
 /*-------------------------------------------------------*/
 
 /* .footer{
-	border-top: 4px solid #03f49b;
+	border-top: 4px solid #2cc38b;
 	background-color: #d9dbe9;
 	color: #000;
 	margin-top: 40px;

@@ -19,7 +19,7 @@
         <div class="row">
 
             <!-- post content -->
-            <div class="col-lg-8 blog__content mb-72">
+            <div class="col-lg-8 blog__content mb-3">
                 <div class="meta-single-post">
                     <h1 class="title-single-post single-post__title-single-post">
                         {{ $post->title }}
@@ -35,13 +35,13 @@
                         </ul>
                     </div>
                     <div class="social-post socials--medium socials--rounded">
-                        <a href="#" target="_blank" class="social social-facebook" id="share-facebook"
+                        <a href="#" target="_blank" class="social social-facebook" id="share-facebook-top"
                             aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" target="_blank" class="social social-twitter" id="share-twitter"
+                        <a href="#" target="_blank" class="social social-twitter" id="share-twitter-top"
                             aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                        <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp"
+                        <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp-top"
                             aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="#" target="_blank" class="social social-telegram" id="share-telegram"
+                        <a href="#" target="_blank" class="social social-telegram" id="share-telegram-top"
                             aria-label="telegram"><i class="fa-brands fa-telegram"></i></a>
                         <a href="#" class="social social-copy" id="share-copy" aria-label="copy"><i
                                 class="fa-solid fa-link"></i></a>
@@ -88,7 +88,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p>Editor: <a>Mitha Paradilla Rayadi</a></p>
+                                <p>Editor: <a>
+                                        @php
+                                            $editor = $post->editor->display_name;
+                                        @endphp
+                                        {!! $editor !!}
+                                    </a>
+                                </p>
 
                                 <!-- tags -->
                                 <div class="entry__tags">
@@ -99,7 +105,7 @@
                                         if ($post->tags != null and $post->tags != 'null') {
                                             foreach (json_decode($post->tags) as $tags) {
                                                 $tag = \App\Models\Tags::find($tags);
-                                                echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">#' . $tag->tag_name . '</a>';
                                             }
                                         }
                                     @endphp
@@ -110,17 +116,17 @@
                     </div> <!-- end entry article wrap -->
 
                     <!-- Related Posts -->
-                    <section class="section mt-40 mb-0">
+                    <section class="section mt-3 mb-0">
                         <div class="title-wrap title-wrap--line">
-                            <h4 style="text-align: center">SHARE:</h4>
+                            <h4 style="text-align: center">Share:</h4>
                             <div class="social-post socials--medium socials--rounded">
-                                <a href="#" target="_blank" class="social social-facebook" id="share-facebook"
+                                <a href="#" target="_blank" class="social social-facebook" id="share-facebook-bottom"
                                     aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                                <a href="#" target="_blank" class="social social-twitter" id="share-twitter"
+                                <a href="#" target="_blank" class="social social-twitter" id="share-twitter-bottom"
                                     aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp"
+                                <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp-bottom"
                                     aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
-                                <a href="#" target="_blank" class="social social-telegram" id="share-telegram"
+                                <a href="#" target="_blank" class="social social-telegram" id="share-telegram-bottom"
                                     aria-label="telegram"><i class="fa-brands fa-telegram"></i></a>
                                 <a href="#" class="social social-copy" id="share-copy" aria-label="copy"><i
                                         class="fa-solid fa-link"></i></a>
@@ -178,7 +184,7 @@
                 <div class="row">
                     <div class="col">
                         @foreach ($beritaTerkini as $post)
-                            <ul class="post-list-small post-list-small--2 mb-32">
+                            <ul class="post-list-small post-list-small--2 mb-32 mt-3">
                                 <li class="post-list-small__item">
                                     <article class="post-list-small__entry clearfix">
                                         <div class="post-list-small__img-holder">
@@ -204,7 +210,7 @@
                                                 ]) }}"
                                                     class="post-title">{{ $post->title }}</a>
                                             </h3>
-                                            <p class="bt__date">14 September 2023, 13:56 WIB </p>
+                                            <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
                                         </div>
                                     </article>
                                 </li>

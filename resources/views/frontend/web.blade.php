@@ -137,9 +137,9 @@
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
-                        <div class="title-post">
+                        <h3 class="title-list-berita">
                             <span>Berita Terkini</span>
-                        </div>
+                        </h3>
                         <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32 mt-3">
@@ -161,7 +161,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="post-list-small__body">
-                                                    <ul class="entry__meta category">
+                                                    <ul class="entry__meta category underline">
                                                         <li>
                                                             <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
                                                                 class="entry__meta-category">{{ $post->rubrik->rubrik_name }}</a>
@@ -232,7 +232,7 @@
                                                 </div>
                                             </div>
                                             <div class="post-list-small__body">
-                                                <ul class="entry__meta">
+                                                <ul class="entry__meta category underline">
                                                     <li>
                                                         <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
                                                             class="entry__meta-category">{{ $post->rubrik->rubrik_name }}</a>

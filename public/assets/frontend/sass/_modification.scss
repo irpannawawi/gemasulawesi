@@ -30,7 +30,7 @@
                     border: none;
 
                     &:hover {
-                        background: #03f49b;
+                        background: #2cc38b;
                         color: white;
                     }
                 }
@@ -45,7 +45,7 @@
     border: 0.5px solid white;
     &.active {
         // outline: 3px solid white;
-        border-top: 3px solid #03f49b;
+        border-top: 3px solid #2cc38b;
     }
     .thumb-item {
         a {
@@ -69,7 +69,7 @@
         }
         &.active {
             span {
-                background-color: #03f49b;
+                background-color: #2cc38b;
             }
         }
     }

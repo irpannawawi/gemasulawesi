@@ -496,7 +496,6 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const articleTitle = "{{ $article = $post->title }}"; // Gantilah dengan judul artikel yang sesuai
             const currentURL = window.location.href;
 
             // Share ke Facebook (atas dan bawah)

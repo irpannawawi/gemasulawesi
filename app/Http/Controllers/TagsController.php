@@ -38,4 +38,37 @@ class TagsController extends Controller
             return redirect()->back()->with('message-success', 'Berhasil menghapus tag');
         }
     }
+
+    
+    public function api_list(Request $request) {
+        $id = $request->tag_name;
+        $res = Tags::where('tag_name', $id)->get();
+        if($res->count() > 0)
+        {
+            return response()->json([
+                'status'=> True,
+                'data'=> $res
+            ]);
+        }else{
+            return response()->json([
+                'status'=> False
+            ]);
+        }
+    }
+
+    public function api_create(Request $request){
+        $tag_name = $request->tag_name;
+        $res = Tags::create(['tag_name'=>$tag_name]);
+        if($res)
+        {
+            return response()->json([
+                'status'=> True,
+                'data'=> $res
+            ]);
+        }else{
+            return response()->json([
+                'status'=> False
+            ]);
+        }
+    }
 }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\RubrikController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::get('/rubrik', [RubrikController::class, 'api_list']);
+Route::post('/rubrik/insert', [RubrikController::class, 'api_create']);
+
+
+Route::get('/tag', [TagsController::class, 'api_list']);
+Route::post('/tag/insert', [TagsController::class, 'api_create']);
+Route::post('/editorial/insert', [EditorialController::class, 'api_create']);

@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('category');
             $table->text('description');
             $table->text('article');
-            $table->boolean('allow_comment');
-            $table->boolean('view_in_welcome_page');
+            $table->boolean('allow_comment')->nullable()->default(false);
+            $table->boolean('view_in_welcome_page')->nullable()->default(false);
             $table->bigInteger('author_id')->unsigned();
             $table->bigInteger('editor_id')->unsigned();
             $table->enum('status', ['draft', 'published', 'scheduled', 'trash']);

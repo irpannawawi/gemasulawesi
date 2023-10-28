@@ -30,6 +30,7 @@ class Posts extends Model
         'schedul_time',
         'published_at',
         'is_deleted',
+        'post_image',
     ];
 
     public function editor(): HasOne

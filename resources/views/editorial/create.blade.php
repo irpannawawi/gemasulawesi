@@ -59,7 +59,8 @@
 
                         <div class="form-group">
                             <label for="descriptions">Description</label>
-                            <textarea maxlength="140" name="description" id="description" class="form-control" onchange="count_word_description()" required></textarea>
+                            <textarea maxlength="140" name="description" id="description" class="form-control" onchange="count_word_description()"
+                                required></textarea>
                             <span class="badge badge-info"><span id="counter_word_description">140</span> Character
                                 left</span>
                         </div>
@@ -158,8 +159,10 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary bg-primary" type="submit"><i class="fa fa-paper-plane"></i> Publish</button>
-                <button class="btn btn-secondary bg-secondary" type="button"><i class="fa fa-save"></i> Simpan</button>
+                <button class="btn btn-primary bg-primary" type="submit"><i class="fa fa-paper-plane"></i>
+                    Publish</button>
+                <button class="btn btn-secondary bg-secondary" type="button"><i class="fa fa-save"></i>
+                    Simpan</button>
             </div>
         </form>
     </div>
@@ -240,7 +243,7 @@
         </div>
     </div>
 
-    
+
     <!-- Modal Topic -->
     <div class="modal fade" id="modalTopic" tabindex="-1" role="dialog" aria-labelledby="modalTopicLabel"
         aria-hidden="true">
@@ -313,6 +316,19 @@
                             });
                         },
                     });
+
+
+                    function find_image()
+                    {
+                        // list images 
+                        var arr = new Array();
+                        $(tinyMCE.activeEditor.dom.getRoot()).find('img').each(
+                            function() {
+                               console.log($(this).attr("src"));
+                            });
+
+                    }
+
 
                     // insert baca juga
                     editor.ui.registry.addButton('dialog-insert-baca-juga', {

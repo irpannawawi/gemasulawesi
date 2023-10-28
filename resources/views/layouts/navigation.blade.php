@@ -167,6 +167,40 @@
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('report.editor') }}" class="nav-link">
+                                <i class="far fa-user nav-icon"></i>
+                                <p>Editor</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('report.author') }}" class="nav-link">
+                                <i class="far fa-user nav-icon"></i>
+                                <p>Author</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('report.articles') }}" class="nav-link">
+                                <i class="far fa-file nav-icon"></i>
+                                <p>Article</p>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="{{ route('report.section') }}" class="nav-link">
+                                <i class="far fa-file nav-icon"></i>
+                                <p>Section</p>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a href="{{ route('report.articles-user') }}" class="nav-link">
+                                <i class="far fa-file nav-icon"></i>
+                                <p>Article User</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">

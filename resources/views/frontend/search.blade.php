@@ -11,7 +11,7 @@
                 <section>
                     <!-- Pencarian -->
                     <div class="berita-terkini">
-                        <div class="title-sidebar">
+                        <div class="title-list-berita">
                             <span>Pencarian</span>
                         </div>
                         <!-- Search form -->

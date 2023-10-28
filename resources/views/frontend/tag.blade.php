@@ -11,8 +11,8 @@
                 <section>
                     <!-- #TagName -->
                     <div class="berita-terkini">
-                        <div class="title-post">
-                            <h3 class="section-title">#{{ $tag_name }}</h3>
+                        <div class="title-list-berita">
+                            <span>#{{ $tag_name }}</span>
                         </div>
                         <div class="row">
                             <div class="col">
@@ -35,7 +35,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="post-list-small__body">
-                                                    <ul class="entry__meta">
+                                                    <ul class="entry__meta category underline">
                                                         <li>
                                                             <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
                                                                 class="entry__meta-category">{{ $post->rubrik->rubrik_name }}</a>

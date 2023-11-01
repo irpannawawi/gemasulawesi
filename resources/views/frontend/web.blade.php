@@ -214,7 +214,7 @@
                         <div class="col">
 
                             <ul class="post-list-small post-list-small--2 mb-32">
-                                @foreach ($beritaTerkini[0] as $post)
+                                @foreach ($beritaTerkini[1] as $post)
                                     <li class="post-list-small__item">
                                         <article class="post-list-small__entry clearfix">
                                             <div class="post-list-small__img-holder">

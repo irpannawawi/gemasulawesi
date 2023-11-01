@@ -35,27 +35,33 @@
         }
     @endphp
 
-
     {{-- google meta --}}
     <title itemprop="name">{{ $metaTitle }} - www.Gemasulawesi.com</title>
-    <link rel="canonical" href="{{ url()->current() }}" />
     <link href="{{ $metaImage }}" itemprop="image" />
+    <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
+    <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
+    <link rel="canonical" href="{{ url()->current() }}" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
-    <meta content="{{ url()->current() }}" itemprop="url" />
-    <meta name="thumbnailUrl" content="" itemprop="thumbnailUrl" />
+    <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
     <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="base" content="https://www.gemasulawesi.com/" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
-    <meta http-equiv="content-language" content="In-Id" />
     <meta name="language" content="id" />
     <meta name="geo.country" content="id" />
     <meta name="geo.region" content="ID" />
     <meta name="geo.placename" content="Indonesia" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta content="{{ url()->current() }}" itemprop="url" />
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-language" content="In-Id" />
 
     <!-- s: fb meta -->
     @php

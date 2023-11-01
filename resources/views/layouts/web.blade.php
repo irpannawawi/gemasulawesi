@@ -322,7 +322,9 @@
             'dateModified' => $post->updated_at,
         ];
         $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-        echo '<script type="application/ld+json">' . $jsonLD. '</script>';
+        if (!request()->is('/*')) {
+            echo '<script type="application/ld+json">' . $jsonLD. '</script>';
+        }
     @endphp
 
     {{-- breadcrumb --}}

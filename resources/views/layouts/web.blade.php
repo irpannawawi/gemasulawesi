@@ -30,7 +30,7 @@
             $metaDeskripsi = $post->description;
             // Mencari path gambar dalam artikel
             preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches; // Jika tidak ada gambar, setel ke string kosong
+            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
             $metaImage = asset($imagePath);
         }
     @endphp
@@ -85,7 +85,7 @@
             $facebookDeskripsi = $post->description;
             // Mencari path gambar dalam artikel
             preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches; // Jika tidak ada gambar, setel ke string kosong
+            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
             $facebookImage = asset($imagePath);
         }
     @endphp
@@ -124,7 +124,7 @@
             $twitterDeskripsi = $post->description;
             // Mencari path gambar dalam artikel
             preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches; // Jika tidak ada gambar, setel ke string kosong
+            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
             $twitterImage = asset($imagePath);
         }
     @endphp
@@ -254,7 +254,7 @@
 
     @php
         preg_match('/<img src="(.*?)">/', $post->article, $matches);
-        $imagePath = $matches; // Jika tidak ada gambar, setel ke string kosong
+        $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
         $image = asset($imagePath);
         $jsonLDData = [
             '@context' => 'http://schema.org/',
@@ -289,7 +289,7 @@
 
     @php
         preg_match('/<img src="(.*?)">/', $post->article, $matches);
-        $imagePath = $matches; // Jika tidak ada gambar, setel ke string kosong
+        $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
         $image = asset($imagePath);
         $jsonLDData = [
             '@context' => 'http://schema.org/',

@@ -5,40 +5,104 @@
     use Carbon\Carbon;
     $breakingNews = App\Models\Breakingnews::get();
     use App\Models\Rubrik;
+    $baseUrl = URL::to('');
 @endphp
 
 <head>
+    @php
+        if (request()->is('/')) {
+            $metaTitle = 'Berita Terkini Indonesia Hari Ini';
+            $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } elseif (request()->is('category/*')) {
+            $metaTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
+            $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } elseif (request()->is('tags/*')) {
+            $metaTitle = 'Berita ' . $tag_name . ' Hari Ini';
+            $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } else {
+            $segments = request()->segments();
+            $lastSegment = end($segments);
+            $postTitle = str_replace('-', ' ', $lastSegment);
+            $metaTitle = $postTitle;
+            $metaDeskripsi = $post->description;
+        }
+    @endphp
+
+    {{-- google meta --}}
+    <title itemprop="name">{{ $metaTitle }} - www.Gemasulawesi.com</title>
+    <meta name="title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
+    <meta content="{{ url()->current() }}" itemprop="url" />
+    <meta name="thumbnailUrl" content="" itemprop="thumbnailUrl" />
+    <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="">
-    <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="canonical" href="https://www.gemasulawesi.com" />
-
+    <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
+    <meta http-equiv="content-language" content="In-Id" />
     <meta name="language" content="id" />
     <meta name="geo.country" content="id" />
-    <meta http-equiv="content-language" content="In-Id" />
+    <meta name="geo.region" content="ID" />
     <meta name="geo.placename" content="Indonesia" />
+
     <!-- s: fb meta -->
+    @php
+        if (request()->is('/')) {
+            $facebookTitle = 'Berita Terkini Indonesia Hari Ini';
+            $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } elseif (request()->is('category/*')) {
+            $facebookTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
+            $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } elseif (request()->is('tags/*')) {
+            $facebookTitle = 'Berita ' . $tag_name . ' Hari Ini';
+            $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } else {
+            $segments = request()->segments();
+            $lastSegment = end($segments);
+            $postTitle = str_replace('-', ' ', $lastSegment);
+            $facebookTitle = $postTitle;
+            $facebookDeskripsi = $post->description;
+        }
+    @endphp
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://www.gemasulawesi.com" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:title" content="{{ $facebookTitle }}" />
+    <meta property="og:description" content="{{ $facebookDeskripsi }}" />
+    <meta property="og:site_name" content="www.Gemasulawesi.com" />
     <meta property="og:image" content="" />
-    <meta property="og:site_name" content="" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="fb:app_id" content="" />
     <meta property="fb:pages" content="" />
     <!-- e: fb meta -->
 
     <!-- S:tweeter card -->
+    @php
+        if (request()->is('/')) {
+            $twitterTitle = 'Berita Terkini Indonesia Hari Ini';
+            $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } elseif (request()->is('category/*')) {
+            $twitterTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
+            $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } elseif (request()->is('tags/*')) {
+            $twitterTitle = 'Berita ' . $tag_name . ' Hari Ini';
+            $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+        } else {
+            $segments = request()->segments();
+            $lastSegment = end($segments);
+            $postTitle = str_replace('-', ' ', $lastSegment);
+            $twitterTitle = $postTitle;
+            $twitterDeskripsi = $post->description;
+        }
+    @endphp
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@promedia" />
-    <meta name="twitter:creator" content="@promedia">
-    <meta name="twitter:title" content="Teras Info - Bijak Bernarasi" />
-    <meta name="twitter:description" content="" />
+    <meta name="twitter:site" content="@gemasulawesi" />
+    <meta name="twitter:creator" content="@gemasulawesi">
+    <meta name="twitter:title" content="{{ $twitterTitle }}" />
+    <meta name="twitter:description" content="{{ $twitterDeskripsi }}" />
     <meta name="twitter:image" content="" />
     <!-- E:tweeter card -->
 
@@ -54,7 +118,97 @@
     <meta name="content_AuthorID" content="" />
     <meta name="content_EditorID" content="" />
 
-    <title>gemasulawesi.com Berita Terkini Indonesia Hari Ini</title>
+    @php
+        $category = $post->rubrik->rubrik_name;
+        if (request()->is('/')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Homepage",
+                    "content_category": ""
+                }];
+            </script>';
+        } elseif (request()->is('/category')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": '. $category .'
+                }];
+            </script>';
+        } else {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Article Page",
+                    "content_category": '. $category .'
+                }];
+            </script>';
+        }
+    @endphp
+
+    <script>
+        dataLayer = [{
+            "published_date": "All",
+            "rubrik": "All",
+            "penulis": "All",
+            "editor": "All",
+            "id": "All",
+            "type": "All",
+            "source": "Not Available",
+            "topic": "Not Available",
+            "tag": "Berita Terkini, Berita Hari Ini, Berita Harian, Berita Terbaru, Berita, Berita Terpercaya, Berita indonesia, Berita Terpopuler, Berita, Info Jawa Barat, Info Bandung, Info Terkini, Info Hari Ini, Info Harian, Info Terbaru, Info Akurat, Info Terpercaya, Info indonesia, Info Terpopuler, Info Nasional, Gema Sulawesi, Gema",
+            "penulis_id": "All",
+            "editor_id": "All"
+        }];
+    </script>
+
+    {{-- breadcrumb --}}
+    @php
+        $jsonLDData = [
+            '@context' => 'http://schema.org/',
+            '@type' => 'WebSite',
+            'url' => url()->current(),
+            'potentialAction' => [
+                [
+                    '@type' => 'SearchAction',
+                    'target' => url()->current(),
+                    'query-input' => 'required name=search_term_string',
+                ],
+            ],
+        ];
+
+        $artikel = [
+            '@context' => 'http://schema.org/',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => [
+                [
+                    '@type' => 'ListItem',
+                    'position' => 1,
+                    'item' => [
+                        '@id' => 'base url',
+                        'name' => 'Home',
+                    ],
+                ],
+                [
+                    '@type' => 'ListItem',
+                    'position' => 2,
+                    'item' => [
+                        '@id' => 'base url',
+                        'name' => $post->rubrik->rubrik_name,
+                    ],
+                ],
+            ],
+        ];
+
+        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+        $artikelLDData = json_encode($artikel, JSON_PRETTY_PRINT);
+
+        if (request()->is('/category')) {
+            echo '<script type="application/ld+json">' . $jsonLD . '</script>';
+        } else {
+            echo '<script type="application/ld+json">' . $artikelLDData . '</script>';
+        }
+    @endphp
+
+
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
@@ -66,6 +220,7 @@
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
 
     <!-- Favicons -->
+    <link href="{{ url('assets/frontend') }}/img/favicon.png" itemprop="image" />
     <link rel="shortcut icon" href="{{ url('assets/frontend') }}/img/favicon.png">
     <link rel="icon" href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-32x32.png"
         sizes="32x32" />

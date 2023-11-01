@@ -256,6 +256,9 @@
         preg_match('/<img src="(.*?)">/', $post->article, $matches);
         $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
         $image = asset($imagePath);
+        $segments = request()->segments();
+        $lastSegment = end($segments);
+        $postTitle = str_replace('-', ' ', $lastSegment);
         $jsonLDData = [
             '@context' => 'http://schema.org/',
             '@type' => 'Organization',
@@ -267,7 +270,7 @@
         $jsonPost = [
             '@context' => 'http://schema.org/',
             '@type' => 'WebPage',
-            'headline' => $post->title,
+            'headline' => $postTitle,
             'url' => url()->current(),
             'datePublished' => $post->created_at,
             'image' => $image,
@@ -291,6 +294,9 @@
         preg_match('/<img src="(.*?)">/', $post->article, $matches);
         $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
         $image = asset($imagePath);
+        $segments = request()->segments();
+        $lastSegment = end($segments);
+        $postTitle = str_replace('-', ' ', $lastSegment);
         $jsonLDData = [
             '@context' => 'http://schema.org/',
             '@type' => 'NewsArticle',
@@ -299,7 +305,7 @@
                 '@id' => url()->current(),
                 'description' => $post->description,
             ],
-            'headline' => $post->title,
+            'headline' => $postTitle,
             'image' => [
                 '@type' => 'ImageObject',
                 'url' => $image,
@@ -316,7 +322,7 @@
                     'url' => asset('frontend/img/favcion.png'),
                 ],
             ],
-            'headline' => $post->title,
+            'headline' => $postTitle,
             'image' => $image,
             'datePublished' => $post->created_at,
             'dateModified' => $post->updated_at,

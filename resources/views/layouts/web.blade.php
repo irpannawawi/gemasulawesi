@@ -819,13 +819,18 @@
             new Notification(title, options);
         });
     </script>
+    @php
+        $segments = request()->segments();
+        $lastSegment = end($segments);
+        $postTitle = str_replace('-', ' ', $lastSegment);
+    @endphp
     <script>
         function encodeURL(url) {
             return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const articleTitle = "{{ $article = $post->title }}"; // Gantilah dengan judul artikel yang sesuai
+            const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
             const currentURL = window.location.href;
 
             // Share ke Facebook (atas dan bawah)

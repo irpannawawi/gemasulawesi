@@ -13,23 +13,33 @@
         if (request()->is('/')) {
             $metaTitle = 'Berita Terkini Indonesia Hari Ini';
             $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } elseif (request()->is('category/*')) {
             $metaTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
             $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } elseif (request()->is('tags/*')) {
             $metaTitle = 'Berita ' . $tag_name . ' Hari Ini';
             $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } else {
             $segments = request()->segments();
             $lastSegment = end($segments);
             $postTitle = str_replace('-', ' ', $lastSegment);
             $metaTitle = $postTitle;
             $metaDeskripsi = $post->description;
+            // Mencari path gambar dalam artikel
+            preg_match('/<img src="(.*?)">/', $post->article, $matches);
+            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+            $metaImage = asset($imagePath);
         }
     @endphp
 
+
     {{-- google meta --}}
     <title itemprop="name">{{ $metaTitle }} - www.Gemasulawesi.com</title>
+    <link rel="canonical" href="{{ url()->current() }}" />
+    <link href="{{ $metaImage }}" itemprop="image" />
     <meta name="title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta content="{{ url()->current() }}" itemprop="url" />
@@ -38,7 +48,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
@@ -53,26 +62,34 @@
         if (request()->is('/')) {
             $facebookTitle = 'Berita Terkini Indonesia Hari Ini';
             $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $facebookImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } elseif (request()->is('category/*')) {
             $facebookTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
             $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $facebookImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } elseif (request()->is('tags/*')) {
             $facebookTitle = 'Berita ' . $tag_name . ' Hari Ini';
             $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $facebookImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } else {
             $segments = request()->segments();
             $lastSegment = end($segments);
             $postTitle = str_replace('-', ' ', $lastSegment);
             $facebookTitle = $postTitle;
             $facebookDeskripsi = $post->description;
+            // Mencari path gambar dalam artikel
+            preg_match('/<img src="(.*?)">/', $post->article, $matches);
+            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+            $facebookImage = asset($imagePath);
         }
     @endphp
+
     <meta property="og:type" content="article" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ $facebookTitle }}" />
+    <meta property="og:title" content="{{ $facebookTitle }} - www.Gemasulawesi.com" />
     <meta property="og:description" content="{{ $facebookDeskripsi }}" />
     <meta property="og:site_name" content="www.Gemasulawesi.com" />
-    <meta property="og:image" content="" />
+    <meta property="og:image" content="{{ $facebookImage }}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="fb:app_id" content="" />
@@ -84,26 +101,34 @@
         if (request()->is('/')) {
             $twitterTitle = 'Berita Terkini Indonesia Hari Ini';
             $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $twitterImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } elseif (request()->is('category/*')) {
             $twitterTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
             $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $twitterImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } elseif (request()->is('tags/*')) {
             $twitterTitle = 'Berita ' . $tag_name . ' Hari Ini';
             $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $twitterImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         } else {
             $segments = request()->segments();
             $lastSegment = end($segments);
             $postTitle = str_replace('-', ' ', $lastSegment);
             $twitterTitle = $postTitle;
             $twitterDeskripsi = $post->description;
+            // Mencari path gambar dalam artikel
+            preg_match('/<img src="(.*?)">/', $post->article, $matches);
+            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+            $twitterImage = asset($imagePath);
         }
     @endphp
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gemasulawesi" />
     <meta name="twitter:creator" content="@gemasulawesi">
-    <meta name="twitter:title" content="{{ $twitterTitle }}" />
+    <meta name="twitter:title" content="{{ $twitterTitle }} - www.Gemasulawesi.com" />
     <meta name="twitter:description" content="{{ $twitterDeskripsi }}" />
-    <meta name="twitter:image" content="" />
+    <meta name="twitter:image" content="{{ $twitterImage }}" />
     <!-- E:tweeter card -->
 
     <meta name="content_PublishedDate" content="" />
@@ -220,7 +245,6 @@
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
 
     <!-- Favicons -->
-    <link href="{{ url('assets/frontend') }}/img/favicon.png" itemprop="image" />
     <link rel="shortcut icon" href="{{ url('assets/frontend') }}/img/favicon.png">
     <link rel="icon" href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-32x32.png"
         sizes="32x32" />

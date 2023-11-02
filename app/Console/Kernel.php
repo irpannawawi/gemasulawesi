@@ -15,8 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // Menjalankan command 'cache:clear' setiap hari pada pukul 03:00 AM
-        $schedule->command('cache:clear')->dailyAt('03:00');
+        // $schedule->command('inspire')->hourly();
     }
 
     /**

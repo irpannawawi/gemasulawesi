@@ -14,28 +14,31 @@
             $metaTitle = 'Berita Terkini Indonesia Hari Ini';
             $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
         } elseif (request()->is('category/*')) {
             $metaTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
-            $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
         } elseif (request()->is('tags/*')) {
             $metaTitle = 'Berita ' . $tag_name . ' Hari Ini';
-            $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $metaDeskripsi = $post->title;
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
         } else {
-            $segments = request()->segments();
-            $lastSegment = end($segments);
-            $postTitle = str_replace('-', ' ', $lastSegment);
+            $postTitle = $post->title;
             $metaTitle = $postTitle;
             $metaDeskripsi = $post->description;
             // Mencari path gambar dalam artikel
             preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+            $imagePath = $matches[1] ?? '';
             $metaImage = asset($imagePath);
+            $type = 'article';
+            $category = $post->rubrik->rubrik_name;
+            $tags = $post->tags;
         }
     @endphp
-
-    {{-- google meta --}}
+    <!-- s: open graph -->
     <title itemprop="name">{{ $metaTitle }} - www.Gemasulawesi.com</title>
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
@@ -57,97 +60,34 @@
     <meta name="geo.region" content="ID" />
     <meta name="geo.placename" content="Indonesia" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta content="{{ url()->current() }}" itemprop="url" />
-    <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-language" content="In-Id" />
-
-    <!-- s: fb meta -->
-    @php
-        if (request()->is('/')) {
-            $facebookTitle = 'Berita Terkini Indonesia Hari Ini';
-            $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
-            $facebookImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-        } elseif (request()->is('category/*')) {
-            $facebookTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
-            $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
-            $facebookImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-        } elseif (request()->is('tags/*')) {
-            $facebookTitle = 'Berita ' . $tag_name . ' Hari Ini';
-            $facebookDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
-            $facebookImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-        } else {
-            $segments = request()->segments();
-            $lastSegment = end($segments);
-            $postTitle = str_replace('-', ' ', $lastSegment);
-            $facebookTitle = $postTitle;
-            $facebookDeskripsi = $post->description;
-            // Mencari path gambar dalam artikel
-            preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
-            $facebookImage = asset($imagePath);
-        }
-    @endphp
-
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="{{ $type }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ $facebookTitle }} - www.Gemasulawesi.com" />
-    <meta property="og:description" content="{{ $facebookDeskripsi }}" />
+    <meta property="og:title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta property="og:description" content="{{ $metaDeskripsi }}" />
     <meta property="og:site_name" content="www.Gemasulawesi.com" />
-    <meta property="og:image" content="{{ $facebookImage }}" />
+    <meta property="og:image" content="{{ $metaImage }}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="fb:app_id" content="" />
     <meta property="fb:pages" content="" />
-    <!-- e: fb meta -->
+    <meta property="article:author" content="Tim Gema Sulawesi">
+    <meta property="article:section" content="">
+    <meta property="article:tag" content="">
+    <meta content="{{ url()->current() }}" itemprop="url" />
+    <meta charset="utf-8">
+    <!-- e: open graph -->
 
     <!-- S:tweeter card -->
-    @php
-        if (request()->is('/')) {
-            $twitterTitle = 'Berita Terkini Indonesia Hari Ini';
-            $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
-            $twitterImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-        } elseif (request()->is('category/*')) {
-            $twitterTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
-            $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
-            $twitterImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-        } elseif (request()->is('tags/*')) {
-            $twitterTitle = 'Berita ' . $tag_name . ' Hari Ini';
-            $twitterDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
-            $twitterImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-        } else {
-            $segments = request()->segments();
-            $lastSegment = end($segments);
-            $postTitle = str_replace('-', ' ', $lastSegment);
-            $twitterTitle = $postTitle;
-            $twitterDeskripsi = $post->description;
-            // Mencari path gambar dalam artikel
-            preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
-            $twitterImage = asset($imagePath);
-        }
-    @endphp
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gemasulawesi" />
     <meta name="twitter:creator" content="@gemasulawesi">
-    <meta name="twitter:title" content="{{ $twitterTitle }} - www.Gemasulawesi.com" />
-    <meta name="twitter:description" content="{{ $twitterDeskripsi }}" />
-    <meta name="twitter:image" content="{{ $twitterImage }}" />
+    <meta name="twitter:title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
+    <meta name="twitter:image" content="{{ $metaImage }}" />
     <!-- E:tweeter card -->
-
-    <meta name="content_PublishedDate" content="" />
-    <meta name="content_Category" content="" />
-    <meta name="content_Author" content="" />
-    <meta name="content_Editor" content="" />
-    <meta name="content_ID" content="" />
-    <meta name="content_Type" content="" />
-    <meta name="content_Source" content="" />
-    <meta name="content_Lipsus" content="" />
-    <meta name="content_Tag" content="" />
-    <meta name="content_AuthorID" content="" />
-    <meta name="content_EditorID" content="" />
 
     @php
         $category = $post->rubrik->rubrik_name;
@@ -291,44 +231,44 @@
     @endphp
 
     @php
-        preg_match('/<img src="(.*?)">/', $post->article, $matches);
-        $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
-        $image = asset($imagePath);
-        $segments = request()->segments();
-        $lastSegment = end($segments);
-        $postTitle = str_replace('-', ' ', $lastSegment);
-        $jsonLDData = [
-            '@context' => 'http://schema.org/',
-            '@type' => 'NewsArticle',
-            'mainEntityOfPage' => [
-                '@type' => 'WebPage',
-                '@id' => url()->current(),
-                'description' => $post->description,
-            ],
-            'headline' => $postTitle,
-            'image' => [
-                '@type' => 'ImageObject',
-                'url' => $image,
-            ],
-            'author' => [
-                '@type' => 'Person',
-                'name' => $post->editor->display_name,
-            ],
-            'publisher' => [
-                '@type' => 'Organization',
-                'name' => 'www.gemasulawesi.com',
-                'logo' => [
-                    '@type' => 'ImageObject',
-                    'url' => asset('frontend/img/favcion.png'),
+        if (!request()->is('/') && !request()->is('category/*') && !request()->is('tags/*')) {
+            preg_match('/<img src="(.*?)">/', $post->article, $matches);
+            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+            $image = asset($imagePath);
+            $segments = request()->segments();
+            $lastSegment = end($segments);
+            $postTitle = str_replace('-', ' ', $lastSegment);
+            $jsonLDData = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'NewsArticle',
+                'mainEntityOfPage' => [
+                    '@type' => 'WebPage',
+                    '@id' => url()->current(),
+                    'description' => $post->description,
                 ],
-            ],
-            'headline' => $postTitle,
-            'image' => $image,
-            'datePublished' => $post->created_at,
-            'dateModified' => $post->updated_at,
-        ];
-        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-        if (!request()->is('/*')) {
+                'headline' => $postTitle,
+                'image' => [
+                    '@type' => 'ImageObject',
+                    'url' => $image,
+                ],
+                'author' => [
+                    '@type' => 'Person',
+                    'name' => $post->editor->display_name,
+                ],
+                'publisher' => [
+                    '@type' => 'Organization',
+                    'name' => 'www.gemasulawesi.com',
+                    'logo' => [
+                        '@type' => 'ImageObject',
+                        'url' => asset('frontend/img/favcion.png'),
+                    ],
+                ],
+                'headline' => $postTitle,
+                'image' => $image,
+                'datePublished' => $post->created_at,
+                'dateModified' => $post->updated_at,
+            ];
+            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
             echo '<script type="application/ld+json">' . $jsonLD. '</script>';
         }
     @endphp
@@ -641,7 +581,7 @@
         @yield('content')
 
         <!-- Footer -->
-        <footer class="footer footer--grey">
+        {{-- <footer class="footer footer--grey">
             <div class="container">
                 <div class="footer__widgets">
                     <div class="row">
@@ -685,7 +625,7 @@
 
                         <div class="col-lg-2 col-md-6">
                             <aside class="widget widget_nav_menu">
-                                {{-- <h4 class="widget-title">Useful Links</h4> --}}
+                                <h4 class="widget-title">Useful Links</h4>
                                 <div class="footer__wrap">
                                     @foreach ($rubriks as $rubrik)
                                         <ul>
@@ -700,43 +640,80 @@
 
                     </div>
                 </div>
-            </div> <!-- end container -->
-        </footer> <!-- end footer -->
-        {{-- <footer class="footer">
-            <div class="row container">
-                <div class="col-offset-fluid">
-                    <div class="col-bs10-4">
-                        <div class="footer__logo">
-                            <a href="{{ url('/') }}"><img height="240" width="240"
-                                    src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                    srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
-                                    alt=""></a>
+            </div>
+        </footer> --}}
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__widgets">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="footer__logo">
+                                <a target="_self" href="https://zonasurabayaraya.pikiran-rakyat.com/">
+                                    <img class=" ls-is-cached lazyloaded"
+                                        data-src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
+                                        src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
+                                        alt="Zona Surabaya Raya" data-loaded="true">
+                                </a>
+                            </div>
+                            <div class="footer__contact">
+                                <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi
+                                    Kabupaten Parigi moutong Provinsi Sulawesi tengah.<br>
+                                </p>
+                            </div>
+                            <div class="footer__verifikasi">
+                                <p>
+                                    Email: <br>
+                                    Phone:
+                                </p>
+                            </div>
+                            <div class="social__footer socials--medium socials--rounded">
+                                <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
+                                    target="_blank" aria-label="facebook">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                                <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                    target="_blank" aria-label="twitter">
+                                    <i class="fa-brands fa-square-x-twitter"></i>
+                                </a>
+                                <a class="social social-youtube"
+                                    href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg" target="_blank"
+                                    aria-label="youtube">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </a>
+                                <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
+                                    target="_blank" aria-label="instagram">
+                                    <i class="fa-brands fa-square-instagram"></i>
+                                </a>
+                            </div>
                         </div>
-                        <div class="footer__contact">
-                            <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi<br>Kabupaten Parigi moutong Provinsi
-                                Sulawesi tengah. <br><br> 081342184833 <br> email@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="col-bs10-6">
-                        <div class="col-offset-fluid">
-                            <div class="col-bs10-3">
-                                <div class="footer__menu">
-                                    @php
-                                        $rubriks = \App\Models\Rubrik::get();
-                                    @endphp
-                                    <div class="footer__item">
-                                        @foreach ($rubriks as $rubrik)
-                                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                                class="footer__link">{{ $rubrik->rubrik_name }}</a>
-                                        @endforeach
-                                    </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="footer__menu">
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="”noreferred”">Tentang Kami</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="”noreferred”">Hubungi Kami</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="”noreferred”">Redaksi</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="”noreferred”">Kode Perilaku
+                                        Pers</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="”noreferred”">Pedoman Media
+                                        Siber</a>
                                 </div>
                             </div>
+                        </div>
+                        <div class="footer__copyright col-lg-12 col-md-6">
+                            <p>©{{ now()->year }} Gema Sulawesi</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer> --}}
+        </footer>
 
         {{-- <div id="back-to-top">
             <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>

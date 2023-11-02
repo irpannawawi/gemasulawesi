@@ -68,7 +68,7 @@
                                                 'post_id' => $headline->post->post_id,
                                                 'slug' => $headline->post->slug,
                                             ]) }}">
-                                            {{ Str::limit($headline->post->title, 70) }}
+                                            {{ Str::limit($headline->post->title, 80) }}
                                         </a>
                                     </div>
                                 </div>

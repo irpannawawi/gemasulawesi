@@ -4996,67 +4996,7 @@ header .flex-child {
 /*-------------------------------------------------------*/
 /* Footer
 /*-------------------------------------------------------*/
-.footer {
-    position: relative;
-}
-.footer a:not(.social):hover {
-    color: #2d95e3;
-}
-.footer--white {
-    background-color: #fff;
-}
-.footer--dark {
-    background-color: #171821;
-}
-.footer--dark a,
-.footer--dark .widget-title,
-.footer--dark .social {
-    color: #fff;
-}
-.footer--dark p {
-    color: #83858f !important;
-}
-.footer--dark .post-list-small__item,
-.footer--dark .widget_nav_menu li {
-    border-color: #54555e;
-}
-.footer--dark .entry__meta li {
-    color: #5f686b !important;
-}
-.footer--dark .mc4wp-form-fields input[type="email"],
-.footer--dark .mc4wp-form-fields input[type="text"] {
-    border-color: transparent;
-}
-.footer--dark .mc4wp-form-fields input[type="email"]:focus,
-.footer--dark .mc4wp-form-fields input[type="text"]:focus {
-    border-color: #2d95e3;
-}
-.footer--dark .newsletter__icon {
-    color: #575961;
-}
-.footer--dark .tagcloud a {
-    background-color: #2d2e36;
-    color: #fff;
-}
-.footer__widgets {
-    padding: 90px 0;
-}
-.footer__widgets p {
-    font-size: 14px;
-    line-height: 26px;
-}
-@media only screen and (max-width: 991px) {
-    .footer__widgets > .row > div:not(:last-child) {
-        margin-bottom: 50px;
-    }
-}
-.footer__widgets--short {
-    padding: 60px 0;
-}
-.footer .logo__img {
-    display: block;
-    padding-bottom: 20px;
-}
+
 
 /* Footer Grey
 -------------------------------------------------------*/

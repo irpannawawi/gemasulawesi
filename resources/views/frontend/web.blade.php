@@ -57,7 +57,7 @@
                     <div class="owl-thumbs row mb-3 d-none d-md-flex w-100 mx-auto" data-slider-id="5">
                         @foreach ($headlineWp as $headline)
                             <div class="owl-thumb-item col-3 p-0">
-                                <div class="card">
+                                <div class="card mt-3">
                                     <img src="{{ get_string_between($headline->post->article, '<img src="', '">') }}"
                                         class="card-img-top w-100"
                                         style="object-fit: cover;height: 80px;object-position: top;" alt="">
@@ -227,7 +227,7 @@
                                                         ]) }}">
                                                         <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class=" lazyload">
+                                                            class="lazyload">
                                                     </a>
                                                 </div>
                                             </div>

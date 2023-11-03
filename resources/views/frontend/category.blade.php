@@ -11,7 +11,7 @@
                     <div class="title-list-berita">
                         <span>{{ $rubrik_name }}</span>
                     </div>
-                    <div class="thumb image-single-post">
+                    <div class="thumb image-single-post mb-4">
                         <div>
                             <article class="entry thumb--size-3 mb-0">
                                 <div class="entry__img-holder thumb__img-holder"
@@ -50,7 +50,7 @@
                         </div>
                         <div class="row">
                             <div class="col">
-                                <ul class="post-list-small post-list-small--2 mb-32 mt-3">
+                                <ul class="post-list-small post-list-small--2 mb-32">
                                     @foreach ($beritaTerkini[0] as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">

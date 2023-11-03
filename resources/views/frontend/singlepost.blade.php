@@ -43,7 +43,7 @@
                             aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                         <a href="#" target="_blank" class="social social-telegram" id="share-telegram-top"
                             aria-label="telegram"><i class="fa-brands fa-telegram"></i></a>
-                        <a href="#" class="social social-copy" id="share-copy" aria-label="copy"><i
+                        <a href="#" class="social social-copy" id="share-copy-top" aria-label="copy"><i
                                 class="fa-solid fa-link"></i></a>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
                                     aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                                 <a href="#" target="_blank" class="social social-telegram" id="share-telegram-bottom"
                                     aria-label="telegram"><i class="fa-brands fa-telegram"></i></a>
-                                <a href="#" class="social social-copy" id="share-copy" aria-label="copy"><i
+                                <a href="#" class="social social-copy" id="share-copy-bottom" aria-label="copy"><i
                                         class="fa-solid fa-link"></i></a>
                             </div>
                         </div>

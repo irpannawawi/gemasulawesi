@@ -68,7 +68,7 @@
                                                 'post_id' => $headline->post->post_id,
                                                 'slug' => $headline->post->slug,
                                             ]) }}">
-                                            {{ Str::limit($headline->post->title, 70) }}
+                                            {{ Str::limit($headline->post->title, 80) }}
                                         </a>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                         </h3>
                         <div class="row">
                             <div class="col">
-                                <ul class="post-list-small post-list-small--2 mb-32 mt-3">
+                                <ul class="post-list-small post-list-small--2 mb-32">
                                     @foreach ($beritaTerkini[0] as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">
@@ -186,7 +186,7 @@
                                 <x-topik_khusus :$topikKhusus />
 
                                 <!-- Ad Banner 728 -->
-                                <div class="text-center mt-3">
+                                <div class="text-center mt-3 mb-3">
                                     <a href="#">
                                         <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
                                             alt="">

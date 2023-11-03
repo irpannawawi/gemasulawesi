@@ -12,6 +12,8 @@ use App\Http\Controllers\TopicController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WebController;
 use App\Models\Image;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +32,10 @@ Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 
 Route::get('/test', [TestController::class, 'index']);
 
-
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    return Redirect::to('/');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
@@ -72,7 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/topic_delete/{id}', [TopicController::class, 'delete'])->name('topics.delete');
     // modals
     Route::get('/modal_topic', [TopicController::class, 'modal_topic'])->name('modal.topic');
-    
+
     // related articles
     Route::get('/modal_related', [EditorialController::class, 'modal_related'])->name('modal.related');
 
@@ -90,8 +95,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/video/edit', [VideoController::class, 'update'])->name('assets.video.update');
     Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('assets.video.delete');
 });
-Route::prefix('admin')->group(function (){
-
+Route::prefix('admin')->group(function () {
 });
 
 require __DIR__ . '/public.php';

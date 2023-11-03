@@ -47,7 +47,7 @@
     font-weight: 700;
 }
 .category_under_nav li a:hover {
-    color: red;
+    color: #333;
     font-weight: 700;
 }
 
@@ -66,6 +66,7 @@
 @media only screen and (max-width: 768px) {
     .pilihan-editor {
         margin-top: 32px;
+        margin-bottom: 32px;
         padding-left: 10px;
         padding-right: 10px;
         width: 100%;
@@ -74,6 +75,7 @@
 @media only screen and (min-width: 768px) {
     .pilihan-editor {
         margin-top: 32px;
+        margin-bottom: 32px;
         padding: 0 20px 20px 20px;
         width: 100%;
     }
@@ -526,56 +528,33 @@
 /*-------------------------------------------------------*/
 /* Footer
 /*-------------------------------------------------------*/
-
-/* .footer{
-	border-top: 4px solid #2cc38b;
-	background-color: #d9dbe9;
-	color: #000;
-	margin-top: 40px;
-    padding: 20px 0 120px;
-	font-size: 14px;
-    line-height: 1.5;
-    font-weight: 400;
-	display: block;
+.footer {
+    margin-top: 42px;
+    background: #000;
+    color: #fff;
+    border-top: 4px solid #2cc38b;
+    background: #ffffff;
+    color: #000;
 }
-.col-bs10-4 {
-	width: 50%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-    float: left;
-	position: relative;
+.footer__widgets {
+    padding: 50px 0 20px 0;
 }
-.col-bs10-6 {
-	width: 50%;
-    min-height: 1px;
-    padding-left: 15px;
-    padding-right: 15px;
-    float: left;
-	position: relative;
+.footer__widgets p {
+    font-size: 14px;
+    line-height: 26px;
 }
-.footer__logo {
-    padding: 0 0 15px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-	position: relative;
+@media only screen and (max-width: 991px) {
+    .footer__widgets > .row > div:not(:last-child) {
+        margin-bottom: 10px;
+    }
 }
-.footer__logo a {
-    z-index: 2;
-    padding: 0 10px 0 0;
+.footer__widgets--short {
+    padding: 60px 0;
 }
-.footer__contact{
-	font-size: 14px;
-    line-height: 1.5;
-    font-weight: 400;
+.footer .logo__img {
+    display: block;
+    padding-bottom: 20px;
 }
-.footer p {
-    margin: 0;
-} */
 
 /* footer old */
 @media only screen and (max-width: 768px) {
@@ -583,14 +562,8 @@
         width: 50%;
         margin: auto;
     }
-    footer p {
+    .social__footer {
         text-align: center;
-    }
-    footer p.copyright {
-        text-align: center;
-    }
-    footer .socials {
-        justify-content: center;
     }
     footer .widget {
         text-align: center;
@@ -611,11 +584,13 @@
         text-align: center;
     }
 }
+.social__footer{
+    margin-top: 10px;
+}
 .footer__wrap {
     width: 100%;
     position: relative;
     padding: 0;
-    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
     width: 40%;
@@ -623,4 +598,96 @@
     gap: 10px;
     line-height: 2;
     font-weight: 600;
+}
+
+/* adas */
+.footer__logo {
+    padding: 0 0 15px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-start;
+    border-color: #e7e7e7;
+    align-items: center;
+    position: relative;
+}
+.footer__logo a {
+    position: relative;
+    z-index: 2;
+    padding: 0 10px 0 0;
+    display: inline-block;
+}
+.footer__contact {
+    line-height: 1.5;
+}
+.footer p {
+    margin: 0;
+}
+.footer__verifikasi {
+    line-height: 1.5;
+}
+.footer__logo a img {
+    height: 65px;
+}
+.footer__logo img {
+    height: 55px;
+}
+.footer__menu{
+    position: relative;
+    padding: 0;
+}
+@media (max-width: 768px) {
+    .footer__menu{
+        position: relative;
+        padding: 0;
+        text-align: center;
+    }
+    .footer__item{
+        padding: 0;
+        position: relative;
+        display: inline-block;
+    }
+    .footer__logo a img {
+        height: 45px;
+    }
+    .footer__logo img {
+        height: 40px;
+    }
+    .footer__logo {
+    justify-content: center;
+    }
+    .footer, .copyright p {
+        text-align: center;
+    }
+    .footer__menu.inline .footer__link {
+        padding: 2px 5px;
+        display: inline-block;
+        font-size: 14px;
+    }
+}
+
+.footer__item {
+    position: relative;
+    padding: 0;
+    display: block;
+}
+.footer__link {
+    padding: 5px 0;
+    display: block;
+    font-size: 14px;
+}
+.footer__copyright {
+    border-top: 1px solid rgba(255,255,255,.2);
+    font-size: 14px;
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+.footer__copyright {
+    border-color: #e7e7e7;
+}
+.footer__copyright {
+    align-items: center;
+    position: relative;
 }

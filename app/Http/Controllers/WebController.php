@@ -28,11 +28,10 @@ class WebController extends Controller
         $data['headlineWp'] = Headlinewp::get();
         $data['topikKhusus'] = Topic::get();
 
-
-        // posts 1-20
+        // posts 1-30
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
             ->where('status', 'published')
-            ->paginate(20);
+            ->paginate(30);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
 
         // dd($data['beritaTerkini']);

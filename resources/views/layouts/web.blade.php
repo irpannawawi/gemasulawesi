@@ -26,6 +26,9 @@
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } else {
+            // $segments = request()->segments();
+            // $lastSegment = end($segments);
+            // $postTitle = str_replace('-', ' ', $lastSegment);
             $postTitle = $post->title;
             $metaTitle = $postTitle;
             $metaDeskripsi = $post->description;

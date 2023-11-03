@@ -2497,8 +2497,10 @@ img.mfp-img {
     font-size: 30px;
     line-height: 1.4;
 }
-.thumb-entry-title:hover a,
-.thumb-entry-title a:focus {
+.thumb-entry-title:hover a, 
+.thumb-entry-title a:focus, 
+.title-category:hover a,
+.title-category a:focus{
     color: #fff;
     text-decoration: underline;
 }

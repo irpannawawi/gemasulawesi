@@ -59,8 +59,7 @@
                             <div class="owl-thumb-item col-3 p-0">
                                 <div class="card mt-3">
                                     <img src="{{ get_string_between($headline->post->article, '<img src="', '">') }}"
-                                        class="card-img-top w-100"
-                                        style="object-fit: cover;height: 80px;object-position: top;" alt="">
+                                        class="card-img-top w-100" style="object-fit: object-position: top;" alt="">
                                     <div class="card-body">
                                         <a
                                             href="{{ route('singlePost', [

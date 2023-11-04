@@ -4,7 +4,6 @@ def check_category(url_local, data):
     # ======================== Category check ===============================
     print('Checking category')
     # check category name
-    print(data['categories'])
     if(len(data['categories'])>1):
         category_id = data['categories'][1]
     else:

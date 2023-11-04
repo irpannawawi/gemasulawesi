@@ -85,6 +85,7 @@ class EditorialController extends Controller
             'published_at' => $request->published_at,
             'is_deleted' => $request->is_deleted,
             'post_image' => $request->post_image,
+            'origin_id' => $request->origin_id,
         ];
 
         // dd($postData);

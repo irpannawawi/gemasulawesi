@@ -1,22 +1,22 @@
 import requests
 import json
 import mig_function as fun
-url_local = 'http://gemasulawesi.test'
+url_local = 'https://demo.sandemoindoteknologi.co.id'
 print('Started')
-r = requests.get('https://gemasulawesi.com/wp-json/wp/v2/posts?per_page=50&page=1')
+r = requests.get('https://gemasulawesi.com/wp-json/wp/v2/posts?per_page=10&page=1')
 
 data_artikel = r.json()
 print('Data fetched')
 n=0
 
-url_insert = 'http://gemasulawesi.test/api/editorial/insert'
+url_insert = 'https://demo.sandemoindoteknologi.co.id/api/editorial/insert'
 
 for data in data_artikel:
     category_id = fun.check_category(url_local, data)
     tags = fun.check_tags(url_local, data)
 
     # upload image 
-    images = fun.upload_images(data['featured_media'])
+    images = fun.upload_images(url_local, data['featured_media'])
     
     post_data = {
         'origin_id': data['id'],

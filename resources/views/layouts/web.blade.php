@@ -33,8 +33,8 @@
             $metaTitle = $postTitle;
             $metaDeskripsi = $post->description;
             // Mencari path gambar dalam artikel
-            preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches[1] ?? '';
+            // preg_match('/<img src="(.*?)">/', $post->article, $matches);
+            $imagePath = get_post_image($post->post_id) ?? '';
             $metaImage = asset($imagePath);
             $type = 'article';
             $category = $post->rubrik->rubrik_name;

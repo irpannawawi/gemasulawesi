@@ -14,7 +14,7 @@
                     <div class="thumb mb-4">
                         <article class="entry thumb--size-3 mb-0">
                             <div class="entry__img-holder thumb__img-holder"
-                                style="background-image: url('{{ get_string_between($headlineRubrik->post->article, '<img src="', '">') }}');">
+                                style="background-image: url('{{ get_post_image($headlineRubrik->post->post_id) }}');">
                                 <div class="bottom-gradient"></div>
                                 <div class="thumb-text-holder thumb-text-holder--2">
                                     <ul class="entry__meta">
@@ -60,7 +60,7 @@
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}">
-                                                            <img data-src="{{ get_string_between($post->article, '<img src="', '">') }}"
+                                                            <img data-src="{{ get_post_image($post->post_id) }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.png"
                                                                 alt="" class="lazyload">
                                                         </a>
@@ -126,7 +126,7 @@
                                                             'post_id' => $post->post_id,
                                                             'slug' => $post->slug,
                                                         ]) }}">
-                                                        <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
+                                                        <img data-src="{{ get_post_image($post->post_id) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                             class="lazyload">
                                                     </a>

@@ -63,7 +63,8 @@
                                     if ($post->tags != null) {
                                         foreach (json_decode($post->tags) as $tags) {
                                             $tag = \App\Models\Tags::find($tags);
-                                            $re = "/<.*?>(*SKIP)(*FAIL)|1/"; // skip html tag 
+                                            $search = $tag->tag_name;
+                                            $re = '/'.$search.'(?![^<]*>)/'; // skip html tag 
                                             $replacement = "<a href=\"" . route('tags', ['tag_name' => $tag->tag_name]) . "\" >" . $tag->tag_name . '</a>';
                                             $article = preg_replace($re, $replacement, $article);
                                             // dd($article);
@@ -184,7 +185,7 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        @foreach ($beritaTerkini as $post)
+                        @foreach ($beritaTerkini as $post_item)
                             <ul class="post-list-small post-list-small--2 mb-32 mt-3">
                                 <li class="post-list-small__item">
                                     <article class="post-list-small__entry clearfix">
@@ -192,11 +193,11 @@
                                             <div class="thumb-container thumb-70">
                                                 <a
                                                     href="{{ route('singlePost', [
-                                                        'rubrik' => $post->rubrik->rubrik_name,
-                                                        'post_id' => $post->post_id,
-                                                        'slug' => $post->slug,
+                                                        'rubrik' => $post_item->rubrik->rubrik_name,
+                                                        'post_id' => $post_item->post_id,
+                                                        'slug' => $post_item->slug,
                                                     ]) }}">
-                                                    <img data-src="{{ $post->post_image }}"
+                                                    <img data-src="{{ get_post_image($post_item->post_id) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                         class=" lazyload">
                                                 </a>
@@ -205,13 +206,13 @@
                                         <div class="post-list-small__body">
                                             <h3 class="post-list-small__entry-title">
                                                 <a href="{{ route('singlePost', [
-                                                    'rubrik' => $post->rubrik->rubrik_name,
-                                                    'post_id' => $post->post_id,
-                                                    'slug' => $post->slug,
+                                                    'rubrik' => $post_item->rubrik->rubrik_name,
+                                                    'post_id' => $post_item->post_id,
+                                                    'slug' => $post_item->slug,
                                                 ]) }}"
-                                                    class="post-title">{{ $post->title }}</a>
+                                                    class="post-title">{{ $post_item->title }}</a>
                                             </h3>
-                                            <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                            <p class="bt__date">{{ convert_date_to_ID($post_item->created_at) }}</p>
                                         </div>
                                     </article>
                                 </li>

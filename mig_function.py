@@ -1,9 +1,10 @@
 import requests
 
-def check_category(url_local,data):
+def check_category(url_local, data):
     # ======================== Category check ===============================
     print('Checking category')
     # check category name
+    print(data['categories'])
     if(len(data['categories'])>1):
         category_id = data['categories'][1]
     else:
@@ -34,6 +35,8 @@ def check_tags(url_local, data):
         r_tag = requests.get(tag_url).json()
         tag_name = r_tag['name']
         get_local_tag = requests.get(url_local+'/api/tag', {'tag_name':tag_name}).json()
+        
+        
         if(get_local_tag['status']==True):
             local_tag_id = get_local_tag['data'][0]['tag_id']
         else:
@@ -50,10 +53,11 @@ def insert_post(url_insert, dt):
     req = requests.post(url_insert, headers={'Accept': 'Application/json'}, json=dt)
     return req
 
-def upload_images(media_id):
+def upload_images(local_url, media_id):
     # getting media info
     media_url = "https://www.gemasulawesi.com/wp-json/wp/v2/media/"+str(media_id)
     media = requests.get(media_url).json()
+    print(media)
     # print(media)
     # upload image
     post_data = {
@@ -64,5 +68,5 @@ def upload_images(media_id):
         'image_url': media['source_url'],
         'file_name': media['slug']+'.'+media['mime_type'].split('/')[1]
     }
-    url = 'http://gemasulawesi.test/api/photo/upload'
+    url = local_url+'/api/photo/upload'
     return requests.post(url,  json=post_data).json()

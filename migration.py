@@ -1,7 +1,7 @@
 import requests
 import json
 import mig_function as fun
-url_local = 'http://demo.sandemmoindoteknologi.co.id'
+url_local = 'https://demo.sandemoindoteknologi.co.id'
 print('Started')
 r = requests.get('https://gemasulawesi.com/wp-json/wp/v2/posts?per_page=100&page=1')
 
@@ -9,7 +9,7 @@ data_artikel = r.json()
 print('Data fetched')
 n=0
 
-url_insert = 'http://demo.sandemmoindoteknologi.co.id/api/editorial/insert'
+url_insert = 'https://demo.sandemoindoteknologi.co.id/api/editorial/insert'
 
 for data in data_artikel:
     try:

@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::table('posts', function (Blueprint $table) {
             $table->after('status', function (Blueprint $table) {
-                $table->integer('post_image')->nullable();
+                $table->string('post_image')->nullable();
             });
+            $table->bigInteger('origin_id')->nullable();
         });
     }
 
@@ -27,8 +28,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('post', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             $table->dropColumn('post_image');
+            $table->dropColumn('origin_id');
         });
     }
 };

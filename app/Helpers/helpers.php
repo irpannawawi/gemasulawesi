@@ -1,4 +1,8 @@
-<?php 
+<?php
+
+use App\Models\Posts;
+use Illuminate\Support\Facades\Storage;
+
 if(!function_exists('getYoutubeData'))
 {
     function getYoutubeData($url)
@@ -42,5 +46,11 @@ if(!function_exists('getYoutubeData'))
         \Carbon\Carbon::setLocale('id');
         $converted = \Carbon\Carbon::parse($date, 'id_ID');
         return $converted->isoFormat('D MMMM Y H:mm [WIB]');
+    }
+
+    function get_post_image($post_id){
+        $post = Posts::find($post_id);
+        $url = Storage::url('public/photos/'.$post->image->asset->file_name);
+        return $url;
     }
 }

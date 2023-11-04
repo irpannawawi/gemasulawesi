@@ -18,7 +18,7 @@
                                 <div>
                                     <article class="entry thumb--size-3 mb-0">
                                         <div class="entry__img-holder thumb__img-holder"
-                                            style="background-image: url('{{ get_string_between($headline->post->article, '<img src="', '">') }}');">
+                                            style="background-image: url('{{ Storage::url('public/photos/' . $headline->post->image->asset->file_name) }}');">
                                             <div class="bottom-gradient"></div>
                                             <div class="thumb-text-holder thumb-text-holder--2">
                                                 <ul class="entry__meta">
@@ -58,7 +58,7 @@
                         @foreach ($headlineWp as $headline)
                             <div class="owl-thumb-item col-3 p-0">
                                 <div class="card mt-3">
-                                    <img src="{{ get_string_between($headline->post->article, '<img src="', '">') }}"
+                                    <img src="{{ Storage::url('public/photos/' . $headline->post->image->asset->file_name) }}"
                                         class="card-img-top w-100" style="object-fit: cover;object-position: top;"
                                         alt="">
                                     <div class="card-body">
@@ -94,7 +94,7 @@
                                                     'slug' => $choice->post->slug,
                                                 ]) }}">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ get_string_between($choice->post->article, '<img src="', '">') }}"
+                                                    <img data-src="{{ get_post_image($choice->post->post_id) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="{{ $choice->post->title }}">
                                                 </div>
@@ -154,7 +154,7 @@
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}">
-                                                            <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
+                                                            <img data-src="{{ get_post_image($post->post_id) }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.png"
                                                                 alt="" class="lazyload">
                                                         </a>
@@ -225,7 +225,7 @@
                                                             'post_id' => $post->post_id,
                                                             'slug' => $post->slug,
                                                         ]) }}">
-                                                        <img data-src="{{ @get_string_between($post->article, '<img src="', '">') }}"
+                                                        <img data-src="{{ get_post_image($post->post_id) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                             class="lazyload">
                                                     </a>

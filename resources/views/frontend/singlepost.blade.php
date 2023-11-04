@@ -48,12 +48,10 @@
                     </div>
                 </div>
                 <!-- Entry Image -->
-                {{-- <div class="thumb image-single-post">
-                    <div class="entry__img-holder thumb__img-holder"
-                        style="background-image: url('{{ get_string_between($post->article, '<img src="', '">') }}');">
-                    </div>
-                    <p class="photo__caption">Photo caption unavailable</p>
-                </div> --}}
+                <div class="thumb image-single-post">
+                    <img class="" src="{{ get_post_image($post->post_id) }}" alt="">
+                    <p class="photo__caption">{!! strip_tags($post->image->caption) !!}</p>
+                </div>
 
                 <!-- standard post -->
                 <article class="entry mb-0">
@@ -65,13 +63,16 @@
                                     if ($post->tags != null) {
                                         foreach (json_decode($post->tags) as $tags) {
                                             $tag = \App\Models\Tags::find($tags);
-                                            $article = str_ireplace($tag->tag_name, "<a href=\"" . route('tags', ['tag_name' => $tag->tag_name]) . "\" >" . $tag->tag_name . '</a>', $article);
+                                            $re = "/<.*?>(*SKIP)(*FAIL)|1/"; // skip html tag 
+                                            $replacement = "<a href=\"" . route('tags', ['tag_name' => $tag->tag_name]) . "\" >" . $tag->tag_name . '</a>';
+                                            $article = preg_replace($re, $replacement, $article);
                                             // dd($article);
                                         }
                                     }
                                     $article = str_replace('../', '' . url('') . '/', $article);
                                     // echo $article;
                                 @endphp
+
                                 {!! $article !!}
                                 <!-- halaman -->
                                 <div class="halaman">
@@ -195,7 +196,7 @@
                                                         'post_id' => $post->post_id,
                                                         'slug' => $post->slug,
                                                     ]) }}">
-                                                    <img data-src="{{ str_replace('../', url('/') . '/', get_string_between($post->article, '<img src="', '">')) }}"
+                                                    <img data-src="{{ $post->post_image }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                         class=" lazyload">
                                                 </a>

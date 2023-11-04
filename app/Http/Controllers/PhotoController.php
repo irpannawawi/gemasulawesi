@@ -6,6 +6,7 @@ use App\Models\Asset;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
@@ -39,6 +40,41 @@ class PhotoController extends Controller
         ];
         Image::create($imageDetails);
         return redirect()->route('assets.photo.index');  
+    }
+
+    public function upload_api(Request $request)
+    {
+        
+        $file_name = $request->file_name;
+        $image_url = $request->image_url;
+
+        Storage::put('public/photos/'.$file_name, file_get_contents($image_url));
+        // insert to file table
+        $asset = Asset::create(['file_name'=>$file_name]);
+        
+
+        // insert image details
+        $imageDetails = [
+            'asset_id'=>$asset->asset_id,
+            'uploader_id'=>1,
+            'author'=>$request->author,
+            'caption'=>$request->caption,
+            'credit'=>$request->credit,
+            'source'=>$request->source,
+            
+        ];
+        $res = Image::create($imageDetails);
+        
+        if ($res) {
+            return response()->json([
+                'status' => True,
+                'data' => $res
+            ]);
+        } else {
+            return response()->json([
+                'status' => False
+            ]);
+        }
     }
 
     public function delete($id)

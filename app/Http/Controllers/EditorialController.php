@@ -84,12 +84,13 @@ class EditorialController extends Controller
             'schedule_time' => $request->schedule_time,
             'published_at' => $request->published_at,
             'is_deleted' => $request->is_deleted,
+            'post_image' => $request->post_image,
         ];
 
         // dd($postData);
 
         $res = Posts::create($postData);
-
+        
         // die;
         if ($res) {
             return response()->json([

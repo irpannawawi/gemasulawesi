@@ -11,7 +11,7 @@ class ReportController extends Controller
 {
     //
 
-    public function index(Request $request){
+    public function editor(Request $request){
         if($request->daterange != null){
             $daterange = explode(' - ', $request->daterange);
             $start_date = $daterange[0];

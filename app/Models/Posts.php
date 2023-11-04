@@ -31,6 +31,7 @@ class Posts extends Model
         'published_at',
         'is_deleted',
         'post_image',
+        'origin_id',
     ];
 
     public function editor(): HasOne
@@ -45,5 +46,10 @@ class Posts extends Model
     public function rubrik(): HasOne
     {
         return $this->hasOne(Rubrik::class, 'rubrik_id', 'category');
+    }
+
+    public function image(): HasOne
+    {
+        return $this->hasOne(Image::class, 'image_id', 'post_image');
     }
 }

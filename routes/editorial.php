@@ -6,9 +6,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
-// Route::post('/editorial/insert', [EditorialController::class, 'api_create']);
 
 Route::middleware('auth')->group(function () {
+    Route::post('/editorial/insert', [EditorialController::class, 'create'])->name('editorial.insert');
     Route::get('/editorial/create', [EditorialController::class, 'create'])->name('editorial.create');
     Route::get('/editorial/edit', [EditorialController::class, 'edit'])->name('editorial.edit');
     Route::get('/editorial/update', [EditorialController::class, 'update'])->name('editorial.update');

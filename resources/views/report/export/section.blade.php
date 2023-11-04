@@ -4,35 +4,28 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800   leading-tight">
-            {{ __('Report Author') }}
+            {{ __('Report Section') }}
         </h2>
     </x-slot>
 
     <div class="card">
         <div class="card-header">
-            <div class="row mb-2">
-                <div class="col-6">
-                    <form action="{{ route('report.author') }}" method="GET">
-                        @csrf
+        </div>
+        <div class="card-body table-responsive">
+            <form action="{{ route('report.editor') }}" method="GET">
+            <div class="row">
+                    @csrf
+                    <div class="col-md-4 col-sm-6 col-sx-12 col-lg-4">
                         <label for="date">Filter Date</label>
                         <div class="input-group">
-                            <input type="text" name="daterange" value="{{ $daterange }}" class="form-control" />
+                            <input type="text" name="daterange" value="{{$daterange}}" class="form-control" />
                             <div class="input-group-append">
                                 <input type="submit" value="Filter" class="btn btn-info bg-info">
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-                <div class="col-6 text-right mt-5">
-                    <form action="{{ route('report.author.download') }}" method="GET">
-                        @csrf
-                        <input type="hidden" name="daterange" value="{{ $daterange }}" class="form-control" />
-                        <button type="submit" class="btn btn-default" title="Export"><i class="fa fa-file-excel"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="card-body table-responsive">
+            </form>
             <table class="table table-sm table-bordered">
                 <thead class="text-center">
                     <tr>

@@ -14,7 +14,7 @@
                     <div class="card-body p-1">
                         <label>Headline 1</label>
                         <img id="imgheadline1"
-                            src="{{@$headline[0]->img_url}}"
+                            src="{{@get_post_image($headline[0]->post->post_id)}}"
                             class="img-responsive"
                             title="{{@$headline[0]->post->title}}"
                             style="height:150px !important">
@@ -40,7 +40,7 @@
                     <div class="card-body p-1">
                         <label>Headline 2</label>
                         <img id="imgheadline1"
-                            src="{{@$headline[1]->img_url}}"
+                            src="{{@get_post_image($headline[1]->post->post_id)}}"
                             class="img-responsive"
                             title="{{@$headline[1]->post->title}}"
                             style="height:150px !important">
@@ -66,7 +66,7 @@
                     <div class="card-body p-1">
                         <label>Headline 3</label>
                         <img id="imgheadline1"
-                            src="{{@$headline[2]->img_url}}"
+                            src="{{@get_post_image($headline[2]->post->post_id)}}"
                             class="img-responsive"
                             title="{{@$headline[2]->post->title}}"
                             style="height:150px !important">
@@ -92,7 +92,7 @@
                     <div class="card-body p-1">
                         <label>Headline 4</label>
                         <img id="imgheadline1"
-                            src="{{@$headline[3]->img_url}}"
+                            src="{{@get_post_image($headline[3]->post->post_id)}}"
                             class="img-responsive"
                             title="{{@$headline[3]->post->title}}"
                             style="height:150px !important">
@@ -118,7 +118,7 @@
                     <div class="card-body p-1">
                         <label>Headline 5</label>
                         <img id="imgheadline1"
-                            src="{{@$headline[4]->img_url}}"
+                            src="{{@get_post_image($headline[4]->post->post_id)}}"
                             class="img-responsive"
                             title="{{@$headline[4]->post->title}}"
                             style="height:150px !important">
@@ -144,7 +144,7 @@
                     <div class="card-body p-1">
                         <label>Headline 6</label>
                         <img id="imgheadline1"
-                            src="{{@$headline[5]->img_url}}"
+                            src="{{@get_post_image($headline[5]->post->post_id)}}"
                             class="img-responsive"
                             title="{{@$headline[5]->post->title}}"
                             style="height:150px !important">

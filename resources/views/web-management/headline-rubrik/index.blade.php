@@ -11,7 +11,7 @@
                 <div class="card-body p-1">
                     <label>Headline 1</label>
                     <img id="imgheadline1"
-                        src="{{@$img_url}}"
+                        src="{{@get_post_image($headline->post->post_id)}}"
                         class="img img-responsive"
                         title="{{@$headline->post->title}}"
                         style="">

@@ -10,27 +10,34 @@
 
     <div class="card">
         <div class="card-header">
-        </div>
-        <div class="card-body table-responsive">
-            <form action="{{ route('report.editor') }}" method="GET">
-            <div class="row">
-                    @csrf
-                    <div class="col-md-4 col-sm-6 col-sx-12 col-lg-4">
+            <div class="row mb-2">
+                <div class="col-6">
+                    <form action="{{ route('report.section') }}" method="GET">
+                        @csrf
                         <label for="date">Filter Date</label>
                         <div class="input-group">
-                            <input type="text" name="daterange" value="{{$daterange}}" class="form-control" />
+                            <input type="text" name="daterange" value="{{ $daterange }}" class="form-control" />
                             <div class="input-group-append">
                                 <input type="submit" value="Filter" class="btn btn-info bg-info">
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </form>
+                <div class="col-6 text-right mt-5">
+                    <form action="{{ route('report.section.download') }}" method="GET">
+                        @csrf
+                        <input hidden type="text" name="daterange" value="{{ $daterange }}" class="form-control" />
+                        <button type="submit" class="btn btn-default" title="Export"><i class="fa fa-file-excel"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card-body table-responsive">
             <table class="table table-sm table-bordered">
                 <thead class="text-center">
                     <tr>
                         <th>No</th>
-                        <th>Editor</th>
+                        <th>Section</th>
                         <th>Articles</th>
                     </tr>
                 </thead>
@@ -39,14 +46,14 @@
                         $n = 1;
                         $total = 0;
                     @endphp
-                    @foreach ($users as $user)
+                    @foreach ($sections as $section)
                         @php
-                            $total += $user->posts->count();
+                            $total += $section->posts->count();
                         @endphp
                         <tr>
                             <td>{{ $n++ }}</td>
-                            <td>{{ $user->display_name }}</td>
-                            <td>{{ $user->posts->count() }}</td>
+                            <td>{{ $section->rubrik_name }}</td>
+                            <td>{{ $section->posts->count() }}</td>
                         </tr>
                     @endforeach
                 </tbody>

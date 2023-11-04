@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Rubrik extends Model
 {
@@ -15,4 +16,9 @@ class Rubrik extends Model
         'rubrik_id',
         'rubrik_name',
     ];
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Posts::class, 'category','rubrik_id');
+    }
 }

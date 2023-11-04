@@ -163,7 +163,7 @@
                             </div>
 
                             <div class="loadmore">
-                                {{ $paginatedPost->links() }}
+                                {{ $paginatedPost->onEachSide(1)->links() }}
                             </div>
                         </div>
                     </div>

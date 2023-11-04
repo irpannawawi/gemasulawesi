@@ -26,7 +26,7 @@
                 <div class="col-6 text-right mt-5">
                     <form action="{{ route('report.author.download') }}" method="GET">
                         @csrf
-                        <input type="hidden" name="daterange" value="{{ $daterange }}" class="form-control" />
+                        <input hidden type="text" name="daterange" value="{{ $daterange }}" class="form-control" />
                         <button type="submit" class="btn btn-default" title="Export"><i class="fa fa-file-excel"></i></button>
                     </form>
                 </div>

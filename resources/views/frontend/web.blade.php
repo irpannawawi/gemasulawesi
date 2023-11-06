@@ -137,9 +137,9 @@
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
-                        <divclass="title-list-berita">
-                        <span>Berita Terkini</span>
-                        </h3>
+                        <div class="title-list-berita">
+                            <span>Berita Terkini</span>
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
@@ -227,7 +227,7 @@
                                                         ]) }}">
                                                         <img data-src="{{ get_post_image($post->post_id) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class="lazyload">
+                                                            class="lazyload news">
                                                     </a>
                                                 </div>
                                             </div>

@@ -13,7 +13,7 @@
                     </div>
                     <div class="thumb mb-4">
                         <article class="entry thumb--size-3 mb-0">
-                            <div class="entry__img-editorial thumb__img-holder"
+                            <div class="entry__img-holder thumb__img-holder"
                                 style="background-image: url('{{ get_post_image($headlineRubrik->post->post_id) }}');">
                                 <div class="bottom-gradient"></div>
                                 <div class="thumb-text-holder thumb-text-holder--2">
@@ -128,7 +128,7 @@
                                                         ]) }}">
                                                         <img data-src="{{ get_post_image($post->post_id) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class="lazyload">
+                                                            class="lazyload news">
                                                     </a>
                                                 </div>
                                             </div>
@@ -147,7 +147,7 @@
                                                     ]) }}"
                                                         class="post-title">{{ $post->title }}</a>
                                                 </h3>
-                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
                                             </div>
                                         </article>
                                     </li>

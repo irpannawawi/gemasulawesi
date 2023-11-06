@@ -2347,6 +2347,7 @@ img.mfp-img {
 }
 .thumb-container .news {
     border-radius: 100%;
+    border: 4px solid #2cc38b;
 }
 .footer--dark .thumb-container {
     background-color: #171821;

@@ -59,8 +59,7 @@
                             <div class="owl-thumb-item col-3 p-0">
                                 <div class="card mt-3">
                                     <img src="{{ Storage::url('public/photos/' . $headline->post->image->asset->file_name) }}"
-                                        class="card-img-top w-100" style="object-fit: cover;object-position: top;"
-                                        alt="">
+                                        style="object-fit: cover;object-position: top;" alt="">
                                     <div class="card-body">
                                         <a
                                             href="{{ route('singlePost', [
@@ -86,7 +85,7 @@
                             <div id="owl-pilihan-editor" class="owl-carousel owl-theme owl-carousel--arrows-outside">
                                 @foreach ($editorCohice as $choice)
                                     <article class="entry">
-                                        <div class="entry__img-holder">
+                                        <div class="entry__img-editorial">
                                             <a
                                                 href="{{ route('singlePost', [
                                                     'rubrik' => $choice->post->rubrik->rubrik_name,
@@ -95,6 +94,7 @@
                                                 ]) }}">
                                                 <div class="thumb-container thumb-65">
                                                     <img data-src="{{ get_post_image($choice->post->post_id) }}"
+                                                        {{-- <img data-src="{{ url('assets/frontend') }}/img/testing.jpg" --}}
                                                         src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="{{ $choice->post->title }}">
                                                 </div>
@@ -156,7 +156,7 @@
                                                             ]) }}">
                                                             <img data-src="{{ get_post_image($post->post_id) }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                alt="" class="lazyload">
+                                                                alt="" class="lazyload news">
                                                         </a>
                                                     </div>
                                                 </div>

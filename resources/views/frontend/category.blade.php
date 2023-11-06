@@ -13,7 +13,7 @@
                     </div>
                     <div class="thumb mb-4">
                         <article class="entry thumb--size-3 mb-0">
-                            <div class="entry__img-holder thumb__img-holder"
+                            <div class="entry__img-editorial thumb__img-holder"
                                 style="background-image: url('{{ get_post_image($headlineRubrik->post->post_id) }}');">
                                 <div class="bottom-gradient"></div>
                                 <div class="thumb-text-holder thumb-text-holder--2">

@@ -62,7 +62,7 @@
                                                             ]) }}">
                                                             <img data-src="{{ get_post_image($post->post_id) }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                alt="" class="lazyload">
+                                                                alt="" class="lazyload news">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -128,7 +128,7 @@
                                                         ]) }}">
                                                         <img data-src="{{ get_post_image($post->post_id) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class="lazyload">
+                                                            class="lazyload news">
                                                     </a>
                                                 </div>
                                             </div>
@@ -147,7 +147,7 @@
                                                     ]) }}"
                                                         class="post-title">{{ $post->title }}</a>
                                                 </h3>
-                                                <p class="bt__date">14 September 2023, 13:56 WIB</p>
+                                                <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
                                             </div>
                                         </article>
                                     </li>

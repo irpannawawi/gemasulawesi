@@ -328,7 +328,7 @@
       loop: false,
       nav: true,
       dots: false,
-      margin: 20,
+      margin: 10,
       lazyLoad: true,
       navSpeed: 500,
       responsive:{

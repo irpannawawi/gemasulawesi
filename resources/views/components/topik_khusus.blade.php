@@ -8,7 +8,7 @@
         <div id="owl-topik-khusus" class="owl-carousel owl-theme owl-carousel--arrows-outside">
             @foreach ($topikKhusus as $topik)
                 <article class="entry" style="background-color: white; border-radius:10px;">
-                    <div class="entry__img-holder mb-0">
+                    <div class="entry__img-editorial mb-0">
                         <a href="#">
                             <div class="thumb-container thumb-65">
                                 <img data-src="{{ Storage::url('public/topic-images/' . $topik->topic_image) }}"

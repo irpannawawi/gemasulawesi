@@ -14,7 +14,7 @@ url_insert = 'https://demo.sandemoindoteknologi.co.id/api/editorial/insert'
 for data in data_artikel:
     # check post
     print('checking article data')
-    has_post = requests.post(url_local+'/api/check_post', json={id:data['id']})
+    has_post = requests.post(url_local+'/api/check_post', data={id:data['id']})
     print(has_post)
     if(has_post['status']!='success'):
         try:

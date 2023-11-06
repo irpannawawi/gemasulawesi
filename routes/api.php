@@ -28,8 +28,8 @@ Route::get('/tag', [TagsController::class, 'api_list']);
 Route::post('/tag/insert', [TagsController::class, 'api_create']);
 Route::post('/editorial/insert', [EditorialController::class, 'api_create']);
 Route::post('/photo/upload', [PhotoController::class, 'upload_api'])->name('assets.photo.upload');
-Route::post('/check_id', function(Request $request){
-    $post = Posts::where('origin_id', $request->id)->get();
+Route::get('/check_id/{id}', function($id){
+    $post = Posts::where('origin_id', $id)->get();
     if($post->count()>0){
         return response()->json(['status'=> 'success','message'=> 'has post']);
     }else{

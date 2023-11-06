@@ -4,7 +4,7 @@ use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\RubrikController;
 use App\Http\Controllers\TagsController;
-
+use App\Models\Posts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,3 +28,11 @@ Route::get('/tag', [TagsController::class, 'api_list']);
 Route::post('/tag/insert', [TagsController::class, 'api_create']);
 Route::post('/editorial/insert', [EditorialController::class, 'api_create']);
 Route::post('/photo/upload', [PhotoController::class, 'upload_api'])->name('assets.photo.upload');
+Route::post('/check_id', function(Request $request){
+    $post = Posts::where('origin_id', $request->id)->get();
+    if($post->count()>0){
+        return response()->json(['status'=> 'success','message'=> 'has post']);
+    }else{
+        return response()->json(['status'=> 'false','message'=> 'post not found']);
+    }
+})->name('check_id');

@@ -21,9 +21,9 @@
                     <div class="col-lg-8 col-md-8">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" maxlength="200" name="title" class="form-control"
+                            <input type="text" maxlength="120" name="title" class="form-control"
                                 placeholder="Enter title ...">
-                            <span class="badge badge-info">200 Character</span>
+                            <span class="badge badge-info">120 Character</span>
 
                         </div>
                         <div class="form-group">

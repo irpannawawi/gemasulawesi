@@ -137,8 +137,8 @@
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
-                        <h3 class="title-list-berita">
-                            <span>Berita Terkini</span>
+                        <divclass="title-list-berita">
+                        <span>Berita Terkini</span>
                         </h3>
                         <div class="row">
                             <div class="col">

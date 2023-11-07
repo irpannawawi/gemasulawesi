@@ -14,7 +14,7 @@
                     <div class="card-body p-1">
                         <label>Headline 1</label>
                         <img id="imgheadline1"
-                            src="{{get_post_image($headline[0]->post->post_id)}}"
+                            src="{{@get_post_image($headline[0]->post->post_id)}}"
                             class="img-responsive"
                             title="{{@$headline[0]->post->title}}"
                             style="height:150px !important">

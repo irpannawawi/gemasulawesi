@@ -1,5 +1,11 @@
 import requests
 
+def check_post(url, id):
+    print('checking article data')
+    urlcheck = url+'/api/check_id/'+str(id)
+    has_post = requests.get(urlcheck).json()
+    return has_post
+
 def check_category(url_local, data):
     # ======================== Category check ===============================
     print('Checking category')

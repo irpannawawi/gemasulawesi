@@ -37,7 +37,7 @@
                         @if ($page == $paginator->currentPage())
                             <li class="active" aria-current="page"><span>{{ $page }}</span></li>
                         @else
-                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                            <li><a href="{{ $url }}">{{ $page }} yyyy</a></li>
                         @endif
                     @endforeach
                 @endif

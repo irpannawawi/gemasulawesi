@@ -15,27 +15,26 @@
                         </div>
                         <div class="owl-carousel owl-carousel-thumbs" data-slider-id="5">
                             @foreach ($headlineWp as $headline)
-                                <div>
-                                    <article class="entry thumb--size-3 mb-0">
-                                        <div class="entry__img-holder thumb__img-holder"
-                                            style="background-image: url('{{ Storage::url('public/photos/' . $headline->post->image->asset->file_name) }}');">
-                                            <div class="bottom-gradient"></div>
-                                            <div class="thumb-text-holder thumb-text-holder--2">
-                                                <ul class="entry__meta">
-                                                    <li>
-                                                        <a href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}"
-                                                            class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headline->post->rubrik->rubrik_name }}</a>
-                                                    </li>
-                                                </ul>
-                                                <h2 class="thumb-entry-title">
-                                                    <a
-                                                        href="{{ route('singlePost', [
-                                                            'rubrik' => $headline->post->rubrik->rubrik_name,
-                                                            'post_id' => $headline->post->post_id,
-                                                            'slug' => $headline->post->slug,
-                                                        ]) }}">{{ $headline->post->title }}</a>
-                                                </h2>
-                                                {{-- <ul class="entry__meta">
+                                <article class="entry thumb--size-3 mb-0">
+                                    <div class="entry__img-holder thumb__img-holder"
+                                        style="background-image: url('{{ Storage::url('public/photos/' . $headline->post->image->asset->file_name) }}');">
+                                        <div class="bottom-gradient"></div>
+                                        <div class="thumb-text-holder thumb-text-holder--2">
+                                            <ul class="entry__meta">
+                                                <li>
+                                                    <a href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}"
+                                                        class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headline->post->rubrik->rubrik_name }}</a>
+                                                </li>
+                                            </ul>
+                                            <h2 class="thumb-entry-title">
+                                                <a
+                                                    href="{{ route('singlePost', [
+                                                        'rubrik' => $headline->post->rubrik->rubrik_name,
+                                                        'post_id' => $headline->post->post_id,
+                                                        'slug' => $headline->post->slug,
+                                                    ]) }}">{{ $headline->post->title }}</a>
+                                            </h2>
+                                            {{-- <ul class="entry__meta">
                                                     <li class="entry__meta-views">
                                                         <i class="ui-eye"></i>
                                                         <span>1356</span>
@@ -46,11 +45,10 @@
                                                         </a>
                                                     </li>
                                                 </ul> --}}
-                                            </div>
-                                            <a class="thumb-url"></a>
                                         </div>
-                                    </article>
-                                </div>
+                                        <a class="thumb-url"></a>
+                                    </div>
+                                </article>
                             @endforeach
                         </div>
                     </div>
@@ -93,8 +91,8 @@
                                                     'slug' => $choice->post->slug,
                                                 ]) }}">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ get_post_image($choice->post->post_id) }}"
-                                                        {{-- <img data-src="{{ url('assets/frontend') }}/img/testing.jpg" --}}
+                                                    {{-- <img data-src="{{ get_post_image($choice->post->post_id) }}" --}}
+                                                    <img data-src="{{ url('assets/frontend') }}/img/testing.jpg"
                                                         src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="{{ $choice->post->title }}">
                                                 </div>

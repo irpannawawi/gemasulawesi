@@ -2,7 +2,7 @@ import time
 import task 
 import multiprocessing as mp
 
-url_local = 'https://demo.sandemoindoteknologi.co.id'
+url_local = 'http://127.0.0.1:8000'
 number_of_page = 1 # jumlah halaman isi 100 post 
 
 

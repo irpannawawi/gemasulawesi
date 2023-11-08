@@ -20,19 +20,17 @@
                                     @foreach ($beritaTerkini[0] as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">
-                                                <div class="post-list-small__img-holder">
-                                                    <div class="thumb-container thumb-70">
-                                                        <a
-                                                            href="{{ route('singlePost', [
-                                                                'rubrik' => $post->rubrik->rubrik_name,
-                                                                'post_id' => $post->post_id,
-                                                                'slug' => $post->slug,
-                                                            ]) }}">
-                                                            <img data-src="{{ get_post_image($post->post_id) }}"
-                                                                src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                alt="" class=" lazyload news">
-                                                        </a>
-                                                    </div>
+                                                <div class="post__img">
+                                                    <a
+                                                        href="{{ route('singlePost', [
+                                                            'rubrik' => $post->rubrik->rubrik_name,
+                                                            'post_id' => $post->post_id,
+                                                            'slug' => $post->slug,
+                                                        ]) }}">
+                                                        <img data-src="{{ get_post_image($post->post_id) }}"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                            class="lazyload">
+                                                    </a>
                                                 </div>
                                                 <div class="post-list-small__body">
                                                     <ul class="entry__meta category underline">

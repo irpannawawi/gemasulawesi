@@ -11,7 +11,7 @@
                 <section>
                     <div class="wrapper-owl">
                         <div class="headline">
-                            headline
+                            Headline
                         </div>
                         <div class="owl-carousel owl-carousel-thumbs" data-slider-id="5">
                             @foreach ($headlineWp as $headline)
@@ -91,8 +91,7 @@
                                                     'slug' => $choice->post->slug,
                                                 ]) }}">
                                                 <div class="thumb-container thumb-65">
-                                                    {{-- <img data-src="{{ get_post_image($choice->post->post_id) }}" --}}
-                                                    <img data-src="{{ url('assets/frontend') }}/img/testing.jpg"
+                                                    <img data-src="{{ get_post_image($choice->post->post_id) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="{{ $choice->post->title }}">
                                                 </div>
@@ -144,19 +143,17 @@
                                     @foreach ($beritaTerkini[0] as $post)
                                         <li class="post-list-small__item">
                                             <article class="post-list-small__entry clearfix">
-                                                <div class="post-list-small__img-holder">
-                                                    <div class="thumb-container thumb-70">
-                                                        <a
-                                                            href="{{ route('singlePost', [
-                                                                'rubrik' => $post->rubrik->rubrik_name,
-                                                                'post_id' => $post->post_id,
-                                                                'slug' => $post->slug,
-                                                            ]) }}">
-                                                            <img data-src="{{ get_post_image($post->post_id) }}"
-                                                                src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                alt="" class="lazyload news">
-                                                        </a>
-                                                    </div>
+                                                <div class="post__img">
+                                                    <a
+                                                        href="{{ route('singlePost', [
+                                                            'rubrik' => $post->rubrik->rubrik_name,
+                                                            'post_id' => $post->post_id,
+                                                            'slug' => $post->slug,
+                                                        ]) }}">
+                                                        <img data-src="{{ get_post_image($post->post_id) }}"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                            class="lazyload">
+                                                    </a>
                                                 </div>
                                                 <div class="post-list-small__body">
                                                     <ul class="entry__meta category underline">
@@ -251,7 +248,7 @@
                                 @endforeach
                             </ul>
                             <div class="loadmore">
-                                {{ $paginatedPost->onEachSide(1)->links() }}
+                                <a href="{{ url('indeks-berita') }}" class="tombolmore">Lihat Semua</a>
                             </div>
                         </div>
                     </div>

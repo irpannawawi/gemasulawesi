@@ -711,3 +711,42 @@
         font-size: 16px;
     }
 }
+
+/* indeks */
+.filter-box {
+    display: flex;
+    background: #f0f0f0;
+    border-radius: 4px;
+    padding: 16px 16px;
+    width: 100%;
+    justify-content: space-between;
+    flex-flow: wrap;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.filter-box span {
+    color: #000;
+    font-weight: bold;
+}
+.filter__date{
+    background: #fff; 
+    cursor: pointer; 
+    padding: 10px 10px; 
+    border: 1px solid #e0e0e0; 
+    display:inline-block;
+    border-radius: 6px;
+}
+
+/* post__img */
+.post__img img {
+    object-fit: cover;
+    object-position: center;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%; /* Mengatur elemen menjadi lingkaran */
+    float: left;
+    margin-right: 15px;
+    border: 1px solid #2cc38b;
+}

@@ -1,8 +1,11 @@
 /node_modules
 /public/build
+/public/storage/photos/thumbnails
+/public/storage/photos
 /public/hot
 /public/storage
 /storage/*.key
+/storage/app/public/photos
 /vendor
 .env
 .env.backup

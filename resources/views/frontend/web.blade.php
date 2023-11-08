@@ -152,7 +152,7 @@
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}">
-                                                            <img data-src="{{ get_post_image($post->post_id) }}"
+                                                            <img data-src="{{ get_post_thumbnail($post->post_id) }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.png"
                                                                 alt="" class="lazyload news">
                                                         </a>
@@ -223,7 +223,7 @@
                                                             'post_id' => $post->post_id,
                                                             'slug' => $post->slug,
                                                         ]) }}">
-                                                        <img data-src="{{ get_post_image($post->post_id) }}"
+                                                        <img data-src="{{ get_post_thumbnail($post->post_id) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                             class="lazyload news">
                                                     </a>

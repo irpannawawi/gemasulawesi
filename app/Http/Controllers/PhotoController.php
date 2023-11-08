@@ -77,6 +77,25 @@ class PhotoController extends Controller
         }
     }
 
+    public function upload_image_only(Request $request)
+    {
+        
+        $file_name = $request->file_name;
+        $image_url = $request->image_url;
+
+        $res = Storage::put('public/photos/'.$file_name, file_get_contents($image_url));
+        // insert to file table        
+        if ($res) {
+            return response()->json([
+                'status' => True,
+                'data' => $res
+            ]);
+        } else {
+            return response()->json([
+                'status' => False
+            ]);
+        }
+    }
     public function delete($id)
     {
         $image = Image::find($id);

@@ -57,9 +57,9 @@ if(!function_exists('getYoutubeData'))
         $post = Posts::find($post_id);
         $url = Storage::url('public/photos/'.$post->image->asset->file_name);
 
-        $original = imagecreatefromjpeg('http://gemasulawesi.test'.$url);
+        $original = imagecreatefromjpeg(Config::get('app.url').$url);
 
-        $imageData = getimagesize('http://gemasulawesi.test'.$url);
+        $imageData = getimagesize(Config::get('app.url').$url);
         $resized = imagecreatetruecolor(320, 320);
         imagecopyresampled($resized, $original, 0, 0, 0, 0, 320, 320, $imageData[0], $imageData[1]);
         // dd(imagejpeg($resized, 'image.jpeg'));

@@ -2,8 +2,10 @@
 /public/build
 /public/hot
 /public/storage
+/public/storage/photos/*
 /storage/*.key
 /storage/app/public/photos/thumbnails/*
+/storage/app/public/photos
 /vendor
 .env
 .env.backup

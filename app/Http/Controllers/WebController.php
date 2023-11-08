@@ -38,6 +38,37 @@ class WebController extends Controller
         return view('frontend.web', $data);
     }
 
+    public function indeks(Request $request)
+    {
+        VisitLog::save($request->all());
+
+        $data['editorChoice'] = Editorcoice::get();
+        $data['headlineWp'] = HeadlineWp::get();
+        $data['topikKhusus'] = Topic::get();
+
+        // Cek apakah ada rentang tanggal yang dipilih
+        if ($request->has('daterange')) {
+            list($startDate, $endDate) = explode(' - ', $request->input('daterange'));
+            $startDate = date('d-m-Y', strtotime($startDate));
+            $endDate = date('d-m-Y', strtotime($endDate));
+
+            $data['paginatedPost'] = Posts::where('status', 'published')
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->orderBy('created_at', 'DESC')
+                ->paginate(10);
+        } else {
+            // Jika tidak ada tanggal yang dipilih, tampilkan semua berita
+            $data['paginatedPost'] = Posts::where('status', 'published')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(10);
+        }
+
+        $data['beritaTerkini'] = $data['paginatedPost']->split(2);
+
+        return view('frontend.indeks', $data);
+    }
+
+
     public function showCategory(): View
     {
         VisitLog::save(request()->all());

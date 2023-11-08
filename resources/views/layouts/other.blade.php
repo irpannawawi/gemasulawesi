@@ -10,39 +10,13 @@
 
 <head>
     @php
-        if (request()->is('/')) {
-            $metaTitle = 'Berita Terkini Indonesia Hari Ini';
-            $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
-        } elseif (request()->is('category/*')) {
-            $metaTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
-            $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
-        } elseif (request()->is('tags/*')) {
-            $metaTitle = 'Berita ' . $tag_name . ' Hari Ini';
-            $metaDeskripsi = $post->title;
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
-        } else {
-            // $segments = request()->segments();
-            // $lastSegment = end($segments);
-            // $postTitle = str_replace('-', ' ', $lastSegment);
-            $postTitle = $post->title;
-            $metaTitle = $postTitle;
-            $metaDeskripsi = $post->description;
-            // Mencari path gambar dalam artikel
-            // preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = get_post_image($post->post_id) ?? '';
-            $metaImage = asset($imagePath);
-            $type = 'article';
-            $category = $post->rubrik->rubrik_name;
-            $tags = $post->tags;
-        }
+        $metaTitle = 'Gema Sulawesi Indeks';
+        $metaDeskripsi = 'Gema Sulawesi Indeks';
+        $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+        $type = 'website';
     @endphp
     <!-- s: open graph -->
-    <title itemprop="name">{{ $metaTitle }} - www.Gemasulawesi.com</title>
+    <title itemprop="name">{{ $metaTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
@@ -93,43 +67,17 @@
     <!-- E:tweeter card -->
 
     @php
-        $category = $post->rubrik->rubrik_name;
-        if (request()->is('/')) {
-            echo '<script>
-                dataLayer = [{
-                    "breadcrumb_detail": "Homepage",
-                    "content_category": ""
-                }];
-            </script>';
-        } elseif (request()->is('category/*')) {
+        if (request()->is('/*')) {
             echo '<script>
                 dataLayer = [{
                     "breadcrumb_detail": "Section Page",
-                    "content_category": '. $category .'
-                }];
-            </script>';
-        } elseif (request()->is('tags/*')) {
-            echo '<script>
-                dataLayer = [{
-                    "breadcrumb_detail": "Section Page",
-                    "content_category": "Tag"
-                }];
-            </script>';
-        } else {
-            echo '<script>
-                dataLayer = [{
-                    "breadcrumb_detail": "Article Page",
-                    "content_category": '. $category .'
+                    "content_category": "Gema Sulawesi Indeks"
                 }];
             </script>';
         }
     @endphp
 
-    @php
-        $category = $post->rubrik->rubrik_name;
-    @endphp
-
-    @if (request()->is('/'))
+    @if (request()->is('/*'))
         <script>
             dataLayer = [{
                 "published_date": "All",
@@ -145,136 +93,7 @@
                 "editor_id": "All"
             }];
         </script>
-    @elseif (request()->is('category/*'))
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All", // Ganti dengan variabel yang sesuai
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "Berita, {{ $category }} , Terbaru, Terkini, Hari Ini"
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
-    @elseif (request()->is('tags/*'))
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "Berita, {{ $tag_name }} , Terbaru, Terkini, Hari Ini"
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
-    @else
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "{{ $post->tags }}",
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
     @endif
-
-    @php
-        preg_match('/<img src="(.*?)">/', $post->article, $matches);
-        $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
-        $image = asset($imagePath);
-        $segments = request()->segments();
-        $lastSegment = end($segments);
-        $postTitle = str_replace('-', ' ', $lastSegment);
-        $jsonLDData = [
-            '@context' => 'http://schema.org/',
-            '@type' => 'Organization',
-            'name' => 'www.gemasulawesi.com',
-            'url' => 'https://www.gemasulawesi.com',
-            'logo' => asset('frontend/img/favicon.png'),
-            'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
-        ];
-        $jsonPost = [
-            '@context' => 'http://schema.org/',
-            '@type' => 'WebPage',
-            'headline' => $postTitle,
-            'url' => url()->current(),
-            'datePublished' => $post->created_at,
-            'image' => $image,
-            'thumbnailUrl' => $image,
-        ];
-
-        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-        $jsonP = json_encode($jsonPost, JSON_PRETTY_PRINT);
-        if (request()->is('/*')) {
-            echo '<script type="application/ld+json">' . $jsonLD . '</script>';
-        } elseif (request()->is('category/*')) {
-            echo '<script type="application/ld+json">' . $jsonLD . '</script>';
-        } elseif (request()->is('tags/*')) {
-            echo '<script type="application/ld+json">' . $jsonLD . '</script>';
-        } else {
-            echo '<script type="application/ld+json">' . $jsonP . '</script>';
-        }
-    @endphp
-
-    @php
-        if (!request()->is('/') && !request()->is('category/*') && !request()->is('tags/*')) {
-            preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
-            $image = asset($imagePath);
-            $segments = request()->segments();
-            $lastSegment = end($segments);
-            $postTitle = str_replace('-', ' ', $lastSegment);
-            $jsonLDData = [
-                '@context' => 'http://schema.org/',
-                '@type' => 'NewsArticle',
-                'mainEntityOfPage' => [
-                    '@type' => 'WebPage',
-                    '@id' => url()->current(),
-                    'description' => $post->description,
-                ],
-                'headline' => $postTitle,
-                'image' => [
-                    '@type' => 'ImageObject',
-                    'url' => $image,
-                ],
-                'author' => [
-                    '@type' => 'Person',
-                    'name' => $post->editor->display_name,
-                ],
-                'publisher' => [
-                    '@type' => 'Organization',
-                    'name' => 'www.gemasulawesi.com',
-                    'logo' => [
-                        '@type' => 'ImageObject',
-                        'url' => asset('frontend/img/favcion.png'),
-                    ],
-                ],
-                'headline' => $postTitle,
-                'image' => $image,
-                'datePublished' => $post->created_at,
-                'dateModified' => $post->updated_at,
-            ];
-            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-            echo '<script type="application/ld+json">' . $jsonLD. '</script>';
-        }
-    @endphp
 
     {{-- breadcrumb --}}
     @php
@@ -291,41 +110,8 @@
             ],
         ];
 
-        $artikel = [
-            '@context' => 'http://schema.org/',
-            '@type' => 'BreadcrumbList',
-            'itemListElement' => [
-                [
-                    '@type' => 'ListItem',
-                    'position' => 1,
-                    'item' => [
-                        '@id' => url()->current(),
-                        'name' => 'Home',
-                    ],
-                ],
-                [
-                    '@type' => 'ListItem',
-                    'position' => 2,
-                    'item' => [
-                        '@id' => url()->current(),
-                        'name' => $post->rubrik->rubrik_name,
-                    ],
-                ],
-            ],
-        ];
-
         $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-        $artikelLDData = json_encode($artikel, JSON_PRETTY_PRINT);
-
-        if (request()->is('/*')) {
-            echo '<script type="application/ld+json">' . $jsonLD . '</script>';
-        } elseif (request()->is('tags/*')) {
-            echo '<script type="application/ld+json">' . $jsonLD . '</script>';
-        } elseif (request()->is('category/*')) {
-            echo '<script type="application/ld+json">' . $jsonLD . '</script>';
-        } else {
-            echo '<script type="application/ld+json">' . $artikelLDData . '</script>';
-        }
+        echo '<script type="application/ld+json">' . $jsonLD . '</script>';
     @endphp
 
     <!-- Google Fonts -->
@@ -353,6 +139,8 @@
 
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
+    {{-- load datepicker --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body class="home style-politics ">
@@ -573,7 +361,7 @@
 
         <!-- Ad Banner 728 -->
         <div class="container">
-            <div class="text-center ads__banner">
+            <div class="text-center pb-48">
                 <a href="#">
                     <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
                 </a>
@@ -736,6 +524,9 @@
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
@@ -799,91 +590,58 @@
             new Notification(title, options);
         });
     </script>
-    @php
-        $segments = request()->segments();
-        $lastSegment = end($segments);
-        $postTitle = str_replace('-', ' ', $lastSegment);
-    @endphp
-    <script>
-        function encodeURL(url) {
-            return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
-        }
+    <script type="text/javascript">
+        $(function() {
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
-            const currentURL = window.location.href;
+            var start = moment().subtract(29, 'days');
+            var end = moment();
 
-            // Share ke Facebook (atas dan bawah)
-            const facebookButtonTop = document.getElementById('share-facebook-top');
-            facebookButtonTop.href =
-                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+            function cb(start, end) {
+                $('#reportrange span').html(start.format('D MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'));
+                $('#selectedStartDate').val(start.format('DD-MM-YYYY'));
+                $('#selectedEndDate').val(end.format('DD-MM-YYYY'));
+                fetchData(); // Panggil fungsi fetchData saat tanggal berubah
+            }
 
-            const facebookButtonBottom = document.getElementById('share-facebook-bottom');
-            facebookButtonBottom.href =
-                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+            $('#reportrange').daterangepicker({
+                startDate: start,
+                endDate: end,
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
+                        'month').endOf('month')]
+                }
+            }, cb);
 
-            // Share ke Twitter (atas dan bawah)
-            const twitterButtonTop = document.getElementById('share-twitter-top');
-            twitterButtonTop.href =
-                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+            cb(start, end);
 
-            const twitterButtonBottom = document.getElementById('share-twitter-bottom');
-            twitterButtonBottom.href =
-                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+            // Fungsi untuk mengirim permintaan AJAX
+            function fetchData() {
+                var startDate = $('#selectedStartDate').val();
+                var endDate = $('#selectedEndDate').val();
 
-            // Share ke WhatsApp (atas dan bawah)
-            const whatsappButtonTop = document.getElementById('share-whatsapp-top');
-            whatsappButtonTop.href =
-                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
-
-            const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
-            whatsappButtonBottom.href =
-                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
-
-            // Share ke Telegram (atas dan bawah)
-            const telegramButtonTop = document.getElementById('share-telegram-top');
-            telegramButtonTop.href =
-                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
-
-            const telegramButtonBottom = document.getElementById('share-telegram-bottom');
-            telegramButtonBottom.href =
-                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
-
-            // Copy ke Clipboard (atas dan bawah)
-            const copyButtonTop = document.getElementById('share-copy-top');
-            copyButtonTop.addEventListener('click', function(event) {
-                event.preventDefault();
-
-                const copyText = `${articleTitle} | ${currentURL}`;
-                const textArea = document.createElement('textarea');
-                textArea.value = copyText;
-
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-
-                alert('Artikel Berhasil disalin!');
-            });
-
-            const copyButtonBottom = document.getElementById('share-copy-bottom');
-            copyButtonBottom.addEventListener('click', function(event) {
-                event.preventDefault();
-
-                const copyText = `${articleTitle} | ${currentURL}`;
-                const textArea = document.createElement('textarea');
-                textArea.value = copyText;
-
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-
-                alert('Artikel Berhasil disalin!');
-            });
+                $.ajax({
+                    url: '/indeks-berita', // Ganti dengan URL rute Anda
+                    method: 'GET',
+                    data: {
+                        start_date: startDate,
+                        end_date: endDate
+                    },
+                    success: function(data) {
+                        // Di sini Anda dapat memproses data yang diterima dari server
+                        console.log(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Terjadi kesalahan: " + error);
+                    }
+                });
+            }
         });
     </script>
-
 </body>
 
 </html>

@@ -750,3 +750,8 @@
     margin-right: 15px;
     border: 1px solid #2cc38b;
 }
+
+/* ads banner */
+.ads__banner{
+    padding-bottom: 1.5rem;
+}

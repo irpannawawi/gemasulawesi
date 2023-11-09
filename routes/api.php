@@ -6,6 +6,7 @@ use App\Http\Controllers\RubrikController;
 use App\Http\Controllers\TagsController;
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,3 +42,16 @@ Route::get('/check_id/{id}', function($id){
 Route::get('/posts', function(){
     return response()->json(Posts::select('origin_id')->orderBy('post_id','desc')->get());
 });
+
+
+Route::post('/update_post_date', function(Request $request){
+    $post_date = $request->date;
+    $post_date = str_replace('T', ' ', $post_date);
+    $res = Posts::where('origin_id', $request->origin_id)->update([
+        'created_at'=>$post_date,
+        'updated_at'=>$post_date,
+        'published_at'=>$post_date
+    ]);
+    return response()->json(['status'=> 'success', 'data'=>$res]);
+});
+

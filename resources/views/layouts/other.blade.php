@@ -515,14 +515,13 @@
     <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/custom.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -588,58 +587,6 @@
                 icon: payload.notification.icon,
             };
             new Notification(title, options);
-        });
-    </script>
-    <script type="text/javascript">
-        $(function() {
-
-            var start = moment().subtract(29, 'days');
-            var end = moment();
-
-            function cb(start, end) {
-                $('#reportrange span').html(start.format('D MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'));
-                $('#selectedStartDate').val(start.format('DD-MM-YYYY'));
-                $('#selectedEndDate').val(end.format('DD-MM-YYYY'));
-                fetchData(); // Panggil fungsi fetchData saat tanggal berubah
-            }
-
-            $('#reportrange').daterangepicker({
-                startDate: start,
-                endDate: end,
-                ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                    'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1,
-                        'month').endOf('month')]
-                }
-            }, cb);
-
-            cb(start, end);
-
-            // Fungsi untuk mengirim permintaan AJAX
-            function fetchData() {
-                var startDate = $('#selectedStartDate').val();
-                var endDate = $('#selectedEndDate').val();
-
-                $.ajax({
-                    url: '/indeks-berita', // Ganti dengan URL rute Anda
-                    method: 'GET',
-                    data: {
-                        start_date: startDate,
-                        end_date: endDate
-                    },
-                    success: function(data) {
-                        // Di sini Anda dapat memproses data yang diterima dari server
-                        console.log(data);
-                    },
-                    error: function(xhr, status, error) {
-                        console.log("Terjadi kesalahan: " + error);
-                    }
-                });
-            }
         });
     </script>
 </body>

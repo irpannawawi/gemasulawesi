@@ -1266,13 +1266,11 @@ https://flickity.metafizzy.co
 .owl-dots {
     text-align: center;
     -webkit-tap-highlight-color: transparent;
-    margin-top: 30px;
 }
 
-.owl-dot {
+.owl-dot, .owl-dots {
     display: inline-block;
     zoom: 1;
-    *display: inline;
 }
 
 .owl-dot span {
@@ -2188,6 +2186,12 @@ img.mfp-img {
     font-size: 12px;
     font-weight: 600;
     text-transform: uppercase;
+}
+.category > li{
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
     letter-spacing: 2px;
 }
 .entry__meta li:after {
@@ -2382,7 +2386,7 @@ img.mfp-img {
 }
 @media only screen and (max-width: 767px) {
     .thumb-text-holder--2 .thumb-entry-title {
-        font-size: 16px;
+        font-size: 13px;
         margin: 10px 0 20px;
     }
 }
@@ -6226,151 +6230,6 @@ dd {
     border-top: 2px solid #e3e4e8;
 }
 
-/* Style Fashion
--------------------------------------------------------*/
-.style-fashion {
-    font-family: "Barlow", sans-serif;
-}
-.style-fashion h1,
-.style-fashion h2,
-.style-fashion h3,
-.style-fashion h4,
-.style-fashion h5,
-.style-fashion h6 {
-    letter-spacing: normal;
-    line-height: 1.2;
-    font-family: "Lora", serif;
-}
-.style-fashion p {
-    color: #171821;
-}
-.style-fashion .nav__menu > li > a,
-.style-fashion .sidenav__menu-url,
-.style-fashion .btn,
-.style-fashion .entry__meta-category,
-.style-fashion .widget_tag_cloud a,
-.style-fashion .entry__tags a,
-.style-fashion .entry-date-label,
-.style-fashion label {
-    font-family: "Barlow", sans-serif;
-}
-.style-fashion .widget-socials .social {
-    background-color: #fff;
-    color: #171821;
-}
-.style-fashion .entry__meta a,
-.style-fashion .entry__meta li {
-    color: #171821;
-}
-.style-fashion .entry__meta {
-    margin-bottom: 12px;
-}
-.style-fashion .entry__meta li {
-    font-weight: 500;
-}
-.style-fashion .entry__play-time {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-}
-.style-fashion .widget-title,
-.style-fashion .section-title .section-title-editor {
-    text-transform: none;
-}
-.style-fashion .widget-title {
-    font-size: 20px;
-}
-.style-fashion .title-wrap {
-    margin-bottom: 24px;
-}
-.style-fashion .section-title .section-title-editor {
-    font-size: 24px;
-}
-.style-fashion .entry__meta-author {
-    font-family: "Lora", serif;
-    font-style: italic;
-    text-transform: none;
-    font-weight: 400;
-    font-size: 13px;
-    color: #83858f;
-}
-.style-fashion .entry__title + .entry__meta {
-    margin-top: 16px;
-}
-.style-fashion .sidebar .widget {
-    background-color: transparent;
-    padding: 0;
-    border: 0;
-}
-.style-fashion .sidebar .widget_mc4wp_form_widget {
-    background-color: #fff;
-}
-.style-fashion .newsletter-wide {
-    background-color: #ffebee;
-}
-.style-fashion .post-list {
-    min-height: 285px;
-    border-bottom: 1px solid #e3e4e8;
-    padding-bottom: 20px;
-}
-.style-fashion .post-list:last-child {
-    border-color: transparent;
-}
-.style-fashion .copyright {
-    color: #83858f;
-}
-
-/* Style Games
--------------------------------------------------------*/
-.style-games {
-    font-family: "Barlow", sans-serif;
-}
-.style-games h1,
-.style-games h2,
-.style-games h3,
-.style-games h4,
-.style-games h5,
-.style-games h6 {
-    letter-spacing: normal;
-    line-height: 1.2;
-    font-family: "Barlow", sans-serif;
-    font-weight: 700;
-}
-.style-games .btn,
-.style-games .nav__menu > li > a,
-.style-games .trending-now__label,
-.style-games .sidenav__menu-url,
-.style-games .entry__meta-category,
-.style-games .widget_tag_cloud a,
-.style-games .entry__tags a,
-.style-games .entry-date-label,
-.style-games label {
-    font-family: "Barlow", sans-serif;
-}
-.style-games .entry__title {
-    font-size: 18px;
-}
-.style-games .entry__meta-category {
-    font-weight: 700;
-    font-size: 14px;
-}
-.style-games .card {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-.style-games .card__body {
-    border: 1px solid #e3e4e8;
-}
-.style-games .footer__widgets {
-    padding: 56px 0;
-}
-.style-games .footer .widget-title {
-    color: #2d95e3;
-    font-size: 14px;
-}
-.style-games .footer__nav-menu + .copyright {
-    margin-top: 24px;
-}
-
 /* Style Videos
 -------------------------------------------------------*/
 .style-videos {
@@ -6408,46 +6267,6 @@ dd {
     color: #fff;
 }
 
-/* Style Music
--------------------------------------------------------*/
-.style-music {
-    font-family: Poppins, sans-serif;
-}
-.style-music h1,
-.style-music h2,
-.style-music h3,
-.style-music h4,
-.style-music h5,
-.style-music h6 {
-    letter-spacing: normal;
-    font-family: "Rubik", sans-serif;
-    font-weight: 700;
-    line-height: 1.2;
-}
-.style-music .entry-date-label {
-    font-family: "Rubik", sans-serif;
-}
-.style-music p {
-    font-family: Poppins, sans-serif;
-}
-.style-music .btn,
-.style-music .nav__menu > li > a,
-.style-music .trending-now__label,
-.style-music .sidenav__menu-url,
-.style-music .entry__meta-category,
-.style-music .widget_tag_cloud a,
-.style-music .entry__tags a,
-.style-music label {
-    font-family: Poppins, sans-serif;
-}
-.style-music .card__body {
-    border: 1px solid #e3e4e8;
-}
-.style-music .widget-title {
-    color: #2d95e3;
-    font-size: 14px;
-}
-
 /*# sourceMappingURL=style.css.map */
 
 /* custom */
@@ -6459,7 +6278,6 @@ dd {
     padding-right: 15px;
     vertical-align: middle;
 }
-
 .title-post:after {
     content: "";
     vertical-align: middle;
@@ -6467,8 +6285,6 @@ dd {
     height: 4px;
     position: relative;
 }
-
-/* custom */
 .most__wrap {
     -webkit-border-radius: 10px;
     border-radius: 10px;

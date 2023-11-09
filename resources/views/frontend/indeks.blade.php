@@ -17,8 +17,9 @@
                         <div class="filter-box">
                             <span>Lihat Berdasarkan Tanggal</span>
                             <div id="reportrange" class="filter__date">
-                                <span id="daterange"></span>
                                 <i class="fa-solid fa-caret-down"></i>
+                                <span id="daterange"></span>
+                                <i class="fa-solid fa-calendar-days"></i>
                             </div>
                             <input type="hidden" id="selectedStartDate" name="start_date">
                             <input type="hidden" id="selectedEndDate" name="end_date">

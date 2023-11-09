@@ -122,10 +122,16 @@
     font-style: italic;
     font-weight: 700;
     font-size: 18px;
-    top: 5%;
+    top: 8%;
     letter-spacing: 3px;
     padding: 4px 18px;
-    /* border-radius: 0 20px 20px 0; */
+}
+@media only screen and (max-width: 767px) {
+    .headline {
+        font-size: 12px;
+        padding: 4px 11px;
+        top: 10%;
+    }
 }
 
 .owl-thumb-item {
@@ -170,6 +176,7 @@
     bottom: 6%;
     right: 4%;
     z-index: 99;
+    height: 15px;
 }
 .owl-dots .owl-dot span {
     height: 10px;
@@ -744,11 +751,27 @@
     object-position: center;
     text-align: center;
     width: 120px;
-    height: 120px;
+    height: 114px;
     border-radius: 50%; /* Mengatur elemen menjadi lingkaran */
     float: left;
     margin-right: 15px;
     border: 1px solid #2cc38b;
+}
+.post-list-small__entry {
+    justify-content: space-between;
+    flex-flow: wrap;
+    align-items: center;
+}
+@media only screen and (max-width: 767px) {
+    .post-list-small__entry {
+        justify-content: space-between;
+        flex-flow: wrap;
+        align-items: center;
+    }
+    .post__img img {
+        width: 100px;
+        height: 98px;
+    }
 }
 
 /* ads banner */

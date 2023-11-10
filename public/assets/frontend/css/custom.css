@@ -821,6 +821,27 @@
         padding: 15px 15px 20px;
     }
     .hl__b-subtitle {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2;
+        background-color: #2cc38b;
+        color: #fff;
+        display: inline-block;
+        padding: 3px 5px;
+        margin-bottom: 5px;
+        border-radius: 3px;
+        font-size: .702rem;
+        line-height: 1.5;
+        font-weight: 600;
+        }
+}
+@media only screen and (min-width: 481px) and (max-width: 767px) {
+    .rubrik{
+        display: none;
+        
+    }
+    .hl__b-subtitle {
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -836,28 +857,66 @@
     font-weight: 600;
     }
 }
-@media only screen and (min-width: 481px) and (max-width: 767px) {
-    .rubrik{
-        display: none;
-        
-    }
-}
 
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
     .rubrik{
         display: none;
+    }
+    .hl__b-subtitle {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    background-color: #2cc38b;
+    color: #fff;
+    display: inline-block;
+    padding: 3px 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    font-size: .702rem;
+    line-height: 1.5;
+    font-weight: 600;
     }
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
     .rubrik{
         display: none;
+    }
+    .hl__b-subtitle {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2;
+        background-color: #2cc38b;
+        color: #fff;
+        display: inline-block;
+        padding: 3px 5px;
+        margin-bottom: 5px;
+        border-radius: 3px;
+        font-size: .702rem;
+        line-height: 1.5;
+        font-weight: 600;
     }
 }
 /* Tablet vertikal */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
-}
-
-/* Tablet horizontal atau tablet dengan orientasi landscape */
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+    .rubrik{
+        display: none;
+    }
+    .hl__b-subtitle {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        z-index: 2;
+        background-color: #2cc38b;
+        color: #fff;
+        display: inline-block;
+        padding: 3px 5px;
+        margin-bottom: 5px;
+        border-radius: 3px;
+        font-size: .702rem;
+        line-height: 1.5;
+        font-weight: 600;
+    }
 }

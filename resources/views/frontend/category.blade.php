@@ -15,8 +15,13 @@
                         <article class="entry thumb--size-3 mb-0">
                             <div class="entry__img-holder thumb__img-holder"
                                 style="background-image: url('{{ get_post_image($headlineRubrik->post->post_id) }}');">
-                                <div class="bottom-gradient"></div>
-                                <div class="thumb-text-holder thumb-text-holder--2">
+                                <h4 class="hl__b-subtitle">
+                                    <a href="{{ route('category', ['rubrik_name' => $headlineRubrik->post->rubrik->rubrik_name]) }}"
+                                        class="hl__link">{{ $headlineRubrik->post->rubrik->rubrik_name }}
+                                    </a>
+                                </h4>
+                                <div class="bottom-gradient rubrik"></div>
+                                <div class="thumb-text-holder rubrik thumb-text-holder--2">
                                     <ul class="entry__meta">
                                         <li>
                                             <a href="{{ route('category', ['rubrik_name' => $headlineRubrik->post->rubrik->rubrik_name]) }}"
@@ -38,6 +43,23 @@
                                     </ul>
                                 </div>
                             </div>
+                        </article>
+                        <article class="thumb-text-down">
+                            <div class="hl__b-title">
+                                <a href="{{ route('singlePost', [
+                                    'rubrik' => $headlineRubrik->post->rubrik->rubrik_name,
+                                    'post_id' => $headlineRubrik->post->post_id,
+                                    'slug' => $headlineRubrik->post->slug,
+                                ]) }}"
+                                    class="hl__link">
+                                    {{ $headlineRubrik->post->title }}
+                                </a>
+                            </div>
+                            <ul class="entry__meta">
+                                <li class="entry__meta-comments">
+                                    <a> {{ convert_date_to_ID($headlineRubrik->created_at) }} </a>
+                                </li>
+                            </ul>
                         </article>
                     </div>
 

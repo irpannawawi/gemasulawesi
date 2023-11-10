@@ -2121,7 +2121,7 @@ img.mfp-img {
     margin-bottom: 30px;
 }
 .entry__img-holder {
-    border-radius: 25px;
+    border-radius: 20px 20px 0  0;
     position: relative;
     overflow: hidden;
     object-fit: cover;
@@ -2129,6 +2129,11 @@ img.mfp-img {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+}
+@media only screen and (min-width: 13in) {
+    .entry__img-holder{
+        border-radius: 25px;
+    }
 }
 .entry__img-editorial {
     border-radius: 10px;
@@ -2470,7 +2475,7 @@ img.mfp-img {
     .thumb--size-4,
     .thumb--size-5,
     .thumb--size-6 {
-        height: 298px;
+        height: 234px;
     }
 } 
 .thumb__img-holder {

@@ -42,28 +42,10 @@ $(function() {
         }
     }, cb);
 
-    
-
     // Fungsi untuk mengirim permintaan AJAX
     function fetchData() {
         var startDate = $('#selectedStartDate').val();
         var endDate = $('#selectedEndDate').val();
-        
         window.location.replace(window.location.origin+'/indeks-berita?start_date='+startDate+'&end_date='+endDate)
-        
-        // $.ajax({
-        //     url: '/indeks-berita',
-        //     method: 'GET',
-        //     data: {
-        //         start_date: startDate,
-        //         end_date: endDate
-        //     },
-        //     success: function(data) {
-        //         console.log(data);
-        //     },
-        //     error: function(xhr, status, error) {
-        //         console.log("Terjadi kesalahan: " + error);
-        //     }
-        // });
     }
 });

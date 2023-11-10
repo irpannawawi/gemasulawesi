@@ -50,7 +50,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Posts::class, 'editor_id', 'id');
     }
-
+    public function getPostsCountAttribute(): int
+    {
+        return $this->posts()->count();
+    }
     public function postsAuthor(): HasMany
     {
         return $this->hasMany(Posts::class, 'author_id', 'id');

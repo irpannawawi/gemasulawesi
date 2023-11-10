@@ -44,11 +44,12 @@ class WebController extends Controller
 
         // Cek apakah ada rentang tanggal yang dipilih
         if ($request->has('start_date') && $request->has('end_date')) {
-            $startDate = date('Y-m-d', strtotime($request->input('start_date')));
-            $endDate = date('Y-m-d', strtotime($request->input('end_date')));
+            $startDate = $request->input('start_date').' 00:00:00';
+            $endDate = $request->input('end_date').' 23:59:59';
 
             $data['paginatedPost'] = Posts::where('status', 'published')
-                ->whereBetween('created_at', [$startDate, $endDate])
+                ->where('created_at', '>=', $startDate)
+                ->where('created_at', '<=',$endDate)
                 ->orderBy('created_at', 'DESC')
                 ->paginate(10);
         } else {

@@ -19,8 +19,8 @@ class ReportController extends Controller
     {
         if ($request->daterange != null) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0].' 00:00:00';
+            $end_date = $daterange[1].' 23:59:59';
         } else {
             $start_date = date('Y-m');
             $end_date = date('Y-m');
@@ -28,14 +28,14 @@ class ReportController extends Controller
         DB::enableQueryLog();
 
         $data = [
-            "users" => User::whereHas('posts', function ($query) use ($start_date, $end_date) {
-                return $query->where([
-                    ['status', '=', 'published']
-                ])->whereBetween('created_at', [$start_date, $end_date]);
-            })->get(),
+            "users" => User::with(['posts'=>function ($query) use ($start_date, $end_date) {
+                return $query->where('status', '=', 'published')
+                ->whereBetween('created_at', [$start_date, $end_date]);
+            }])->get(),
         ];
 
         $query = DB::getQueryLog();
+        // dd($query);
         $data['daterange'] = $request->daterange;
         return view("report.view", $data);
     }
@@ -44,8 +44,8 @@ class ReportController extends Controller
     {
         if ($request->daterange != null) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0].' 00:00:00';
+            $end_date = $daterange[1].' 23:59:59';
         } else {
             $start_date = date('Y-m');
             $end_date = date('Y-m');
@@ -53,11 +53,10 @@ class ReportController extends Controller
         DB::enableQueryLog();
 
         $data = [
-            "users" => User::whereHas('postsAuthor', function ($query) use ($start_date, $end_date) {
-                return $query->where([
-                    ['status', '=', 'published']
-                ])->whereBetween('created_at', [$start_date, $end_date]);
-            })->get(),
+            "users" => User::with(['postsAuthor'=>function ($query) use ($start_date, $end_date) {
+                return $query->where('status', '=', 'published')
+                ->whereBetween('created_at', [$start_date, $end_date]);
+            }])->get(),
         ];
 
         $query = DB::getQueryLog();

@@ -1,7 +1,27 @@
 $(function() {
     var start = moment().subtract(29, 'days');
     var end = moment();
+    // init date
+    $('#reportrange span').html(start.format('DD MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'));
+    $('#selectedStartDate').val(start.format('YYYY-MM-DD'));
+    $('#selectedEndDate').val(end.format('YYYY-MM-DD'));
+    
+    function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
+    if(getParameterByName('start_date')!=null)
+    {
+        console.log('has date')
+        $('#reportrange span').html(moment(getParameterByName('start_date')).format('DD MMMM, YYYY') + ' - ' + moment(getParameterByName('end_date')).format('D MMMM, YYYY'));
+        $('#selectedStartDate').val(getParameterByName('start_date'));
+        $('#selectedEndDate').val(getParameterByName('end_date'));
+    }
     function cb(start, end) {
         $('#reportrange span').html(start.format('DD MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'));
         $('#selectedStartDate').val(start.format('YYYY-MM-DD'));
@@ -22,26 +42,28 @@ $(function() {
         }
     }, cb);
 
-    cb(start, end);
+    
 
     // Fungsi untuk mengirim permintaan AJAX
     function fetchData() {
         var startDate = $('#selectedStartDate').val();
         var endDate = $('#selectedEndDate').val();
-
-        $.ajax({
-            url: '/indeks-berita',
-            method: 'GET',
-            data: {
-                start_date: startDate,
-                end_date: endDate
-            },
-            success: function(data) {
-                console.log(data);
-            },
-            error: function(xhr, status, error) {
-                console.log("Terjadi kesalahan: " + error);
-            }
-        });
+        
+        window.location.replace(window.location.origin+'/indeks-berita?start_date='+startDate+'&end_date='+endDate)
+        
+        // $.ajax({
+        //     url: '/indeks-berita',
+        //     method: 'GET',
+        //     data: {
+        //         start_date: startDate,
+        //         end_date: endDate
+        //     },
+        //     success: function(data) {
+        //         console.log(data);
+        //     },
+        //     error: function(xhr, status, error) {
+        //         console.log("Terjadi kesalahan: " + error);
+        //     }
+        // });
     }
 });

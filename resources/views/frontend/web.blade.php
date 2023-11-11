@@ -19,7 +19,7 @@
                                     <div class="entry__img-holder thumb__img-holder"
                                         style="background-image: url('{{ Storage::url('public/photos/' . $headline->post->image->asset->file_name) }}');">
                                         <div class="bottom-gradient"></div>
-                                        <div class="thumb-text-holder thumb-text-holder--2">
+                                        <div class="thumb-text-holder thumb-text-holder--3">
                                             <ul class="entry__meta">
                                                 <li>
                                                     <a href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}"

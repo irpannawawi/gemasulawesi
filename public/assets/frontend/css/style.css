@@ -2130,6 +2130,10 @@ img.mfp-img {
     background-size: cover;
     background-position: center;
 }
+.entry .homehead{
+    border-radius: 20px;
+}
+
 @media only screen and (min-width: 13in) {
     .entry__img-holder{
         border-radius: 25px;
@@ -2409,7 +2413,7 @@ img.mfp-img {
     .thumb-text-holder--3 .thumb-entry-title {
         font-size: 20px;
         overflow: hidden;
-        margin: 10px 0 20px;
+        margin: 10px 0 10px;
         max-height: 70px;
     }
 }

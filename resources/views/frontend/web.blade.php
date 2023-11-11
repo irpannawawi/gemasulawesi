@@ -16,7 +16,7 @@
                         <div class="owl-carousel owl-carousel-thumbs" data-slider-id="5">
                             @foreach ($headlineWp as $headline)
                                 <article class="entry thumb--size-3 mb-0">
-                                    <div class="entry__img-holder thumb__img-holder"
+                                    <div class="entry__img-holder homehead thumb__img-holder"
                                         style="background-image: url('{{ Storage::url('public/photos/' . $headline->post->image->asset->file_name) }}');">
                                         <div class="bottom-gradient"></div>
                                         <div class="thumb-text-holder thumb-text-holder--3">

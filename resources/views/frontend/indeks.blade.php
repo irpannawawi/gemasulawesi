@@ -34,7 +34,7 @@
                                                     <div class="post__img">
                                                         <a
                                                             href="{{ route('singlePost', [
-                                                                'rubrik' => $post->rubrik->rubrik_name,
+                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}">
@@ -52,7 +52,7 @@
                                                         </ul>
                                                         <h3 class="post-list-small__entry-title">
                                                             <a href="{{ route('singlePost', [
-                                                                'rubrik' => $post->rubrik->rubrik_name,
+                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}"
@@ -82,7 +82,7 @@
                                                     <div class="post__img">
                                                         <a
                                                             href="{{ route('singlePost', [
-                                                                'rubrik' => $post->rubrik->rubrik_name,
+                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}">
@@ -100,7 +100,7 @@
                                                         </ul>
                                                         <h3 class="post-list-small__entry-title">
                                                             <a href="{{ route('singlePost', [
-                                                                'rubrik' => $post->rubrik->rubrik_name,
+                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}"

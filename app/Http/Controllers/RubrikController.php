@@ -17,50 +17,50 @@ class RubrikController extends Controller
 
     public function insert(Request $request)
     {
-        if(Rubrik::create(['rubrik_name'=>$request->rubrik_name])) return redirect()->back()->with('message-success', 'Berhasil menambah rubrik baru');
-    } 
-    
+        if (Rubrik::create(['rubrik_name' => $request->rubrik_name])) return redirect()->back()->with('message-success', 'Berhasil menambah rubrik baru');
+    }
+
     public function edit(Request $request)
     {
         $id = $request->rubrik_id;
         $name = $request->rubrik_name;
-        if(Rubrik::where('rubrik_id', $id)->update(['rubrik_name'=>$name])) return redirect()->back()->with('message-warning', 'Berhasil merubah rubrik');
+        if (Rubrik::where('rubrik_id', $id)->update(['rubrik_name' => $name])) return redirect()->back()->with('message-warning', 'Berhasil merubah rubrik');
     }
 
 
     public function delete($id)
     {
-        if(Rubrik::where('rubrik_id', $id)->delete()) return redirect()->back()->with('message-danger', 'Berhasil menghapus rubrik');
+        if (Rubrik::where('rubrik_id', $id)->delete()) return redirect()->back()->with('message-danger', 'Berhasil menghapus rubrik');
     }
 
-    public function api_list(Request $request) {
+    public function api_list(Request $request)
+    {
         $id = $request->rubrik_name;
         $res = Rubrik::where('rubrik_name', $id)->get();
-        if($res->count() > 0)
-        {
+        if ($res->count() > 0) {
             return response()->json([
-                'status'=> True,
-                'data'=> $res
+                'status' => True,
+                'data' => $res
             ]);
-        }else{
+        } else {
             return response()->json([
-                'status'=> False
+                'status' => False
             ]);
         }
     }
 
-    public function api_create(Request $request){
+    public function api_create(Request $request)
+    {
         $rubrik_name = $request->rubrik_name;
-        $res = Rubrik::create(['rubrik_name'=>$rubrik_name]);
-        if($res)
-        {
+        $res = Rubrik::create(['rubrik_name' => $rubrik_name]);
+        if ($res) {
             return response()->json([
-                'status'=> True,
-                'data'=> $res
+                'status' => True,
+                'data' => $res
             ]);
-        }else{
+        } else {
             return response()->json([
-                'status'=> False
+                'status' => False
             ]);
         }
     }

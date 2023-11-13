@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('layouts.other')
 @section('content')
     <div class="main-container container" id="main-container">
 
@@ -15,54 +15,112 @@
                             <span>Pencarian</span>
                         </div>
                         <!-- Search form -->
-                        <form class="form-inline search mt-3">
+                        <form class="form-inline search mt-3" action="{{ route('search') }}">
                             <i class="fas fa-search" aria-hidden="true"></i>
-                            <input class="form-control form-control-sm ml-3" type="text" placeholder="Cari"
-                                aria-label="Search">
+                            <input class="form-control form-control-sm ml-3" name="q" type="text"
+                                value="{{ request('q') }}" placeholder="Cari" aria-label="Search">
                         </form>
-                        <div class="result-search">
-                            <p>Hasil pencarian <strong>"Result"</strong></p>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <ul class="post-list-small post-list-small--2 mb-32">
-                                    <li class="post-list-small__item">
-                                        <article class="post-list-small__entry clearfix">
-                                            <div class="post-list-small__img-holder">
-                                                <div class="thumb-container thumb-70">
-                                                    <a href="">
-                                                        <img data-src="#link image"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class=" lazyload">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="post-list-small__body">
-                                                <ul class="entry__meta category underline">
-                                                    <li>
-                                                        <a href="#link category" class="entry__meta-category">Category</a>
-                                                    </li>
-                                                </ul>
-                                                <h3 class="post-list-small__entry-title">
-                                                    <a href="#" class="">Film horor Ready or Not adalah film
-                                                        horor yang dirilis
-                                                        pada tahun 2019 dengan menghadirkan dua bintang utama.</a>
-                                                </h3>
-                                                <p class="bt__date">Senin, 3 Juli 2023 | 21:47 WIB</p>
-                                            </div>
-                                        </article>
-                                    </li>
-                                </ul>
-
-                                <!-- Ad Banner 728 -->
-                                <div class="text-center pb-48">
-                                    <a href="#">
-                                        <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
-                                            alt="">
-                                    </a>
+                        @if ($posts->count() > 0)
+                            <div class="result-search">
+                                <p>Hasil pencarian <strong>"{{ $keyword }}"</strong></p>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <ul class="post-list-small post-list-small--2 mb-32">
+                                        @foreach ($posts as $post)
+                                            <li class="post-list-small__item">
+                                                <article class="post-list-small__entry clearfix">
+                                                    <div class="post-list-small__img-holder">
+                                                        <div class="thumb-container thumb-70">
+                                                            <a
+                                                                href="{{ route('singlePost', [
+                                                                    'rubrik' => $post->rubrik->rubrik_name,
+                                                                    'post_id' => $post->post_id,
+                                                                    'slug' => $post->slug,
+                                                                ]) }}">
+                                                                <img data-src="{{ get_post_image($post->post_id) }}"
+                                                                    src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                    alt="" class="lazyload">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="post-list-small__body">
+                                                        <ul class="entry__meta category underline">
+                                                            <li>
+                                                                <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
+                                                                    class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
+                                                            </li>
+                                                        </ul>
+                                                        <h3 class="post-list-small__entry-title">
+                                                            <a href="{{ route('singlePost', [
+                                                                'rubrik' => $post->rubrik?->rubrik_name,
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}"
+                                                                class="">{{ $post->title }}</a>
+                                                        </h3>
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        @endforeach
+                                        <div class="text-center pb-48">
+                                            <a href="#">
+                                                <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
+                                                    alt="">
+                                            </a>
+                                        </div>
+                                        @foreach ($posts as $post)
+                                            <li class="post-list-small__item">
+                                                <article class="post-list-small__entry clearfix">
+                                                    <div class="post-list-small__img-holder">
+                                                        <div class="thumb-container thumb-70">
+                                                            <a
+                                                                href="{{ route('singlePost', [
+                                                                    'rubrik' => $post->rubrik->rubrik_name,
+                                                                    'post_id' => $post->post_id,
+                                                                    'slug' => $post->slug,
+                                                                ]) }}">
+                                                                <img data-src="{{ get_post_image($post->post_id) }}"
+                                                                    src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                    alt="" class="lazyload">
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="post-list-small__body">
+                                                        <ul class="entry__meta category underline">
+                                                            <li>
+                                                                <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
+                                                                    class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
+                                                            </li>
+                                                        </ul>
+                                                        <h3 class="post-list-small__entry-title">
+                                                            <a href="{{ route('singlePost', [
+                                                                'rubrik' => $post->rubrik?->rubrik_name,
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}"
+                                                                class="">{{ $post->title }}</a>
+                                                        </h3>
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                    <!-- Ad Banner 728 -->
                                 </div>
                             </div>
-                        </div>
+                            <div class="loadmore">
+                                {{-- {{ $paginatedPost->onEachSide(1)->links() }} --}}
+                                <p>tes</p>
+                            </div>
+                        @else
+                            <div class="result-search">
+                                <p>Tidak ada hasil yang ditemukan untuk pencarian <strong>"{{ $keyword }}"</strong>
+                                </p>
+                            </div>
+                        @endif
                     </div>
                 </section>
             </div> <!-- end slider -->

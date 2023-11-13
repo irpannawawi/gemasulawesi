@@ -14,3 +14,4 @@ Route::get('/tags/{tag_name}', [WebController::class, 'tags'])->name('tags');
 Route::get('/search', [WebController::class, 'search'])->name('search');
 Route::get('/indeks-berita', [WebController::class, 'indeks'])->name('indeks');
 Route::get('/subs', [WebController::class, 'subscribe'])->name('subscribe');
+Route::get('/search', [WebController::class, 'search'])->name('search');

@@ -510,7 +510,7 @@
                             <ul class="nav__menu">
                                 @foreach ($rubriks as $rubrik)
                                     <li>
-                                        <a href="{{ route('category', ['rubrik_name' => str_replace(' ', '-', $rubrik->rubrik_name)]) }}"
+                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                             class="link-nav__menu"
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>

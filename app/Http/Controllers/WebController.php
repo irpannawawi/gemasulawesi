@@ -134,10 +134,15 @@ class WebController extends Controller
     {
         $keyword = $request->input('q');
 
-        $posts = Posts::where('title', 'like', "%$keyword%")
+        $paginatedPost = Posts::where('title', 'like', "%$keyword%")
             ->orWhere('article', 'like', "%$keyword%")
-            ->get();
+            ->paginate(10);
 
-        return view('frontend.search', compact('posts', 'keyword'));
+        $beritaTerkini = $paginatedPost->split(2);
+
+        // Tambahkan parameter pencarian ke setiap tautan pagination
+        $paginatedPost->appends(['q' => $keyword]);
+
+        return view('frontend.search', compact('paginatedPost', 'beritaTerkini', 'keyword'));
     }
 }

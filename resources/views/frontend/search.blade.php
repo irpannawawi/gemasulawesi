@@ -20,14 +20,14 @@
                             <input class="form-control form-control-sm ml-3" name="q" type="text"
                                 value="{{ request('q') }}" placeholder="Cari" aria-label="Search">
                         </form>
-                        @if ($posts->count() > 0)
+                        @if ($beritaTerkini->count() > 0)
                             <div class="result-search">
                                 <p>Hasil pencarian <strong>"{{ $keyword }}"</strong></p>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <ul class="post-list-small post-list-small--2 mb-32">
-                                        @foreach ($posts as $post)
+                                        @foreach ($beritaTerkini[0] as $post)
                                             <li class="post-list-small__item">
                                                 <article class="post-list-small__entry clearfix">
                                                     <div class="post-list-small__img-holder">
@@ -70,7 +70,7 @@
                                                     alt="">
                                             </a>
                                         </div>
-                                        @foreach ($posts as $post)
+                                        @foreach ($beritaTerkini[1] as $post)
                                             <li class="post-list-small__item">
                                                 <article class="post-list-small__entry clearfix">
                                                     <div class="post-list-small__img-holder">
@@ -112,8 +112,7 @@
                                 </div>
                             </div>
                             <div class="loadmore">
-                                {{-- {{ $paginatedPost->onEachSide(1)->links() }} --}}
-                                <p>tes</p>
+                                {{ $paginatedPost->onEachSide(1)->links() }}
                             </div>
                         @else
                             <div class="result-search">

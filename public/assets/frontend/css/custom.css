@@ -919,47 +919,74 @@
         font-weight: 600;
     }
 }
-
-/* menu more */
-.nav__more {
-    right: -5px;
-    top: 10px;
-    z-index: 1;
+/* pagination page */
+.paging--page {
+    padding: 10px 0;
 }
-.nav__home, .nav__more{
-    position: absolute;
+.paging {
+    padding: 15px;
+    border: 1px solid #eff0f6;
+    box-shadow: 0 2px 8px rgba(0,0,0,.02);
+    -moz-box-shadow: 0 2px 8px rgba(0,0,0,.02);
+    -o-box-shadow: 0 2px 8px rgba(0,0,0,.02);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
 }
-.nav__more a {
-    color: #fff!important;
+.paging, .paging--article, .paging--page, .paging__wrap{
+    position: relative;
 }
-.nav__more>a {
-    line-height: 1;
-    padding: 2px 5px;
-    display: block;
+.paging__wrap .paging--page{
+    text-align: center;
 }
-.nav__more .ui{
+.paging__wrap {
+    padding: 0;
+}
+.paging__item {
+    vertical-align: middle;
+    margin: 5px 1px;
+}
+.paging__item{
+    display: inline-block;
+}
+.paging__item .paging__link--active {
+    background: #2cc38b;
+}
+.paging--page .paging__link {
+    padding: 8px 15px;
+    min-width: 38px;
+}
+.paging__link {
+    border: 1px solid #2cc38b;
+}
+.paging__link--active, .paging__link--show{
     color: #fff;
 }
-.nav__more .ui {
-    border-radius: 3px;
-    font-size: 14px;
-    color: #6e7191;
-    padding: 0 5px;
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    transition: all .2s ease;
-    margin-left: 5px;
+.paging__link {
+    padding: 7px 11px;
+    line-height: 1;
+    border-radius: 162px;
 }
-
-.nav__more li a {
-    font-family: "Source Sans Pro", sans-serif;
-    color: #171821;
+.paging__link, .paging__link--next, .paging__link--prev, .paging__teaser{
     font-size: 14px;
-    font-weight: 700;
-    padding: 0 16px;
+    line-height: 1.5;
+    font-weight: 600;
+}
+.paging__link{
     display: block;
-    position: relative;
-    line-height: 48px;
+}
+.paging__link--show, .paging__link:hover{
+    color: #2cc38b;
+}
+.paging--page .paging__wrap{
+    text-align: center;
+}
+.paging__item .paging__link--show, .paging__item:nth-last-child(1) .paging__link, .paging__link--show{
+    background-color: #2cc38b;
+}
+.paging__item:nth-last-child(1) .paging__link{
+    color: #fff;
 }

@@ -15,10 +15,11 @@ class Rubrik extends Model
     protected $fillable = [
         'rubrik_id',
         'rubrik_name',
+        // 'rubrik_slug',
     ];
 
     public function posts(): HasMany
     {
-        return $this->hasMany(Posts::class, 'category','rubrik_id');
+        return $this->hasMany(Posts::class, 'category', 'rubrik_id');
     }
 }

@@ -79,11 +79,14 @@ class WebController extends Controller
 
         // visitor counter
         // jika ip sudah mengunjungi do nothing
-        if (VisitLog::save(request()->all())['type'] == 'create') {
+        $logResult = VisitLog::save(request()->all());
+
+        if (is_array($logResult) && isset($logResult['type']) && $logResult['type'] == 'create') {
             $post = Posts::find($post_id);
             $post->visit += 1;
             $post->save();
         }
+
         // if(VisitLogModel::where('ip', $request->ip())->get()->count() < 0) {
         // }
 

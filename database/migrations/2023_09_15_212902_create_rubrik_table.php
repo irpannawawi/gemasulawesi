@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('rubrik', function (Blueprint $table) {
             $table->increments('rubrik_id')->primary;
             $table->string('rubrik_name');
+            // $table->string('rubrik_slug');
             $table->timestamps();
         });
     }

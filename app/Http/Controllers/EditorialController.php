@@ -6,6 +6,7 @@ use App\Models\Posts;
 use App\Models\Rubrik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use Exception;
 
 class EditorialController extends Controller
@@ -22,7 +23,7 @@ class EditorialController extends Controller
     {
         $postData = [
             'title' => $request->title,
-            'slug' => str_replace(' ', '-', $request->title),
+            'slug' => Str::slug($request->title),
             'category' => $request->rubrik,
             'description' => $request->description,
             'article' => $request->content,
@@ -69,7 +70,7 @@ class EditorialController extends Controller
     {
         $postData = [
             'title' => $request->title,
-            'slug' => str_replace(' ', '-', $request->title),
+            'slug' => Str::slug($request->title),
             'category' => $request->category,
             'description' => $request->description,
             'article' => $request->article,
@@ -91,7 +92,7 @@ class EditorialController extends Controller
         // dd($postData);
 
         $res = Posts::create($postData);
-        
+
         // die;
         if ($res) {
             return response()->json([

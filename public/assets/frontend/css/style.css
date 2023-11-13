@@ -4115,7 +4115,7 @@ figcaption {
 }
 .pagination__page {
     font-size: 15px;
-    border-radius: 100%;
+    border-radius: 50px;
     display: inline-block;
     border: 1px solid #2cc38b;
     width: 32px;

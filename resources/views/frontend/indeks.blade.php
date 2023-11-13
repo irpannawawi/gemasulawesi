@@ -113,7 +113,7 @@
                                         @endforeach
                                     @endif
                                 </ul>
-                                <div class="loadmore">
+                                <div class="paging paging--page">
                                     {{ $paginatedPost->onEachSide(1)->links() }}
                                 </div>
                             </div>

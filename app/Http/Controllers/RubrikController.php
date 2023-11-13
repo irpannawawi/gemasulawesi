@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Rubrik;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class RubrikController extends Controller
 {
-    //
-
     public function index(Request $request)
     {
         $data['rubriks'] = Rubrik::orderBy('rubrik_name', 'ASC')->get();
@@ -17,7 +16,9 @@ class RubrikController extends Controller
 
     public function insert(Request $request)
     {
-        if (Rubrik::create(['rubrik_name' => $request->rubrik_name])) return redirect()->back()->with('message-success', 'Berhasil menambah rubrik baru');
+        if (Rubrik::create([
+            'rubrik_name' => $request->rubrik_name
+        ])) return redirect()->back()->with('message-success', 'Berhasil menambah rubrik baru');
     }
 
     public function edit(Request $request)
@@ -26,7 +27,6 @@ class RubrikController extends Controller
         $name = $request->rubrik_name;
         if (Rubrik::where('rubrik_id', $id)->update(['rubrik_name' => $name])) return redirect()->back()->with('message-warning', 'Berhasil merubah rubrik');
     }
-
 
     public function delete($id)
     {

@@ -115,8 +115,9 @@
                                 {{ $paginatedPost->onEachSide(1)->links() }}
                             </div>
                         @else
-                            <div class="result-search">
-                                <p>Tidak ada hasil yang ditemukan untuk pencarian <strong>"{{ $keyword }}"</strong>
+                            <div class="search__empty mt-3">
+                                <p class="search__result">Berita <b>"{{ $keyword }}"</b> yang Anda cari tidak
+                                    Tersedia</strong>
                                 </p>
                             </div>
                         @endif

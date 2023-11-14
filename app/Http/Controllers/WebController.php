@@ -57,6 +57,7 @@ class WebController extends Controller
             // Jika tidak ada tanggal yang dipilih, tampilkan semua berita
             $data['paginatedPost'] = Posts::where('status', 'published')
                 ->orderBy('created_at', 'DESC')
+                ->limit(10000)
                 ->paginate(10);
         }
 

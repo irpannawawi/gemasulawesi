@@ -990,3 +990,14 @@
 .paging__item:nth-last-child(1) .paging__link{
     color: #fff;
 }
+.search__empty{
+    background: #f0f0f0;
+    border-radius: 4px;
+    padding: 16px 16px;
+    width: 100%;
+    margin-bottom: 30px;
+}
+.search__result{
+    text-align: center;
+    vertical-align: middle;
+}

@@ -978,7 +978,7 @@
 .paging__link{
     display: block;
 }
-.paging__link--show, .paging__link:hover{
+.paging__link--show, .paging__link:hover:not(.paging__link--active){
     color: #2cc38b;
 }
 .paging--page .paging__wrap{

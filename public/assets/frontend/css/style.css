@@ -3757,10 +3757,12 @@ img.mfp-img {
     font-size: 16px;
     font-weight: 700;
 }
-.halaman .halaman__wrap {
+/* .halaman .halaman__wrap {
     width: calc(100% - 80px);
+} */
+.halaman__item .pagination__page--current{
+    color: #fff;
 }
-
 .halaman__item {
     display: inline-block;
     margin: 5px 2px;
@@ -3773,8 +3775,8 @@ img.mfp-img {
 }
 .halaman__all {
     float: right;
-    padding-left: 20px;
     margin: 5px 2px;
+    padding-top: 5px;
 }
 .halaman__all a {
     color: #000;
@@ -4127,7 +4129,7 @@ figcaption {
     background-color: #fff;
     vertical-align: middle;
 }
-.pagination__page:not(span):hover {
+.pagination__page:not(a):hover {
     background-color: #2cc38b;
     border-color: transparent;
     color: #fff;

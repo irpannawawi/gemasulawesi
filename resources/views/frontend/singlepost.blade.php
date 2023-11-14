@@ -80,7 +80,7 @@
                                     <divs class="halaman__teaser">Halaman: </divs>
                                     <div class="halaman__wrap">
                                         <div class="halaman__item">
-                                            <span class="pagination__page pagination__page--current">1</span>
+                                            <a href="#" class="pagination__page pagination__page--current">1</a>
                                         </div>
                                         <div class="halaman__item">
                                             <a href="#" class="pagination__page">2</a>
@@ -166,7 +166,7 @@
                                 <li>
                                     <h2 class="terkait__title">
                                         <a href="{{ route('singlePost', [
-                                            'rubrik' => $related->rubrik->rubrik_name,
+                                            'rubrik' => str_replace(' ', '-', $related->rubrik->rubrik_name),
                                             'post_id' => $related->post_id,
                                             'slug' => $related->slug,
                                         ]) }}"
@@ -192,7 +192,7 @@
                                         <div class="post__img">
                                             <a
                                                 href="{{ route('singlePost', [
-                                                    'rubrik' => $post_item->rubrik->rubrik_name,
+                                                    'rubrik' => str_replace(' ', '-', $post_item->rubrik->rubrik_name),
                                                     'post_id' => $post_item->post_id,
                                                     'slug' => $post_item->slug,
                                                 ]) }}">
@@ -204,7 +204,7 @@
                                         <div class="post-list-small__body">
                                             <h3 class="post-list-small__entry-title">
                                                 <a href="{{ route('singlePost', [
-                                                    'rubrik' => $post_item->rubrik->rubrik_name,
+                                                    'rubrik' => str_replace(' ', '-', $post_item->rubrik->rubrik_name),
                                                     'post_id' => $post_item->post_id,
                                                     'slug' => $post_item->slug,
                                                 ]) }}"

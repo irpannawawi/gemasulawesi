@@ -625,7 +625,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
                                     <a href="" class="footer__link" rel="”noreferred”">Tentang Kami</a>

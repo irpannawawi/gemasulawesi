@@ -3,7 +3,7 @@
     <div class="paging__wrap">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            {{-- <span class="pagination__page pagination__page--current"></span> --}}
+            {{-- kosong --}}
         @else
             <div class="paging__item">
                 <a href="{{ $paginator->previousPageUrl() }}" class="paging__link paging__link--prev">Prev</a>
@@ -27,12 +27,10 @@
                             <a href="{{ $url }}"
                                 class="paging__link paging__link--active">{{ $page }}</a>
                         </div>
-                        {{-- <li class="active" aria-current="page"><span>{{ $page }}</span></li> --}}
                     @else
                         <div class="paging__item">
                             <a href="{{ $url }}" class="paging__link">{{ $page }}</a>
                         </div>
-                        {{-- <li><a href="{{ $url }}">{{ $page }}</a></li> --}}
                     @endif
                 @endforeach
             @endif

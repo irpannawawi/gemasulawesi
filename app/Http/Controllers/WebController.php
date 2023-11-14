@@ -55,10 +55,15 @@ class WebController extends Controller
                 ->paginate(10);
         } else {
             // Jika tidak ada tanggal yang dipilih, tampilkan semua berita
-            $data['paginatedPost'] = Posts::where('status', 'published')
+            $latestPosts = Posts::where('status', 'published')
                 ->orderBy('created_at', 'DESC')
                 ->limit(10000)
-                ->paginate(10);
+                ->get();
+
+            // Paginate the latest posts with 10 posts per page
+            $paginatedPosts = $this->paginate($latestPosts, 10);
+
+            $data['paginatedPost'] = $paginatedPosts;
         }
 
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
@@ -66,6 +71,14 @@ class WebController extends Controller
         return view('frontend.indeks', $data);
     }
 
+    private function paginate($items, $perPage)
+    {
+        $currentPage = \Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPage();
+        $currentItems = $items->slice(($currentPage - 1) * $perPage, $perPage);
+        $paginatedItems = new \Illuminate\Pagination\LengthAwarePaginator($currentItems, $items->count(), $perPage);
+        $paginatedItems->setPath(\Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPath());
+        return $paginatedItems;
+    }
 
     public function showCategory(): View
     {

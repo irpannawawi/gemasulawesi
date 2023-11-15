@@ -104,11 +104,27 @@ class WebController extends Controller
         // if(VisitLogModel::where('ip', $request->ip())->get()->count() < 0) {
         // }
 
-        $data['post'] = Posts::find($post_id);
+        // $data['post'] = Posts::find($post_id);
+        $post = Posts::find($post_id);
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
             ->where('status', 'published')
             ->limit(10)->get();
         $data['beritaTerkini'] = $data['paginatedPost'];
+
+        // Membagi konten artikel menjadi beberapa paragraf
+        $paragraphs = preg_split('/<\/p>/', $post->article, -1, PREG_SPLIT_NO_EMPTY);
+
+        // Menentukan jumlah paragraf per halaman
+        $paragraphsPerPage = 13; // Ubah nilai ini sesuai dengan kebutuhan
+
+        // Menandai paragraf
+        $currentPage = $request->query('page', 1);
+        $pagedParagraphs = array_slice($paragraphs, ($currentPage - 1) * $paragraphsPerPage, $paragraphsPerPage);
+        $post->article = implode('</p>', $pagedParagraphs);
+
+        $data['post'] = $post;
+        $data['currentPage'] = $currentPage;
+        $data['totalPages'] = ceil(count($paragraphs) / $paragraphsPerPage);
         return view('frontend.singlepost', $data);
     }
 

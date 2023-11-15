@@ -75,18 +75,34 @@
                                 @endphp
 
                                 {!! $article !!}
+
                                 <!-- halaman -->
                                 <div class="halaman">
                                     <divs class="halaman__teaser">Halaman: </divs>
                                     <div class="halaman__wrap">
-                                        <div class="halaman__item">
-                                            <a href="#" class="pagination__page pagination__page--current">1</a>
-                                        </div>
-                                        <div class="halaman__item">
-                                            <a href="#" class="pagination__page">2</a>
-                                        </div>
+                                        @for ($i = 1; $i <= $totalPages; $i++)
+                                            <div class="halaman__item">
+                                                <a href="{{ route('singlePost', [
+                                                    'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                    'post_id' => $post->post_id,
+                                                    'slug' => $post->slug,
+                                                    'page' => $i,
+                                                ]) }}"
+                                                    class="pagination__page {{ $currentPage == $i ? 'pagination__page--current' : '' }}">
+                                                    {{ $i }}
+                                                </a>
+                                            </div>
+                                        @endfor
                                         <div class="halaman__all">
-                                            <a href="#" class="halaman__selanjutnya">Selanjutnya</a>
+                                            @if ($currentPage < $totalPages)
+                                                <a href="{{ route('singlePost', [
+                                                    'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                    'post_id' => $post->post_id,
+                                                    'slug' => $post->slug,
+                                                    'page' => $currentPage + 1,
+                                                ]) }}"
+                                                    class="halaman__selanjutnya">Selanjutnya</a>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

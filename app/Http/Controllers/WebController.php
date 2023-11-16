@@ -101,9 +101,6 @@ class WebController extends Controller
             $post->save();
         }
 
-        // if(VisitLogModel::where('ip', $request->ip())->get()->count() < 0) {
-        // }
-
         // $data['post'] = Posts::find($post_id);
         $post = Posts::find($post_id);
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')

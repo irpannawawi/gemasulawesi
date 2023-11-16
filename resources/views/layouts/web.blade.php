@@ -105,7 +105,7 @@
             echo '<script>
                 dataLayer = [{
                     "breadcrumb_detail": "Section Page",
-                    "content_category": '. $category .'
+                    "content_category": "'. $category .'"
                 }];
             </script>';
         } elseif (request()->is('tags/*')) {
@@ -119,7 +119,7 @@
             echo '<script>
                 dataLayer = [{
                     "breadcrumb_detail": "Article Page",
-                    "content_category": '. $category .'
+                    "content_category": "'. $category .'"
                 }];
             </script>';
         }
@@ -488,7 +488,7 @@
         <header class="nav nav--colored mb-3">
             <div class="nav__holder nav--sticky">
                 <div class="container relative">
-                    <div class="flex-parent mb-5">
+                    <div class="flex-parent">
 
                         <div class="flex-child">
                             <!-- Side Menu Button -->
@@ -555,7 +555,7 @@
             </div>
 
             {{-- nav mobile --}}
-            <div class="py-2 mt-2 category_under_nav d-sm-none">
+            <div class="py-2 category_under_nav d-sm-none">
                 <div class="container">
                     <ul class="d-flex" style="gap: 20px;">
                         <!-- Categories -->

@@ -377,11 +377,6 @@
 }
 
 /* home button */
-.is--scroll .nav__home {
-    opacity: 1;
-    visibility: visible;
-}
-
 .nav__home {
     z-index: 1;
     opacity: 0;

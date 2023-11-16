@@ -617,7 +617,7 @@ $(document).ready(function(){
     }
   }
 
-  function handleScroll() {
+function handleScroll() {
     var scrollPosition = window.scrollY;
     var body = document.body;
     var navHome = document.querySelector(".nav__home");

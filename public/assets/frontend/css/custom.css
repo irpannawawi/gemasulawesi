@@ -1,4 +1,7 @@
 /* custom */
+.nav__home, .nav__more{
+    position: absolute;
+}
 .bt__date {
     font-size: 12px;
     color: #000;
@@ -386,7 +389,6 @@
     -ms-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
-    padding: 0;
     display: inline-block;
     cursor: pointer;
     margin-right: 20px;
@@ -595,6 +597,7 @@
 .social__footer{
     margin-top: 10px;
 }
+/* footer */
 .footer__wrap {
     width: 100%;
     position: relative;
@@ -607,8 +610,6 @@
     line-height: 2;
     font-weight: 600;
 }
-
-/* adas */
 .footer__logo {
     padding: 0 0 15px;
     display: -webkit-box;

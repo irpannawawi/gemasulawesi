@@ -156,7 +156,7 @@
                 "type": "All",
                 "source": "Not Available",
                 "topic": "Not Available",
-                "tag": "Berita, {{ $category }} , Terbaru, Terkini, Hari Ini"
+                "tag": "Berita, {{ $category }} , Terbaru, Terkini, Hari Ini",
                 "penulis_id": "All",
                 "editor_id": "All"
             }];
@@ -172,7 +172,7 @@
                 "type": "All",
                 "source": "Not Available",
                 "topic": "Not Available",
-                "tag": "Berita, {{ $tag_name }} , Terbaru, Terkini, Hari Ini"
+                "tag": "Berita, {{ $tag_name }} , Terbaru, Terkini, Hari Ini",
                 "penulis_id": "All",
                 "editor_id": "All"
             }];
@@ -485,7 +485,7 @@
         </header> <!-- end header -->
 
         <!-- Navigation -->
-        <header class="nav nav--colored mb-3">
+        <header class="nav nav--colored mb-3" id="scroll">
             <div class="nav__holder nav--sticky">
                 <div class="container relative">
                     <div class="flex-parent">

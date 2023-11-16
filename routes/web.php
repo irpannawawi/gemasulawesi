@@ -107,3 +107,4 @@ require __DIR__ . '/breakingNews.php';
 require __DIR__ . '/notification.php';
 require __DIR__ . '/administrator.php';
 require __DIR__ . '/report.php';
+require __DIR__ . '/ads.php';

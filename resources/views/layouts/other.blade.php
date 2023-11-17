@@ -336,7 +336,7 @@
                                     <ul class="nav__menu menu__lainnya">
                                         <li>
                                             <a href="javascript:void(0)">Lainnya
-                                                <i class="ui-arrow-down"></i>
+                                                <i class="subicon ui-arrow-down"></i>
                                             </a>
                                             <ul class="submenu">
                                                 @foreach ($rubriks->slice(7) as $rubrik)

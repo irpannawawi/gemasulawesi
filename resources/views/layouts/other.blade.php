@@ -15,6 +15,7 @@
         $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         $type = 'website';
     @endphp
+
     <!-- s: open graph -->
     <title itemprop="name">{{ $metaTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
@@ -452,14 +453,13 @@
     <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/custom.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -518,8 +518,6 @@
             new Notification(title, options);
         });
     </script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-    https://firebase.google.com/docs/web/setup#available-libraries -->
 </body>
 
 </html>

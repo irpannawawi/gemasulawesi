@@ -318,13 +318,12 @@
                     });
 
 
-                    function find_image()
-                    {
+                    function find_image() {
                         // list images 
                         var arr = new Array();
                         $(tinyMCE.activeEditor.dom.getRoot()).find('img').each(
                             function() {
-                               console.log($(this).attr("src"));
+                                console.log($(this).attr("src"));
                             });
 
                     }

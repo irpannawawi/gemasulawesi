@@ -15,6 +15,7 @@
         $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         $type = 'website';
     @endphp
+
     <!-- s: open graph -->
     <title itemprop="name">{{ $metaTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
@@ -276,7 +277,7 @@
         <header class="nav nav--colored mb-3">
             <div class="nav__holder nav--sticky">
                 <div class="container relative">
-                    <div class="flex-parent mb-5">
+                    <div class="flex-parent">
 
                         <div class="flex-child">
                             <!-- Side Menu Button -->
@@ -517,8 +518,6 @@
             new Notification(title, options);
         });
     </script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-    https://firebase.google.com/docs/web/setup#available-libraries -->
 </body>
 
 </html>

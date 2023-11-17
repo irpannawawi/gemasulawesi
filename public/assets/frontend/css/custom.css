@@ -1028,7 +1028,8 @@
     margin-right: 10px;
 }
 .submenu {
-    left: 0;
+    right: -20px;
+    border-radius: 5px;
     z-index: 99;
     display: none;
     position: absolute;
@@ -1043,7 +1044,6 @@
 .submenu li:hover{
     color: #2CC38B !important;
 }
-
 .link-submenu {
     text-decoration: none;
     color: black;

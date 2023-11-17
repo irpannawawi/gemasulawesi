@@ -436,13 +436,15 @@
                     <div class="newsticker">
                         <ul class="newsticker__list">
                             @foreach ($breakingNews as $news)
-                                <li class="newsticker__item"><i class="fa-solid fa-newspaper"></i> <a
-                                        href="{{ route('singlePost', [
-                                            'rubrik' => $news->post->rubrik->rubrik_name,
-                                            'post_id' => $news->post->post_id,
-                                            'slug' => $news->post->slug,
-                                        ]) }}"
-                                        class="newsticker__item-url">{{ $news->title }}</a></li>
+                                <li class="newsticker__item">
+                                    <i class="fa-solid fa-newspaper"></i>
+                                    <a href="{{ route('singlePost', [
+                                        'rubrik' => $news->post->rubrik->rubrik_name,
+                                        'post_id' => $news->post->post_id,
+                                        'slug' => $news->post->slug,
+                                    ]) }}"
+                                        class="newsticker__item-url">{{ $news->title }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -565,7 +567,7 @@
                                     <ul class="nav__menu menu__lainnya">
                                         <li>
                                             <a href="javascript:void(0)">Lainnya
-                                                <i class="ui-arrow-down"></i>
+                                                <i class="subicon ui-arrow-down"></i>
                                             </a>
                                             <ul class="submenu">
                                                 @foreach ($rubriks->slice(7) as $rubrik)

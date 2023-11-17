@@ -381,6 +381,7 @@
 
 /* home button */
 .nav__home {
+    left: -25px;
     z-index: 1;
     opacity: 0;
     visibility: hidden;
@@ -996,4 +997,58 @@
 .search__result{
     text-align: center;
     vertical-align: middle;
+}
+
+.nav__search-trigger-lg {
+    font-size: 30px;
+    color: #2CC38B;
+}
+
+.nav {
+    min-height: 48px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    z-index: unset;
+    position: unset;
+    -webkit-transition: height 0.3s ease-in-out;
+    transition: height 0.3s ease-in-out;
+    /* Dropdowns (large screen) */
+}
+.nav__lainnya{
+    margin-left: auto;
+}
+/* Style for the submenu */
+.menu__lainnya {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+.menu__lainnya li {
+    margin-right: 10px;
+}
+.submenu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.submenu li {
+    padding: 10px;
+}
+.submenu li:hover{
+    color: #2CC38B !important;
+}
+
+.link-submenu {
+    text-decoration: none;
+    color: black;
+    display: block;
+}
+
+/* Style for the hover effect */
+.menu__lainnya li:hover .submenu {
+    display: block;
 }

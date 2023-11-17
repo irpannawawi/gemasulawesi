@@ -1049,6 +1049,9 @@
     color: black;
     display: block;
 }
+.link-submenu:hover{
+    color: #2CC38B !important;
+}
 
 /* Style for the hover effect */
 .menu__lainnya li:hover .submenu {

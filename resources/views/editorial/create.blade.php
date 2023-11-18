@@ -284,18 +284,39 @@
                         `<p><strong>Baca Juga: <a href="${data.data.url}" >${data.data.title}</a></strong></p>`);
                     instance.close();
                 }
-            }
+            };
+
+            // Registry plugin
+            tinymce.PluginManager.add('customEditImage', function(editor, url) {
+                // Logika untuk menangani klik pada gambar
+                editor.on('dblclick', function(e) {
+                    var element = e.target;
+
+                    // Periksa apakah elemen yang diklik adalah gambar
+                    if (element.nodeName === 'IMG') {
+                        // Tampilkan dialog khusus di sini
+                        showDialog(element.src);
+                    }
+                });
+
+                // Fungsi untuk menampilkan dialog khusus
+                function showDialog(imageSrc) {
+                    // Logika untuk menampilkan dialog sesuai kebutuhan
+                    // Gunakan library atau framework tertentu jika diperlukan
+                    editor.windowManager.openUrl(configBacaJuga);
+                }
+            });
 
             tinymce.init({
                 selector: '.editor',
                 skin: 'oxide',
                 promotion: false,
-                plugins: 'image link code media preview lists table',
+                plugins: 'image link code media preview lists table customEditImage',
                 toolbar1: 'styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table',
                 toolbar2: ' code preview | link  dialog-insert-image media dialog-insert-baca-juga',
                 image_title: true,
                 setup: (editor) => {
-                    // insert image
+                    // Insert image
                     editor.ui.registry.addButton('dialog-insert-image', {
                         icon: 'image',
                         onAction: () => {
@@ -317,33 +338,17 @@
                         },
                     });
 
-
-                    function find_image()
-                    {
-                        // list images 
-                        var arr = new Array();
-                        $(tinyMCE.activeEditor.dom.getRoot()).find('img').each(
-                            function() {
-                               console.log($(this).attr("src"));
-                            });
-
-                    }
-
-
-                    // insert baca juga
+                    // Insert Baca Juga
                     editor.ui.registry.addButton('dialog-insert-baca-juga', {
                         icon: 'new-tab',
                         title: 'Baca Juga',
                         onAction: () => {
-                            const instanceApiBacaJuga = editor.windowManager.openUrl(configBacaJuga)
+                            const instanceApiBacaJuga = editor.windowManager.openUrl(configBacaJuga);
                         },
+                    });
 
-
-                    })
-
-
-
-                    editor.on('')
+                    // Logika lainnya
+                    editor.on(''); // Peristiwa lainnya dapat ditambahkan di sini
                 }
             });
 
@@ -352,6 +357,7 @@
                     theme: "bootstrap4",
                     // allowClear: true
                 });
+
                 $('.select2-multiple').select2({
                     theme: "bootstrap4",
                     templateSelection: formatState,
@@ -359,25 +365,22 @@
                 });
             });
 
-
             function formatState(state) {
                 if (!state.id) {
                     return state.text;
                 }
-                var $state = $(
-                    '<span><span class="text-white"></span></span>'
-                );
+                var $state = $('<span><span class="text-white"></span></span>');
                 $state.find("span").text(state.text);
                 return $state;
             }
 
             $('#description').on('keyup', () => {
                 count_word_description();
-            })
+            });
 
             function count_word_description() {
-                let desc_len = $('#description').val().length
-                $('#counter_word_description').text(140 - desc_len)
+                let desc_len = $('#description').val().length;
+                $('#counter_word_description').text(140 - desc_len);
             }
         </script>
     @endpush

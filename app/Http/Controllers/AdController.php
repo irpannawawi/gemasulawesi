@@ -1,7 +1,5 @@
 <?php
 
-// app/Http/Controllers/AdController.php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -14,21 +12,20 @@ class AdController extends Controller
     {
         $data['ad_units'] = Ad::where('position', 'small')->get();
         $data['ad_script'] = Ad::where('position', 'scripts')->get();
-        $data['big_hero'] = Ad::where('position','big_hero')->get();
+        $data['big_hero'] = Ad::where('position', 'big_hero')->get();
         return view('ads.index', $data);
     }
 
     public function create_big_hero()
     {
         return view('ads.create_big_hero');
-    }    
-    
+    }
+
     public function create()
     {
         return view('ads.create');
     }
 
-        
     public function create_script()
     {
         return view('ads.create_script');
@@ -36,33 +33,45 @@ class AdController extends Controller
 
     public function store_script(Request $request)
     {
-        $type = $request->type;
-        $ads = [   
-            'title'=>$request->title,
-            'value'=>$request->value,
-            'type'=>$type,
-            'position'=>'scripts'
-        ];
-        Ad::create($ads);
+        $this->validate($request, [
+            'title' => 'required',
+            'value' => 'required',
+            'type' => 'required',
+        ]);
+
+        Ad::create([
+            'title' => $request->title,
+            'value' => $request->value,
+            'type' => $request->type,
+            'position' => 'scripts',
+        ]);
+
         return redirect()->route('ads.index')->with('success', 'Ad created successfully.');
     }
+
     public function store_big_hero(Request $request)
     {
-        $type = $request->type;
-        if($type=='img'){
-            $value = 'big_hero.jpeg';   
-            $path = Storage::putFileAs('public/ads', $request->file('image'), $value);//$request->file('image')->storeAs('public/topic-images', 'test.jpg');
-        }else{
+        $this->validate($request, [
+            'title' => 'required',
+            'type' => 'required',
+            'image' => 'required_if:type,img|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'script' => 'required_if:type,script',
+        ]);
+
+        if ($request->type == 'img') {
+            $value = 'big_hero.jpeg';
+            $path = Storage::putFileAs('public/ads', $request->file('image'), $value);
+        } else {
             $value = $request->script;
         }
 
-        $ads = [   
-            'title'=>$request->title,
-            'value'=>$value,
-            'type'=>$type,
-            'position'=>'big_hero'
-        ];
-        Ad::create($ads);
+        Ad::create([
+            'title' => $request->title,
+            'value' => $value,
+            'type' => $request->type,
+            'position' => 'big_hero',
+        ]);
+
         return redirect()->route('ads.index')->with('success', 'Ad created successfully.');
     }
 
@@ -72,32 +81,33 @@ class AdController extends Controller
         return redirect()->route('ads.index');
     }
 
-    
     public function store(Request $request)
     {
-        $type = $request->type;
-        if($type=='img'){
-            $value = date('dmYhis').'.jpeg';   
-            $path = Storage::putFileAs('public/ads', $request->file('image'), $value);//$request->file('image')->storeAs('public/topic-images', 'test.jpg');
-        }else{
+        $this->validate($request, [
+            'title' => 'required',
+            'type' => 'required',
+            'image' => 'required_if:type,img|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'script' => 'required_if:type,script',
+        ]);
+
+        if ($request->type == 'img') {
+            $value = date('dmYhis') . '.jpeg';
+            $path = Storage::putFileAs('public/ads', $request->file('image'), $value);
+        } else {
             $value = $request->script;
         }
 
-        $ads = [   
-            'title'=>$request->title,
-            'value'=>$value,
-            'type'=>$type,
-            'position'=>'small'
-        ];
-        Ad::create($ads);
+        Ad::create([
+            'title' => $request->title,
+            'value' => $value,
+            'type' => $request->type,
+            'position' => 'small',
+        ]);
+
         return redirect()->route('ads.index')->with('success', 'Ad created successfully.');
     }
 
-    public function edit($ad)
-    {
-        $data['ad'] = Ad::find($ad);
-        return view('ads.edit', $data);
-    }
+    // Metode edit dan update untuk small ads disertakan dalam contoh di atas.
 
     public function edit_script($ad)
     {
@@ -105,35 +115,22 @@ class AdController extends Controller
         return view('ads.edit_script', $data);
     }
 
-    public function update(Request $request, Ad $ad)
-    {
-        $type = $request->type;
-        if($type=='img'){
-            $value = date('dmYhis').'.jpeg';   
-            $path = Storage::putFileAs('public/ads', $request->file('image'), $value);//$request->file('image')->storeAs('public/topic-images', 'test.jpg');
-        }else{
-            $value = $request->script;
-        }
-
-         
-            $ad->title = $request->title;
-            $ad->value = $value;
-            $ad->position = 'small';
-            $ad->type = $type;
-            $ad->save();
-        return redirect()->route('ads.index')->with('success', 'Ad created successfully.');
-    }
-
-    
     public function update_script(Request $request, Ad $ad)
     {
-        $type = $request->type;
-            $ad->title = $request->title;
-            $ad->value = $request->value;
-            $ad->position = 'scripts';
-            $ad->type = $type;
-            $ad->save();
-        return redirect()->route('ads.index')->with('success', 'Ad created successfully.');
+        $this->validate($request, [
+            'title' => 'required',
+            'value' => 'required',
+            'type' => 'required',
+        ]);
+
+        $ad->update([
+            'title' => $request->title,
+            'value' => $request->value,
+            'type' => $request->type,
+            'position' => 'scripts',
+        ]);
+
+        return redirect()->route('ads.index')->with('success', 'Ad updated successfully.');
     }
 
     public function destroy(Ad $ad)
@@ -143,4 +140,3 @@ class AdController extends Controller
         return redirect()->route('ads.index')->with('success', 'Ad deleted successfully.');
     }
 }
-

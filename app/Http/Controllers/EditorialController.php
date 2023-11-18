@@ -26,7 +26,6 @@ class EditorialController extends Controller
         $dom = new DOMDocument;
         $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         $images = $dom->getElementsByTagName('img');
-        $post_image = $images[0];
         // Check if there is at least one <img> element
         if ($images->length > 0) {
             // Remove the first <img> element
@@ -54,7 +53,7 @@ class EditorialController extends Controller
             'schedule_time' => $request->schedule_time,
             'published_at' => $request->published_at,
             'is_deleted' => $request->is_deleted,
-            'post_image' => $post_image,
+            'post_image' => $request->post_image,
 
         ];
         if (Posts::create($postData)) {

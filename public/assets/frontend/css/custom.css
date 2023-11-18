@@ -1034,7 +1034,7 @@
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 180px;
     max-height: 500px;
     overflow-y: auto;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);

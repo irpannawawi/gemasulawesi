@@ -284,18 +284,65 @@
                         `<p><strong>Baca Juga: <a href="${data.data.url}" >${data.data.title}</a></strong></p>`);
                     instance.close();
                 }
-            }
+            };
+
+            const configEditImage = {
+                title: 'Edit Image',
+                url: "",
+                width: 720,
+                height: 480,
+                onMessage: (instance, data) => {
+
+                    const imgHtml =
+                        `<img data-id="${data.data.imageId}" src="${data.data.imageUrl}" />`;
+                    tinymce.activeEditor.execCommand('mceInsertContent', false, imgHtml);
+
+                    instance.close();
+                    switch (data.mceAction) {
+                        case 'insertImage':
+                            break;
+                    }
+                }
+            };
+
+            // Registry plugin
+            tinymce.PluginManager.add('customEditImage', function(editor, url) {
+                // Logika untuk menangani klik pada gambar
+                editor.on('dblclick', function(e) {
+                    var element = e.target;
+
+                    // Periksa apakah elemen yang diklik adalah gambar
+                    if (element.nodeName === 'IMG') {
+                        // Tampilkan dialog khusus di sini
+                        showDialog(element.src, element.dataset.id);
+                    }
+                });
+
+                // Fungsi untuk menampilkan dialog khusus
+                function showDialog(imageSrc, dataId) {
+                    // Logika untuk menampilkan dialog sesuai kebutuhan
+                    // Gunakan library atau framework tertentu jika diperlukan
+                    url = "{{ url('/browse_edit_image/') }}"
+                    configEditImage.url = url + '/' + dataId
+                    editor.windowManager.openUrl(configEditImage);
+                }
+            });
 
             tinymce.init({
                 selector: '.editor',
                 skin: 'oxide',
+                autosave_interval: '2s', // Ubah interval sesuai kebutuhan Anda
+                autosave_restore_when_empty: true,
+                autosave_ask_before_unload: false, 
+                autosave_retention: 'localStorage', // Opsional, defaultnya adalah 'localStorage'
+
                 promotion: false,
-                plugins: 'image link code media preview lists table',
-                toolbar1: 'styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table',
+                plugins: 'autosave image link code media preview lists table customEditImage',
+                toolbar1: 'removeformat styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table',
                 toolbar2: ' code preview | link  dialog-insert-image media dialog-insert-baca-juga',
                 image_title: true,
                 setup: (editor) => {
-                    // insert image
+                    // Insert image
                     editor.ui.registry.addButton('dialog-insert-image', {
                         icon: 'image',
                         onAction: () => {
@@ -305,8 +352,12 @@
                                 width: 720,
                                 height: 480,
                                 onMessage: (instance, data) => {
-                                    tinymce.activeEditor.execCommand('insertImage', false,
-                                        data.data.imageUrl);
+                                    console.log(data.data)
+                                    const imgHtml =
+                                        `<img src="${data.data.imageUrl}" data-id="${data.data.imageId}" />`;
+                                    tinymce.activeEditor.execCommand('mceInsertContent',
+                                        false, imgHtml);
+
                                     instance.close();
                                     switch (data.mceAction) {
                                         case 'insertImage':
@@ -334,15 +385,9 @@
                         icon: 'new-tab',
                         title: 'Baca Juga',
                         onAction: () => {
-                            const instanceApiBacaJuga = editor.windowManager.openUrl(configBacaJuga)
+                            const instanceApiBacaJuga = editor.windowManager.openUrl(configBacaJuga);
                         },
-
-
-                    })
-
-
-
-                    editor.on('')
+                    });
                 }
             });
 
@@ -351,6 +396,7 @@
                     theme: "bootstrap4",
                     // allowClear: true
                 });
+
                 $('.select2-multiple').select2({
                     theme: "bootstrap4",
                     templateSelection: formatState,
@@ -358,25 +404,22 @@
                 });
             });
 
-
             function formatState(state) {
                 if (!state.id) {
                     return state.text;
                 }
-                var $state = $(
-                    '<span><span class="text-white"></span></span>'
-                );
+                var $state = $('<span><span class="text-white"></span></span>');
                 $state.find("span").text(state.text);
                 return $state;
             }
 
             $('#description').on('keyup', () => {
                 count_word_description();
-            })
+            });
 
             function count_word_description() {
-                let desc_len = $('#description').val().length
-                $('#counter_word_description').text(140 - desc_len)
+                let desc_len = $('#description').val().length;
+                $('#counter_word_description').text(140 - desc_len);
             }
         </script>
     @endpush

@@ -15,7 +15,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
 </head>
 
 <body>
@@ -42,9 +42,6 @@
             </div>
         </div>
         <div class="card-body">
-            <div class="row mb-2">
-                <h5>Pagination here</h5>
-            </div>
             <div class="row box-photo-upload">
                 <div class="row">
                     @foreach ($photos as $photo)
@@ -59,16 +56,16 @@
                                         <br><small title="Zona Bandung">Author Name</small>
                                         <div class="float-right">
                                             <button type="button" class="btn btn-xs bg-primary btn-primary btn-edit"
-                                                onclick="sendImageData('{{ $photo->asset->asset_id }}', '{{ url('storage/photos').'/'.$photo->asset->file_name }}')"
+                                                onclick="sendImageData('{{ $photo->image_id }}', '{{ url('storage/photos') . '/' . $photo->asset->file_name }}')"
                                                 title="Quick use"><i class="fa fa-check" aria-hidden="true"></i>
                                             </button>
                                             <button type="button" class="btn btn-xs btn-default btn-edit"
-                                                data-id="7381762" title="Use/Edit"><i class="fa fa-edit"
+                                                data-id="{{$photo->image_id}}" title="Use/Edit"><i class="fa fa-edit"
                                                     aria-hidden="true"></i>
                                             </button><button type="button"
                                                 class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
                                                 data-src="{{ route('assets.photo.delete', ['id', $photo->id]) }}"
-                                                data-id="7381762" title="Delete"><i class="fa fa-trash"
+                                                data-id="{{$photo->image_id}}" title="Delete"><i class="fa fa-trash"
                                                     aria-hidden="true"></i></button>
                                         </div>
                                     </div>
@@ -83,7 +80,7 @@
                 </div>
             </div>
             <div class="row mt-2">
-                <h5>Pagination here</h5>
+                {{$photos->links('vendor.pagination.bootstrap-4')}}
             </div>
         </div>
     </div>
@@ -133,7 +130,7 @@
 
 
     <script>
-        // insert image 
+        
         function sendImageData(id, url) {
             console.log({
                 id: id,
@@ -146,15 +143,15 @@
                 }
             }, "*")
         }
-
+        
         window.addEventListener('message', (event) => {
-  var data = event.data;
-
-  // Do something with the data received here
-  console.log('message received from TinyMCE', data);
-});
-      
-    </script>
+            var data = event.data;
+            
+            // Do something with the data received here
+            console.log('message received from TinyMCE', data);
+        });
+        
+        </script>
 </body>
 
 </html>

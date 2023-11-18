@@ -6,6 +6,7 @@ use App\Models\Asset;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
@@ -17,8 +18,31 @@ class PhotoController extends Controller
     }
 
     public function browse() {
-        $data['photos'] = Image::get();
+        $data['photos'] = Image::orderBy('image_id', 'DESC')->paginate(10);
         return view('browse', $data);
+    }
+
+    public function browse_edit_image($imageId)
+    {
+        $data['image'] = Image::find($imageId);
+        return view('editorial.components.modal_edit_image', $data);
+    }
+
+    public function update_image_tinymce(Request $request)
+    {
+        $old_image = Image::find($request->image_id);
+        $image = New Image;
+        $image->asset_id = $old_image->asset->asset_id;
+        $image->uploader_id = Auth::user()->id;
+        $image->author = $request->author;
+        $image->caption = $request->caption;
+        $image->credit = $request->credit;
+        $image->source = $request->source;
+        $image->save();
+        $image_url = Storage::url('photos/'.$image->asset->file_name);
+
+        return redirect()->route('browseEditImage',['id'=>$image->image_id])->with(['msg'=>'success', 'image_url'=>$image_url, 'image_id'=>$image->image_id]);
+
     }
 
     public function upload(Request $request)

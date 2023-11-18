@@ -140,7 +140,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('pushNotification.index') }}" class="nav-link">
-                        <i class="nav-icon fa fa-envelope"></i>
+                        <i class="nav-icon fas fa-bell"></i>
                         <p>
                             Notification
                         </p>
@@ -149,7 +149,7 @@
 
                 <li class="nav-item">
                     <a href="{{ route('breakingNews') }}" class="nav-link">
-                        <i class="nav-icon fa fa-envelope"></i>
+                        <i class="nav-icon fas fa-newspaper"></i>
                         <p>
                             Breaking News
                         </p>
@@ -239,6 +239,29 @@
                     </a>
                 </li>
 
+                {{-- <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Settings Web
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('frontend.index') }}" class="nav-link">
+                                <i class="far fa-image nav-icon"></i>
+                                <p>Frontend</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('frontend.index') }}" class="nav-link">
+                                <i class="far fa-image nav-icon"></i>
+                                <p>Footer</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> --}}
 
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">

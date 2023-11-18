@@ -107,18 +107,13 @@
 
                                 <div class="croslink">
                                     <a href="https://news.google.com/search?q=gemasulawesi.com&hl=id&gl=ID&ceid=ID%3Aid"
-                                        target="_blank" rel="noopener noreferrer">Simak update artikel pilihan lainnya dari
-                                        kami
-                                        di <strong>Google News Klik Gemasulawesi</strong></a>
+                                        target="_blank" rel="noopener noreferrer">Ikuti Update Berita Terkini Gemasulawesi
+                                        di: <strong>Google News</strong></a>
                                 </div>
 
-                                <p>Editor: <a>
-                                        @php
-                                            $editor = $post->editor->display_name;
-                                        @endphp
-                                        {!! $editor !!}
-                                    </a>
-                                </p>
+                                <div class="editor__text">
+                                    <span>Editor: {{ $post->editor->display_name }}</span>
+                                </div>
 
                                 <!-- tags -->
                                 <div class="entry__tags">

@@ -541,7 +541,7 @@
                         <!-- Nav-wrap -->
                         <nav class="flex-child d-none d-lg-block">
                             <ul class="nav__menu">
-                                @foreach ($rubriks->take(7) as $rubrik)
+                                @foreach ($rubriks->take(8) as $rubrik)
                                     <li>
                                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                             class="link-nav__menu"
@@ -570,7 +570,7 @@
                                                 <i class="subicon ui-arrow-down"></i>
                                             </a>
                                             <ul class="submenu">
-                                                @foreach ($rubriks->slice(7) as $rubrik)
+                                                @foreach ($rubriks->slice(8) as $rubrik)
                                                     <li>
                                                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                                             class="link-submenu"

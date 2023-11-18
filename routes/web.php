@@ -27,10 +27,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// route editorial
 Route::get('/browse', [PhotoController::class, 'browse'])->name('browseImage');
+Route::get('/browse_edit_image/{id}', [PhotoController::class, 'browse_edit_image'])->name('browseEditImage');
 Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
+Route::post('/create_img_byTinymce', [PhotoController::class, 'update_image_tinymce'])->name('assets.photo.updateTinymce');
 
-Route::get('/test', [TestController::class, 'index']);
+
+// Route::get('/test', [TestController::class, 'index']);
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');

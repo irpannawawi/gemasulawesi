@@ -16,7 +16,7 @@ class BrowseController extends Controller
     }
 
     public function browseBacaJuga() {
-        $data['posts'] = Posts::orderBy('post_id', 'DESC')->get();
+        $data['posts'] = Posts::orderBy('post_id', 'DESC')->paginate(20);
         return view('browse_baca_juga', $data);
     }
 }

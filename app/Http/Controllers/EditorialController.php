@@ -68,7 +68,7 @@ class EditorialController extends Controller
 
     public function modal_related()
     {
-        $data['posts'] = Posts::where('status', 'published')->orderBy('created_at', 'DESC')->get();
+        $data['posts'] = Posts::where('status', 'published')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.components.modal_related', $data);
     }
 

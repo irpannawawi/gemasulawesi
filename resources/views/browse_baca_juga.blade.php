@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="row mt-2">
-                    <h5>Pagination here</h5>
+                    {{$posts->links('vendor.pagination.bootstrap-4')}}
                 </div>
             </div>
         </div>

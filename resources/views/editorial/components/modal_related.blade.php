@@ -63,7 +63,7 @@
                     </tbody>
                 </table>
             </div>
-
+            {{$posts->links('vendor.pagination.bootstrap-4')}}
         </div>
 
 

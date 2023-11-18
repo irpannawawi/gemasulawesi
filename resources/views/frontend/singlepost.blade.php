@@ -66,7 +66,7 @@
                                             $search = $tag->tag_name;
                                             $re = '/' . $search . '(?![^<]*>)/'; // skip html tag
                                             $replacement = "<a href=\"" . route('tags', ['tag_name' => $tag->tag_name]) . "\" >" . $tag->tag_name . '</a>';
-                                            $article = preg_replace($re, $replacement, $article);
+                                            // $article = preg_replace($re, $replacement, $article);
                                         }
                                     }
                                     $article = str_replace('../', '' . url('') . '/', $article);

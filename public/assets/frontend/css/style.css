@@ -4277,10 +4277,13 @@ figcaption {
     color: #171821;
     font-size: 14px;
     font-weight: 700;
-    padding: 0 16px;
+    padding: 0 10px;
     display: block;
     position: relative;
     line-height: 48px;
+}
+.menu__lainnya > li > a{
+    padding: 0 !important;
 }
 .nav__menu > li > a:hover {
     color: #000;
@@ -4295,7 +4298,7 @@ figcaption {
     left: 0;
     right: 0;
     margin: 0 auto;
-    background-color: #2d95e3;
+    background-color: #fff;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }

@@ -368,7 +368,19 @@
                         },
                     });
 
-                    // Insert Baca Juga
+
+                    function find_image() {
+                        // list images 
+                        var arr = new Array();
+                        $(tinyMCE.activeEditor.dom.getRoot()).find('img').each(
+                            function() {
+                                console.log($(this).attr("src"));
+                            });
+
+                    }
+
+
+                    // insert baca juga
                     editor.ui.registry.addButton('dialog-insert-baca-juga', {
                         icon: 'new-tab',
                         title: 'Baca Juga',

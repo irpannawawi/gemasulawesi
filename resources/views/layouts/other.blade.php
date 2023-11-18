@@ -15,6 +15,7 @@
         $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         $type = 'website';
     @endphp
+
     <!-- s: open graph -->
     <title itemprop="name">{{ $metaTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
@@ -247,24 +248,40 @@
 
                     <!-- Socials -->
                     <div class="flex-child">
-                        <div class="socials socials--nobase socials--nav socials--dark justify-content-end">
-                            <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
-                                target="_blank" aria-label="facebook">
-                                <i class="fa-brands fa-facebook"></i>
-                            </a>
-                            <a class="social social-twitter" href="https://twitter.com/gemasulawesi" target="_blank"
-                                aria-label="twitter">
-                                <i class="fa-brands fa-square-x-twitter"></i>
-                            </a>
-                            <a class="social social-youtube"
-                                href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg" target="_blank"
-                                aria-label="youtube">
-                                <i class="fa-brands fa-youtube"></i>
-                            </a>
-                            <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
-                                target="_blank" aria-label="instagram">
-                                <i class="fa-brands fa-square-instagram"></i>
-                            </a>
+                        <div class="d-flex align-items-center" style="gap: 20px;position: relative;">
+                            <div class="nav__right-item nav__search">
+                                <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
+                                    <i class="ui-search nav__search-trigger-icon"></i>
+                                </a>
+                                <div class="nav__search-box" style="right: 0%;z-index: 121;">
+                                    <form class="nav__search-form" action="{{ route('search') }}">
+                                        <input type="text" name="q" placeholder="Search..."
+                                            class="nav__search-input" value="{{ request('q') }}">
+                                        <button type="submit" class="search-button btn btn-lg btn-color btn-button">
+                                            <i class="ui-search "></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="socials socials--nobase socials--nav socials--dark justify-content-end">
+                                <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
+                                    target="_blank" aria-label="facebook">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                                <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                    target="_blank" aria-label="twitter">
+                                    <i class="fa-brands fa-square-x-twitter"></i>
+                                </a>
+                                <a class="social social-youtube"
+                                    href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg" target="_blank"
+                                    aria-label="youtube">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </a>
+                                <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
+                                    target="_blank" aria-label="instagram">
+                                    <i class="fa-brands fa-square-instagram"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -273,37 +290,35 @@
         </header> <!-- end header -->
 
         <!-- Navigation -->
-        <header class="nav nav--colored mb-3">
+        <header class="nav nav--colored mb-3" id="scroll">
             <div class="nav__holder nav--sticky">
                 <div class="container relative">
-                    <div class="flex-parent mb-5">
-
-                        <div class="flex-child">
-                            <!-- Side Menu Button -->
+                    <div class="flex-parent">
+                        <div class="flex-parent">
                             <div class="nav__home">
                                 <a href="{{ url('/') }}" title="Home">
                                     <i class="icon fa fa-home"></i>
                                 </a>
                             </div>
-
+                            <!-- Side Menu Button -->
                             <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open side menu">
                                 <span class="nav-icon-toggle__box">
                                     <span class="nav-icon-toggle__inner"></span>
                                 </span>
                             </button>
                         </div>
-
                         <!-- Nav-wrap -->
-                        <nav class="flex-child nav__wrap d-none d-lg-block">
+                        <nav class="flex-child d-none d-lg-block">
                             <ul class="nav__menu">
-                                @foreach ($rubriks as $rubrik)
+                                @foreach ($rubriks->take(7) as $rubrik)
                                     <li>
                                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                             class="link-nav__menu"
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
-                            </ul> <!-- end menu -->
+                            </ul>
+                            <!-- end menu -->
                         </nav>
 
                         <!-- Logo Mobile -->
@@ -313,13 +328,30 @@
                                 srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
                                 alt="logo">
                         </a>
-
                         <!-- Nav Right -->
                         <div class="flex-child">
                             <div class="nav__right">
-
+                                <!-- lainnya -->
+                                <div class="nav__right-item nav__lainnya d-none d-lg-block">
+                                    <ul class="nav__menu menu__lainnya">
+                                        <li>
+                                            <a href="javascript:void(0)">Lainnya
+                                                <i class="subicon ui-arrow-down"></i>
+                                            </a>
+                                            <ul class="submenu">
+                                                @foreach ($rubriks->slice(7) as $rubrik)
+                                                    <li>
+                                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                                            class="link-submenu"
+                                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                                 <!-- Search -->
-                                <div class="nav__right-item nav__search">
+                                <div class="nav__right-item nav__search d-block d-lg-none">
                                     <a href="javascript:;" class="nav__search-trigger">
                                         <i class="ui-search nav__search-trigger-icon"></i>
                                     </a>
@@ -343,7 +375,7 @@
             </div>
 
             {{-- nav mobile --}}
-            <div class="py-2 mt-2 category_under_nav d-sm-none">
+            <div class="py-2 category_under_nav d-sm-none">
                 <div class="container">
                     <ul class="d-flex" style="gap: 20px;">
                         <!-- Categories -->
@@ -452,6 +484,7 @@
     <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
@@ -517,8 +550,6 @@
             new Notification(title, options);
         });
     </script>
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-    https://firebase.google.com/docs/web/setup#available-libraries -->
 </body>
 
 </html>

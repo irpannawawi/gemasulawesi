@@ -22,7 +22,7 @@
                         </form>
                         @if ($beritaTerkini->count() > 0)
                             <div class="result-search">
-                                <p>Hasil pencarian <strong>"{{ $keyword }}"</strong></p>
+                                <p>Hasil pencarian untuk <strong>'{{ $keyword }}'</strong></p>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -30,19 +30,17 @@
                                         @foreach ($beritaTerkini[0] as $post)
                                             <li class="post-list-small__item">
                                                 <article class="post-list-small__entry clearfix">
-                                                    <div class="post-list-small__img-holder">
-                                                        <div class="thumb-container thumb-70">
-                                                            <a
-                                                                href="{{ route('singlePost', [
-                                                                    'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
-                                                                    'post_id' => $post->post_id,
-                                                                    'slug' => $post->slug,
-                                                                ]) }}">
-                                                                <img data-src="{{ get_post_image($post->post_id) }}"
-                                                                    src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                    alt="" class="lazyload">
-                                                            </a>
-                                                        </div>
+                                                    <div class="post__img">
+                                                        <a
+                                                            href="{{ route('singlePost', [
+                                                                'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}">
+                                                            <img data-src="{{ get_post_image($post->post_id) }}"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class="lazyload">
+                                                        </a>
                                                     </div>
                                                     <div class="post-list-small__body">
                                                         <ul class="entry__meta category underline">
@@ -73,19 +71,17 @@
                                         @foreach ($beritaTerkini[1] as $post)
                                             <li class="post-list-small__item">
                                                 <article class="post-list-small__entry clearfix">
-                                                    <div class="post-list-small__img-holder">
-                                                        <div class="thumb-container thumb-70">
-                                                            <a
-                                                                href="{{ route('singlePost', [
-                                                                    'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
-                                                                    'post_id' => $post->post_id,
-                                                                    'slug' => $post->slug,
-                                                                ]) }}">
-                                                                <img data-src="{{ get_post_image($post->post_id) }}"
-                                                                    src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                    alt="" class="lazyload">
-                                                            </a>
-                                                        </div>
+                                                    <div class="post__img">
+                                                        <a
+                                                            href="{{ route('singlePost', [
+                                                                'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}">
+                                                            <img data-src="{{ get_post_image($post->post_id) }}"
+                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                alt="" class="lazyload">
+                                                        </a>
                                                     </div>
                                                     <div class="post-list-small__body">
                                                         <ul class="entry__meta category underline">
@@ -116,7 +112,7 @@
                             </div>
                         @else
                             <div class="search__empty mt-3">
-                                <p class="search__result">Berita <b>"{{ $keyword }}"</b> yang Anda cari tidak
+                                <p class="search__result">Hasil pencarian untuk <b>'{{ $keyword }}'</b> tidak
                                     Tersedia</strong>
                                 </p>
                             </div>

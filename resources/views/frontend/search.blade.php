@@ -22,7 +22,7 @@
                         </form>
                         @if ($beritaTerkini->count() > 0)
                             <div class="result-search">
-                                <p>Hasil pencarian <strong>"{{ $keyword }}"</strong></p>
+                                <p>Hasil pencarian untuk <strong>'{{ $keyword }}'</strong></p>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -112,7 +112,7 @@
                             </div>
                         @else
                             <div class="search__empty mt-3">
-                                <p class="search__result">Berita <b>"{{ $keyword }}"</b> yang Anda cari tidak
+                                <p class="search__result">Hasil pencarian untuk <b>'{{ $keyword }}'</b> tidak
                                     Tersedia</strong>
                                 </p>
                             </div>

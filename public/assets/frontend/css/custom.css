@@ -1057,3 +1057,23 @@
 .menu__lainnya li:hover .submenu {
     display: block;
 }
+
+/* google news */
+.croslink {
+    margin: 15px 0 27px;
+    position: relative;
+}
+.croslink a {
+    border-radius: 8px;
+    border: solid 1px #2CC38B;
+    background-color: snow;
+    display: block;
+    padding: 13px 17px;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.4;
+    padding-right: 45px;
+}
+.read__content strong {
+    font-weight: 700;
+}

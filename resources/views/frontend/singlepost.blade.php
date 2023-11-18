@@ -104,6 +104,14 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="croslink">
+                                    <a href="https://news.google.com/search?q=gemasulawesi.com&hl=id&gl=ID&ceid=ID%3Aid"
+                                        target="_blank" rel="noopener noreferrer">Simak update artikel pilihan lainnya dari
+                                        kami
+                                        di <strong>Google News Klik Gemasulawesi</strong></a>
+                                </div>
+
                                 <p>Editor: <a>
                                         @php
                                             $editor = $post->editor->display_name;

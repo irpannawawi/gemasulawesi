@@ -74,13 +74,13 @@ class EditorialController extends Controller
 
     public function draft()
     {
-        $data['posts'] = Posts::where('status', 'draft')->orderBy('created_at', 'DESC')->get();
+        $data['posts'] = Posts::where('status', 'draft')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.draft', $data);
     }
 
     public function published()
     {
-        $data['posts'] = Posts::where('status', 'published')->orderBy('created_at', 'DESC')->get();
+        $data['posts'] = Posts::where('status', 'published')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.published', $data);
     }
 

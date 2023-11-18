@@ -50,6 +50,11 @@
                     @endforeach
                 </tbody>
             </table>
+
+            
+            <div class="row mt-2">
+                {{$posts->links('vendor.pagination.bootstrap-4')}}
+            </div>
         </div>
     </div>
 

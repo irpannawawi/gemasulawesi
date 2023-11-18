@@ -14,8 +14,10 @@
     </x-slot>
 
     <div class="card">
-        <form method="POST" action="{{ route('editorial.insert') }}">
+        <form id="article-form" method="POST" action="{{ route('editorial.insert') }}">
             @csrf
+            {{-- POST IMAGE --}}
+            <input type="hidden" id="postImage" name="post_image">
             <div class="card-body" style="min-height: 400px">
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
@@ -161,7 +163,9 @@
             <div class="card-footer">
                 <button class="btn btn-primary bg-primary" type="submit"><i class="fa fa-paper-plane"></i>
                     Publish</button>
-                <button class="btn btn-secondary bg-secondary" type="button"><i class="fa fa-save"></i>
+
+                <input type="hidden" id="isDraft" name="is_draft">
+                <button id="saveDraft" class="btn btn-secondary bg-secondary" type="button"><i class="fa fa-save"></i>
                     Simpan</button>
             </div>
         </form>
@@ -292,7 +296,7 @@
                 width: 720,
                 height: 480,
                 onMessage: (instance, data) => {
-
+                    $('#postImage').val(data.data.imageId)
                     const imgHtml =
                         `<img data-id="${data.data.imageId}" src="${data.data.imageUrl}" />`;
                     tinymce.activeEditor.execCommand('mceInsertContent', false, imgHtml);
@@ -331,11 +335,15 @@
             tinymce.init({
                 selector: '.editor',
                 skin: 'oxide',
-                autosave_interval: '2s', // Ubah interval sesuai kebutuhan Anda
-                autosave_restore_when_empty: true,
-                autosave_ask_before_unload: false, 
-                autosave_retention: 'localStorage', // Opsional, defaultnya adalah 'localStorage'
+                // =========== autosave tinymce ====================
 
+                // autosave_interval: '2s', // Ubah interval sesuai kebutuhan Anda
+                // autosave_restore_when_empty: true,
+                // autosave_ask_before_unload: false,
+                // autosave_retention: 'localStorage', // Opsional, defaultnya adalah 'localStorage'
+                
+                // =========== ./autosave tinymce ====================
+                
                 promotion: false,
                 plugins: 'autosave image link code media preview lists table customEditImage',
                 toolbar1: 'removeformat styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table',
@@ -352,7 +360,7 @@
                                 width: 720,
                                 height: 480,
                                 onMessage: (instance, data) => {
-                                    console.log(data.data)
+                                    $('#postImage').val(data.data.imageId)
                                     const imgHtml =
                                         `<img src="${data.data.imageUrl}" data-id="${data.data.imageId}" />`;
                                     tinymce.activeEditor.execCommand('mceInsertContent',
@@ -368,7 +376,6 @@
                         },
                     });
 
-
                     function find_image() {
                         // list images 
                         var arr = new Array();
@@ -379,7 +386,6 @@
 
                     }
 
-
                     // insert baca juga
                     editor.ui.registry.addButton('dialog-insert-baca-juga', {
                         icon: 'new-tab',
@@ -388,7 +394,8 @@
                             const instanceApiBacaJuga = editor.windowManager.openUrl(configBacaJuga);
                         },
                     });
-                }
+                },
+                // fungsi lain
             });
 
             $(document).ready(function() {
@@ -421,6 +428,12 @@
                 let desc_len = $('#description').val().length;
                 $('#counter_word_description').text(140 - desc_len);
             }
+
+            $('#saveDraft').on('click', (event)=>{
+                event.preventDefault();
+                $('#isDraft').val('1')
+                $('#article-form').submit()
+            })
         </script>
     @endpush
 </x-app-layout>

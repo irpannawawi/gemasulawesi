@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use App\Models\Rubrik;
+use DOMDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -21,28 +22,47 @@ class EditorialController extends Controller
 
     public function insert(Request $request)
     {
+        $article = $request->content;
+        $dom = new DOMDocument;
+        $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getElementsByTagName('img');
+        $post_image = $images[0];
+        // Check if there is at least one <img> element
+        if ($images->length > 0) {
+            // Remove the first <img> element
+            $firstImage = $images->item(0);
+            $firstImage->parentNode->removeChild($firstImage);
+        }
+
+        // Get the modified HTML
+        $modifiedHtml = $dom->saveHTML();
+        $article = $modifiedHtml;
         $postData = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
             'category' => $request->rubrik,
             'description' => $request->description,
-            'article' => $request->content,
+            'article' => $article,
             'allow_comment' => $request->allow_comment,
             'view_in_welcome_page' => $request->view_in_welcome_page,
             'author_id' => Auth::user()->id,
             'editor_id' => Auth::user()->id,
-            'status' => 'published',
+            'status' => $request->is_draft==1?'draft':'published',
             'related_articles' => json_encode($request->related),
             'tags' => json_encode($request->tags),
             'topics' => json_encode($request->topics),
             'schedule_time' => $request->schedule_time,
             'published_at' => $request->published_at,
             'is_deleted' => $request->is_deleted,
-        ];
+            'post_image' => $post_image,
 
-        // dd($postData);
+        ];
         if (Posts::create($postData)) {
-            return redirect()->route('editorial.published');
+            if($request->is_draft==1){
+                return redirect()->route('editorial.draft');
+            }else{
+                return redirect()->route('editorial.published');
+            }
         }
         // dd($request->all());
     }

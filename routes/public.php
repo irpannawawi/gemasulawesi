@@ -3,9 +3,15 @@
 
 use App\Http\Controllers\HeadlineController;
 use App\Http\Controllers\WebController;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
-
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    return Redirect::to('/');
+});
 Route::get('/', [WebController::class, 'index']);
 Route::get('/id/{rubrik}/{post_id}/{slug}', [WebController::class, 'singlePost'])
     ->where('rubrik', '[\w\s-]+')

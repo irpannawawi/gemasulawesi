@@ -34,6 +34,14 @@ class Posts extends Model
         'origin_id',
     ];
 
+    public function scopeSearch($query, $keyword)
+    {
+        return $query->where(function ($query) use ($keyword) {
+            $query->where('title', 'like', "%$keyword%")
+                ->orWhere('article', 'like', "%$keyword%");
+        });
+    }
+
     public function editor(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'editor_id');

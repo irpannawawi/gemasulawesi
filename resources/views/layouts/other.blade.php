@@ -484,7 +484,7 @@
     <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
+    {{-- <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script> --}}
     <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>

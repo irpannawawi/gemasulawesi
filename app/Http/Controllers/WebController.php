@@ -12,6 +12,7 @@ use App\Models\Topic;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\View\View as ViewView;
 use Sarfraznawaz2005\VisitLog\Facades\VisitLog;
 use Sarfraznawaz2005\VisitLog\Models\VisitLog as VisitLogModel;
 
@@ -164,9 +165,7 @@ class WebController extends Controller
     {
         $keyword = $request->input('q');
 
-        $paginatedPost = Posts::where('title', 'like', "%$keyword%")
-            ->orWhere('article', 'like', "%$keyword%")
-            ->paginate(10);
+        $paginatedPost = Posts::search($keyword)->paginate(10);
 
         $beritaTerkini = $paginatedPost->split(2);
 

@@ -2,7 +2,6 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" integrity="sha512-aD9ophpFQ61nFZP6hXYu4Q/b/USW7rpLCQLX6Bi0WJHXNO7Js/fUENpBQf/+P4NtpzNX0jSgR5zVvPOJp+W2Kg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  --}}
 
-
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 @endpush
@@ -70,11 +69,7 @@
                         {{-- Tags input --}}
                         <div class="form-group">
                             <label for="tag">Tag</label>
-                            <select class="form-control select2-multiple" id="select2Tag" name="tags[]" multiple>
-                                <option value="Sample Tag 1">Sample Tag 1</option>
-                                <option value="Sample Tag 2">Sample Tag 2</option>
-                                <option value="Sample Tag 3">Sample Tag 3</option>
-                                <option value="Sample Tag 4">Sample Tag 4</option>
+                            <select class="form-control" id="select2Tag" name="tags[]" multiple>
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
@@ -86,11 +81,7 @@
                         {{-- Source input --}}
                         <div class="form-group">
                             <label for="select2Source">Source</label>
-                            <select class="form-control select2-multiple" id="select2source" name="sources[]" multiple>
-                                <option value="Sample Source 1">Sample Source 1</option>
-                                <option value="Sample Source 2">Sample Source 2</option>
-                                <option value="Sample Source 3">Sample Source 3</option>
-                                <option value="Sample Source 4">Sample Source 4</option>
+                            <select class="form-control" id="select2Source" name="sources[]" multiple>
                             </select>
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
                                 data-target="#modalSource"><i class="fa fa-plus"></i> Add/Select more</button>
@@ -103,10 +94,7 @@
                         <div class="form-group">
                             <label for="select2Author">Author</label>
                             <select class="form-control select2-multiple" id="select2Author" name="author" multiple>
-                                <option value="Sample Author 1" selected>Sample Author 1</option>
-                                <option value="Sample Author 2">Sample Author 2</option>
-                                <option value="Sample Author 3">Sample Author 3</option>
-                                <option value="Sample Author 4">Sample Author 4</option>
+                                <option value="{{Auth::user()->id}}" selected>{{Auth::user()->display_name}}</option>
                             </select>
                             <button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add/Select
                                 more</button>
@@ -398,18 +386,7 @@
                 // fungsi lain
             });
 
-            $(document).ready(function() {
-                $('#select2Rubrik').select2({
-                    theme: "bootstrap4",
-                    // allowClear: true
-                });
 
-                $('.select2-multiple').select2({
-                    theme: "bootstrap4",
-                    templateSelection: formatState,
-                    // allowClear: true
-                });
-            });
 
             function formatState(state) {
                 if (!state.id) {
@@ -435,5 +412,64 @@
                 $('#article-form').submit()
             })
         </script>
+    <script>
+        // Select 2
+        
+
+$(document).ready(function() {
+    $('#select2Rubrik').select2({
+        theme: "bootstrap4",
+        // allowClear: true
+    });
+
+    $('.select2-multiple').select2({
+        theme: "bootstrap4",
+        templateSelection: formatState,
+        // allowClear: true
+    });
+
+    $('#select2Tag').select2({
+        theme: "bootstrap4",
+        templateSelection: formatState,
+        placeholder: 'Pilih Tag',
+        ajax: {
+            url: '/api/tags',
+            dataType: 'json',
+            processResults: function (data) {
+                return {
+                    results: $.map(data.tags, function (tag) {
+                        return {
+                            id: tag.tag_id,
+                            text: tag.tag_name
+                        };
+                    })
+                };
+            }
+        }
+    });
+
+    
+    $('#select2Source').select2({
+        theme: "bootstrap4",
+        templateSelection: formatState,
+        placeholder: 'Pilih Source',
+        ajax: {
+            url: '/api/sources',
+            dataType: 'json',
+            processResults: function (data) {
+                return {
+                    results: $.map(data.sources, function (source) {
+                        return {
+                            id: source.source_id,
+                            text: source.source_name
+                        };
+                    })
+                };
+            }
+        }
+    });
+
+});
+    </script>
     @endpush
 </x-app-layout>

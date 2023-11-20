@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::post('/editorial/insert', [EditorialController::class, 'insert'])->name('editorial.insert');
     Route::get('/editorial/create', [EditorialController::class, 'create'])->name('editorial.create');
-    Route::get('/editorial/edit', [EditorialController::class, 'edit'])->name('editorial.edit');
-    Route::get('/editorial/update', [EditorialController::class, 'update'])->name('editorial.update');
+    Route::get('/editorial/edit/{id}', [EditorialController::class, 'edit'])->name('editorial.edit');
+    Route::post('/editorial/update/{id}', [EditorialController::class, 'update'])->name('editorial.update');
     Route::get('/editorial/draft', [EditorialController::class, 'draft'])->name('editorial.draft');
     Route::get('/editorial/published', [EditorialController::class, 'published'])->name('editorial.published');
     Route::get('/editorial/scheduled', [EditorialController::class, 'scheduled'])->name('editorial.scheduled');

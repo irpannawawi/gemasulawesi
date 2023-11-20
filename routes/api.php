@@ -3,6 +3,7 @@
 use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\RubrikController;
+use App\Http\Controllers\SourceController;
 use App\Http\Controllers\TagsController;
 use App\Models\Posts;
 use Illuminate\Http\Request;
@@ -55,3 +56,6 @@ Route::post('/update_post_date', function(Request $request){
     return response()->json(['status'=> 'success', 'data'=>$res]);
 });
 
+
+Route::get('tags', [TagsController::class, 'select2']);
+Route::get('sources', [SourceController::class, 'select2']);

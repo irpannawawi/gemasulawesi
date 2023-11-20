@@ -42,7 +42,7 @@
                             <td>{{ $post->created_at }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-sm btn-info">Edit</button>
+                                    <a href="{{route('editorial.edit', ['id'=>$post->post_id])}}" class="btn btn-sm btn-info">Edit</a>
                                     <a class="btn btn-sm btn-danger">Hapus</a>
                                 </div>
                             </td>

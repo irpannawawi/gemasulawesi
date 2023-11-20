@@ -39,6 +39,12 @@ class TagsController extends Controller
         }
     }
 
+    public function select2(Request $request)
+    {
+        $query = $request->q;
+        $tags = Tags::where('tag_name', 'LIKE', '%'.$query.'%')->get();
+        return response()->json(['tags' => $tags]);
+    }
     
     public function api_list(Request $request) {
         $id = $request->tag_name;

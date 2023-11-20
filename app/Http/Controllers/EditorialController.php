@@ -20,6 +20,15 @@ class EditorialController extends Controller
         return view('editorial.create', $data);
     }
 
+    public function edit($id)
+    {
+        $data = [
+            'rubriks' => Rubrik::get(),
+            'post' => Posts::find($id),
+        ];
+        return view('editorial.edit', $data);
+    }
+
     public function insert(Request $request)
     {
         $article = $request->content;
@@ -57,6 +66,53 @@ class EditorialController extends Controller
 
         ];
         if (Posts::create($postData)) {
+            if($request->is_draft==1){
+                return redirect()->route('editorial.draft');
+            }else{
+                return redirect()->route('editorial.published');
+            }
+        }
+        // dd($request->all());
+    }
+
+    public function update(Request $request, $id)
+    {
+        $post = Posts::find($id);
+
+        $article = $request->content;
+        $dom = new DOMDocument;
+        $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getElementsByTagName('img');
+        // Check if there is at least one <img> element
+        if ($images->length > 0) {
+            // Remove the first <img> element
+            $firstImage = $images->item(0);
+            $firstImage->parentNode->removeChild($firstImage);
+        }
+
+        // Get the modified HTML
+        $modifiedHtml = $dom->saveHTML();
+        $article = $modifiedHtml;
+
+            $post->title = $request->title;
+            $post->slug = Str::slug($request->title);
+            $post->category = $request->rubrik;
+            $post->description = $request->description;
+            $post->article = $article;
+            $post->allow_comment = $request->allow_comment;
+            $post->view_in_welcome_page = $request->view_in_welcome_page;
+            $post->author_id = Auth::user()->id;
+            $post->editor_id = Auth::user()->id;
+            $post->status = $request->is_draft==1?'draft':'published';
+            $post->related_articles = json_encode($request->related);
+            $post->tags = json_encode($request->tags);
+            $post->topics = json_encode($request->topics);
+            $post->schedule_time = $request->schedule_time;
+            $post->published_at = $request->published_at;
+            $post->is_deleted = $request->is_deleted;
+            $post->post_image = $request->post_image;
+
+        if ($post->save()) {
             if($request->is_draft==1){
                 return redirect()->route('editorial.draft');
             }else{

@@ -173,18 +173,18 @@
                 };
 
                 var newOption = new Option(data.text, data.id, true, true);
-                $('#select2source', window.parent.document).append(newOption).trigger('change');
+                $('#select2Source', window.parent.document).append(newOption).trigger('change');
 
                 if ($(elm, window.parent.document).is(':checked')) {
                     // add to selected 
-                    let last_value = $('#select2source', window.parent.document).val();
+                    let last_value = $('#select2Source', window.parent.document).val();
                     last_value.push(id);
                     console.log(last_value)
                 } else {
                     // remove from selected
                     alert('uncheck')
                 }
-                $('#select2source', window.parent.document).trigger('change');
+                $('#select2Source', window.parent.document).trigger('change');
             }
 
             function edit_source(id, name, alias, web, logo) {

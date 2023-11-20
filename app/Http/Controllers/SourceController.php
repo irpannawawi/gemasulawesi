@@ -50,4 +50,13 @@ class SourceController extends Controller
             return redirect()->back()->with('message-success', 'Berhasil menghapus source');
         }
     }
+
+    public function select2(Request $request)
+    {
+        $query = $request->q;
+        $sources = Source::where('source_name', 'LIKE', '%'.$query.'%')
+            ->orWhere('source_alias', 'LIKE', '%'.$query.'%')
+            ->orWhere('source_website', 'LIKE', '%'.$query.'%')->get();
+        return response()->json(['sources' => $sources]);
+    }
 }

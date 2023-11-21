@@ -25,7 +25,6 @@ class ReportController extends Controller
             $start_date = date('Y-m');
             $end_date = date('Y-m');
         }
-        DB::enableQueryLog();
 
         $data = [
             "users" => User::with(['posts'=>function ($query) use ($start_date, $end_date) {
@@ -34,7 +33,6 @@ class ReportController extends Controller
             }])->get(),
         ];
 
-        $query = DB::getQueryLog();
         // dd($query);
         $data['daterange'] = $request->daterange;
         return view("report.view", $data);

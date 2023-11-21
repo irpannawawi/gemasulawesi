@@ -65,14 +65,18 @@ class EditorialController extends Controller
             'post_image' => $request->post_image,
 
         ];
-        if (Posts::create($postData)) {
-            if($request->is_draft==1){
-                return redirect()->route('editorial.draft');
-            }else{
-                return redirect()->route('editorial.published');
-            }
+        
+        // Insert the post into the database
+        $newPost = Posts::create($postData);
+    
+        // Check if the post was successfully created
+        if ($newPost) {
+            // Redirect based on the post's status
+            return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published');
+        } else {
+            // Handle the case where post creation fails
+            return back()->withInput()->withErrors(['error' => 'Failed to create the post.']);
         }
-        // dd($request->all());
     }
 
     public function update(Request $request, $id)

@@ -419,8 +419,6 @@
                                 <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi
                                     Kabupaten Parigi moutong Provinsi Sulawesi tengah.<br>
                                 </p>
-                            </div>
-                            <div class="footer__verifikasi">
                                 <p>
                                     Email: <br>
                                     Phone:
@@ -446,7 +444,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
                                     <a href="" class="footer__link" rel="”noreferred”">Tentang Kami</a>
@@ -465,6 +463,19 @@
                                     <a href="" class="footer__link" rel="”noreferred”">Pedoman Media
                                         Siber</a>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-md-6">
+                            <div class="footer__verifikasi">
+                                <img class=" ls-is-cached lazyloaded"
+                                    data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
+                                    src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
+                                    height="40" alt="PRMN Centang Biru" data-loaded="true">
+                                <span>
+                                    <b>Telah Terverifikasi Dewan Pers</b>
+                                    <br>
+                                    <b>Sertifikat Nomor <i>1043/DP-Verifikasi/K/XII/2022</i></b>
+                                </span>
                             </div>
                         </div>
                         <div class="footer__copyright col-lg-12 col-md-6">

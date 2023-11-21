@@ -404,6 +404,8 @@
 
             $('#saveDraft').on('click', (event)=>{
                 event.preventDefault();
+                localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
+                localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
                 $('#isDraft').val('1')
                 $('#article-form').submit()
             })

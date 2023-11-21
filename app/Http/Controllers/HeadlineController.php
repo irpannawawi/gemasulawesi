@@ -35,7 +35,7 @@ class HeadlineController extends Controller
         $data['posts'] = Posts::where([
             'status'=>'published',
             'category'=>$rubrik_id
-            ])->get();
+            ])->paginate(20);
         return view('web-management.headline-rubrik.components.modal_select_article', $data);
     }
 
@@ -43,7 +43,7 @@ class HeadlineController extends Controller
     {
         $data['posts'] = Posts::where([
             'status'=>'published',
-            ])->get();
+            ])->paginate(20);
         return view('web-management.headline-rubrik.components.modal_select_article', $data);
     }
 

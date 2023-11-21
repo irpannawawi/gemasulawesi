@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-lg text-gray-800   leading-tight">
-            <i class="fa fa-edit"></i>{{ __('Editorial - Draft') }}
+            <i class="fa fa-edit"></i>{{ __('Editorial - Trash') }}
         </h2>
     </x-slot>
 
@@ -43,7 +43,7 @@
                             <td>
                                 <div class="btn-group">
                                     <a href="{{route('editorial.edit', ['id'=>$post->post_id])}}" class="btn btn-sm btn-info">Edit</a>
-                                    <a href="{{route('editorial.delete', ['id'=>$post->post_id])}}" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="{{route('editorial.delete', ['id'=>$post->post_id])}}" class="btn btn-sm btn-danger">Hapus</a>
                                 </div>
                             </td>
                         </tr>

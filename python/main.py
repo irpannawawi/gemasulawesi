@@ -2,9 +2,9 @@ import time
 import task 
 import multiprocessing as mp
 
-url_local = 'https://demo.sandemoindoteknologi.co.id'
+url_local = 'http://gemasulawesi.test'
 page_start = 1 # jumlah halaman isi 100 post 
-page_end = 4  
+page_end = 2 
 
 proccess_list = []
 lock = mp.Lock()

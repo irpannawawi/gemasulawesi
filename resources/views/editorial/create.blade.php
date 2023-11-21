@@ -325,16 +325,17 @@
                 skin: 'oxide',
                 // =========== autosave tinymce ====================
 
-                // autosave_interval: '2s', // Ubah interval sesuai kebutuhan Anda
-                // autosave_restore_when_empty: true,
-                // autosave_ask_before_unload: false,
-                // autosave_retention: 'localStorage', // Opsional, defaultnya adalah 'localStorage'
+                autosave_interval: '2s', // Ubah interval sesuai kebutuhan Anda
+                autosave_restore_when_empty: true,
+                autosave_ask_before_unload: false,
+                autosave_retention: 'localStorage', // Opsional, defaultnya adalah 'localStorage'
                 
                 // =========== ./autosave tinymce ====================
                 
                 promotion: false,
-                plugins: 'autosave image link code media preview lists table customEditImage',
-                toolbar1: 'removeformat styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table',
+                fullscreen_native: true,
+                plugins: 'autosave image link code media preview lists table customEditImage fullscreen',
+                toolbar1: 'removeformat styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table fullscreen',
                 toolbar2: ' code preview | link  dialog-insert-image media dialog-insert-baca-juga',
                 image_title: true,
                 setup: (editor) => {

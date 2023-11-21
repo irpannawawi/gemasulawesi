@@ -15,6 +15,9 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('assets/AdminLTE')}}/dist/css/adminlte.min.css">
   @vite(['resources/css/app.css', 'resources/js/app.js'])
+<!-- Include SweetAlert2 CSS and JS from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 @stack('extra-css')
   <style>
     .btn-primary{
@@ -113,6 +116,31 @@
     <script src="{{ url('assets/AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('assets/AdminLTE') }}/dist/js/adminlte.min.js"></script>
+      {{-- Alerts --}}
+  @if(session('success'))
+      <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
+@if(session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: '{{ session('error') }}',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
+{{-- confirm delete --}}
+  {{-- Alerts --}}
     @stack('custom-scripts')
 </body>
 

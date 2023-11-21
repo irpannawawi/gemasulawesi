@@ -72,7 +72,7 @@ class EditorialController extends Controller
         // Check if the post was successfully created
         if ($newPost) {
             // Redirect based on the post's status
-            return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published');
+            return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
         } else {
             // Handle the case where post creation fails
             return back()->withInput()->withErrors(['error' => 'Failed to create the post.']);
@@ -136,6 +136,12 @@ class EditorialController extends Controller
     {
         $data['posts'] = Posts::where('status', 'draft')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.draft', $data);
+    }    
+    
+    public function trash()
+    {
+        $data['posts'] = Posts::where('status', 'trash')->orderBy('created_at', 'DESC')->paginate(20);
+        return view('editorial.trash', $data);
     }
 
     public function published()
@@ -183,5 +189,24 @@ class EditorialController extends Controller
                 'status' => False
             ]);
         }
+    }
+
+    public function delete($id){
+        // Find the post by its ID
+        $post = Posts::find($id);
+
+        // Check if the post exists
+        if (!$post) {
+            return back()->withInput()->withErrors(['error' => 'Post not found.']);
+        }
+
+        // Perform any additional checks or authorization if needed
+
+        // Soft delete the post
+        $post->status='trash';
+        $post->save();
+
+        // Redirect to the appropriate route based on post status
+        return redirect()->back()->with('success', 'Post deleted successfully.');
     }
 }

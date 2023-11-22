@@ -10,8 +10,8 @@
 
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-primary btn-xs" href="{{route('breakingNews.add')}}"><i
-                    class="fa fa-plus"></i>Tambah data</a>
+            <a class="btn btn-primary btn-xs" href="{{ route('breakingNews.add') }}"><i class="fa fa-plus"></i>Tambah
+                data</a>
         </div>
         <div class="card-body table-responsive">
             <table class="table table-sm datatable">
@@ -33,11 +33,12 @@
                             <td>
                                 <div class="btn-group">
 
-                                    <a href="{{route('breakingNews.edit', ['id'=>$news->breaking_news_id])}}" class="btn btn-info btn-sm" >Edit</a>
-                                    <a class="btn btn-danger btn-sm" onclick="return confirm('Hapus berita?')"
-                                    href="{{ route('breakingNews.delete', ['id' => $news->breaking_news_id]) }}">Hapus</a>
+                                    <a href="{{ route('breakingNews.edit', ['id' => $news->breaking_news_id]) }}"
+                                        class="btn btn-info btn-sm">Edit</a>
+                                    <a class="btn btn-danger btn-sm delete-btn"
+                                        href="{{ route('breakingNews.delete', ['id' => $news->breaking_news_id]) }}">Hapus</a>
                                 </div>
-                                </td>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -46,18 +47,18 @@
     </div>
 
 
- 
-    @push('custom-scripts')
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        let table = new DataTable('.datatable')
-        function fill_form(post_id, title)
-        {
-            $('#post_id').val(post_id)
-            $('#title').val(title)
 
-        }
-    </script>
+    @push('custom-scripts')
+        <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+        <script>
+            let table = new DataTable('.datatable')
+
+            function fill_form(post_id, title) {
+                $('#post_id').val(post_id)
+                $('#title').val(title)
+
+            }
+        </script>
     @endpush
 </x-app-layout>

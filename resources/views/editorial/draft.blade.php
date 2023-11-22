@@ -7,8 +7,8 @@
 
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-primary btn-xs" href="{{route('editorial.create')}}"><i
-                    class="fa fa-edit"></i>Tambah data</a>
+            <a class="btn btn-primary btn-xs" href="{{ route('editorial.create') }}"><i class="fa fa-edit"></i>Tambah
+                data</a>
 
         </div>
         <div class="card-body table-responsive">
@@ -34,11 +34,12 @@
                         <tr>
                             <td>{{ $n++ }}</td>
                             <td class="text-left">{{ $post->title }} <a target="__blank"
-                                href="{{ route('singlePost', [
-                                    'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
-                                    'post_id' => $post->post_id,
-                                    'slug' => $post->slug,
-                                ]) }}"><i class="fa fa-external-link-alt"></i></a></td>
+                                    href="{{ route('singlePost', [
+                                        'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                        'post_id' => $post->post_id,
+                                        'slug' => $post->slug,
+                                    ]) }}"><i
+                                        class="fa fa-external-link-alt"></i></a></td>
                             <td><span class="badge badge-warning">{{ $post->status }}</span></td>
                             <td><span class="badge badge-secondary">{{ $post->rubrik->rubrik_name }}</span></td>
                             <td>{{ $post->author->display_name }}</td>
@@ -47,8 +48,10 @@
                             <td>{{ $post->published_at }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{route('editorial.edit', ['id'=>$post->post_id])}}" class="btn btn-sm btn-info">Edit</a>
-                                    <a href="{{route('editorial.delete', ['id'=>$post->post_id])}}" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="{{ route('editorial.edit', ['id' => $post->post_id]) }}"
+                                        class="btn btn-sm btn-info">Edit</a>
+                                    <a href="{{ route('editorial.delete', ['id' => $post->post_id]) }}"
+                                        class="btn btn-sm btn-danger">Hapus</a>
                                 </div>
                             </td>
                         </tr>
@@ -56,7 +59,7 @@
                 </tbody>
             </table>
             <div class="row mt-2">
-                {{$posts->links('vendor.pagination.bootstrap-4')}}
+                {{ $posts->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>

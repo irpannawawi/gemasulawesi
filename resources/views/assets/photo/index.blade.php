@@ -34,11 +34,11 @@
             <div class="row box-photo-upload">
                 <div class="row">
                     @foreach ($photos as $photo)
-                        <div id="{{$photo->image_id}}" class="photo-list float-left">
+                        <div id="{{ $photo->image_id }}" class="photo-list float-left">
                             <div style="margin-left:15px;margin-bottom:15px;position:relative">
                                 <div class="img-thumbnail overlay-wrapper">
-                                    <img src="{{url('storage/photos/'.$photo->asset->file_name)}}" alt="" title=""
-                                        class="img-responsive" style="width:214px;height:95px">
+                                    <img src="{{ url('storage/photos/' . $photo->asset->file_name) }}" alt=""
+                                        title="" class="img-responsive" style="width:214px;height:95px">
                                     <div style="margin-top:5px">
                                         <small title="">&nbsp;</small><br>
                                         <small title="Uploader"><b>by: Uploader</b></small>
@@ -48,9 +48,9 @@
                                                 data-id="7381762" title="Use/Edit"><i class="fa fa-edit"
                                                     aria-hidden="true"></i>
                                             </button><a type="button"
-                                                class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
-                                                href="{{route('assets.photo.delete', ['id'=> $photo->image_id])}}" onclick="return confirm('Hapus foto?')" title="Delete"><i
-                                                    class="fa fa-trash" aria-hidden="true"></i></a>
+                                                class="btn btn-xs btn-danger text-white bg-danger btn-hapus delete-btn"
+                                                href="{{ route('assets.photo.delete', ['id' => $photo->image_id]) }}"
+                                                title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>

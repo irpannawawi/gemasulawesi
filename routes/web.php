@@ -25,6 +25,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// test queue
+use App\Jobs\TestQueue;
+Route::get('/queue_test', function () {
+    TestQueue::dispatch([
+        'username'=> 'Jobusername',
+        'display_name'=> 'Jobdisplay_name',
+        'email'=> 'Jobemail',
+        'password'=> 'Jobpassword',
+        'role'=> 'admin',
+        'avatar'=> 'default.jpg',
+    ]) ->delay(now()->addMinutes(3));;
+})->name('job.test');
+
 // route editorial
 Route::get('/browse', [PhotoController::class, 'browse'])->name('browseImage');
 Route::get('/browse_edit_image/{id}', [PhotoController::class, 'browse_edit_image'])->name('browseEditImage');

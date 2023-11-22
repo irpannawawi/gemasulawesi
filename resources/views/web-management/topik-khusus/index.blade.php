@@ -31,11 +31,13 @@
                             <td>{{ $topik->topic_name }}</td>
                             <td>{{ $topik->topic_description }}</td>
                             <td style="max-width: 150px;">
-                                <img class="img-fluid" src="{{ Storage::url('topic-images/'.$topik->topic_image) }}" alt="{{ $topik->topic_name }}">
+                                <img class="img-fluid" src="{{ Storage::url('topic-images/' . $topik->topic_image) }}"
+                                    alt="{{ $topik->topic_name }}">
                             </td>
                             <td>
-                                <button class="btn btn-info" data-target="#editTopikModal" data-toggle="modal" onclick="edit_topik('{{$topik->topic_id}}','{{$topik->topic_name}}','{{$topik->topic_description}}')">Edit</button>
-                                <a class="btn btn-danger" onclick="return confirm('Hapus topik?')"
+                                <button class="btn btn-info" data-target="#editTopikModal" data-toggle="modal"
+                                    onclick="edit_topik('{{ $topik->topic_id }}','{{ $topik->topic_name }}','{{ $topik->topic_description }}')">Edit</button>
+                                <a class="btn btn-danger delete-btn"
                                     href="{{ route('topik-khusus.delete', ['id' => $topik->topic_id]) }}">Hapus</a>
                             </td>
                         </tr>
@@ -67,11 +69,11 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="topic_description">Deskripsi</label>
-                            <textarea name="topic_description" class="form-control" required ></textarea>
+                            <textarea name="topic_description" class="form-control" required></textarea>
                         </div>
                         <div class="form-group mb-2">
                             <label for="topic_image">Gambar</label>
-                            <input type="file" name="topic_image" class="form-control" required >
+                            <input type="file" name="topic_image" class="form-control" required>
                         </div>
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -100,17 +102,19 @@
                         @csrf
                         @method('put')
                         <div class="form-group mb-2">
-                            <input type="hidden" name="topic_id" class="form-control" required autocomplete="off" id="input-topic-id">
+                            <input type="hidden" name="topic_id" class="form-control" required autocomplete="off"
+                                id="input-topic-id">
                             <label for="topic_name">Nama Topik<sup>*</sup></label>
-                            <input type="text" name="topic_name" id="input-topic-name" class="form-control" required autocomplete="off">
+                            <input type="text" name="topic_name" id="input-topic-name" class="form-control" required
+                                autocomplete="off">
                         </div>
                         <div class="form-group mb-2">
                             <label for="topic_description">Deskripsi <sup>*</sup></label>
-                            <textarea name="topic_description" class="form-control" id="input-topic-description" required ></textarea>
+                            <textarea name="topic_description" class="form-control" id="input-topic-description" required></textarea>
                         </div>
                         <div class="form-group mb-2">
                             <label for="topic_image">Gambar</label>
-                            <input type="file" name="topic_image" class="form-control" >
+                            <input type="file" name="topic_image" class="form-control">
                         </div>
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

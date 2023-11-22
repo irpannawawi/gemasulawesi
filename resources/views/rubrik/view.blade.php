@@ -28,8 +28,9 @@
                             <td>{{ $n++ }}</td>
                             <td>{{ $rubrik->rubrik_name }}</td>
                             <td>
-                                <button class="btn btn-info" data-target="#editRubrikModal" data-toggle="modal" onclick="edit_rubrik('{{$rubrik->rubrik_id}}','{{$rubrik->rubrik_name}}')">Edit</button>
-                                <a class="btn btn-danger" onclick="return confirm('Hapus rubrik?')"
+                                <button class="btn btn-info" data-target="#editRubrikModal" data-toggle="modal"
+                                    onclick="edit_rubrik('{{ $rubrik->rubrik_id }}','{{ $rubrik->rubrik_name }}')">Edit</button>
+                                <a class="btn btn-danger delete-btn"
                                     href="{{ route('rubrik.delete', ['id' => $rubrik->rubrik_id]) }}">Hapus</a>
                             </td>
                         </tr>
@@ -87,8 +88,10 @@
                         @method('put')
                         <div class="form-group mb-2">
                             <label for="rubrik">Nama rubrik</label>
-                            <input type="text" name="rubrik_name" class="form-control" required autocomplete="off" id="input-rubrik-name">
-                            <input type="hidden" name="rubrik_id" class="form-control" required autocomplete="off" id="input-rubrik-id">
+                            <input type="text" name="rubrik_name" class="form-control" required autocomplete="off"
+                                id="input-rubrik-name">
+                            <input type="hidden" name="rubrik_id" class="form-control" required autocomplete="off"
+                                id="input-rubrik-id">
                         </div>
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

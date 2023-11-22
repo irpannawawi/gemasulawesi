@@ -203,35 +203,41 @@
                 <div class="row">
                     <div class="col">
                         @foreach ($beritaTerkini as $post_item)
-                            <ul class="post-list-small post-list-small--2 mb-32 mt-3">
-                                <li class="post-list-small__item">
-                                    <article class="post-list-small__entry clearfix">
-                                        <div class="post__img">
-                                            <a
-                                                href="{{ route('singlePost', [
-                                                    'rubrik' => str_replace(' ', '-', $post_item->rubrik->rubrik_name),
-                                                    'post_id' => $post_item->post_id,
-                                                    'slug' => $post_item->slug,
-                                                ]) }}">
-                                                <img data-src="{{ get_post_image($post_item->post_id) }}"
-                                                    src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                    class="lazyload">
-                                            </a>
-                                        </div>
-                                        <div class="post-list-small__body">
-                                            <h3 class="post-list-small__entry-title">
-                                                <a href="{{ route('singlePost', [
-                                                    'rubrik' => str_replace(' ', '-', $post_item->rubrik->rubrik_name),
-                                                    'post_id' => $post_item->post_id,
-                                                    'slug' => $post_item->slug,
-                                                ]) }}"
-                                                    class="post-title">{{ $post_item->title }}</a>
-                                            </h3>
-                                            <p class="bt__date">{{ convert_date_to_ID($post_item->created_at) }}</p>
-                                        </div>
-                                    </article>
-                                </li>
-                            </ul>
+                            @php
+                                $currentPostId = request()->segment(3);
+                                $isCurrentPost = $currentPostId == $post_item->post_id;
+                            @endphp
+                            @if (!$isCurrentPost)
+                                <ul class="post-list-small post-list-small--2 mb-32 mt-3">
+                                    <li class="post-list-small__item">
+                                        <article class="post-list-small__entry clearfix">
+                                            <div class="post__img">
+                                                <a
+                                                    href="{{ route('singlePost', [
+                                                        'rubrik' => str_replace(' ', '-', $post_item->rubrik->rubrik_name),
+                                                        'post_id' => $post_item->post_id,
+                                                        'slug' => $post_item->slug,
+                                                    ]) }}">
+                                                    <img data-src="{{ get_post_image($post_item->post_id) }}"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                        class="lazyload">
+                                                </a>
+                                            </div>
+                                            <div class="post-list-small__body">
+                                                <h3 class="post-list-small__entry-title">
+                                                    <a href="{{ route('singlePost', [
+                                                        'rubrik' => str_replace(' ', '-', $post_item->rubrik->rubrik_name),
+                                                        'post_id' => $post_item->post_id,
+                                                        'slug' => $post_item->slug,
+                                                    ]) }}"
+                                                        class="post-title">{{ $post_item->title }}</a>
+                                                </h3>
+                                                <p class="bt__date">{{ convert_date_to_ID($post_item->created_at) }}</p>
+                                            </div>
+                                        </article>
+                                    </li>
+                                </ul>
+                            @endif
                         @endforeach
                     </div>
                 </div>

@@ -17,7 +17,8 @@ class PhotoController extends Controller
         return view('assets.photo.index', compact('photos'));
     }
 
-    public function browse() {
+    public function browse()
+    {
         $data['photos'] = Image::orderBy('image_id', 'DESC')->paginate(10);
         return view('browse', $data);
     }
@@ -31,7 +32,7 @@ class PhotoController extends Controller
     public function update_image_tinymce(Request $request)
     {
         $old_image = Image::find($request->image_id);
-        $image = New Image;
+        $image = new Image;
         $image->asset_id = $old_image->asset->asset_id;
         $image->uploader_id = Auth::user()->id;
         $image->author = $request->author;
@@ -39,56 +40,55 @@ class PhotoController extends Controller
         $image->credit = $request->credit;
         $image->source = $request->source;
         $image->save();
-        $image_url = Storage::url('photos/'.$image->asset->file_name);
+        $image_url = Storage::url('photos/' . $image->asset->file_name);
 
-        return redirect()->route('browseEditImage',['id'=>$image->image_id])->with(['msg'=>'success', 'image_url'=>$image_url, 'image_id'=>$image->image_id]);
-
+        return redirect()->route('browseEditImage', ['id' => $image->image_id])->with(['msg' => 'success', 'image_url' => $image_url, 'image_id' => $image->image_id]);
     }
 
     public function upload(Request $request)
     {
         $path = $request->file('photo')->store('public/photos');
         // insert to file table
-        $asset = Asset::create(['file_name'=>explode('/', $path)[2]]);
-        
+        $asset = Asset::create(['file_name' => explode('/', $path)[2]]);
+
 
         // insert image details
         $imageDetails = [
-            'asset_id'=>$asset->asset_id,
-            'uploader_id'=>Auth::user()->id,
-            'author'=>$request->author,
-            'caption'=>$request->caption,
-            'credit'=>$request->credit,
-            'source'=>$request->source,
-            
+            'asset_id' => $asset->asset_id,
+            'uploader_id' => Auth::user()->id,
+            'author' => $request->author,
+            'caption' => $request->caption,
+            'credit' => $request->credit,
+            'source' => $request->source,
+
         ];
         Image::create($imageDetails);
-        return redirect()->route('assets.photo.index');  
+        return redirect()->route('assets.photo.index');
     }
 
     public function upload_api(Request $request)
     {
-        
+
         $file_name = $request->file_name;
         $image_url = $request->image_url;
 
-        Storage::put('public/photos/'.$file_name, file_get_contents($image_url));
+        Storage::put('public/photos/' . $file_name, file_get_contents($image_url));
         // insert to file table
-        $asset = Asset::create(['file_name'=>$file_name]);
-        
+        $asset = Asset::create(['file_name' => $file_name]);
+
 
         // insert image details
         $imageDetails = [
-            'asset_id'=>$asset->asset_id,
-            'uploader_id'=>1,
-            'author'=>$request->author,
-            'caption'=>$request->caption,
-            'credit'=>$request->credit,
-            'source'=>$request->source,
-            
+            'asset_id' => $asset->asset_id,
+            'uploader_id' => 1,
+            'author' => $request->author,
+            'caption' => $request->caption,
+            'credit' => $request->credit,
+            'source' => $request->source,
+
         ];
         $res = Image::create($imageDetails);
-        
+
         if ($res) {
             return response()->json([
                 'status' => True,
@@ -103,11 +103,11 @@ class PhotoController extends Controller
 
     public function upload_image_only(Request $request)
     {
-        
+
         $file_name = $request->file_name;
         $image_url = $request->image_url;
 
-        $res = Storage::put('public/photos/'.$file_name, file_get_contents($image_url));
+        $res = Storage::put('public/photos/' . $file_name, file_get_contents($image_url));
         // insert to file table        
         if ($res) {
             return response()->json([
@@ -127,8 +127,8 @@ class PhotoController extends Controller
         // insert to file table
         $image->delete();
         $asset_id = $image->asset_id;
-        Asset::where(['asset_id'=>$asset_id])->delete();
+        Asset::where(['asset_id' => $asset_id])->delete();
 
-        return redirect()->route('assets.photo.index');  
+        return redirect()->back()->with('success', 'Photo deleted successfully.');
     }
 }

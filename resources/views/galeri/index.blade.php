@@ -31,13 +31,18 @@
                             <td>{{ $galeri->galery_name }}</td>
                             <td>{{ $galeri->galery_description }}</td>
                             <td style="max-width: 150px;">
-                                <img class="img-fluid" src="{{ Storage::url('galery-images/'.$galeri->galery_thumbnail) }}" alt="{{ $galeri->galery_name }}">
+                                <img class="img-fluid"
+                                    src="{{ Storage::url('galery-images/' . $galeri->galery_thumbnail) }}"
+                                    alt="{{ $galeri->galery_name }}">
                             </td>
                             <td>
-                                <a class="btn btn-info" href="{{route('galeri.view', ['id'=>$galeri->galery_id])}}"><i class="fa fa-images"></i></a>
+                                <a class="btn btn-info"
+                                    href="{{ route('galeri.view', ['id' => $galeri->galery_id]) }}"><i
+                                        class="fa fa-images"></i></a>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning" data-target="#editgaleriModal" data-toggle="modal" onclick="edit_galeri('{{$galeri->galery_id}}','{{$galeri->galery_name}}','{{$galeri->galery_description}}')">Edit</button>
-                                    <a class="btn btn-danger" onclick="return confirm('Hapus galeri?')"
+                                    <button class="btn btn-warning" data-target="#editgaleriModal" data-toggle="modal"
+                                        onclick="edit_galeri('{{ $galeri->galery_id }}','{{ $galeri->galery_name }}','{{ $galeri->galery_description }}')">Edit</button>
+                                    <a class="btn btn-danger delete-btn"
                                         href="{{ route('galeri.delete', ['id' => $galeri->galery_id]) }}">Hapus</a>
                                 </div>
                             </td>
@@ -70,11 +75,11 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="galery_description">Deskripsi</label>
-                            <textarea name="galery_description" class="form-control" required ></textarea>
+                            <textarea name="galery_description" class="form-control" required></textarea>
                         </div>
                         <div class="form-group mb-2">
                             <label for="galery_thumbnail">Gambar</label>
-                            <input type="file" name="galery_thumbnail" class="form-control" required >
+                            <input type="file" name="galery_thumbnail" class="form-control" required>
                         </div>
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -103,17 +108,19 @@
                         @csrf
                         @method('put')
                         <div class="form-group mb-2">
-                            <input type="hidden" name="galery_id" class="form-control" required autocomplete="off" id="input-galery-id">
+                            <input type="hidden" name="galery_id" class="form-control" required autocomplete="off"
+                                id="input-galery-id">
                             <label for="galery_name">Nama galeri<sup>*</sup></label>
-                            <input type="text" name="galery_name" id="input-galery-name" class="form-control" required autocomplete="off">
+                            <input type="text" name="galery_name" id="input-galery-name" class="form-control"
+                                required autocomplete="off">
                         </div>
                         <div class="form-group mb-2">
                             <label for="galery_description">Deskripsi <sup>*</sup></label>
-                            <textarea name="galery_description" class="form-control" id="input-galery-description" required ></textarea>
+                            <textarea name="galery_description" class="form-control" id="input-galery-description" required></textarea>
                         </div>
                         <div class="form-group mb-2">
                             <label for="galery_thumbnail">Gambar</label>
-                            <input type="file" name="galery_thumbnail" class="form-control" >
+                            <input type="file" name="galery_thumbnail" class="form-control">
                         </div>
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

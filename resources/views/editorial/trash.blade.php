@@ -7,8 +7,8 @@
 
     <div class="card">
         <div class="card-header">
-            <a class="btn btn-primary btn-xs" href="{{route('editorial.create')}}"><i
-                    class="fa fa-edit"></i>Tambah data</a>
+            <a class="btn btn-primary btn-xs" href="{{ route('editorial.create') }}"><i class="fa fa-edit"></i>Tambah
+                data</a>
 
         </div>
         <div class="card-body table-responsive">
@@ -42,8 +42,10 @@
                             <td>{{ $post->published_at }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{route('editorial.edit', ['id'=>$post->post_id])}}" class="btn btn-sm btn-info">Edit</a>
-                                    <a href="{{route('editorial.delete', ['id'=>$post->post_id])}}" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="{{ route('editorial.edit', ['id' => $post->post_id]) }}"
+                                        class="btn btn-sm btn-info">Edit</a>
+                                    <a href="{{ route('editorial.delete', ['id' => $post->post_id]) }}"
+                                        class="btn btn-sm btn-danger delete-btn">Hapus</a>
                                 </div>
                             </td>
                         </tr>
@@ -51,7 +53,7 @@
                 </tbody>
             </table>
             <div class="row mt-2">
-                {{$posts->links('vendor.pagination.bootstrap-4')}}
+                {{ $posts->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>

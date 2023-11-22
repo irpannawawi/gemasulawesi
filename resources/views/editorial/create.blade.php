@@ -149,7 +149,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary bg-primary" type="submit"><i class="fa fa-paper-plane"></i>
+                <button class="btn btn-primary bg-primary" id="publishBtn" type="submit"><i class="fa fa-paper-plane"></i>
                     Publish</button>
 
                 <input type="hidden" id="isDraft" name="is_draft">
@@ -412,6 +412,13 @@
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
                 $('#isDraft').val('1')
+                $('#article-form').submit()
+            })
+
+            $('#publishBtn').on('click', (event)=>{
+                event.preventDefault();
+                localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
+                localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
                 $('#article-form').submit()
             })
         </script>

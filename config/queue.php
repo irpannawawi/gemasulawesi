@@ -29,7 +29,22 @@ return [
     */
 
     'connections' => [
-
+        'rabbitmq' => [
+    
+            'driver' => 'rabbitmq',
+            'hosts' => [
+                [
+                    'host' => env('RABBITMQ_HOST', '103.52.114.170'),
+                    'port' => env('RABBITMQ_PORT', 5672),
+                    'user' => env('RABBITMQ_USER', 'irpan'),
+                    'password' => env('RABBITMQ_PASSWORD', 'Katasandi1990'),
+                    'vhost' => env('RABBITMQ_VHOST', 'gema'),
+                ],
+                // ...
+            ],
+     
+            // ...
+         ],
         'sync' => [
             'driver' => 'sync',
         ],

@@ -17,7 +17,7 @@
     @endphp
 
     <!-- s: open graph -->
-    <title itemprop="name">{{ $metaTitle }}</title>
+    <title itemprop="name">{{ $metaTitle }} - www.Gemasulawesi.com</title>
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">

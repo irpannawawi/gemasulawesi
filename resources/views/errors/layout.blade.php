@@ -12,20 +12,20 @@
     @php
         $metaTitle = 'Halaman Tidak Ditemukan';
         $metaDeskripsi = 'Halaman Tidak Ditemukan';
-        $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+        $metaImage = asset('assets/frontend/img');
         $type = 'website';
     @endphp
 
     <!-- s: open graph -->
     <title itemprop="name">@yield('title') - www.Gemasulawesi.com</title>
-    <link href="{{ $metaImage }}" itemprop="image" />
+    <link href="{{ $metaImage }}/@yield('image')" itemprop="image" />
     <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="@yield('title') - www.Gemasulawesi.com" />
-    <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
-    <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
+    <meta name="description" content="@yield('message')" itemprop="description">
+    <meta name="thumbnailUrl" content="{{ $metaImage }}/@yield('image')" itemprop="thumbnailUrl" />
     <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="base" content="https://www.gemasulawesi.com/" />
@@ -44,9 +44,9 @@
     <meta property="og:type" content="{{ $type }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:title" content="@yield('title') - www.Gemasulawesi.com" />
-    <meta property="og:description" content="{{ $metaDeskripsi }}" />
+    <meta property="og:description" content="@yield('message')" />
     <meta property="og:site_name" content="www.Gemasulawesi.com" />
-    <meta property="og:image" content="{{ $metaImage }}" />
+    <meta property="og:image" content="{{ $metaImage }}/@yield('image')" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="fb:app_id" content="" />
@@ -63,57 +63,9 @@
     <meta name="twitter:site" content="@gemasulawesi" />
     <meta name="twitter:creator" content="@gemasulawesi">
     <meta name="twitter:title" content="@yield('title') - www.Gemasulawesi.com" />
-    <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
-    <meta name="twitter:image" content="{{ $metaImage }}" />
+    <meta name="twitter:description" content="@yield('message')" />
+    <meta name="twitter:image" content="{{ $metaImage }}/@yield('image')" />
     <!-- E:tweeter card -->
-
-    @php
-        if (request()->is('/*')) {
-            echo '<script>
-                dataLayer = [{
-                    "breadcrumb_detail": "Section Page",
-                    "content_category": "Halaman Tidak Ditemukan"
-                }];
-            </script>';
-        }
-    @endphp
-
-    @if (request()->is('/*'))
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "Berita Terkini, Berita Hari Ini, Berita Harian, Berita Terbaru, Berita, Berita Terpercaya, Berita indonesia, Berita Terpopuler, Berita, Info Jawa Barat, Info Bandung, Info Terkini, Info Hari Ini, Info Harian, Info Terbaru, Info Akurat, Info Terpercaya, Info indonesia, Info Terpopuler, Info Nasional, Gema Sulawesi, Gema",
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
-    @endif
-
-    {{-- breadcrumb --}}
-    @php
-        $jsonLDData = [
-            '@context' => 'http://schema.org/',
-            '@type' => 'WebSite',
-            'url' => url()->current(),
-            'potentialAction' => [
-                [
-                    '@type' => 'SearchAction',
-                    'target' => url()->current(),
-                    'query-input' => 'required name=search_term_string',
-                ],
-            ],
-        ];
-
-        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-        echo '<script type="application/ld+json">' . $jsonLD . '</script>';
-    @endphp
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
@@ -390,18 +342,20 @@
             </div>
         </header> <!-- end navigation -->
 
-        <div class="row">
-            <div class="container">
-                <div class="col-12">
-                    <div class="p404">
-                        <div class="display-table">
-                            <div class="display-center">
-                                <img src="<?= url('assets/frontend') ?>/img/@yield('image')" alt="404 Not Found"
-                                    style="width: 40%">
-                                <div class="p404__content">
-                                    @yield('message')
+        <div class="pagenotfound">
+            <div class="row">
+                <div class="container">
+                    <div class="col-12">
+                        <div class="p404">
+                            <div class="display-table">
+                                <div class="display-center">
+                                    <img src="<?= url('assets/frontend') ?>/img/@yield('image')"
+                                        alt="404 Not Found" style="width: 40%">
+                                    <div class="p404__content">
+                                        @yield('code') @yield('message')
+                                    </div>
+                                    <a href="<?= url('/') ?>" class="p404__link">Kembali</a>
                                 </div>
-                                <a href="<?= url('/') ?>" class="p404__link">Kembali ke Home</a>
                             </div>
                         </div>
                     </div>
@@ -502,7 +456,6 @@
     <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
-    {{-- <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script> --}}
     <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
@@ -513,7 +466,6 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>

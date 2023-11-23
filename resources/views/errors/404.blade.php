@@ -3,4 +3,4 @@
 @section('title', __('404 Halaman Tidak Ditemukan'))
 @section('image', __('notfound.svg'))
 @section('code', '404')
-@section('message', __('404 Halaman Tidak Ditemukan.'))
+@section('message', __('Halaman Tidak Ditemukan.'))

@@ -1131,8 +1131,8 @@ background: linear-gradient(50deg, rgba(14,147,97,0.756827731092437) 0%, rgba(44
     display: block;
     display: inline-block;
     margin: 0 auto;
-    padding: 10px 15px;
-    border-radius: 10px;
+    padding: 5px 20px;
+    border-radius: 5px;
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 600;
@@ -1142,7 +1142,15 @@ background: linear-gradient(50deg, rgba(14,147,97,0.756827731092437) 0%, rgba(44
     -o-transition: all .2s ease;
     transition: all .2s ease;
 }
-
+.p404__title {
+    color: #25aa79 !important;
+}
+.p404__title {
+    font-size: 150px;
+    font-weight: 600;
+    line-height: 1;
+    color: #5f2eea;
+}
 .menu{
 display: flex;
 flex-direction: column;

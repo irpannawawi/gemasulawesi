@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Exception;
+use Illuminate\Support\Carbon;
 
 class EditorialController extends Controller
 {
@@ -32,6 +33,7 @@ class EditorialController extends Controller
 
     public function insert(Request $request)
     {
+        
         $article = $request->content;
         $dom = new DOMDocument;
         $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -48,9 +50,9 @@ class EditorialController extends Controller
         $article = $modifiedHtml;
 
         // select status published, draft or scheduled
-        if($request->is_draft==1){
+        if($request->is_draft=="1"){
             $status = 'draft';
-        }elseif($request->scheduled==1){
+        }elseif($request->schedule=="1"){
             $status = 'scheduled';
         }else{
             $status = 'published';
@@ -81,7 +83,8 @@ class EditorialController extends Controller
         
         if ($newPost->status=='scheduled') {
             // add update job
-            PublishPost::dispatch($newPost->post_id)->delay(now()->addMinute());
+            $publishDate = str_replace('T',' ', $request->schedule_time);
+            $job = PublishPost::dispatch($newPost->post_id)->delay(Carbon::createFromFormat('Y-m-d H:i', $publishDate));
         }
 
         // Check if the post was successfully created
@@ -151,7 +154,14 @@ class EditorialController extends Controller
     {
         $data['posts'] = Posts::where('status', 'draft')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.draft', $data);
-    }    
+    } 
+    
+    
+    public function scheduled()
+    {
+        $data['posts'] = Posts::where('status', 'scheduled')->orderBy('created_at', 'DESC')->paginate(20);
+        return view('editorial.draft', $data);
+    } 
     
     public function trash()
     {

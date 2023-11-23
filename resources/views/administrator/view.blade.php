@@ -34,10 +34,11 @@
                             <td>{{ $user->display_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
-                            <td class="text-center"><img class="mx-auto" width="70" src="{{ Storage::url('public/avatars/'.$user->avatar) }}" alt=""></td>
+                            <td class="text-center"><img class="mx-auto" width="70"
+                                    src="{{ Storage::url('public/avatars/' . $user->avatar) }}" alt=""></td>
                             <td>
-                                <a class="btn btn-info" href="{{route('users.edit', ['id'=>$user->id])}}">Edit</a>
-                                <a class="btn btn-danger" onclick="return confirm('Hapus user?')"
+                                <a class="btn btn-info" href="{{ route('users.edit', ['id' => $user->id]) }}">Edit</a>
+                                <a class="btn btn-danger delete-btn"
                                     href="{{ route('users.delete', ['id' => $user->id]) }}">Hapus</a>
                             </td>
                         </tr>
@@ -65,29 +66,34 @@
                         @csrf
                         <div class="form-group mb-2">
                             <label for="username">Username<sup>*</sup> <small>(Tanpa spasi)</small></label>
-                            <input type="text" id="username" name="username" class="form-control" required autocomplete="off">
+                            <input type="text" id="username" name="username" class="form-control" required
+                                autocomplete="off">
                         </div>
-                        
+
                         <div class="form-group mb-2">
                             <label for="display_name">Nama Pengguna<sup>*</sup></label>
-                            <input type="text" id="display_name" name="display_name" class="form-control" required autocomplete="off">
+                            <input type="text" id="display_name" name="display_name" class="form-control" required
+                                autocomplete="off">
                         </div>
 
-                        
+
                         <div class="form-group mb-2">
                             <label for="email">Email<sup>*</sup></label>
-                            <input type="email" id="email" name="email" class="form-control" required autocomplete="off">
+                            <input type="email" id="email" name="email" class="form-control" required
+                                autocomplete="off">
                         </div>
 
-                        
+
                         <div class="form-group mb-2">
                             <label for="password">Katasandi<sup>*</sup></label>
-                            <input type="password" id="password" name="password" class="form-control" required autocomplete="off">
+                            <input type="password" id="password" name="password" class="form-control" required
+                                autocomplete="off">
                         </div>
-                        
+
                         <div class="form-group mb-2">
                             <label for="confirm_password">Konfirmasi Katasandi<sup>*</sup></label>
-                            <input type="password" id="confirm_password" name="confirm_password" class="form-control" required autocomplete="off">
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control"
+                                required autocomplete="off">
                         </div>
                         <div class="form-group mb-2">
                             <label for="role">Role</label>

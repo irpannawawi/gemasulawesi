@@ -8,46 +8,51 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{url('assets/AdminLTE')}}/plugins/fontawesome-free/css/all.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{url('assets/AdminLTE')}}/dist/css/adminlte.min.css">
-  @vite(['resources/css/app.css', 'resources/js/app.js'])
-<!-- Include SweetAlert2 CSS and JS from CDN -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Include SweetAlert2 CSS and JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-@stack('extra-css')
-  <style>
-    .btn-primary{
-      background-color: #007BFF;
-    }
-    .btn-secondary{
-      background-color: #6C757d;
-    }
+    @stack('extra-css')
+    <style>
+        .btn-primary {
+            background-color: #007BFF;
+        }
 
-    
-    .btn-warning{
-      background-color: #ffc107;
-    }
-    .btn-success{
-      background-color: #28A745;
-    }
-    .select2-selection__choice{
-      background-color: #28A745;
-      text: white;
-    }
-    .nav-sidebar .nav-item>.nav-link{
-      padding: 7px;
-      padding-top: 6px;
-      padding-bottom: 6px;
-    }
+        .btn-secondary {
+            background-color: #6C757d;
+        }
 
-    .nav-sidebar .nav-treeview{
-      margin-left: 10px;
-    }
-  </style>
+
+        .btn-warning {
+            background-color: #ffc107;
+        }
+
+        .btn-success {
+            background-color: #28A745;
+        }
+
+        .select2-selection__choice {
+            background-color: #28A745;
+            text: white;
+        }
+
+        .nav-sidebar .nav-item>.nav-link {
+            padding: 7px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+
+        .nav-sidebar .nav-treeview {
+            margin-left: 10px;
+        }
+    </style>
 
 </head>
 
@@ -96,9 +101,11 @@
 
         <footer class="main-footer">
             <div class="float-right d-none d-sm-block">
-                <b>Version</b> 3.2.0
+                <b>Version</b> 1.0.0
             </div>
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
+            <strong>Copyright &copy; 2013-{{ now()->year }} <a href="https://gemasulawesi.com">Gema
+                    Sulawesi</a>.</strong>
+            All rights
             reserved.
         </footer>
 
@@ -116,31 +123,55 @@
     <script src="{{ url('assets/AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('assets/AdminLTE') }}/dist/js/adminlte.min.js"></script>
-      {{-- Alerts --}}
-  @if(session('success'))
-      <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: 'Success',
-            confirmButtonText: 'OK'
-        });
-    </script>
-@endif
+    {{-- Alerts --}}
+    @if ($message = Session::get('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ $message }}',
+            })
+        </script>
+    @endif
+    @if ($message = Session::get('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ $message }}',
+            })
+        </script>
+    @endif
+    {{-- endAlerts --}}
 
-@if(session('error'))
+    {{-- confirm delete --}}
     <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: '{{ session('error') }}',
-            confirmButtonText: 'OK'
+        document.addEventListener('DOMContentLoaded', function() {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    Swal.fire({
+                        title: "Apakah anda yakin?",
+                        text: "Anda tidak akan dapat mengembalikan ini!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Ya, hapus!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Redirect to delete route if user confirms
+                            window.location.href = button.getAttribute('href');
+                        }
+                    });
+                });
+            });
         });
     </script>
-@endif
 
-{{-- confirm delete --}}
-  {{-- Alerts --}}
     @stack('custom-scripts')
 </body>
 

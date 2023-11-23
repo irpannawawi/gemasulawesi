@@ -1067,14 +1067,15 @@
                     @foreach ($list_video as $video)
                         @php
                             $youtubeData = getYoutubeData($video->url)->snippet;
-                            
+
                         @endphp
                         <div class="col-md-3 col-sm-4 col-xs-12" style="margin-bottom:10px">
                             <div class="img-thumbnail overlay-wrapper">
                                 <img src="{{ $youtubeData->thumbnails->medium->url }}" alt="{{ $video->title }}"
                                     class="img-responsive" title="{{ $video->title }}">
                                 <div style="margin-top:5px">
-                                    <small title="24953">by: <strong>{{$video->uploader->display_name}}</strong></small>
+                                    <small title="24953">by:
+                                        <strong>{{ $video->uploader->display_name }}</strong></small>
                                 </div>
                             </div>
 
@@ -1084,12 +1085,12 @@
                             </div>
                             <div style="position:absolute;bottom:35px;margin-left:10px">
                                 <a class="btn btn-default btn-xs"
-                                    href="{{route('assets.video.edit', ['id'=>$video->video_id])}}"><i
+                                    href="{{ route('assets.video.edit', ['id' => $video->video_id]) }}"><i
                                         class="fa fa-edit"></i> Edit</a>
 
                                 <a class="btn btn-default btn-xs"
-                                    href="{{route('assets.video.delete', ['id'=>$video->video_id])}}"
-                                    onclick="return confirm('Delete this data ?')"><i class="fa fa-trash"></i>
+                                    href="{{ route('assets.video.delete', ['id' => $video->video_id]) }}"><i
+                                        class="fa fa-trash delete-btn"></i>
                                     Delete</a>
                             </div>
 

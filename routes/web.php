@@ -102,8 +102,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/video/edit', [VideoController::class, 'update'])->name('assets.video.update');
     Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('assets.video.delete');
 });
-Route::prefix('admin')->group(function () {
-});
+
+
+Route::get('/errors', function(){
+    return view('errors.404');
+})->name('error');
 
 require __DIR__ . '/public.php';
 require __DIR__ . '/auth.php';

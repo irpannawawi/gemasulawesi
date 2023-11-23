@@ -13,7 +13,7 @@ class PhotoController extends Controller
 {
     public function index()
     {
-        $photos = Image::orderBy('image_id', 'DESC')->get();
+        $photos = Image::orderBy('image_id', 'DESC')->paginate(20);
         return view('assets.photo.index', compact('photos'));
     }
 

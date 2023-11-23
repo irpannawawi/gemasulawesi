@@ -10,7 +10,7 @@ class VideoController extends Controller
 
     public function index(Request $request)
     {
-        $data['list_video'] = Video::orderBy('video_id', 'DESC')->get();
+        $data['list_video'] = Video::orderBy('video_id', 'DESC')->paginate(20);
         return view('assets.video.view', $data);
     }
 

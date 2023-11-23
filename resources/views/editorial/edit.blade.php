@@ -36,6 +36,14 @@
                         <div class="form-group">
                             <label>Related article</label>
                             <select class="form-control select2-multiple" id="select2Related" name="related[]" multiple>
+                                    @if ($post->related_articles!=null)
+                                        @foreach (json_decode($post->related_articles) as $article)
+                                            @php
+                                                $articleData= App\Models\Posts::find($article);
+                                            @endphp
+                                            <option value="{{$article}}" selected>{{$articleData->title}}</option>
+                                        @endforeach
+                                    @endif
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
@@ -66,6 +74,14 @@
                         <div class="form-group">
                             <label for="tag">Tag</label>
                             <select class="form-control" id="select2Tag" name="tags[]" multiple>
+                                @if ($post->tags!=null)
+                                        @foreach (json_decode($post->tags) as $tag)
+                                            @php
+                                                $articleData= App\Models\Tags::find($tag);
+                                            @endphp
+                                            <option value="{{$tag}}" selected>{{$articleData->tag_name}}</option>
+                                        @endforeach
+                                    @endif
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
@@ -78,6 +94,14 @@
                         <div class="form-group">
                             <label for="select2Source">Source</label>
                             <select class="form-control" id="select2Source" name="sources[]" multiple>
+                                @if ($post->sources!=null)
+                                        @foreach (json_decode($post->source) as $source)
+                                            @php
+                                                $articleData= App\Models\sources::find($source);
+                                            @endphp
+                                            <option value="{{$source}}" selected>{{$articleData->source_name}}</option>
+                                        @endforeach
+                                    @endif
                             </select>
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
                                 data-target="#modalSource"><i class="fa fa-plus"></i> Add/Select more</button>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\PublishPost;
 use App\Models\Posts;
 use App\Models\Rubrik;
 use DOMDocument;
@@ -45,6 +46,15 @@ class EditorialController extends Controller
         // Get the modified HTML
         $modifiedHtml = $dom->saveHTML();
         $article = $modifiedHtml;
+
+        // select status published, draft or scheduled
+        if($request->is_draft==1){
+            $status = 'draft';
+        }elseif($request->scheduled==1){
+            $status = 'scheduled';
+        }else{
+            $status = 'published';
+        }
         $postData = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
@@ -55,7 +65,7 @@ class EditorialController extends Controller
             'view_in_welcome_page' => $request->view_in_welcome_page,
             'author_id' => Auth::user()->id,
             'editor_id' => Auth::user()->id,
-            'status' => $request->is_draft==1?'draft':'published',
+            'status' => $status,
             'related_articles' => json_encode($request->related),
             'tags' => json_encode($request->tags),
             'topics' => json_encode($request->topics),
@@ -68,7 +78,12 @@ class EditorialController extends Controller
         
         // Insert the post into the database
         $newPost = Posts::create($postData);
-    
+        
+        if ($newPost->status=='scheduled') {
+            // add update job
+            PublishPost::dispatch($newPost->post_id)->delay(now()->addMinute());
+        }
+
         // Check if the post was successfully created
         if ($newPost) {
             // Redirect based on the post's status

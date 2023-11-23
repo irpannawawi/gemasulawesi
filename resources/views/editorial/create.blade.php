@@ -1,6 +1,8 @@
 @push('extra-css')
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<!-- Tempus Dominus Bootstrap CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
 @endpush
 <x-app-layout>
     <x-slot name="header">
@@ -143,11 +145,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group" id="form-schedule-time" style="display: none">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="datetime-local" id="schedule_time" name="schedule_time">
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary bg-primary" id="publishBtn" type="submit"><i class="fa fa-paper-plane"></i>
+                <button class="btn btn-primary bg-primary" id="publishBtn" type="submit"><i
+                        class="fa fa-paper-plane"></i>
                     Publish</button>
 
                 <input type="hidden" id="isDraft" name="is_draft">
@@ -263,7 +274,9 @@
         <script src="{{ url('/') }}/build/public/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
         <script src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script>
         {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
-
+        
+<!-- Tempus Dominus Bootstrap JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
         <script>
             const configBacaJuga = {
                 title: 'Baca Juga',
@@ -414,7 +427,7 @@
                 $('#article-form').submit()
             })
 
-            $('#publishBtn').on('click', (event)=>{
+            $('#publishBtn').on('click', (event) => {
                 event.preventDefault();
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
@@ -422,10 +435,22 @@
             })
         </script>
         <script>
-            // Select 2
-
-
             $(document).ready(function() {
+
+                // schedule time
+                var checkbox_schedule = $('#schedule')
+                var form_schedule = $('#form-schedule-time')
+                checkbox_schedule.on('change', (event) => {
+                    if (event.currentTarget.checked) {
+                        form_schedule.show()
+                        $('#saveDraft').hide()
+                    } else {
+                        form_schedule.val('')
+                        $('#saveDraft').show()
+                        form_schedule.hide()
+                    }
+                })
+                // Select 2
                 $('#select2Rubrik').select2({
                     theme: "bootstrap4",
                     // allowClear: true

@@ -11,34 +11,36 @@
                     <div class="title-list-berita">
                         <span>{{ $rubrik_name }}</span>
                     </div>
+                    {{-- Headline Rubrik --}}
+                    @if($headlineRubrik->count()>0)
                     <div class="thumb mb-4">
                         <article class="entry thumb--size-3 mb-0">
                             <div class="entry__img-holder thumb__img-holder"
-                                style="background-image: url('{{ get_post_image($headlineRubrik->post->post_id) }}');">
+                                style="background-image: url('{{ get_post_image($headlineRubrik[0]->post->post_id) }}');">
                                 <h4 class="hl__b-subtitle">
-                                    <a href="{{ route('category', ['rubrik_name' => $headlineRubrik->post->rubrik->rubrik_name]) }}"
-                                        class="hl__link">{{ $headlineRubrik->post->rubrik->rubrik_name }}
+                                    <a href="{{ route('category', ['rubrik_name' => $headlineRubrik[0]->post->rubrik->rubrik_name]) }}"
+                                        class="hl__link">{{ $headlineRubrik[0]->post->rubrik->rubrik_name }}
                                     </a>
                                 </h4>
                                 <div class="bottom-gradient rubrik"></div>
                                 <div class="thumb-text-holder rubrik thumb-text-holder--2">
                                     <ul class="entry__meta">
                                         <li>
-                                            <a href="{{ route('category', ['rubrik_name' => $headlineRubrik->post->rubrik->rubrik_name]) }}"
-                                                class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headlineRubrik->post->rubrik->rubrik_name }}</a>
+                                            <a href="{{ route('category', ['rubrik_name' => $headlineRubrik[0]->post->rubrik->rubrik_name]) }}"
+                                                class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headlineRubrik[0]->post->rubrik->rubrik_name }}</a>
                                         </li>
                                     </ul>
                                     <h2 class="title-category">
                                         <a
                                             href="{{ route('singlePost', [
-                                                'rubrik' => str_replace(' ', '-', $headlineRubrik->post->rubrik->rubrik_name),
-                                                'post_id' => $headlineRubrik->post->post_id,
-                                                'slug' => $headlineRubrik->post->slug,
-                                            ]) }}">{{ $headlineRubrik->post->title }}</a>
+                                                'rubrik' => str_replace(' ', '-', $headlineRubrik[0]->post->rubrik->rubrik_name),
+                                                'post_id' => $headlineRubrik[0]->post->post_id,
+                                                'slug' => $headlineRubrik[0]->post->slug,
+                                            ]) }}">{{ $headlineRubrik[0]->post->title }}</a>
                                     </h2>
                                     <ul class="entry__meta">
                                         <li class="entry__meta-comments">
-                                            <a> {{ convert_date_to_ID($headlineRubrik->created_at) }} </a>
+                                            <a> {{ convert_date_to_ID($headlineRubrik[0]->created_at) }} </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -47,21 +49,23 @@
                         <article class="thumb-text-down">
                             <div class="hl__b-title">
                                 <a href="{{ route('singlePost', [
-                                    'rubrik' => str_replace(' ', '-', $headlineRubrik->post->rubrik->rubrik_name),
-                                    'post_id' => $headlineRubrik->post->post_id,
-                                    'slug' => $headlineRubrik->post->slug,
+                                    'rubrik' => str_replace(' ', '-', $headlineRubrik[0]->post->rubrik->rubrik_name),
+                                    'post_id' => $headlineRubrik[0]->post->post_id,
+                                    'slug' => $headlineRubrik[0]->post->slug,
                                 ]) }}"
                                     class="hl__link">
-                                    {{ $headlineRubrik->post->title }}
+                                    {{ $headlineRubrik[0]->post->title }}
                                 </a>
                             </div>
                             <ul class="entry__meta">
                                 <li class="entry__meta-comments">
-                                    <a> {{ convert_date_to_ID($headlineRubrik->created_at) }} </a>
+                                    <a> {{ convert_date_to_ID($headlineRubrik[0]->created_at) }} </a>
                                 </li>
                             </ul>
                         </article>
                     </div>
+                    @endif
+                    {{-- Headline rubrik --}}
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">

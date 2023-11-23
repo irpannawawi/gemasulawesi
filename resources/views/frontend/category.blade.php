@@ -139,6 +139,7 @@
                     <div class="row">
                         <div class="col">
                             <ul class="post-list-small post-list-small--2 mb-32">
+                                @if(!empty($beritaTerkini[1]))
                                 @foreach ($beritaTerkini[1] as $post)
                                     <li class="post-list-small__item">
                                         <article class="post-list-small__entry clearfix">
@@ -174,6 +175,7 @@
                                         </article>
                                     </li>
                                 @endforeach
+                                @endif
                             </ul>
 
 

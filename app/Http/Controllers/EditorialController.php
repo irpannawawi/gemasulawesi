@@ -90,7 +90,11 @@ class EditorialController extends Controller
         // Check if the post was successfully created
         if ($newPost) {
             // Redirect based on the post's status
-            return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
+            if($status=='scheduled'){
+                return redirect()->route('editorial.scheduled')->with('success', 'Post has been created');
+            }else{
+                return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
+            }
         } else {
             // Handle the case where post creation fails
             return back()->withInput()->withErrors(['error' => 'Failed to create the post.']);
@@ -160,7 +164,7 @@ class EditorialController extends Controller
     public function scheduled()
     {
         $data['posts'] = Posts::where('status', 'scheduled')->orderBy('created_at', 'DESC')->paginate(20);
-        return view('editorial.draft', $data);
+        return view('editorial.scheduled', $data);
     } 
     
     public function trash()

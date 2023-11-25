@@ -1,4 +1,14 @@
 @push('extra-css')
+    <style>
+        .form-group{
+            padding: 0px 0px 0px 20px; 
+            margin: 15px 0px 0px 0px;
+        }
+        .card-body{
+            font-size: 14px;
+            padding: 5px;
+        }
+    </style>
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 <!-- Tempus Dominus Bootstrap CSS -->
@@ -7,7 +17,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-lg text-gray-800   leading-tight">
-            {{ __('Create Article') }}
+            {{ __('Editorial - Create Article') }}
         </h2>
     </x-slot>
 
@@ -18,7 +28,7 @@
             <input type="hidden" id="postImage" name="post_image">
             <div class="card-body" style="min-height: 400px">
                 <div class="row">
-                    <div class="col-lg-8 col-md-8">
+                    <div class="col-lg-9 col-md-9">
                         <div class="form-group">
                             <label for="title">Title</label>
                             <input type="text" maxlength="120" name="title" class="form-control"
@@ -28,13 +38,13 @@
                         </div>
                         <div class="form-group">
                             <label for="content"><i class="mdi mdi-content-copy:"></i></label>
-                            <textarea class="editor" name="content" id="content" class="form-control" cols="2"></textarea>
+                            <textarea class="editor" name="content" id="content" class="form-control" cols="2" rows="50"></textarea>
                         </div>
 
                         {{-- Related input --}}
                         <div class="form-group">
                             <label>Related article</label>
-                            <select class="form-control select2-multiple" id="select2Related" name="related[]" multiple>
+                            <select class="form-control form-control-sm select2-multiple" id="select2Related" name="related[]" multiple>
                                 <option value="Sample Related article 1">Sample Related article 1</option>
                                 <option value="Sample Related article 2">Sample Related article 2</option>
                                 <option value="Sample Related article 3">Sample Related article 3</option>
@@ -47,10 +57,10 @@
                         {{-- ./Related input --}}
 
                     </div>
-                    <div class="col-lg-4 col-md-4">
-                        <div class="form-group p-1">
+                    <div class="col-lg-3 col-md-3">
+                        <div class="form-group">
                             <label for="rubrik">Rubrik</label>
-                            <select class="form-control" id="select2Rubrik" name="rubrik">
+                            <select class="form-control form-control-sm" id="select2Rubrik" name="rubrik">
                                 @foreach ($rubriks as $rubrik)
                                     <option value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}</option>
                                 @endforeach
@@ -59,7 +69,7 @@
 
                         <div class="form-group">
                             <label for="descriptions">Description</label>
-                            <textarea maxlength="140" name="description" id="description" class="form-control" onchange="count_word_description()"
+                            <textarea maxlength="140" minlength="100" name="description" id="description" class="form-control form-control-sm" onchange="count_word_description()"
                                 required></textarea>
                             <span class="badge badge-info"><span id="counter_word_description">140</span> Character
                                 left</span>
@@ -68,7 +78,7 @@
                         {{-- Tags input --}}
                         <div class="form-group">
                             <label for="tag">Tag</label>
-                            <select class="form-control" id="select2Tag" name="tags[]" multiple>
+                            <select class="form-control form-control-sm" id="select2Tag" name="tags[]" multiple>
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"

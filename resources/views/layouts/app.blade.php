@@ -52,6 +52,22 @@
         .nav-sidebar .nav-treeview {
             margin-left: 10px;
         }
+        .nav-sidebar .nav-item>.nav-link{
+            font-size: 15px;
+            padding: 5px 5px 5px 5px;
+        }
+
+        table tr td{
+            font-size: 14px;
+        }
+        table{
+            padding: 0px;
+            margin:0px;
+        }
+        .img-circle{
+            width: 50px;
+            height: 50px;
+        }
     </style>
 
 </head>

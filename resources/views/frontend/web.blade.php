@@ -91,8 +91,8 @@
                                                     'slug' => $choice->post->slug,
                                                 ]) }}">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ get_post_image($choice->post->post_id) }}"
-                                                        src="{{ url('assets/frontend') }}/img/empty.jpg"
+                                                    <img data-src="{{ get_post_thumbnail($choice->post->post_id) }}"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="{{ $choice->post->title }}">
                                                 </div>
                                             </a>
@@ -150,9 +150,9 @@
                                                             'post_id' => $post->post_id,
                                                             'slug' => $post->slug,
                                                         ]) }}">
-                                                        <img data-src="{{ get_post_image($post->post_id) }}"
-                                                            src="{{ url('assets/frontend') }}/img/empty.jpg"
-                                                            alt="{{ $post->title }}" class="lazyload">
+                                                        <img data-src="{{ get_post_thumbnail($post->post_id) }}"
+                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                            class="lazyload">
                                                     </a>
                                                 </div>
                                                 <div class="post-list-small__body">
@@ -219,9 +219,9 @@
                                                         'post_id' => $post->post_id,
                                                         'slug' => $post->slug,
                                                     ]) }}">
-                                                    <img data-src="{{ get_post_image($post->post_id) }}"
-                                                        src="{{ url('assets/frontend') }}/img/empty.jpg"
-                                                        alt="{{ $post->title }}" class="lazyload">
+                                                    <img data-src="{{ get_post_thumbnail($post->post_id) }}"
+                                                        src="{{ url('assets/frontend') }}/img/empty.png" alt=""
+                                                        class="lazyload">
                                                 </a>
                                             </div>
                                             <div class="post-list-small__body">

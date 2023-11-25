@@ -1191,3 +1191,6 @@ transition: 0.1s;
     border-radius: 10px;
     font-weight: 500;
 }
+.image-single-post img{
+    border-radius: 25px;
+}

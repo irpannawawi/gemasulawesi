@@ -132,14 +132,14 @@ if (!function_exists('getYoutubeData')) {
             // Lakukan resize_image jika URL kosong
             $file_path = 'public/photos/' . $post->image->asset->file_name;
             $resizedImagePath = resize_image($file_path, 129, 100);
-            
+
             // Jika terdapat kesalahan, tangani sesuai kebutuhan
             if (is_string($resizedImagePath)) {
                 return 'Error: ' . $resizedImagePath;
             }
 
             return $resizedImagePath;
-        }else{
+        } else {
             return Storage::url($url);
         }
     }
@@ -161,14 +161,14 @@ if (!function_exists('getYoutubeData')) {
             $image = Image::make($imagePath);
             // Melakukan resize sesuai dengan lebar dan tinggi yang diinginkan
             $image->resize($width, $height);
-                        
+
             // Menyimpan gambar yang telah diresize (Anda dapat menyesuaikan path tujuan)
             $destinationPath = '/storage/photos/thumbnails/';
             $resizedImagePath = $destinationPath . basename($imagePath);
             // Membuat direktori jika belum ada
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
+            // if (!file_exists($destinationPath)) {
+            //     mkdir($destinationPath, 0755, true);
+            // }
 
             // Simpan gambar yang telah diresize 
             $image->save(public_path($resizedImagePath));

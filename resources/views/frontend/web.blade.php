@@ -91,7 +91,7 @@
                                                     'slug' => $choice->post->slug,
                                                 ]) }}">
                                                 <div class="thumb-container thumb-65">
-                                                    <img data-src="{{ get_post_image($choice->post->post_id) }}"
+                                                    <img data-src="{{ get_post_thumbnail($choice->post->post_id) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png"
                                                         class="entry__img lazyload" alt="{{ $choice->post->title }}">
                                                 </div>
@@ -150,7 +150,7 @@
                                                             'post_id' => $post->post_id,
                                                             'slug' => $post->slug,
                                                         ]) }}">
-                                                        <img data-src="{{ get_post_image($post->post_id) }}"
+                                                        <img data-src="{{ get_post_thumbnail($post->post_id) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                             class="lazyload">
                                                     </a>
@@ -219,7 +219,7 @@
                                                         'post_id' => $post->post_id,
                                                         'slug' => $post->slug,
                                                     ]) }}">
-                                                    <img data-src="{{ get_post_image($post->post_id) }}"
+                                                    <img data-src="{{ get_post_thumbnail($post->post_id) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.png" alt=""
                                                         class="lazyload">
                                                 </a>

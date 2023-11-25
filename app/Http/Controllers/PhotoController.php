@@ -19,7 +19,7 @@ class PhotoController extends Controller
 
     public function browse()
     {
-        $data['photos'] = Image::orderBy('image_id', 'DESC')->paginate(10);
+        $data['photos'] = Image::orderBy('image_id', 'DESC')->paginate(12);
         return view('browse', $data);
     }
 

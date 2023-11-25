@@ -2,21 +2,21 @@
 
 use App\Models\Posts;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
-if(!function_exists('getYoutubeData'))
-{
+if (!function_exists('getYoutubeData')) {
     function getYoutubeData($url)
     {
         $parsedUrl = parse_url($url);
         parse_str($parsedUrl['query'], $query_ouput);
-    
+
         $videoId = $query_ouput['v'];
-        
+
         $apikey = 'AIzaSyBsmJTs3VEQZB52KszlQRtdQzTtm01nZcE';
         $googleApiUrl = 'https://www.googleapis.com/youtube/v3/videos?id=' . $videoId . '&key=' . $apikey . '&part=snippet';
-    
+
         $ch = curl_init();
-    
+
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_URL, $googleApiUrl);
@@ -24,14 +24,15 @@ if(!function_exists('getYoutubeData'))
         curl_setopt($ch, CURLOPT_VERBOSE, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $response = curl_exec($ch);
-    
+
         curl_close($ch);
-    
+
         $data = json_decode($response);
         return $value = json_decode(json_encode($data))->items[0];
     }
 
-    function get_string_between($string, $start, $end){
+    function get_string_between($string, $start, $end)
+    {
         $string = ' ' . $string;
         $ini = strpos($string, $start);
         if ($ini == 0) return '';
@@ -48,22 +49,132 @@ if(!function_exists('getYoutubeData'))
         return $converted->isoFormat('D MMMM Y H:mm [WIB]');
     }
 
-    function get_post_image($post_id){
+    function get_post_image($post_id)
+    {
+        // Periksa apakah $post_id tidak kosong dan merupakan bilangan bulat positif
+        if (empty($post_id) || !is_numeric($post_id) || $post_id <= 0) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Invalid post ID';
+        }
+
+        // Coba mencari post dengan ID yang diberikan
         $post = Posts::find($post_id);
-        $url = Storage::url('public/photos/'.$post->image->asset->file_name);
+
+        // Periksa apakah post ditemukan
+        if (!$post) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Post not found';
+        }
+
+        // Periksa apakah post memiliki properti image
+        if (!$post->image) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Post does not have an image';
+        }
+
+        // Periksa apakah image memiliki properti asset
+        if (!$post->image->asset) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Image does not have an asset';
+        }
+
+        // Periksa apakah asset memiliki properti file_name
+        if (!$post->image->asset->file_name) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Image asset does not have a file name';
+        }
+
+        // Bangun URL dengan menggunakan Storage::url
+        $url = Storage::url('public/photos/' . $post->image->asset->file_name);
+
         return $url;
     }
-    function get_post_thumbnail($post_id){
+
+    function get_post_thumbnail($post_id)
+    {
+        // Periksa apakah $post_id tidak kosong dan merupakan bilangan bulat positif
+        if (empty($post_id) || !is_numeric($post_id) || $post_id <= 0) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Invalid post ID';
+        }
+
+        // Coba mencari post dengan ID yang diberikan
         $post = Posts::find($post_id);
-        $url = Storage::url('public/photos/'.$post->image->asset->file_name);
 
-        $original = imagecreatefromjpeg(Config::get('app.url').$url);
+        // Periksa apakah post ditemukan
+        if (!$post) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Post not found';
+        }
 
-        $imageData = getimagesize(Config::get('app.url').$url);
-        $resized = imagecreatetruecolor(320, 320);
-        imagecopyresampled($resized, $original, 0, 0, 0, 0, 320, 320, $imageData[0], $imageData[1]);
-        // dd(imagejpeg($resized, 'image.jpeg'));
-        imagejpeg($resized, 'storage/photos/thumbnails/thumbnail_'.$post->image->asset->file_name);
-        return Storage::url('photos/thumbnails/thumbnail_'.$post->image->asset->file_name);
+        // Periksa apakah post memiliki properti image
+        if (!$post->image) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Post does not have an image';
+        }
+
+        // Periksa apakah image memiliki properti asset
+        if (!$post->image->asset) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Image does not have an asset';
+        }
+
+        // Periksa apakah asset memiliki properti file_name
+        if (!$post->image->asset->file_name) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Image asset does not have a file name';
+        }
+
+        // Bangun URL dengan menggunakan Storage::url
+        $url = 'public/photos/thumbnails/' . $post->image->asset->file_name;
+        // Validasi apakah URL kosong
+        if (!Storage::disk('local')->exists($url)) {
+            // Lakukan resize_image jika URL kosong
+            $file_path = 'public/photos/' . $post->image->asset->file_name;
+            $resizedImagePath = resize_image($file_path, 129, 100);
+            
+            // Jika terdapat kesalahan, tangani sesuai kebutuhan
+            if (is_string($resizedImagePath)) {
+                return 'Error: ' . $resizedImagePath;
+            }
+
+            return $resizedImagePath;
+        }else{
+            return Storage::url($url);
+        }
+    }
+
+
+
+
+    if (!function_exists('resize_image')) {
+        function resize_image($imagePath, $width, $height)
+        {
+            // Pengecekan apakah file gambar ada
+            if (!Storage::disk('local')->exists($imagePath)) {
+                // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+                return 'Image not found';
+            }
+
+            // Membaca file gambar menggunakan Intervention Image
+            $imagePath = Storage::path($imagePath);
+            $image = Image::make($imagePath);
+            // Melakukan resize sesuai dengan lebar dan tinggi yang diinginkan
+            $image->resize($width, $height);
+                        
+            // Menyimpan gambar yang telah diresize (Anda dapat menyesuaikan path tujuan)
+            $destinationPath = '/storage/photos/thumbnails/';
+            $resizedImagePath = $destinationPath . basename($imagePath);
+            // Membuat direktori jika belum ada
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            // Simpan gambar yang telah diresize 
+            $image->save(public_path($resizedImagePath));
+
+            // Mengembalikan path gambar yang telah diresize
+            return $resizedImagePath;
+        }
     }
 }

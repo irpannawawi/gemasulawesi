@@ -8,51 +8,54 @@
             <div class="col-lg-8 order-lg-2">
 
                 <section>
-                    {{-- Headline Rubrik --}}
-                    @if ($headlineTopic->count() > 0)
+                    {{-- Headline Topik --}}
+                    @foreach ($topikKhusus as $topik)
                         <div class="thumb mb-4">
                             <article class="entry thumb--size-3 mb-0">
-                                <div class="entry__img-holder thumb__img-holder" style="background-image: url('#');">
+                                <div class="entry__img-holder thumb__img-holder"
+                                    style="background-image: url('{{ Storage::url('public/topic-image/' . $topik->topic_image) }}');">
                                     {{-- Tampilan mobile --}}
                                     <h4 class="hl__b-subtitle">
-                                        <a href=#" class="hl__link">Topik Khusus</a>
+                                        <a class="hl__link">Topik Khusus</a>
                                     </h4>
                                     <div class="bottom-gradient rubrik"></div>
                                     <div class="thumb-text-holder rubrik thumb-text-holder--2">
                                         <ul class="entry__meta">
                                             <li>
-                                                <a href="#"
+                                                <a
                                                     class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">Topik
                                                     Khusus</a>
                                             </li>
                                         </ul>
-                                        <h2 class="title-category">
-                                            <a href="#">Judul Topic</a>
-                                        </h2>
+                                        <div class="row">
+                                            <h2 class="title-category ml-3">
+                                                <a>{{ $topik->topic_name }}</a>
+                                            </h2>
+                                        </div>
                                         <ul class="entry__meta">
                                             <li class="entry__meta-comments">
-                                                <a>Description</a>
+                                                <a>{{ $topik->topic_description }}</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </article>
 
-                            {{-- Tampilan pc --}}
+                            {{-- Tampilan mobile --}}
                             <article class="thumb-text-down">
                                 <div class="hl__b-title">
-                                    <a href="#" class="hl__link">
-                                        Judul Topic
+                                    <a class="hl__link">
+                                        {{ $topik->topic_name }}
                                     </a>
                                 </div>
                                 <ul class="entry__meta">
                                     <li class="entry__meta-comments">
-                                        <a>Description</a>
+                                        <a>{{ $topik->topic_description }}</a>
                                     </li>
                                 </ul>
                             </article>
                         </div>
-                    @endif
+                    @endforeach
                     {{-- Headline rubrik --}}
 
                     <!-- Berita Terkini -->

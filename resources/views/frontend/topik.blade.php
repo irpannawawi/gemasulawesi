@@ -13,7 +13,7 @@
                         <div class="thumb mb-4">
                             <article class="entry thumb--size-3 mb-0">
                                 <div class="entry__img-holder thumb__img-holder"
-                                    style="background-image: url('{{ Storage::url('public/topic-image/' . $topik->topic_image) }}');">
+                                    style="background-image: url('{{ Storage::url('public/topic-images/' . $topik->topic_image) }}');">
                                     {{-- Tampilan mobile --}}
                                     <h4 class="hl__b-subtitle">
                                         <a class="hl__link">Topik Khusus</a>

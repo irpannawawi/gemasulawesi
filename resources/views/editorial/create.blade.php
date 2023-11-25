@@ -2,7 +2,7 @@
     <style>
         .form-group{
             padding: 0px 0px 0px 20px; 
-            margin: 15px 0px 0px 0px;
+            margin: 25px 0px 0px 0px;
         }
         .card-body{
             font-size: 14px;
@@ -45,10 +45,6 @@
                         <div class="form-group">
                             <label>Related article</label>
                             <select class="form-control form-control-sm select2-multiple" id="select2Related" name="related[]" multiple>
-                                <option value="Sample Related article 1">Sample Related article 1</option>
-                                <option value="Sample Related article 2">Sample Related article 2</option>
-                                <option value="Sample Related article 3">Sample Related article 3</option>
-                                <option value="Sample Related article 4">Sample Related article 4</option>
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
@@ -506,6 +502,46 @@
                                     return {
                                         id: source.source_id,
                                         text: source.source_name
+                                    };
+                                })
+                            };
+                        }
+                    }
+                });
+
+
+                $('#select2Related').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    placeholder: 'Pilih Artikel',
+                    ajax: {
+                        url: '/api/related',
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data.posts, function(post) {
+                                    return {
+                                        id: post.post_id,
+                                        text: post.title
+                                    };
+                                })
+                            };
+                        }
+                    }
+                });
+                $('#select2Topic').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    placeholder: 'Pilih Topic',
+                    ajax: {
+                        url: '/api/topics',
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data.topics, function(topic) {
+                                    return {
+                                        id: topic.topic_id,
+                                        text: topic.topic_name
                                     };
                                 })
                             };

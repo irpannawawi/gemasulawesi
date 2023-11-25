@@ -25,11 +25,6 @@
             $metaDeskripsi = $post->title;
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
-        } elseif (request()->is('topik-khusus/detail/*')) {
-            $metaTitle = 'Berita ' . 'Nama Topik' . ' Hari Ini';
-            $metaDeskripsi = 'Nama Topik';
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
         } else {
             $postTitle = $post->title;
             $metaTitle = $postTitle;

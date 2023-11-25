@@ -15,6 +15,7 @@ class Topic extends Model
     public $fillable = [
         'topic_id',
         'topic_name',
+        'slug',
         'topic_description',
         'topic_image',
     ];

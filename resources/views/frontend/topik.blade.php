@@ -1,0 +1,119 @@
+@extends('layouts.other')
+@section('content')
+    <div class="main-container container" id="main-container">
+        <!-- Content -->
+        <div class="row row-20">
+
+            <!-- slider -->
+            <div class="col-lg-8 order-lg-2">
+
+                <section>
+                    {{-- Headline Rubrik --}}
+                    @if ($headlineTopic->count() > 0)
+                        <div class="thumb mb-4">
+                            <article class="entry thumb--size-3 mb-0">
+                                <div class="entry__img-holder thumb__img-holder" style="background-image: url('#');">
+                                    {{-- Tampilan mobile --}}
+                                    <h4 class="hl__b-subtitle">
+                                        <a href=#" class="hl__link">Topik Khusus</a>
+                                    </h4>
+                                    <div class="bottom-gradient rubrik"></div>
+                                    <div class="thumb-text-holder rubrik thumb-text-holder--2">
+                                        <ul class="entry__meta">
+                                            <li>
+                                                <a href="#"
+                                                    class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">Topik
+                                                    Khusus</a>
+                                            </li>
+                                        </ul>
+                                        <h2 class="title-category">
+                                            <a href="#">Judul Topic</a>
+                                        </h2>
+                                        <ul class="entry__meta">
+                                            <li class="entry__meta-comments">
+                                                <a>Description</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article>
+
+                            {{-- Tampilan pc --}}
+                            <article class="thumb-text-down">
+                                <div class="hl__b-title">
+                                    <a href="#" class="hl__link">
+                                        Judul Topic
+                                    </a>
+                                </div>
+                                <ul class="entry__meta">
+                                    <li class="entry__meta-comments">
+                                        <a>Description</a>
+                                    </li>
+                                </ul>
+                            </article>
+                        </div>
+                    @endif
+                    {{-- Headline rubrik --}}
+
+                    <!-- Berita Terkini -->
+                    <div class="berita-terkini">
+                        <div class="title-list-berita">
+                            <span>Berita Terkini</span>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <ul class="post-list-small post-list-small--2 mb-32">
+                                    @if (!empty($beritaTerkini))
+                                        @foreach ($beritaTerkini as $post)
+                                            <li class="post-list-small__item">
+                                                <article class="post-list-small__entry clearfix">
+                                                    <div class="post__img">
+                                                        <a
+                                                            href="{{ route('singlePost', [
+                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}">
+                                                            <img data-src="{{ get_post_image($post->post_id) }}"
+                                                                src="{{ url('assets/frontend') }}/img/empty.jpg"
+                                                                alt="{{ $post->title }}" class="lazyload">
+                                                        </a>
+                                                    </div>
+                                                    <div class="post-list-small__body">
+                                                        <ul class="entry__meta category underline">
+                                                            <li>
+                                                                <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
+                                                                    class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
+                                                            </li>
+                                                        </ul>
+                                                        <h3 class="post-list-small__entry-title">
+                                                            <a href="{{ route('singlePost', [
+                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
+                                                                'post_id' => $post->post_id,
+                                                                'slug' => $post->slug,
+                                                            ]) }}"
+                                                                class="post-title">{{ $post->title }}</a>
+                                                        </h3>
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                                    </div>
+                                                </article>
+                                            </li>
+                                        @endforeach
+                                    @endif
+                                </ul>
+
+                                {{ $paginatedPost->onEachSide(1)->links() }}
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div> <!-- end slider -->
+
+            <!-- Sidebar -->
+            <x-sidebar />
+            <!-- end sidebar -->
+        </div> <!-- end content -->
+
+    </div> <!-- end main container -->
+@endsection

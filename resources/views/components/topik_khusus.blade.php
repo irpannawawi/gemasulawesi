@@ -12,7 +12,7 @@
                         <a href="#">
                             <div class="thumb-container thumb-65">
                                 <img data-src="{{ Storage::url('public/topic-images/' . $topik->topic_image) }}"
-                                    src="{{ url('assets/frontend') }}/img/empty.png" class="entry__img lazyload"
+                                    src="{{ url('assets/frontend') }}/img/empty.jpg" class="entry__img lazyload"
                                     alt="{{ $topik->description }}">
                             </div>
                         </a>
@@ -20,7 +20,11 @@
                     <div class="entry__body mt-0">
                         <div class="entry__header text-center">
                             <h2 class="entry__title">
-                                <a href="#">{{ $topik->topic_name }}</a>
+                                <a
+                                    href="{{ route('topikkhusus', [
+                                        'topic_id' => $topik->topic_id,
+                                        'slug' => $topik->slug,
+                                    ]) }}">{{ $topik->topic_name }}</a>
                             </h2>
                             <p class="bt__date">{{ convert_date_to_ID($topik->created_at) }}</p>
                         </div>

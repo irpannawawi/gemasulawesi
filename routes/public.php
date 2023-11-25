@@ -21,4 +21,5 @@ Route::get('/tags/{tag_name}', [WebController::class, 'tags'])->name('tags');
 Route::get('/search', [WebController::class, 'search'])->name('search');
 Route::get('/indeks-berita', [WebController::class, 'indeks'])->name('indeks');
 Route::get('/search', [WebController::class, 'search'])->name('search');
+Route::get('/topik-khusus/detail/{topic_id}/{slug}', [WebController::class, 'topikkhusus'])->name('topikkhusus');
 Route::get('/subs', [WebController::class, 'subscribe'])->name('subscribe');

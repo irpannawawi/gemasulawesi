@@ -39,8 +39,8 @@
                                                                 'slug' => $post->slug,
                                                             ]) }}">
                                                             <img data-src="{{ get_post_image($post->post_id) }}"
-                                                                src="{{ url('assets/frontend') }}/img/empty.png"
-                                                                alt="" class="lazyload">
+                                                                src="{{ url('assets/frontend') }}/img/empty.jpg"
+                                                                alt="{{ $post->title }}" class="lazyload">
                                                         </a>
                                                     </div>
                                                     <div class="post-list-small__body">
@@ -87,7 +87,7 @@
                                                                 'slug' => $post->slug,
                                                             ]) }}">
                                                             <img data-src="{{ get_post_image($post->post_id) }}"
-                                                                src="{{ url('assets/frontend') }}/img/empty.png"
+                                                                src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                                 alt="" class="lazyload">
                                                         </a>
                                                     </div>
@@ -113,9 +113,7 @@
                                         @endforeach
                                     @endif
                                 </ul>
-                                <div class="paging paging--page">
-                                    {{ $paginatedPost->onEachSide(1)->links() }}
-                                </div>
+                                {{ $paginatedPost->onEachSide(1)->links() }}
                             </div>
                         </div>
                     </div>

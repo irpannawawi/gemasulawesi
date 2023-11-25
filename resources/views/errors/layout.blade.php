@@ -22,49 +22,13 @@
     <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
     <link rel="canonical" href="{{ url()->current() }}" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="@yield('title') - www.Gemasulawesi.com" />
     <meta name="description" content="@yield('message')" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}/@yield('image')" itemprop="thumbnailUrl" />
-    <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="base" content="https://www.gemasulawesi.com/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="author" content="Gema Sulawesi" itemprop="author">
     <meta name="robots" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
-    <meta name="language" content="id" />
-    <meta name="geo.country" content="id" />
-    <meta name="geo.region" content="ID" />
-    <meta name="geo.placename" content="Indonesia" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="content-language" content="In-Id" />
-    <meta property="og:type" content="{{ $type }}" />
-    <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="@yield('title') - www.Gemasulawesi.com" />
-    <meta property="og:description" content="@yield('message')" />
-    <meta property="og:site_name" content="www.Gemasulawesi.com" />
-    <meta property="og:image" content="{{ $metaImage }}/@yield('image')" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="fb:app_id" content="" />
-    <meta property="fb:pages" content="" />
-    <meta property="article:author" content="Tim Gema Sulawesi">
-    <meta property="article:section" content="">
-    <meta property="article:tag" content="">
-    <meta content="{{ url()->current() }}" itemprop="url" />
-    <meta charset="utf-8">
-    <!-- e: open graph -->
-
-    <!-- S:tweeter card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@gemasulawesi" />
-    <meta name="twitter:creator" content="@gemasulawesi">
-    <meta name="twitter:title" content="@yield('title') - www.Gemasulawesi.com" />
-    <meta name="twitter:description" content="@yield('message')" />
-    <meta name="twitter:image" content="{{ $metaImage }}/@yield('image')" />
     <!-- E:tweeter card -->
 
     <!-- Google Fonts -->
@@ -349,8 +313,8 @@
                         <div class="p404">
                             <div class="display-table">
                                 <div class="display-center">
-                                    <img src="<?= url('assets/frontend') ?>/img/@yield('image')"
-                                        alt="404 Not Found" style="width: 40%">
+                                    <img src="<?= url('assets/frontend') ?>/img/@yield('image')" alt="404 Not Found"
+                                        style="width: 40%">
                                     <div class="p404__content">
                                         @yield('code') @yield('message')
                                     </div>

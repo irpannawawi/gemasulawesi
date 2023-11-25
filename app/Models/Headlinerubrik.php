@@ -14,8 +14,8 @@ class Headlinerubrik extends Model
     protected $primaryKey = 'headline_id';
     public $fillable = [
         'headline_id',
-        'rubrik_id',	
-        'post_id',	
+        'rubrik_id',
+        'post_id',
     ];
     public function rubrik(): HasOne
     {

@@ -145,7 +145,7 @@ class WebController extends Controller
         // Lakukan logika Anda di sini
         $topic = Topic::where('topic_id', $topic_id)->get()[0];
 
-        $data['headlineTopic'] = Topic::where('topic_id', $topic->topic_id)->get();
+        $data['topikKhusus'] = Topic::where('topic_id', $topic->topic_id)->get();
 
         // posts 1-20
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')

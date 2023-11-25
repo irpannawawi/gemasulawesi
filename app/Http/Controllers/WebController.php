@@ -140,6 +140,22 @@ class WebController extends Controller
         return view('frontend.category', $data);
     }
 
+    public function topikKhusus($topic_id)
+    {
+        // Lakukan logika Anda di sini
+        $topic = Topic::where('topic_id', $topic_id)->get()[0];
+
+        $data['headlineTopic'] = Topic::where('topic_id', $topic->topic_id)->get();
+
+        // posts 1-20
+        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
+            ->where(['status' => 'published', 'topics' => $topic->topic_id])
+            ->paginate(20);
+        $data['beritaTerkini'] = $data['paginatedPost'];
+
+        return view('frontend.topik', $data);
+    }
+
     public function tags($tag_name): View
     {
         $tag_id = Tags::where('tag_name', $tag_name)->get()[0]->tag_id;

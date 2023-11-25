@@ -140,7 +140,7 @@ class WebController extends Controller
         return view('frontend.category', $data);
     }
 
-    public function topikKhusus($topic_id)
+    public function topikKhusus($topic_id, $slug)
     {
         // Lakukan logika Anda di sini
         $topic = Topic::where('topic_id', $topic_id)->get()[0];

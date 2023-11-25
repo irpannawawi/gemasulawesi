@@ -76,7 +76,7 @@
                                                             ]) }}">
                                                             <img data-src="{{ get_post_image($post->post_id) }}"
                                                                 src="{{ url('assets/frontend') }}/img/empty.jpg"
-                                                                alt="{{ $post->title }}" class="lazyload">
+                                                                alt="{{ $post->description }}" class="lazyload">
                                                         </a>
                                                     </div>
                                                     <div class="post-list-small__body">

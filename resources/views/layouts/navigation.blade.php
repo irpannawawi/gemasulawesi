@@ -239,29 +239,29 @@
                     </a>
                 </li>
 
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
-                            Settings Web
+                            Web Setting
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('frontend.index') }}" class="nav-link">
-                                <i class="far fa-image nav-icon"></i>
-                                <p>Frontend</p>
+                            <a href="{{ route('setting.general.index') }}" class="nav-link">
+                                <i class="fas fa-spell-check nav-icon"></i>
+                                <p>General</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('frontend.index') }}" class="nav-link">
-                                <i class="far fa-image nav-icon"></i>
+                            <a href="{{ route('setting.footer.index') }}" class="nav-link">
+                                <i class="fas fa-puzzle-piece nav-icon"></i>
                                 <p>Footer</p>
                             </a>
                         </li>
                     </ul>
-                </li> --}}
+                </li>
 
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">

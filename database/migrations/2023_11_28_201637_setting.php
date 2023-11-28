@@ -15,20 +15,8 @@ return new class extends Migration
     {
         Schema::create('setting', function (Blueprint $table) {
             $table->increments('setting_id')->primary;
-            $table->string('title');
-            $table->string('sub_title');
-            $table->string('logo');
-            $table->longText('meta_google');
-            $table->longText('about_us');
-            $table->longText('contact_us');
-            $table->longText('redaction');
-            $table->string('no_sertification');
-            $table->string('facebook');
-            $table->string('twitter');
-            $table->string('youtube');
-            $table->string('instagram');
-            $table->string('email');
-            $table->string('nohp');
+            $table->string('key')->unique();
+            $table->longText('value')->nullable();
             $table->timestamps();
         });
     }

@@ -27,15 +27,16 @@ use Illuminate\Support\Facades\Route;
 
 // test queue
 use App\Jobs\TestQueue;
+
 Route::get('/queue_test', function () {
     TestQueue::dispatch([
-        'username'=> 'Jobusername',
-        'display_name'=> 'Jobdisplay_name',
-        'email'=> 'Jobemail',
-        'password'=> 'Jobpassword',
-        'role'=> 'admin',
-        'avatar'=> 'default.jpg',
-    ]) ->delay(now()->addMinutes(3));;
+        'username' => 'Jobusername',
+        'display_name' => 'Jobdisplay_name',
+        'email' => 'Jobemail',
+        'password' => 'Jobpassword',
+        'role' => 'admin',
+        'avatar' => 'default.jpg',
+    ])->delay(now()->addMinutes(3));;
 })->name('job.test');
 
 // route editorial
@@ -88,7 +89,6 @@ Route::middleware('auth')->group(function () {
     // related articles
     Route::get('/modal_related', [EditorialController::class, 'modal_related'])->name('modal.related');
 
-
     // assets photo
     Route::get('/photo', [PhotoController::class, 'index'])->name('assets.photo.index');
     Route::post('/photo/upload', [PhotoController::class, 'upload'])->name('assets.photo.upload');
@@ -106,7 +106,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/errors', function(){
+Route::get('/errors', function () {
     return view('errors.404');
 })->name('error');
 

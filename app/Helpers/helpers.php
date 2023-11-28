@@ -144,9 +144,6 @@ if (!function_exists('getYoutubeData')) {
         }
     }
 
-
-
-
     if (!function_exists('resize_image')) {
         function resize_image($imagePath, $width, $height)
         {
@@ -175,6 +172,17 @@ if (!function_exists('getYoutubeData')) {
 
             // Mengembalikan path gambar yang telah diresize
             return $resizedImagePath;
+        }
+    }
+
+    if (!function_exists('get_setting')) {
+        function get_setting($key, $default = null)
+        {
+            // Ambil data setting dari database berdasarkan kunci
+            $setting = \App\Models\Setting::where('key', $key)->first();
+
+            // Kembalikan nilai setting atau default jika tidak ditemukan
+            return $setting ? $setting->value : $default;
         }
     }
 }

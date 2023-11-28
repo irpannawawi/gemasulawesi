@@ -33,7 +33,7 @@ class EditorialController extends Controller
 
     public function insert(Request $request)
     {
-        
+
         $article = $request->content;
         $dom = new DOMDocument;
         $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -50,11 +50,11 @@ class EditorialController extends Controller
         $article = $modifiedHtml;
 
         // select status published, draft or scheduled
-        if($request->is_draft=="1"){
+        if ($request->is_draft == "1") {
             $status = 'draft';
-        }elseif($request->schedule=="1"){
+        } elseif ($request->schedule == "1") {
             $status = 'scheduled';
-        }else{
+        } else {
             $status = 'published';
         }
         $postData = [
@@ -77,22 +77,22 @@ class EditorialController extends Controller
             'post_image' => $request->post_image,
 
         ];
-        
+
         // Insert the post into the database
         $newPost = Posts::create($postData);
-        
-        if ($newPost->status=='scheduled') {
+
+        if ($newPost->status == 'scheduled') {
             // add update job
-            $publishDate = str_replace('T',' ', $request->schedule_time);
+            $publishDate = str_replace('T', ' ', $request->schedule_time);
             $job = PublishPost::dispatch($newPost->post_id)->delay(Carbon::createFromFormat('Y-m-d H:i', $publishDate));
         }
 
         // Check if the post was successfully created
         if ($newPost) {
             // Redirect based on the post's status
-            if($status=='scheduled'){
+            if ($status == 'scheduled') {
                 return redirect()->route('editorial.scheduled')->with('success', 'Post has been created');
-            }else{
+            } else {
                 return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
             }
         } else {
@@ -120,28 +120,28 @@ class EditorialController extends Controller
         $modifiedHtml = $dom->saveHTML();
         $article = $modifiedHtml;
 
-            $post->title = $request->title;
-            $post->slug = Str::slug($request->title);
-            $post->category = $request->rubrik;
-            $post->description = $request->description;
-            $post->article = $article;
-            $post->allow_comment = $request->allow_comment;
-            $post->view_in_welcome_page = $request->view_in_welcome_page;
-            $post->author_id = Auth::user()->id;
-            $post->editor_id = Auth::user()->id;
-            $post->status = $request->is_draft==1?'draft':'published';
-            $post->related_articles = json_encode($request->related);
-            $post->tags = json_encode($request->tags);
-            $post->topics = json_encode($request->topics);
-            $post->schedule_time = $request->schedule_time;
-            $post->published_at = $request->published_at;
-            $post->is_deleted = $request->is_deleted;
-            $post->post_image = $request->post_image;
+        $post->title = $request->title;
+        $post->slug = Str::slug($request->title);
+        $post->category = $request->rubrik;
+        $post->description = $request->description;
+        $post->article = $article;
+        $post->allow_comment = $request->allow_comment;
+        $post->view_in_welcome_page = $request->view_in_welcome_page;
+        $post->author_id = Auth::user()->id;
+        $post->editor_id = Auth::user()->id;
+        $post->status = $request->is_draft == 1 ? 'draft' : 'published';
+        $post->related_articles = json_encode($request->related);
+        $post->tags = json_encode($request->tags);
+        $post->topics = json_encode($request->topics);
+        $post->schedule_time = $request->schedule_time;
+        $post->published_at = $request->published_at;
+        $post->is_deleted = $request->is_deleted;
+        $post->post_image = $request->post_image;
 
         if ($post->save()) {
-            if($request->is_draft==1){
+            if ($request->is_draft == 1) {
                 return redirect()->route('editorial.draft');
-            }else{
+            } else {
                 return redirect()->route('editorial.published');
             }
         }
@@ -159,15 +159,17 @@ class EditorialController extends Controller
         $data['q']= $request->q;
         $data['posts'] = Posts::where('status', 'draft')->where('title', 'LIKE', '%'.$request->q.'%')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.draft', $data);
-    } 
+
+    }
     
     
     public function scheduled(Request $request)
+
     {
         $data['q'] = $request->q;
         $data['posts'] = Posts::where('status', 'scheduled')->where('title', 'LIKE', '%'.$request->q.'%')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.scheduled', $data);
-    } 
+    }
     
     public function trash(Request $request)
     {
@@ -224,7 +226,8 @@ class EditorialController extends Controller
         }
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         // Find the post by its ID
         $post = Posts::find($id);
 
@@ -236,14 +239,15 @@ class EditorialController extends Controller
         // Perform any additional checks or authorization if needed
 
         // Soft delete the post
-        $post->status='trash';
+        $post->status = 'trash';
         $post->save();
 
         // Redirect to the appropriate route based on post status
         return redirect()->back()->with('success', 'Post deleted successfully.');
     }
 
-    public function hardDelete($id){
+    public function hardDelete($id)
+    {
         // Find the post by its ID
         $post = Posts::find($id);
 

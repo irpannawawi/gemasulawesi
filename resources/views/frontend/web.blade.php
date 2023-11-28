@@ -57,8 +57,7 @@
                             <div class="owl-thumb-item col-3 p-0">
                                 <div class="card mt-3">
                                     <img src="{{ get_post_image($headline->post->post_id) }}"
-                                        style="object-fit: cover;object-position: top;"
-                                        alt="{{ $headline->post->description }}">
+                                        style="object-fit: cover;object-position: top;" alt="{{ $headline->post->title }}">
                                     <div class="card-body">
                                         <a
                                             href="{{ route('singlePost', [
@@ -152,8 +151,8 @@
                                                             'slug' => $post->slug,
                                                         ]) }}">
                                                         <img data-src="{{ get_post_thumbnail($post->post_id) }}"
-                                                            src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                            class="lazyload">
+                                                            src="{{ url('assets/frontend') }}/img/empty.png"
+                                                            alt="{{ $post->title }}" class="lazyload">
                                                     </a>
                                                 </div>
                                                 <div class="post-list-small__body">
@@ -221,8 +220,8 @@
                                                         'slug' => $post->slug,
                                                     ]) }}">
                                                     <img data-src="{{ get_post_thumbnail($post->post_id) }}"
-                                                        src="{{ url('assets/frontend') }}/img/empty.png" alt=""
-                                                        class="lazyload">
+                                                        src="{{ url('assets/frontend') }}/img/empty.png"
+                                                        alt="{{ $post->title }}" class="lazyload">
                                                 </a>
                                             </div>
                                             <div class="post-list-small__body">

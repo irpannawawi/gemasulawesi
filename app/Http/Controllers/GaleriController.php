@@ -14,7 +14,7 @@ class GaleriController extends Controller
     //
     public function galeri()
     {
-        $data['galeris'] = Galeri::orderBy('galery_id','desc')->get();
+        $data['galeris'] = Galeri::orderBy('galery_id', 'desc')->get();
         return view('galeri.index', $data);
     }
 
@@ -22,47 +22,44 @@ class GaleriController extends Controller
 
     public function insert(Request $request)
     {
-        $filename = date('dmyHis').'.jpg';
+        $filename = date('dmyHis') . '.jpg';
         $galeryData = [
-            'galery_name'=>$request->galery_name,
-            'galery_description'=>$request->galery_description,
-            'galery_thumbnail'=>$filename
+            'galery_name' => $request->galery_name,
+            'galery_description' => $request->galery_description,
+            'galery_thumbnail' => $filename
         ];
 
         // upload image
         $path = $request->file('galery_thumbnail')->storeAs('public/galery-images', $filename);
 
-        if(Galeri::create($galeryData))
-        {
-            return redirect()->back()->with('message-success', 'Berhasil menambah galeri');
+        if (Galeri::create($galeryData)) {
+            return redirect()->back()->with('success', 'Berhasil menambah galeri');
         }
     }
 
     public function edit(Request $request)
     {
         $galery = Galeri::find($request->galery_id);
-        if($request->file('galery_thumbnail')){
-            $filename = date('dmYHis').'.jpg';
+        if ($request->file('galery_thumbnail')) {
+            $filename = date('dmYHis') . '.jpg';
             $request->file('galery_thumbnail')->storeAs('public/galery-images', $filename);
             // remove old image
-            Storage::delete('public/galery-images/'.$galery->galery_thumbnail);
+            Storage::delete('public/galery-images/' . $galery->galery_thumbnail);
             $galery->galery_thumbnail = $filename;
         }
 
         $galery->galery_name = $request->galery_name;
         $galery->galery_description = $request->galery_description;
 
-        if($galery->save())
-        {
-            return redirect()->back()->with('message-success', 'Berhasil merubah galeri');
+        if ($galery->save()) {
+            return redirect()->back()->with('success', 'Berhasil merubah galeri');
         }
     }
 
     public function delete($id)
     {
-        if(Galeri::where('galery_id', $id)->delete())
-        {
-            return redirect()->back()->with('message-success', 'Berhasil menghapus galeri');
+        if (Galeri::where('galery_id', $id)->delete()) {
+            return redirect()->back()->with('success', 'Berhasil menghapus galeri');
         }
     }
 
@@ -82,9 +79,8 @@ class GaleriController extends Controller
     {
         $type = $request->type;
         $files = $request->get('files');
-        foreach($files as $file)
-        {
-            Collection::create(['type'=>$type, 'file_id'=>$file, 'galery_id'=>$request->galery_id]);
+        foreach ($files as $file) {
+            Collection::create(['type' => $type, 'file_id' => $file, 'galery_id' => $request->galery_id]);
         }
 
         return redirect()->back();

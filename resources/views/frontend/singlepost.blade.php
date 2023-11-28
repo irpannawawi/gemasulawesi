@@ -49,7 +49,7 @@
                 </div>
                 <!-- Entry Image -->
                 <div class="thumb image-single-post">
-                    <img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->description }}">
+                    <img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}">
                     <p class="photo__caption">{!! strip_tags($post->image->caption) !!}</p>
                 </div>
 
@@ -220,7 +220,7 @@
                                                     ]) }}">
                                                     <img data-src="{{ get_post_image($post_item->post_id) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.jpg"
-                                                        alt="{{ $post->description }}" class="lazyload">
+                                                        alt="{{ $post->title }}" class="lazyload">
                                                 </a>
                                             </div>
                                             <div class="post-list-small__body">

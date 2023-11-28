@@ -10,20 +10,33 @@
 
 <head>
     @php
-        $metaTitle = 'Gema Sulawesi Indeks';
-        $metaDeskripsi = 'Gema Sulawesi Indeks';
-        $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-        $type = 'website';
+        if (request()->is('search')) {
+            $metaTitle = 'Gema Sulawesi Search';
+            $metaDeskripsi = 'Gema Sulawesi Search';
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('indeks-berita')) {
+            $metaTitle = 'Gema Sulawesi Indeks';
+            $metaDeskripsi = 'Gema Sulawesi Indeks';
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('topik-khusus/detail/*')) {
+            $metaTitle = $topik->topic_name;
+            $metaDeskripsi = $topik->topic_description;
+            $metaImage = 'Perbaiki';
+            $type = 'website';
+        }
+        $subTitle = get_setting('sub_title');
     @endphp
 
     <!-- s: open graph -->
-    <title itemprop="name">{{ $metaTitle }} - www.Gemasulawesi.com</title>
+    <title itemprop="name">{{ $metaTitle . ' - ' . $subTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta name="title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
     <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
@@ -43,7 +56,7 @@
     <meta http-equiv="content-language" content="In-Id" />
     <meta property="og:type" content="{{ $type }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta property="og:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
     <meta property="og:site_name" content="www.Gemasulawesi.com" />
     <meta property="og:image" content="{{ $metaImage }}" />
@@ -60,41 +73,37 @@
 
     <!-- S:tweeter card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@gemasulawesi" />
-    <meta name="twitter:creator" content="@gemasulawesi">
-    <meta name="twitter:title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta name="twitter:site" content="{{ get_setting('x') }}" />
+    <meta name="twitter:creator" content="{{ get_setting('x') }}">
+    <meta name="twitter:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
     <meta name="twitter:image" content="{{ $metaImage }}" />
     <!-- E:tweeter card -->
 
     @php
-        if (request()->is('/*')) {
+        if (request()->is('search')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Gema Sulawesi Search"
+                }];
+            </script>';
+        } elseif (request()->is('indeks-berita')) {
             echo '<script>
                 dataLayer = [{
                     "breadcrumb_detail": "Section Page",
                     "content_category": "Gema Sulawesi Indeks"
                 }];
             </script>';
+        } elseif (request()->is('topik-khusus/detail/*')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "'.$topik->topic_name.'"
+                }];
+            </script>';
         }
     @endphp
-
-    @if (request()->is('/*'))
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "Berita Terkini, Berita Hari Ini, Berita Harian, Berita Terbaru, Berita, Berita Terpercaya, Berita indonesia, Berita Terpopuler, Berita, Info Jawa Barat, Info Bandung, Info Terkini, Info Hari Ini, Info Harian, Info Terbaru, Info Akurat, Info Terpercaya, Info indonesia, Info Terpopuler, Info Nasional, Gema Sulawesi, Gema",
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
-    @endif
 
     {{-- breadcrumb --}}
     @php
@@ -134,10 +143,8 @@
         href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-180x180.png" />
     <meta name="msapplication-TileImage"
         content="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-270x270.png" />
-
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
     {{-- load datepicker --}}
@@ -175,20 +182,20 @@
         </nav>
 
         <div class="socials sidenav__socials">
-            <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/" target="_blank"
-                aria-label="facebook">
+            <a class="social social-facebook" href="https://web.facebook.com/{{ get_setting('facebook') }}"
+                target="_blank" aria-label="facebook">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <a class="social social-twitter" href="https://twitter.com/gemasulawesi" target="_blank"
+            <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}" target="_blank"
                 aria-label="twitter">
                 <i class="fa-brands fa-square-x-twitter"></i>
             </a>
-            <a class="social social-youtube" href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg"
+            <a class="social social-youtube" href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
                 target="_blank" aria-label="youtube">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/" target="_blank"
-                aria-label="instagram">
+            <a class="social social-instagram" href="https://www.instagram.com/{{ get_setting('instagram') }}/"
+                target="_blank" aria-label="instagram">
                 <i class="fa-brands fa-square-instagram"></i>
             </a>
         </div>
@@ -310,7 +317,7 @@
                         <!-- Nav-wrap -->
                         <nav class="flex-child d-none d-lg-block">
                             <ul class="nav__menu">
-                                @foreach ($rubriks->take(7) as $rubrik)
+                                @foreach ($rubriks->take(get_setting('count_rubrik')) as $rubrik)
                                     <li>
                                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                             class="link-nav__menu"
@@ -416,30 +423,31 @@
                                 </a>
                             </div>
                             <div class="footer__contact">
-                                <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi
-                                    Kabupaten Parigi moutong Provinsi Sulawesi tengah.<br>
+                                <p>{{ get_setting('alamat') }}<br>
                                 </p>
                                 <p>
-                                    Email: <br>
-                                    Phone:
+                                    Email: {{ get_setting('email') }}<br>
+                                    Phone: {{ get_setting('no_hp') }}
                                 </p>
                             </div>
                             <div class="social__footer socials--medium socials--rounded">
-                                <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
-                                    target="_blank" aria-label="facebook">
+                                <a class="social social-facebook"
+                                    href="https://web.facebook.com/{{ get_setting('facebook') }}" target="_blank"
+                                    aria-label="facebook">
                                     <i class="fa-brands fa-facebook"></i>
                                 </a>
-                                <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}"
                                     target="_blank" aria-label="twitter">
                                     <i class="fa-brands fa-square-x-twitter"></i>
                                 </a>
                                 <a class="social social-youtube"
-                                    href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg" target="_blank"
-                                    aria-label="youtube">
+                                    href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
+                                    target="_blank" aria-label="youtube">
                                     <i class="fa-brands fa-youtube"></i>
                                 </a>
-                                <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
-                                    target="_blank" aria-label="instagram">
+                                <a class="social social-instagram"
+                                    href="https://www.instagram.com/{{ get_setting('instagram') }}" target="_blank"
+                                    aria-label="instagram">
                                     <i class="fa-brands fa-square-instagram"></i>
                                 </a>
                             </div>
@@ -470,11 +478,11 @@
                                 <img class=" ls-is-cached lazyloaded"
                                     data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
                                     src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
-                                    height="40" alt="PRMN Centang Biru" data-loaded="true">
+                                    height="40" alt="GSG Centang Biru" data-loaded="true">
                                 <span>
                                     <b>Telah Terverifikasi Dewan Pers</b>
                                     <br>
-                                    <b>Sertifikat Nomor <i>1043/DP-Verifikasi/K/XII/2022</i></b>
+                                    <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
                                 </span>
                             </div>
                         </div>

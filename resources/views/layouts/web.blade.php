@@ -144,7 +144,7 @@
         <script>
             dataLayer = [{
                 "published_date": "All",
-                "rubrik": "All", // Ganti dengan variabel yang sesuai
+                "rubrik": "All",
                 "penulis": "All",
                 "editor": "All",
                 "id": "All",

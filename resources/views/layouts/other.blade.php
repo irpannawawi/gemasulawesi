@@ -10,10 +10,22 @@
 
 <head>
     @php
-        $metaTitle = 'Gema Sulawesi Indeks';
-        $metaDeskripsi = 'Gema Sulawesi Indeks';
-        $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-        $type = 'website';
+        if (request()->is('search')) {
+            $metaTitle = 'Gema Sulawesi Search';
+            $metaDeskripsi = 'Gema Sulawesi Search';
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('indeks-berita')) {
+            $metaTitle = 'Gema Sulawesi Indeks';
+            $metaDeskripsi = 'Gema Sulawesi Indeks';
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('topik-khusus/detail/*')) {
+            $metaTitle = $topik->topic_name;
+            $metaDeskripsi = $topik->topic_description;
+            $metaImage = 'Perbaiki';
+            $type = 'website';
+        }
     @endphp
 
     <!-- s: open graph -->
@@ -68,33 +80,29 @@
     <!-- E:tweeter card -->
 
     @php
-        if (request()->is('/*')) {
+        if (request()->is('search')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Gema Sulawesi Search"
+                }];
+            </script>';
+        } elseif (request()->is('indeks-berita')) {
             echo '<script>
                 dataLayer = [{
                     "breadcrumb_detail": "Section Page",
                     "content_category": "Gema Sulawesi Indeks"
                 }];
             </script>';
+        } elseif (request()->is('topik-khusus/detail/*')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "'.$topik->topic_name.'"
+                }];
+            </script>';
         }
     @endphp
-
-    @if (request()->is('/*'))
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "Berita Terkini, Berita Hari Ini, Berita Harian, Berita Terbaru, Berita, Berita Terpercaya, Berita indonesia, Berita Terpopuler, Berita, Info Jawa Barat, Info Bandung, Info Terkini, Info Hari Ini, Info Harian, Info Terbaru, Info Akurat, Info Terpercaya, Info indonesia, Info Terpopuler, Info Nasional, Gema Sulawesi, Gema",
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
-    @endif
 
     {{-- breadcrumb --}}
     @php
@@ -134,10 +142,8 @@
         href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-180x180.png" />
     <meta name="msapplication-TileImage"
         content="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-270x270.png" />
-
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
     {{-- load datepicker --}}

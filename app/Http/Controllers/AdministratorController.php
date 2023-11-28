@@ -73,7 +73,7 @@ class AdministratorController extends Controller
         $user->role =  $request->role;
         $user->avatar =  $filename;
         if ($user->save()) {
-            return redirect()->route('users')->with('message-success', 'Berhasil merubah user');
+            return redirect()->route('users')->with('success', 'Berhasil merubah user');
         }
     }
 

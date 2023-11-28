@@ -18,7 +18,7 @@ class RubrikController extends Controller
     {
         if (Rubrik::create([
             'rubrik_name' => $request->rubrik_name
-        ])) return redirect()->back()->with('message-success', 'Berhasil menambah rubrik baru');
+        ])) return redirect()->back()->with('success', 'Berhasil menambah rubrik baru');
     }
 
     public function edit(Request $request)

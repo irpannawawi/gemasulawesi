@@ -11,8 +11,8 @@
 <head>
     @php
         if (request()->is('/')) {
-            $metaTitle = 'Berita Terkini Indonesia Hari Ini';
-            $metaDeskripsi = 'Gemasulawesi.com - Media Sulawesi Tengah, Media Nasional, Media Bandung, Indonesia dan Dunia Terkini Hari Ini, Update Harian Terbaru Fakta Terpercaya Terlengkap Politik, Ekonomi, Travel, Teknologi, Otomotif, Bola';
+            $metaTitle = get_setting('title');
+            $metaDeskripsi = get_setting('meta_google');
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('category/*')) {
@@ -35,15 +35,16 @@
             $category = $post->rubrik->rubrik_name;
             $tags = $post->tags;
         }
+        $subTitle = get_setting('sub_title');
     @endphp
     <!-- s: open graph -->
-    <title itemprop="name">{{ $metaTitle }} - www.Gemasulawesi.com</title>
+    <title itemprop="name">{{ $metaTitle . ' - ' . $subTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta name="title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
     <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
@@ -63,7 +64,7 @@
     <meta http-equiv="content-language" content="In-Id" />
     <meta property="og:type" content="{{ $type }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta property="og:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
     <meta property="og:site_name" content="www.Gemasulawesi.com" />
     <meta property="og:image" content="{{ $metaImage }}" />
@@ -80,334 +81,264 @@
 
     <!-- S:tweeter card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@gemasulawesi" />
-    <meta name="twitter:creator" content="@gemasulawesi">
-    <meta name="twitter:title" content="{{ $metaTitle }} - www.Gemasulawesi.com" />
+    <meta name="twitter:site" content="{{ get_setting('x') }}" />
+    <meta name="twitter:creator" content="{{ get_setting('x') }}">
+    <meta name="twitter:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
     <meta name="twitter:image" content="{{ $metaImage }}" />
     <!-- E:tweeter card -->
 
-@if (!empty($post))
-@php
-$category = $post->rubrik->rubrik_name;
-if (request()->is('/')) {
-    echo '<script>
-        dataLayer = [{
-            "breadcrumb_detail": "Homepage",
-            "content_category": ""
-        }];
-    </script>';
-} elseif (request()->is('category/*')) {
-    echo '<script>
-        dataLayer = [{
-            "breadcrumb_detail": "Section Page",
-            "content_category": "'. $category .'"
-        }];
-    </script>';
-} elseif (request()->is('tags/*')) {
-    echo '<script>
-        dataLayer = [{
-            "breadcrumb_detail": "Section Page",
-            "content_category": "Tag"
-        }];
-    </script>';
-} else {
-    echo '<script>
-        dataLayer = [{
-            "breadcrumb_detail": "Article Page",
-            "content_category": "'. $category .'"
-        }];
-    </script>';
-}
-@endphp
+    @if (!empty($post))
+        @php
+            $category = $post->rubrik->rubrik_name;
+            if (request()->is('/')) {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Homepage",
+                        "content_category": ""
+                    }];
+                </script>';
+            } elseif (request()->is('category/*')) {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Section Page",
+                        "content_category": "'. $category .'"
+                    }];
+                </script>';
+            } elseif (request()->is('tags/*')) {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Section Page",
+                        "content_category": "Tag"
+                    }];
+                </script>';
+            } else {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Article Page",
+                        "content_category": "'. $category .'"
+                    }];
+                </script>';
+            }
+        @endphp
 
+        @if (request()->is('/'))
+            <script>
+                dataLayer = [{
+                    "published_date": "All",
+                    "rubrik": "All",
+                    "penulis": "All",
+                    "editor": "All",
+                    "id": "All",
+                    "type": "All",
+                    "source": "Not Available",
+                    "topic": "Not Available",
+                    "tag": "Berita Terkini, Berita Hari Ini, Berita Harian, Berita Terbaru, Berita, Berita Terpercaya, Berita indonesia, Berita Terpopuler, Berita, Info Jawa Barat, Info Bandung, Info Terkini, Info Hari Ini, Info Harian, Info Terbaru, Info Akurat, Info Terpercaya, Info indonesia, Info Terpopuler, Info Nasional, Gema Sulawesi, Gema",
+                    "penulis_id": "All",
+                    "editor_id": "All"
+                }];
+            </script>
+        @elseif (request()->is('category/*'))
+            <script>
+                dataLayer = [{
+                    "published_date": "All",
+                    "rubrik": "All", // Ganti dengan variabel yang sesuai
+                    "penulis": "All",
+                    "editor": "All",
+                    "id": "All",
+                    "type": "All",
+                    "source": "Not Available",
+                    "topic": "Not Available",
+                    "tag": "Berita, {{ $category }} , Terbaru, Terkini, Hari Ini",
+                    "penulis_id": "All",
+                    "editor_id": "All"
+                }];
+            </script>
+        @elseif (request()->is('tags/*'))
+            <script>
+                dataLayer = [{
+                    "published_date": "All",
+                    "rubrik": "All",
+                    "penulis": "All",
+                    "editor": "All",
+                    "id": "All",
+                    "type": "All",
+                    "source": "Not Available",
+                    "topic": "Not Available",
+                    "tag": "Berita, {{ $tag_name }} , Terbaru, Terkini, Hari Ini",
+                    "penulis_id": "All",
+                    "editor_id": "All"
+                }];
+            </script>
+        @else
+            <script>
+                dataLayer = [{
+                    "published_date": "All",
+                    "rubrik": "All",
+                    "penulis": "All",
+                    "editor": "All",
+                    "id": "All",
+                    "type": "All",
+                    "source": "Not Available",
+                    "topic": "Not Available",
+                    "tag": "{{ $post->tags }}",
+                    "penulis_id": "All",
+                    "editor_id": "All"
+                }];
+            </script>
+        @endif
 
-<<<<<<< HEAD
-    @if (request()->is('/'))
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "Berita Terkini, Berita Hari Ini, Berita Harian, Berita Terbaru, Berita, Berita Terpercaya, Berita indonesia, Berita Terpopuler, Berita, Info Jawa Barat, Info Bandung, Info Terkini, Info Hari Ini, Info Harian, Info Terbaru, Info Akurat, Info Terpercaya, Info indonesia, Info Terpopuler, Info Nasional, Gema Sulawesi, Gema",
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
-    @elseif (request()->is('category/*'))
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "Berita, {{ $category }} , Terbaru, Terkini, Hari Ini",
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
-    @elseif (request()->is('tags/*'))
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "Berita, {{ $tag_name }} , Terbaru, Terkini, Hari Ini",
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
-    @else
-        <script>
-            dataLayer = [{
-                "published_date": "All",
-                "rubrik": "All",
-                "penulis": "All",
-                "editor": "All",
-                "id": "All",
-                "type": "All",
-                "source": "Not Available",
-                "topic": "Not Available",
-                "tag": "{{ $post->tags }}",
-                "penulis_id": "All",
-                "editor_id": "All"
-            }];
-        </script>
+        @php
+            preg_match('/<img src="(.*?)">/', $post->article, $matches);
+            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+            $image = asset($imagePath);
+            $segments = request()->segments();
+            $lastSegment = end($segments);
+            $postTitle = str_replace('-', ' ', $lastSegment);
+            $jsonLDData = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'Organization',
+                'name' => 'www.gemasulawesi.com',
+                'url' => 'https://www.gemasulawesi.com',
+                'logo' => asset('frontend/img/favicon.png'),
+                'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
+            ];
+            $jsonPost = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'WebPage',
+                'headline' => $postTitle,
+                'url' => url()->current(),
+                'datePublished' => $post->created_at,
+                'image' => $image,
+                'thumbnailUrl' => $image,
+            ];
+
+            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+            $jsonP = json_encode($jsonPost, JSON_PRETTY_PRINT);
+            if (request()->is('/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } elseif (request()->is('category/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } elseif (request()->is('tags/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } else {
+                echo '<script type="application/ld+json">
+            ' . $jsonP . '
+            </script>';
+            }
+        @endphp
+
+        @php
+            if (!request()->is('/') && !request()->is('category/*') && !request()->is('tags/*')) {
+                preg_match('/<img src="(.*?)">/', $post->article, $matches);
+                $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+                $image = asset($imagePath);
+                $segments = request()->segments();
+                $lastSegment = end($segments);
+                $postTitle = str_replace('-', ' ', $lastSegment);
+                $jsonLDData = [
+                    '@context' => 'http://schema.org/',
+                    '@type' => 'NewsArticle',
+                    'mainEntityOfPage' => [
+                        '@type' => 'WebPage',
+                        '@id' => url()->current(),
+                        'description' => $post->description,
+                    ],
+                    'headline' => $postTitle,
+                    'image' => [
+                        '@type' => 'ImageObject',
+                        'url' => $image,
+                    ],
+                    'author' => [
+                        '@type' => 'Person',
+                        'name' => $post->editor->display_name,
+                    ],
+                    'publisher' => [
+                        '@type' => 'Organization',
+                        'name' => 'www.gemasulawesi.com',
+                        'logo' => [
+                            '@type' => 'ImageObject',
+                            'url' => asset('frontend/img/favcion.png'),
+                        ],
+                    ],
+                    'headline' => $postTitle,
+                    'image' => $image,
+                    'datePublished' => $post->created_at,
+                    'dateModified' => $post->updated_at,
+                ];
+                $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+                echo '<script type="application/ld+json">
+                ' . $jsonLD. '
+                </script>';
+            }
+        @endphp
+
+        {{-- breadcrumb --}}
+        @php
+            $jsonLDData = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'WebSite',
+                'url' => url()->current(),
+                'potentialAction' => [
+                    [
+                        '@type' => 'SearchAction',
+                        'target' => url()->current(),
+                        'query-input' => 'required name=search_term_string',
+                    ],
+                ],
+            ];
+
+            $artikel = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 1,
+                        'item' => [
+                            '@id' => url()->current(),
+                            'name' => 'Home',
+                        ],
+                    ],
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 2,
+                        'item' => [
+                            '@id' => url()->current(),
+                            'name' => $post->rubrik->rubrik_name,
+                        ],
+                    ],
+                ],
+            ];
+
+            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+            $artikelLDData = json_encode($artikel, JSON_PRETTY_PRINT);
+
+            if (request()->is('/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } elseif (request()->is('tags/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } elseif (request()->is('category/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } else {
+                echo '<script type="application/ld+json">
+            ' . $artikelLDData . '
+            </script>';
+            }
+        @endphp
     @endif
-=======
->>>>>>> 0728e37c75377dfaa7c94557a27b0d48c70c6991
-
-@if (request()->is('/'))
-<script>
-    dataLayer = [{
-        "published_date": "All",
-        "rubrik": "All",
-        "penulis": "All",
-        "editor": "All",
-        "id": "All",
-        "type": "All",
-        "source": "Not Available",
-        "topic": "Not Available",
-        "tag": "Berita Terkini, Berita Hari Ini, Berita Harian, Berita Terbaru, Berita, Berita Terpercaya, Berita indonesia, Berita Terpopuler, Berita, Info Jawa Barat, Info Bandung, Info Terkini, Info Hari Ini, Info Harian, Info Terbaru, Info Akurat, Info Terpercaya, Info indonesia, Info Terpopuler, Info Nasional, Gema Sulawesi, Gema",
-        "penulis_id": "All",
-        "editor_id": "All"
-    }];
-</script>
-@elseif (request()->is('category/*'))
-<script>
-    dataLayer = [{
-        "published_date": "All",
-        "rubrik": "All", // Ganti dengan variabel yang sesuai
-        "penulis": "All",
-        "editor": "All",
-        "id": "All",
-        "type": "All",
-        "source": "Not Available",
-        "topic": "Not Available",
-        "tag": "Berita, {{ $category }} , Terbaru, Terkini, Hari Ini",
-        "penulis_id": "All",
-        "editor_id": "All"
-    }];
-</script>
-@elseif (request()->is('tags/*'))
-<script>
-    dataLayer = [{
-        "published_date": "All",
-        "rubrik": "All",
-        "penulis": "All",
-        "editor": "All",
-        "id": "All",
-        "type": "All",
-        "source": "Not Available",
-        "topic": "Not Available",
-        "tag": "Berita, {{ $tag_name }} , Terbaru, Terkini, Hari Ini",
-        "penulis_id": "All",
-        "editor_id": "All"
-    }];
-</script>
-@else
-<script>
-    dataLayer = [{
-        "published_date": "All",
-        "rubrik": "All",
-        "penulis": "All",
-        "editor": "All",
-        "id": "All",
-        "type": "All",
-        "source": "Not Available",
-        "topic": "Not Available",
-        "tag": "{{ $post->tags }}",
-        "penulis_id": "All",
-        "editor_id": "All"
-    }];
-</script>
-@endif
-
-@php
-preg_match('/<img src="(.*?)">/', $post->article, $matches);
-$imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
-$image = asset($imagePath);
-$segments = request()->segments();
-$lastSegment = end($segments);
-$postTitle = str_replace('-', ' ', $lastSegment);
-$jsonLDData = [
-    '@context' => 'http://schema.org/',
-    '@type' => 'Organization',
-    'name' => 'www.gemasulawesi.com',
-    'url' => 'https://www.gemasulawesi.com',
-    'logo' => asset('frontend/img/favicon.png'),
-    'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
-];
-$jsonPost = [
-    '@context' => 'http://schema.org/',
-    '@type' => 'WebPage',
-    'headline' => $postTitle,
-    'url' => url()->current(),
-    'datePublished' => $post->created_at,
-    'image' => $image,
-    'thumbnailUrl' => $image,
-];
-
-$jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-$jsonP = json_encode($jsonPost, JSON_PRETTY_PRINT);
-if (request()->is('/*')) {
-    echo '<script type="application/ld+json">
-' . $jsonLD . '
-</script>';
-} elseif (request()->is('category/*')) {
-    echo '<script type="application/ld+json">
-' . $jsonLD . '
-</script>';
-} elseif (request()->is('tags/*')) {
-    echo '<script type="application/ld+json">
-' . $jsonLD . '
-</script>';
-} else {
-    echo '<script type="application/ld+json">
-' . $jsonP . '
-</script>';
-}
-@endphp
-
-@php
-if (!request()->is('/') && !request()->is('category/*') && !request()->is('tags/*')) {
-    preg_match('/<img src="(.*?)">/', $post->article, $matches);
-    $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
-    $image = asset($imagePath);
-    $segments = request()->segments();
-    $lastSegment = end($segments);
-    $postTitle = str_replace('-', ' ', $lastSegment);
-    $jsonLDData = [
-        '@context' => 'http://schema.org/',
-        '@type' => 'NewsArticle',
-        'mainEntityOfPage' => [
-            '@type' => 'WebPage',
-            '@id' => url()->current(),
-            'description' => $post->description,
-        ],
-        'headline' => $postTitle,
-        'image' => [
-            '@type' => 'ImageObject',
-            'url' => $image,
-        ],
-        'author' => [
-            '@type' => 'Person',
-            'name' => $post->editor->display_name,
-        ],
-        'publisher' => [
-            '@type' => 'Organization',
-            'name' => 'www.gemasulawesi.com',
-            'logo' => [
-                '@type' => 'ImageObject',
-                'url' => asset('frontend/img/favcion.png'),
-            ],
-        ],
-        'headline' => $postTitle,
-        'image' => $image,
-        'datePublished' => $post->created_at,
-        'dateModified' => $post->updated_at,
-    ];
-    $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-    echo '<script type="application/ld+json">
-' . $jsonLD. '
-</script>';
-}
-@endphp
-
-{{-- breadcrumb --}}
-@php
-$jsonLDData = [
-    '@context' => 'http://schema.org/',
-    '@type' => 'WebSite',
-    'url' => url()->current(),
-    'potentialAction' => [
-        [
-            '@type' => 'SearchAction',
-            'target' => url()->current(),
-            'query-input' => 'required name=search_term_string',
-        ],
-    ],
-];
-
-$artikel = [
-    '@context' => 'http://schema.org/',
-    '@type' => 'BreadcrumbList',
-    'itemListElement' => [
-        [
-            '@type' => 'ListItem',
-            'position' => 1,
-            'item' => [
-                '@id' => url()->current(),
-                'name' => 'Home',
-            ],
-        ],
-        [
-            '@type' => 'ListItem',
-            'position' => 2,
-            'item' => [
-                '@id' => url()->current(),
-                'name' => $post->rubrik->rubrik_name,
-            ],
-        ],
-    ],
-];
-
-$jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-$artikelLDData = json_encode($artikel, JSON_PRETTY_PRINT);
-
-if (request()->is('/*')) {
-    echo '<script type="application/ld+json">
-' . $jsonLD . '
-</script>';
-} elseif (request()->is('tags/*')) {
-    echo '<script type="application/ld+json">
-' . $jsonLD . '
-</script>';
-} elseif (request()->is('category/*')) {
-    echo '<script type="application/ld+json">
-' . $jsonLD . '
-</script>';
-} else {
-    echo '<script type="application/ld+json">
-' . $artikelLDData . '
-</script>';
-}
-@endphp
-@endif
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
@@ -467,20 +398,20 @@ if (request()->is('/*')) {
         </nav>
 
         <div class="socials sidenav__socials">
-            <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/" target="_blank"
-                aria-label="facebook">
+            <a class="social social-facebook" href="https://web.facebook.com/{{ get_setting('facebook') }}"
+                target="_blank" aria-label="facebook">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <a class="social social-twitter" href="https://twitter.com/gemasulawesi" target="_blank"
+            <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}" target="_blank"
                 aria-label="twitter">
                 <i class="fa-brands fa-square-x-twitter"></i>
             </a>
-            <a class="social social-youtube" href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg"
+            <a class="social social-youtube" href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
                 target="_blank" aria-label="youtube">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/" target="_blank"
-                aria-label="instagram">
+            <a class="social social-instagram" href="https://www.instagram.com/{{ get_setting('instagram') }}/"
+                target="_blank" aria-label="instagram">
                 <i class="fa-brands fa-square-instagram"></i>
             </a>
         </div>
@@ -604,7 +535,7 @@ if (request()->is('/*')) {
                         <!-- Nav-wrap -->
                         <nav class="flex-child d-none d-lg-block">
                             <ul class="nav__menu">
-                                @foreach ($rubriks->take(8) as $rubrik)
+                                @foreach ($rubriks->take(get_setting('count_rubrik')) as $rubrik)
                                     <li>
                                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                             class="link-nav__menu"
@@ -710,30 +641,31 @@ if (request()->is('/*')) {
                                 </a>
                             </div>
                             <div class="footer__contact">
-                                <p>Jl Kampali, Kelurahan Kampal Kecamatan Parigi
-                                    Kabupaten Parigi moutong Provinsi Sulawesi tengah.<br>
+                                <p>{{ get_setting('alamat') }}<br>
                                 </p>
                                 <p>
-                                    Email: <br>
-                                    Phone:
+                                    Email: {{ get_setting('email') }}<br>
+                                    Phone: {{ get_setting('no_hp') }}
                                 </p>
                             </div>
                             <div class="social__footer socials--medium socials--rounded">
-                                <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
-                                    target="_blank" aria-label="facebook">
+                                <a class="social social-facebook"
+                                    href="https://web.facebook.com/{{ get_setting('facebook') }}" target="_blank"
+                                    aria-label="facebook">
                                     <i class="fa-brands fa-facebook"></i>
                                 </a>
-                                <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}"
                                     target="_blank" aria-label="twitter">
                                     <i class="fa-brands fa-square-x-twitter"></i>
                                 </a>
                                 <a class="social social-youtube"
-                                    href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg" target="_blank"
-                                    aria-label="youtube">
+                                    href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
+                                    target="_blank" aria-label="youtube">
                                     <i class="fa-brands fa-youtube"></i>
                                 </a>
-                                <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
-                                    target="_blank" aria-label="instagram">
+                                <a class="social social-instagram"
+                                    href="https://www.instagram.com/{{ get_setting('instagram') }}" target="_blank"
+                                    aria-label="instagram">
                                     <i class="fa-brands fa-square-instagram"></i>
                                 </a>
                             </div>
@@ -741,21 +673,28 @@ if (request()->is('/*')) {
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Tentang Kami</a>
+                                    <a href="" class="footer__link" rel="noreferred">Tentang Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Hubungi Kami</a>
+                                    <a href="" class="footer__link" rel="noreferred">Kode Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Redaksi</a>
+                                    <a href="" class="footer__link" rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Kode Perilaku
+                                    <a href="" class="footer__link" rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Pedoman Media
+                                    <a href="" class="footer__link" rel="noreferred">Pedoman Media
                                         Siber</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="noreferred">Perlindungan Data
+                                        Pengguna</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
                         </div>
@@ -768,7 +707,7 @@ if (request()->is('/*')) {
                                 <span>
                                     <b>Telah Terverifikasi Dewan Pers</b>
                                     <br>
-                                    <b>Sertifikat Nomor <i>1043/DP-Verifikasi/K/XII/2022</i></b>
+                                    <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
                                 </span>
                             </div>
                         </div>

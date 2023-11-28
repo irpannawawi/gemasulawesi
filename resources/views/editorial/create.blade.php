@@ -329,16 +329,16 @@
                     // Periksa apakah elemen yang diklik adalah gambar
                     if (element.nodeName === 'IMG') {
                         // Tampilkan dialog khusus di sini
-                        showDialog(element.src, element.dataset.id);
+                        showDialog(element.src, element.dataset.id, element.dataset.source);
                     }
                 });
 
                 // Fungsi untuk menampilkan dialog khusus
-                function showDialog(imageSrc, dataId) {
+                function showDialog(imageSrc, dataId, source) {
                     // Logika untuk menampilkan dialog sesuai kebutuhan
                     // Gunakan library atau framework tertentu jika diperlukan
                     url = "{{ url('/browse_edit_image/') }}"
-                    configEditImage.url = url + '/' + dataId
+                    configEditImage.url = url + '/' + dataId+'/'+source
                     editor.windowManager.openUrl(configEditImage);
                 }
             });
@@ -374,7 +374,7 @@
                                 onMessage: (instance, data) => {
                                     $('#postImage').val(data.data.imageId)
                                     const imgHtml =
-                                        `<img src="${data.data.imageUrl}" data-id="${data.data.imageId}" />`;
+                                        `<img src="${data.data.imageUrl}" data-source="${data.data.source}" data-id="${data.data.imageId}" />`;
                                     tinymce.activeEditor.execCommand('mceInsertContent',
                                         false, imgHtml);
 

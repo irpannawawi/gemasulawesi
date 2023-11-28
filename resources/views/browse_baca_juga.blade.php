@@ -30,10 +30,18 @@
                         <div class="form-group">
     
                         </div>
-                        <div class="form-group">
-                            <input id="input_search" type="text" class="form-control input-sm"
-                                placeholder="Search..." data-url="https://editor.promediateknologi.id/photo/index"
-                                data-query-string="" value="">
+                        <a class="btn border btn-xs" href="{{$_SERVER['PHP_SELF']}}"><i class="fa fa-sync"></i> Refresh</a>
+                        <div class="col-3 float-right">
+                            <form action="{{$_SERVER['PHP_SELF']}}">
+                                @csrf
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search" name="q"
+                                        aria-label="Search" value="{{ !empty($q) ? $q : '' }}" aria-describedby="basic-addon1">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

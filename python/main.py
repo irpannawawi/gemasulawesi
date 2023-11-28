@@ -4,7 +4,7 @@ import multiprocessing as mp
 
 url_local = 'http://gemasulawesi.test'
 page_start = 1 # jumlah halaman isi 100 post 
-page_end = 2 
+page_end = 10
 
 proccess_list = []
 lock = mp.Lock()

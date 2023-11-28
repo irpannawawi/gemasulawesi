@@ -42,7 +42,7 @@
                             <td>{{ $post->published_at }}</td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{ route('editorial.delete', ['id' => $post->post_id]) }}"
+                                    <a href="{{ route('editorial.hardDelete', ['id' => $post->post_id]) }}"
                                         class="btn btn-sm btn-danger delete-btn">Hapus</a>
                                 </div>
                             </td>

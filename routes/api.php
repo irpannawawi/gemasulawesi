@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\RubrikController;
@@ -59,3 +60,5 @@ Route::post('/update_post_date', function(Request $request){
 
 Route::get('tags', [TagsController::class, 'select2']);
 Route::get('sources', [SourceController::class, 'select2']);
+Route::get('related', [BrowseController::class, 'select2related']);
+Route::get('topics', [BrowseController::class, 'select2topic']);

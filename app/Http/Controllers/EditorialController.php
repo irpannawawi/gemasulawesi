@@ -238,4 +238,19 @@ class EditorialController extends Controller
         // Redirect to the appropriate route based on post status
         return redirect()->back()->with('success', 'Post deleted successfully.');
     }
+
+    public function hardDelete($id){
+        // Find the post by its ID
+        $post = Posts::find($id);
+
+        // Check if the post exists
+        if (!$post) {
+            return back()->withInput()->withErrors(['error' => 'Post not found.']);
+        }
+
+        $post->delete();
+
+        // Redirect to the appropriate route based on post status
+        return redirect()->back()->with('success', 'Post deleted successfully.');
+    }
 }

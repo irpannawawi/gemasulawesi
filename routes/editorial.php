@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/editorial/scheduled', [EditorialController::class, 'scheduled'])->name('editorial.scheduled');
     Route::get('/editorial/trash', [EditorialController::class, 'trash'])->name('editorial.trash');
     Route::get('/editorial/delete/{id}', [EditorialController::class, 'delete'])->name('editorial.delete');
+    Route::get('/editorial/hardDelete/{id}', [EditorialController::class, 'HardDelete'])->name('editorial.hardDelete');
     
     
 });

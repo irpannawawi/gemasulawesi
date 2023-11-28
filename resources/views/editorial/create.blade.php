@@ -1,18 +1,20 @@
 @push('extra-css')
     <style>
-        .form-group{
-            padding: 0px 0px 0px 20px; 
-            margin: 15px 0px 0px 0px;
+        .form-group {
+            padding: 0px 0px 0px 20px;
+            margin: 25px 0px 0px 0px;
         }
-        .card-body{
+
+        .card-body {
             font-size: 14px;
             padding: 5px;
         }
     </style>
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-<!-- Tempus Dominus Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Tempus Dominus Bootstrap CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
 @endpush
 <x-app-layout>
     <x-slot name="header">
@@ -44,11 +46,8 @@
                         {{-- Related input --}}
                         <div class="form-group">
                             <label>Related article</label>
-                            <select class="form-control form-control-sm select2-multiple" id="select2Related" name="related[]" multiple>
-                                <option value="Sample Related article 1">Sample Related article 1</option>
-                                <option value="Sample Related article 2">Sample Related article 2</option>
-                                <option value="Sample Related article 3">Sample Related article 3</option>
-                                <option value="Sample Related article 4">Sample Related article 4</option>
+                            <select class="form-control form-control-sm select2-multiple" id="select2Related"
+                                name="related[]" multiple>
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
@@ -69,8 +68,8 @@
 
                         <div class="form-group">
                             <label for="descriptions">Description</label>
-                            <textarea maxlength="140" minlength="100" name="description" id="description" class="form-control form-control-sm" onchange="count_word_description()"
-                                required></textarea>
+                            <textarea maxlength="140" minlength="100" name="description" id="description" class="form-control form-control-sm"
+                                onchange="count_word_description()" required></textarea>
                             <span class="badge badge-info"><span id="counter_word_description">140</span> Character
                                 left</span>
                         </div>
@@ -284,9 +283,11 @@
         <script src="{{ url('/') }}/build/public/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
         <script src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script>
         {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
-        
-<!-- Tempus Dominus Bootstrap JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Tempus Dominus Bootstrap JavaScript -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js">
+        </script>
         <script>
             const configBacaJuga = {
                 title: 'Baca Juga',
@@ -439,6 +440,16 @@
 
             $('#publishBtn').on('click', (event) => {
                 event.preventDefault();
+                // Mengambil nilai dari textarea dengan id 'description'
+                const descriptionValue = $('#description').val();
+
+                // Memeriksa panjang karakter
+                if (descriptionValue.length < 100 || descriptionValue.length > 140) {
+                    // Menampilkan pesan kesalahan jika tidak memenuhi persyaratan
+                    alert('Description harus memiliki panjang antara 100 dan 140 karakter.');
+                    return; // Menghentikan proses lebih lanjut jika tidak memenuhi persyaratan
+                }
+                
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
                 $('#article-form').submit()
@@ -506,6 +517,46 @@
                                     return {
                                         id: source.source_id,
                                         text: source.source_name
+                                    };
+                                })
+                            };
+                        }
+                    }
+                });
+
+
+                $('#select2Related').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    placeholder: 'Pilih Artikel',
+                    ajax: {
+                        url: '/api/related',
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data.posts, function(post) {
+                                    return {
+                                        id: post.post_id,
+                                        text: post.title
+                                    };
+                                })
+                            };
+                        }
+                    }
+                });
+                $('#select2Topic').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    placeholder: 'Pilih Topic',
+                    ajax: {
+                        url: '/api/topics',
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data.topics, function(topic) {
+                                    return {
+                                        id: topic.topic_id,
+                                        text: topic.topic_name
                                     };
                                 })
                             };

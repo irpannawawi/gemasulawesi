@@ -1,9 +1,20 @@
 @push('extra-css')
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" integrity="sha512-aD9ophpFQ61nFZP6hXYu4Q/b/USW7rpLCQLX6Bi0WJHXNO7Js/fUENpBQf/+P4NtpzNX0jSgR5zVvPOJp+W2Kg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" integrity="sha512-kq3FES+RuuGoBW3a9R2ELYKRywUEQv0wvPTItv3DSGqjpbNtGWVdvT8qwdKkqvPzT93jp8tSF4+oN4IeTEIlQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />  --}}
+    <style>
+        .form-group {
+            padding: 0px 0px 0px 20px;
+            margin: 25px 0px 0px 0px;
+        }
 
+        .card-body {
+            font-size: 14px;
+            padding: 5px;
+        }
+    </style>
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2/css/select2.min.css">
     <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Tempus Dominus Bootstrap CSS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
 @endpush
 <x-app-layout>
     <x-slot name="header">
@@ -29,7 +40,7 @@
                         </div>
                         <div class="form-group">
                             <label for="content"><i class="mdi mdi-content-copy:"></i></label>
-                            <textarea class="editor" name="content" id="content" class="form-control" cols="2"><img src="{{ url('/') . '/storage/photos/' . $post->image->asset->file_name }}" data-source={{$post->image->image_sc_type}} data-id="{{ $post->image->image_id }}" />{!! $post->article !!}</textarea>
+                            <textarea class="editor" name="content" id="content" class="form-control" cols="2" rows="50"><img src="{{ url('/') . '/storage/photos/' . $post->image->asset->file_name }}" data-source={{$post->image->image_sc_type}} data-id="{{ $post->image->image_id }}" />{!! $post->article !!}</textarea>
                         </div>
 
                         {{-- Related input --}}

@@ -9,6 +9,19 @@
         <div class="card-header">
             <a class="btn btn-primary btn-xs" href="{{ route('editorial.create') }}"><i class="fa fa-edit"></i>Tambah
                 data</a>
+                <a class="btn border btn-xs" href="{{ route('editorial.published') }}"><i class="fa fa-sync"></i> Refresh</a>
+                <div class="col-3 float-right">
+                    <form action="{{ route('editorial.published') }}">
+                        @csrf
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="q"
+                                aria-label="Search" value="{{ !empty($q) ? $q : '' }}" aria-describedby="basic-addon1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-search"></i></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
         </div>
         <div class="card-body table-responsive">

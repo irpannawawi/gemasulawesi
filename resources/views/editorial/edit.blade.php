@@ -13,37 +13,37 @@
     </x-slot>
 
     <div class="card">
-        <form id="article-form" method="POST" action="{{ route('editorial.update', ['id'=>$post->post_id]) }}">
+        <form id="article-form" method="POST" action="{{ route('editorial.update', ['id' => $post->post_id]) }}">
             @csrf
             {{-- POST IMAGE --}}
-            <input type="hidden" id="postImage" name="post_image" value="{{$post->post_image}}">
+            <input type="hidden" id="postImage" name="post_image" value="{{ $post->post_image }}">
             <div class="card-body" style="min-height: 400px">
                 <div class="row">
                     <div class="col-lg-8 col-md-8">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" value="{{$post->title}}" maxlength="120" name="title" class="form-control"
-                                placeholder="Enter title ...">
+                            <input type="text" value="{{ $post->title }}" maxlength="120" name="title"
+                                class="form-control" placeholder="Enter title ...">
                             <span class="badge badge-info">120 Character</span>
 
                         </div>
                         <div class="form-group">
                             <label for="content"><i class="mdi mdi-content-copy:"></i></label>
-                            <textarea class="editor" name="content" id="content" class="form-control" cols="2"><img src="{{url('/').'/storage/photos/'.$post->image->asset->file_name}}" data-id="{{$post->image->image_id}}" />{!!$post->article!!}</textarea>
+                            <textarea class="editor" name="content" id="content" class="form-control" cols="2"><img src="{{ url('/') . '/storage/photos/' . $post->image->asset->file_name }}" data-source={{$post->image->image_sc_type}} data-id="{{ $post->image->image_id }}" />{!! $post->article !!}</textarea>
                         </div>
 
                         {{-- Related input --}}
                         <div class="form-group">
                             <label>Related article</label>
                             <select class="form-control select2-multiple" id="select2Related" name="related[]" multiple>
-                                    @if ($post->related_articles!=null)
-                                        @foreach (json_decode($post->related_articles) as $article)
-                                            @php
-                                                $articleData= App\Models\Posts::find($article);
-                                            @endphp
-                                            <option value="{{$article}}" selected>{{$articleData->title}}</option>
-                                        @endforeach
-                                    @endif
+                                @if ($post->related_articles != null)
+                                    @foreach (json_decode($post->related_articles) as $article)
+                                        @php
+                                            $articleData = App\Models\Posts::find($article);
+                                        @endphp
+                                        <option value="{{ $article }}" selected>{{ $articleData->title }}</option>
+                                    @endforeach
+                                @endif
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
@@ -57,7 +57,8 @@
                             <label for="rubrik">Rubrik</label>
                             <select class="form-control" id="select2Rubrik" name="rubrik">
                                 @foreach ($rubriks as $rubrik)
-                                    <option {{$post->rubrik->rubrik_name==$rubrik->rubrik_name?'selected':''}} value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}</option>
+                                    <option {{ $post->rubrik->rubrik_name == $rubrik->rubrik_name ? 'selected' : '' }}
+                                        value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -65,7 +66,7 @@
                         <div class="form-group">
                             <label for="descriptions">Description</label>
                             <textarea maxlength="140" name="description" id="description" class="form-control" onchange="count_word_description()"
-                                required>{{$post->description}}</textarea>
+                                required>{{ $post->description }}</textarea>
                             <span class="badge badge-info"><span id="counter_word_description">140</span> Character
                                 left</span>
                         </div>
@@ -74,14 +75,15 @@
                         <div class="form-group">
                             <label for="tag">Tag</label>
                             <select class="form-control" id="select2Tag" name="tags[]" multiple>
-                                @if ($post->tags!=null)
-                                        @foreach (json_decode($post->tags) as $tag)
-                                            @php
-                                                $articleData= App\Models\Tags::find($tag);
-                                            @endphp
-                                            <option value="{{$tag}}" selected>{{$articleData->tag_name}}</option>
-                                        @endforeach
-                                    @endif
+                                @if ($post->tags != null)
+                                    @foreach (json_decode($post->tags) as $tag)
+                                        @php
+                                            $articleData = App\Models\Tags::find($tag);
+                                        @endphp
+                                        <option value="{{ $tag }}" selected>{{ $articleData->tag_name }}
+                                        </option>
+                                    @endforeach
+                                @endif
                             </select>
 
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
@@ -94,14 +96,15 @@
                         <div class="form-group">
                             <label for="select2Source">Source</label>
                             <select class="form-control" id="select2Source" name="sources[]" multiple>
-                                @if ($post->sources!=null)
-                                        @foreach (json_decode($post->source) as $source)
-                                            @php
-                                                $articleData= App\Models\sources::find($source);
-                                            @endphp
-                                            <option value="{{$source}}" selected>{{$articleData->source_name}}</option>
-                                        @endforeach
-                                    @endif
+                                @if ($post->sources != null)
+                                    @foreach (json_decode($post->source) as $source)
+                                        @php
+                                            $articleData = App\Models\sources::find($source);
+                                        @endphp
+                                        <option value="{{ $source }}" selected>{{ $articleData->source_name }}
+                                        </option>
+                                    @endforeach
+                                @endif
                             </select>
                             <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
                                 data-target="#modalSource"><i class="fa fa-plus"></i> Add/Select more</button>
@@ -114,7 +117,8 @@
                         <div class="form-group">
                             <label for="select2Author">Author</label>
                             <select class="form-control select2-multiple" id="select2Author" name="author" multiple>
-                                <option value="{{Auth::user()->id}}" selected>{{Auth::user()->display_name}}</option>
+                                <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->display_name }}
+                                </option>
                             </select>
                             <button type="button" class="btn btn-default btn-sm"><i class="fa fa-plus"></i> Add/Select
                                 more</button>
@@ -127,14 +131,15 @@
                         <div class="form-group">
                             <label for="select2Topic">Topic</label>
                             <select class="form-control select2-multiple" id="select2Topic" name="topics[]" multiple>
-                                @if ($post->topics!=null)
-                                @foreach (json_decode($post->topics) as $topic)
-                                    @php
-                                        $articleData= App\Models\Topic::find($topic);
-                                    @endphp
-                                    <option value="{{$topic}}" selected>{{$articleData->topic_name}}</option>
-                                @endforeach
-                            @endif
+                                @if ($post->topics != null)
+                                    @foreach (json_decode($post->topics) as $topic)
+                                        @php
+                                            $articleData = App\Models\Topic::find($topic);
+                                        @endphp
+                                        <option value="{{ $topic }}" selected>{{ $articleData->topic_name }}
+                                        </option>
+                                    @endforeach
+                                @endif
                             </select>
                             <button type="button" class="btn btn-default btn-sm" data-target="#modalTopic"
                                 data-toggle="modal"><i class="fa fa-plus"></i> Add/Select more</button>
@@ -177,11 +182,13 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary bg-primary" id="publishBtn" type="submit"><i class="fa fa-paper-plane"></i>
+                <button class="btn btn-primary bg-primary" id="publishBtn" type="submit"><i
+                        class="fa fa-paper-plane"></i>
                     Publish</button>
 
                 <input type="hidden" id="isDraft" name="is_draft">
-                <button id="saveDraft" class="btn btn-secondary bg-secondary" type="button"><i class="fa fa-save"></i>
+                <button id="saveDraft" class="btn btn-secondary bg-secondary" type="button"><i
+                        class="fa fa-save"></i>
                     Simpan</button>
             </div>
         </form>
@@ -293,6 +300,10 @@
         <script src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script>
         {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 
+        <!-- Tempus Dominus Bootstrap JavaScript -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js">
+        </script>
         <script>
             const configBacaJuga = {
                 title: 'Baca Juga',
@@ -334,16 +345,16 @@
                     // Periksa apakah elemen yang diklik adalah gambar
                     if (element.nodeName === 'IMG') {
                         // Tampilkan dialog khusus di sini
-                        showDialog(element.src, element.dataset.id);
+                        showDialog(element.src, element.dataset.id, element.dataset.source);
                     }
                 });
 
                 // Fungsi untuk menampilkan dialog khusus
-                function showDialog(imageSrc, dataId) {
+                function showDialog(imageSrc, dataId, source) {
                     // Logika untuk menampilkan dialog sesuai kebutuhan
                     // Gunakan library atau framework tertentu jika diperlukan
                     url = "{{ url('/browse_edit_image/') }}"
-                    configEditImage.url = url + '/' + dataId
+                    configEditImage.url = url + '/' + dataId+'/'+source
                     editor.windowManager.openUrl(configEditImage);
                 }
             });
@@ -353,17 +364,18 @@
                 skin: 'oxide',
                 // =========== autosave tinymce ====================
 
-                // autosave_interval: '2s', // Ubah interval sesuai kebutuhan Anda
-                // autosave_restore_when_empty: true,
-                // autosave_ask_before_unload: false,
-                // autosave_retention: 'localStorage', // Opsional, defaultnya adalah 'localStorage'
-                
+                autosave_interval: '10s', // Ubah interval sesuai kebutuhan Anda
+                autosave_restore_when_empty: true,
+                autosave_ask_before_unload: false,
+                autosave_retention: 'localStorage', // Opsional, defaultnya adalah 'localStorage'
+
                 // =========== ./autosave tinymce ====================
-                
+
                 promotion: false,
-                plugins: 'autosave image link code media preview lists table customEditImage',
-                toolbar1: 'removeformat styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table',
-                toolbar2: ' code preview | link  dialog-insert-image media dialog-insert-baca-juga',
+                fullscreen_native: true,
+                plugins: 'autosave image link code media preview lists table customEditImage fullscreen',
+                toolbar1: 'removeformat styles | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist table fullscreen',
+                toolbar2: ' code preview | link  dialog-insert-image media dialog-insert-baca-juga | restoredraft',
                 image_title: true,
                 setup: (editor) => {
                     // Insert image
@@ -378,7 +390,7 @@
                                 onMessage: (instance, data) => {
                                     $('#postImage').val(data.data.imageId)
                                     const imgHtml =
-                                        `<img src="${data.data.imageUrl}" data-id="${data.data.imageId}" />`;
+                                        `<img src="${data.data.imageUrl}" data-source="${data.data.source}" data-id="${data.data.imageId}" />`;
                                     tinymce.activeEditor.execCommand('mceInsertContent',
                                         false, imgHtml);
 
@@ -434,78 +446,141 @@
                 $('#counter_word_description').text(140 - desc_len);
             }
 
-            $('#saveDraft').on('click', (event)=>{
+            $('#saveDraft').on('click', (event) => {
                 event.preventDefault();
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
                 $('#isDraft').val('1')
                 $('#article-form').submit()
             })
-            $('#publishBtn').on('click', (event)=>{
+
+            $('#publishBtn').on('click', (event) => {
                 event.preventDefault();
+                // Mengambil nilai dari textarea dengan id 'description'
+                const descriptionValue = $('#description').val();
+
+                // Memeriksa panjang karakter
+                if (descriptionValue.length < 100 || descriptionValue.length > 140) {
+                    // Menampilkan pesan kesalahan jika tidak memenuhi persyaratan
+                    alert('Description harus memiliki panjang antara 100 dan 140 karakter.');
+                    return; // Menghentikan proses lebih lanjut jika tidak memenuhi persyaratan
+                }
+                
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
                 $('#article-form').submit()
             })
         </script>
-    <script>
-        // Select 2
-        
+        <script>
+            $(document).ready(function() {
 
-$(document).ready(function() {
-    $('#select2Rubrik').select2({
-        theme: "bootstrap4",
-        // allowClear: true
-    });
+                // schedule time
+                var checkbox_schedule = $('#schedule')
+                var form_schedule = $('#form-schedule-time')
+                checkbox_schedule.on('change', (event) => {
+                    if (event.currentTarget.checked) {
+                        form_schedule.show()
+                        $('#saveDraft').hide()
+                    } else {
+                        form_schedule.val('')
+                        $('#saveDraft').show()
+                        form_schedule.hide()
+                    }
+                })
+                // Select 2
+                $('#select2Rubrik').select2({
+                    theme: "bootstrap4",
+                    // allowClear: true
+                });
 
-    $('.select2-multiple').select2({
-        theme: "bootstrap4",
-        templateSelection: formatState,
-        // allowClear: true
-    });
+                $('.select2-multiple').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    // allowClear: true
+                });
 
-    $('#select2Tag').select2({
-        theme: "bootstrap4",
-        templateSelection: formatState,
-        placeholder: 'Pilih Tag',
-        ajax: {
-            url: '/api/tags',
-            dataType: 'json',
-            processResults: function (data) {
-                return {
-                    results: $.map(data.tags, function (tag) {
-                        return {
-                            id: tag.tag_id,
-                            text: tag.tag_name
-                        };
-                    })
-                };
-            }
-        }
-    });
+                $('#select2Tag').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    placeholder: 'Pilih Tag',
+                    ajax: {
+                        url: '/api/tags',
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data.tags, function(tag) {
+                                    return {
+                                        id: tag.tag_id,
+                                        text: tag.tag_name
+                                    };
+                                })
+                            };
+                        }
+                    }
+                });
 
-    
-    $('#select2Source').select2({
-        theme: "bootstrap4",
-        templateSelection: formatState,
-        placeholder: 'Pilih Source',
-        ajax: {
-            url: '/api/sources',
-            dataType: 'json',
-            processResults: function (data) {
-                return {
-                    results: $.map(data.sources, function (source) {
-                        return {
-                            id: source.source_id,
-                            text: source.source_name
-                        };
-                    })
-                };
-            }
-        }
-    });
 
-});
-    </script>
+                $('#select2Source').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    placeholder: 'Pilih Source',
+                    ajax: {
+                        url: '/api/sources',
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data.sources, function(source) {
+                                    return {
+                                        id: source.source_id,
+                                        text: source.source_name
+                                    };
+                                })
+                            };
+                        }
+                    }
+                });
+
+
+                $('#select2Related').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    placeholder: 'Pilih Artikel',
+                    ajax: {
+                        url: '/api/related',
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data.posts, function(post) {
+                                    return {
+                                        id: post.post_id,
+                                        text: post.title
+                                    };
+                                })
+                            };
+                        }
+                    }
+                });
+                $('#select2Topic').select2({
+                    theme: "bootstrap4",
+                    templateSelection: formatState,
+                    placeholder: 'Pilih Topic',
+                    ajax: {
+                        url: '/api/topics',
+                        dataType: 'json',
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data.topics, function(topic) {
+                                    return {
+                                        id: topic.topic_id,
+                                        text: topic.topic_name
+                                    };
+                                })
+                            };
+                        }
+                    }
+                });
+
+            });
+        </script>
     @endpush
 </x-app-layout>

@@ -127,6 +127,14 @@
                         <div class="form-group">
                             <label for="select2Topic">Topic</label>
                             <select class="form-control select2-multiple" id="select2Topic" name="topics[]" multiple>
+                                @if ($post->topics!=null)
+                                @foreach (json_decode($post->topics) as $topic)
+                                    @php
+                                        $articleData= App\Models\Topic::find($topic);
+                                    @endphp
+                                    <option value="{{$topic}}" selected>{{$articleData->topic_name}}</option>
+                                @endforeach
+                            @endif
                             </select>
                             <button type="button" class="btn btn-default btn-sm" data-target="#modalTopic"
                                 data-toggle="modal"><i class="fa fa-plus"></i> Add/Select more</button>

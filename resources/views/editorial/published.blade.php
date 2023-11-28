@@ -33,7 +33,9 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>{{ $n++ }}</td>
-                            <td class="text-left">{{ $post->title }} <a target="__blank"
+                            <td class="text-left">{{ $post->title }} <a 
+                                    target="__blank"
+                                    rel="noreferrer"
                                     href="{{ route('singlePost', [
                                         'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
                                         'post_id' => $post->post_id,

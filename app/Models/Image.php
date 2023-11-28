@@ -20,6 +20,7 @@ class Image extends Model
         'caption',	
         'credit',	
         'source',	
+        'image_sc_type',	
     ];
 
     public function asset(): HasOne

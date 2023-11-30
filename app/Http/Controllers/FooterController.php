@@ -18,4 +18,8 @@ class FooterController extends Controller
     {
         return view('footer.redaksi');
     }
+    public function kodepers()
+    {
+        return view('footer.kodepers');
+    }
 }

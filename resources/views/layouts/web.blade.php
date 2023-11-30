@@ -685,7 +685,8 @@
                                         rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Kode Perilaku
+                                    <a href="{{ route('kodepers.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
@@ -708,7 +709,7 @@
                                     src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
                                     height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 <p>
-                                    <b>Telah Terverifikasi Dewan Pers</b>
+                                    <b>Telah di Verifikasi Dewan Pers</b>
                                     <br>
                                     <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
                                 </p>

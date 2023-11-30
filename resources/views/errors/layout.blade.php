@@ -374,16 +374,20 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Tentang Kami</a>
+                                    <a href="{{ route('tentangkami.index') }}" class="footer__link"
+                                        rel="noreferred">Tentang Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Kode Etik</a>
+                                    <a href="{{ route('kodeetik.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Redaksi</a>
+                                    <a href="{{ route('redaksi.index') }}" class="footer__link"
+                                        rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Kode Perilaku
+                                    <a href="{{ route('kodepers.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">

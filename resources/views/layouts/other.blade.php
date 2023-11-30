@@ -23,7 +23,22 @@
         } elseif (request()->is('topik-khusus/detail/*')) {
             $metaTitle = $topik->topic_name;
             $metaDeskripsi = $topik->topic_description;
-            $metaImage = 'Perbaiki';
+            $metaImage = get_post_thumbnail($topik->topic_id);
+            $type = 'website';
+        } elseif (request()->is('tentang-kami')) {
+            $metaTitle = 'Tentang Kami';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('kode-etik')) {
+            $metaTitle = 'Kode Etik';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('redaksi')) {
+            $metaTitle = 'Redaksi';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         }
         $subTitle = get_setting('sub_title');
@@ -100,6 +115,13 @@
                 dataLayer = [{
                     "breadcrumb_detail": "Section Page",
                     "content_category": "'.$topik->topic_name.'"
+                }];
+            </script>';
+        } elseif (request()->is('tentang-kami')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "tes"
                 }];
             </script>';
         }
@@ -455,21 +477,28 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Tentang Kami</a>
+                                    <a href="" class="footer__link" rel="noreferred">Tentang Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Hubungi Kami</a>
+                                    <a href="" class="footer__link" rel="noreferred">Kode Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Redaksi</a>
+                                    <a href="" class="footer__link" rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Kode Perilaku
+                                    <a href="" class="footer__link" rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Pedoman Media
+                                    <a href="" class="footer__link" rel="noreferred">Pedoman Media
                                         Siber</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="noreferred">Perlindungan Data
+                                        Pengguna</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
                         </div>

@@ -110,9 +110,7 @@
                                     <!-- Ad Banner 728 -->
                                 </div>
                             </div>
-                            <div class="paging paging--page">
-                                {{ $paginatedPost->onEachSide(1)->links() }}
-                            </div>
+                            {{ $paginatedPost->onEachSide(1)->links() }}
                         @else
                             <div class="search__empty mt-3">
                                 <p class="search__result">Hasil pencarian untuk <b>'{{ $keyword }}'</b> tidak

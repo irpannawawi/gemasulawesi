@@ -1180,13 +1180,24 @@ transition: 0.1s;
     margin: auto;
     }
 }
+@media (min-width: 767px) {
+    .footer__verifikasi {
+        margin-top: 10px;
+        background: #72f3c4;
+        color: #000;
+        align-items: center;
+        display: flex;
+        width: fit-content;
+        padding: 0.5em;
+        border-radius: 10px;
+        font-weight: 500;
+    }
+}
 .footer__verifikasi {
     margin-top: 10px;
     background: #72f3c4;
     color: #000;
     align-items: center;
-    display: flex;
-    width: fit-content;
     padding: 0.5em;
     border-radius: 10px;
     font-weight: 500;

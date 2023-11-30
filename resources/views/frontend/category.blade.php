@@ -190,9 +190,7 @@
                                 </a>
                             </div>
 
-                            <div class="paging paging--page">
-                                {{ $paginatedPost->onEachSide(1)->links() }}
-                            </div>
+                            {{ $paginatedPost->onEachSide(1)->links() }}
                         </div>
                     </div>
                 </section> <!-- end carousel posts -->

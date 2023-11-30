@@ -374,21 +374,28 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Tentang Kami</a>
+                                    <a href="" class="footer__link" rel="noreferred">Tentang Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Hubungi Kami</a>
+                                    <a href="" class="footer__link" rel="noreferred">Kode Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Redaksi</a>
+                                    <a href="" class="footer__link" rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Kode Perilaku
+                                    <a href="" class="footer__link" rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Pedoman Media
+                                    <a href="" class="footer__link" rel="noreferred">Pedoman Media
                                         Siber</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="noreferred">Perlindungan Data
+                                        Pengguna</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
                         </div>

@@ -119,3 +119,4 @@ require __DIR__ . '/administrator.php';
 require __DIR__ . '/report.php';
 require __DIR__ . '/ads.php';
 require __DIR__ . '/settings.php';
+require __DIR__ . '/menufooter.php';

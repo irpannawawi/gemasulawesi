@@ -41,7 +41,7 @@ Route::get('/queue_test', function () {
 
 // route editorial
 Route::get('/browse', [PhotoController::class, 'browse'])->name('browseImage');
-Route::get('/browse_edit_image/{id}', [PhotoController::class, 'browse_edit_image'])->name('browseEditImage');
+Route::get('/browse_edit_image/{id}/{source}', [PhotoController::class, 'browse_edit_image'])->name('browseEditImage');
 Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 Route::post('/create_img_byTinymce', [PhotoController::class, 'update_image_tinymce'])->name('assets.photo.updateTinymce');
 
@@ -93,6 +93,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/photo', [PhotoController::class, 'index'])->name('assets.photo.index');
     Route::post('/photo/upload', [PhotoController::class, 'upload'])->name('assets.photo.upload');
     Route::get('/photo/delete/{id}', [PhotoController::class, 'delete'])->name('assets.photo.delete');
+    Route::post('/photo/browse/upload', [PhotoController::class, 'browse_upload'])->name('assets.photo.browse.upload');
+    Route::get('/photo/browse/delete/{id}', [PhotoController::class, 'browse_delete'])->name('assets.photo.browse.delete');
 
     //videos
     Route::get('/video', [VideoController::class, 'index'])->name('assets.video.index');
@@ -110,13 +112,13 @@ Route::get('/errors', function () {
 
 require __DIR__ . '/public.php';
 require __DIR__ . '/auth.php';
+require __DIR__ . '/ads.php';
+require __DIR__ . '/administrator.php';
 require __DIR__ . '/editorial.php';
-require __DIR__ . '/web-management.php';
 require __DIR__ . '/galeri.php';
 require __DIR__ . '/breakingNews.php';
 require __DIR__ . '/notification.php';
-require __DIR__ . '/administrator.php';
 require __DIR__ . '/report.php';
-require __DIR__ . '/ads.php';
+require __DIR__ . '/web-management.php';
 require __DIR__ . '/settings.php';
 require __DIR__ . '/menufooter.php';

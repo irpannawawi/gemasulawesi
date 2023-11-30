@@ -29,16 +29,19 @@
                     Refresh</a>
             </div>
             <div class="float-right">
+                <form action="{{route('browseImage')}}">
+                @csrf
                 <div class="form-inline">
                     <div class="form-group">
 
                     </div>
                     <div class="form-group">
-                        <input id="input_search" type="text" class="form-control input-sm" placeholder="Search..."
-                            data-url="https://editor.promediateknologi.id/photo/index" data-query-string=""
-                            value="">
+                        <input id="input_search" type="search" class="form-control input-sm" placeholder="Search..."
+                            name="q" value="{{!empty($q)?$q:''}}">
+                        <button class="btn"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
         <div class="card-body">
@@ -51,22 +54,23 @@
                                     <img src="{{ url('storage/photos/' . $photo->asset->file_name) }}" alt=""
                                         title="" class="img-responsive" style="width:214px;height:95px">
                                     <div style="margin-top:5px">
-                                        <small title="">&nbsp;</small><br>
+                                        <small title="">{{substr($photo->caption, 0,35)}}...</small><br>
                                         <small title="Uploader"><b>by: Uploader</b></small>
                                         <br><small title="Zona Bandung">Author Name</small>
                                         <div class="float-right">
                                             <button type="button" class="btn btn-xs bg-primary btn-primary btn-edit"
-                                                onclick="sendImageData('{{ $photo->image_id }}', '{{ url('storage/photos') . '/' . $photo->asset->file_name }}')"
+                                                onclick="sendImageData('{{ $photo->image_id }}', '{{ url('storage/photos') . '/' . $photo->asset->file_name }}', 'original')"
                                                 title="Quick use"><i class="fa fa-check" aria-hidden="true"></i>
                                             </button>
                                             <button type="button" class="btn btn-xs btn-default btn-edit"
-                                                data-id="{{$photo->image_id}}" title="Use/Edit"><i class="fa fa-edit"
+                                                onclick="sendImageData('{{ $photo->image_id }}', '{{ url('storage/photos') . '/' . $photo->asset->file_name }}', 'edited')"
+                                                data-id="{{ $photo->image_id }}" title="Use/Edit"><i class="fa fa-edit"
                                                     aria-hidden="true"></i>
-                                            </button><button type="button"
+                                            </button><a onclick="return confirm('Hapus gambar?')"
                                                 class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
-                                                data-src="{{ route('assets.photo.delete', ['id', $photo->id]) }}"
-                                                data-id="{{$photo->image_id}}" title="Delete"><i class="fa fa-trash"
-                                                    aria-hidden="true"></i></button>
+                                                href="{{ route('assets.photo.browse.delete', ['id' => $photo->image_id]) }}"
+                                                data-id="{{ $photo->image_id }}" title="Delete"><i class="fa fa-trash"
+                                                    aria-hidden="true"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +84,7 @@
                 </div>
             </div>
             <div class="row mt-2">
-                {{$photos->links('vendor.pagination.bootstrap-4')}}
+                {{ $photos->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>
@@ -88,7 +92,7 @@
         $modalTitle = 'Upload photo';
     @endphp
     <x-bs-modal id="uploadModal" :title="$modalTitle">
-        <form method="post" enctype="multipart/form-data" action="{{ route('assets.photo.upload') }}">
+        <form method="post" enctype="multipart/form-data" action="{{ route('assets.photo.browse.upload') }}">
             @csrf
             <div class="modal-body">
                 <div class="form-group p-0 mb-1">
@@ -130,8 +134,7 @@
 
 
     <script>
-        
-        function sendImageData(id, url) {
+        function sendImageData(id, url, source) {
             console.log({
                 id: id,
             })
@@ -139,19 +142,19 @@
                 mceAction: 'insertImage',
                 data: {
                     imageUrl: url,
-                    imageId: id
+                    imageId: id,
+                    source: source
                 }
             }, "*")
         }
-        
+
         window.addEventListener('message', (event) => {
             var data = event.data;
-            
+
             // Do something with the data received here
             console.log('message received from TinyMCE', data);
         });
-        
-        </script>
+    </script>
 </body>
 
 </html>

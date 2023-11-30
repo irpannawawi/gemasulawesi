@@ -32,10 +32,11 @@
                     <form method="post" enctype="multipart/form-data"
                         action="{{ route('assets.photo.updateTinymce') }}">
                         @csrf
+                        <input type="hidden" value="{{ $image->image_id }}" name="image_id" />
+                        <input type="hidden" value="{{ $source }}" name="source_image" />
                         <div class="modal-body">
                             <div class="form-group p-0 mb-1">
                                 <label for="caption">Caption</label>
-                                <input type="hidden" value="{{ $image->image_id }}" name="image_id" />
                                 <input type="text" class="form-control" value="{{ $image->caption }}" name="caption"
                                     id="caption">
                             </div>

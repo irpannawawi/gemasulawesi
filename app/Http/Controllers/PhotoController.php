@@ -13,36 +13,53 @@ class PhotoController extends Controller
 {
     public function index()
     {
-        $photos = Image::orderBy('image_id', 'DESC')->paginate(20);
+        $photos = Image::orderBy('image_id', 'DESC')->where('image_sc_type', 'original')->paginate(20);
         return view('assets.photo.index', compact('photos'));
     }
 
-    public function browse()
+    public function browse(Request $request)
     {
-        $data['photos'] = Image::orderBy('image_id', 'DESC')->paginate(12);
+        $q = $request->q;
+        $data['photos'] = Image::orderBy('image_id', 'DESC')
+                                ->where('caption', 'LIKE', '%'.$q.'%')
+                                ->where('image_sc_type', 'original')
+                                ->paginate(12);
         return view('browse', $data);
     }
 
-    public function browse_edit_image($imageId)
+    public function browse_edit_image($imageId, $source)
     {
         $data['image'] = Image::find($imageId);
+        $data['source'] = $source;
         return view('editorial.components.modal_edit_image', $data);
     }
 
     public function update_image_tinymce(Request $request)
     {
+        // jika source == ORIGINAL
         $old_image = Image::find($request->image_id);
-        $image = new Image;
-        $image->asset_id = $old_image->asset->asset_id;
-        $image->uploader_id = Auth::user()->id;
-        $image->author = $request->author;
-        $image->caption = $request->caption;
-        $image->credit = $request->credit;
-        $image->source = $request->source;
-        $image->save();
+        if($request->source_image=='original'){
+            // update data lama
+            $old_image->author = $request->author;
+            $old_image->caption = $request->caption;
+            $old_image->credit = $request->credit;
+            $old_image->source = $request->source;
+            $old_image->save();
+            $image=$old_image;
+        }else{
+            // buat baru
+            $image = new Image;
+            $image->asset_id = $old_image->asset->asset_id;
+            $image->uploader_id = Auth::user()->id;
+            $image->author = $request->author;
+            $image->caption = $request->caption;
+            $image->credit = $request->credit;
+            $image->source = $request->source;
+            $image->image_sc_type = $request->source_image;
+            $image->save();
+        }
         $image_url = Storage::url('photos/' . $image->asset->file_name);
-
-        return redirect()->route('browseEditImage', ['id' => $image->image_id])->with(['msg' => 'success', 'image_url' => $image_url, 'image_id' => $image->image_id]);
+        return redirect()->route('browseEditImage', ['id' => $image->image_id, 'source'=>$request->source_image])->with(['msg' => 'success', 'image_url' => $image_url, 'image_id' => $image->image_id]);
     }
 
     public function upload(Request $request)
@@ -64,6 +81,27 @@ class PhotoController extends Controller
         ];
         Image::create($imageDetails);
         return redirect()->route('assets.photo.index');
+    }
+
+    public function browse_upload(Request $request)
+    {
+        $path = $request->file('photo')->store('public/photos');
+        // insert to file table
+        $asset = Asset::create(['file_name' => explode('/', $path)[2]]);
+
+
+        // insert image details
+        $imageDetails = [
+            'asset_id' => $asset->asset_id,
+            'uploader_id' => Auth::user()->id,
+            'author' => $request->author,
+            'caption' => $request->caption,
+            'credit' => $request->credit,
+            'source' => $request->source,
+
+        ];
+        Image::create($imageDetails);
+        return redirect()->route('browseImage');
     }
 
     public function upload_api(Request $request)
@@ -125,10 +163,21 @@ class PhotoController extends Controller
         $image = Image::find($id);
 
         // insert to file table
-        $image->delete();
+        // $image->delete();
         $asset_id = $image->asset_id;
         Asset::where(['asset_id' => $asset_id])->delete();
 
+        return redirect()->back()->with('success', 'Photo deleted successfully.');
+    }
+
+    public function browse_delete($id)
+    {
+        $image = Image::find($id);
+
+        // insert to file table
+        $image->delete();
+        $asset_id = $image->asset_id;
+        // Asset::where(['asset_id' => $asset_id])->delete();
         return redirect()->back()->with('success', 'Photo deleted successfully.');
     }
 }

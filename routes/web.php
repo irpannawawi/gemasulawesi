@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 // test queue
 use App\Jobs\TestQueue;
+use App\Models\Posts;
 
 Route::get('/queue_test', function () {
     TestQueue::dispatch([
@@ -121,3 +122,12 @@ require __DIR__ . '/notification.php';
 require __DIR__ . '/report.php';
 require __DIR__ . '/web-management.php';
 require __DIR__ . '/settings.php';
+require __DIR__ . '/amp.php';
+
+
+Route::get('count_post', function(){
+    $data = [
+        'post'=>Posts::all()->count(),
+    ];
+    return view('count_post', $data);
+});

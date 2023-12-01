@@ -49,7 +49,7 @@
                 </div>
                 <!-- Entry Image -->
                 <div class="thumb image-single-post">
-                    <amp-img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500" width="700">
+                    <img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500" width="700">
                     <p class="photo__caption">{!! !empty($post->image)?strip_tags($post->image->caption):'' !!}</p>
                 </div>
 

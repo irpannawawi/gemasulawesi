@@ -30,7 +30,7 @@
                                 <span>Tim Gema</span>
                             </li>
                             <li class="entry__meta-date">
-                                {{ convert_date_to_ID($post->created_at) }}
+                                {{ convert_date_to_ID($post->published_at) }}
                             </li>
                         </ul>
                     </div>
@@ -232,7 +232,7 @@
                                                     ]) }}"
                                                         class="post-title">{{ $post_item->title }}</a>
                                                 </h3>
-                                                <p class="bt__date">{{ convert_date_to_ID($post_item->created_at) }}</p>
+                                                <p class="bt__date">{{ convert_date_to_ID($post_item->published_at) }}</p>
                                             </div>
                                         </article>
                                     </li>

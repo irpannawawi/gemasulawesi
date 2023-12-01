@@ -690,15 +690,18 @@
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Pedoman Media
+                                    <a href="{{ route('pedoman.index') }}" class="footer__link"
+                                        rel="noreferred">Pedoman Media
                                         Siber</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Perlindungan Data
+                                    <a href="{{ route('perlindungan.index') }}" class="footer__link"
+                                        rel="noreferred">Perlindungan Data
                                         Pengguna</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
+                                    <a href="{{ route('lowongan.index') }}" class="footer__link"
+                                        rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
                         </div>

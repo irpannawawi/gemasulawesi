@@ -22,4 +22,16 @@ class FooterController extends Controller
     {
         return view('footer.kodepers');
     }
+    public function pedoman()
+    {
+        return view('footer.pedoman');
+    }
+    public function perlindungan()
+    {
+        return view('footer.perlindungan');
+    }
+    public function lowongan()
+    {
+        return view('footer.lowongan');
+    }
 }

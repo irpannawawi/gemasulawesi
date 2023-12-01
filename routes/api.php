@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\PhotoController;
@@ -57,6 +58,7 @@ Route::post('/update_post_date', function(Request $request){
     return response()->json(['status'=> 'success', 'data'=>$res]);
 });
 
+Route::post('migrate', [ApiController::class, 'insert']);
 
 Route::get('tags', [TagsController::class, 'select2']);
 Route::get('sources', [SourceController::class, 'select2']);

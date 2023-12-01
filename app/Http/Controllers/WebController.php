@@ -30,7 +30,7 @@ class WebController extends Controller
         $data['topikKhusus'] = Topic::get();
 
         // posts 1-30
-        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
+        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
             ->where('status', 'published')
             ->paginate(30);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
@@ -52,12 +52,12 @@ class WebController extends Controller
             $data['paginatedPost'] = Posts::where('status', 'published')
                 ->where('created_at', '>=', $startDate)
                 ->where('created_at', '<=', $endDate)
-                ->orderBy('created_at', 'DESC')
+                ->orderBy('published_at', 'DESC')
                 ->paginate(10);
         } else {
             // Jika tidak ada tanggal yang dipilih, tampilkan semua berita
             $latestPosts = Posts::where('status', 'published')
-                ->orderBy('created_at', 'DESC')
+                ->orderBy('published_at', 'DESC')
                 ->limit(10000)
                 ->get();
 
@@ -103,7 +103,7 @@ class WebController extends Controller
         }
 
         $post = Posts::find($post_id);
-        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
+        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
             ->where('status', 'published')
             ->limit(10)->get();
         $data['beritaTerkini'] = $data['paginatedPost'];
@@ -133,7 +133,7 @@ class WebController extends Controller
         $data['topikKhusus'] = Topic::get();
 
         // posts 1-20
-        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
+        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
             ->where(['status' => 'published', 'category' => $rubrik->rubrik_id])
             ->paginate(20);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
@@ -148,7 +148,7 @@ class WebController extends Controller
         $data['topikKhusus'] = Topic::where('topic_id', $topic->topic_id)->get();
 
         // posts 1-20
-        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
+        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
             ->where(['status' => 'published'])
             ->where('topics', 'LIKE', '%' . $topic->topic_id . '%')
             ->paginate(20);
@@ -165,11 +165,23 @@ class WebController extends Controller
         $data['topikKhusus'] = Topic::get();
 
         // posts 1-20
-        $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
+        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
             ->where(
                 [
                     ['status', '=', 'published'],
-                    ['tags', 'like', '%"' . $tag_id . '"%']
+                    ['tags', 'like', '%,' . $tag_id . ',%']
+                ]
+            )
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '[' . $tag_id . ',%']
+                ]
+            )
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '%,' . $tag_id . ']']
                 ]
             )
             ->paginate(10);

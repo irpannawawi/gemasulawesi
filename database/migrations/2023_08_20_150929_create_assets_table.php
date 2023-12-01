@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('assets', function (Blueprint $table) {
-            $table->increments('asset_id')->primary;
+            $table->bigIncrements('asset_id')->primary;
             $table->string('file_name');
             $table->timestamps();
         });

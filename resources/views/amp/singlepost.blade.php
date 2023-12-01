@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('amp.layouts.web')
 @section('content')
     <!-- Breadcrumbs -->
     <div class="container">
@@ -30,7 +30,7 @@
                                 <span>Tim Gema</span>
                             </li>
                             <li class="entry__meta-date">
-                                {{ convert_date_to_ID($post->published_at) }}
+                                {{ convert_date_to_ID($post->created_at) }}
                             </li>
                         </ul>
                     </div>
@@ -49,7 +49,7 @@
                 </div>
                 <!-- Entry Image -->
                 <div class="thumb image-single-post">
-                    <img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500" width="700">
+                    <amp-img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500" width="700">
                     <p class="photo__caption">{!! !empty($post->image)?strip_tags($post->image->caption):'' !!}</p>
                 </div>
 
@@ -76,7 +76,7 @@
 
                                 <!-- halaman -->
                                 <div class="halaman">
-                                    <divs class="halaman__teaser">Halaman: </divs>
+                                    <div class="halaman__teaser">Halaman: </div>
                                     <div class="halaman__wrap">
                                         @for ($i = 1; $i <= $totalPages; $i++)
                                             <div class="halaman__item">
@@ -218,9 +218,9 @@
                                                         'post_id' => $post_item->post_id,
                                                         'slug' => $post_item->slug,
                                                     ]) }}">
-                                                    <img data-src="{{ get_post_image($post_item->post_id) }}"
+                                                    <amp-img data-src="{{ get_post_image($post_item->post_id) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.jpg"
-                                                        alt="{{ $post->title }}" class="lazyload">
+                                                        alt="{{ $post->title }}" class="lazyload" height="100" width="100">
                                                 </a>
                                             </div>
                                             <div class="post-list-small__body">
@@ -232,7 +232,7 @@
                                                     ]) }}"
                                                         class="post-title">{{ $post_item->title }}</a>
                                                 </h3>
-                                                <p class="bt__date">{{ convert_date_to_ID($post_item->published_at) }}</p>
+                                                <p class="bt__date">{{ convert_date_to_ID($post_item->created_at) }}</p>
                                             </div>
                                         </article>
                                     </li>

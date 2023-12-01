@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('source', function (Blueprint $table) {
-            $table->increments('source_id')->primary;
+            $table->bigIncrements('source_id')->primary;
             $table->string('source_name');
             $table->string('source_alias')->nullable();
             $table->string('source_website')->nullable();

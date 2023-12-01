@@ -62,6 +62,7 @@ def upload_images(local_url, media_id):
     # getting media info
     media_url = "https://www.gemasulawesi.com/wp-json/wp/v2/media/"+str(media_id)
     media = requests.get(media_url).json()
+    
     # print(media)
     # upload image
     post_data = {

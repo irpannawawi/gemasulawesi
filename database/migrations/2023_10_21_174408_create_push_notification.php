@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('push_notification', function (Blueprint $table) {
-            $table->increments('notif_id')->primary;
+            $table->bigIncrements('notif_id')->primary;
             $table->bigInteger('post_id');
             $table->string('title');
             $table->text('body');

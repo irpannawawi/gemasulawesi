@@ -47,7 +47,7 @@
                                                                 'slug' => $post->slug,
                                                             ]) }}">{{ $post->title }}</a>
                                                     </h3>
-                                                    <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                                    <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}</p>
                                                 </div>
                                             </article>
                                         </li>
@@ -93,7 +93,7 @@
                                                                 'slug' => $post->slug,
                                                             ]) }}">{{ $post->title }}</a>
                                                     </h3>
-                                                    <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                                    <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}</p>
                                                 </div>
                                             </article>
                                         </li>

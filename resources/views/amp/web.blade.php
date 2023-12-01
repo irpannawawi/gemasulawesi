@@ -1,4 +1,4 @@
-@extends('layouts.web')
+@extends('amp.layouts.web')
 @section('content')
     <div class="main-container container" id="main-container">
 
@@ -117,7 +117,7 @@
                                                             'slug' => $choice->post->slug,
                                                         ]) }}">{{ Str::limit($choice->post->title, 60) }}</a>
                                                 </h2>
-                                                <p class="bt__date">{{ convert_date_to_ID($choice->post->published_at) }}</p>
+                                                <p class="bt__date">{{ convert_date_to_ID($choice->post->created_at) }}</p>
                                             </div>
                                         </div>
                                     </article>
@@ -170,7 +170,7 @@
                                                         ]) }}"
                                                             class="post-title">{{ $post->title }}</a>
                                                     </h3>
-                                                    <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}
+                                                    <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}
                                                     </p>
                                                 </div>
                                             </article>
@@ -239,7 +239,7 @@
                                                     ]) }}"
                                                         class="post-title">{{ $post->title }}</a>
                                                 </h3>
-                                                <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}</p>
+                                                <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
                                             </div>
                                         </article>
                                     </li>

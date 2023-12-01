@@ -45,7 +45,7 @@ if (!function_exists('getYoutubeData')) {
     {
         setlocale(LC_TIME, 'id_ID');
         \Carbon\Carbon::setLocale('id');
-        $converted = \Carbon\Carbon::parse($date, 'id_ID');
+        $converted = \Carbon\Carbon::parse($date);
         return $converted->isoFormat('D MMMM Y H:mm [WIB]');
     }
 

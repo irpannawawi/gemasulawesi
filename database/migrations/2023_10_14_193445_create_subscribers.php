@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('subscribers', function (Blueprint $table) {
-            $table->increments('subs_id')->primary;
+            $table->bigIncrements('subs_id')->primary;
             $table->string('token');
             $table->timestamps();
         });

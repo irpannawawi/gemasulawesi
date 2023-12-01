@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ads', function (Blueprint $table) {
-            $table->increments('ads_id')->primary;
+            $table->bigIncrements('ads_id')->primary;
             $table->string('title');
             $table->text('value');
             $table->enum('type', ['html', 'img']);

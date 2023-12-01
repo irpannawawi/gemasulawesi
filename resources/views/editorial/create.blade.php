@@ -10,11 +10,11 @@
             padding: 5px;
         }
     </style>
-    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    @vite('resources/js/select2.js')
+    @vite('resources/js/tempus.js')
+    {{-- <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css"> --}}
     <!-- Tempus Dominus Bootstrap CSS -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/css/tempusdominus-bootstrap-4.min.css">
 @endpush
 <x-app-layout>
     <x-slot name="header">
@@ -281,13 +281,10 @@
     {{-- Scripts --}}
     @push('custom-scripts')
         <script src="{{ url('/') }}/build/public/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-        <script src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script>
+        {{-- <script src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script> --}}
         {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+        @vite('resources/js/footer-editorial.js')
 
-        <!-- Tempus Dominus Bootstrap JavaScript -->
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js">
-        </script>
         <script>
             const configBacaJuga = {
                 title: 'Baca Juga',
@@ -338,7 +335,7 @@
                     // Logika untuk menampilkan dialog sesuai kebutuhan
                     // Gunakan library atau framework tertentu jika diperlukan
                     url = "{{ url('/browse_edit_image/') }}"
-                    configEditImage.url = url + '/' + dataId+'/'+source
+                    configEditImage.url = url + '/' + dataId + '/' + source
                     editor.windowManager.openUrl(configEditImage);
                 }
             });
@@ -421,42 +418,40 @@
                 return $state;
             }
 
-            $('#description').on('keyup', () => {
-                count_word_description();
-            });
-
-            function count_word_description() {
-                let desc_len = $('#description').val().length;
-                $('#counter_word_description').text(140 - desc_len);
-            }
-
-            $('#saveDraft').on('click', (event) => {
-                event.preventDefault();
-                localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
-                localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
-                $('#isDraft').val('1')
-                $('#article-form').submit()
-            })
-
-            $('#publishBtn').on('click', (event) => {
-                event.preventDefault();
-                // Mengambil nilai dari textarea dengan id 'description'
-                const descriptionValue = $('#description').val();
-
-                // Memeriksa panjang karakter
-                if (descriptionValue.length < 100 || descriptionValue.length > 140) {
-                    // Menampilkan pesan kesalahan jika tidak memenuhi persyaratan
-                    alert('Description harus memiliki panjang antara 100 dan 140 karakter.');
-                    return; // Menghentikan proses lebih lanjut jika tidak memenuhi persyaratan
+            
+            document.addEventListener("DOMContentLoaded",()=>{
+                $('#description').on('keyup', () => {
+                    count_word_description();
+                });
+    
+                function count_word_description() {
+                    let desc_len = $('#description').val().length;
+                    $('#counter_word_description').text(140 - desc_len);
                 }
-                
-                localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
-                localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
-                $('#article-form').submit()
-            })
-        </script>
-        <script>
-            $(document).ready(function() {
+                $('#saveDraft').on('click', (event) => {
+                    event.preventDefault();
+                    localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
+                    localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
+                    $('#isDraft').val('1')
+                    $('#article-form').submit()
+                })
+    
+                $('#publishBtn').on('click', (event) => {
+                    event.preventDefault();
+                    // Mengambil nilai dari textarea dengan id 'description'
+                    const descriptionValue = $('#description').val();
+    
+                    // Memeriksa panjang karakter
+                    if (descriptionValue.length < 100 || descriptionValue.length > 140) {
+                        // Menampilkan pesan kesalahan jika tidak memenuhi persyaratan
+                        alert('Description harus memiliki panjang antara 100 dan 140 karakter.');
+                        return; // Menghentikan proses lebih lanjut jika tidak memenuhi persyaratan
+                    }
+    
+                    localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
+                    localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
+                    $('#article-form').submit()
+                })
 
                 // schedule time
                 var checkbox_schedule = $('#schedule')

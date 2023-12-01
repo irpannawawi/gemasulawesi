@@ -13,6 +13,10 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
+                'resources/js/footer-editorial.js',
+                'resources/js/footer.js',
+                'resources/js/select2.js',
+                'resources/js/tempus.js',
             ],
             refresh: true,
         }),

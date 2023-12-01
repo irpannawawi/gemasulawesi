@@ -169,7 +169,19 @@ class WebController extends Controller
             ->where(
                 [
                     ['status', '=', 'published'],
-                    ['tags', 'like', '%"' . $tag_id . '"%']
+                    ['tags', 'like', '%,' . $tag_id . ',%']
+                ]
+            )
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '[' . $tag_id . ',%']
+                ]
+            )
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '%,' . $tag_id . ']']
                 ]
             )
             ->paginate(10);

@@ -242,20 +242,20 @@
         </nav>
 
         <div class="socials sidenav__socials">
-            <a class="social social-facebook" href="https://web.facebook.com/{{ get_setting('facebook') }}"
-                target="_blank" aria-label="facebook">
+            <a class="social social-facebook" href="https://{{ get_setting('facebook') }}" target="_blank"
+                aria-label="facebook">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}" target="_blank"
+            <a class="social social-twitter" href="https://{{ get_setting('x') }}" target="_blank"
                 aria-label="twitter">
                 <i class="fa-brands fa-square-x-twitter"></i>
             </a>
-            <a class="social social-youtube" href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
-                target="_blank" aria-label="youtube">
+            <a class="social social-youtube" href="https://{{ get_setting('youtube') }}" target="_blank"
+                aria-label="youtube">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a class="social social-instagram" href="https://www.instagram.com/{{ get_setting('instagram') }}/"
-                target="_blank" aria-label="instagram">
+            <a class="social social-instagram" href="https://{{ get_setting('instagram') }}" target="_blank"
+                aria-label="instagram">
                 <i class="fa-brands fa-square-instagram"></i>
             </a>
         </div>
@@ -331,20 +331,19 @@
                                 </div>
                             </div>
                             <div class="socials socials--nobase socials--nav socials--dark justify-content-end">
-                                <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
+                                <a class="social social-facebook" href="https://{{ get_setting('facebook') }}"
                                     target="_blank" aria-label="facebook">
                                     <i class="fa-brands fa-facebook"></i>
                                 </a>
-                                <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                <a class="social social-twitter" href="https://{{ get_setting('instagram') }}"
                                     target="_blank" aria-label="twitter">
                                     <i class="fa-brands fa-square-x-twitter"></i>
                                 </a>
-                                <a class="social social-youtube"
-                                    href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg" target="_blank"
-                                    aria-label="youtube">
+                                <a class="social social-youtube" href="https://{{ get_setting('youtube') }}"
+                                    target="_blank" aria-label="youtube">
                                     <i class="fa-brands fa-youtube"></i>
                                 </a>
-                                <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
+                                <a class="social social-instagram" href="https://{{ get_setting('instagram') }}"
                                     target="_blank" aria-label="instagram">
                                     <i class="fa-brands fa-square-instagram"></i>
                                 </a>
@@ -491,81 +490,77 @@
                                 </p>
                             </div>
                             <div class="social__footer socials--medium socials--rounded">
-                                <a class="social social-facebook"
-                                    href="https://web.facebook.com/{{ get_setting('facebook') }}" target="_blank"
-                                    aria-label="facebook">
+                                <a class="social social-facebook" href="https://{{ get_setting('facebook') }}"
+                                    target="_blank" aria-label="facebook">
                                     <i class="fa-brands fa-facebook"></i>
                                 </a>
-                                <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}"
+                                <a class="social social-twitter" href="https://{{ get_setting('x') }}"
                                     target="_blank" aria-label="twitter">
                                     <i class="fa-brands fa-square-x-twitter"></i>
                                 </a>
-                                <a class="social social-youtube"
-                                    href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
+                                <a class="social social-youtube" href="https://{{ get_setting('youtube') }}"
                                     target="_blank" aria-label="youtube">
                                     <i class="fa-brands fa-youtube"></i>
                                 </a>
-                                <a class="social social-instagram"
-                                    href="https://www.instagram.com/{{ get_setting('instagram') }}" target="_blank"
-                                    aria-label="instagram">
+                                <a class="social social-instagram" href="https://{{ get_setting('instagram') }}"
+                                    target="_blank" aria-label="instagram">
                                     <i class="fa-brands fa-square-instagram"></i>
                                 </a>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer__menu">
-                                <div class="footer__item">
-                                    <a href="{{ route('tentangkami.index') }}" class="footer__link"
-                                        rel="noreferred">Tentang Kami</a>
-                                </div>
-                                <div class="footer__item">
-                                    <a href="{{ route('kodeetik.index') }}" class="footer__link"
-                                        rel="noreferred">Kode Etik</a>
-                                </div>
-                                <div class="footer__item">
-                                    <a href="{{ route('redaksi.index') }}" class="footer__link"
-                                        rel="noreferred">Redaksi</a>
-                                </div>
-                                <div class="footer__item">
-                                    <a href="{{ route('kodepers.index') }}" class="footer__link"
-                                        rel="noreferred">Kode Perilaku
-                                        Pers</a>
-                                </div>
-                                <div class="footer__item">
-                                    <a href="{{ route('pedoman.index') }}" class="footer__link"
-                                        rel="noreferred">Pedoman Media
-                                        Siber</a>
-                                </div>
-                                <div class="footer__item">
-                                    <a href="{{ route('perlindungan.index') }}" class="footer__link"
-                                        rel="noreferred">Perlindungan Data
-                                        Pengguna</a>
-                                </div>
-                                <div class="footer__item">
-                                    <a href="{{ route('lowongan.index') }}" class="footer__link"
-                                        rel="noreferred">Lowongan Kerja</a>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="footer__menu">
+                                    <div class="footer__item">
+                                        <a href="{{ route('tentangkami.index') }}" class="footer__link"
+                                            rel="noreferred">Tentang Kami</a>
+                                    </div>
+                                    <div class="footer__item">
+                                        <a href="{{ route('kodeetik.index') }}" class="footer__link"
+                                            rel="noreferred">Kode Etik</a>
+                                    </div>
+                                    <div class="footer__item">
+                                        <a href="{{ route('redaksi.index') }}" class="footer__link"
+                                            rel="noreferred">Redaksi</a>
+                                    </div>
+                                    <div class="footer__item">
+                                        <a href="{{ route('kodepers.index') }}" class="footer__link"
+                                            rel="noreferred">Kode Perilaku
+                                            Pers</a>
+                                    </div>
+                                    <div class="footer__item">
+                                        <a href="{{ route('pedoman.index') }}" class="footer__link"
+                                            rel="noreferred">Pedoman Media
+                                            Siber</a>
+                                    </div>
+                                    <div class="footer__item">
+                                        <a href="{{ route('perlindungan.index') }}" class="footer__link"
+                                            rel="noreferred">Perlindungan Data
+                                            Pengguna</a>
+                                    </div>
+                                    <div class="footer__item">
+                                        <a href="{{ route('lowongan.index') }}" class="footer__link"
+                                            rel="noreferred">Lowongan Kerja</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-5 col-md-6">
-                            <div class="footer__verifikasi">
-                                <img class=" ls-is-cached lazyloaded"
-                                    data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
-                                    src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
-                                    height="40" alt="GSG Centang Biru" data-loaded="true">
-                                <span>
-                                    <b>Telah di Verifikasi Dewan Pers</b>
-                                    <br>
-                                    <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
-                                </span>
+                            <div class="col-lg-5 col-md-6">
+                                <div class="footer__verifikasi">
+                                    <img class=" ls-is-cached lazyloaded"
+                                        data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
+                                        src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
+                                        height="40" alt="GSG Centang Biru" data-loaded="true">
+                                    <span>
+                                        <b>Telah di Verifikasi Dewan Pers</b>
+                                        <br>
+                                        <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="footer__copyright col-lg-12 col-md-6">
-                            <p>©{{ now()->year }} Gema Sulawesi</p>
+                            <div class="footer__copyright col-lg-12 col-md-6">
+                                <p>©{{ now()->year }} Gema Sulawesi</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </footer>
 
         {{-- <div id="back-to-top">

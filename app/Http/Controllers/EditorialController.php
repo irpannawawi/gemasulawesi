@@ -58,7 +58,7 @@ class EditorialController extends Controller
             $status = 'published';
         }
 
-        if (!empty($requset->related)) {
+        if (!empty($request->related)) {
             $related = json_encode($request->related);
         } else {
             $related = $request->related;

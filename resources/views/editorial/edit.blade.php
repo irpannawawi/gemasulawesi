@@ -221,7 +221,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="{{ route('modal.tags') }}" frameborder="0"
+                    <iframe loading="lazy" src="{{ route('modal.tags') }}" frameborder="0"
                         style="width: 100%; height: 750px;"></iframe>
                 </div>
                 <div class="modal-footer">
@@ -246,7 +246,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="{{ route('modal.source') }}" frameborder="0"
+                    <iframe loading="lazy" src="{{ route('modal.source') }}" frameborder="0"
                         style="width: 100%; height: 750px;"></iframe>
                 </div>
                 <div class="modal-footer">
@@ -270,7 +270,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="{{ route('modal.related') }}" frameborder="0"
+                    <iframe loading="lazy" src="{{ route('modal.related') }}" frameborder="0"
                         style="width: 100%; height: 750px;"></iframe>
                 </div>
                 <div class="modal-footer">
@@ -294,7 +294,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <iframe src="{{ route('modal.topic') }}" frameborder="0"
+                    <iframe loading="lazy" src="{{ route('modal.topic') }}" frameborder="0"
                         style="width: 100%; height: 750px;"></iframe>
                 </div>
                 <div class="modal-footer">
@@ -315,7 +315,7 @@
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.39.0/js/tempusdominus-bootstrap-4.min.js">
         </script>
-        <script>
+        <script defer>
             const configBacaJuga = {
                 title: 'Baca Juga',
                 url: "{{ url('/browse_baca_juga') }}",
@@ -481,8 +481,6 @@
                 localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
                 $('#article-form').submit()
             })
-        </script>
-        <script>
             $(document).ready(function() {
 
                 // schedule time

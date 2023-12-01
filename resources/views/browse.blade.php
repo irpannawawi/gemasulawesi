@@ -7,13 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -48,13 +41,13 @@
             <div class="row box-photo-upload">
                 <div class="row">
                     @foreach ($photos as $photo)
-                        <div id="{{ $photo->image_id }}" class="photo-list float-left">
+                        <div id="{{ $photo->image_id }}" class="photo-list col-4">
                             <div style="margin-left:5px;margin-bottom:5px;position:relative">
                                 <div class="img-thumbnail overlay-wrapper">
                                     <img src="{{ url('storage/photos/' . $photo->asset->file_name) }}" alt=""
                                         title="" class="img-responsive" style="width:214px;height:95px">
                                     <div style="margin-top:5px">
-                                        <small title="">{{substr($photo->caption, 0,35)}}...</small><br>
+                                        <small title="">{{substr($photo->caption, 0,28)}}...</small><br>
                                         <small title="Uploader"><b>by: Uploader</b></small>
                                         <br><small title="Zona Bandung">Author Name</small>
                                         <div class="float-right">

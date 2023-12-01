@@ -289,8 +289,8 @@
             const configBacaJuga = {
                 title: 'Baca Juga',
                 url: "{{ url('/browse_baca_juga') }}",
-                width: 720,
-                height: 480,
+                width: 980,
+                height: 520,
                 onMessage: (instance, data) => {
                     tinymce.activeEditor.execCommand('insertHTML', false,
                         `<p><strong>Baca Juga: <a href="${data.data.url}" >${data.data.title}</a></strong></p>`);

@@ -7,14 +7,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
@@ -136,11 +128,7 @@
         <!-- AdminLTE App -->
         <script src="{{ url('assets/AdminLTE') }}/dist/js/adminlte.min.js"></script>
 
-        {{-- datatables --}}
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
         <script>
-            $('.datatables').dataTable();
             // check or uncheck tags
             function check_topics(elm, id, text) {
                 var data = {

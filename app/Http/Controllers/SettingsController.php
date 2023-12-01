@@ -15,6 +15,7 @@ class SettingsController extends Controller
             'title' => Setting::where('key', 'title')->first(),
             'sub_title' => Setting::where('key', 'sub_title')->first(),
             'logo_web' => Setting::where('key', 'logo_web')->first(),
+            'favicon' => Setting::where('key', 'favicon')->first(),
             'meta_google' => Setting::where('key', 'meta_google')->first(),
             'no_sertification' => Setting::where('key', 'no_sertification')->first(),
             'count_rubrik' => Setting::where('key', 'count_rubrik')->first(),
@@ -55,8 +56,15 @@ class SettingsController extends Controller
                 $imageName = $file->getClientOriginalName();
                 $path = $file->storeAs('public/logo', $imageName);
 
-                // Simpan path file ke database
                 Setting::updateOrCreate(['key' => 'logo_web'], ['value' => $imageName]);
+            }
+            // Pastikan file ada sebelum melakukan operasi upload favicon
+            if ($request->hasFile('favicon')) {
+                $faviconFile = $request->file('favicon');
+                $faviconImageName = $faviconFile->getClientOriginalName();
+                $path = $faviconFile->storeAs('public/favicon', $faviconImageName);
+
+                Setting::updateOrCreate(['key' => 'favicon'], ['value' => $faviconImageName]);
             }
 
             foreach ($request->all() as $key => $value) {

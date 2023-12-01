@@ -398,20 +398,20 @@
         </nav>
 
         <div class="socials sidenav__socials">
-            <a class="social social-facebook" href="https://web.facebook.com/{{ get_setting('facebook') }}"
-                target="_blank" aria-label="facebook">
+            <a class="social social-facebook" href="https://{{ get_setting('facebook') }}" target="_blank"
+                aria-label="facebook">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}" target="_blank"
+            <a class="social social-twitter" href="https://{{ get_setting('x') }}" target="_blank"
                 aria-label="twitter">
                 <i class="fa-brands fa-square-x-twitter"></i>
             </a>
-            <a class="social social-youtube" href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
-                target="_blank" aria-label="youtube">
+            <a class="social social-youtube" href="https:/{{ get_setting('youtube') }}" target="_blank"
+                aria-label="youtube">
                 <i class="fa-brands fa-youtube"></i>
             </a>
-            <a class="social social-instagram" href="https://www.instagram.com/{{ get_setting('instagram') }}/"
-                target="_blank" aria-label="instagram">
+            <a class="social social-instagram" href="https://{{ get_setting('instagram') }}" target="_blank"
+                aria-label="instagram">
                 <i class="fa-brands fa-square-instagram"></i>
             </a>
         </div>
@@ -489,20 +489,19 @@
                                 </div>
                             </div>
                             <div class="socials socials--nobase socials--nav socials--dark justify-content-end">
-                                <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
+                                <a class="social social-facebook" href="https://{{ get_setting('facebook') }}"
                                     target="_blank" aria-label="facebook">
                                     <i class="fa-brands fa-facebook"></i>
                                 </a>
-                                <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                <a class="social social-twitter" href="https://{{ get_setting('instagram') }}"
                                     target="_blank" aria-label="twitter">
                                     <i class="fa-brands fa-square-x-twitter"></i>
                                 </a>
-                                <a class="social social-youtube"
-                                    href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg" target="_blank"
-                                    aria-label="youtube">
+                                <a class="social social-youtube" href="https://{{ get_setting('youtube') }}"
+                                    target="_blank" aria-label="youtube">
                                     <i class="fa-brands fa-youtube"></i>
                                 </a>
-                                <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
+                                <a class="social social-instagram" href="https://{{ get_setting('instagram') }}"
                                     target="_blank" aria-label="instagram">
                                     <i class="fa-brands fa-square-instagram"></i>
                                 </a>
@@ -649,23 +648,20 @@
                                 </p>
                             </div>
                             <div class="social__footer socials--medium socials--rounded">
-                                <a class="social social-facebook"
-                                    href="https://web.facebook.com/{{ get_setting('facebook') }}" target="_blank"
-                                    aria-label="facebook">
+                                <a class="social social-facebook" href="https://{{ get_setting('facebook') }}"
+                                    target="_blank" aria-label="facebook">
                                     <i class="fa-brands fa-facebook"></i>
                                 </a>
-                                <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}"
+                                <a class="social social-twitter" href="https://{{ get_setting('x') }}"
                                     target="_blank" aria-label="twitter">
                                     <i class="fa-brands fa-square-x-twitter"></i>
                                 </a>
-                                <a class="social social-youtube"
-                                    href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
+                                <a class="social social-youtube" href="https://{{ get_setting('youtube') }}"
                                     target="_blank" aria-label="youtube">
                                     <i class="fa-brands fa-youtube"></i>
                                 </a>
-                                <a class="social social-instagram"
-                                    href="https://www.instagram.com/{{ get_setting('instagram') }}" target="_blank"
-                                    aria-label="instagram">
+                                <a class="social social-instagram" href="https://{{ get_setting('instagram') }}"
+                                    target="_blank" aria-label="instagram">
                                     <i class="fa-brands fa-square-instagram"></i>
                                 </a>
                             </div>

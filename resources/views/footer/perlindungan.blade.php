@@ -13,7 +13,7 @@
             <a href="#" class="social social-copy" id="share-copy-top" aria-label="copy"><i
                     class="fa-solid fa-link"></i></a>
         </div>
-        <article class="read__content pl-5 pr-5">
+        <article class="read__conten">
             @php
                 $about = get_setting('security_user');
             @endphp

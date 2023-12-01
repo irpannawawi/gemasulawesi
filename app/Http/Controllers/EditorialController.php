@@ -57,6 +57,22 @@ class EditorialController extends Controller
         } else {
             $status = 'published';
         }
+
+        if (!empty($requset->related)) {
+            $related = json_encode($request->related);
+        } else {
+            $related = $request->related;
+        }
+        if (!empty($request->tags)) {
+            $tags = json_encode($request->tags);
+        } else {
+            $tags = $request->tags;
+        }
+        if (!empty($request->topics)) {
+            $topics = json_encode($request->topics);
+        } else {
+            $topics = $request->topics;
+        }
         $postData = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
@@ -68,9 +84,9 @@ class EditorialController extends Controller
             'author_id' => Auth::user()->id,
             'editor_id' => Auth::user()->id,
             'status' => $status,
-            'related_articles' => json_encode($request->related),
-            'tags' => json_encode($request->tags),
-            'topics' => json_encode($request->topics),
+            // 'related_articles' => ,
+            // 'tags' => ,
+            // 'topics' => ,
             'schedule_time' => $request->schedule_time,
             'published_at' => $request->published_at,
             'is_deleted' => $request->is_deleted,
@@ -156,32 +172,31 @@ class EditorialController extends Controller
 
     public function draft(Request $request)
     {
-        $data['q']= $request->q;
-        $data['posts'] = Posts::where('status', 'draft')->where('title', 'LIKE', '%'.$request->q.'%')->orderBy('created_at', 'DESC')->paginate(20);
+        $data['q'] = $request->q;
+        $data['posts'] = Posts::where('status', 'draft')->where('title', 'LIKE', '%' . $request->q . '%')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.draft', $data);
-
     }
-    
-    
+
+
     public function scheduled(Request $request)
 
     {
         $data['q'] = $request->q;
-        $data['posts'] = Posts::where('status', 'scheduled')->where('title', 'LIKE', '%'.$request->q.'%')->orderBy('created_at', 'DESC')->paginate(20);
+        $data['posts'] = Posts::where('status', 'scheduled')->where('title', 'LIKE', '%' . $request->q . '%')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.scheduled', $data);
     }
-    
+
     public function trash(Request $request)
     {
         $data['q'] = $request->q;
-        $data['posts'] = Posts::where('status', 'trash')->where('title', 'LIKE', '%'.$request->q.'%')->orderBy('created_at', 'DESC')->paginate(20);
+        $data['posts'] = Posts::where('status', 'trash')->where('title', 'LIKE', '%' . $request->q . '%')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.trash', $data);
     }
 
     public function published(Request $request)
     {
-        $data['q']= $request->q;
-        $data['posts'] = Posts::where('status', 'published')->where('title', 'LIKE', '%'.$request->q.'%')->orderBy('created_at', 'DESC')->paginate(20);
+        $data['q'] = $request->q;
+        $data['posts'] = Posts::where('status', 'published')->where('title', 'LIKE', '%' . $request->q . '%')->orderBy('created_at', 'DESC')->paginate(20);
         return view('editorial.published', $data);
     }
 

@@ -14,7 +14,7 @@ class SettingsController extends Controller
         $data = [
             'title' => Setting::where('key', 'title')->first(),
             'sub_title' => Setting::where('key', 'sub_title')->first(),
-            'logo' => Setting::where('key', 'logo')->first(),
+            'logo_web' => Setting::where('key', 'logo_web')->first(),
             'meta_google' => Setting::where('key', 'meta_google')->first(),
             'no_sertification' => Setting::where('key', 'no_sertification')->first(),
             'count_rubrik' => Setting::where('key', 'count_rubrik')->first(),
@@ -49,6 +49,16 @@ class SettingsController extends Controller
         // Ambil nilai dari tombol yang diklik
         $action = $request->input('action');
         if ($action == 'updategeneral') {
+            // Pastikan file ada sebelum melakukan operasi upload
+            if ($request->hasFile('logo_web')) {
+                $file = $request->file('logo_web');
+                $imageName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/logo', $imageName);
+
+                // Simpan path file ke database
+                Setting::updateOrCreate(['key' => 'logo_web'], ['value' => $imageName]);
+            }
+
             foreach ($request->all() as $key => $value) {
                 $value = $value ?: null;
                 Setting::updateOrCreate(['key' => $key], ['value' => $value]);

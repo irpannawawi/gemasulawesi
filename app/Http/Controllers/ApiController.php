@@ -49,7 +49,7 @@ class ApiController extends Controller
                     $file_name = $media->slug.'.'. explode('/', $media->mime_type)[1];
                     $res = Storage::put('public/photos/' . $file_name, file_get_contents($media->source_url));
                     // insert asset        
-                    $asset = Asset::create(['file_name' => $file_name]);
+                    $asset = Asset::updateOrCreate(['file_name' => $file_name], ['file_name' => $file_name]);
 
                     // insert photo  
                     // insert image details
@@ -61,7 +61,7 @@ class ApiController extends Controller
                         'caption' => $media->caption->rendered,
 
                     ];
-                    $res = Image::create($imageDetails); // 4. 
+                    $res = Image::updateOrCreate(['image_id'=>$imageDetails['image_id']], $imageDetails); // 4. 
 
                     // 5. create post
                     $tags = '[';

@@ -16,8 +16,19 @@ class BrowseController extends Controller
         return view('browse', $data);
     }
 
-    public function browseBacaJuga() {
-        $data['posts'] = Posts::orderBy('post_id', 'DESC')->paginate(20);
+    public function browseBacaJuga(Request $request) {
+        $q = $request->q;
+        $rubrik = $request->rubrik;
+        if($rubrik==null)
+        {
+            $rubrik='';
+        }
+        $data['rubrikId'] = $rubrik;
+        $data['q'] = $q;
+        $data['posts'] = Posts::orderBy('published_at', 'DESC')->where([
+            ['category', 'like', '%'.$rubrik.'%'],
+            ['title', 'like', '%'.$q.'%']
+        ])->paginate(20);
         return view('browse_baca_juga', $data);
     }
 

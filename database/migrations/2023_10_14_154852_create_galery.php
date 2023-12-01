@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('galery', function (Blueprint $table) {
-            $table->increments('galery_id')->primary;
+            $table->bigIncrements('galery_id')->primary;
             $table->string('galery_name');
             $table->string('galery_description');
             $table->string('galery_thumbnail');

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('gallery_collection', function (Blueprint $table) {
-            $table->increments('collection_id')->primary;
+            $table->bigIncrements('collection_id')->primary;
             $table->bigInteger('galery_id');
             $table->bigInteger('file_id');
             $table->enum('type', ['image', 'video']);

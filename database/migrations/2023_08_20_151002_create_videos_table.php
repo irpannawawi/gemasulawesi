@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('videos', function (Blueprint $table) {
-            $table->increments('video_id')->primary;
+            $table->bigIncrements('video_id')->primary;
             $table->bigInteger('uploader_id')->unsigned();
             $table->foreign('uploader_id')
             ->references('id')

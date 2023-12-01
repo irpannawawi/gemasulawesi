@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('images', function (Blueprint $table) {
-            $table->increments('image_id')->primary;
-            $table->integer('asset_id')->unsigned();
+            $table->bigIncrements('image_id')->primary;
+            $table->bigInteger('asset_id')->unsigned();
             $table->bigInteger('uploader_id')->unsigned();
             $table->foreign('asset_id')
                     ->references('asset_id')

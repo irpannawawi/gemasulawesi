@@ -87,7 +87,7 @@
                         </div>
                         <div class="form-group">
                             <label>Logo Website</label>
-                            <img src="{{ Storage::url('logo/' . $logo_web->value) }}" class="img-thumbnail mb-3">
+                            <img src="{{ @Storage::url('logo/' . $logo_web->value) }}" class="img-thumbnail mb-3">
                             <div class="custom-file">
                                 <input type="file" class="form-control" id="logo_web" name="logo_web">
                                 <label class="custom-file-label" for="logo_web">Pilih file</label>

@@ -60,6 +60,15 @@
                                     <input type="text"name="instagram" id="instagram" class="form-control"
                                         value="{{ @old('instagram', $instagram->value) }}">
                                 </div>
+                                <div class="form-group">
+                                    <label>Favicon Website</label>
+                                    <img src="{{ Storage::url('favicon/') }}" class="img-thumbnail mb-3">
+                                    <div class="custom-file">
+                                        <input type="file" class="form-control" id="favicon" name="favicon">
+                                        <label class="custom-file-label" for="favicon">Pilih file</label>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="col-6">
                                 <div class="form-group">

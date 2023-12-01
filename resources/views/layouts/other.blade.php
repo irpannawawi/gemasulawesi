@@ -250,7 +250,7 @@
                 aria-label="twitter">
                 <i class="fa-brands fa-square-x-twitter"></i>
             </a>
-            <a class="social social-youtube" href="https://{{ get_setting('youtube') }}" target="_blank"
+            <a class="social social-youtube" href="https:/{{ get_setting('youtube') }}" target="_blank"
                 aria-label="youtube">
                 <i class="fa-brands fa-youtube"></i>
             </a>
@@ -507,60 +507,61 @@
                                     <i class="fa-brands fa-square-instagram"></i>
                                 </a>
                             </div>
-                            <div class="col-lg-3 col-md-6">
-                                <div class="footer__menu">
-                                    <div class="footer__item">
-                                        <a href="{{ route('tentangkami.index') }}" class="footer__link"
-                                            rel="noreferred">Tentang Kami</a>
-                                    </div>
-                                    <div class="footer__item">
-                                        <a href="{{ route('kodeetik.index') }}" class="footer__link"
-                                            rel="noreferred">Kode Etik</a>
-                                    </div>
-                                    <div class="footer__item">
-                                        <a href="{{ route('redaksi.index') }}" class="footer__link"
-                                            rel="noreferred">Redaksi</a>
-                                    </div>
-                                    <div class="footer__item">
-                                        <a href="{{ route('kodepers.index') }}" class="footer__link"
-                                            rel="noreferred">Kode Perilaku
-                                            Pers</a>
-                                    </div>
-                                    <div class="footer__item">
-                                        <a href="{{ route('pedoman.index') }}" class="footer__link"
-                                            rel="noreferred">Pedoman Media
-                                            Siber</a>
-                                    </div>
-                                    <div class="footer__item">
-                                        <a href="{{ route('perlindungan.index') }}" class="footer__link"
-                                            rel="noreferred">Perlindungan Data
-                                            Pengguna</a>
-                                    </div>
-                                    <div class="footer__item">
-                                        <a href="{{ route('lowongan.index') }}" class="footer__link"
-                                            rel="noreferred">Lowongan Kerja</a>
-                                    </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6">
+                            <div class="footer__menu">
+                                <div class="footer__item">
+                                    <a href="{{ route('tentangkami.index') }}" class="footer__link"
+                                        rel="noreferred">Tentang Kami</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="{{ route('kodeetik.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Etik</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="{{ route('redaksi.index') }}" class="footer__link"
+                                        rel="noreferred">Redaksi</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="{{ route('kodepers.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Perilaku
+                                        Pers</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="{{ route('pedoman.index') }}" class="footer__link"
+                                        rel="noreferred">Pedoman Media
+                                        Siber</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="{{ route('perlindungan.index') }}" class="footer__link"
+                                        rel="noreferred">Perlindungan Data
+                                        Pengguna</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="{{ route('lowongan.index') }}" class="footer__link"
+                                        rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
-                            <div class="col-lg-5 col-md-6">
-                                <div class="footer__verifikasi">
-                                    <img class=" ls-is-cached lazyloaded"
-                                        data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
-                                        src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
-                                        height="40" alt="GSG Centang Biru" data-loaded="true">
-                                    <span>
-                                        <b>Telah di Verifikasi Dewan Pers</b>
-                                        <br>
-                                        <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
-                                    </span>
-                                </div>
+                        </div>
+                        <div class="col-lg-5 col-md-6">
+                            <div class="footer__verifikasi">
+                                <img class=" ls-is-cached lazyloaded"
+                                    data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
+                                    src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
+                                    height="40" alt="PRMN Centang Biru" data-loaded="true">
+                                <p>
+                                    <b>Telah di Verifikasi Dewan Pers</b>
+                                    <br>
+                                    <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
+                                </p>
                             </div>
-                            <div class="footer__copyright col-lg-12 col-md-6">
-                                <p>©{{ now()->year }} Gema Sulawesi</p>
-                            </div>
+                        </div>
+                        <div class="footer__copyright col-lg-12 col-md-6">
+                            <p>©{{ now()->year }} Gema Sulawesi</p>
                         </div>
                     </div>
                 </div>
+            </div>
         </footer>
 
         {{-- <div id="back-to-top">

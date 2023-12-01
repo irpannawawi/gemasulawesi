@@ -150,7 +150,7 @@ class WebController extends Controller
         // posts 1-20
         $data['paginatedPost'] = Posts::orderBy('created_at', 'DESC')
             ->where(['status' => 'published'])
-            ->where('topics', 'LIKE', '%'.$topic->topic_id.'%')
+            ->where('topics', 'LIKE', '%' . $topic->topic_id . '%')
             ->paginate(20);
         $data['beritaTerkini'] = $data['paginatedPost'];
 

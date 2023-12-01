@@ -673,16 +673,20 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Tentang Kami</a>
+                                    <a href="{{ route('tentangkami.index') }}" class="footer__link"
+                                        rel="noreferred">Tentang Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Kode Etik</a>
+                                    <a href="{{ route('kodeetik.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Redaksi</a>
+                                    <a href="{{ route('redaksi.index') }}" class="footer__link"
+                                        rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Kode Perilaku
+                                    <a href="{{ route('kodepers.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
@@ -704,11 +708,11 @@
                                     data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
                                     src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
                                     height="40" alt="PRMN Centang Biru" data-loaded="true">
-                                <span>
-                                    <b>Telah Terverifikasi Dewan Pers</b>
+                                <p>
+                                    <b>Telah di Verifikasi Dewan Pers</b>
                                     <br>
                                     <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
-                                </span>
+                                </p>
                             </div>
                         </div>
                         <div class="footer__copyright col-lg-12 col-md-6">

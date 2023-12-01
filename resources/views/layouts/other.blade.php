@@ -23,7 +23,27 @@
         } elseif (request()->is('topik-khusus/detail/*')) {
             $metaTitle = $topik->topic_name;
             $metaDeskripsi = $topik->topic_description;
-            $metaImage = 'Perbaiki';
+            $metaImage = get_post_thumbnail($topik->topic_id);
+            $type = 'website';
+        } elseif (request()->is('tentang-kami')) {
+            $metaTitle = 'Tentang Kami';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('kode-etik')) {
+            $metaTitle = 'Kode Etik';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('redaksi')) {
+            $metaTitle = 'Redaksi';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('kode-perilaku-pers')) {
+            $metaTitle = 'Redaksi';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         }
         $subTitle = get_setting('sub_title');
@@ -36,7 +56,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
+    <meta name="title" content="@yield('title')" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
     <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
@@ -100,6 +120,34 @@
                 dataLayer = [{
                     "breadcrumb_detail": "Section Page",
                     "content_category": "'.$topik->topic_name.'"
+                }];
+            </script>';
+        } elseif (request()->is('tentang-kami')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Tentang Kami"
+                }];
+            </script>';
+        } elseif (request()->is('kode-etik')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Kode Etik"
+                }];
+            </script>';
+        } elseif (request()->is('redaksi')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Redaksi"
+                }];
+            </script>';
+        } elseif (request()->is('kode-perilaku-pers')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Kode Perilaku Pers"
                 }];
             </script>';
         }
@@ -455,21 +503,32 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Tentang Kami</a>
+                                    <a href="{{ route('tentangkami.index') }}" class="footer__link"
+                                        rel="noreferred">Tentang Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Hubungi Kami</a>
+                                    <a href="{{ route('kodeetik.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Redaksi</a>
+                                    <a href="{{ route('redaksi.index') }}" class="footer__link"
+                                        rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Kode Perilaku
+                                    <a href="{{ route('kodepers.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Pedoman Media
+                                    <a href="" class="footer__link" rel="noreferred">Pedoman Media
                                         Siber</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="noreferred">Perlindungan Data
+                                        Pengguna</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
                         </div>
@@ -480,7 +539,7 @@
                                     src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
                                     height="40" alt="GSG Centang Biru" data-loaded="true">
                                 <span>
-                                    <b>Telah Terverifikasi Dewan Pers</b>
+                                    <b>Telah di Verifikasi Dewan Pers</b>
                                     <br>
                                     <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
                                 </span>

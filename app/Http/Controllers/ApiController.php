@@ -85,6 +85,7 @@ class ApiController extends Controller
                         'tags' => json_encode($article->tags),
                         'topics' => null,
                         'published_at' => str_replace('T', ' ', $article->date),
+                        'created_at' => str_replace('T', ' ', $article->date),
                         'post_image' => $file_name,
                         'origin_id' => $article->id,
                     ];

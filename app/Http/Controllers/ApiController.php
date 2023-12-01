@@ -57,7 +57,7 @@ class ApiController extends Controller
                         'uploader_id' => 1,
                         'image_id' => $media->id,
                         'author' => $media->author,
-                        'caption' => $media->caption->redered,
+                        'caption' => $media->caption->rendered,
 
                     ];
                     $res = Image::create($imageDetails); // 4. 

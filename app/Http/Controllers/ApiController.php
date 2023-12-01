@@ -19,9 +19,10 @@ class ApiController extends Controller
     {
         $articleData =  json_decode(json_encode($request->all()), FALSE);
         foreach ($articleData as $article) {
+            $response[$article->id] = [];
             // 1. check post @post id
             if (Posts::where('origin_id', $article->id)->count() > 0) {
-                echo 'Has post';
+                $response[$article->id] =  ['status'=>'Has post'];
             } else {
                 // 2. check rubrik @article
                 $rubrikId = $article->categories[0];
@@ -91,13 +92,14 @@ class ApiController extends Controller
                     $res = Posts::create($postData);
 
                     if ($res) {
-                        $response = [
+                        $response[$article->id] = [
                             'status' => True,
-                            'data' => $res
+                            'data' => 'Berhasil'
                         ];
                     } else {
-                        $response = [
-                            'status' => False
+                        $response[$article->id] = [
+                            'status' => False,
+                            'data'=>'Gagal menambah post'
                         ];
                     }
                 } //2. 

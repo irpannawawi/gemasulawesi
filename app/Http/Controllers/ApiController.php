@@ -61,7 +61,7 @@ class ApiController extends Controller
                         'caption' => $media->caption->rendered,
 
                     ];
-                    $res = Image::updateOrCreate(['image_id'=>$imageDetails['image_id']], $imageDetails); // 4. 
+                    $image = Image::updateOrCreate(['image_id'=>$imageDetails['image_id']], $imageDetails); // 4. 
 
                     // 5. create post
                     $tags = '[';
@@ -86,7 +86,7 @@ class ApiController extends Controller
                         'topics' => null,
                         'published_at' => str_replace('T', ' ', $article->date),
                         'created_at' => str_replace('T', ' ', $article->date),
-                        'post_image' => $file_name,
+                        'post_image' => $image->image_id,
                         'origin_id' => $article->id,
                     ];
 

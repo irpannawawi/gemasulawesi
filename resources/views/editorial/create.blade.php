@@ -281,11 +281,11 @@
     {{-- Scripts --}}
     @push('custom-scripts')
         <script src="{{ url('/') }}/build/public/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-        {{-- <script src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script> --}}
+        <script defer src="{{ url('assets/AdminLTE') }}/plugins/select2/js/select2.min.js" referrerpolicy="origin"></script>
         {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
-        @vite('resources/js/footer-editorial.js')
+        @vite('resources/js/select2.js')
 
-        <script>
+        <script defer>
             const configBacaJuga = {
                 title: 'Baca Juga',
                 url: "{{ url('/browse_baca_juga') }}",

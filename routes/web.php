@@ -122,6 +122,7 @@ require __DIR__ . '/notification.php';
 require __DIR__ . '/report.php';
 require __DIR__ . '/web-management.php';
 require __DIR__ . '/settings.php';
+require __DIR__ . '/menufooter.php';
 require __DIR__ . '/amp.php';
 
 

@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="card">
-        <form method="POST" action="{{ route('setting.general.update') }}">
+        <form method="POST" action="{{ route('setting.general.update') }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body" style="min-height: 400px">
@@ -87,10 +87,10 @@
                         </div>
                         <div class="form-group">
                             <label>Logo Website</label>
-                            <img src="#" class="img-thumbnail mb-3">
+                            <img src="{{ Storage::url('logo/' . $logo_web->value) }}" class="img-thumbnail mb-3">
                             <div class="custom-file">
-                                <input type="file" class="form-control" id="logo" name="logo">
-                                <label class="custom-file-label" for="logo">Pilih file</label>
+                                <input type="file" class="form-control" id="logo_web" name="logo_web">
+                                <label class="custom-file-label" for="logo_web">Pilih file</label>
                             </div>
                         </div>
                     </div>

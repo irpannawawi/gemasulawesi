@@ -14,17 +14,42 @@
             $metaTitle = 'Gema Sulawesi Search';
             $metaDeskripsi = 'Gema Sulawesi Search';
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
         } elseif (request()->is('indeks-berita')) {
             $metaTitle = 'Gema Sulawesi Indeks';
             $metaDeskripsi = 'Gema Sulawesi Indeks';
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
         } elseif (request()->is('topik-khusus/detail/*')) {
             $metaTitle = $topik->topic_name;
             $metaDeskripsi = $topik->topic_description;
-            $metaImage = 'Perbaiki';
-            $type = 'website';
+            $metaImage = get_post_thumbnail($topik->topic_id);
+        } elseif (request()->is('tentang-kami')) {
+            $metaTitle = 'Tentang Kami';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+        } elseif (request()->is('kode-etik')) {
+            $metaTitle = 'Kode Etik';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+        } elseif (request()->is('redaksi')) {
+            $metaTitle = 'Redaksi';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+        } elseif (request()->is('kode-perilaku-pers')) {
+            $metaTitle = 'Redaksi';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+        } elseif (request()->is('pedoman-media-siber')) {
+            $metaTitle = 'Pedoman Media Siber';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+        } elseif (request()->is('perlindungan-data-pengguna')) {
+            $metaTitle = 'Perlindungan Data Pengguna';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+        } elseif (request()->is('lowongan-kerja')) {
+            $metaTitle = 'Lowongan Kerja';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
         }
         $subTitle = get_setting('sub_title');
     @endphp
@@ -36,7 +61,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
+    <meta name="title" content="@yield('title')" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
     <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
@@ -54,7 +79,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-language" content="In-Id" />
-    <meta property="og:type" content="{{ $type }}" />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
@@ -100,6 +125,41 @@
                 dataLayer = [{
                     "breadcrumb_detail": "Section Page",
                     "content_category": "'.$topik->topic_name.'"
+                }];
+            </script>';
+        } elseif (request()->is('tentang-kami')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Tentang Kami"
+                }];
+            </script>';
+        } elseif (request()->is('kode-etik')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Kode Etik"
+                }];
+            </script>';
+        } elseif (request()->is('redaksi')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Redaksi"
+                }];
+            </script>';
+        } elseif (request()->is('kode-perilaku-pers')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Kode Perilaku Pers"
+                }];
+            </script>';
+        } elseif (request()->is('pedoman-media-siber')) {
+            echo '<script>
+                dataLayer = [{
+                    "breadcrumb_detail": "Section Page",
+                    "content_category": "Pedoman media siber"
                 }];
             </script>';
         }
@@ -455,21 +515,35 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Tentang Kami</a>
+                                    <a href="{{ route('tentangkami.index') }}" class="footer__link"
+                                        rel="noreferred">Tentang Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Hubungi Kami</a>
+                                    <a href="{{ route('kodeetik.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Redaksi</a>
+                                    <a href="{{ route('redaksi.index') }}" class="footer__link"
+                                        rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Kode Perilaku
+                                    <a href="{{ route('kodepers.index') }}" class="footer__link"
+                                        rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="”noreferred”">Pedoman Media
+                                    <a href="{{ route('pedoman.index') }}" class="footer__link"
+                                        rel="noreferred">Pedoman Media
                                         Siber</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="{{ route('perlindungan.index') }}" class="footer__link"
+                                        rel="noreferred">Perlindungan Data
+                                        Pengguna</a>
+                                </div>
+                                <div class="footer__item">
+                                    <a href="{{ route('lowongan.index') }}" class="footer__link"
+                                        rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
                         </div>
@@ -480,7 +554,7 @@
                                     src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
                                     height="40" alt="GSG Centang Biru" data-loaded="true">
                                 <span>
-                                    <b>Telah Terverifikasi Dewan Pers</b>
+                                    <b>Telah di Verifikasi Dewan Pers</b>
                                     <br>
                                     <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
                                 </span>
@@ -567,6 +641,75 @@
                 icon: payload.notification.icon,
             };
             new Notification(title, options);
+        });
+    </script>
+
+    @php
+        $segments = request()->segments();
+        $lastSegment = end($segments);
+        $postTitle = str_replace('-', ' ', $lastSegment);
+    @endphp
+    <script>
+        function encodeURL(url) {
+            return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
+            const currentURL = window.location.href;
+
+            // Share ke Facebook (atas dan bawah)
+            const facebookButtonTop = document.getElementById('share-facebook-top');
+            facebookButtonTop.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+
+            // Share ke Twitter (atas dan bawah)
+            const twitterButtonTop = document.getElementById('share-twitter-top');
+            twitterButtonTop.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+
+            // Share ke WhatsApp (atas dan bawah)
+            const whatsappButtonTop = document.getElementById('share-whatsapp-top');
+            whatsappButtonTop.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+
+            // Share ke Telegram (atas dan bawah)
+            const telegramButtonTop = document.getElementById('share-telegram-top');
+            telegramButtonTop.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+
+            // Copy ke Clipboard (atas dan bawah)
+            const copyButtonTop = document.getElementById('share-copy-top');
+            copyButtonTop.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const copyText = `${articleTitle} | ${currentURL}`;
+                const textArea = document.createElement('textarea');
+                textArea.value = copyText;
+
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                alert('Artikel Berhasil disalin!');
+            });
+
+            const copyButtonBottom = document.getElementById('share-copy-bottom');
+            copyButtonBottom.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const copyText = `${articleTitle} | ${currentURL}`;
+                const textArea = document.createElement('textarea');
+                textArea.value = copyText;
+
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+
+                alert('Artikel Berhasil disalin!');
+            });
         });
     </script>
 </body>

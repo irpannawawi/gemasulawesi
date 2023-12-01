@@ -1079,13 +1079,20 @@
     border-radius: 20px;
     border: solid 5px #e4e4e4;
     background: rgb(14,147,97);
-background: linear-gradient(50deg, rgba(14,147,97,0.756827731092437) 0%, rgba(44,195,139,0.6755952380952381) 100%);
+    background: linear-gradient(50deg, rgba(14,147,97,0.756827731092437) 0%, rgba(44,195,139,0.6755952380952381) 100%);
     display: block;
     padding: 13px 17px;
     font-size: 17px;
     font-weight: 400;
     line-height: 1.4;
     padding-right: 45px;
+}
+@media only screen and (max-width: 767px) {
+    .croslink a{
+        padding: 13px 18px;
+        font-size: 11px;
+        padding-right: 0;
+    }
 }
 .read__content strong {
     font-weight: 700;
@@ -1180,13 +1187,24 @@ transition: 0.1s;
     margin: auto;
     }
 }
+@media (min-width: 767px) {
+    .footer__verifikasi {
+        margin-top: 10px;
+        background: #72f3c4;
+        color: #000;
+        align-items: center;
+        display: flex;
+        width: fit-content;
+        padding: 0.5em;
+        border-radius: 10px;
+        font-weight: 500;
+    }
+}
 .footer__verifikasi {
     margin-top: 10px;
     background: #72f3c4;
     color: #000;
     align-items: center;
-    display: flex;
-    width: fit-content;
     padding: 0.5em;
     border-radius: 10px;
     font-weight: 500;

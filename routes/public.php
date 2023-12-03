@@ -23,3 +23,5 @@ Route::get('/indeks-berita', [WebController::class, 'indeks'])->name('indeks');
 Route::get('/search', [WebController::class, 'search'])->name('search');
 Route::get('/topik-khusus/detail/{topic_id}/{slug}', [WebController::class, 'topikkhusus'])->name('topikkhusus');
 Route::get('/subs', [WebController::class, 'subscribe'])->name('subscribe');
+Route::get('/image', [WebController::class, 'image'])->name('image');
+Route::get('/video', [WebController::class, 'video'])->name('video');

@@ -399,22 +399,28 @@
                             <div class="nav__right">
                                 <!-- lainnya -->
                                 <div class="nav__right-item nav__lainnya d-none d-lg-block">
-                                    <ul class="nav__menu menu__lainnya">
-                                        <li>
-                                            <a href="javascript:void(0)">Lainnya
-                                                <i class="subicon ui-arrow-down"></i>
-                                            </a>
-                                            <ul class="submenu">
-                                                @foreach ($rubriks->slice(7) as $rubrik)
-                                                    <li>
-                                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                                            class="link-submenu"
-                                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <li class="dropdown__rubrik">
+                                        <a href="javascript:;">
+                                            <i class="subicon ui-arrow-down"></i>
+                                        </a>
+                                        <ul class="submenu">
+                                            <li>
+                                                <a href="{{ route('video') }}" class="link-submenu"
+                                                    style="white-space: nowrap;">Video</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ url('image') }}" class="link-submenu"
+                                                    style="white-space: nowrap;">Image</a>
+                                            </li>
+                                            @foreach ($rubriks->slice(7) as $rubrik)
+                                                <li>
+                                                    <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                                        class="link-submenu"
+                                                        style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
                                 </div>
                                 <!-- Search -->
                                 <div class="nav__right-item nav__search d-block d-lg-none">

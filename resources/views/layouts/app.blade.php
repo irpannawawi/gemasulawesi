@@ -9,14 +9,11 @@
 
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     {{-- <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/fontawesome-free/css/all.min.css"> --}}
     <!-- Theme style -->
     {{-- <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css"> --}}
-    <!-- Include SweetAlert2 CSS and JS from CDN -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('extra-css')
@@ -52,19 +49,22 @@
         .nav-sidebar .nav-treeview {
             margin-left: 10px;
         }
-        .nav-sidebar .nav-item>.nav-link{
+
+        .nav-sidebar .nav-item>.nav-link {
             font-size: 15px;
             padding: 5px 5px 5px 5px;
         }
 
-        table tr td{
+        table tr td {
             font-size: 14px;
         }
-        table{
+
+        table {
             padding: 0px;
-            margin:0px;
+            margin: 0px;
         }
-        .img-circle{
+
+        .img-circle {
             width: 50px;
             height: 50px;
         }
@@ -141,12 +141,13 @@
     <!-- AdminLTE App -->
     <script defer src="{{ url('assets/AdminLTE') }}/dist/js/adminlte.min.js"></script>
     {{-- Alerts --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if ($message = Session::get('success'))
         <script>
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
-                text: '{{ $message }}',
+                text: '{{ $message }},
             })
         </script>
     @endif

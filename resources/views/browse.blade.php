@@ -39,7 +39,7 @@
         </div>
         <div class="card-body">
             <div class="row box-photo-upload">
-                <div class="row">
+                <div class="row col-12">
                     @foreach ($photos as $photo)
                         <div id="{{ $photo->image_id }}" class="photo-list col-4">
                             <div style="margin-left:5px;margin-bottom:5px;position:relative">

@@ -17,6 +17,39 @@
     <div class="card" data-widget="iframe">
         <div class="card-header">
             {{-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpostModal">Tambah data</button> --}}
+            <a class="btn border btn-xs" href="{{ $_SERVER['REQUEST_URI'] }}"><i class="fa fa-sync"></i> Refresh</a>
+            <div class="col-6 float-right">
+                <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
+                    @csrf
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="input-group-append">
+                                <select name="rubrik" id="rubrikSelect" class="form-control">
+                                    @php
+                                        $rubriks = \App\Models\Rubrik::all();
+                                    @endphp
+                                    <option {{ @$rubrikId == '' ? 'selected' : '' }} value="">All</option>
+                                    @foreach ($rubriks as $rubrik)
+                                        <option {{ @$rubrikId == $rubrik->rubrik_id ? 'selected' : '' }}
+                                            value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="q"
+                                    aria-label="Search" value="{{ !empty($q) ? $q : '' }}"
+                                    aria-describedby="basic-addon1">
+                                <div class="input-group-prepend">
+                                    <button class="input-group-text btn btn-default" id="basic-addon1"><i
+                                            class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive no-margin">
@@ -57,7 +90,7 @@
                     </tbody>
                 </table>
             </div>
-            {{$posts->links('vendor.pagination.bootstrap-4')}}
+            {{ $posts->links('vendor.pagination.bootstrap-4') }}
         </div>
 
 
@@ -98,7 +131,22 @@
                 $('#input-post-logo').val(logo)
                 $('#input-post-id').val(id)
             }
-        </script>
+            
+            $('#rubrikSelect').on('change', function(){
+             $('#formSearch').submit()
+            })
+             // insert image 
+             function sendBacaJuga(title, url) {
+     
+                 window.parent.postMessage({
+                     mceAction: 'insertHTML',
+                     data: {
+                         title: title,
+                         url: url
+                     }
+                 }, "*")
+             }
+         </script>
 </body>
 
 </html>

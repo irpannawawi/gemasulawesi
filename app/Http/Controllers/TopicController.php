@@ -11,15 +11,25 @@ class TopicController extends Controller
 {
     //
 
-    public function topik_khusus()
+    public function topik_khusus(Request $request)
     {
-        $data['topiks'] = Topic::orderBy('topic_id', 'desc')->get();
+        $q = $request->q;
+        $topicsQuery = Topic::orderBy('topic_id', 'desc');
+        if($q!=''){
+            $topicsQuery = $topicsQuery->where('topic_name', 'like', '%'.$q.'%');
+        }
+        $data['topiks'] = $topicsQuery->get();
         return view('web-management.topik-khusus.index', $data);
     }
 
-    public function modal_topic()
+    public function modal_topic(Request $request)
     {
-        $data['topics'] = Topic::orderBy('topic_id', 'DESC')->get();
+        $q = $request->q;
+        $topicsQuery = Topic::orderBy('topic_id', 'desc');
+        if($q!=''){
+            $topicsQuery = $topicsQuery->where('topic_name', 'like', '%'.$q.'%');
+        }
+        $data['topics'] = $topicsQuery->get();
         return view('editorial.components.modal_topics', $data);
     }
 

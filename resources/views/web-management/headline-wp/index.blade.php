@@ -7,10 +7,10 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="row col-12">
+            <div class="row col-12" style="padding: 0px;">
 
                 {{-- Headline 1  --}}
-                <div class="card col-md-3 m-1">
+                <div class="card col m-1">
                     <div class="card-body p-1">
                         <label>Headline 1</label>
                         <img id="imgheadline1"
@@ -36,7 +36,7 @@
                 {{-- ./ Headline 1 --}}
     
                 {{-- Headline 2  --}}
-                <div class="card col-md-3 m-1">
+                <div class="card col m-1">
                     <div class="card-body p-1">
                         <label>Headline 2</label>
                         <img id="imgheadline1"
@@ -62,7 +62,7 @@
                 {{-- ./ Headline 2 --}}
     
                 {{-- Headline 3  --}}
-                <div class="card col-md-3 m-1">
+                <div class="card col m-1">
                     <div class="card-body p-1">
                         <label>Headline 3</label>
                         <img id="imgheadline1"
@@ -88,7 +88,7 @@
                 {{-- ./ Headline 3 --}}
     
                 {{-- Headline 4  --}}
-                <div class="card col-md-3 m-1">
+                <div class="card col m-1">
                     <div class="card-body p-1">
                         <label>Headline 4</label>
                         <img id="imgheadline1"

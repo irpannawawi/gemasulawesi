@@ -105,7 +105,7 @@
                     @foreach ($photos as $photo)
                         <div class="col-md-3 text-xs-center">
                             <label class="image-checkbox" title="England">
-                                <img src="{{ Storage::url('public/photos/' . $photo->asset->file_name) }}" />
+                                <img loading="lazy" src="{{ Storage::url('public/photos/' . $photo->asset->file_name) }}" />
                                 <input type="checkbox" name="files[]" value="{{ $photo->image_id }}" />
                                 <input type="hidden" name="type" value="image" />
                                 <input type="hidden" name="galery_id" value="{{ $galery->galery_id }}" />
@@ -113,6 +113,7 @@
                         </div>
                     @endforeach
                 </div>
+                {{$photos->links('vendor.pagination.bootstrap-4')}}
             </div>
             <div class="modal-footer">
 
@@ -162,27 +163,29 @@
 
     @push('custom-scripts')
         <script type="text/javascript">
-            jQuery(function($) {
-                // init the state from the input
-                $(".image-checkbox").each(function() {
-                    if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
-                        $(this).addClass('image-checkbox-checked');
-                    } else {
-                        $(this).removeClass('image-checkbox-checked');
-                    }
-                });
-
-                // sync the state to the input
-                $(".image-checkbox").on("click", function(e) {
-                    if ($(this).hasClass('image-checkbox-checked')) {
-                        $(this).removeClass('image-checkbox-checked');
-                        $(this).find('input[type="checkbox"]').first().removeAttr("checked");
-                    } else {
-                        $(this).addClass('image-checkbox-checked');
-                        $(this).find('input[type="checkbox"]').first().attr("checked", "checked");
-                    }
-
-                    e.preventDefault();
+            document.addEventListener("DOMContentLoaded",()=>{
+                jQuery(function($) {
+                    // init the state from the input
+                    $(".image-checkbox").each(function() {
+                        if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
+                            $(this).addClass('image-checkbox-checked');
+                        } else {
+                            $(this).removeClass('image-checkbox-checked');
+                        }
+                    });
+    
+                    // sync the state to the input
+                    $(".image-checkbox").on("click", function(e) {
+                        if ($(this).hasClass('image-checkbox-checked')) {
+                            $(this).removeClass('image-checkbox-checked');
+                            $(this).find('input[type="checkbox"]').first().removeAttr("checked");
+                        } else {
+                            $(this).addClass('image-checkbox-checked');
+                            $(this).find('input[type="checkbox"]').first().attr("checked", "checked");
+                        }
+    
+                        e.preventDefault();
+                    });
                 });
             });
         </script>

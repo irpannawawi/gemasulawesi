@@ -9,9 +9,14 @@ class SourceController extends Controller
 {
     //
 
-    public function modal_source()
+    public function modal_source(Request $request)
     {
-        $data['sources'] = Source::orderBy('source_id', 'DESC')->get();
+        $q = $request->q;
+        $sourcesQuery = Source::orderBy('source_id', 'DESC');
+        if($q!=''){
+            $sourcesQuery = $sourcesQuery->where('source_name', 'like', '%'.$q.'%');
+        }
+        $data['sources'] = $sourcesQuery->get();
         return view('editorial.components.modal_source', $data);
     }
 

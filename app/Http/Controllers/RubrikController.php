@@ -10,7 +10,11 @@ class RubrikController extends Controller
 {
     public function index(Request $request)
     {
-        $data['rubriks'] = Rubrik::orderBy('rubrik_name', 'ASC')->get();
+        $rubrik = Rubrik::orderBy('rubrik_name', 'ASC');
+        if(!empty($request->q)){
+            $rubrik=$rubrik->where('rubrik_name', 'like', '%'.$request->q.'%');
+        }
+        $data['rubriks'] = $rubrik->get();
         return view('rubrik.view', $data);
     }
 

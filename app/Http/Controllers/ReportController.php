@@ -29,7 +29,7 @@ class ReportController extends Controller
         $data = [
             "users" => User::with(['posts'=>function ($query) use ($start_date, $end_date) {
                 return $query->where('status', '=', 'published')
-                ->whereBetween('created_at', [$start_date, $end_date]);
+                ->whereBetween('published_at', [$start_date, $end_date]);
             }])->get(),
         ];
 
@@ -53,7 +53,7 @@ class ReportController extends Controller
         $data = [
             "users" => User::with(['postsAuthor'=>function ($query) use ($start_date, $end_date) {
                 return $query->where('status', '=', 'published')
-                ->whereBetween('created_at', [$start_date, $end_date]);
+                ->whereBetween('published_at', [$start_date, $end_date]);
             }])->get(),
         ];
 
@@ -76,7 +76,7 @@ class ReportController extends Controller
         $data = [
             "posts" => Posts::whereHas('rubrik')->where([
                 ['status', '=', 'published']
-            ])->whereBetween('created_at', [$start_date, $end_date])->orderBy('created_at', 'desc')->get(),
+            ])->whereBetween('published_at', [$start_date, $end_date])->orderBy('published_at', 'desc')->get(),
         ];
         $data['daterange'] = $request->daterange;
         return view("report.articles", $data);
@@ -97,8 +97,8 @@ class ReportController extends Controller
             "sections" => Rubrik::whereHas('posts', function ($query) use ($start_date, $end_date) {
                 return $query->where([
                     ['status', '=', 'published'],
-                ])->whereBetween('created_at', [$start_date, $end_date]);
-            })->orderBy('created_at', 'desc')->get(),
+                ])->whereBetween('published_at', [$start_date, $end_date]);
+            })->orderBy('published_at', 'desc')->get(),
         ];
         $data['daterange'] = $request->daterange;
         return view("report.section", $data);
@@ -132,7 +132,7 @@ class ReportController extends Controller
         $users = User::whereHas('postsAuthor', function ($query) use ($start_date, $end_date) {
             return $query->where([
                 ['status', '=', 'published']
-            ])->whereBetween('created_at', [$start_date, $end_date]);
+            ])->whereBetween('published_at', [$start_date, $end_date]);
         })->get();
         $spreadsheet = new Spreadsheet();
         $activeWorksheet = $spreadsheet->getActiveSheet();
@@ -173,7 +173,7 @@ class ReportController extends Controller
         $users = User::whereHas('postsAuthor', function ($query) use ($start_date, $end_date) {
             return $query->where([
                 ['status', '=', 'published']
-            ])->whereBetween('created_at', [$start_date, $end_date]);
+            ])->whereBetween('published_at', [$start_date, $end_date]);
         })->get();
         $spreadsheet = new Spreadsheet();
         $activeWorksheet = $spreadsheet->getActiveSheet();
@@ -214,7 +214,7 @@ class ReportController extends Controller
         }
         $articles = Posts::whereHas('rubrik')->where([
             ['status', '=', 'published']
-        ])->whereBetween('created_at', [$start_date, $end_date])->orderBy('created_at', 'desc')->get();
+        ])->whereBetween('published_at', [$start_date, $end_date])->orderBy('published_at', 'desc')->get();
         $spreadsheet = new Spreadsheet();
         $activeWorksheet = $spreadsheet->getActiveSheet();
         $activeWorksheet->setCellValue('A1', 'NO');
@@ -257,8 +257,8 @@ class ReportController extends Controller
         $sections = Rubrik::whereHas('posts', function ($query) use ($start_date, $end_date) {
             return $query->where([
                 ['status', '=', 'published'],
-            ])->whereBetween('created_at', [$start_date, $end_date]);
-        })->orderBy('created_at', 'desc')->get();
+            ])->whereBetween('published_at', [$start_date, $end_date]);
+        })->orderBy('published_at', 'desc')->get();
         $spreadsheet = new Spreadsheet();
         $activeWorksheet = $spreadsheet->getActiveSheet();
         $activeWorksheet->setCellValue('A1', 'NO');

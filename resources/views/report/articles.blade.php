@@ -126,20 +126,15 @@
     </div>
 
     @push('custom-scripts')
-        <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-        <script>
-            function edit_rubrik(id, name) {
-                $('#input-rubrik-name').val(name)
-                $('#input-rubrik-id').val(id)
-            }
-        </script>
-
-        <script type="text/javascript">
-            $('input[name="daterange"]').daterangepicker({
-                locale: {
-                    format: 'YYYY-MM-DD'
-                }
+        <script defer type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script defer type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+        <script type="text/javascript" defer>
+            document.addEventListener("DOMContentLoaded",()=>{
+                $('input[name="daterange"]').daterangepicker({
+                    locale: {
+                        format: 'YYYY-MM-DD'
+                    }
+                });
             });
         </script>
     @endpush

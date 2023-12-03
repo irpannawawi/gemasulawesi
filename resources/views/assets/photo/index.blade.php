@@ -14,18 +14,22 @@
                 <a href="{{ route('assets.photo.index') }}" class="btn btn-default btn-sm"><i class="fa fa-reload"></i>
                     Refresh</a>
             </div>
+            
             <div class="float-right">
+                <form action="{{route('browseImage')}}">
+                @csrf
                 <div class="form-inline">
                     <div class="form-group">
 
                     </div>
                     <div class="form-group">
-                        <input id="input_search" type="text" class="form-control input-sm" placeholder="Search..."
-                            data-url="https://editor.promediateknologi.id/photo/index" data-query-string=""
-                            value="">
+                        <input id="input_search" type="search" class="form-control input-sm" placeholder="Search..."
+                            name="q" value="{{!empty($q)?$q:''}}">
+                        <button class="btn"><i class="fa fa-search"></i></button>
                     </div>
                 </div>
-            </div>
+                </form>
+            </div>  
         </div>
         <div class="card-body">
             <div class="row mb-2">

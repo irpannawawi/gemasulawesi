@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-body">
             <div class="card col-md-3">
-                <div class="card-body p-1">
+                <div class="card-body p-1" style="min-height: 200px;">
                     <label>Headline 1</label>
                     <img id="imgheadline1"
                         src="{{@get_post_image($headline->post->post_id)}}"

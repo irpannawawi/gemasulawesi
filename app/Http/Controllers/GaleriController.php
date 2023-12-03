@@ -68,8 +68,8 @@ class GaleriController extends Controller
     {
         $data['collections'] = Collection::where('galery_id', $id)->orderBy('collection_id', 'desc')->get();
         $data['galery'] = Galeri::find($id);
-        $data['photos'] = Image::orderBy('image_id', 'DESC')->get();
-        $data['videos'] = Video::orderBy('video_id', 'DESC')->get();
+        $data['photos'] = Image::orderBy('image_id', 'DESC')->paginate(20);
+        $data['videos'] = Video::orderBy('video_id', 'DESC')->paginate(20);
 
         // dd($data['collections'][1]->photo->image_id);
         return view('galeri.collection', $data);

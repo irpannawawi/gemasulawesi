@@ -164,16 +164,34 @@ class EditorialController extends Controller
         // dd($request->all());
     }
 
-    public function modal_related()
+    public function modal_related(Request $request)
     {
-        $data['posts'] = Posts::where('status', 'published')->orderBy('created_at', 'DESC')->paginate(20);
+        $rubrik = $request->rubrik;
+        $q = $request->q;
+        $posts = Posts::where('status', 'published')->orderBy('created_at', 'DESC');
+
+        if(!empty($q)){
+            $posts = $posts->where('title', 'like', '%'.$q.'%');
+        }
+        if(!empty($rubrik)){
+            $posts = $posts->where('category', '=', $rubrik);
+        }
+
+        $data['posts'] = $posts->paginate(20);
         return view('editorial.components.modal_related', $data);
     }
 
     public function draft(Request $request)
     {
         $data['q'] = $request->q;
-        $data['posts'] = Posts::where('status', 'draft')->where('title', 'LIKE', '%' . $request->q . '%')->orderBy('created_at', 'DESC')->paginate(20);
+        $posts = Posts::where('status', 'draft')->orderBy('created_at', 'DESC');
+        if(!empty($q)){
+            $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
+        }
+        if(!empty($request->rubrik)){
+            $posts = $posts->where('category', '=', $request->rubrik);
+        }
+        $data['posts'] = $posts->paginate(20);
         return view('editorial.draft', $data);
     }
 
@@ -182,21 +200,44 @@ class EditorialController extends Controller
 
     {
         $data['q'] = $request->q;
-        $data['posts'] = Posts::where('status', 'scheduled')->where('title', 'LIKE', '%' . $request->q . '%')->orderBy('created_at', 'DESC')->paginate(20);
+        $posts = Posts::where('status', 'scheduled')->orderBy('created_at', 'DESC');
+        if(!empty($q)){
+            $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
+        }
+        if(!empty($request->rubrik)){
+            $posts = $posts->where('category', '=', $request->rubrik);
+        }
+        $data['posts'] = $posts->paginate(20);
+
         return view('editorial.scheduled', $data);
     }
 
     public function trash(Request $request)
     {
         $data['q'] = $request->q;
-        $data['posts'] = Posts::where('status', 'trash')->where('title', 'LIKE', '%' . $request->q . '%')->orderBy('created_at', 'DESC')->paginate(20);
+        $posts = Posts::where('status', 'trash')->orderBy('created_at', 'DESC');
+        if(!empty($q)){
+            $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
+        }
+        if(!empty($request->rubrik)){
+            $posts = $posts->where('category', '=', $request->rubrik);
+        }
+        $data['posts'] = $posts->paginate(20);
         return view('editorial.trash', $data);
     }
 
     public function published(Request $request)
     {
         $data['q'] = $request->q;
-        $data['posts'] = Posts::where('status', 'published')->where('title', 'LIKE', '%' . $request->q . '%')->orderBy('created_at', 'DESC')->paginate(20);
+        $posts = Posts::where('status', 'published')->orderBy('published_at', 'DESC');
+        if(!empty($q)){
+            $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
+        }
+        if(!empty($request->rubrik)){
+            $posts = $posts->where('category', '=', $request->rubrik);
+        }
+        $data['posts'] = $posts->paginate(20);
+
         return view('editorial.published', $data);
     }
 

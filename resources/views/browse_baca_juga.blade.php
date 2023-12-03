@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> 
         </div>
         <div class="card-body">
             <div class="row mb-2">

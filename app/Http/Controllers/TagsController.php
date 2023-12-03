@@ -9,9 +9,15 @@ class TagsController extends Controller
 {
     //
 
-    public function modal_tags()
+    public function modal_tags(Request $request)
     {
-        $data['tags'] = Tags::orderBy('tag_id', 'DESC')->get();
+        $q = $request->q;
+        $tagsQuery = Tags::orderBy('tag_id', 'DESC');
+        if($q!=''){
+            $tagsQuery = $tagsQuery->where('tag_name', 'like', '%'.$q.'%');
+        }
+        
+        $data['tags'] = $tagsQuery->get();
         return view('editorial.components.modal_tags', $data);
     }
 

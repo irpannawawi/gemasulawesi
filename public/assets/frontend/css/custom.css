@@ -1212,3 +1212,21 @@ transition: 0.1s;
 .image-single-post img{
     border-radius: 25px;
 }
+.dropdown__rubrik>a{
+    display: block;
+    line-height: 1;
+    padding: 10px 5px;
+}
+.dropdown__rubrik .subicon{
+    border-radius: 100%;
+    background: #cecece;
+    font-size: 14px;
+    color: #fff;
+    padding: 2px 5px;
+}
+.dropdown__rubrik .subicon:hover{
+    background: #848484;
+}
+.submenu:focus .dropdown__rubrik .subicon:focus{
+    background: #848484;
+}

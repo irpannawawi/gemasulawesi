@@ -98,7 +98,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/photo/browse/delete/{id}', [PhotoController::class, 'browse_delete'])->name('assets.photo.browse.delete');
 
     //videos
-    Route::get('/video', [VideoController::class, 'index'])->name('assets.video.index');
+    Route::get('/videos', [VideoController::class, 'index'])->name('assets.video.index');
     Route::get('/video/add', [VideoController::class, 'add'])->name('assets.video.add');
     Route::post('/video', [VideoController::class, 'insert'])->name('assets.video.insert');
     Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('assets.video.edit');
@@ -126,9 +126,9 @@ require __DIR__ . '/menufooter.php';
 require __DIR__ . '/amp.php';
 
 
-Route::get('count_post', function(){
+Route::get('count_post', function () {
     $data = [
-        'post'=>Posts::all()->count(),
+        'post' => Posts::all()->count(),
     ];
     return view('count_post', $data);
 });

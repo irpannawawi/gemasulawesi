@@ -25,6 +25,16 @@
             $metaDeskripsi = $post->title;
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
+        } elseif (request()->is('image')) {
+            $metaTitle = 'Gallery Image';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('video')) {
+            $metaTitle = 'Gallery Video';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
         } else {
             $postTitle = $post->title;
             $metaTitle = $postTitle;
@@ -112,6 +122,20 @@
                         "content_category": "Tag"
                     }];
                 </script>';
+            } elseif (request()->is('image')) {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Section Page",
+                        "content_category": "Image"
+                    }];
+                </script>';
+            } elseif (request()->is('video')) {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Section Page",
+                        "content_category": "Video"
+                    }];
+                </script>';
             } else {
                 echo '<script>
                     dataLayer = [{
@@ -170,6 +194,22 @@
                     "editor_id": "All"
                 }];
             </script>
+        @elseif (request()->is('image'))
+            <script>
+                dataLayer = [{
+                    "published_date": "All",
+                    "rubrik": "All",
+                    "penulis": "All",
+                    "editor": "All",
+                    "id": "All",
+                    "type": "All",
+                    "source": "Not Available",
+                    "topic": "Not Available",
+                    "tag": "",
+                    "penulis_id": "All",
+                    "editor_id": "All"
+                }];
+            </script>
         @else
             <script>
                 dataLayer = [{
@@ -224,6 +264,14 @@
             ' . $jsonLD . '
             </script>';
             } elseif (request()->is('tags/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } elseif (request()->is('image')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } elseif (request()->is('video')) {
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
@@ -329,6 +377,14 @@
             ' . $jsonLD . '
             </script>';
             } elseif (request()->is('category/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } elseif (request()->is('image')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
+            } elseif (request()->is('video')) {
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
@@ -558,12 +614,20 @@
                                 <!-- lainnya -->
                                 <div class="nav__right-item nav__lainnya d-none d-lg-block">
                                     <ul class="nav__menu menu__lainnya">
-                                        <li>
-                                            <a href="javascript:void(0)">Lainnya
+                                        <li class="dropdown__rubrik">
+                                            <a href="javascript:;">
                                                 <i class="subicon ui-arrow-down"></i>
                                             </a>
                                             <ul class="submenu">
-                                                @foreach ($rubriks->slice(8) as $rubrik)
+                                                <li>
+                                                    <a href="{{ route('video') }}" class="link-submenu"
+                                                        style="white-space: nowrap;">Video</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ url('image') }}" class="link-submenu"
+                                                        style="white-space: nowrap;">Image</a>
+                                                </li>
+                                                @foreach ($rubriks->slice(7) as $rubrik)
                                                     <li>
                                                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                                             class="link-submenu"

@@ -202,4 +202,14 @@ class WebController extends Controller
 
         return view('frontend.search', compact('paginatedPost', 'beritaTerkini', 'keyword'));
     }
+
+    public function image()
+    {
+        return view('frontend.image');
+    }
+
+    public function video()
+    {
+        return view('frontend.video');
+    }
 }

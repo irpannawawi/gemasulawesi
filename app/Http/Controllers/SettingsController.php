@@ -53,16 +53,17 @@ class SettingsController extends Controller
             // Pastikan file ada sebelum melakukan operasi upload
             if ($request->hasFile('logo_web')) {
                 $file = $request->file('logo_web');
-                $imageName = $file->getClientOriginalName();
+                $imageName = date('dmY') . '.' . $file->getClientOriginalExtension();
                 $path = $file->storeAs('public/logo', $imageName);
 
                 Setting::updateOrCreate(['key' => 'logo_web'], ['value' => $imageName]);
             }
+
             // Pastikan file ada sebelum melakukan operasi upload favicon
             if ($request->hasFile('favicon')) {
-                $faviconFile = $request->file('favicon');
-                $faviconImageName = $faviconFile->getClientOriginalName();
-                $path = $faviconFile->storeAs('public/favicon', $faviconImageName);
+                $file = $request->file('favicon');
+                $faviconImageName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/favicon', $faviconImageName);
 
                 Setting::updateOrCreate(['key' => 'favicon'], ['value' => $faviconImageName]);
             }

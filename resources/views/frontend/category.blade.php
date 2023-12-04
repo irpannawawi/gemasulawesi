@@ -34,7 +34,7 @@
                                         <h2 class="title-category">
                                             <a
                                                 href="{{ route('singlePost', [
-                                                    'rubrik' => str_replace(' ', '-', $headlineRubrik[0]->post->rubrik->rubrik_name),
+                                                    'rubrik' => Str::slug($headlineRubrik[0]->post->rubrik->rubrik_name),
                                                     'post_id' => $headlineRubrik[0]->post->post_id,
                                                     'slug' => $headlineRubrik[0]->post->slug,
                                                 ]) }}">{{ $headlineRubrik[0]->post->title }}</a>
@@ -51,7 +51,7 @@
                             <article class="thumb-text-down">
                                 <div class="hl__b-title">
                                     <a href="{{ route('singlePost', [
-                                        'rubrik' => str_replace(' ', '-', $headlineRubrik[0]->post->rubrik->rubrik_name),
+                                        'rubrik' => Str::slug($headlineRubrik[0]->post->rubrik->rubrik_name),
                                         'post_id' => $headlineRubrik[0]->post->post_id,
                                         'slug' => $headlineRubrik[0]->post->slug,
                                     ]) }}"
@@ -84,7 +84,7 @@
                                                     <div class="post__img">
                                                         <a
                                                             href="{{ route('singlePost', [
-                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
+                                                                'rubrik' => Str::slug($post->rubrik?->rubrik_name),
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}">
@@ -102,7 +102,7 @@
                                                         </ul>
                                                         <h3 class="post-list-small__entry-title">
                                                             <a href="{{ route('singlePost', [
-                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
+                                                                'rubrik' => Str::slug($post->rubrik?->rubrik_name),
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}"
@@ -150,7 +150,7 @@
                                                 <div class="post__img">
                                                     <a
                                                         href="{{ route('singlePost', [
-                                                            'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                            'rubrik' => Str::slug($post->rubrik->rubrik_name),
                                                             'post_id' => $post->post_id,
                                                             'slug' => $post->slug,
                                                         ]) }}">
@@ -168,7 +168,7 @@
                                                     </ul>
                                                     <h3 class="post-list-small__entry-title">
                                                         <a href="{{ route('singlePost', [
-                                                            'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
+                                                            'rubrik' => Str::slug($post->rubrik?->rubrik_name),
                                                             'post_id' => $post->post_id,
                                                             'slug' => $post->slug,
                                                         ]) }}"

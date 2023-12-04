@@ -1230,3 +1230,11 @@ transition: 0.1s;
 .submenu:focus .dropdown__rubrik .subicon:focus{
     background: #848484;
 }
+pre{
+    font-family: 'Poppins', sans-serif;
+    padding: 0 0 20px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000;
+}

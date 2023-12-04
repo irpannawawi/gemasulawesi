@@ -17,7 +17,7 @@
     <div class="card" data-widget="iframe">
         <div class="card-header">
             {{-- <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addpostModal">Tambah data</button> --}}
-            <a class="btn border btn-xs" href="{{ $_SERVER['REQUEST_URI'] }}"><i class="fa fa-sync"></i> Refresh</a>
+            <a class="btn border btn-xs" href="{{ route('breakingNews.browse') }}"><i class="fa fa-sync"></i> Refresh</a>
             <div class="col-6 float-right">
                 <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
                     @csrf
@@ -109,6 +109,25 @@
                 console.log(message)
                 window.parent.postMessage(message, '*');
             }
+        </script>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                $('#rubrikSelect').on('change', function() {
+                    $('#formSearch').submit()
+                })
+                // insert image 
+                function sendBacaJuga(title, url) {
+
+                    window.parent.postMessage({
+                        mceAction: 'insertHTML',
+                        data: {
+                            title: title,
+                            url: url
+                        }
+                    }, "*")
+                }
+            });
         </script>
 </body>
 

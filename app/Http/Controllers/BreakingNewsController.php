@@ -23,7 +23,16 @@ class BreakingNewsController extends Controller
     
     public function browse(Request $request)
     {
-        $posts = Posts::orderBy('post_id', 'desc')->where('status', 'published');
+        $q = $request->q;
+        
+        $data['q'] = $q;
+        $posts = Posts::where('status', 'published')->orderBy('published_at', 'DESC');
+        if(!empty($q)){
+            $posts = $posts->where('title', 'LIKE', '%' . $q . '%');
+        }
+        if(!empty($request->rubrik)){
+            $posts = $posts->where('category', '=', $request->rubrik);
+        }
         $data['posts'] = $posts->paginate(20);
         return view('breaking-news.browse_article', $data);
     }

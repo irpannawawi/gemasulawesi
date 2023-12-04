@@ -170,7 +170,7 @@ class WebController extends Controller
             ->where(
                 [
                     ['status', '=', 'published'],
-                    ['tags', 'like', '%,' . $tag_id . ',%']
+                    ['tags', 'like', '%"' . $tag_id . '"%']
                 ]
             )
             ->orWhere(
@@ -185,7 +185,7 @@ class WebController extends Controller
                     ['tags', 'like', '%,' . $tag_id . ']']
                 ]
             )
-            ->paginate(10);
+            ->paginate(20);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.tags', $data);
     }

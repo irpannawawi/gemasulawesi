@@ -23,7 +23,7 @@
             $type = 'website';
         } elseif (request()->is('tags/*')) {
             $metaTitle = 'Berita ' . $tag_name . ' Hari Ini';
-            $metaDeskripsi = $post->title ?? '';
+            $metaDeskripsi = $post->description ?? '';
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('image')) {

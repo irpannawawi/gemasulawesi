@@ -1,7 +1,10 @@
 <x-app-layout>
     @push('extra-css')
-        <link defer rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
+        {{-- <link defer rel="stylesheet" href="{{url('/')}}/assets/AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css"> --}}
+        <link href="https://cdn.datatables.net/v/bs4/jq-3.7.0/dt-1.13.8/datatables.min.css" rel="stylesheet">
         
+        <script src="{{url('/')}}/assets/AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/v/bs4/jq-3.7.0/dt-1.13.8/datatables.min.js"></script>
         @endpush
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800   leading-tight">
@@ -91,15 +94,53 @@
     </div>
 
     @push('custom-scripts')
-    {{-- <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script> --}}
-    @vite('resources/js/datatable.js')
-    {{-- <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script> --}}
+        {{-- @vite('resources/js/datatable.js') --}}
         <script>
             function fill_form(post_id, title) {
                 $('#post_id').val(post_id)
                 $('#title').val(title)
 
             }
+
+            document.addEventListener("DOMContentLoaded", function() {
+                let table = new DataTable('.datatable', {
+                    ajax: '/api/articles',
+                    serverSide: true,
+                    processing: true,
+                    columns: [{
+                        data: 'post_id',
+                        name: 'post_id'
+                    }, {
+                        data: 'title',
+                        name: 'title'
+                    }, {
+                        data: 'rubrik.rubrik_name',
+                        name: 'rubrik.rubrik_name'
+                    }, {
+                        data: 'author.display_name',
+                        name: 'author.display_name'
+                    }, {
+                        data: 'editor.display_name',
+                        name: 'editor.display_name'
+                    }, {
+                        data: 'published_at',
+                        name: 'published_at'
+                    }, {
+                        data: 'post_id',
+                        name: 'post_data'
+                    }],
+                    // Menambahkan tombol di kolom terakhir
+                    columnDefs: [{
+                        targets: -1,
+                        data: '',
+                        render: function(data, type, row) {
+                            return '<div class="btn-group"><button type="button" onclick="fill_form(' +
+                                row.post_id + ', \'' + row.title +
+                                '\')" class="btn btn-sm btn-default" data-dismiss="modal">Choose</a> </div>';
+                        },
+                    }, ],
+                });
+            })
         </script>
     @endpush
 </x-app-layout>

@@ -16,8 +16,8 @@ class BreakingNewsController extends Controller
 
     public function insert()
     {
-        $data['posts'] = Posts::orderBy('post_id', 'desc')->where('status', 'published')->get();
-        return view('breaking-news.add', $data);
+        // $data['posts'] = Posts::orderBy('post_id', 'desc')->where('status', 'published')->get();
+        return view('breaking-news.add');
     }
 
     public function store(Request $request)

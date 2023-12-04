@@ -1,10 +1,10 @@
 @extends('layouts.web')
 @section('content')
+    @php
+        $youtubeData = getYoutubeData($videoTerkini->url)->snippet;
+    @endphp
     <div class="main-container container" id="main-container">
         <!-- Content -->
-        @php
-            $youtubeData = getYoutubeData($videoTerkini->url)->snippet;
-        @endphp
         <section>
             <div class="title-list-berita">
                 <span>Berita Video</span>

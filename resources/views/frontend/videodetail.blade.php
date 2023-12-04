@@ -1,5 +1,8 @@
 @extends('layouts.web')
 @section('content')
+    @php
+        $youtubeData = getYoutubeData($video->url)->snippet;
+    @endphp
     <!-- Breadcrumbs -->
     <div class="container">
         <ul class="breadcrumbs">
@@ -46,10 +49,14 @@
                 </div>
 
                 <!-- Entry Image -->
-                <div class="thumb image-single-post">
-                    <iframe height="400" width="700"
-                        src="https://www.youtube.com/embed/{{ getYoutubeData($video->url)->id }}"
-                        title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <div class="thumb videos__player image-single-post">
+                    <div class="videos__ratio">
+                        <iframe height="400" width="700"
+                            src="https://www.youtube.com/embed/{{ getYoutubeData($video->url)->id }}"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
 
                 <!-- standard post -->
@@ -90,18 +97,25 @@
                                 <ul class="post-list-small post-list-small--2 mb-32 mt-3">
                                     <li class="post-list-small__item">
                                         <article class="post-list-small__entry clearfix">
-                                            <div class="post__img">
+                                            <div class="video__img">
                                                 <a
                                                     href="{{ route('videtail', [
                                                         'video_id' => $video->video_id,
                                                         'title' => Str::slug($video->title),
                                                     ]) }}">
-                                                    <img data-src="https://i.ytimg.com/vi/vwpE-9oivMc/mqdefault.jpg"
-                                                        src="{{ url('assets/frontend') }}/img/empty.jpg" alt="Title"
-                                                        class="lazyload">
+                                                    <i class="play__buttom fas fa-play-circle"></i>
+                                                    <img data-src="{{ $youtubeData->thumbnails->medium->url }}"
+                                                        src="{{ url('assets/frontend') }}/img/empty.jpg"
+                                                        alt="{{ $video->title }}" class="lazyload">
                                                 </a>
                                             </div>
                                             <div class="post-list-small__body">
+                                                <ul class="entry__meta category underline">
+                                                    <li>
+                                                        <a href="{{ route('video') }}"
+                                                            class="entry__meta-category">Video</a>
+                                                    </li>
+                                                </ul>
                                                 <h3 class="post-list-small__entry-title">
                                                     <a href="{{ route('videtail', [
                                                         'video_id' => $video->video_id,

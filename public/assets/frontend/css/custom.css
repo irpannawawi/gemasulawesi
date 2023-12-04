@@ -767,6 +767,9 @@
         width: 100px;
         height: 98px;
     }
+    .video__img{
+        width: 127px;
+    }
 }
 
 /* ads banner */
@@ -1269,9 +1272,14 @@ pre{
     position: relative;
     overflow: hidden;
     width: 211px;
-    height: calc(199px / (5 / 3));
+    height: auto;
     float: left;
     margin-right: 15px;
+}
+@media screen and (max-width: 767px) {
+    .video__img{
+        width: 140px ;
+    }
 }
 .video__img img{
     border-radius: 10px;

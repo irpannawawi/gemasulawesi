@@ -91,7 +91,7 @@
     </div>
 
     @push('custom-scripts')
-
+    {{-- <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script> --}}
     @vite('resources/js/datatable.js')
     {{-- <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script> --}}
         <script>

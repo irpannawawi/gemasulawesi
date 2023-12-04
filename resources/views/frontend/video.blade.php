@@ -12,7 +12,7 @@
             {{-- Headline Rubrik --}}
             <div class="thumb mb-4">
                 {{-- Tampilan mobile --}}
-                <article class="entry thumb--size-3 mb-0">
+                <article class="entry thumb--size-3 mb-0 thumbnail__headline">
                     <a
                         href="{{ route('videtail', [
                             'video_id' => $videoTerkini->video_id,
@@ -20,6 +20,7 @@
                         ]) }}">
                         <div class="entry__img-holder thumb__img-holder"
                             style="background-image: url('{{ $youtubeData->thumbnails->medium->url }}');">
+                            <i class="play fas fa-play-circle"></i>
                             <div class="bottom-gradient rubrik"></div>
                             <div class="thumb-text-holder rubrik thumb-text-holder--2">
                                 <h2 class="title-category">
@@ -59,12 +60,13 @@
                                 @foreach ($videoLainnya as $video)
                                     <li class="post-list-small__item">
                                         <article class="post-list-small__entry clearfix">
-                                            <div class="post__img">
+                                            <div class="video__img">
                                                 <a
                                                     href="{{ route('videtail', [
                                                         'video_id' => $video->video_id,
                                                         'title' => Str::slug($video->title),
                                                     ]) }}">
+                                                    <i class="play__buttom fas fa-play-circle"></i>
                                                     <img data-src="{{ $youtubeData->thumbnails->medium->url }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                         alt="{{ $video->title }}" class="lazyload">

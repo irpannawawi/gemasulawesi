@@ -670,7 +670,7 @@
                                                     <a href="{{ url('image') }}" class="link-submenu"
                                                         style="white-space: nowrap;">Image</a>
                                                 </li>
-                                                @foreach ($rubriks->slice(7) as $rubrik)
+                                                @foreach ($rubriks->slice(9) as $rubrik)
                                                     <li>
                                                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                                             class="link-submenu"

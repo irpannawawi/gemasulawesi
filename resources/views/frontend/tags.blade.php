@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
-                                    @if (!empty($beritaTerkini[1]))
+                                    @if (!empty($beritaTerkini[0]))
                                         @foreach ($beritaTerkini[0] as $post)
                                             <li class="post-list-small__item">
                                                 <article class="post-list-small__entry clearfix">

@@ -13,5 +13,5 @@ lock = mp.Lock()
 if __name__ == '__main__':
 
     while page_start<=page_end:
-        task.do_task(per_page=per_page, page=page_start, url_local=url_public)
+        task.do_task(per_page=per_page, page=page_start, url_local=url_local)
         page_start= page_start+1

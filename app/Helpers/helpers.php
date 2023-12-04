@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Posts;
+use App\Models\Video;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -47,6 +48,47 @@ if (!function_exists('getYoutubeData')) {
         \Carbon\Carbon::setLocale('id');
         $converted = \Carbon\Carbon::parse($date);
         return $converted->isoFormat('D MMMM Y H:mm [WIB]');
+    }
+
+    function get_video_image($video_id)
+    {
+        // Periksa apakah $video_id tidak kosong dan merupakan bilangan bulat positif
+        if (empty($video_id) || !is_numeric($video_id) || $video_id <= 0) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Invalid video ID';
+        }
+
+        // Coba mencari video dengan ID yang diberikan
+        $video = Video::find($video_id);
+
+        // Periksa apakah video ditemukan
+        if (!$video) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'video not found';
+        }
+
+        // Periksa apakah video memiliki properti image
+        if (!$video->image) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'video does not have an image';
+        }
+
+        // Periksa apakah image memiliki properti asset
+        if (!$video->image->asset) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Image does not have an asset';
+        }
+
+        // Periksa apakah asset memiliki properti file_name
+        if (!$video->image->asset->file_name) {
+            // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+            return 'Image asset does not have a file name';
+        }
+
+        // Bangun URL dengan menggunakan Storage::url
+        $url = Storage::url('public/video/' . $video->image->asset->file_name);
+
+        return $url;
     }
 
     function get_post_image($post_id)

@@ -33,7 +33,7 @@
                                                     <div class="post__img">
                                                         <a
                                                             href="{{ route('singlePost', [
-                                                                'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                                'rubrik' => Str::slug($post->rubrik->rubrik_name),
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}">
@@ -51,13 +51,14 @@
                                                         </ul>
                                                         <h3 class="post-list-small__entry-title">
                                                             <a href="{{ route('singlePost', [
-                                                                'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
+                                                                'rubrik' => Str::slug($post->rubrik?->rubrik_name),
                                                                 'post_id' => $post->post_id,
                                                                 'slug' => $post->slug,
                                                             ]) }}"
                                                                 class="">{{ $post->title }}</a>
                                                         </h3>
-                                                        <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}</p>
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}
+                                                        </p>
                                                     </div>
                                                 </article>
                                             </li>
@@ -75,7 +76,7 @@
                                                         <div class="post__img">
                                                             <a
                                                                 href="{{ route('singlePost', [
-                                                                    'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                                    'rubrik' => Str::slug($post->rubrik->rubrik_name),
                                                                     'post_id' => $post->post_id,
                                                                     'slug' => $post->slug,
                                                                 ]) }}">
@@ -93,13 +94,14 @@
                                                             </ul>
                                                             <h3 class="post-list-small__entry-title">
                                                                 <a href="{{ route('singlePost', [
-                                                                    'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
+                                                                    'rubrik' => Str::slug($post->rubrik?->rubrik_name),
                                                                     'post_id' => $post->post_id,
                                                                     'slug' => $post->slug,
                                                                 ]) }}"
                                                                     class="">{{ $post->title }}</a>
                                                             </h3>
-                                                            <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}
+                                                            <p class="bt__date">
+                                                                {{ convert_date_to_ID($post->published_at) }}
                                                             </p>
                                                         </div>
                                                     </article>

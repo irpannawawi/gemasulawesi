@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\HeadlineController;
 use App\Http\Controllers\WebController;
+use App\Http\Controllers\WebGalleryController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
@@ -23,5 +24,6 @@ Route::get('/indeks-berita', [WebController::class, 'indeks'])->name('indeks');
 Route::get('/search', [WebController::class, 'search'])->name('search');
 Route::get('/topik-khusus/detail/{topic_id}/{slug}', [WebController::class, 'topikkhusus'])->name('topikkhusus');
 Route::get('/subs', [WebController::class, 'subscribe'])->name('subscribe');
-Route::get('/image', [WebController::class, 'image'])->name('image');
-Route::get('/video', [WebController::class, 'video'])->name('video');
+Route::get('/video', [WebGalleryController::class, 'video'])->name('video');
+Route::get('/video/detail/{video_id}/{title}', [WebGalleryController::class, 'videtail'])->name('videtail');
+Route::get('/image', [WebGalleryController::class, 'image'])->name('image');

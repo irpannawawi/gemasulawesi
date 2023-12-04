@@ -50,7 +50,7 @@
                 <!-- Entry Image -->
                 <div class="thumb image-single-post">
                     <img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500" width="700">
-                    <p class="photo__caption">{!! !empty($post->image)?strip_tags($post->image->caption):'' !!}</p>
+                    <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!}</p>
                 </div>
 
                 <!-- standard post -->
@@ -81,7 +81,7 @@
                                         @for ($i = 1; $i <= $totalPages; $i++)
                                             <div class="halaman__item">
                                                 <a href="{{ route('singlePost', [
-                                                    'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                    'rubrik' => Str::slug($post->rubrik->rubrik_name),
                                                     'post_id' => $post->post_id,
                                                     'slug' => $post->slug,
                                                     'page' => $i,
@@ -94,7 +94,7 @@
                                         <div class="halaman__all">
                                             @if ($currentPage < $totalPages)
                                                 <a href="{{ route('singlePost', [
-                                                    'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                                    'rubrik' => Str::slug($post->rubrik->rubrik_name),
                                                     'post_id' => $post->post_id,
                                                     'slug' => $post->slug,
                                                     'page' => $currentPage + 1,
@@ -124,7 +124,7 @@
                                         if ($post->tags != null and $post->tags != 'null') {
                                             foreach (json_decode($post->tags) as $tags) {
                                                 $tag = \App\Models\Tags::find($tags);
-                                                echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                echo '<a href="' . route('tags', ['tag_name' => Str::slug($tag->tag_name)]) . '" rel="tag">' . $tag->tag_name . '</a>';
                                             }
                                         }
                                     @endphp
@@ -145,8 +145,9 @@
                                     aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
                                 <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp-bottom"
                                     aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
-                                <a href="#" target="_blank" class="social social-telegram" id="share-telegram-bottom"
-                                    aria-label="telegram"><i class="fa-brands fa-telegram"></i></a>
+                                <a href="#" target="_blank" class="social social-telegram"
+                                    id="share-telegram-bottom" aria-label="telegram"><i
+                                        class="fa-brands fa-telegram"></i></a>
                                 <a href="#" class="social social-copy" id="share-copy-bottom" aria-label="copy"><i
                                         class="fa-solid fa-link"></i></a>
                             </div>
@@ -183,7 +184,7 @@
                                 <li>
                                     <h2 class="terkait__title">
                                         <a href="{{ route('singlePost', [
-                                            'rubrik' => str_replace(' ', '-', $related->rubrik->rubrik_name),
+                                            'rubrik' => Str::slug($related->rubrik->rubrik_name),
                                             'post_id' => $related->post_id,
                                             'slug' => $related->slug,
                                         ]) }}"
@@ -214,7 +215,7 @@
                                             <div class="post__img">
                                                 <a
                                                     href="{{ route('singlePost', [
-                                                        'rubrik' => str_replace(' ', '-', $post_item->rubrik->rubrik_name),
+                                                        'rubrik' => Str::slug($post_item->rubrik->rubrik_name),
                                                         'post_id' => $post_item->post_id,
                                                         'slug' => $post_item->slug,
                                                     ]) }}">
@@ -226,7 +227,7 @@
                                             <div class="post-list-small__body">
                                                 <h3 class="post-list-small__entry-title">
                                                     <a href="{{ route('singlePost', [
-                                                        'rubrik' => str_replace(' ', '-', $post_item->rubrik->rubrik_name),
+                                                        'rubrik' => Str::slug($post_item->rubrik->rubrik_name),
                                                         'post_id' => $post_item->post_id,
                                                         'slug' => $post_item->slug,
                                                     ]) }}"

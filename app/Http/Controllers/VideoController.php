@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class VideoController extends Controller
 {
@@ -16,7 +17,6 @@ class VideoController extends Controller
 
     public function add(Request $request)
     {
-
         return view('assets.video.add');
     }
 
@@ -38,6 +38,7 @@ class VideoController extends Controller
             'uploader_id' => $user_id,
             'url' => $url,
             'title' => $title,
+            // 'slug' => Str::slug($title),
             'description' => $description
         ];
         $res = Video::create($dataVideo);
@@ -50,9 +51,11 @@ class VideoController extends Controller
     {
 
         $title = $request->title;
+        // $slug = Str::slug($request->title);
         $description = $request->description;
         $video = Video::find($request->video_id);
 
+        // $video->slug = $slug;
         $video->title = $title;
         $video->description = $description;
         if ($video->save()) {

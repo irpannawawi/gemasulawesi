@@ -5,6 +5,7 @@
     use Carbon\Carbon;
     $breakingNews = App\Models\Breakingnews::get();
     use App\Models\Rubrik;
+
     $baseUrl = URL::to('');
 @endphp
 
@@ -35,6 +36,12 @@
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
+        } elseif (request()->is('video/detail/*')) {
+            $postTitle = $video->title;
+            $metaTitle = $postTitle;
+            $metaDeskripsi = '';
+            $metaImage = '';
+            $type = 'article';
         } else {
             $postTitle = $post->title;
             $metaTitle = $postTitle;
@@ -136,6 +143,12 @@
                         "content_category": "Video"
                     }];
                 </script>';
+            } elseif (request()->is('video/detail/*')) {
+                echo '<script>
+                    dataLayer = [{
+                        "content_category": ""
+                    }];
+                </script>';
             } else {
                 echo '<script>
                     dataLayer = [{
@@ -210,6 +223,22 @@
                     "editor_id": "All"
                 }];
             </script>
+        @elseif (request()->is('video'))
+            <script>
+                dataLayer = [{
+                    "published_date": "All",
+                    "rubrik": "All",
+                    "penulis": "All",
+                    "editor": "All",
+                    "id": "All",
+                    "type": "All",
+                    "source": "Not Available",
+                    "topic": "Not Available",
+                    "tag": "",
+                    "penulis_id": "All",
+                    "editor_id": "All"
+                }];
+            </script>
         @else
             <script>
                 dataLayer = [{
@@ -230,7 +259,7 @@
 
         @php
             preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+            $imagePath = $matches[1] ?? '';
             $image = asset($imagePath);
             $segments = request()->segments();
             $lastSegment = end($segments);
@@ -275,6 +304,10 @@
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
+            } elseif (request()->is('video/detail/*')) {
+                echo '<script type="application/ld+json">
+            ' . $jsonLD . '
+            </script>';
             } else {
                 echo '<script type="application/ld+json">
             ' . $jsonP . '
@@ -283,13 +316,23 @@
         @endphp
 
         @php
-            if (!request()->is('/') && !request()->is('category/*') && !request()->is('tags/*')) {
+            $excludedUrls = ['search/', 'indeks-berita/', 'topik-khusus/detail/*', 'tentang-kami', 'kode-etik'];
+
+            $shouldDisplayJsonLD = true;
+            foreach ($excludedUrls as $url) {
+                if (str_contains(request()->url(), $url)) {
+                    $shouldDisplayJsonLD = false;
+                    break;
+                }
+            }
+
+            if ($shouldDisplayJsonLD) {
                 preg_match('/<img src="(.*?)">/', $post->article, $matches);
                 $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
                 $image = asset($imagePath);
                 $segments = request()->segments();
                 $lastSegment = end($segments);
-                $postTitle = str_replace('-', ' ', $lastSegment);
+                $postTitle = Str::slug('-', ' ', $lastSegment);
                 $jsonLDData = [
                     '@context' => 'http://schema.org/',
                     '@type' => 'NewsArticle',
@@ -322,7 +365,7 @@
                 ];
                 $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
                 echo '<script type="application/ld+json">
-                ' . $jsonLD. '
+                    ' . $jsonLD. '
                 </script>';
             }
         @endphp
@@ -384,7 +427,7 @@
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
-            } elseif (request()->is('video')) {
+            } elseif (request()->is('video') && !request()->is('video/detail/*')) {
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';

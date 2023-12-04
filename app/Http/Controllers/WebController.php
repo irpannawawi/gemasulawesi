@@ -9,6 +9,7 @@ use App\Models\Posts;
 use App\Models\Rubrik;
 use App\Models\Tags;
 use App\Models\Topic;
+use App\Models\Video;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -201,15 +202,5 @@ class WebController extends Controller
         $paginatedPost->appends(['q' => $keyword]);
 
         return view('frontend.search', compact('paginatedPost', 'beritaTerkini', 'keyword'));
-    }
-
-    public function image()
-    {
-        return view('frontend.image');
-    }
-
-    public function video()
-    {
-        return view('frontend.video');
     }
 }

@@ -17,7 +17,7 @@
                 <div class="most__number">{{ $n++ }}</div>
                 <div class="most__right">
                     <a href="{{ route('singlePost', [
-                        'rubrik' => str_replace(' ', '-', $post->rubrik?->rubrik_name),
+                        'rubrik' => Str::slug($post->rubrik?->rubrik_name),
                         'post_id' => $post->post_id,
                         'slug' => $post->slug,
                     ]) }}"

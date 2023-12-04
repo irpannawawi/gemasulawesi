@@ -20,6 +20,14 @@ class BreakingNewsController extends Controller
         return view('breaking-news.add');
     }
 
+    
+    public function browse(Request $request)
+    {
+        $posts = Posts::orderBy('post_id', 'desc')->where('status', 'published');
+        $data['posts'] = $posts->paginate(20);
+        return view('breaking-news.browse_article', $data);
+    }
+
     public function store(Request $request)
     {
         $data = [

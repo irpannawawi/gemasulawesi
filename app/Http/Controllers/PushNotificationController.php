@@ -84,7 +84,7 @@ class PushNotificationController extends Controller
 
     public function add()
     {
-        $data['posts'] = Posts::orderBy('post_id', 'desc')->where('status', 'published')->paginate('20');
+        $data['posts'] = Posts::orderBy('published_at', 'desc')->where('status', 'published')->paginate('20');
         return view('push-notification.add', $data);
     }
 

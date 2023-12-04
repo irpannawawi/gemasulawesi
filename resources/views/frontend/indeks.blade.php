@@ -58,7 +58,7 @@
                                                             ]) }}"
                                                                 class="post-title">{{ $post->title }}</a>
                                                         </h3>
-                                                        <p class="bt__date">{{ convert_date_to_ID($post->publishd_at) }}</p>
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}</p>
                                                     </div>
                                                 </article>
                                             </li>
@@ -106,7 +106,7 @@
                                                             ]) }}"
                                                                 class="post-title">{{ $post->title }}</a>
                                                         </h3>
-                                                        <p class="bt__date">{{ convert_date_to_ID($post->publishd_at) }}
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}
                                                         </p>
                                                     </div>
                                                 </article>

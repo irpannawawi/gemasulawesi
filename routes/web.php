@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrowseController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditorialController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
@@ -29,7 +30,7 @@ use Illuminate\Support\Facades\Route;
 use App\Jobs\TestQueue;
 use App\Models\Posts;
 
-Route::get('/queue_test', function () {
+Route::get('/data-article-source', function () {
     TestQueue::dispatch([
         'username' => 'Jobusername',
         'display_name' => 'Jobdisplay_name',
@@ -47,9 +48,7 @@ Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 Route::post('/create_img_byTinymce', [PhotoController::class, 'update_image_tinymce'])->name('assets.photo.updateTinymce');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -93,6 +92,8 @@ Route::middleware('auth')->group(function () {
     // assets photo
     Route::get('/photo', [PhotoController::class, 'index'])->name('assets.photo.index');
     Route::post('/photo/upload', [PhotoController::class, 'upload'])->name('assets.photo.upload');
+    Route::get('/photo/edit/{id}', [PhotoController::class, 'edit'])->name('assets.photo.edit');
+    Route::put('/photo/update', [PhotoController::class, 'update'])->name('assets.photo.update');
     Route::get('/photo/delete/{id}', [PhotoController::class, 'delete'])->name('assets.photo.delete');
     Route::post('/photo/browse/upload', [PhotoController::class, 'browse_upload'])->name('assets.photo.browse.upload');
     Route::get('/photo/browse/delete/{id}', [PhotoController::class, 'browse_delete'])->name('assets.photo.browse.delete');

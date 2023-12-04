@@ -22,7 +22,16 @@
             {{ __('Editorial - Create Article') }}
         </h2>
     </x-slot>
-
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            <li>Error:</li>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="card">
         <form id="article-form" method="POST" action="{{ route('editorial.insert') }}">
             @csrf
@@ -34,13 +43,13 @@
                         <div class="form-group">
                             <label for="title">Title</label>
                             <input type="text" maxlength="120" name="title" class="form-control"
-                                placeholder="Enter title ...">
+                                placeholder="Enter title ..." value="{{old('title')}}">
                             <span class="badge badge-info">120 Character</span>
 
                         </div>
                         <div class="form-group">
                             <label for="content"><i class="mdi mdi-content-copy:"></i></label>
-                            <textarea class="editor" name="content" id="content" class="form-control" cols="2" rows="50"></textarea>
+                            <textarea class="editor" name="content" id="content" class="form-control" cols="2" rows="50">{{old('content')}}</textarea>
                         </div>
 
                         {{-- Related input --}}
@@ -61,7 +70,7 @@
                             <label for="rubrik">Rubrik</label>
                             <select class="form-control form-control-sm" id="select2Rubrik" name="rubrik">
                                 @foreach ($rubriks as $rubrik)
-                                    <option value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}</option>
+                                    <option {{old('rubrik')==$rubrik->rubrik_id?'selected':''}} value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -69,7 +78,7 @@
                         <div class="form-group">
                             <label for="descriptions">Description</label>
                             <textarea maxlength="140" minlength="100" name="description" id="description" class="form-control form-control-sm"
-                                onchange="count_word_description()" required></textarea>
+                                onchange="count_word_description()" required>{{old('description')}}</textarea>
                             <span class="badge badge-info"><span id="counter_word_description">140</span> Character
                                 left</span>
                         </div>

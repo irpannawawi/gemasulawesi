@@ -10,12 +10,12 @@
           <!-- small box -->
           <div class="small-box bg-info">
             <div class="inner">
-              <h3>150</h3>
+              <h3>{{number_format($countPublished*1000, 0,',','.')}}</h3>
 
-              <p>Draft</p>
+              <p>Published</p>
             </div>
             <div class="icon">
-              <i class="fa fa-copy"></i>
+              <i class="fa fa-check-square"></i>
             </div>
           </div>
         </div>
@@ -24,7 +24,7 @@
           <!-- small box -->
           <div class="small-box bg-success">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3>{{number_format($countScheduled, 0,',','.')}}</h3>
 
               <p>Scheduled</p>
             </div>
@@ -38,12 +38,12 @@
           <!-- small box -->
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>44</h3>
+              <h3>{{number_format($countDraft, 0,',','.')}}</h3>
 
-              <p>Published</p>
+              <p>Draft</p>
             </div>
             <div class="icon">
-              <i class="fa fa-check"></i>
+              <i class="fa fa-copy"></i>
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
           <!-- small box -->
           <div class="small-box bg-danger">
             <div class="inner">
-              <h3>65</h3>
+              <h3>{{number_format($countTrash, 0,',','.')}}</h3>
 
               <p>Trash</p>
             </div>

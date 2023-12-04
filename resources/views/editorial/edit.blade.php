@@ -21,8 +21,18 @@
         <h2 class="font-semibold text-lg text-gray-800   leading-tight">
             {{ __('Edit Article') }}
         </h2>
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                <li>Error:</li>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     </x-slot>
-
+ 
     <div class="card">
         <form id="article-form" method="POST" action="{{ route('editorial.update', ['id' => $post->post_id]) }}">
             @csrf
@@ -45,10 +55,11 @@
 
                         {{-- Related input --}}
                         <div class="form-group">
+                              
                             <label>Related article</label>
                             <select class="form-control select2-multiple" id="select2Related" name="related[]" multiple>
-                                @if ($post->related_articles != null)
-                                    @foreach (json_decode($post->related_articles) as $article)
+                                @if ($post->related_articles != 'null' && $post->related_articles != null)
+                                @foreach (json_decode($post->related_articles) as $article)
                                         @php
                                             $articleData = App\Models\Posts::find($article);
                                         @endphp
@@ -86,7 +97,7 @@
                         <div class="form-group">
                             <label for="tag">Tag</label>
                             <select class="form-control" id="select2Tag" name="tags[]" multiple>
-                                @if ($post->tags != null)
+                                @if ($post->tags != null && $post->tags!='null')
                                     @foreach (json_decode($post->tags) as $tag)
                                         @php
                                             $articleData = App\Models\Tags::find($tag);
@@ -107,7 +118,7 @@
                         <div class="form-group">
                             <label for="select2Source">Source</label>
                             <select class="form-control" id="select2Source" name="sources[]" multiple>
-                                @if ($post->sources != null)
+                                @if ($post->sources != null && $post->sources!='null')
                                     @foreach (json_decode($post->source) as $source)
                                         @php
                                             $articleData = App\Models\sources::find($source);
@@ -142,7 +153,7 @@
                         <div class="form-group">
                             <label for="select2Topic">Topic</label>
                             <select class="form-control select2-multiple" id="select2Topic" name="topics[]" multiple>
-                                @if ($post->topics != null)
+                                @if ($post->topics != null && $post->topics!='null')
                                     @foreach (json_decode($post->topics) as $topic)
                                         @php
                                             $articleData = App\Models\Topic::find($topic);

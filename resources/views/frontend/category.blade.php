@@ -41,7 +41,7 @@
                                         </h2>
                                         <ul class="entry__meta">
                                             <li class="entry__meta-comments">
-                                                <a> {{ convert_date_to_ID($headlineRubrik[0]->created_at) }} </a>
+                                                <a> {{ convert_date_to_ID($headlineRubrik[0]->published_at) }} </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -61,7 +61,7 @@
                                 </div>
                                 <ul class="entry__meta">
                                     <li class="entry__meta-comments">
-                                        <a> {{ convert_date_to_ID($headlineRubrik[0]->created_at) }} </a>
+                                        <a> {{ convert_date_to_ID($headlineRubrik[0]->publihed_at) }} </a>
                                     </li>
                                 </ul>
                             </article>
@@ -108,7 +108,7 @@
                                                             ]) }}"
                                                                 class="post-title">{{ $post->title }}</a>
                                                         </h3>
-                                                        <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->publihed_at) }}</p>
                                                     </div>
                                                 </article>
                                             </li>
@@ -174,7 +174,7 @@
                                                         ]) }}"
                                                             class="post-title">{{ $post->title }}</a>
                                                     </h3>
-                                                    <p class="bt__date">{{ convert_date_to_ID($post->created_at) }}</p>
+                                                    <p class="bt__date">{{ convert_date_to_ID($post->publihed_at) }}</p>
                                                 </div>
                                             </article>
                                         </li>

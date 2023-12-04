@@ -32,9 +32,6 @@
             </div>  
         </div>
         <div class="card-body">
-            <div class="row mb-2">
-                <h5>Pagination here</h5>
-            </div>
             <div class="row box-photo-upload">
                 <div class="row">
                     @foreach ($photos as $photo)
@@ -45,13 +42,13 @@
                                         title="" class="img-responsive" style="width:214px;height:95px">
                                     <div style="margin-top:5px">
                                         <small title="">&nbsp;</small><br>
-                                        <small title="Uploader"><b>by: Uploader</b></small>
-                                        <br><small title="Zona Bandung">Author Name</small>
+                                        <small title="Uploader"><b>by: {{@$photo->uploader->display_name}}</b></small>
+                                        <br><small title="Zona Bandung">{{$photo->author}}</small>
                                         <div class="float-right">
-                                            <button type="button" class="btn btn-xs btn-default btn-edit"
-                                                data-id="7381762" title="Use/Edit"><i class="fa fa-edit"
+                                            <a  href="{{route('assets.photo.edit', ['id'=>$photo->image_id])}}" class="btn btn-xs btn-default btn-edit"
+                                                 title="Edit"><i class="fa fa-edit"
                                                     aria-hidden="true"></i>
-                                            </button><a type="button"
+                                            </a><a type="button"
                                                 class="btn btn-xs btn-danger text-white bg-danger btn-hapus delete-btn"
                                                 href="{{ route('assets.photo.delete', ['id' => $photo->image_id]) }}"
                                                 title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>

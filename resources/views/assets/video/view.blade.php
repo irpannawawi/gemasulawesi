@@ -19,6 +19,10 @@
                     <div class="form-group">
                         <select name="uploader" class=" form-control input-sm">
                             <option value="0">- All -</option>
+                            @foreach (\App\Models\User::all() as $user)
+                            
+                            <option value="{{$user->id}}">{{$user->display_name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">

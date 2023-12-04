@@ -17,6 +17,7 @@ export default defineConfig({
                 'resources/js/footer-editorial.js',
                 'resources/js/footer.js',
                 'resources/js/tempus.js',
+                'resources/js/datatable.js',
             ],
             refresh: true,
         }),

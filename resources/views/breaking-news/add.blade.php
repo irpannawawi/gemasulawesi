@@ -1,7 +1,8 @@
 <x-app-layout>
     @push('extra-css')
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
-    @endpush
+        <link defer rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
+        
+        @endpush
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800   leading-tight">
             {{ __('Breaking News') }}
@@ -21,8 +22,10 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" class="form-control" required autocomplete="off" readonly>
-                    <input type="hidden" name="post_id" id="post_id" class="form-control" required autocomplete="off">
+                    <input type="text" name="title" id="title" class="form-control" required autocomplete="off"
+                        readonly>
+                    <input type="hidden" name="post_id" id="post_id" class="form-control" required
+                        autocomplete="off">
                 </div>
                 <div class="form-group mb-2">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -47,7 +50,7 @@
                     </button>
                 </div>
                 <div class="modal-body table-responsive">
-                    <table class="table table-sm datatable">
+                    <table class="table table-striped table-borderd table-sm datatable" style="width: 100%;">
                         <thead class="text-center">
                             <tr>
                                 <th>No</th>
@@ -59,7 +62,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
+                        {{-- <tbody class="text-center">
                             @php
                                 $n = 1;
                             @endphp
@@ -73,12 +76,14 @@
                                     <td>{{ $post->created_at }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <button type="button" onclick="fill_form('{{$post->post_id}}', '{{$post->title}}')" class="btn btn-sm btn-default" data-dismiss="modal">Choose</a>
+                                            <button type="button"
+                                                onclick="fill_form('{{ $post->post_id }}', '{{ $post->title }}')"
+                                                class="btn btn-sm btn-default" data-dismiss="modal">Choose</a>
                                         </div>
                                     </td>
                                 </tr>
                             @endforeach
-                        </tbody>
+                        </tbody> --}}
                     </table>
                 </div>
             </div>
@@ -86,13 +91,11 @@
     </div>
 
     @push('custom-scripts')
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
 
+    @vite('resources/js/datatable.js')
+    {{-- <script defer src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script> --}}
         <script>
-            let table = new DataTable('.datatable')
-            function fill_form(post_id, title)
-            {
+            function fill_form(post_id, title) {
                 $('#post_id').val(post_id)
                 $('#title').val(title)
 

@@ -30,6 +30,6 @@ class Image extends Model
 
     public function uploader(): HasOne
     {
-        return $this->hasOne(User::class, 'uploader_id', 'id');
+        return $this->hasOne(User::class, 'id', 'uploader_id');
     }
 }

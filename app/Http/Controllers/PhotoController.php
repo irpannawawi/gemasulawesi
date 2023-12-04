@@ -17,13 +17,19 @@ class PhotoController extends Controller
         return view('assets.photo.index', compact('photos'));
     }
 
+    public function edit($id)
+    {
+        $image = Image::find($id);
+        return view('assets.photo.edit', compact('image'));
+    }
+
     public function browse(Request $request)
     {
         $q = $request->q;
         $data['photos'] = Image::orderBy('image_id', 'DESC')
-                                ->where('caption', 'LIKE', '%'.$q.'%')
-                                ->where('image_sc_type', 'original')
-                                ->paginate(12);
+            ->where('caption', 'LIKE', '%' . $q . '%')
+            ->where('image_sc_type', 'original')
+            ->paginate(12);
         return view('browse', $data);
     }
 
@@ -34,19 +40,32 @@ class PhotoController extends Controller
         return view('editorial.components.modal_edit_image', $data);
     }
 
+    public function update(Request $request)
+    {
+        // jika source == ORIGINAL
+        $image = Image::find($request->image_id);
+        // update data lama
+        $image->author = $request->author;
+        $image->caption = $request->caption;
+        $image->credit = $request->credit;
+        $image->source = $request->source;
+        $image->save();
+        $image_url = Storage::url('photos/' . $image->asset->file_name);
+        return redirect()->route('assets.photo.index')->with(['success' => 'success']);
+    }
     public function update_image_tinymce(Request $request)
     {
         // jika source == ORIGINAL
         $old_image = Image::find($request->image_id);
-        if($request->source_image=='original'){
+        if ($request->source_image == 'original') {
             // update data lama
             $old_image->author = $request->author;
             $old_image->caption = $request->caption;
             $old_image->credit = $request->credit;
             $old_image->source = $request->source;
             $old_image->save();
-            $image=$old_image;
-        }else{
+            $image = $old_image;
+        } else {
             // buat baru
             $image = new Image;
             $image->asset_id = $old_image->asset->asset_id;
@@ -59,7 +78,7 @@ class PhotoController extends Controller
             $image->save();
         }
         $image_url = Storage::url('photos/' . $image->asset->file_name);
-        return redirect()->route('browseEditImage', ['id' => $image->image_id, 'source'=>$request->source_image])->with(['msg' => 'success', 'image_url' => $image_url, 'image_id' => $image->image_id]);
+        return redirect()->route('browseEditImage', ['id' => $image->image_id, 'source' => $request->source_image])->with(['msg' => 'success', 'image_url' => $image_url, 'image_id' => $image->image_id]);
     }
 
     public function upload(Request $request)

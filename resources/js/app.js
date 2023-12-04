@@ -8,7 +8,6 @@ import '../AdminLTE/plugins/sweetalert2/sweetalert2.min.js';
 import '../AdminLTE/plugins/jquery/jquery.min.js';
 
 
-
 import Alpine from 'alpinejs';
 import moment from 'moment';
 window.Alpine = Alpine;

@@ -26,8 +26,8 @@ class WebController extends Controller
     {
         VisitLog::save(request()->all());
 
-        $data['editorCohice'] = Editorcoice::get();
-        $data['headlineWp'] = Headlinewp::get();
+        $data['editorCohice'] = Editorcoice::where('post_id', '!=', 0)->get();
+        $data['headlineWp'] = Headlinewp::where('post_id', '!=', 0)->get();
         $data['topikKhusus'] = Topic::get();
 
         // posts 1-30

@@ -78,7 +78,7 @@
                             <td>{{ $post->author->display_name }}</td>
                             <td>{{ $post->editor->display_name }}</td>
                             <td>{{ $post->created_at }}</td>
-                            <td>{{ $post->created_at }}</td>
+                            <td>{{ $post->published_at }}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ route('editorial.edit', ['id' => $post->post_id]) }}"

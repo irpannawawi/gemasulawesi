@@ -48,21 +48,23 @@
                 <!-- Entry Image -->
                 <div class="thumb videos__player image-single-post">
                     @foreach ($collections as $collect)
-                        @if ($collections->type == 'video')
-                            <div class="videos__ratio">
-                                <iframe height="400" width="700"
-                                    src="https://www.youtube.com/embed/{{ $videos->url->id }}" title="YouTube video player"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
+                        @if ($collect->type == 'video')
+                            <a href="{{ Storage::url('storage/photos/' . $galery->galery_thumbnail) }}"
+                                class="popup-youtube">
+                                <!-- Jika ini video, tambahkan kelas 'popup-youtube' dan gunakan thumbnail video sebagai gambar -->
+                                <img src="{{ Storage::url('storage/photos/' . $galery->galery_thumbnail) }}"
+                                    alt="{{ $galery->galery_name }}" height="500" width="700">
+                            </a>
                         @else
-                            <img class="popup-gallery"
-                                src="{{ Storage::url('storage/photos/' . $galery->photo->asset->file_name) }}"
-                                alt="{{ $collect->photo->asset->file_name }}" height="500" width="700">
+                            <a href="{{ Storage::url('storage/photos/' . $galery->galery_thumbnail) }}" class="popup-photo">
+                                <!-- Jika ini gambar, tambahkan kelas 'popup-photo' -->
+                                <img src="{{ Storage::url('storage/photos/' . $galery->photo->asset->file_name) }}"
+                                    alt="{{ $collect->photo->asset->file_name }}" height="500" width="700">
+                            </a>
                         @endif
                     @endforeach
                 </div>
+
 
                 <!-- standard post -->
                 <article class="entry mb-0">
@@ -148,7 +150,7 @@
     @push('custom-scripts')
         <script>
             $(document).ready(function() {
-                $('.popup-gallery').magnificPopup({
+                $('.popup-photo, popup-youtube').magnificPopup({
                     delegate: 'a',
                     type: 'image',
                     closeOnContentClick: false,

@@ -25,12 +25,12 @@ class WebGalleryController extends Controller
     {
         $data['collections'] = Collection::where('galery_id', $id)->orderBy('collection_id', 'desc')->get();
         $data['galery'] = Galeri::find($id);
-        $data['photos'] = Image::orderBy('image_id', 'DESC')->paginate(20);
-        $data['videos'] = Video::orderBy('video_id', 'DESC')->paginate(20);
+        $data['photos'] = Image::orderBy('image_id', 'DESC')->get();
+        $data['videos'] = Video::orderBy('video_id', 'DESC')->get();
 
-        $data['pagination'] = Galeri::orderBy('galery_id', 'desc')
-            ->paginate(10);
-        $data['galeryTerkini'] = $data['pagination'];
+        $data['limit'] = Galeri::orderBy('galery_id', 'desc')
+            ->limit(10)->get();
+        $data['galeryTerkini'] = $data['limit'];
 
         return view('frontend.gallerydetail', $data);
     }

@@ -383,6 +383,9 @@
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
+                                <li>
+                                    <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                                </li>
                             </ul>
                             <!-- end menu -->
                         </nav>
@@ -406,14 +409,6 @@
                                                     <i class="subicon ui-arrow-down"></i>
                                                 </a>
                                                 <ul class="submenu">
-                                                    <li>
-                                                        <a href="{{ route('video') }}" class="link-submenu"
-                                                            style="white-space: nowrap;">Video</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ url('image') }}" class="link-submenu"
-                                                            style="white-space: nowrap;">Image</a>
-                                                    </li>
                                                     @foreach ($rubriks->slice(get_setting('count_rubrik')) as $rubrik)
                                                         <li>
                                                             <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"

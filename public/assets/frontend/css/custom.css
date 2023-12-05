@@ -1026,9 +1026,9 @@
     margin: 0;
     display: flex;
 }
-.menu__lainnya li {
+/* .menu__lainnya li {
     margin-right: 10px;
-}
+} */
 .submenu {
     right: -20px;
     border-radius: 5px;
@@ -1229,7 +1229,7 @@ transition: 0.1s;
 .dropdown__rubrik .subicon:hover{
     background: #848484;
 }
-.submenu:focus .dropdown__rubrik .subicon:focus{
+.submenu:focus .subicon{
     background: #848484;
 }
 pre{

@@ -398,32 +398,34 @@
                         <div class="flex-child">
                             <div class="nav__right">
                                 <!-- lainnya -->
-                                <div class="nav__right-item nav__lainnya d-none d-lg-block">
-                                    <ul class="nav__menu menu__lainnya">
-                                        <li class="dropdown__rubrik">
-                                            <a href="javascript:;">
-                                                <i class="subicon ui-arrow-down"></i>
-                                            </a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="{{ route('video') }}" class="link-submenu"
-                                                        style="white-space: nowrap;">Video</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ url('image') }}" class="link-submenu"
-                                                        style="white-space: nowrap;">Image</a>
-                                                </li>
-                                                @foreach ($rubriks->slice(9) as $rubrik)
+                                @if ($rubriks->count() > get_setting('count_rubrik'))
+                                    <div class="nav__right-item nav__lainnya d-none d-lg-block">
+                                        <ul class="nav__menu menu__lainnya">
+                                            <li class="dropdown__rubrik">
+                                                <a href="javascript:;">
+                                                    <i class="subicon ui-arrow-down"></i>
+                                                </a>
+                                                <ul class="submenu">
                                                     <li>
-                                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                                            class="link-submenu"
-                                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                                        <a href="{{ route('video') }}" class="link-submenu"
+                                                            style="white-space: nowrap;">Video</a>
                                                     </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
+                                                    <li>
+                                                        <a href="{{ url('image') }}" class="link-submenu"
+                                                            style="white-space: nowrap;">Image</a>
+                                                    </li>
+                                                    @foreach ($rubriks->slice(get_setting('count_rubrik')) as $rubrik)
+                                                        <li>
+                                                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                                                class="link-submenu"
+                                                                style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
                                 <!-- Search -->
                                 <div class="nav__right-item nav__search d-block d-lg-none">
                                     <a href="javascript:;" class="nav__search-trigger">

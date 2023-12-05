@@ -34,8 +34,8 @@
         </div> <!-- end slider -->
         <div class="wrap-btn-slider">
             <div class="btn-slider">
-                <button class="btn-prev" id="prevPost3"><i class="ui-arrow-left"></i></button>
-                <button class="btn-nect" id="nextPost3"><i class="ui-arrow-right"></i></button>
+                <a href="javascript:;" class="btn-prev" id="prevPost3"><i class="ui-arrow-left"></i></a>
+                <a href="javascript:;" class="btn-nect" id="nextPost3"><i class="ui-arrow-right"></i></a>
             </div>
         </div>
     </div>

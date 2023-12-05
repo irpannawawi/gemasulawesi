@@ -99,7 +99,7 @@
     display: flex;
     justify-content: space-between;
 }
-.pilihan-editor .wrap-owl .wrap-btn-slider .btn-slider button {
+.pilihan-editor .wrap-owl .wrap-btn-slider .btn-slider a {
     z-index: 1;
     padding: 3px 12px;
     border-radius: 100%;
@@ -108,7 +108,7 @@
 .btn-prev {
     left: -20px;
 }
-.pilihan-editor .wrap-owl .wrap-btn-slider .btn-slider button:hover {
+.pilihan-editor .wrap-owl .wrap-btn-slider .btn-slider a:hover {
     background: #2cc38b;
     color: white;
 }

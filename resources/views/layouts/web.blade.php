@@ -27,12 +27,17 @@
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('gallery')) {
-            $metaTitle = 'Gallery Image';
+            $metaTitle = 'Gallery Berita Terkini';
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('galery/detail/*')) {
+            $metaTitle = 'Gallery Berita Terkini';
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } else {
-            $postTitle = $post->title;
+            $postTitle = $post->title ?? '';
             $metaTitle = $postTitle;
             $metaDeskripsi = $post->description;
             $imagePath = get_post_image($post->post_id) ?? '';
@@ -628,6 +633,9 @@
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
+                                <li>
+                                    <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                                </li>
                             </ul>
                             <!-- end menu -->
                         </nav>
@@ -643,28 +651,26 @@
                         <div class="flex-child">
                             <div class="nav__right">
                                 <!-- lainnya -->
-                                <div class="nav__right-item nav__lainnya d-none d-lg-block">
-                                    <ul class="nav__menu menu__lainnya">
-                                        <li class="dropdown__rubrik">
-                                            <a href="javascript:;">
-                                                <i class="subicon ui-arrow-down"></i>
-                                            </a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="{{ route('gallery') }}" class="link-submenu"
-                                                        style="white-space: nowrap;">Gallery</a>
-                                                </li>
-                                                @foreach ($rubriks->slice(9) as $rubrik)
-                                                    <li>
-                                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                                            class="link-submenu"
-                                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @if ($rubriks->count() > get_setting('count_rubrik'))
+                                    <div class="nav__right-item nav__lainnya d-none d-lg-block">
+                                        <ul class="nav__menu menu__lainnya">
+                                            <li class="dropdown__rubrik">
+                                                <a href="javascript:;">
+                                                    <i class="subicon ui-arrow-down"></i>
+                                                </a>
+                                                <ul class="submenu">
+                                                    @foreach ($rubriks->slice(get_setting('count_rubrik')) as $rubrik)
+                                                        <li>
+                                                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                                                class="link-submenu"
+                                                                style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
                                 <!-- Search -->
                                 <div class="nav__right-item nav__search d-block d-lg-none">
                                     <a href="javascript:;" class="nav__search-trigger">

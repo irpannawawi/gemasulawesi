@@ -12,9 +12,8 @@
                         </div>
                         <div class="pilihan-editor">
                             <div class="title-post">
-                                <span>Topik Khusus</span>
+                                <span>Gallery</span>
                             </div>
-
                             <!-- Slider -->
                             <div class="wrap-owl">
                                 <div id="owl-topik-khusus" class="owl-carousel owl-theme owl-carousel--arrows-outside">
@@ -47,8 +46,10 @@
                                 </div> <!-- end slider -->
                                 <div class="wrap-btn-slider">
                                     <div class="btn-slider">
-                                        <button class="btn-prev" id="prevPost3"><i class="ui-arrow-left"></i></button>
-                                        <button class="btn-nect" id="nextPost3"><i class="ui-arrow-right"></i></button>
+                                        <a href="javascript:;" class="btn-prev" id="prevPost3"><i
+                                                class="ui-arrow-left"></i></a>
+                                        <a href="javascript:;" class="btn-nect" id="nextPost3"><i
+                                                class="ui-arrow-right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +68,8 @@
                                                             'galery_name' => Str::slug($galery->galery_name),
                                                         ]) }}">
                                                         {{-- <i class="play__buttom fas fa-play-circle"></i> --}}
-                                                        <img data-src="#" src="{{ url('assets/frontend') }}/img/empty.jpg"
+                                                        <img data-src="{{ Storage::url('public/galery-images/') . $galery->galery_thumbnail }}"
+                                                            src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                             alt="{{ $galery->galery_name }}" class="lazyload">
                                                     </a>
                                                 </div>

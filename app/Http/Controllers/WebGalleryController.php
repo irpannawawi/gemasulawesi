@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Collection;
 use App\Models\Galeri;
+use App\Models\Image;
 use App\Models\Video;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -20,22 +21,17 @@ class WebGalleryController extends Controller
         return view('frontend.gallery', $data);
     }
 
-    // public function videtail($video_id): View
-    // {
-    //     $logResult = VisitLog::save(request()->all());
+    public function galerydetail($id): View
+    {
+        $data['collections'] = Collection::where('galery_id', $id)->orderBy('collection_id', 'desc')->get();
+        $data['galery'] = Galeri::find($id);
+        $data['photos'] = Image::orderBy('image_id', 'DESC')->paginate(20);
+        $data['videos'] = Video::orderBy('video_id', 'DESC')->paginate(20);
 
-    //     if (is_array($logResult) && isset($logResult['type']) && $logResult['type'] == 'create') {
-    //         $video = Video::find($video_id);
-    //         $video->visit += 1;
-    //         $video->save();
-    //     }
+        $data['pagination'] = Galeri::orderBy('galery_id', 'desc')
+            ->paginate(10);
+        $data['galeryTerkini'] = $data['pagination'];
 
-    //     $video = Video::find($video_id);
-    //     $data['paginatedVideo'] = Video::orderBy('created_at', 'DESC')
-    //         ->limit(10)->get();
-    //     $data['videoTerkini'] = $data['paginatedVideo'];
-
-    //     $data['video'] = $video;
-    //     return view('frontend.videodetail', $data);
-    // }
+        return view('frontend.gallerydetail', $data);
+    }
 }

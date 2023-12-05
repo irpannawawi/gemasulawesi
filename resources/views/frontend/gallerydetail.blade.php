@@ -48,20 +48,17 @@
                 <!-- Entry Image -->
                 <div class="thumb videos__player image-single-post">
                     @foreach ($collections as $collect)
-                        @if ($collect->type == 'video')
-                            @php
-                                $youtubeData = getYoutubeData($collect->video->url)->snippet;
-                            @endphp
+                        @if ($collections->type == 'video')
                             <div class="videos__ratio">
                                 <iframe height="400" width="700"
-                                    src="https://www.youtube.com/embed/{{ $youtubeData->thumbnails->medium->url }}"
-                                    title="YouTube video player"
+                                    src="https://www.youtube.com/embed/{{ $videos->url->id }}" title="YouTube video player"
                                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                                 </iframe>
                             </div>
                         @else
-                            <img src="{{ Storage::url('public/gallery-images' . $collect->photo->asset->file_name) }}"
+                            <img class="popup-gallery"
+                                src="{{ Storage::url('storage/photos/' . $galery->photo->asset->file_name) }}"
                                 alt="{{ $collect->photo->asset->file_name }}" height="500" width="700">
                         @endif
                     @endforeach
@@ -97,16 +94,16 @@
         <div class="row">
             <div class="col-lg-8 order-lg-2">
                 <div class="title-post">
-                    <span>Video Lainnya</span>
+                    <span>Gallery Lainnya</span>
                 </div>
                 <div class="row">
                     <div class="col">
                         @foreach ($galeryTerkini as $gallery)
                             @php
-                                $currentVideoId = request()->segment(3);
-                                $isCurrentVideo = $currentVideoId == $gallery->galery_id;
+                                $currentGalleryId = request()->segment(3);
+                                $isCurrentGallery = $currentGalleryId == $gallery->galery_id;
                             @endphp
-                            @if (!$isCurrentVideo)
+                            @if (!$isCurrentGallery)
                                 <ul class="post-list-small post-list-small--2 mb-32 mt-3">
                                     <li class="post-list-small__item">
                                         <article class="post-list-small__entry clearfix">
@@ -117,7 +114,7 @@
                                                         'galery_name' => Str::slug($gallery->galery_name),
                                                     ]) }}">
                                                     {{-- <i class="play__buttom fas fa-play-circle"></i> --}}
-                                                    <img data-src=""{{ Storage::url('public/galery-images/') . $galery->galery_thumbnail }}
+                                                    <img data-src="{{ Storage::url('public/galery-images/') . $galery->galery_thumbnail }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                         alt="{{ $gallery->galery_name }}" class="lazyload">
                                                 </a>
@@ -148,4 +145,31 @@
             </div>
         </div>
     </div>
+    @push('custom-scripts')
+        <script>
+            $(document).ready(function() {
+                $('.popup-gallery').magnificPopup({
+                    delegate: 'a',
+                    type: 'image',
+                    closeOnContentClick: false,
+                    closeBtnInside: false,
+                    mainClass: 'mfp-with-zoom mfp-img-mobile',
+                    image: {
+                        verticalFit: true;
+                    },
+                    gallery: {
+                        enabled: true
+                    },
+                    zoom: {
+                        enabled: true,
+                        duration: 300, // don't foget to change the duration also in CSS
+                        opener: function(element) {
+                            return element.find('img');
+                        }
+                    }
+
+                });
+            });
+        </script>
+    @endpush
 @endsection

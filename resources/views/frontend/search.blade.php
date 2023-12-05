@@ -116,8 +116,7 @@
                         @else
                             <div class="search__empty mt-3">
                                 <p class="search__result">Hasil pencarian untuk <b>'{{ $keyword }}'</b> tidak
-                                    Tersedia</strong>
-                                </p>
+                                    Tersedia</p>
                             </div>
                         @endif
                     </div>

@@ -22,7 +22,7 @@
                                             <div class="entry__img-editorial mb-0">
                                                 <a href="#">
                                                     <div class="thumb-container thumb-65">
-                                                        <img data-src="{{ Storage::url('public/galery-images/' . $key->galery_thumbnail) }}"
+                                                        <img data-src="{{ Storage::url('galery-images/' . $key->galery_thumbnail) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                             class="entry__img lazyload"
                                                             alt="{{ $key->galery_description }}">
@@ -68,7 +68,7 @@
                                                             'galery_name' => Str::slug($galery->galery_name),
                                                         ]) }}">
                                                         {{-- <i class="play__buttom fas fa-play-circle"></i> --}}
-                                                        <img data-src="{{ Storage::url('public/galery-images/') . $galery->galery_thumbnail }}"
+                                                        <img data-src="{{ Storage::url('galery-images/' . $galery->galery_thumbnail) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                             alt="{{ $galery->galery_name }}" class="lazyload">
                                                     </a>

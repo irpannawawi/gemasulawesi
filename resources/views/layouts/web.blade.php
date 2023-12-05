@@ -26,22 +26,11 @@
             $metaDeskripsi = $post->description ?? '';
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
-        } elseif (request()->is('image')) {
+        } elseif (request()->is('gallery')) {
             $metaTitle = 'Gallery Image';
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
-        } elseif (request()->is('video')) {
-            $metaTitle = 'Gallery Video';
-            $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
-        } elseif (request()->is('video/detail/*')) {
-            $postTitle = $video->title;
-            $metaTitle = $postTitle;
-            $metaDeskripsi = '';
-            $metaImage = '';
-            $type = 'article';
         } else {
             $postTitle = $post->title;
             $metaTitle = $postTitle;
@@ -662,12 +651,8 @@
                                             </a>
                                             <ul class="submenu">
                                                 <li>
-                                                    <a href="{{ route('video') }}" class="link-submenu"
-                                                        style="white-space: nowrap;">Video</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ url('image') }}" class="link-submenu"
-                                                        style="white-space: nowrap;">Image</a>
+                                                    <a href="{{ route('gallery') }}" class="link-submenu"
+                                                        style="white-space: nowrap;">Gallery</a>
                                                 </li>
                                                 @foreach ($rubriks->slice(9) as $rubrik)
                                                     <li>

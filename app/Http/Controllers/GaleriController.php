@@ -18,8 +18,6 @@ class GaleriController extends Controller
         return view('galeri.index', $data);
     }
 
-
-
     public function insert(Request $request)
     {
         $filename = date('dmyHis') . '.jpg';

@@ -3,10 +3,8 @@
     <div class="main-container container" id="main-container">
         <!-- Content -->
         <div class="row row-20">
-
             <!-- slider -->
             <div class="col-lg-8 order-lg-2">
-
                 <section>
                     <div class="title-list-berita">
                         <span>{{ $rubrik_name }}</span>

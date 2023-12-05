@@ -704,6 +704,7 @@
 
 /* Title category page */
 .title-category{
+    z-index: 99;
     color: #fff;
     font-size: 30px;
     line-height: 1.4;

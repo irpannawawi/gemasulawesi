@@ -14,10 +14,10 @@ class TagsController extends Controller
         $q = $request->q;
         $tagsQuery = Tags::orderBy('tag_id', 'DESC');
         if($q!=''){
-            $tagsQuery = $tagsQuery->where('tag_name', 'like', '%'.$q.'%')->paginate(25);
+            $tagsQuery = $tagsQuery->where('tag_name', 'like', '%'.$q.'%');
         }
         
-        $data['tags'] = $tagsQuery->get();
+        $data['tags'] = $tagsQuery->paginate(25);
         return view('editorial.components.modal_tags', $data);
     }
 

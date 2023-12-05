@@ -154,7 +154,7 @@
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="form-group m-0">
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" id="schedule" name="schedule" value="1">
@@ -163,11 +163,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group" id="form-schedule-time" style="display: none">
+                        <div class="form-group mb-1 mt-1" id="form-schedule-time" style="display: none">
                             <div class="checkbox">
                                 <label>
-                                    <input type="datetime-local" id="schedule_time" name="schedule_time">
                                 </label>
+                                <input type="datetime-local" id="schedule_time" class="form-control" name="schedule_time">
                             </div>
                         </div>
 

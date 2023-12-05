@@ -16,7 +16,7 @@
     <div class="card" data-widget="iframe">
         <div class="card-header">
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTagModal">Tambah data</button>
-            <a class="btn border btn-xs" href="{{ $_SERVER['REQUEST_URI'] }}"><i class="fa fa-sync"></i> Refresh</a>
+            <a class="btn border btn-xs" href="{{ route('modal.tags') }}"><i class="fa fa-sync"></i> Refresh</a>
             <div class="col-3 float-right">
                 <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
                     @csrf
@@ -63,6 +63,13 @@
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="float-right">
+                        {{$tags->links('vendor.pagination.bootstrap-4')}}
+                    </div>
+                </div>
             </div>
 
         </div>

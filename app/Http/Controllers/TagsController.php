@@ -14,7 +14,7 @@ class TagsController extends Controller
         $q = $request->q;
         $tagsQuery = Tags::orderBy('tag_id', 'DESC');
         if($q!=''){
-            $tagsQuery = $tagsQuery->where('tag_name', 'like', '%'.$q.'%');
+            $tagsQuery = $tagsQuery->where('tag_name', 'like', '%'.$q.'%')->paginate(25);
         }
         
         $data['tags'] = $tagsQuery->get();

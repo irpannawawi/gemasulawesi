@@ -16,6 +16,7 @@ class WebGalleryController extends Controller
         $data['pagination'] = Galeri::orderBy('galery_id', 'desc')
             ->paginate(10);
         $data['galery'] = $data['pagination'];
+        $data['gallery'] = Galeri::orderBy('galery_id', 'desc')->get();
         return view('frontend.gallery', $data);
     }
 

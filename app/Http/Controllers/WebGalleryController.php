@@ -28,9 +28,9 @@ class WebGalleryController extends Controller
         $data['photos'] = Image::orderBy('image_id', 'DESC')->get();
         $data['videos'] = Video::orderBy('video_id', 'DESC')->get();
 
-        $data['limit'] = Galeri::orderBy('galery_id', 'desc')
+        $data['pagination'] = Galeri::orderBy('galery_id', 'desc')
             ->limit(10)->get();
-        $data['galeryTerkini'] = $data['limit'];
+        $data['galeryTerkini'] = $data['pagination'];
 
         return view('frontend.gallerydetail', $data);
     }

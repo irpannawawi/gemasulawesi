@@ -435,6 +435,10 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
@@ -457,6 +461,12 @@
 
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
+
+    {{-- plugins --}}
+    <!-- Magnific Popup core CSS file -->
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/plugins/magnific-popup.css">
+
+
 </head>
 
 <body class="home style-politics ">
@@ -836,6 +846,13 @@
     <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
+
+    <!-- Magnific Popup core JS file -->
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/plugins/jquery.magnific-popup.js"></script>
+    <script src="{{ url('assets/frontend') }}/plugins/jquery.magnific-popup.min.js"></script>
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

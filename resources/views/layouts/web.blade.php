@@ -5,8 +5,6 @@
     use Carbon\Carbon;
     $breakingNews = App\Models\Breakingnews::get();
     use App\Models\Rubrik;
-
-    $baseUrl = URL::to('');
 @endphp
 
 <head>
@@ -32,10 +30,10 @@
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('galery/detail/*')) {
-            $metaTitle = 'Gallery Berita Terkini';
-            $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
+            $metaTitle = $galery->galery_name;
+            $metaDeskripsi = $galery->galery_description;
+            $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
+            $type = 'article';
         } else {
             $postTitle = $post->title ?? '';
             $metaTitle = $postTitle;
@@ -122,24 +120,18 @@
                         "content_category": "Tag"
                     }];
                 </script>';
-            } elseif (request()->is('image')) {
+            } elseif (request()->is('galery')) {
                 echo '<script>
                     dataLayer = [{
                         "breadcrumb_detail": "Section Page",
-                        "content_category": "Image"
+                        "content_category": "Gallery"
                     }];
                 </script>';
-            } elseif (request()->is('video')) {
+            } elseif (request()->is('galery/detail/*')) {
                 echo '<script>
                     dataLayer = [{
                         "breadcrumb_detail": "Section Page",
-                        "content_category": "Video"
-                    }];
-                </script>';
-            } elseif (request()->is('video/detail/*')) {
-                echo '<script>
-                    dataLayer = [{
-                        "content_category": ""
+                        "content_category": "Gallery"
                     }];
                 </script>';
             } else {
@@ -200,7 +192,7 @@
                     "editor_id": "All"
                 }];
             </script>
-        @elseif (request()->is('image'))
+        @elseif (request()->is('galery'))
             <script>
                 dataLayer = [{
                     "published_date": "All",
@@ -216,7 +208,7 @@
                     "editor_id": "All"
                 }];
             </script>
-        @elseif (request()->is('video'))
+        @elseif (request()->is('galery/detail/*'))
             <script>
                 dataLayer = [{
                     "published_date": "All",
@@ -289,15 +281,11 @@
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
-            } elseif (request()->is('image')) {
+            } elseif (request()->is('galery')) {
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
-            } elseif (request()->is('video')) {
-                echo '<script type="application/ld+json">
-            ' . $jsonLD . '
-            </script>';
-            } elseif (request()->is('video/detail/*')) {
+            } elseif (request()->is('galery/detail/*')) {
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
@@ -416,11 +404,11 @@
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
-            } elseif (request()->is('image')) {
+            } elseif (request()->is('galery')) {
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
-            } elseif (request()->is('video') && !request()->is('video/detail/*')) {
+            } elseif (request()->is('galery/detail/*')) {
                 echo '<script type="application/ld+json">
             ' . $jsonLD . '
             </script>';
@@ -490,6 +478,9 @@
             @endphp
             <ul class="sidenav__menu" role="menubar">
                 <!-- Categories -->
+                <li>
+                    <a href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
+                </li>
                 @foreach ($rubriks as $rubrik)
                     <li>
                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
@@ -716,6 +707,9 @@
                                     style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                             </li>
                         @endforeach
+                        <li>
+                            <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                        </li>
                     </ul>
                 </div>
             </div>

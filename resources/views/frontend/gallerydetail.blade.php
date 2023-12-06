@@ -47,7 +47,7 @@
 
                 <!-- Entry Image -->
                 <div class="thumb image-single-post gallery">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div id="carouselExampleIndicators" class="carousel slide zoom-gallery" data-ride="carousel">
                         <ol class="carousel-indicators">
                             @foreach ($collections as $key => $collect)
                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
@@ -59,18 +59,20 @@
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                     @if ($collect->type == 'image')
                                         <a href="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
-                                            class="gallery__item popup-gallery">
+                                            data-source="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
+                                            title="{{ $collect->photo->caption }}">
                                             <img class="d-block w-100"
                                                 src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
-                                                title="{{ $collect->photo->caption }}">
+                                                width="193" height="125">
                                         </a>
                                     @else
                                         @php
                                             $youtubeData = getYoutubeData($collect->video->url)->snippet;
                                         @endphp
                                         <div class="thumbnail__headline">
-                                            <a href="{{ $collect->video->url }}" alt="{{ $collect->video->title }}"
-                                                class="popup-youtube">
+                                            <a href="{{ $collect->video->url }}"
+                                                data-source="{{ $youtubeData->thumbnails->medium->url }}"
+                                                title="{{ $collect->video->title }}">
                                                 <i class="play fas fa-play-circle"></i>
                                                 <img class="d-block w-100"
                                                     src="{{ $youtubeData->thumbnails->medium->url }}"
@@ -185,25 +187,31 @@
             });
 
             $(document).ready(function() {
-                $('.popup-gallery').magnificPopup({
-                    delegate: 'a',
-                    type: 'image',
-                    closeOnContentClick: false,
-                    closeBtnInside: false,
-                    mainClass: 'mfp-with-zoom mfp-img-mobile',
-                    image: {
-                        verticalFit: true
-                    },
-                    gallery: {
-                        enabled: true
-                    },
-                    zoom: {
-                        enabled: true,
-                        duration: 300, // don't foget to change the duration also in CSS
-                        opener: function(element) {
-                            return element.find('img');
+                // Inisialisasi Carousel
+                $('#carouselExampleIndicators').carousel();
+
+                // Setelah Carousel berganti item, aktifkan Magnific Popup kembali
+                $('#carouselExampleIndicators').on('slid.bs.carousel', function() {
+                    $('.zoom-gallery').magnificPopup({
+                        delegate: 'a',
+                        type: 'image',
+                        closeOnContentClick: false,
+                        closeBtnInside: false,
+                        mainClass: 'mfp-with-zoom mfp-img-mobile',
+                        image: {
+                            verticalFit: true
+                        },
+                        gallery: {
+                            enabled: true
+                        },
+                        zoom: {
+                            enabled: true,
+                            duration: 300,
+                            opener: function(element) {
+                                return element.find('img');
+                            }
                         }
-                    }
+                    });
                 });
             });
         </script>

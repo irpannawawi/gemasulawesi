@@ -45,19 +45,19 @@ class MigrateJob implements ShouldQueue
             } else {
                 // 2. check rubrik @article
                 // cek jika rubrik 2 maka ambil ke 2
-                if(count($article->categories)>1){
+                if (count($article->categories) > 1) {
                     $rubrikId = $article->categories[1];
-                }else{
+                } else {
                     $rubrikId = $article->categories[0];
                 }
 
-                $cl= new Client();
+                $cl = new Client();
                 $rubrik = Rubrik::where('rubrik_id', $rubrikId)->get()->count();
                 if ($rubrik < 1) {
                     // create rubrik
                     $catUrl = 'https://gemasulawesi.com/wp-json/wp/v2/categories/' . $rubrikId;
-                    // $cat = json_decode(json_encode($cl->get($catUrl)->getBody()));
-                    $cat = json_decode(json_encode($cl->get($catUrl)->getBody()));
+                    // $cat = json_decode($cl->get($catUrl)->getBody()->getContents());
+                    $cat = json_decode($cl->get($catUrl)->getBody()->getContents());
                     $rubrik = Rubrik::create(['rubrik_id' => $rubrikId, 'rubrik_name' => $cat->name]);
                 } else {
                     // has rubrik
@@ -65,14 +65,14 @@ class MigrateJob implements ShouldQueue
                     foreach ($article->tags as $tag_id) {
                         if (Tags::where(['tag_id' => $tag_id])->count() < 1) {
                             $tagUrl = 'https://gemasulawesi.com/wp-json/wp/v2/tags/' . $tag_id;
-                            $tag = json_decode(json_encode($cl->get($tagUrl)->getBody()));
+                            $tag = json_decode($cl->get($tagUrl)->getBody()->getContents());
                             Tags::create(['tag_id' => $tag_id, 'tag_name' => $tag->name]);
                         }
                     } //3. 
 
                     // upload images
                     $media_url = "https://www.gemasulawesi.com/wp-json/wp/v2/media/" . $article->featured_media;
-                    $media = json_decode(json_encode($cl->get($media_url)->getBody()));
+                    $media = json_decode($cl->get($media_url)->getBody()->getContents());
                     $file_name = $media->slug . '.' . explode('/', $media->mime_type)[1];
                     $res = Storage::put('public/photos/' . $file_name, file_get_contents($media->source_url));
                     // insert asset        
@@ -96,7 +96,7 @@ class MigrateJob implements ShouldQueue
                         $tags .= '"' . $tag_id . '"';
                     }
                     $tags .= ']';
-
+                    
                     $postData = [
                         'title' => $article->title->rendered,
                         'slug' => $article->slug,

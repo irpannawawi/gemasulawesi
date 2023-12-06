@@ -8,6 +8,7 @@ use App\Models\Image;
 use App\Models\Posts;
 use App\Models\Rubrik;
 use App\Models\Tags;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -20,7 +21,7 @@ class ApiController extends Controller
         $articleData =  json_decode(json_encode($request->all()), FALSE);
 
         $job = MigrateJob::dispatch($articleData);
-
+        
 
         return response()->json($job);
     }

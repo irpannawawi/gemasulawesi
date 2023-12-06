@@ -461,6 +461,12 @@
 
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
+
+    {{-- plugins --}}
+    <!-- Magnific Popup core CSS file -->
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/plugins/magnific-popup/magnific-popup.css">
+
+
 </head>
 
 <body class="home style-politics ">
@@ -840,6 +846,10 @@
     <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
+
+    <!-- Magnific Popup core JS file -->
+    <script src="{{ url('assets/frontend') }}/plugins/magnific-popup/jquery.magnific-popup.js"></script>
+    <script src="{{ url('assets/frontend') }}/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

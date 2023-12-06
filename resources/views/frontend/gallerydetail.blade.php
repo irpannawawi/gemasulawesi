@@ -133,7 +133,7 @@
                                                         'galery_name' => Str::slug($gallery->galery_name),
                                                     ]) }}">
                                                     {{-- <i class="play__buttom fas fa-play-circle"></i> --}}
-                                                    <img data-src="{{ Storage::url('public/galery-images/') . $galery->galery_thumbnail }}"
+                                                    <img data-src="{{ Storage::url('galery-images/' . $gallery->galery_thumbnail) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                         alt="{{ $gallery->galery_name }}" class="lazyload">
                                                 </a>

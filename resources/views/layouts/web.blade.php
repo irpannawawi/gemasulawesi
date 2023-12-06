@@ -848,6 +848,8 @@
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
     <!-- Magnific Popup core JS file -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="{{ url('assets/frontend') }}/plugins/magnific-popup/jquery.magnific-popup.js"></script>
     <script src="{{ url('assets/frontend') }}/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
 

@@ -55,7 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
                                     @foreach ($galery as $galery)
@@ -67,7 +67,6 @@
                                                             'galery_id' => $galery->galery_id,
                                                             'galery_name' => Str::slug($galery->galery_name),
                                                         ]) }}">
-                                                        {{-- <i class="play__buttom fas fa-play-circle"></i> --}}
                                                         <img data-src="{{ Storage::url('galery-images/' . $galery->galery_thumbnail) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                             alt="{{ $galery->galery_name }}" class="lazyload">
@@ -95,7 +94,7 @@
                                 </ul>
                                 {{ $pagination->onEachSide(1)->links() }}
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </section>
             </div>

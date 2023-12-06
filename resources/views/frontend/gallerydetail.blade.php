@@ -68,11 +68,15 @@
                                         @php
                                             $youtubeData = getYoutubeData($collect->video->url)->snippet;
                                         @endphp
-                                        <a href="{{ $collect->video->url }}" alt="{{ $collect->video->title }}"
-                                            class="popup-youtube">
-                                            <img class="d-block w-100" src="{{ $youtubeData->thumbnails->medium->url }}"
-                                                alt="{{ $collect->video->title }}" title="#">
-                                        </a>
+                                        <div class="thumbnail__headline">
+                                            <a href="{{ $collect->video->url }}" alt="{{ $collect->video->title }}"
+                                                class="popup-youtube">
+                                                <i class="play fas fa-play-circle"></i>
+                                                <img class="d-block w-100"
+                                                    src="{{ $youtubeData->thumbnails->medium->url }}"
+                                                    alt="{{ $collect->video->title }}" title="#">
+                                            </a>
+                                        </div>
                                     @endif
                                 </div>
                             @endforeach

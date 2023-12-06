@@ -96,7 +96,7 @@ class MigrateJob implements ShouldQueue
                         $tags .= '"' . $tag_id . '"';
                     }
                     $tags .= ']';
-                    
+
                     $postData = [
                         'title' => $article->title->rendered,
                         'slug' => $article->slug,

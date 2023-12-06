@@ -20,7 +20,11 @@
                                     @foreach ($gallery as $key)
                                         <article class="entry" style="background-color: white; border-radius:10px;">
                                             <div class="entry__img-editorial mb-0">
-                                                <a href="#">
+                                                <a
+                                                    href="{{ route('galerydetail', [
+                                                        'galery_id' => $key->galery_id,
+                                                        'galery_name' => Str::slug($key->galery_name),
+                                                    ]) }}">
                                                     <div class="thumb-container thumb-65">
                                                         <img data-src="{{ Storage::url('galery-images/' . $key->galery_thumbnail) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.jpg"

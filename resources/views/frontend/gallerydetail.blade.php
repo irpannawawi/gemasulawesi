@@ -46,37 +46,54 @@
                 </div>
 
                 <!-- Entry Image -->
-                <div class="thumb videos__player image-single-post">
-                    @foreach ($collections as $collect)
-                        @if ($collect->type == 'video')
-                            <a href="{{ Storage::url('storage/photos/' . $galery->galery_thumbnail) }}"
-                                class="popup-youtube">
-                                <!-- Jika ini video, tambahkan kelas 'popup-youtube' dan gunakan thumbnail video sebagai gambar -->
-                                <img src="{{ Storage::url('storage/photos/' . $galery->galery_thumbnail) }}"
-                                    alt="{{ $galery->galery_name }}" height="500" width="700">
-                            </a>
-                        @else
-                            <a href="{{ Storage::url('storage/photos/' . $galery->galery_thumbnail) }}" class="popup-photo">
-                                <!-- Jika ini gambar, tambahkan kelas 'popup-photo' -->
-                                <img src="{{ Storage::url('storage/photos/' . $galery->photo->asset->file_name) }}"
-                                    alt="{{ $collect->photo->asset->file_name }}" height="500" width="700">
-                            </a>
-                        @endif
-                    @endforeach
+                <div class="thumb image-single-post">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li class="active">1</li>
+                            <li>2</li>
+                            <li>3</li>
+                        </ol>
+                        <div class="carousel-inner">
+                            @foreach ($collections as $collect)
+                                @if ($collect->type == 'image')
+                                    <div class="carousel-item active popup-gallery">
+                                        <a href="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
+                                            class="gallery__item">
+                                            <img class="d-block w-100"
+                                                src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
+                                                title="{{ $collect->photo->caption }}">
+                                        </a>
+                                    </div>
+                                @else
+                                    @php
+                                        $youtubeData = getYoutubeData($collect->video->url)->snippet;
+                                    @endphp
+                                    <div class="carousel-item active">
+                                        <a href="{{ $collect->video->url }}" alt="{{ $collect->video->title }}"
+                                            class="popup-youtube">
+                                            <img class="d-block w-100" src="{{ $youtubeData->thumbnails->medium->url }}"
+                                                alt="{{ $collect->video->title }}" title="#">
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
                 </div>
-
-
                 <!-- standard post -->
                 <article class="entry mb-0">
                     <div class="entry__article-wrap mt-3">
                         <div class="entry__article">
                             <article class="read__content">
 
-                                {{-- @if ($collections->type == 'video')
-                                    <pre>{!! $video->description !!}</pre>
-                                @else
-                                    {!! $galery->galery_description !!}
-                                @endif --}}
                                 {!! $galery->galery_description !!}
 
                                 <div class="croslink">
@@ -116,7 +133,7 @@
                                                         'galery_name' => Str::slug($gallery->galery_name),
                                                     ]) }}">
                                                     {{-- <i class="play__buttom fas fa-play-circle"></i> --}}
-                                                    <img data-src="{{ Storage::url('public/galery-images/') . $galery->galery_thumbnail }}"
+                                                    <img data-src="{{ Storage::url('galery-images/' . $gallery->galery_thumbnail) }}"
                                                         src="{{ url('assets/frontend') }}/img/empty.jpg"
                                                         alt="{{ $gallery->galery_name }}" class="lazyload">
                                                 </a>
@@ -150,14 +167,29 @@
     @push('custom-scripts')
         <script>
             $(document).ready(function() {
-                $('.popup-photo, popup-youtube').magnificPopup({
+                $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+                    disableOn: 700,
+                    type: 'iframe',
+                    mainClass: 'mfp-fade',
+                    removalDelay: 160,
+                    preloader: false,
+                    gallery: {
+                        enabled: true
+                    },
+
+                    fixedContentPos: false
+                });
+            });
+
+            $(document).ready(function() {
+                $('.popup-gallery').magnificPopup({
                     delegate: 'a',
                     type: 'image',
                     closeOnContentClick: false,
                     closeBtnInside: false,
                     mainClass: 'mfp-with-zoom mfp-img-mobile',
                     image: {
-                        verticalFit: true;
+                        verticalFit: true
                     },
                     gallery: {
                         enabled: true
@@ -169,7 +201,6 @@
                             return element.find('img');
                         }
                     }
-
                 });
             });
         </script>

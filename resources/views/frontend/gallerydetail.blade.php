@@ -49,33 +49,32 @@
                 <div class="thumb image-single-post gallery">
                     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                            @foreach ($collections as $key => $collect)
+                                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
+                                    class="{{ $key == 0 ? 'active' : '' }}"></li>
+                            @endforeach
                         </ol>
                         <div class="carousel-inner">
-                            @foreach ($collections as $collect)
-                                @if ($collect->type == 'image')
-                                    <div class="carousel-item active popup-gallery">
+                            @foreach ($collections as $key => $collect)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    @if ($collect->type == 'image')
                                         <a href="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
-                                            class="gallery__item">
+                                            class="gallery__item popup-gallery">
                                             <img class="d-block w-100"
                                                 src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
                                                 title="{{ $collect->photo->caption }}">
                                         </a>
-                                    </div>
-                                @else
-                                    @php
-                                        $youtubeData = getYoutubeData($collect->video->url)->snippet;
-                                    @endphp
-                                    <div class="carousel-item active">
+                                    @else
+                                        @php
+                                            $youtubeData = getYoutubeData($collect->video->url)->snippet;
+                                        @endphp
                                         <a href="{{ $collect->video->url }}" alt="{{ $collect->video->title }}"
                                             class="popup-youtube">
                                             <img class="d-block w-100" src="{{ $youtubeData->thumbnails->medium->url }}"
                                                 alt="{{ $collect->video->title }}" title="#">
                                         </a>
-                                    </div>
-                                @endif
+                                    @endif
+                                </div>
                             @endforeach
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -167,7 +166,7 @@
     @push('custom-scripts')
         <script>
             $(document).ready(function() {
-                $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+                $('.popup-youtube').magnificPopup({
                     disableOn: 700,
                     type: 'iframe',
                     mainClass: 'mfp-fade',

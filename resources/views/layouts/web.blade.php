@@ -464,7 +464,7 @@
 
     {{-- plugins --}}
     <!-- Magnific Popup core CSS file -->
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/plugins/magnific-popup.css">
 
 
 </head>
@@ -848,10 +848,11 @@
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
     <!-- Magnific Popup core JS file -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="{{ url('assets/frontend') }}/plugins/magnific-popup/jquery.magnific-popup.js"></script>
-    <script src="{{ url('assets/frontend') }}/plugins/magnific-popup/jquery.magnific-popup.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/plugins/jquery.magnific-popup.js"></script>
+    <script src="{{ url('assets/frontend') }}/plugins/jquery.magnific-popup.min.js"></script>
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

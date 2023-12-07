@@ -55,7 +55,7 @@
                     <div class="owl-thumbs row mb-3 d-none d-md-flex w-100 mx-auto" data-slider-id="5">
                         @foreach ($headlineWp as $headline)
                             <div class="owl-thumb-item col-3 p-0">
-                                <div class="card mt-3">
+                                <div class="card mt-3" style="border: none;">
                                     <img src="{{ get_post_image($headline->post->post_id) }}"
                                         style="object-fit: cover;object-position: top;" alt="{{ $headline->post->title }}">
                                     <div class="card-body">
@@ -75,7 +75,7 @@
 
                     <div class="pilihan-editor">
                         <div class="title-post">
-                            <span>Editorial</span>
+                            <span>Feature</span>
                         </div>
 
                         <!-- Slider -->
@@ -126,10 +126,9 @@
                             </div> <!-- end slider -->
                             <div class="wrap-btn-slider">
                                 <div class="btn-slider">
-                                    <a href="javascript:;" class="btn-prev" id="prevPost3"><i
-                                        class="ui-arrow-left"></i></a>
-                                <a href="javascript:;" class="btn-nect" id="nextPost3"><i
-                                        class="ui-arrow-right"></i></a>
+                                    <a href="javascript:;" class="btn-prev" id="prevPost3"><i class="ui-arrow-left"></i></a>
+                                    <a href="javascript:;" class="btn-nect" id="nextPost3"><i
+                                            class="ui-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

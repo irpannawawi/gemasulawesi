@@ -733,11 +733,11 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
                             <div class="footer__logo">
-                                <a target="_self" href="https://zonasurabayaraya.pikiran-rakyat.com/">
+                                <a target="_self" href="{{ url('/') }}">
                                     <img class=" ls-is-cached lazyloaded"
                                         data-src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
                                         src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
-                                        alt="Zona Surabaya Raya" data-loaded="true">
+                                        alt="{{ get_setting('title') }}" data-loaded="true">
                                 </a>
                             </div>
                             <div class="footer__contact">
@@ -842,7 +842,6 @@
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
     {{-- magnific --}}
-    <script script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="{{ url('assets/frontend/js/magnific.js') }}"></script>
 
 

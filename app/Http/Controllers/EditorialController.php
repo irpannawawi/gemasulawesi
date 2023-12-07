@@ -42,7 +42,7 @@ class EditorialController extends Controller
         $request->validate([
             'title' => 'required|max:120',
             'description' => 'required|max:140|min:100',
-            'description' => 'required|max:140|min:100',
+            'content' => 'required',
         ]);
         $article = $request->content;
         if($article!=null){

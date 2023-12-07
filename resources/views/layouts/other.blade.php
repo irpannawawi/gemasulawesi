@@ -187,6 +187,7 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
@@ -203,12 +204,12 @@
         href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-180x180.png" />
     <meta name="msapplication-TileImage"
         content="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-270x270.png" />
+
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
-    {{-- load datepicker --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body class="home style-politics ">
@@ -232,6 +233,9 @@
             @endphp
             <ul class="sidenav__menu" role="menubar">
                 <!-- Categories -->
+                <li>
+                    <a href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
+                </li>
                 @foreach ($rubriks as $rubrik)
                     <li>
                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
@@ -274,13 +278,15 @@
                     <div class="newsticker">
                         <ul class="newsticker__list">
                             @foreach ($breakingNews as $news)
-                                <li class="newsticker__item"><i class="fa-solid fa-newspaper"></i> <a
-                                        href="{{ route('singlePost', [
-                                            'rubrik' => $news->post->rubrik->rubrik_name,
-                                            'post_id' => $news->post->post_id,
-                                            'slug' => $news->post->slug,
-                                        ]) }}"
-                                        class="newsticker__item-url">{{ $news->title }}</a></li>
+                                <li class="newsticker__item">
+                                    <i class="fa-solid fa-newspaper"></i>
+                                    <a href="{{ route('singlePost', [
+                                        'rubrik' => $news->post->rubrik->rubrik_name,
+                                        'post_id' => $news->post->post_id,
+                                        'slug' => $news->post->slug,
+                                    ]) }}"
+                                        class="newsticker__item-url">{{ $news->title }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -446,7 +452,7 @@
             </div>
 
             {{-- nav mobile --}}
-            <div class="py-2 category_under_nav d-sm-none">
+            <div class="overflow-auto py-2 category_under_nav d-sm-none">
                 <div class="container">
                     <ul class="d-flex" style="gap: 20px;">
                         <!-- Categories -->
@@ -456,6 +462,9 @@
                                     style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                             </li>
                         @endforeach
+                        <li>
+                            <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -663,20 +672,32 @@
             const facebookButtonTop = document.getElementById('share-facebook-top');
             facebookButtonTop.href =
                 `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+            const facebookButtonBottom = document.getElementById('share-facebook-bottom');
+            facebookButtonBottom.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
 
             // Share ke Twitter (atas dan bawah)
             const twitterButtonTop = document.getElementById('share-twitter-top');
             twitterButtonTop.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+            const twitterButtonBottom = document.getElementById('share-twitter-bottom');
+            twitterButtonBottom.href =
                 `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
 
             // Share ke WhatsApp (atas dan bawah)
             const whatsappButtonTop = document.getElementById('share-whatsapp-top');
             whatsappButtonTop.href =
                 `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+            const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
+            whatsappButtonBottom.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
 
             // Share ke Telegram (atas dan bawah)
             const telegramButtonTop = document.getElementById('share-telegram-top');
             telegramButtonTop.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+            const telegramButtonBottom = document.getElementById('share-telegram-bottom');
+            telegramButtonBottom.href =
                 `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
 
             // Copy ke Clipboard (atas dan bawah)

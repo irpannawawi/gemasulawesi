@@ -35,6 +35,7 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
@@ -55,10 +56,11 @@
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    {{-- magnific --}}
+    <link rel="{{ url('assets/frontend/css/magnific.css') }}">
+
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
-    {{-- load datepicker --}}
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 </head>
 
 <body class="home style-politics ">
@@ -82,6 +84,9 @@
             @endphp
             <ul class="sidenav__menu" role="menubar">
                 <!-- Categories -->
+                <li>
+                    <a href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
+                </li>
                 @foreach ($rubriks as $rubrik)
                     <li>
                         <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
@@ -124,19 +129,20 @@
                     <div class="newsticker">
                         <ul class="newsticker__list">
                             @foreach ($breakingNews as $news)
-                                <li class="newsticker__item"><i class="fa-solid fa-newspaper"></i> <a
-                                        href="{{ route('singlePost', [
-                                            'rubrik' => $news->post->rubrik->rubrik_name,
-                                            'post_id' => $news->post->post_id,
-                                            'slug' => $news->post->slug,
-                                        ]) }}"
-                                        class="newsticker__item-url">{{ $news->title }}</a></li>
+                                <li class="newsticker__item">
+                                    <i class="fa-solid fa-newspaper"></i>
+                                    <a href="{{ route('singlePost', [
+                                        'rubrik' => $news->post->rubrik->rubrik_name,
+                                        'post_id' => $news->post->post_id,
+                                        'slug' => $news->post->slug,
+                                    ]) }}"
+                                        class="newsticker__item-url">{{ $news->title }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
-
         @endif
 
         <!-- Header -->
@@ -233,6 +239,9 @@
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
+                                <li>
+                                    <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                                </li>
                             </ul>
                             <!-- end menu -->
                         </nav>
@@ -248,32 +257,26 @@
                         <div class="flex-child">
                             <div class="nav__right">
                                 <!-- lainnya -->
-                                <div class="nav__right-item nav__lainnya d-none d-lg-block">
-                                    <ul class="nav__menu menu__lainnya">
-                                        <li class="dropdown__rubrik">
-                                            <a href="javascript:;">
-                                                <i class="subicon ui-arrow-down"></i>
-                                            </a>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <a href="{{ route('video') }}" class="link-submenu"
-                                                        style="white-space: nowrap;">Video</a>
-                                                </li>
-                                                <li>
-                                                    <a href="{{ route('image') }}" class="link-submenu"
-                                                        style="white-space: nowrap;">Image</a>
-                                                </li>
-                                                @foreach ($rubriks->slice(7) as $rubrik)
-                                                    <li>
-                                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                                            class="link-submenu"
-                                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
+                                @if ($rubriks->count() > get_setting('count_rubrik'))
+                                    <div class="nav__right-item nav__lainnya d-none d-lg-block">
+                                        <ul class="nav__menu menu__lainnya">
+                                            <li class="dropdown__rubrik">
+                                                <a href="javascript:;">
+                                                    <i class="subicon ui-arrow-down"></i>
+                                                </a>
+                                                <ul class="submenu">
+                                                    @foreach ($rubriks->slice(get_setting('count_rubrik')) as $rubrik)
+                                                        <li>
+                                                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                                                class="link-submenu"
+                                                                style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @endif
                                 <!-- Search -->
                                 <div class="nav__right-item nav__search d-block d-lg-none">
                                     <a href="javascript:;" class="nav__search-trigger">
@@ -299,7 +302,7 @@
             </div>
 
             {{-- nav mobile --}}
-            <div class="py-2 category_under_nav d-sm-none">
+            <div class="overflow-auto py-2 category_under_nav d-sm-none">
                 <div class="container">
                     <ul class="d-flex" style="gap: 20px;">
                         <!-- Categories -->
@@ -309,6 +312,9 @@
                                     style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                             </li>
                         @endforeach
+                        <li>
+                            <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -395,15 +401,18 @@
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Pedoman Media
+                                    <a href="{{ route('pedoman.index') }}" class="footer__link"
+                                        rel="noreferred">Pedoman Media
                                         Siber</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Perlindungan Data
+                                    <a href="{{ route('perlindungan.index') }}" class="footer__link"
+                                        rel="noreferred">Perlindungan Data
                                         Pengguna</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
+                                    <a href="{{ route('lowongan.index') }}" class="footer__link"
+                                        rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
                         </div>

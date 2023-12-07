@@ -82,7 +82,6 @@
     <meta property="fb:pages" content="" />
     <meta property="article:author" content="Tim Gema Sulawesi">
     <meta property="article:section" content="">
-    <meta property="article:tag" content="">
     <meta content="{{ url()->current() }}" itemprop="url" />
     <meta charset="utf-8">
     <!-- e: open graph -->
@@ -225,6 +224,14 @@
                 }];
             </script>
         @else
+            @php
+                if ($post->tags != null and $post->tags != 'null') {
+                    foreach (json_decode($post->tags) as $tags) {
+                        $tag = \App\Models\Tags::find($tags);
+                        $tags = $tags . $tag->tag_name . ', ';
+                    }
+                }
+            @endphp
             <script>
                 dataLayer = [{
                     "published_date": "All",
@@ -235,7 +242,7 @@
                     "type": "All",
                     "source": "Not Available",
                     "topic": "Not Available",
-                    "tag": "{{ $post->tags }}",
+                    "tag": "{{ $tags }}",
                     "penulis_id": "All",
                     "editor_id": "All"
                 }];
@@ -424,9 +431,6 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
@@ -447,14 +451,11 @@
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    {{-- magnific --}}
+    <link rel="{{ url('assets/frontend/css/magnific.css') }}">
+
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
-
-    {{-- plugins --}}
-    <!-- Magnific Popup core CSS file -->
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/plugins/magnific-popup.css">
-
-
 </head>
 
 <body class="home style-politics ">
@@ -537,7 +538,6 @@
                     </div>
                 </div>
             </div>
-
         @endif
 
         <!-- Header -->
@@ -697,7 +697,7 @@
             </div>
 
             {{-- nav mobile --}}
-            <div class="py-2 category_under_nav d-sm-none">
+            <div class="overflow-auto py-2 category_under_nav d-sm-none">
                 <div class="container">
                     <ul class="d-flex" style="gap: 20px;">
                         <!-- Categories -->
@@ -841,12 +841,9 @@
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
-    <!-- Magnific Popup core JS file -->
-    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/plugins/jquery.magnific-popup.js"></script>
-    <script src="{{ url('assets/frontend') }}/plugins/jquery.magnific-popup.min.js"></script>
+    {{-- magnific --}}
+    <script script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ url('assets/frontend/js/magnific.js') }}"></script>
 
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -922,20 +919,32 @@
             const facebookButtonTop = document.getElementById('share-facebook-top');
             facebookButtonTop.href =
                 `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+            const facebookButtonBottom = document.getElementById('share-facebook-bottom');
+            facebookButtonBottom.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
 
             // Share ke Twitter (atas dan bawah)
             const twitterButtonTop = document.getElementById('share-twitter-top');
             twitterButtonTop.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+            const twitterButtonBottom = document.getElementById('share-twitter-bottom');
+            twitterButtonBottom.href =
                 `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
 
             // Share ke WhatsApp (atas dan bawah)
             const whatsappButtonTop = document.getElementById('share-whatsapp-top');
             whatsappButtonTop.href =
                 `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+            const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
+            whatsappButtonBottom.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
 
             // Share ke Telegram (atas dan bawah)
             const telegramButtonTop = document.getElementById('share-telegram-top');
             telegramButtonTop.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+            const telegramButtonBottom = document.getElementById('share-telegram-bottom');
+            telegramButtonBottom.href =
                 `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
 
             // Copy ke Clipboard (atas dan bawah)
@@ -972,7 +981,46 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.popup-youtube').magnificPopup({
+                disableOn: 700,
+                type: 'iframe',
+                mainClass: 'mfp-fade',
+                removalDelay: 160,
+                preloader: false,
+                gallery: {
+                    enabled: true
+                },
 
+                fixedContentPos: false
+            });
+        });
+
+        $(document).ready(function() {
+            $('.zoom-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                closeOnContentClick: false,
+                closeBtnInside: false,
+                mainClass: 'mfp-with-zoom mfp-img-mobile',
+                image: {
+                    verticalFit: true
+                },
+                gallery: {
+                    enabled: true
+                },
+                zoom: {
+                    enabled: true,
+                    duration: 300,
+                    opener: function(element) {
+                        return element.find('img');
+                    }
+                }
+
+            });
+        });
+    </script>
 </body>
 
 </html>

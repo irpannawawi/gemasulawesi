@@ -57,13 +57,13 @@
                     @foreach ($posts as $post)
                         <tr>
                             <td>{{ $n++ }}</td>
-                            <td class="text-left">{{ $post->title }}</td>
-                            <td><span class="badge badge-primary">{{ $post->status }}</span></td>
-                            <td><span class="badge badge-secondary">{{ $post->rubrik->rubrik_name }}</span></td>
-                            <td>{{ $post->author->display_name }}</td>
-                            <td>{{ $post->editor->display_name }}</td>
-                            <td>{{ $post->created_at }}</td>
-                            <td>{{ $post->published_at }}</td>
+                            <td class="text-left">{{@$post->title }}</td>
+                            <td><span class="badge badge-primary">{{@$post->status }}</span></td>
+                            <td><span class="badge badge-secondary">{{@$post->rubrik->rubrik_name }}</span></td>
+                            <td>{{@$post->author->display_name }}</td>
+                            <td>{{@$post->editor->display_name }}</td>
+                            <td>{{@$post->created_at }}</td>
+                            <td>{{@$post->published_at }}</td>
                             <td>
                                 <button class="btn btn-default btn-sm" onclick="select_article('{{$post->post_id}}')">Choose</button>
                             </td>

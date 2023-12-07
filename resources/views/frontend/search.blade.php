@@ -15,10 +15,11 @@
                             <span>Pencarian</span>
                         </div>
                         <!-- Search form -->
-                        <form class="form-inline search mt-2" action="{{ route('search') }}">
-                            <input class="form-control mr-sm-2" name="q" type="text" value="{{ request('q') }}"
+                        <form class="form-inline search mt-2 mb-3" action="{{ route('search') }}">
+                            <input class="form-control mr-sm-2 mb-0" name="q" type="text" value="{{ request('q') }}"
                                 placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"
+                                    aria-hidden="true"></i> Search</button>
                         </form>
                         @if ($beritaTerkini->count() > 0)
                             <div class="result-search">

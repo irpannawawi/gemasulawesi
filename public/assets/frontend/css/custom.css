@@ -22,7 +22,7 @@
 @media only screen and (max-width: 480px) {
     .nav--colored .nav__holder {
         background-color: #fff !important;
-        box-shadow: 0 0 3px 1px rgba(0,0,0,.4);
+        box-shadow: 0 3px 4px 0 rgba(0,0,0,.2);
     }
     .nav--sticky .nav__holder {
         box-shadow: 1px 0;
@@ -219,6 +219,9 @@
     transition: all 0.1s ease-in;
 }
 
+.search .form-control{
+    width: 581px !important;
+}
 .result-search {
     padding: 0 0 30px;
 }
@@ -226,9 +229,8 @@
     display: flex;
 }
 .search i {
-    font-size: 18px;
-    margin-top: 15px;
-    color: #2cc38b;
+    font-size: 14px;
+    color: #fff;
 }
 .search input {
     border-radius: 10px;

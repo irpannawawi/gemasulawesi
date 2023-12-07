@@ -918,20 +918,32 @@
             const facebookButtonTop = document.getElementById('share-facebook-top');
             facebookButtonTop.href =
                 `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+            const facebookButtonBottom = document.getElementById('share-facebook-bottom');
+            facebookButtonBottom.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
 
             // Share ke Twitter (atas dan bawah)
             const twitterButtonTop = document.getElementById('share-twitter-top');
             twitterButtonTop.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+            const twitterButtonBottom = document.getElementById('share-twitter-bottom');
+            twitterButtonBottom.href =
                 `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
 
             // Share ke WhatsApp (atas dan bawah)
             const whatsappButtonTop = document.getElementById('share-whatsapp-top');
             whatsappButtonTop.href =
                 `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+            const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
+            whatsappButtonBottom.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
 
             // Share ke Telegram (atas dan bawah)
             const telegramButtonTop = document.getElementById('share-telegram-top');
             telegramButtonTop.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+            const telegramButtonBottom = document.getElementById('share-telegram-bottom');
+            telegramButtonBottom.href =
                 `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
 
             // Copy ke Clipboard (atas dan bawah)

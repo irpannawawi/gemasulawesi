@@ -56,8 +56,16 @@
                         @foreach ($headlineWp as $headline)
                             <div class="owl-thumb-item col-3 p-0">
                                 <div class="card mt-3" style="border: none;">
-                                    <img src="{{ get_post_image($headline->post->post_id) }}"
-                                        style="object-fit: cover;object-position: top;" alt="{{ $headline->post->title }}">
+                                    <a
+                                        href="{{ route('singlePost', [
+                                            'rubrik' => Str::slug($headline->post->rubrik->rubrik_name),
+                                            'post_id' => $headline->post->post_id,
+                                            'slug' => $headline->post->slug,
+                                        ]) }}">
+                                        <img src="{{ get_post_image($headline->post->post_id) }}"
+                                            style="object-fit: cover;object-position: top;"
+                                            alt="{{ $headline->post->title }}">
+                                    </a>
                                     <div class="card-body">
                                         <a
                                             href="{{ route('singlePost', [

@@ -199,6 +199,13 @@
                                 </label>
                             </div>
                         </div>
+                        <div class="form-group mb-1 mt-1" id="form-schedule-time" style="display: none">
+                            <div class="checkbox">
+                                <label>
+                                </label>
+                                <input type="datetime-local" id="schedule_time" class="form-control" name="schedule_time">
+                            </div>
+                        </div>
 
                     </div>
                 </div>

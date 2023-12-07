@@ -45,7 +45,7 @@ class EditorialController extends Controller
             'content' => 'required',
         ]);
         $article = $request->content;
-        if($article!=null){
+        if ($article != null) {
 
             $dom = new DOMDocument;
             $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
@@ -56,7 +56,7 @@ class EditorialController extends Controller
                 $firstImage = $images->item(0);
                 $firstImage->parentNode->removeChild($firstImage);
             }
-            
+
             // Get the modified HTML
             $modifiedHtml = $dom->saveHTML();
             $article = $modifiedHtml;
@@ -132,22 +132,57 @@ class EditorialController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|max:120',
+            'description' => 'required|max:140|min:100',
+            'content' => 'required',
+        ]);
+
         $post = Posts::find($id);
 
         $article = $request->content;
-        $dom = new DOMDocument;
-        $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        $images = $dom->getElementsByTagName('img');
-        // Check if there is at least one <img> element
-        if ($images->length > 0) {
-            // Remove the first <img> element
-            $firstImage = $images->item(0);
-            $firstImage->parentNode->removeChild($firstImage);
+        if ($article != null) {
+
+            $dom = new DOMDocument;
+            $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $images = $dom->getElementsByTagName('img');
+            // Check if there is at least one <img> element
+            if ($images->length > 0) {
+                // Remove the first <img> element
+                $firstImage = $images->item(0);
+                $firstImage->parentNode->removeChild($firstImage);
+            }
+
+            // Get the modified HTML
+            $modifiedHtml = $dom->saveHTML();
+            $article = $modifiedHtml;
         }
 
-        // Get the modified HTML
-        $modifiedHtml = $dom->saveHTML();
-        $article = $modifiedHtml;
+        // select status published, draft or scheduled
+        if ($request->is_draft == "1") {
+            $status = 'draft';
+        } elseif ($request->schedule == "1") {
+            $status = 'scheduled';
+        } else {
+            $status = 'published';
+        }
+
+        if (!empty($request->related)) {
+            $related = json_encode($request->related);
+        } else {
+            $related = $request->related;
+        }
+        if (!empty($request->tags)) {
+            $tags = json_encode($request->tags);
+        } else {
+            $tags = $request->tags;
+        }
+        if (!empty($request->topics)) {
+            $topics = json_encode($request->topics);
+        } else {
+            $topics = $request->topics;
+        }
+
 
         $post->title = $request->title;
         $post->slug = Str::slug($request->title);
@@ -157,23 +192,38 @@ class EditorialController extends Controller
         $post->allow_comment = $request->allow_comment;
         $post->view_in_welcome_page = $request->view_in_welcome_page;
         $post->author_id = Auth::user()->id;
-        $post->editor_id = Auth::user()->id;
-        $post->status = $request->is_draft == 1 ? 'draft' : 'published';
-        $post->related_articles = json_encode($request->related);
-        $post->tags = json_encode($request->tags);
-        $post->topics = json_encode($request->topics);
+        $post->editor_id = 1;
+        $post->status = $status;
+        $post->related_articles = $related;
+        $post->tags = $tags;
+        $post->topics = $topics;
         $post->schedule_time = $request->schedule_time;
-        $post->published_at = $request->published_at;
         $post->is_deleted = $request->is_deleted;
         $post->post_image = $request->post_image;
 
-        if ($post->save()) {
-            if ($request->is_draft == 1) {
-                return redirect()->route('editorial.draft');
-            } else {
-                return redirect()->route('editorial.published');
-            }
-        }
+
+         // save the post into the database
+
+         
+         // Check if the post was successfully created
+         if ($post->save()) {
+             if ($post->status == 'scheduled') {
+                 // add update job
+                 $publishDate = str_replace('T', ' ', $request->schedule_time);
+                 $job = PublishPost::dispatch($post->post_id)->delay(Carbon::createFromFormat('Y-m-d H:i', $publishDate));
+             }
+
+             // Redirect based on the post's status
+             if ($status == 'scheduled') {
+                 return redirect()->route('editorial.scheduled')->with('success', 'Post has been created');
+             } else {
+                 return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
+             }
+         } else {
+             // Handle the case where post creation fails
+             return back()->withInput()->withErrors(['error' => 'Failed to create the post.']);
+         }
+
         // dd($request->all());
     }
 
@@ -183,10 +233,10 @@ class EditorialController extends Controller
         $q = $request->q;
         $posts = Posts::where('status', 'published')->orderBy('created_at', 'DESC');
 
-        if(!empty($q)){
-            $posts = $posts->where('title', 'like', '%'.$q.'%');
+        if (!empty($q)) {
+            $posts = $posts->where('title', 'like', '%' . $q . '%');
         }
-        if(!empty($rubrik)){
+        if (!empty($rubrik)) {
             $posts = $posts->where('category', '=', $rubrik);
         }
 
@@ -199,10 +249,10 @@ class EditorialController extends Controller
         $q = $request->q;
         $data['q'] = $request->q;
         $posts = Posts::where('status', 'draft')->orderBy('created_at', 'DESC');
-        if(!empty($q)){
+        if (!empty($q)) {
             $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
         }
-        if(!empty($request->rubrik)){
+        if (!empty($request->rubrik)) {
             $posts = $posts->where('category', '=', $request->rubrik);
         }
         $data['posts'] = $posts->paginate(20);
@@ -216,10 +266,10 @@ class EditorialController extends Controller
         $q = $request->q;
         $data['q'] = $request->q;
         $posts = Posts::where('status', 'scheduled')->orderBy('created_at', 'DESC');
-        if(!empty($q)){
+        if (!empty($q)) {
             $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
         }
-        if(!empty($request->rubrik)){
+        if (!empty($request->rubrik)) {
             $posts = $posts->where('category', '=', $request->rubrik);
         }
         $data['posts'] = $posts->paginate(20);
@@ -232,10 +282,10 @@ class EditorialController extends Controller
         $q = $request->q;
         $data['q'] = $request->q;
         $posts = Posts::where('status', 'trash')->orderBy('created_at', 'DESC');
-        if(!empty($q)){
+        if (!empty($q)) {
             $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
         }
-        if(!empty($request->rubrik)){
+        if (!empty($request->rubrik)) {
             $posts = $posts->where('category', '=', $request->rubrik);
         }
         $data['posts'] = $posts->paginate(20);
@@ -245,13 +295,13 @@ class EditorialController extends Controller
     public function published(Request $request)
     {
         $q = $request->q;
-        
+
         $data['q'] = $q;
         $posts = Posts::where('status', 'published')->orderBy('published_at', 'DESC');
-        if(!empty($q)){
+        if (!empty($q)) {
             $posts = $posts->where('title', 'LIKE', '%' . $q . '%');
         }
-        if(!empty($request->rubrik)){
+        if (!empty($request->rubrik)) {
             $posts = $posts->where('category', '=', $request->rubrik);
         }
         $data['posts'] = $posts->paginate(20);
@@ -330,7 +380,7 @@ class EditorialController extends Controller
             return back()->withInput()->withErrors(['error' => 'Post not found.']);
         }
 
-        Headlinewp::where('post_id', $id)->update(['post_id'=> 0]);
+        Headlinewp::where('post_id', $id)->update(['post_id' => 0]);
         Headlinerubrik::where('post_id', $id)->delete();
         PushNotification::where('post_id', $id)->delete();
         Editorcoice::where('post_id', $id)->delete();

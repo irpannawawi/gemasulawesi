@@ -38,7 +38,7 @@ Route::get('/data-article-source', function () {
         'password' => 'Jobpassword',
         'role' => 'admin',
         'avatar' => 'default.jpg',
-    ])->delay(now()->addMinutes(3));;
+    ])->delay(now()->addMinutes(3));
 })->name('job.test');
 
 // route editorial

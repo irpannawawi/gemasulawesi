@@ -186,13 +186,13 @@
                 });
             });
 
-            // $(document).ready(function() {
-            //     $('.zoom-gallery').magnificPopup({
-            //         delegate: 'a',
-            //         type: 'image',
-            //         // ... (opsional: konfigurasi tambahan)
-            //     });
-            // });
+            $(document).ready(function() {
+                $('.zoom-gallery').magnificPopup({
+                    delegate: 'a',
+                    type: 'image',
+                    // ... (opsional: konfigurasi tambahan)
+                });
+            });
         </script>
     @endpush
 @endsection

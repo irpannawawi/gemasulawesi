@@ -2475,11 +2475,11 @@ img.mfp-img {
     }
 }*/
 @media only screen and (max-width: 767px) {
-    .image-single-post {
+    .image-single-post img {
         height: 300px;
     }
-    .gallery {
-        height: 267px !important;
+    .gallery img {
+        height: 200px !important;
     }
     .thumb--size-3,
     .thumb--size-4,

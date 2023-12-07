@@ -1094,8 +1094,8 @@
 }
 @media only screen and (max-width: 767px) {
     .croslink a{
-        padding: 13px 18px;
-        font-size: 11px;
+        padding: 13px 24px;
+        font-size: 12px;
         padding-right: 0;
     }
 }

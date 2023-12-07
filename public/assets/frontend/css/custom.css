@@ -1216,8 +1216,13 @@ transition: 0.1s;
 }
 .image-single-post img{
     border-radius: 25px;
-    width: 700px;
-    height: 500px;
+}
+@media screen and (min-width: 991px){
+    .image-single-post
+    {
+        width: 700px;
+        height: 500px;
+    }
 }
 .dropdown__rubrik>a{
     display: block;

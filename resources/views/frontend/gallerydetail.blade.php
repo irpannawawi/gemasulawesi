@@ -47,7 +47,7 @@
 
                 <!-- Entry Image -->
                 <div class="thumb image-single-post gallery">
-                    <div id="carouselExampleIndicators" class="carousel slide zoom-gallery" data-ride="carousel">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
                             @foreach ($collections as $key => $collect)
                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{ $key }}"
@@ -59,11 +59,11 @@
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                     @if ($collect->type == 'image')
                                         <a href="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
-                                            data-source="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
-                                            title="{{ $collect->photo->caption }}">
+                                            title="{{ $collect->photo->caption }}" class="gallery__item zoom-gallery"
+                                            data-source="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}">
                                             <img class="d-block w-100"
                                                 src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
-                                                width="193" height="125">
+                                                data-source="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}">
                                         </a>
                                     @else
                                         @php
@@ -186,34 +186,13 @@
                 });
             });
 
-            $(document).ready(function() {
-                // Inisialisasi Carousel
-                $('#carouselExampleIndicators').carousel();
-
-                // Setelah Carousel berganti item, aktifkan Magnific Popup kembali
-                $('#carouselExampleIndicators').on('slid.bs.carousel', function() {
-                    $('.zoom-gallery').magnificPopup({
-                        delegate: 'a',
-                        type: 'image',
-                        closeOnContentClick: false,
-                        closeBtnInside: false,
-                        mainClass: 'mfp-with-zoom mfp-img-mobile',
-                        image: {
-                            verticalFit: true
-                        },
-                        gallery: {
-                            enabled: true
-                        },
-                        zoom: {
-                            enabled: true,
-                            duration: 300,
-                            opener: function(element) {
-                                return element.find('img');
-                            }
-                        }
-                    });
-                });
-            });
+            // $(document).ready(function() {
+            //     $('.zoom-gallery').magnificPopup({
+            //         delegate: 'a',
+            //         type: 'image',
+            //         // ... (opsional: konfigurasi tambahan)
+            //     });
+            // });
         </script>
     @endpush
 @endsection

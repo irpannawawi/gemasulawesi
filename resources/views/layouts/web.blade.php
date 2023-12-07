@@ -452,7 +452,8 @@
 
     {{-- plugins --}}
     <!-- Magnific Popup core CSS file -->
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/plugins/magnific-popup.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 
 
 </head>
@@ -842,12 +843,17 @@
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
     <!-- Magnific Popup core JS file -->
-    {{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/plugins/jquery.magnific-popup.js"></script>
-    <script src="{{ url('assets/frontend') }}/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('.zoom-gallery').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+                // ... (opsional: konfigurasi tambahan)
+            });
+        });
+    </script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>

@@ -58,25 +58,24 @@
                             @foreach ($collections as $key => $collect)
                                 <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                     @if ($collect->type == 'image')
-                                        <a href="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
-                                            title="{{ $collect->photo->caption }}" class="gallery__item zoom-gallery"
-                                            data-source="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}">
-                                            <img class="d-block w-100"
-                                                src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
-                                                data-source="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}">
-                                        </a>
+                                        <div class="zoom-gallery">
+                                            <a href="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
+                                                class="gallery__item" title="{{ $collect->photo->caption }}"
+                                                data-src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}">
+                                                <img class="d-block w-100"
+                                                    src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}">
+                                            </a>
+                                        </div>
                                     @else
                                         @php
                                             $youtubeData = getYoutubeData($collect->video->url)->snippet;
                                         @endphp
                                         <div class="thumbnail__headline">
-                                            <a href="{{ $collect->video->url }}"
-                                                data-source="{{ $youtubeData->thumbnails->medium->url }}"
-                                                title="{{ $collect->video->title }}">
+                                            <a class="popup-youtube" href="{{ $collect->video->url }}">
                                                 <i class="play fas fa-play-circle"></i>
                                                 <img class="d-block w-100"
                                                     src="{{ $youtubeData->thumbnails->medium->url }}"
-                                                    alt="{{ $collect->video->title }}" title="#">
+                                                    alt="{{ $collect->video->title }}">
                                             </a>
                                         </div>
                                     @endif
@@ -169,30 +168,4 @@
             </div>
         </div>
     </div>
-    @push('custom-scripts')
-        <script>
-            $(document).ready(function() {
-                $('.popup-youtube').magnificPopup({
-                    disableOn: 700,
-                    type: 'iframe',
-                    mainClass: 'mfp-fade',
-                    removalDelay: 160,
-                    preloader: false,
-                    gallery: {
-                        enabled: true
-                    },
-
-                    fixedContentPos: false
-                });
-            });
-
-            $(document).ready(function() {
-                $('.zoom-gallery').magnificPopup({
-                    delegate: 'a',
-                    type: 'image',
-                    // ... (opsional: konfigurasi tambahan)
-                });
-            });
-        </script>
-    @endpush
 @endsection

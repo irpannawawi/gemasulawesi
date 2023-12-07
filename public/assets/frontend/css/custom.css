@@ -40,12 +40,6 @@
 .category_under_nav {
     background-color: #2cc38b;
 }
-
-.category_under_nav .d-flex {
-    overflow-x: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
 .category_under_nav li a {
     color: #fff;
     font-weight: 700;

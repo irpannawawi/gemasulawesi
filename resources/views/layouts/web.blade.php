@@ -82,7 +82,6 @@
     <meta property="fb:pages" content="" />
     <meta property="article:author" content="Tim Gema Sulawesi">
     <meta property="article:section" content="">
-    <meta property="article:tag" content="">
     <meta content="{{ url()->current() }}" itemprop="url" />
     <meta charset="utf-8">
     <!-- e: open graph -->
@@ -225,6 +224,14 @@
                 }];
             </script>
         @else
+            @php
+                if ($post->tags != null and $post->tags != 'null') {
+                    foreach (json_decode($post->tags) as $tags) {
+                        $tag = \App\Models\Tags::find($tags);
+                        $tags = $tags . $tag->tag_name . ', ';
+                    }
+                }
+            @endphp
             <script>
                 dataLayer = [{
                     "published_date": "All",
@@ -235,7 +242,7 @@
                     "type": "All",
                     "source": "Not Available",
                     "topic": "Not Available",
-                    "tag": "{{ $post->tags }}",
+                    "tag": "{{ $tags }}",
                     "penulis_id": "All",
                     "editor_id": "All"
                 }];
@@ -424,9 +431,6 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
@@ -534,7 +538,6 @@
                     </div>
                 </div>
             </div>
-
         @endif
 
         <!-- Header -->
@@ -694,7 +697,7 @@
             </div>
 
             {{-- nav mobile --}}
-            <div class="py-2 category_under_nav d-sm-none">
+            <div class="overflow-auto py-2 category_under_nav d-sm-none">
                 <div class="container">
                     <ul class="d-flex" style="gap: 20px;">
                         <!-- Categories -->

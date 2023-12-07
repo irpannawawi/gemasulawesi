@@ -1218,7 +1218,7 @@ transition: 0.1s;
     border-radius: 25px;
 }
 @media screen and (min-width: 991px){
-    .image-single-post
+    .image-single-post img
     {
         width: 700px;
         height: 500px;

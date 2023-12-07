@@ -845,16 +845,6 @@
     <!-- Magnific Popup core JS file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('.zoom-gallery').magnificPopup({
-                delegate: 'a',
-                type: 'image',
-                // ... (opsional: konfigurasi tambahan)
-            });
-        });
-    </script>
-
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>

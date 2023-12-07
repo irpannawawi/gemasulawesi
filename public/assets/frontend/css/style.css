@@ -2479,7 +2479,8 @@ img.mfp-img {
         height: 300px;
     }
     .gallery img {
-        height: 200px !important;
+        height: 290px !important;
+        width: 400px;
     }
     .thumb--size-3,
     .thumb--size-4,

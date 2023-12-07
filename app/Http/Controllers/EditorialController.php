@@ -198,7 +198,6 @@ class EditorialController extends Controller
         $post->tags = $tags;
         $post->topics = $topics;
         $post->schedule_time = $request->schedule_time;
-        $post->published_at = $request->published_at;
         $post->is_deleted = $request->is_deleted;
         $post->post_image = $request->post_image;
 

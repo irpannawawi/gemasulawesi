@@ -35,7 +35,7 @@ class HeadlineController extends Controller
         $data['posts'] = Posts::where([
             'status' => 'published',
             'category' => $rubrik_id
-        ])->where('title', 'LIKE', '%' . $data['q'] . '%')->paginate(20);
+        ])->where('title', 'LIKE', '%' . $data['q'] . '%')->orderBy('published_at', 'DESC')->paginate(20);
         return view('web-management.headline-rubrik.components.modal_select_article', $data);
     }
 
@@ -44,7 +44,7 @@ class HeadlineController extends Controller
         $data['q'] = $request->q;
         $data['posts'] = Posts::where([
             'status' => 'published',
-        ])->where('title', 'LIKE', '%' . $data['q'] . '%')->paginate(20);
+        ])->where('title', 'LIKE', '%' . $data['q'] . '%')->orderBy('published_at', 'DESC')->paginate(20);
         return view('web-management.headline-rubrik.components.modal_select_article', $data);
     }
 

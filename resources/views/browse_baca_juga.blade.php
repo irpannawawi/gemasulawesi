@@ -144,7 +144,6 @@
        })
         // insert image 
         function sendBacaJuga(title, url) {
-            console.log(url)
             window.parent.postMessage({
                 mceAction: 'insertHTML',
                 data: {

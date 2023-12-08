@@ -31,6 +31,7 @@
 @media only screen and (max-width: 990px) {
     .nav--colored .nav__holder {
         background-color: #fff !important;
+        padding: 10px 0 55px 0;
     }
     .nav--sticky .nav__holder {
         box-shadow: 1px 0;
@@ -1001,7 +1002,7 @@
 }
 
 .nav__search-trigger-lg {
-    font-size: 30px;
+    font-size: 30px !important;
     color: #2CC38B;
 }
 
@@ -1212,6 +1213,11 @@ transition: 0.1s;
 }
 .image-single-post img{
     border-radius: 25px;
+}
+@media screen and (max-width: 767px){
+    .image-single-post img{
+        border-radius: 15px;
+    }
 }
 @media screen and (min-width: 991px){
     .image-single-post img

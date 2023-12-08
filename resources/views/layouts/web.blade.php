@@ -674,7 +674,7 @@
                                 @endif
                                 <!-- Search -->
                                 <div class="nav__right-item nav__search d-block d-lg-none">
-                                    <a href="javascript:;" class="nav__search-trigger">
+                                    <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
                                         <i class="ui-search nav__search-trigger-icon"></i>
                                     </a>
                                     <div class="nav__search-box">
@@ -843,7 +843,6 @@
 
     {{-- magnific --}}
     <script src="{{ url('assets/frontend/js/magnific.js') }}"></script>
-
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>

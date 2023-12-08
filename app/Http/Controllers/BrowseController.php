@@ -35,7 +35,7 @@ class BrowseController extends Controller
     public function select2related(Request $request)
     {
         $query = $request->q;
-        $related = Posts::where('title', 'LIKE', '%'.$query.'%')->where('status', 'published')->get();
+        $related = Posts::where('title', 'LIKE', '%'.$query.'%')->where('status', 'published')->limit(10)->get();
         return response()->json(['posts' => $related]);
     }
 

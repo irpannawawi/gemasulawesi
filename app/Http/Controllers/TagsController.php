@@ -45,7 +45,11 @@ class TagsController extends Controller
     public function select2(Request $request)
     {
         $query = $request->q;
-        $tags = Tags::where('tag_name', 'LIKE', '%' . $query . '%')->get();
+        $tags = Tags::where('tag_name', 'LIKE', '%' . $query . '%')->limit(7)
+        ->orderByRaw("CASE WHEN tag_name = '$query' THEN 1 
+                       WHEN tag_name LIKE '$query%' THEN 2
+                       WHEN tag_name LIKE '%$query%' THEN 3
+                       ELSE 4 END")->orderBy('tag_name', 'asc')->get();
         return response()->json(['tags' => $tags]);
     }
 

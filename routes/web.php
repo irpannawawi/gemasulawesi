@@ -133,3 +133,17 @@ Route::get('count_post', function () {
     ];
     return view('count_post', $data);
 });
+
+Route::get('/{slug}', function($slug){
+    $post = Posts::where('slug', $slug)->first();
+    if($post){
+
+        return redirect()->route('singlePost', [
+            'rubrik'=>$post->rubrik->rubrik_name,
+            'post_id'=>$post->post_id,
+            'slug'=>$post->slug,
+        ]);
+    }else{
+        return abort(404);
+    }
+});

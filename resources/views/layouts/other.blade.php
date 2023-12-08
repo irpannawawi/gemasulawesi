@@ -710,7 +710,6 @@
             }
         });
     </script>
-
     @php
         $segments = request()->segments();
         $lastSegment = end($segments);

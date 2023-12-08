@@ -1,6 +1,6 @@
 <div class="pilihan-editor">
     <div class="title-post">
-        <span>Topik Khusus</span>
+        <span>Feature</span>
     </div>
 
     <!-- Slider -->

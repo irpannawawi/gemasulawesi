@@ -83,7 +83,7 @@
 
                     <div class="pilihan-editor">
                         <div class="title-post">
-                            <span>Feature</span>
+                            <span>Editorial</span>
                         </div>
 
                         <!-- Slider -->

@@ -80,11 +80,7 @@
                                     <td>{{ $post->created_at }}</td>
                                     <td>
                                         <button class="btn btn-default btn-sm"
-                                            onclick="sendBacaJuga('{{ $post->title }}', '{{ route('singlePost', [
-                                                'rubrik' => $post->rubrik->rubrik_name,
-                                                'post_id' => $post->post_id,
-                                                'slug' => $post->slug,
-                                            ]) }}')">Choose</button>
+                                            onclick="sendBacaJuga('{{ $post->title }}', 'https:\/\/{{ $_SERVER['SERVER_NAME']}}/{{$post->rubrik->rubrik_name}}/{{$post->post_id}}/{{$post->slug}}')">Choose</button>
                                     </td>
                                 </tr>
                             @endforeach

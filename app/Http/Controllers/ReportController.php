@@ -28,7 +28,7 @@ class ReportController extends Controller
 
         $data = [
             "users" => User::with(['posts'=>function ($query) use ($start_date, $end_date) {
-                return $query->where('status', '=', 'published')
+                $query->where('status', '=', 'published')
                 ->whereBetween('published_at', [$start_date, $end_date]);
             }])->get(),
         ];
@@ -40,26 +40,30 @@ class ReportController extends Controller
 
     public function author(Request $request)
     {
-        if ($request->daterange != null) {
+        if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0].' 00:00:00';
-            $end_date = $daterange[1].' 23:59:59';
+            $start_date = $daterange[0] . ' 00:00:00';
+            $end_date = $daterange[1] . ' 23:59:59';
         } else {
-            $start_date = date('Y-m');
-            $end_date = date('Y-m');
+            $start_date = date('Y-m-01 00:00:00');
+            $end_date = date('Y-m-t 23:59:59');
         }
+        
         DB::enableQueryLog();
-
+        
         $data = [
-            "users" => User::with(['postsAuthor'=>function ($query) use ($start_date, $end_date) {
-                return $query->where('status', '=', 'published')
-                ->whereBetween('published_at', [$start_date, $end_date]);
+            "users" => User::with(['postsAuthor' => function ($query) use ($start_date, $end_date) {
+                $query->where('status', '=', 'published')
+                    ->whereBetween('published_at', [$start_date, $end_date]);
             }])->get(),
         ];
-
-        $query = DB::getQueryLog();
+        
+        $queryLog = DB::getQueryLog();
+        // dd($queryLog);
+        
         $data['daterange'] = $request->daterange;
         return view("report.author", $data);
+        
     }
 
     public function articles(Request $request)

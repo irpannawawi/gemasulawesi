@@ -2476,11 +2476,12 @@ img.mfp-img {
 }*/
 @media only screen and (max-width: 767px) {
     .image-single-post img {
-        height: 289px;
+        height: 260px;
+        width: 100%;
     }
     .gallery img {
-        height: 290px !important;
-        width: 400px;
+        height: 260px;
+        width: 100%;
     }
     .thumb--size-3,
     .thumb--size-4,
@@ -3749,6 +3750,9 @@ img.mfp-img {
     font-weight: 400;
     line-height: 1.5;
     color: #000;
+}
+.read__content{
+    text-align: left !important;
 }
 .halaman {
     padding: 5px 0;
@@ -5918,7 +5922,11 @@ body.admin-bar .nav--sticky {
 }
 
 img {
+    max-width: 100%;
+    width: auto;
     height: auto;
+    vertical-align: top;
+    border: 0;
 }
 
 .alignnone {

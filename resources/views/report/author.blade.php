@@ -48,12 +48,12 @@
                     @endphp
                     @foreach ($users as $user)
                         @php
-                            $total += $user->posts->count();
+                            $total += $user->postsAuthor->count();
                         @endphp
                         <tr>
                             <td>{{ $n++ }}</td>
                             <td>{{ $user->display_name }}</td>
-                            <td>{{ $user->posts->count() }}</td>
+                            <td>{{ $user->postsAuthor->count() }}</td>
                         </tr>
                     @endforeach
                 </tbody>

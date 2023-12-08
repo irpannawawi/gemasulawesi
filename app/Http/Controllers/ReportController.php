@@ -51,10 +51,10 @@ class ReportController extends Controller
         DB::enableQueryLog();
 
         $data = [
-            "users" => User::has('postsAuthor', function ($query) use ($start_date, $end_date) {
+            "users" => User::with(['postsAuthor'=>function ($query) use ($start_date, $end_date) {
                 return $query->where('status', '=', 'published')
                 ->whereBetween('published_at', [$start_date, $end_date]);
-            })->get(),
+            }])->get(),
         ];
 
         $query = DB::getQueryLog();

@@ -61,6 +61,8 @@ class EditorialController extends Controller
             $modifiedHtml = $dom->saveHTML();
             $article = $modifiedHtml;
         }
+        $article = str_replace('"../', '"https://gemasulawesi.com/id/', $article);
+
 
         // select status published, draft or scheduled
         $publishat = null;
@@ -162,7 +164,7 @@ class EditorialController extends Controller
             $article = $modifiedHtml;
         }
 
-        $article = str_replace('"../', '"https://gemasulawesi.com/', $article);
+        $article = str_replace('"../', '"https://gemasulawesi.com/id/', $article);
         // select status published, draft or scheduled
         if ($request->is_draft == "1") {
             $status = 'draft';

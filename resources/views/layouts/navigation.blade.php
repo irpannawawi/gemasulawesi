@@ -4,7 +4,7 @@
     <a href="{{ url('dashboard') }}" class="brand-link">
         <img src="{{ Storage::url('public/avatars/' . Auth::user()->avatar) }}" alt="avatar"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Gemasulawesi</span>
+        <span class="brand-text font-weight-light">{{Auth::user()->display_name}}</span>
     </a>
 
     <!-- Sidebar -->

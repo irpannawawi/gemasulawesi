@@ -98,7 +98,7 @@ class ReportController extends Controller
                 return $query->where([
                     ['status', '=', 'published'],
                 ])->whereBetween('published_at', [$start_date, $end_date]);
-            })->orderBy('published_at', 'desc')->get(),
+            })->orderBy('rubrik_name', 'desc')->get(),
         ];
         $data['daterange'] = $request->daterange;
         return view("report.section", $data);

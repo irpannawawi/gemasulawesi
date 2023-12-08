@@ -230,6 +230,8 @@
                         <p>Ads</p>
                     </a>
                 </li>
+                @if (Auth::user()->role!='author')
+                    
                 <li class="nav-item">
                     <a href="{{ route('users') }}" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
@@ -262,6 +264,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
 
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">

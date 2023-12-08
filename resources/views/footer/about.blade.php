@@ -13,7 +13,7 @@
             <a href="#" class="social social-copy" id="share-copy-top" aria-label="copy"><i
                     class="fa-solid fa-link"></i></a>
         </div>
-        <article class="read__conten">
+        <article class="read__conten mt-4">
             @php
                 $about = get_setting('our_about');
             @endphp

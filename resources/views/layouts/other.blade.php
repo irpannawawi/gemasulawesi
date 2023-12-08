@@ -657,7 +657,7 @@
     </script>
     <script>
         $(function() {
-            var start = moment().subtract(29, 'days');
+            var start = moment().subtract(6, 'days');
             var end = moment();
             // init date
             $('#reportrange span').html(start.format('DD MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'));

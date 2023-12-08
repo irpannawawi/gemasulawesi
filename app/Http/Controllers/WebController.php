@@ -51,8 +51,8 @@ class WebController extends Controller
             $endDate = $request->input('end_date') . ' 23:59:59';
 
             $data['paginatedPost'] = Posts::where('status', 'published')
-                ->where('created_at', '>=', $startDate)
-                ->where('created_at', '<=', $endDate)
+                ->where('published_at', '>=', $startDate)
+                ->where('published_at', '<=', $endDate)
                 ->orderBy('published_at', 'DESC')
                 ->paginate(10);
         } else {

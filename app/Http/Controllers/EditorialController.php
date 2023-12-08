@@ -231,7 +231,7 @@ class EditorialController extends Controller
     {
         $rubrik = $request->rubrik;
         $q = $request->q;
-        $posts = Posts::where('status', 'published')->orderBy('created_at', 'DESC');
+        $posts = Posts::where('status', 'published')->orderBy('published_at', 'DESC');
 
         if (!empty($q)) {
             $posts = $posts->where('title', 'like', '%' . $q . '%');
@@ -248,7 +248,7 @@ class EditorialController extends Controller
     {
         $q = $request->q;
         $data['q'] = $request->q;
-        $posts = Posts::where('status', 'draft')->orderBy('created_at', 'DESC');
+        $posts = Posts::where('status', 'draft')->orderBy('published_at', 'DESC');
         if (!empty($q)) {
             $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
         }
@@ -265,7 +265,7 @@ class EditorialController extends Controller
     {
         $q = $request->q;
         $data['q'] = $request->q;
-        $posts = Posts::where('status', 'scheduled')->orderBy('created_at', 'DESC');
+        $posts = Posts::where('status', 'scheduled')->orderBy('published_at', 'DESC');
         if (!empty($q)) {
             $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
         }
@@ -281,7 +281,7 @@ class EditorialController extends Controller
     {
         $q = $request->q;
         $data['q'] = $request->q;
-        $posts = Posts::where('status', 'trash')->orderBy('created_at', 'DESC');
+        $posts = Posts::where('status', 'trash')->orderBy('published_at', 'DESC');
         if (!empty($q)) {
             $posts = $posts->where('title', 'LIKE', '%' . $request->q . '%');
         }

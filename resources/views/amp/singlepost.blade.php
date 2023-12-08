@@ -70,7 +70,7 @@
                                     //         // $article = preg_replace($re, $replacement, $article);
                                     //     }
                                     // }
-                                    // $article = str_replace('../', '' . url('') . '/', $article);
+                                    $article = str_replace('../', '' . url('') . '/', $article);
                                 @endphp
 
                                 {!! $article !!}

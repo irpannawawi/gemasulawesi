@@ -75,7 +75,7 @@
                             <tr>
                                 <td>
                                     <input onchange="check_related(this, {{ $post->post_id }}, '{{ $post->title }}')"
-                                        type="checkbox" name="relatedSelection[]" class="" value="1">
+                                        type="checkbox" name="relatedSelection[]" id="{{$post->post_id}}" class="" value="1">
                                 </td>
                                 <td>{{ $n++ }}</td>
                                 <td class="text-left">{{ $post->title }}</td>
@@ -119,10 +119,20 @@
                     console.log(last_value)
                 } else {
                     // remove from selected
-                    alert('uncheck')
+                    $('#select2Related option[value="'+id+'"]', window.parent.document).remove();
+
                 }
                 $('#select2Related', window.parent.document).trigger('change');
             }
+
+            function has_value_check(){
+                last_value_data =  $('#select2Related', window.parent.document).val();
+                last_value_data.forEach(function(item, index){
+                    elm = $('#'+item)
+                    console.log(elm.prop('checked', true))
+                })
+            }
+            has_value_check()
 
             function edit_post(id, name, alias, web, logo) {
                 $('#input-post-name').val(name)

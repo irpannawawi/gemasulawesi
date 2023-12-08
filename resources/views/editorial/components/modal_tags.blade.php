@@ -24,11 +24,12 @@
                         <input type="text" class="form-control" placeholder="Search" name="q"
                             aria-label="Search" value="{{ !empty($q) ? $q : '' }}" aria-describedby="basic-addon1">
                         <div class="input-group-prepend">
-                            <button class="input-group-text btn btn-default" id="basic-addon1"><i class="fa fa-search"></i></button>
+                            <button class="input-group-text btn btn-default" id="basic-addon1"><i
+                                    class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </form>
-            </div> 
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive no-margin">
@@ -49,7 +50,7 @@
                             <tr>
                                 <td>
                                     <input onchange="check_tags(this, {{ $tag->tag_id }}, '{{ $tag->tag_name }}')"
-                                        type="checkbox" name="tagSelection[]" class="" value="1">
+                                        type="checkbox" name="tagSelection[]" class="" id="{{ $tag->tag_id }}" value="1">
                                 </td>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $tag->tag_name }}</td>
@@ -67,7 +68,7 @@
             <div class="card-footer">
                 <div class="row">
                     <div class="float-right">
-                        {{$tags->links('vendor.pagination.bootstrap-4')}}
+                        {{ $tags->links('vendor.pagination.bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -123,10 +124,10 @@
                             @method('put')
                             <div class="form-group mb-2">
                                 <label for="Tag">Nama Tag</label>
-                                <input type="text" name="tag_name" class="form-control" required autocomplete="off"
-                                    id="input-Tag-name">
-                                <input type="hidden" name="tag_id" class="form-control" required autocomplete="off"
-                                    id="input-Tag-id">
+                                <input type="text" name="tag_name" class="form-control" required
+                                    autocomplete="off" id="input-Tag-name">
+                                <input type="hidden" name="tag_id" class="form-control" required
+                                    autocomplete="off" id="input-Tag-id">
                             </div>
                             <div class="form-group mb-2">
                                 <button type="button" class="btn bg-secondary btn-secondary"
@@ -164,7 +165,7 @@
                     console.log(last_value)
                 } else {
                     // remove from selected
-                    alert('uncheck')
+                    $('#select2Tag option[value="'+id+'"]', window.parent.document).remove();
                 }
                 $('#select2Tag', window.parent.document).trigger('change');
             }
@@ -173,6 +174,15 @@
                 $('#input-Tag-name').val(name)
                 $('#input-Tag-id').val(id)
             }
+
+            function has_value_check(){
+                last_value_data =  $('#select2Tag', window.parent.document).val();
+                last_value_data.forEach(function(item, index){
+                    elm = $('#'+item)
+                    console.log(elm.prop('checked', true))
+                })
+            }
+            has_value_check()
         </script>
 </body>
 

@@ -350,6 +350,7 @@
             });
 
             tinymce.init({
+                contextmenu: false,
                 selector: '.editor',
                 skin: 'oxide',
                 // =========== autosave tinymce ====================

@@ -79,7 +79,7 @@
                                     <td>{{ $post->editor->display_name }}</td>
                                     <td>{{ $post->created_at }}</td>
                                     <td>
-                                        <button class="btn btn-default btn-sm" onclick="sendBacaJuga('{{ $post->title }}', 'https:\/\/{{ $_SERVER['SERVER_NAME']}}/{{$post->rubrik->rubrik_name}}/{{$post->post_id}}/{{$post->slug}}')">Choose</button>
+                                        <button class="btn btn-default btn-sm" onclick="sendBacaJuga('{{ $post->title }}', 'https:\/\/www.gemasulawesi.com/{{$post->rubrik->rubrik_name}}/{{$post->post_id}}/{{$post->slug}}')">Choose</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -153,6 +153,7 @@
                 }
             }, "*")
         }
+
     </script>
 </body>
 

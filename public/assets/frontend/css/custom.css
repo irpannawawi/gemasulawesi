@@ -1218,12 +1218,16 @@ transition: 0.1s;
     .image-single-post img{
         border-radius: 15px;
     }
+    /* .blog__content{
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+    } */
 }
 @media screen and (min-width: 991px){
     .image-single-post img
     {
-        width: 700px;
         height: 500px;
+        width: 100%;
     }
 }
 .dropdown__rubrik>a{

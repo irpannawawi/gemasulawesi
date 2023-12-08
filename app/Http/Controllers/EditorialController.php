@@ -63,12 +63,14 @@ class EditorialController extends Controller
         }
 
         // select status published, draft or scheduled
+        $publishat = null;
         if ($request->is_draft == "1") {
             $status = 'draft';
         } elseif ($request->schedule == "1") {
             $status = 'scheduled';
         } else {
             $status = 'published';
+            $publishat = date('Y-m-d H:i:s');
         }
 
         if (!empty($request->related)) {
@@ -86,6 +88,8 @@ class EditorialController extends Controller
         } else {
             $topics = $request->topics;
         }
+
+        
         $postData = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
@@ -101,7 +105,7 @@ class EditorialController extends Controller
             'tags' => $tags,
             'topics' => $topics,
             'schedule_time' => $request->schedule_time,
-            'published_at' => $request->published_at,
+            'published_at' => $publishat,
             'is_deleted' => $request->is_deleted,
             'post_image' => $request->post_image,
 

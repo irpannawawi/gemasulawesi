@@ -112,7 +112,7 @@
                                 </div>
 
                                 <div class="editor__text">
-                                    <span>Author : {{ $post->author->display_name }}</span>
+                                    <span>Penulis: {{ $post->author->display_name }}</span>
                                 </div>
 
                                 <!-- tags -->

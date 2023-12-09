@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Exception;
 use Illuminate\Support\Carbon;
+use Spatie\Sitemap\Sitemap;
 
 class EditorialController extends Controller
 {
@@ -122,6 +123,8 @@ class EditorialController extends Controller
             $job = PublishPost::dispatch($newPost->post_id)->delay(Carbon::createFromFormat('Y-m-d H:i', $publishDate));
         }
 
+        // add to sitemap
+        $sitemap = Sitemap::create()->add($newPost);
         // Check if the post was successfully created
         if ($newPost) {
             // Redirect based on the post's status

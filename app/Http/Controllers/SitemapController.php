@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Posts;
 use Illuminate\Http\Request;
+use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapGenerator;
+
 
 class SitemapController extends Controller
 {
     public function generate()
     {
-        SitemapGenerator::create(config('app.url'))
-            ->writeToFile(public_path('sitemap.xml'));
-
-        return 'Sitemap generated successfully!';
+        
+        Sitemap::create()
+        ->add(Posts::all())
+        ->writeToFile(public_path('sitemap.xml'));
     }
 }

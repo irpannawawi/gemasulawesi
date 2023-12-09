@@ -776,7 +776,13 @@
 .ads__banner{
     padding-bottom: 1.5rem;
 }
-
+.ads{
+    position: relative;
+}
+.ads__box{
+    text-align: center;
+    position: relative;
+}
 @media only screen and (min-width: 13in) {
     .thumb-text-down, .hl__b-subtitle{
         display: none;

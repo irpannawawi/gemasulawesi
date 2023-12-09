@@ -35,7 +35,7 @@ class GenerateSitemap extends Command
         ->add(Url::create(config('app.url')))
         ->add(Rubrik::all())
         ->add(Topic::all())
-        ->add(Posts::all())
+        ->add(Posts::where('status', 'published')->orderBy('published_at', 'desc')->get())
         ->writeToFile(public_path('sitemap.xml'));
     }
 }

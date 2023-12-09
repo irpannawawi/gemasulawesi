@@ -41,6 +41,9 @@ class PushNotificationController extends Controller
                 "title" => $news->title,
                 "body" => $news->body,  
                 "click_action" => $news->url,  
+            ],
+            "data"=>[
+                "notification_id" => date('YmdHis'),
             ]
         ];
         $encodedData = json_encode($data);

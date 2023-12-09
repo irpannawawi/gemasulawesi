@@ -85,7 +85,7 @@
                                                     <div class="post-list-small__body">
                                                         <ul class="entry__meta category underline">
                                                             <li>
-                                                                <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
+                                                                <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik?->rubrik_name)]) }}"
                                                                     class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
                                                             </li>
                                                         </ul>

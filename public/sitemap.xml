@@ -6,27 +6,22 @@
         <priority>0.8</priority>
             </url>
     <url>
+        <loc>http://gemasulawesi.test/category/banggai-kepulauan</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
         <loc>http://gemasulawesi.test/gallery</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/category/parigi-moutong</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test</loc>
+        <loc>http://gemasulawesi.test/category/ekonomi</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://gemasulawesi.test/category/kupas-tuntas</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/ekonomi</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -41,6 +36,11 @@
         <priority>0.8</priority>
             </url>
     <url>
+        <loc>http://gemasulawesi.test/category/hukum</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
         <loc>http://gemasulawesi.test/category/politik</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
@@ -51,27 +51,12 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/category/Hukum</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/category/pendidikan</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/category/banggai-kepulauan</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/hukum</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/5/mencari-bantuan-korban-gempa-melalui-postingan-di-akun-medsos</loc>
+        <loc>http://gemasulawesi.test/category/parigi-moutong</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -81,12 +66,17 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/1/3-miliar-tidak-surutkan-ambisi-samsurizal-merebut-golkar</loc>
+        <loc>http://gemasulawesi.test</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/category/Pendidikan</loc>
+        <loc>http://gemasulawesi.test/id/hukum/74/judul-artikel</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/1/3-miliar-tidak-surutkan-ambisi-samsurizal-merebut-golkar</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -101,17 +91,7 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/Parigi%20Moutong/9/smpn-dua-parigi-moutong-tidak-dapatkan-anggaran-rehabilitasi-pagar</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/Pendidikan/5/mencari-bantuan-korban-gempa-melalui-postingan-di-akun-medsos</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/Parigi%20Moutong</loc>
+        <loc>http://gemasulawesi.test/id/pendidikan/5/mencari-bantuan-korban-gempa-melalui-postingan-di-akun-medsos</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -121,22 +101,7 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/Parigi%20Moutong/4/badrun-nggai-himbau-jaga-persatuan-dan-kesatuan</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/74/judul-artikel</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/id/hukum/73/jurul</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/Politik</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -156,6 +121,11 @@
         <priority>0.8</priority>
             </url>
     <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/67/ppk-parigi-distribusikan-logistik-pemilu</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/66/bawaslu-awasi-hitung-suara</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
@@ -166,22 +136,7 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/67/ppk-parigi-distribusikan-logistik-pemilu</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/65/kpu-musnahkan-surat-suara</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/Olahraga</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/63/ma-alkhairaat-gelar-isra-miraj</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -191,17 +146,17 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/category/Sulawesi%20Tengah</loc>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/63/ma-alkhairaat-gelar-isra-miraj</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/topik-khusus/detail/1/nama-topik</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://gemasulawesi.test/id/sulawesi-tengah/61/pemprov-sulteng-salurkan-bsps</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/60/dprd-parimo-gelar-rapat-paripurna</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -216,12 +171,7 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/topik-khusus/detail/1/nama-topik</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/Banggai%20Kepulauan</loc>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/60/dprd-parimo-gelar-rapat-paripurna</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -276,32 +226,12 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/48/tiga-agenda-rapat-paripurna</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/47/tidak-miliki-tenaga-pengajar-sd-desa-aedan-raya-terancam-tutup</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/46/rapat-paripurna-dprd-parimo</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/44/bpkad-parimo-inventaris-aset</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/45/dishub-parimo-buka-penerimaan-taruna-sttd</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/kode-perilaku-pers</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -316,7 +246,32 @@
         <priority>0.8</priority>
             </url>
     <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/48/tiga-agenda-rapat-paripurna</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/pendidikan/47/tidak-miliki-tenaga-pengajar-sd-desa-aedan-raya-terancam-tutup</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/44/bpkad-parimo-inventaris-aset</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/43/tenaga-honorer-parimo-nasibnya-digantung</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
         <loc>http://gemasulawesi.test/redaksi</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/kode-perilaku-pers</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -341,72 +296,7 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/43/tenaga-honorer-parimo-nasibnya-digantung</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/40/jaga-soal-usbn-pihak-sekolah-libatkan-petugas-keamanan</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/37/pemeriksaan-inspektorat-daerah</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/39/bisnis-permainan-hoya-hoya-tambah-pad-parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/36/pilkades-serentak-parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/35/ptps-parimo-awasi-pemungutan-suara-pemilu-di-tps</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/34/anggaran-minim-dlh-sulit-kelola-sampah-parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/parigi-moutong?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/parigi-moutong?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/parigi-moutong?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/22/rapat-paripurna-penutupan-masa-sidang-i-tahun-2019</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/42/partai-politik-parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/8/rekrutmen-relawan-pmi-diduga-modus-peroleh-suara-pilcaleg</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -416,7 +306,17 @@
         <priority>0.8</priority>
             </url>
     <url>
+        <loc>http://gemasulawesi.test/id/hukum/8/rekrutmen-relawan-pmi-diduga-modus-peroleh-suara-pilcaleg</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
         <loc>http://gemasulawesi.test/id/hukum/7/penandaan-apk-caleg-pkb-dinilai-terindikasi-tindak-pidana</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/politik/42/partai-politik-parimo</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -456,222 +356,32 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/5/mencari-bantuan-korban-gempa-melalui-postingan-di-akun-medsos?page=1</loc>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/40/jaga-soal-usbn-pihak-sekolah-libatkan-petugas-keamanan</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/tags/BPBD</loc>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/39/bisnis-permainan-hoya-hoya-tambah-pad-parimo</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/tags/Dana</loc>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/37/pemeriksaan-inspektorat-daerah</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/tags/Parigi%20Moutong</loc>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/36/pilkades-serentak-parimo</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/tags/gema%20sulawesi</loc>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/35/ptps-parimo-awasi-pemungutan-suara-pemilu-di-tps</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/hukum/2/dugaan-penyalahgunaan-dana-tanggap-darurat-menguat?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/2/dugaan-penyalahgunaan-dana-tanggap-darurat-menguat?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/5/mencari-bantuan-korban-gempa-melalui-postingan-di-akun-medsos?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Kabupaten%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/1/3-miliar-tidak-surutkan-ambisi-samsurizal-merebut-golkar?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/1/3-miliar-tidak-surutkan-ambisi-samsurizal-merebut-golkar?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Golkar</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Mahar</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Manggrove</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Pilkada</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/gema</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/PMR</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/berita%20gema%20sulawesi</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/3/pmr-smkn-1-toribulu-prakarsai-programkan-tanam-5000-manggrove?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/3/pmr-smkn-1-toribulu-prakarsai-programkan-tanam-5000-manggrove?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/9/smpn-dua-parigi-moutong-tidak-dapatkan-anggaran-rehabilitasi-pagar?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/9/smpn-dua-parigi-moutong-tidak-dapatkan-anggaran-rehabilitasi-pagar?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/9/smpn-dua-parigi-moutong-tidak-dapatkan-anggaran-rehabilitasi-pagar?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Berita%20Parigi%20Moutong</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/berita%20sulawesi</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/berita%20sulteng</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/berita%20sulawesi%20tengah</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Disdikbud%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/Parigi%20Moutong?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Berita%20seputar%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/4/badrun-nggai-himbau-jaga-persatuan-dan-kesatuan?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/Parigi%20Moutong?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/Parigi%20Moutong?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/4/badrun-nggai-himbau-jaga-persatuan-dan-kesatuan?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/70/pasangan-prabowo-sandi-unggul-sementara-real-count-kpu?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Pahlawan</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Persatuan</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Wakil%20Bupati</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/74/judul-artikel?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/73/jurul?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/69/prabowo-menang-desa-kayuboko?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/69/prabowo-menang-desa-kayuboko?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/70/pasangan-prabowo-sandi-unggul-sementara-real-count-kpu?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/</loc>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/34/anggaran-minim-dlh-sulit-kelola-sampah-parimo</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -681,82 +391,7 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/tags/real%20count</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/68/capres-prabowo-menang-mutlak?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/68/capres-prabowo-menang-mutlak?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Pemilu%202019%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Pemilu</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/66/bawaslu-awasi-hitung-suara?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/66/bawaslu-awasi-hitung-suara?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/64/atlet-tinju-parimo-target-emas?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/67/ppk-parigi-distribusikan-logistik-pemilu?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/65/kpu-musnahkan-surat-suara?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/67/ppk-parigi-distribusikan-logistik-pemilu?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/64/atlet-tinju-parimo-target-emas?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/65/kpu-musnahkan-surat-suara?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/63/ma-alkhairaat-gelar-isra-miraj?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/62/sebanyak-41-lembaga-bakal-jadi-paud-hi?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/category/Kupas%20Tuntas</loc>
+        <loc>http://gemasulawesi.test/category/Hukum</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -771,367 +406,37 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/politik/59/eva-manembu-juga-guru-pns?page=2</loc>
+        <loc>http://gemasulawesi.test/category/Politik</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/62/sebanyak-41-lembaga-bakal-jadi-paud-hi?page=2</loc>
+        <loc>http://gemasulawesi.test/category/Olahraga</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/sulawesi-tengah/61/pemprov-sulteng-salurkan-bsps?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/60/dprd-parimo-gelar-rapat-paripurna?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/59/eva-manembu-juga-guru-pns?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/58/kemenag-parimo-sosialisasikan-tukin-guru?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/52/ptps-kampanyekan-caleg-pdi-p?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/6/keluhan-ratusan-warga-korban-gempa-belum-tersentuh-bantuan?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/52/ptps-kampanyekan-caleg-pdi-p?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/52/ptps-kampanyekan-caleg-pdi-p?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/6/keluhan-ratusan-warga-korban-gempa-belum-tersentuh-bantuan?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/BPBD%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Gempa%20Sulteng</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Sulteng%20Bangkit</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Toribulu</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/banggai-kepulauan/57/warga-bankep-panik-lari?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/56/forum-perdamaian-desa-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/54/atlet-volley-pasir-target-emas?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/56/forum-perdamaian-desa-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/55/cabor-sepak-takraw-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/55/cabor-sepak-takraw-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/54/atlet-volley-pasir-target-emas?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/53/atlet-putri-pencak-silat-optimis-raih-emas-porprov?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/51/atlet-karate-parimo-siap-raih-prestasi-di-porprov-viii?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/48/tiga-agenda-rapat-paripurna?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/48/tiga-agenda-rapat-paripurna?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/DPRD</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/LKPJ</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/50/hut-parimo-jadi-sarana-evaluasi?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/53/atlet-putri-pencak-silat-optimis-raih-emas-porprov?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/olahraga/51/atlet-karate-parimo-siap-raih-prestasi-di-porprov-viii?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/50/hut-parimo-jadi-sarana-evaluasi?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/49/festival-pranata-adat-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/49/festival-pranata-adat-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/storage/photos/img_20190311_075428.jpeg</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/storage/photos/ktp.jpeg</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/storage/photos/qori.jpeg</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Info%20seputar%20Parigi%20Moutong</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/46/rapat-paripurna-dprd-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/47/tidak-miliki-tenaga-pengajar-sd-desa-aedan-raya-terancam-tutup?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/47/tidak-miliki-tenaga-pengajar-sd-desa-aedan-raya-terancam-tutup?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/46/rapat-paripurna-dprd-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/44/bpkad-parimo-inventaris-aset?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/45/dishub-parimo-buka-penerimaan-taruna-sttd?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/44/bpkad-parimo-inventaris-aset?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/45/dishub-parimo-buka-penerimaan-taruna-sttd?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/43/tenaga-honorer-parimo-nasibnya-digantung?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita?page=4</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita?page=5</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita?page=8</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita?page=6</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/indeks-berita?page=7</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/39/bisnis-permainan-hoya-hoya-tambah-pad-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/37/pemeriksaan-inspektorat-daerah?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/40/jaga-soal-usbn-pihak-sekolah-libatkan-petugas-keamanan?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/40/jaga-soal-usbn-pihak-sekolah-libatkan-petugas-keamanan?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/37/pemeriksaan-inspektorat-daerah?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/39/bisnis-permainan-hoya-hoya-tambah-pad-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/36/pilkades-serentak-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/36/pilkades-serentak-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Bawaslu%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/35/ptps-parimo-awasi-pemungutan-suara-pemilu-di-tps?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/35/ptps-parimo-awasi-pemungutan-suara-pemilu-di-tps?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Pemilu%202019</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/DLH%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/PTPS%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Dinas%20Lingkungan%20Hidup</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/34/anggaran-minim-dlh-sulit-kelola-sampah-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/34/anggaran-minim-dlh-sulit-kelola-sampah-parimo?page=2</loc>
+        <loc>http://gemasulawesi.test/category/Pendidikan</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/29/kpu-parimo-tugaskan-panitia-khusus-melipat-surat-suara</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/32/panitia-inti-porprov-viii-sulteng-gelar-rapat-koordinasi</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/26/camat-tidak-bisa-intervensi-dana-desa</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/24/disketan-dan-bps-buta-data-produksi-kedelai-parimo</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -1146,27 +451,7 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/26/camat-tidak-bisa-intervensi-dana-desa</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/32/panitia-inti-porprov-viii-sulteng-gelar-rapat-koordinasi</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/15/rapat-paripurna-lanjutan-pengesahan-rpjmd-tahun-2019-2023</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/25/anleg-dprd-pertanyakan-pembukaan-kantor-opd-di-tinombo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/24/disketan-dan-bps-buta-data-produksi-kedelai-parimo</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -1186,12 +471,22 @@
         <priority>0.8</priority>
             </url>
     <url>
+        <loc>http://gemasulawesi.test/ratusan-warga-korban-gempa-parimo-belum-tersentuh-bantuan/</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/18/pavin-block-sikim-dibawah-standar</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/16/pad-parimo-dikhawatirkan-tidak-mampu-akomodir-rpjmd</loc>
+            <changefreq>daily</changefreq>
+        <priority>0.8</priority>
+            </url>
+    <url>
+        <loc>http://gemasulawesi.test/id/parigi-moutong/15/rapat-paripurna-lanjutan-pengesahan-rpjmd-tahun-2019-2023</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
@@ -1211,537 +506,12 @@
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/tags/RPJMD</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Rapat%20paripurna</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/10/renovasi-gedung-berlanjut-smpn-satu-parigi-moutong-dapat-dispensasi</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>
     <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/22/rapat-paripurna-penutupan-masa-sidang-i-tahun-2019?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/DPRD%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/42/partai-politik-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
         <loc>http://gemasulawesi.test/id/parigi-moutong/72/edited-pembangunan-tanpa-rtrw-dan-rdtr-akan-dikenakan-denda</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/22/rapat-paripurna-penutupan-masa-sidang-i-tahun-2019?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/politik/42/partai-politik-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/8/rekrutmen-relawan-pmi-diduga-modus-peroleh-suara-pilcaleg?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Relawan%20PMI</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Pavin%20block</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/SIKIM</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/APK</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/8/rekrutmen-relawan-pmi-diduga-modus-peroleh-suara-pilcaleg?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/11/gagal-konstruksi-proyek-paving-block-sikim-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/11/gagal-konstruksi-proyek-paving-block-sikim-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/7/penandaan-apk-caleg-pkb-dinilai-terindikasi-tindak-pidana?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/7/penandaan-apk-caleg-pkb-dinilai-terindikasi-tindak-pidana?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/hukum/7/penandaan-apk-caleg-pkb-dinilai-terindikasi-tindak-pidana?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Bawaslu</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Caleg</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/41/usbn-smpn-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/41/usbn-smpn-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Paket%20kesetaraan</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/SMPN%20Dua%20Parigi</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/USBN</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/31/dana-paud-disdikbud?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/38/smpn-dua-parimo-siap-laksanakan-usbn-tahun-2019?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/33/penyelenggaraan-pendidikan-paket-kesetaraan-upaya-tingkatkan-ipm-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/30/peringatan-isra-miraj-bertajuk-pawai-dan-zikir-bersama?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/38/smpn-dua-parimo-siap-laksanakan-usbn-tahun-2019?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/33/penyelenggaraan-pendidikan-paket-kesetaraan-upaya-tingkatkan-ipm-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/31/dana-paud-disdikbud?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/21/smk-muhammadiyah-gelar-ujian-kompetensi?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Isra%20Mi%27raj</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Sekolah%20TK</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/21/smk-muhammadiyah-gelar-ujian-kompetensi?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Parigi%20Moutong?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Parigi%20Moutong?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/30/peringatan-isra-miraj-bertajuk-pawai-dan-zikir-bersama?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/17/229-siswa-sd-jadi-peserta-o2sn-dan-fls2n?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/pendidikan/17/229-siswa-sd-jadi-peserta-o2sn-dan-fls2n?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Parigi%20Moutong?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/ratusan-warga-korban-gempa-parimo-belum-tersentuh-bantuan/</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/gema%20sulawesi?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/gema%20sulawesi?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/71/faisan-badja-hampir-pasti-lolos-parlemen?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/71/faisan-badja-hampir-pasti-lolos-parlemen?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/gema%20sulawesi?page=4</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Kabupaten%20Parimo?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/gema%20sulawesi?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Kabupaten%20Parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Kabupaten%20Parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/29/kpu-parimo-tugaskan-panitia-khusus-melipat-surat-suara?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/28/bimtek-kpps-dinilai-mampu-tingkatkan-kualitas-pemilu?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/29/kpu-parimo-tugaskan-panitia-khusus-melipat-surat-suara?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/28/bimtek-kpps-dinilai-mampu-tingkatkan-kualitas-pemilu?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/27/anleg-dprd-sarankan-pemda-hemat-anggaran-rutin?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/27/anleg-dprd-sarankan-pemda-hemat-anggaran-rutin?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Porprov%20VIII</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/KONI</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/25/anleg-dprd-pertanyakan-pembukaan-kantor-opd-di-tinombo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/26/camat-tidak-bisa-intervensi-dana-desa?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/26/camat-tidak-bisa-intervensi-dana-desa?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/32/panitia-inti-porprov-viii-sulteng-gelar-rapat-koordinasi?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/32/panitia-inti-porprov-viii-sulteng-gelar-rapat-koordinasi?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/15/rapat-paripurna-lanjutan-pengesahan-rpjmd-tahun-2019-2023?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/15/rapat-paripurna-lanjutan-pengesahan-rpjmd-tahun-2019-2023?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/25/anleg-dprd-pertanyakan-pembukaan-kantor-opd-di-tinombo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Benih%20Kedelai</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/24/disketan-dan-bps-buta-data-produksi-kedelai-parimo?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/24/disketan-dan-bps-buta-data-produksi-kedelai-parimo?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Pansus%20DPRD</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/BPS%20Parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Dinas%20Ketahanan%20Pangan</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Korupsi%20Pengadaan%20Benih</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/23/bahas-raperda-rpjmd-parimo-dprd-bentuk-pansus?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/23/bahas-raperda-rpjmd-parimo-dprd-bentuk-pansus?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/20/proyek-pavin-sikim-bermasalah-disebut-milik-yanto?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/20/proyek-pavin-sikim-bermasalah-disebut-milik-yanto?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/19/proyek-llt-kedelai-dtphp-tahun-2019-lanjut-tidak-jera?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/19/proyek-llt-kedelai-dtphp-tahun-2019-lanjut-tidak-jera?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/18/pavin-block-sikim-dibawah-standar?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/18/pavin-block-sikim-dibawah-standar?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/16/pad-parimo-dikhawatirkan-tidak-mampu-akomodir-rpjmd?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/16/pad-parimo-dikhawatirkan-tidak-mampu-akomodir-rpjmd?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/14/isi-rpjmd-parimo-jangan-program-khayalan?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/14/isi-rpjmd-parimo-jangan-program-khayalan?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/13/peluang-bisnis-paving-block-parimo-ditengah-kondisi-sulit?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Bisnis</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/Desa</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/kepiting%20bakau</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/13/peluang-bisnis-paving-block-parimo-ditengah-kondisi-sulit?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/12/pemerintah-desa-petapa-tebar-bibit-kepiting-bakau?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/12/pemerintah-desa-petapa-tebar-bibit-kepiting-bakau?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/10/renovasi-gedung-berlanjut-smpn-satu-parigi-moutong-dapat-dispensasi?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/berita%20parimo</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/10/renovasi-gedung-berlanjut-smpn-satu-parigi-moutong-dapat-dispensasi?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/10/renovasi-gedung-berlanjut-smpn-satu-parigi-moutong-dapat-dispensasi?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/login</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/72/edited-pembangunan-tanpa-rtrw-dan-rdtr-akan-dikenakan-denda?page=1</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/72/edited-pembangunan-tanpa-rtrw-dan-rdtr-akan-dikenakan-denda?page=2</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/id/parigi-moutong/72/edited-pembangunan-tanpa-rtrw-dan-rdtr-akan-dikenakan-denda?page=3</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/tags/RDTR%20RTRW%20Parigi%20Moutong</loc>
-            <changefreq>daily</changefreq>
-        <priority>0.8</priority>
-            </url>
-    <url>
-        <loc>http://gemasulawesi.test/forgot-password</loc>
             <changefreq>daily</changefreq>
         <priority>0.8</priority>
             </url>

@@ -17,7 +17,7 @@
                                 <div class="entry__img-holder thumb__img-holder"
                                     style="background-image: url('{{ get_post_image($headlineRubrik[0]->post->post_id) }}');">
                                     <h4 class="hl__b-subtitle">
-                                        <a href="{{ route('category', ['rubrik_name' => $headlineRubrik[0]->post->rubrik->rubrik_name]) }}"
+                                        <a href="{{ route('category', ['rubrik_name' => Str::slug($headlineRubrik[0]->post->rubrik->rubrik_name)]) }}"
                                             class="hl__link">{{ $headlineRubrik[0]->post->rubrik->rubrik_name }}
                                         </a>
                                     </h4>
@@ -25,7 +25,7 @@
                                     <div class="thumb-text-holder rubrik thumb-text-holder--2">
                                         <ul class="entry__meta">
                                             <li>
-                                                <a href="{{ route('category', ['rubrik_name' => $headlineRubrik[0]->post->rubrik->rubrik_name]) }}"
+                                                <a href="{{ route('category', ['rubrik_name' => Str::slug($headlineRubrik[0]->post->rubrik->rubrik_name)]) }}"
                                                     class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headlineRubrik[0]->post->rubrik->rubrik_name }}</a>
                                             </li>
                                         </ul>
@@ -94,7 +94,7 @@
                                                     <div class="post-list-small__body">
                                                         <ul class="entry__meta category underline">
                                                             <li>
-                                                                <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
+                                                                <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik?->rubrik_name)]) }}"
                                                                     class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
                                                             </li>
                                                         </ul>
@@ -160,7 +160,7 @@
                                                 <div class="post-list-small__body">
                                                     <ul class="entry__meta category underline">
                                                         <li>
-                                                            <a href="{{ route('category', ['rubrik_name' => $post->rubrik?->rubrik_name]) }}"
+                                                            <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik?->rubrik_name)]) }}"
                                                                 class="entry__meta-category">{{ $post->rubrik?->rubrik_name }}</a>
                                                         </li>
                                                     </ul>

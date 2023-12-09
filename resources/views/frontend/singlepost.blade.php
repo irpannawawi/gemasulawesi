@@ -7,7 +7,7 @@
                 <a href="{{ url('/') }}" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
             </li>
             <li class="breadcrumbs__item">
-                <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
+                <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik->rubrik_name)]) }}"
                     class="breadcrumbs__url">{{ $post->rubrik->rubrik_name }}</a>
             </li>
         </ul>

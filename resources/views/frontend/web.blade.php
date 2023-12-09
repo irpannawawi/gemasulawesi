@@ -22,7 +22,7 @@
                                         <div class="thumb-text-holder thumb-text-holder--3">
                                             <ul class="entry__meta">
                                                 <li>
-                                                    <a href="{{ route('category', ['rubrik_name' => $headline->post->rubrik->rubrik_name]) }}"
+                                                    <a href="{{ route('category', ['rubrik_name' => Str::slug($headline->post->rubrik->rubrik_name)]) }}"
                                                         class="entry__meta-category entry__meta-category--label entry__meta-category--tosca">{{ $headline->post->rubrik->rubrik_name }}</a>
                                                 </li>
                                             </ul>
@@ -110,7 +110,7 @@
                                                 <ul class="entry__meta">
                                                     <li>
                                                         <a href="{{ route('singlePost', [
-                                                            'rubrik' => $choice->post->rubrik->rubrik_name,
+                                                            'rubrik' => Str::slug($choice->post->rubrik->rubrik_name),
                                                             'post_id' => $choice->post_id,
                                                             'slug' => $choice->post->slug,
                                                         ]) }}"
@@ -168,7 +168,7 @@
                                                 <div class="post-list-small__body">
                                                     <ul class="entry__meta category underline">
                                                         <li>
-                                                            <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
+                                                            <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik->rubrik_name)]) }}"
                                                                 class="entry__meta-category">{{ $post->rubrik->rubrik_name }}</a>
                                                         </li>
                                                     </ul>
@@ -237,7 +237,7 @@
                                             <div class="post-list-small__body">
                                                 <ul class="entry__meta category underline">
                                                     <li>
-                                                        <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
+                                                        <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik->rubrik_name)]) }}"
                                                             class="entry__meta-category">{{ $post->rubrik->rubrik_name }}</a>
                                                     </li>
                                                 </ul>

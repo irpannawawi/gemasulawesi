@@ -102,8 +102,17 @@ class WebController extends Controller
             $post->visit += 1;
             $post->save();
         }
-
-        $post = Posts::find($post_id);
+        $rubrik = Rubrik::where('rubrik_name', str_replace('-', ' ', $rubrik_name))->first();
+        
+        if($rubrik!=null){
+            $rubrik_id = $rubrik->rubrik_id;
+        }else{
+            $rubrik_id = 0;
+        }
+        $post = Posts::where(['post_id'=>$post_id, 'slug'=>$slug, 'category'=>$rubrik_id])->first();
+        if($post==null){
+            return abort(404);
+        }
         $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
             ->where('status', 'published')
             ->limit(10)->get();
@@ -128,6 +137,7 @@ class WebController extends Controller
 
     public function category($rubrik_name): View
     {
+        $rubrik_name = Str::replace('-', ' ', $rubrik_name);
         $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->get()[0];
         $data['rubrik_name'] = $rubrik_name;
         $data['headlineRubrik'] = Headlinerubrik::where('rubrik_id', $rubrik->rubrik_id)->get();

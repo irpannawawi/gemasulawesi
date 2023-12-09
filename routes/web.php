@@ -27,19 +27,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 // test queue
-use App\Jobs\TestQueue;
 use App\Models\Posts;
+use App\Http\Controllers\SitemapController;
 
-Route::get('/data-article-source', function () {
-    TestQueue::dispatch([
-        'username' => 'Jobusername',
-        'display_name' => 'Jobdisplay_name',
-        'email' => 'Jobemail',
-        'password' => 'Jobpassword',
-        'role' => 'admin',
-        'avatar' => 'default.jpg',
-    ])->delay(now()->addMinutes(3));
-})->name('job.test');
+Route::get('/sitemap', [SitemapController::class, 'generate']);
 
 // route editorial
 Route::get('/browse', [PhotoController::class, 'browse'])->name('browseImage');

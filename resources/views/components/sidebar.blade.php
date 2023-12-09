@@ -10,10 +10,7 @@
     <div class="ads">
         <div class="ads__box">
             <div class="div-gpt-ad-giant">
-                <a href="#">
-                    <img src="{{ url('assets/frontend/img/iklan/festival_hijau.jpg') }}" alt=""
-                        style="width:100%;">
-                </a>
+                <img src="{{ Storage::url('ads/festival_hijau.jpg') }}" alt="Iklan" style="width:100%;">
             </div>
         </div>
     </div>

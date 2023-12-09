@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Posts;
 use App\Models\Rubrik;
+use App\Models\Topic;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapGenerator;
@@ -33,6 +34,7 @@ class GenerateSitemap extends Command
         Sitemap::create()
         ->add(Url::create(config('app.url')))
         ->add(Rubrik::all())
+        ->add(Topic::all())
         ->add(Posts::all())
         ->writeToFile(public_path('sitemap.xml'));
     }

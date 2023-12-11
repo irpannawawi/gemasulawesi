@@ -20,7 +20,8 @@ messaging.onBackgroundMessage((payload) => {
     const notificationOptions = {
       title: payload.data.title,
       body: payload.data.body,
-      icon: '/firebase-logo.png'
+      icon: '/firebase-logo.png',
+      data : {url: payload.data.click_action}
     };
     toOpenUrl = payload.data.click_action
     // notificationHandled = true;
@@ -29,8 +30,7 @@ messaging.onBackgroundMessage((payload) => {
 
 self.addEventListener('notificationclick', function (event) {
     event.notification.close(); // Menutup notifikasi yang dipicu klik
-    var urlToOpen = toOpenUrl; 
-  
+    var urlToOpen = event.notification.data.url; 
     event.waitUntil(
       clients.matchAll({
         type: 'window',

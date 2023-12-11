@@ -45,11 +45,18 @@ class PushNotificationController extends Controller
                 "message_id" => date('YmdHis'),
             ]
         ]);
+        $dataCfg = [
+            "title" => $news->title,
+            "body" => $news->body,  
+            "click_action" => str_replace('http://', 'https://', $news->url),  
+            "message_id" => date('YmdHis'),
+        ];
 
         $message = CloudMessage::new();
-        $message = $message->withWebPushConfig($config);
+        $message = $message->withWebPushConfig($config)
+                    ->withData($dataCfg);
         $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
-        $messaging->sendMulticast($message, $FcmToken);
+        $res = $messaging->sendMulticast($message, $FcmToken);
         $news->status='sent';
         $news->save();
         return redirect()->back(); 

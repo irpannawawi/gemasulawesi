@@ -364,11 +364,11 @@
             $jsonLDData = [
                 '@context' => 'http://schema.org/',
                 '@type' => 'WebSite',
-                'url' => url()->current(),
+                'url' => 'https://www.gemasulawesi.com/',
                 'potentialAction' => [
                     [
                         '@type' => 'SearchAction',
-                        'target' => url()->current() . '/search?q={sarch_term_string}',
+                        'target' => 'https://www.gemasulawesi.com/search?q={sarch_term_string}',
                         'query-input' => 'required name=search_term_string',
                     ],
                 ],

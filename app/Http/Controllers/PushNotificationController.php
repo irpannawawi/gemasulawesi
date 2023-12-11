@@ -37,12 +37,13 @@ class PushNotificationController extends Controller
   
         $data = [
             "registration_ids" => $FcmToken,
-            "notification" => [
+            // "notification" => [
+            //     "click_action" => str_replace('http://', 'https://', $news->url),  
+            // ],
+            "data"=>[
                 "title" => $news->title,
                 "body" => $news->body,  
-                "click_action" => $news->url,  
-            ],
-            "data"=>[
+                "click_action" => str_replace('http://', 'https://', $news->url),  
                 "message_id" => date('YmdHis'),
             ]
         ];

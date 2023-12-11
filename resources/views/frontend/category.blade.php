@@ -182,12 +182,7 @@
 
 
                             <!-- Ad Banner 728 -->
-                            <div class="text-center pb-48">
-                                <a href="#">
-                                    <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
-                                </a>
-                            </div>
-
+                            
                             {{ $paginatedPost->onEachSide(1)->links() }}
                         </div>
                     </div>

@@ -320,7 +320,7 @@
                 $image = asset($imagePath);
                 $segments = request()->segments();
                 $lastSegment = end($segments);
-                $postTitle = Str::slug('-', ' ', $lastSegment);
+                $postTitle = $post->title ?? '';
                 $jsonLDData = [
                     '@context' => 'http://schema.org/',
                     '@type' => 'NewsArticle',
@@ -336,7 +336,8 @@
                     ],
                     'author' => [
                         '@type' => 'Person',
-                        'name' => $post->editor->display_name,
+                        'url' => url()->current(),
+                        'name' => $post->editor->display_name ?? 'Tim Gema',
                     ],
                     'publisher' => [
                         '@type' => 'Organization',
@@ -363,11 +364,11 @@
             $jsonLDData = [
                 '@context' => 'http://schema.org/',
                 '@type' => 'WebSite',
-                'url' => url()->current(),
+                'url' => 'https://www.gemasulawesi.com/',
                 'potentialAction' => [
                     [
                         '@type' => 'SearchAction',
-                        'target' => url()->current(),
+                        'target' => 'https://www.gemasulawesi.com/search?q={search_term_string}',
                         'query-input' => 'required name=search_term_string',
                     ],
                 ],
@@ -499,7 +500,7 @@
                 </li>
                 @foreach ($rubriks as $rubrik)
                     <li>
-                        <a href="{{ route('category', ['rubrik_name' => Str::slug($rubrik->rubrik_name)]) }}"
+                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                             class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
                     </li>
                 @endforeach
@@ -644,7 +645,7 @@
                             <ul class="nav__menu">
                                 @foreach ($rubriks->take(get_setting('count_rubrik')) as $rubrik)
                                     <li>
-                                        <a href="{{ route('category', ['rubrik_name' => Str::slug($rubrik->rubrik_name)]) }}"
+                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                             class="link-nav__menu"
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
@@ -677,7 +678,7 @@
                                                 <ul class="submenu">
                                                     @foreach ($rubriks->slice(get_setting('count_rubrik')) as $rubrik)
                                                         <li>
-                                                            <a href="{{ route('category', ['rubrik_name' => Str::slug($rubrik->rubrik_name)]) }}"
+                                                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                                                 class="link-submenu"
                                                                 style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                                         </li>
@@ -718,7 +719,7 @@
                         <!-- Categories -->
                         @foreach ($rubriks as $rubrik)
                             <li>
-                                <a href="{{ route('category', ['rubrik_name' => Str::slug($rubrik->rubrik_name)]) }}"
+                                <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                     style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                             </li>
                         @endforeach
@@ -731,13 +732,6 @@
         </header> <!-- end navigation -->
 
         <!-- Ad Banner 728 -->
-        <div class="container">
-            <div class="text-center ads__banner">
-                <a href="#">
-                    <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
-                </a>
-            </div>
-        </div>
 
         {{-- konten --}}
         @yield('content')

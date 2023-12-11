@@ -865,18 +865,17 @@
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "AIzaSyB3UbArxJvs-eDcnq-dG5vk438-1kcx4jI",
-            authDomain: "notif-29ba1.firebaseapp.com",
-            databaseURL: "https://notif-29ba1.firebaseio.com",
-            projectId: "notif-29ba1",
-            storageBucket: "notif-29ba1.appspot.com",
-            messagingSenderId: "528841843805",
-            appId: "1:528841843805:web:b6a4adfc2bfb3b5765d9b4",
-            measurementId: "G-XD29THY8S3"
+            apiKey: "{{env('FIREBASE_API_KEY')}}",
+            authDomain: "{{env('FIREBASE_AUTH_DOMAIN')}}",
+            databaseURL: "{{env('FIREBASE_DATABASE_URL')}}",
+            projectId: "{{env('FIREBASE_PROJECT_ID')}}",
+            storageBucket: "{{env('FIREBASE_STORAGE_BUCKET')}}",
+            messagingSenderId: "{{env('FIREBASE_MESSAGING_SENDER_ID')}}",
+            appId: "{{env('FIREBASE_APP_ID')}}",
         };
 
         // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
+        msg = firebase.initializeApp(firebaseConfig);
 
         const messaging = firebase.messaging();
 
@@ -902,15 +901,6 @@
         }
 
         initFirebaseMessagingRegistration();
-
-        messaging.onMessage(function(payload) {
-            const title = payload.notification.title;
-            const options = {
-                body: payload.notification.body,
-                icon: payload.notification.icon,
-            };
-            new Notification(title, options);
-        });
     </script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->

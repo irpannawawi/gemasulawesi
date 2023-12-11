@@ -490,13 +490,6 @@
         </header> <!-- end navigation -->
 
         <!-- Ad Banner 728 -->
-        <div class="container">
-            <div class="text-center ads__banner">
-                <a href="#">
-                    <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
-                </a>
-            </div>
-        </div>
 
         {{-- konten --}}
         @yield('content')

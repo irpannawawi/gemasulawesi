@@ -106,7 +106,8 @@
                                                             ]) }}"
                                                                 class="post-title">{{ $post->title }}</a>
                                                         </h3>
-                                                        <p class="bt__date">{{ convert_date_to_ID($post->publihed_at) }}</p>
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->publihed_at) }}
+                                                        </p>
                                                     </div>
                                                 </article>
                                             </li>
@@ -115,12 +116,12 @@
                                 </ul>
 
                                 <!-- Ad Banner 728 -->
-                                <div class="text-center pb-48">
+                                {{-- <div class="text-center pb-48">
                                     <a href="#">
                                         <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
                                             alt="">
                                     </a>
-                                </div>
+                                </div> --}}
 
                                 <x-topik_khusus :$topikKhusus />
                             </div>
@@ -182,7 +183,7 @@
 
 
                             <!-- Ad Banner 728 -->
-                            
+
                             {{ $paginatedPost->onEachSide(1)->links() }}
                         </div>
                     </div>

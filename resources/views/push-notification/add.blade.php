@@ -21,8 +21,10 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="title">Title</label>
-                    <input type="text" name="title" id="title" class="form-control" required autocomplete="off" readonly>
-                    <input type="hidden" name="post_id" id="post_id" class="form-control" required autocomplete="off">
+                    <input type="text" name="title" id="title" class="form-control" required autocomplete="off"
+                        readonly>
+                    <input type="hidden" name="post_id" id="post_id" class="form-control" required
+                        autocomplete="off">
                 </div>
                 <div class="form-group mb-2">
                     <label for="description">Title</label>
@@ -54,57 +56,30 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body table-responsive">
-                    <table class="table table-sm datatable">
-                        <thead class="text-center">
-                            <tr>
-                                <th>No</th>
-                                <th>Title</th>
-                                <th>Rubrik</th>
-                                <th>Author</th>
-                                <th>Editor</th>
-                                <th>Date Published</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            @php
-                                $n = 1;
-                            @endphp
-                            @foreach ($posts as $post)
-                                <tr>
-                                    <td>{{ $n++ }}</td>
-                                    <td class="text-left">{{ $post->title }}</td>
-                                    <td><span class="badge badge-secondary">{{ $post->rubrik->rubrik_name }}</span></td>
-                                    <td>{{ $post->author->display_name }}</td>
-                                    <td>{{ $post->editor->display_name }}</td>
-                                    <td>{{ $post->created_at }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button type="button" onclick="fill_form('{{$post->post_id}}', '{{$post->title}}', '{{$post->description}}')" class="btn btn-sm btn-default" data-dismiss="modal">Choose</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                    <div class="row mt-2">
-                        {{$posts->links('vendor.pagination.bootstrap-4')}}
-                    </div>
+                <div class="modal-body p-0">
+                    <iframe src="{{ route('pushNotification.browse') }}" style="width: 100%; min-height:480px;"
+                        frameborder="0"></iframe>
                 </div>
             </div>
         </div>
     </div>
 
     @push('custom-scripts')
-    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+        <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
 
         <script>
             let table = new DataTable('.datatable')
-            function fill_form(post_id, title, description)
-            {
+
+            document.addEventListener("DOMContentLoaded", () => {
+                window.addEventListener('message', message => {
+                    data = message.data.data
+                    fill_form(data.id, data.title, data.description)
+                    $('#choosePostModal').modal('toggle')
+                });
+            });
+
+            function fill_form(post_id, title, description) {
                 $('#post_id').val(post_id)
                 $('#title').val(title)
                 $('#description').val(description)

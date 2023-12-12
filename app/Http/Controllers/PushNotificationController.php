@@ -70,12 +70,28 @@ class PushNotificationController extends Controller
     {
         $data['pushNotification'] = PushNotification::orderBy('notif_id', 'desc')->get();
         return view('push-notification.index', $data);
+    }    
+    
+    public function browse(Request $request) {
+        $q = $request->q;
+        $rubrik = $request->rubrik;
+        if($rubrik==null)
+        {
+            $rubrik='';
+        }
+        $data['rubrikId'] = $rubrik;
+        $data['q'] = $q;
+        $data['posts'] = Posts::orderBy('published_at', 'DESC')->where([
+            ['category', 'like', '%'.$rubrik.'%'],
+            ['title', 'like', '%'.$q.'%']
+        ])->paginate(20);
+        
+        return view('push-notification.browse_article', $data);
     }
 
     public function add()
     {
-        $data['posts'] = Posts::orderBy('published_at', 'desc')->where('status', 'published')->paginate('20');
-        return view('push-notification.add', $data);
+        return view('push-notification.add');
     }
 
     public function store(Request $request)

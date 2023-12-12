@@ -1,11 +1,15 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-lg text-gray-800   leading-tight">
-            {{ __('Menu Footer Setting') }}
+            <i class="fas fa-puzzle-piece nav-icon"></i> {{ __('Menu Footer Setting') }}
         </h2>
     </x-slot>
 
     <div class="card">
+        {{-- <div class="card-header">
+            <a class="btn btn-primary btn-xs" href="javascript:;" data-toggle="modal" data-target="#addModal"><i
+                    class="fas fa-plus"></i> </i>Tambah menu</a>
+        </div> --}}
         <form method="POST" action="{{ route('setting.general.update') }}">
             @csrf
             @method('PUT')
@@ -45,6 +49,33 @@
                 </button>
             </div>
         </form>
+    </div>
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addRubrikModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addRubrikModalLabel">Tambah menu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST">
+                        @csrf
+                        <div class="form-group mb-2">
+                            <label for="menu">Nama menu</label>
+                            <input type="text" name="name_menu" class="form-control" required autocomplete="off">
+                        </div>
+                        <div class="form-group mb-2">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     @push('custom-scripts')
         <script src="{{ url('/') }}/build/public/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>

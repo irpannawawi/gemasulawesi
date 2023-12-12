@@ -1,10 +1,10 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed">
     <!-- Brand Logo -->
     <a href="{{ url('dashboard') }}" class="brand-link">
         <img src="{{ Storage::url('public/avatars/' . Auth::user()->avatar) }}" alt="avatar"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{Auth::user()->display_name}}</span>
+        <span class="brand-text font-weight-light">{{ Auth::user()->display_name }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
                             Editorial
@@ -77,7 +77,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-clipboard-list"></i>
                         <p>
                             Web Management
@@ -92,7 +92,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="javascript:void(0)" class="nav-link">
                                 <i class="fas fa-bars nav-icon"></i>
                                 <p>Headline Rubrik</p>
                                 <i class="fas fa-angle-left right"></i>
@@ -157,7 +157,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-chart-bar"></i>
                         <p>
                             Report
@@ -201,7 +201,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-database"></i>
                         <p>
                             Assets
@@ -230,40 +230,39 @@
                         <p>Ads</p>
                     </a>
                 </li>
-                @if (Auth::user()->role!='author')
-                    
-                <li class="nav-item">
-                    <a href="{{ route('users') }}" class="nav-link">
-                        <i class="nav-icon fa fa-users"></i>
-                        <p>
-                            Administartor
-                        </p>
-                    </a>
-                </li>
+                @if (Auth::user()->role != 'author')
+                    <li class="nav-item">
+                        <a href="{{ route('users') }}" class="nav-link">
+                            <i class="nav-icon fa fa-users"></i>
+                            <p>
+                                Administartor
+                            </p>
+                        </a>
+                    </li>
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-cog"></i>
-                        <p>
-                            Web Setting
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('setting.general.index') }}" class="nav-link">
-                                <i class="fas fa-spell-check nav-icon"></i>
-                                <p>General</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('setting.footer.index') }}" class="nav-link">
-                                <i class="fas fa-puzzle-piece nav-icon"></i>
-                                <p>Footer</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item">
+                        <a href="javascript:void(0)" class="nav-link">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p>
+                                Web Setting
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('setting.general.index') }}" class="nav-link">
+                                    <i class="fas fa-spell-check nav-icon"></i>
+                                    <p>General</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('setting.footer.index') }}" class="nav-link">
+                                    <i class="fas fa-puzzle-piece nav-icon"></i>
+                                    <p>Footer</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
 
                 <li class="nav-item">

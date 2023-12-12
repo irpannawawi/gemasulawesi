@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-lg text-gray-800   leading-tight">
-            {{ __('General Setting') }}
+        <h2 class="font-semibold text-lg text-gray-800 leading-tight">
+            <i class="fas fa-spell-check nav-icon"></i> {{ __('General Setting') }}
         </h2>
     </x-slot>
 

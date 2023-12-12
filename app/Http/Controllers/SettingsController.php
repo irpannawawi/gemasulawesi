@@ -80,4 +80,8 @@ class SettingsController extends Controller
         }
         return redirect()->back()->with('success', 'Berhasil update web setting');
     }
+
+    public function menuAdd()
+    {
+    }
 }

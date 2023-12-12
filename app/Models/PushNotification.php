@@ -20,6 +20,7 @@ class PushNotification extends Model
         'url',
         'image',	
         'status',	
+        'scheduled_at',	
     ];
 
     public function post(): HasOne

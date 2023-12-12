@@ -29,28 +29,16 @@ use Illuminate\Support\Facades\Route;
 // test queue
 use App\Models\Posts;
 use App\Http\Controllers\SitemapController;
+use App\Jobs\BroadcastNews;
 use App\Models\Subscriber;
 use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Messaging\CloudMessage;
 
 Route::get('/sitemap', [SitemapController::class, 'generate']);
-Route::get('/push', function(){
-    $messaging = app('firebase.messaging');
-    $config = WebPushConfig::fromArray([
-        'notification' => [
-            'title' => '$GOOG up 1.43% on the day',
-            'body' => '$GOOG gained 11.80 points to close at 835.67, up 1.43% on the day.',
-            'click_action' => 'https://gemasulawesi.test',
-        ],
-        'data' => [
-            'link' => 'https://gemasulawesi.test',
-        ],
-    ]);
-    $message = CloudMessage::new();
-    $message = $message->withWebPushConfig($config);
-    $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
-    $messaging->sendMulticast($message, $FcmToken);
-});
+// Route::get('/push', function(){
+//     $res = BroadcastNews::dispatch(2)->onQueue('schedule_broadcast')->delay(now()->addMinutes(1));
+    
+// });
 
 // route editorial
 Route::get('/browse', [PhotoController::class, 'browse'])->name('browseImage');

@@ -28,6 +28,10 @@
                     <label for="description">Title</label>
                     <textarea name="description" id="description" class="form-control"></textarea>
                 </div>
+                <div class="form-group mb-2 col-3">
+                    <label for="description">Schedule</label>
+                    <input type="datetime-local" required name="schedule" id="schedule" class="form-control">
+                </div>
                 <div class="form-group mb-2">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Kirim</button>

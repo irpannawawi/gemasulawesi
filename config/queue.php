@@ -30,7 +30,6 @@ return [
 
     'connections' => [
         'rabbitmq' => [
-    
             'driver' => 'rabbitmq',
             'hosts' => [
                 [

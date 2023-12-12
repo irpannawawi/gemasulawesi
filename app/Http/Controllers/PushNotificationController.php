@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\BroadcastNews;
 use App\Models\Posts;
 use App\Models\PushNotification;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Messaging\CloudMessage;
 
@@ -83,15 +86,20 @@ class PushNotificationController extends Controller
             'title'=>$request->title,
             'body'=>$request->description,
             'url'=>route('singlePost', [
-                'rubrik' => $post->rubrik->rubrik_name,
+                'rubrik' => Str::slug($post->rubrik->rubrik_name),
                 'post_id' => $post->post_id,
                 'slug' => $post->slug,
             ]),
             'status'=>'queue',
+            'scheduled_at'=>Str::replace('T', ' ', $request->schedule)
         ];
-
-        if(PushNotification::create($data))
+        $message = PushNotification::create($data);
+        if($message)
         {
+            // add to schedule
+            $time = Str::replace('T', ' ', $request->schedule);
+            $carbonTime = Carbon::createFromFormat('Y-m-d H:i', $time);
+            BroadcastNews::dispatch($message->notif_id)->onQueue('schedule_broadcast')->delay($carbonTime);
             return redirect('pushNotification')->with('message', 'Berhasil tambah');
         }
 

@@ -1,6 +1,17 @@
-<x-app-layout>
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+</head>
+
+<body>
     <div class="card">
         <div class="card-header">
             
@@ -74,18 +85,32 @@
 
         </div>
         <div class="card-footer">
-            {{$posts->links('vendor.pagination.bootstrap-4')}}
+            <div class="row  float-right">
+                {{$posts->links('vendor.pagination.bootstrap-4')}}
+            </div>
 
         </div>
     </div>
 
-    @push('custom-scripts')
-        <script>
-            function select_article(post_id)
+    <!-- jQuery -->
+    <script src="{{ url('assets/AdminLTE') }}/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ url('assets/AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="{{ url('assets/AdminLTE') }}/dist/js/adminlte.min.js"></script>
+
+
+    <script>
+       $('#rubrikSelect').on('change', function(){
+        $('#formSearch').submit()
+       })
+        
+       function select_article(post_id)
             {
                 window.parent.change_article(post_id)
             }
-        </script>
-    @endpush
 
-</x-app-layout>
+    </script>
+</body>
+
+</html>

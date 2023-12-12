@@ -39,12 +39,19 @@ class HeadlineController extends Controller
         return view('web-management.headline-rubrik.components.modal_select_article', $data);
     }
 
-    public function select_all_article(Request $request)
-    {
-        $data['q'] = $request->q;
-        $data['posts'] = Posts::where([
-            'status' => 'published',
-        ])->where('title', 'LIKE', '%' . $data['q'] . '%')->orderBy('published_at', 'DESC')->paginate(20);
+    public function select_all_article(Request $request) {
+        $q = $request->q;
+        $rubrik = $request->rubrik;
+        if($rubrik==null)
+        {
+            $rubrik='';
+        }
+        $data['rubrikId'] = $rubrik;
+        $data['q'] = $q;
+        $data['posts'] = Posts::orderBy('published_at', 'DESC')->where([
+            ['category', 'like', '%'.$rubrik.'%'],
+            ['title', 'like', '%'.$q.'%']
+        ])->paginate(20);
         return view('web-management.headline-rubrik.components.modal_select_article', $data);
     }
 

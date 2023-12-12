@@ -62,8 +62,10 @@
                     <tbody class="text-center">
                         @php
                             $n = 1;
-                            if($_GET['page']>1){
-                                $n = (20*$_GET['page'])-19;
+                            if(!empty($_GET['page'])){
+                                if($_GET['page']>1){
+                                    $n = (20*$_GET['page'])-19;
+                                }
                             }
                         @endphp
                         @foreach ($posts as $post)

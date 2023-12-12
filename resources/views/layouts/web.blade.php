@@ -21,7 +21,7 @@
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('tags/*')) {
-            $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini' . ' - ' . $subTitle;
+            $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
             $metaDeskripsi = $post->description ?? '';
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';

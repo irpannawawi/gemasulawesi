@@ -9,34 +9,35 @@
 
 <head>
     @php
+        $subTitle = get_setting('sub_title');
         if (request()->is('/')) {
-            $metaTitle = get_setting('title');
+            $metaTitle = get_setting('title') . ' - ' . $subTitle;
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('category/*')) {
-            $metaTitle = 'Berita ' . $rubrik_name . ' Hari Ini';
+            $metaTitle = 'Berita Seputra ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
             $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('tags/*')) {
-            $metaTitle = 'Berita ' . $tag_name . ' Hari Ini';
+            $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini' . ' - ' . $subTitle;
             $metaDeskripsi = $post->description ?? '';
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('gallery')) {
-            $metaTitle = 'Gallery Berita Terkini';
+            $metaTitle = 'Gallery Berita Terkini' . ' - ' . $subTitle;
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
         } elseif (request()->is('galery/detail/*')) {
-            $metaTitle = $galery->galery_name;
+            $metaTitle = $galery->galery_name . ' - ' . $subTitle;
             $metaDeskripsi = $galery->galery_description;
             $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
             $type = 'article';
         } else {
             $postTitle = $post->title ?? '';
-            $metaTitle = $postTitle;
+            $metaTitle = $postTitle . ' - ' . $subTitle;
             $metaDeskripsi = $post->description;
             $imagePath = get_post_image($post->post_id) ?? '';
             $metaImage = asset($imagePath);
@@ -44,16 +45,15 @@
             $category = $post->rubrik->rubrik_name;
             $tags = $post->tags;
         }
-        $subTitle = get_setting('sub_title');
     @endphp
     <!-- s: open graph -->
-    <title itemprop="name">{{ $metaTitle . ' - ' . $subTitle }}</title>
+    <title itemprop="name">{{ $metaTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
+    <meta name="title" content="{{ $metaTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
     <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
@@ -72,7 +72,7 @@
     <meta http-equiv="content-language" content="In-Id" />
     <meta property="og:type" content="{{ $type }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
+    <meta property="og:title" content="{{ $metaTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
     <meta property="og:site_name" content="www.Gemasulawesi.com" />
     <meta property="og:image" content="{{ $metaImage }}" />
@@ -90,7 +90,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="{{ get_setting('x') }}" />
     <meta name="twitter:creator" content="{{ get_setting('x') }}">
-    <meta name="twitter:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
+    <meta name="twitter:title" content="{{ $metaTitle }}" />
     <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
     <meta name="twitter:image" content="{{ $metaImage }}" />
     <!-- E:tweeter card -->
@@ -859,13 +859,13 @@
     <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "{{env('FIREBASE_API_KEY')}}",
-            authDomain: "{{env('FIREBASE_AUTH_DOMAIN')}}",
-            databaseURL: "{{env('FIREBASE_DATABASE_URL')}}",
-            projectId: "{{env('FIREBASE_PROJECT_ID')}}",
-            storageBucket: "{{env('FIREBASE_STORAGE_BUCKET')}}",
-            messagingSenderId: "{{env('FIREBASE_MESSAGING_SENDER_ID')}}",
-            appId: "{{env('FIREBASE_APP_ID')}}",
+            apiKey: "{{ env('FIREBASE_API_KEY') }}",
+            authDomain: "{{ env('FIREBASE_AUTH_DOMAIN') }}",
+            databaseURL: "{{ env('FIREBASE_DATABASE_URL') }}",
+            projectId: "{{ env('FIREBASE_PROJECT_ID') }}",
+            storageBucket: "{{ env('FIREBASE_STORAGE_BUCKET') }}",
+            messagingSenderId: "{{ env('FIREBASE_MESSAGING_SENDER_ID') }}",
+            appId: "{{ env('FIREBASE_APP_ID') }}",
         };
 
         // Initialize Firebase

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/amp', [WebAmpController::class, 'index']);
-Route::get('/amp/id/{rubrik}/{post_id}/{slug}', [WebAmpController::class, 'singlePost'])
+Route::get('/id/{rubrik}/amp/{post_id}/{slug}', [WebAmpController::class, 'singlePost'])
     ->where('rubrik', '[\w\s-]+')
     ->name('ampSinglePost');
 // Route::get('/category/{rubrik_name}', [WebController::class, 'category'])->name('category');

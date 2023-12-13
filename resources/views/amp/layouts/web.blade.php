@@ -1524,7 +1524,7 @@
             left: 0;
             width: 320px;
             z-index: 121;
-            overflow-y: auto;
+            /* overflow-y: auto; */
             -webkit-transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
             -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
             transition: -webkit-transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
@@ -1862,13 +1862,92 @@
             align-content: center;
             flex-direction: row;
         }
+
+        /* custom */
+        header {
+            background-color: #fff;
+            color: #2cc38b;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu {
+            list-style: none;
+            display: flex;
+        }
+
+        .menu li {
+            margin: 0 15px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #2cc38b;
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            display: none;
+            flex-direction: column;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            background-color: #2cc38b;
+            height: 4px;
+            width: 25px;
+            margin: 2px 0;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                background-color: #fff;
+                padding: 10px;
+                z-index: 10;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu li {
+                margin: 6px 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        .sidenav--is-open {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
     </style>
 
 
 
 </head>
 
-<body class="home style-politics ">
+<body class="">
     <!-- Bg Overlay -->
     <div class="content-overlay"></div>
 
@@ -1879,31 +1958,62 @@
     <main class="main oh" id="main">
         <!-- Trending Now -->
         @if ($breakingNews->count() > 0)
-            <div class="kontiner">
-                <div class="trending-now trending-now--1">
-                    <span class="trending-now__label">
-                        <i class="ui-flash"></i>
-                        <span class="trending-now__text d-lg-inline-block d-none">Breaking News</span>
-                    </span>
-                    <div class="newsticker">
-                        <ul class="newsticker__list">
-                            @foreach ($breakingNews as $news)
-                                <li class="newsticker__item">
-                                    <i class="fa-solid fa-newspaper"></i>
-                                    <a href="{{ route('singlePost', [
-                                        'rubrik' => $news->post->rubrik->rubrik_name,
-                                        'post_id' => $news->post->post_id,
-                                        'slug' => $news->post->slug,
-                                    ]) }}"
-                                        class="newsticker__item-url">{{ $news->title }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
+            <div class="container" style="position: sticky; height: 30px; display:flex; align-items:center;">
+                <div class="col-2 trending-now__label" style="height:100%">
+                    <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px"
+                        viewBox="0 0 96.258 96.258" xml:space="preserve">
+                        <g>
+                            <path
+                                d="M75.225,37.515c-0.357-0.616-1.017-0.995-1.729-0.995h-21.03L67.177,2.8c0.271-0.618,0.21-1.331-0.16-1.896 S66.018,0,65.344,0H41.976c-0.848,0-1.604,0.535-1.886,1.334L20.876,55.762c-0.216,0.612-0.122,1.291,0.253,1.821 s0.984,0.845,1.633,0.845h22.636L34.391,93.662c-0.189,0.607-0.079,1.269,0.298,1.781s0.975,0.814,1.611,0.814h5.449 c0.719,0,1.382-0.386,1.738-1.01L75.234,39.51C75.587,38.891,75.583,38.131,75.225,37.515z" />
+                        </g>
+                    </svg>
                 </div>
+                <marquee>
+                    @foreach ($breakingNews as $news)
+                        <a href="{{ route('singlePost', [
+                            'rubrik' => $news->post->rubrik->rubrik_name,
+                            'post_id' => $news->post->post_id,
+                            'slug' => $news->post->slug,
+                        ]) }}"
+                            class="newsticker__item-url">{{ $news->title }}</a>
+                    @endforeach
+                </marquee>
+
             </div>
 
         @endif
+        <!-- Sidenav -->
+        <header class="sidenav" id="sidenav">
+
+            <!-- Side Menu Button -->
+            <nav style="margin-top: 5px">
+                <div class="menu-toggle" on="tap:sidenav.toggleClass(class='sidenav--is-open')">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+
+            <!-- Nav -->
+            <nav class="sidenav__menu-container" style="overflow: scroll;">
+                @php
+                    $rubriks = Rubrik::get();
+                @endphp
+                <ul class="sidenav__menu" role="menubar">
+                    <!-- Categories -->
+                    <li>
+                        <a href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
+                    </li>
+                    @foreach ($rubriks as $rubrik)
+                        <li>
+                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </nav>
+        </header> <!-- end sidenav -->
 
         <!-- Header -->
         <header class="header d-lg-block d-none">
@@ -1917,11 +2027,10 @@
                             </ul>
                         </nav>
                     </div>
-                    <div class="flex-item" >
+                    <div class="flex-item">
                         <!-- Logo -->
-                        <amp-img
-                            src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
-                            alt="logo" height="50" width="250" >
+                        <amp-img src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
+                            alt="logo" height="50" width="250">
                     </div>
                     <div class="flex-item" style="">
                         <div class="d-flex" style="gap: 20px;position: relative;">
@@ -1946,8 +2055,8 @@
                                 </a>
                                 <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
                                     target="_blank" aria-label="instagram">
-                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/instagram.png" width="20"
-                                        height="20"></amp-img>
+                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/instagram.png"
+                                        width="20" height="20"></amp-img>
                                 </a>
                             </div>
                         </div>
@@ -1956,26 +2065,31 @@
             </div> <!-- end container -->
         </header> <!-- end header -->
 
+
+
+
         <!-- Navigation -->
-        <header class="nav nav--colored mb-3" id="scroll">
+        <header class="" id="scroll" style="padding-top: 10px;">
             <div class="nav__holder nav--sticky">
                 <div class="container relative">
                     <div class="flex-parent">
                         <div class="flex-parent">
                             <div class="nav__home">
                                 <a href="{{ url('/') }}" title="Home">
-                                    <i class="icon fa fa-home"></i>
+                                    Home
                                 </a>
                             </div>
                             <!-- Side Menu Button -->
-                            <button class="nav-icon-toggle" id="nav-icon-toggle" aria-label="Open side menu">
-                                <span class="nav-icon-toggle__box">
-                                    <span class="nav-icon-toggle__inner"></span>
-                                </span>
-                            </button>
+                            <nav style="margin-top: 5px">
+                                <div class="menu-toggle" on="tap:sidenav.toggleClass(class='sidenav--is-open')">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </nav>
                         </div>
                         <!-- Nav-wrap -->
-                        <nav class="flex-child d-none d-lg-block">
+                        <nav class="flex-child d-none d-lg-block" style="overflow: scroll; overflow-y: hidden;">
                             <ul class="nav__menu">
                                 @foreach ($rubriks->take(get_setting('count_rubrik')) as $rubrik)
                                     <li>
@@ -1984,77 +2098,29 @@
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
+
+                                <li>
+                                    <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                                </li>
                             </ul>
                             <!-- end menu -->
                         </nav>
 
                         <!-- Logo Mobile -->
-                        <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
-                            <amp-img class="logo__img" height="100" width="320"
+                        <a href="{{ url('') }}" class="logo logo-mobile d-lg-none"
+                            style="height: 100%; margin-top: 5px;">
+                            <amp-img class="logo__img" position="responsive" style="" height="30"
+                                width="120"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
                                 alt="logo">
                         </a>
-                        <!-- Nav Right -->
-                        <div class="flex-child">
-                            <div class="nav__right">
-                                <!-- lainnya -->
-                                <div class="nav__right-item nav__lainnya d-none d-lg-block">
-                                    <ul class="nav__menu menu__lainnya">
-                                        <li>
-                                            <a href="#">Lainnya
-                                                <i class="subicon ui-arrow-down"></i>
-                                            </a>
-                                            <ul class="submenu">
-                                                @foreach ($rubriks->slice(8) as $rubrik)
-                                                    <li>
-                                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                                            class="link-submenu"
-                                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- Search -->
-                                <div class="nav__right-item nav__search d-block d-lg-none">
-                                    <a href="#" class="nav__search-trigger">
-                                        <i class="ui-search nav__search-trigger-icon"></i>
-                                    </a>
-                                    <div class="nav__search-box">
-                                        <form class="nav__search-form" target="_top"
-                                            action="{{ route('search') }}">
-                                            <input type="text" name="q" placeholder="Search..."
-                                                class="nav__search-input" value="{{ request('q') }}">
-                                            <button type="submit"
-                                                class="search-button btn btn-lg btn-color btn-button">
-                                                <i class="ui-search "></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div> <!-- end nav right -->
-
-                        </div>
                     </div> <!-- end flex-parent -->
 
                 </div>
             </div>
 
-            {{-- nav mobile --}}
-            <div class="py-2 category_under_nav d-sm-none">
-                <div class="container">
-                    <ul class="d-flex" style="gap: 20px;">
-                        <!-- Categories -->
-                        @foreach ($rubriks as $rubrik)
-                            <li>
-                                <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                    style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
+
+
         </header> <!-- end navigation -->
 
         <!-- Ad Banner 728 -->

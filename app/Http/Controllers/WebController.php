@@ -103,17 +103,17 @@ class WebController extends Controller
             $post->save();
         }
         $rubrik = Rubrik::where('rubrik_name', str_replace('-', ' ', $rubrik_name))->first();
-        
-        if($rubrik!=null){
+
+        if ($rubrik != null) {
             $rubrik_id = $rubrik->rubrik_id;
-        }else{
+        } else {
             $rubrik_id = 0;
         }
-        $post = Posts::where(['post_id'=>$post_id, 'slug'=>$slug, 'category'=>$rubrik_id])->first();
-        if($post==null ){
+        $post = Posts::where(['post_id' => $post_id, 'slug' => $slug, 'category' => $rubrik_id])->first();
+        if ($post == null) {
             return abort(404);
         }
-        if($post->status=='trash'){
+        if ($post->status == 'trash') {
             return abort(404);
         }
         $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
@@ -215,5 +215,14 @@ class WebController extends Controller
         $paginatedPost->appends(['q' => $keyword]);
 
         return view('frontend.search', compact('paginatedPost', 'beritaTerkini', 'keyword'));
+    }
+
+    public function news_xml()
+    {
+        $posts = Posts::where('status', 'published')->orderBy('published_at', 'desc')->get();
+
+        return response()->view('sitemap.google.news', [
+            'posts' => $posts,
+        ])->header('Content-Type', 'text/xml');
     }
 }

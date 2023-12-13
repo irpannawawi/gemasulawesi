@@ -26,3 +26,4 @@ Route::get('/topik-khusus/detail/{topic_id}/{slug}', [WebController::class, 'top
 Route::get('/subs', [WebController::class, 'subscribe'])->name('subscribe');
 Route::get('/gallery', [WebGalleryController::class, 'gallery'])->name('gallery');
 Route::get('/galery/detail/{galery_id}/{galery_name}', [WebGalleryController::class, 'galerydetail'])->name('galerydetail');
+Route::get('/sitemap_news.xml', [WebController::class, 'news_xml'])->name('newsXml');

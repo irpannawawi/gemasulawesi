@@ -262,7 +262,7 @@
                                         <ul class="nav__menu menu__lainnya">
                                             <li class="dropdown__rubrik">
                                                 <a href="javascript:;">
-                                                    <i class="subicon ui-arrow-down"></i>
+                                                    <i class="subicon fa-solid fa-caret-down"></i>
                                                 </a>
                                                 <ul class="submenu">
                                                     @foreach ($rubriks->slice(get_setting('count_rubrik')) as $rubrik)

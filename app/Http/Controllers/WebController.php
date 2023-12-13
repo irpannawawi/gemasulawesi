@@ -207,7 +207,7 @@ class WebController extends Controller
     {
         $keyword = $request->input('q');
 
-        $paginatedPost = Posts::search($keyword)->paginate(10);
+        $paginatedPost = Posts::search($keyword)->where('status', 'published')->paginate(10);
 
         $beritaTerkini = $paginatedPost->split(2);
 

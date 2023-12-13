@@ -110,7 +110,10 @@ class WebController extends Controller
             $rubrik_id = 0;
         }
         $post = Posts::where(['post_id'=>$post_id, 'slug'=>$slug, 'category'=>$rubrik_id])->first();
-        if($post==null){
+        if($post==null ){
+            return abort(404);
+        }
+        if($post->status=='trash'){
             return abort(404);
         }
         $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')

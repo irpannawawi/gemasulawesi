@@ -1243,16 +1243,19 @@ transition: 0.1s;
 }
 .dropdown__rubrik .subicon{
     border-radius: 100%;
-    background: #cecece;
     font-size: 14px;
     color: #fff;
     padding: 2px 5px;
 }
 .dropdown__rubrik .subicon:hover{
-    background: #848484;
+    background: #fff;
+    color: #000;
 }
 .submenu:focus .subicon{
     background: #848484;
+}
+.subicon{
+    font-size: 18px !important;
 }
 pre{
     font-family: 'Poppins', sans-serif;

@@ -2347,7 +2347,7 @@
 
         @endif
         <!-- Sidenav -->
-        <header class="sidenav" id="sidenav" style="display: flex; align-item: strech; flex-direction: column;">
+        <header class="sidenav" id="sidenav" style="display: flex; align-item: strech; flex-direction: column; ">
             <!-- Side Menu Button -->
             <nav style="margin-top: 5px; width:100%; display: flex; flex-direction: column; align-items: end;">
                 <div class="menu-toggle" tabindex="0" role="button"
@@ -2357,7 +2357,7 @@
             </nav>
 
             <!-- Nav -->
-            <nav class="sidenav__menu-container" style="overflow: scroll; margin-top:20px;">
+            <nav class="sidenav__menu-container" style="margin-top:20px; width: 100%;">
                 @php
                     $rubriks = Rubrik::get();
                 @endphp

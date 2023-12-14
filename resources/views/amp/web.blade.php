@@ -182,12 +182,12 @@
                                 <x-topik_khusus :$topikKhusus />
 
                                 <!-- Ad Banner 728 -->
-                                <div class="text-center mt-3 mb-3">
+                                {{-- <div class="text-center mt-3 mb-3">
                                     <a href="#">
                                         <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
                                             alt="">
                                     </a>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </div>

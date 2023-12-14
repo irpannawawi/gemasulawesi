@@ -2,9 +2,9 @@
 @section('content')
     <!-- Breadcrumbs -->
     <div class="container">
-        <ul class="breadcrumbs">
-            <li class="breadcrumbs__item">
-                <a href="{{ url('/') }}" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
+        <ul class="breadcrumbs" style="display: flex; flex-direction: row;">
+            <li class="breadcrumbs__item" style="margin-right: 30px; background: #2cc38b; color: #fff; padding: 20px;">
+                <a href="{{ url('/') }}" class="breadcrumbs__url">Home</a>
             </li>
             <li class="breadcrumbs__item">
                 <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"

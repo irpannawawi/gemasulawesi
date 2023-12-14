@@ -1941,6 +1941,29 @@
             -webkit-transform: translateX(0);
             transform: translateX(0);
         }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(200%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .marquee-container {
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            /* Sesuaikan lebar div sesuai kebutuhan */
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 10s linear infinite;
+        }
     </style>
 
 
@@ -1955,7 +1978,7 @@
         $rubriks = Rubrik::get();
     @endphp
 
-    <main class="main oh" id="main">
+    <main class="main oh" id="main"style="background: #fff">
         <!-- Trending Now -->
         @if ($breakingNews->count() > 0)
             <div class="container" style="position: sticky; height: 30px; display:flex; align-items:center;">
@@ -1969,34 +1992,33 @@
                         </g>
                     </svg>
                 </div>
-                <marquee>
-                    @foreach ($breakingNews as $news)
-                        <a href="{{ route('singlePost', [
-                            'rubrik' => $news->post->rubrik->rubrik_name,
-                            'post_id' => $news->post->post_id,
-                            'slug' => $news->post->slug,
-                        ]) }}"
-                            class="newsticker__item-url">{{ $news->title }}</a>
-                    @endforeach
-                </marquee>
+                <div class="marquee-container">
+                    <div class="marquee-content">
+                        @foreach ($breakingNews as $news)
+                            <a href="{{ route('singlePost', [
+                                'rubrik' => $news->post->rubrik->rubrik_name,
+                                'post_id' => $news->post->post_id,
+                                'slug' => $news->post->slug,
+                            ]) }}"
+                                class="newsticker__item-url">{{ $news->title }}</a>
+                        @endforeach
+                    </div>
+                </div>
 
             </div>
 
         @endif
         <!-- Sidenav -->
-        <header class="sidenav" id="sidenav">
-
+        <header class="sidenav" id="sidenav" style="display: flex; align-item: strech; flex-direction: column;">
             <!-- Side Menu Button -->
-            <nav style="margin-top: 5px">
-                <div class="menu-toggle" on="tap:sidenav.toggleClass(class='sidenav--is-open')">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <nav style="margin-top: 5px; width:100%; display: flex; flex-direction: column; align-items: end;">
+                <div class="menu-toggle" tabindex="0" role="button" on="tap:sidenav.toggleClass(class='sidenav--is-open')">
+                    Close
                 </div>
             </nav>
 
             <!-- Nav -->
-            <nav class="sidenav__menu-container" style="overflow: scroll;">
+            <nav class="sidenav__menu-container" style="overflow: scroll; margin-top:20px;">
                 @php
                     $rubriks = Rubrik::get();
                 @endphp
@@ -2055,8 +2077,8 @@
                                 </a>
                                 <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
                                     target="_blank" aria-label="instagram">
-                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/instagram.png"
-                                        width="20" height="20"></amp-img>
+                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/instagram.png" width="20"
+                                        height="20"></amp-img>
                                 </a>
                             </div>
                         </div>
@@ -2081,7 +2103,7 @@
                             </div>
                             <!-- Side Menu Button -->
                             <nav style="margin-top: 5px">
-                                <div class="menu-toggle" on="tap:sidenav.toggleClass(class='sidenav--is-open')">
+                                <div class="menu-toggle" tabindex="0" role="button" on="tap:sidenav.toggleClass(class='sidenav--is-open')">
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -2109,7 +2131,7 @@
                         <!-- Logo Mobile -->
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none"
                             style="height: 100%; margin-top: 5px;">
-                            <amp-img class="logo__img" position="responsive" style="" height="30"
+                            <amp-img class="logo__img" style="" height="30"
                                 width="120"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
                                 alt="logo">
@@ -2144,9 +2166,7 @@
                             <div class="footer__logo">
                                 <a target="_self" href="https://zonasurabayaraya.pikiran-rakyat.com/">
                                     <amp-img class=" ls-is-cached lazyloaded"
-                                        data-src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
-                                        src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
-                                        alt="Zona Surabaya Raya" data-loaded="true" height="100" width="300">
+                                        src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907" alt="Zona Surabaya Raya" height="100" width="300">
                                 </a>
                             </div>
                             <div class="footer__contact">
@@ -2157,27 +2177,40 @@
                                     Phone: {{ get_setting('no_hp') }}
                                 </p>
                             </div>
-                            <div class="social__footer socials--medium socials--rounded">
-                                <a class="social social-facebook"
-                                    href="https://web.facebook.com/{{ get_setting('facebook') }}" target="_blank"
-                                    aria-label="facebook">
-                                    <i class="fa-brands fa-facebook"></i>
-                                </a>
-                                <a class="social social-twitter" href="https://twitter.com/{{ get_setting('x') }}"
-                                    target="_blank" aria-label="twitter">
-                                    <i class="fa-brands fa-square-x-twitter"></i>
-                                </a>
-                                <a class="social social-youtube"
-                                    href="https://www.youtube.com/channel/{{ get_setting('youtube') }}"
-                                    target="_blank" aria-label="youtube">
-                                    <i class="fa-brands fa-youtube"></i>
-                                </a>
-                                <a class="social social-instagram"
-                                    href="https://www.instagram.com/{{ get_setting('instagram') }}" target="_blank"
-                                    aria-label="instagram">
-                                    <i class="fa-brands fa-square-instagram"></i>
-                                </a>
+                            {{-- Social --}}
+
+                            <div class="flex-item" style="margin:0px auto;">
+                                <div class="d-flex" style="gap: 20px;position: relative; margin:0px auto;">
+                                    <div class="socials socials--nobase socials--nav" style="margin:0px auto;">
+                                        <a class="social social-facebook"
+                                            href="https://web.facebook.com/gemasulawesi/" target="_blank"
+                                            aria-label="facebook">
+                                            <amp-img src="{{ url('assets/frontend/img/icons/') }}/facebook.png"
+                                                width="20" height="20"></amp-img>
+
+                                        </a>
+                                        <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                            target="_blank" aria-label="twitter">
+                                            <amp-img  src="{{ url('assets/frontend/img/icons/') }}/twitter.png"
+                                                width="20" height="20"></amp-img>
+
+                                        </a>
+                                        <a class="social social-youtube"
+                                            href="https://www.youtube.com/channel/UC33j0RRE1wtX3ZKmyca0Mtg"
+                                            target="_blank" aria-label="youtube">
+                                            <amp-img src="{{ url('assets/frontend/img/icons/') }}/youtube.png"
+                                                width="20" height="20"></amp-img>
+                                        </a>
+                                        <a class="social social-instagram"
+                                            href="https://www.instagram.com/gema.parimo/" target="_blank"
+                                            aria-label="instagram">
+                                            <amp-img src="{{ url('assets/frontend/img/icons/') }}/instagram.png"
+                                                width="20" height="20"></amp-img>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
+                            {{-- ./Social --}}
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
@@ -2208,16 +2241,15 @@
                             </div>
                         </div>
                         <div class="col-lg-5 col-md-6">
-                            <div class="footer__verifikasi">
-                                <amp-img class=" ls-is-cached lazyloaded"
-                                    data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
+                            <div class="footer__verifikasi" style="display: flex; align-items:center;">
+                                <amp-img class="ls-is-cached lazyloaded"
                                     src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
-                                    height="40" alt="PRMN Centang Biru" data-loaded="true">
-                                    <span>
+                                    height="40" alt="PRMN Centang Biru"  data-loaded="true">
+                                </amp-img>
+                                    <label>
                                         <b>Telah Terverifikasi Dewan Pers</b>
-                                        <br>
-                                        <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
-                                    </span>
+                                        <b>Sertifikat Nomor <br><i>{{ get_setting('no_sertification') }}</i></b>
+                                    </label>
                             </div>
                         </div>
                         <div class="footer__copyright col-lg-12 col-md-6">
@@ -2228,9 +2260,11 @@
             </div>
         </footer>
 
-        {{-- <div id="back-to-top">
+        {{-- 
+            <div id="back-to-top">
             <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
-        </div> --}}
+        </div> 
+        --}}
 
     </main> <!-- end main-wrapper -->
 

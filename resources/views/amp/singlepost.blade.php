@@ -2,12 +2,12 @@
 @section('content')
     <!-- Breadcrumbs -->
     <div class="container">
-        <ul class="breadcrumbs" style="display: flex; flex-direction: row;">
-            <li class="breadcrumbs__item" style="margin-right: 30px; background: #2cc38b; color: #fff; padding: 20px;">
-                <a href="{{ url('/') }}" class="breadcrumbs__url">Home</a>
+        <ul class="breadcrumbs">
+            <li class="breadcrumbs__item">
+                <a href="{{ url('/') }}" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
             </li>
             <li class="breadcrumbs__item">
-                <a href="{{ route('category', ['rubrik_name' => $post->rubrik->rubrik_name]) }}"
+                <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik->rubrik_name)]) }}"
                     class="breadcrumbs__url">{{ $post->rubrik->rubrik_name }}</a>
             </li>
         </ul>
@@ -46,12 +46,12 @@
                         <a href="#" class="social social-copy" id="share-copy-top" aria-label="copy"><i
                                 class="fa-solid fa-link"></i></a>
                     </div>
-                </div>
-                <!-- Entry Image -->
-                <div class="thumb image-single-post">
-                    <amp-img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500"
-                        width="700">
+                    <!-- Entry Image -->
+                    <div class="thumb image-single-post">
+                        <amp-img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500"
+                            width="700"></amp-img>
                         <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!}</p>
+                    </div>
                 </div>
 
                 <!-- standard post -->
@@ -61,15 +61,6 @@
                             <article class="read__content">
                                 @php
                                     $article = $post->article;
-                                    // if ($post->tags != null) {
-                                    //     foreach (json_decode($post->tags) as $tags) {
-                                    //         $tag = \App\Models\Tags::find($tags);
-                                    //         $search = $tag->tag_name;
-                                    //         $re = '/' . $search . '(?![^<]*>)/'; // skip html tag
-                                    //         $replacement = "<a href=\"" . route('tags', ['tag_name' => $tag->tag_name]) . "\" >" . $tag->tag_name . '</a>';
-                                    //         // $article = preg_replace($re, $replacement, $article);
-                                    //     }
-                                    // }
                                     $article = str_replace('../', '' . url('') . '/', $article);
                                 @endphp
 

@@ -15,12 +15,14 @@
     <title>Hello, AMPs</title>
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style amp-boilerplate>
         body {
             -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
             -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
             -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-            animation: -amp-start 8s steps(1, end) 0s 1 normal both
+            animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            font-family: Avenir, BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
         @-webkit-keyframes -amp-start {
@@ -1255,6 +1257,38 @@
             color: #fff;
         }
 
+        .social-whatsapp {
+            background-color: #25d366;
+        }
+
+        .social-whatsapp:hover {
+            background-color: #1db153;
+            color: #fff;
+        }
+
+        .social-telegram {
+            background-color: #089be4;
+        }
+
+        .social-telegram:hover {
+            background-color: #0985c4;
+            color: #fff;
+        }
+
+        .social-copy {
+            background-color: #04a4a4;
+        }
+
+        .social-copy:hover {
+            background-color: #048585;
+            color: #fff;
+        }
+
+        .social-post {
+            text-align: center;
+            margin-top: 22px;
+        }
+
         .trending-now {
             background-color: #fff;
             position: relative;
@@ -1867,7 +1901,7 @@
         header {
             background-color: #fff;
             color: #2cc38b;
-            padding: 10px;
+            padding-top: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1964,13 +1998,317 @@
             display: inline-block;
             animation: marquee 10s linear infinite;
         }
+
+        /* lanjutan sandi */
+
+        .blog__content {
+            width: 100%;
+        }
+
+        .title-single-post {
+            letter-spacing: normal;
+            line-height: 1.2;
+            color: #000;
+            text-align: center;
+            font-weight: 700;
+            font-size: 26px;
+        }
+
+        .col-lg-8 {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .entry__meta-holder {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .entry__meta-holder .entry__meta {
+            margin-top: 0;
+        }
+
+        .entry__meta li {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .entry__meta-author:after {
+            content: "-";
+            display: inline-block;
+            margin: 0 3px;
+        }
+
+        h1 {
+            font-family: Poppins, sans-serif;
+        }
+
+        *,
+        :after,
+        :before {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .image-single-post .photo {
+            margin-bottom: 0;
+        }
+
+        .image-single-post img {
+            border-radius: 15px;
+        }
+
+        .image-single-post img {
+            height: 260px;
+            width: 100%;
+        }
+
+        body img {
+            border: none;
+            max-width: 100%;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .photo__caption {
+            margin-top: 0;
+            padding: 10px 0;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 400;
+            color: #999;
+            line-height: 1.5;
+        }
+
+        .read__content {
+            padding: 0 0 20px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .read__content {
+            text-align: left;
+        }
+
+        .style-politics {
+            font-family: Poppins, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            vertical-align: top;
+        }
+
+        p {
+            font-size: 16px;
+            color: #000;
+            font-weight: normal;
+            line-height: 26px;
+            margin: 0 0 10px;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        .breadcrumbs {
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumbs__item {
+            font-weight: 700;
+            display: inline-block;
+            font-size: 18px;
+            background-color: #eff0f6;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .breadcrumbs__item:last-child:after {
+            display: none;
+        }
+
+        .breadcrumbs__url {
+            color: #333439;
+        }
+
+        .thumb {
+            margin-top: 18px;
+        }
+
+        .halaman {
+            padding: 5px 0;
+            position: relative;
+            display: flex;
+        }
+
+        .halaman__teaser {
+            padding: 15px 0 0;
+            width: 80px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .halaman__wrap {
+            position: relative;
+            align-items: center;
+        }
+
+        .halaman__item {
+            display: inline-block;
+            margin: 5px 2px;
+            vertical-align: middle;
+        }
+
+        .entry__article a {
+            color: #2cc38b;
+            text-decoration: none;
+        }
+
+        .pagination__page {
+            font-size: 15px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 1px solid #2cc38b;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            margin: 5px 1px;
+            text-align: center;
+            color: #171821;
+            background-color: #fff;
+            vertical-align: middle;
+        }
+
+        .halaman__all {
+            float: right;
+            margin: 5px 2px;
+            padding-top: 5px;
+        }
+
+        .halaman__all a {
+            color: #000;
+        }
+
+        .halaman__selanjutnya {
+            padding: 7px 11px;
+            display: block;
+            line-height: 1;
+            border-radius: 20px;
+            background: #d2d2d2;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .halaman__item .pagination__page--current {
+            color: #fff;
+            background-color: #2cc38b;
+        }
+
+        .pagination__page--current {
+            background-color: #2cc38b;
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* google news */
+        .croslink {
+            margin: 15px 0 27px;
+            position: relative;
+        }
+
+        .croslink a {
+            color: #fff;
+            border-radius: 20px;
+            border: solid 5px #e4e4e4;
+            background: rgb(14, 147, 97);
+            background: linear-gradient(50deg, rgba(14, 147, 97, 0.756827731092437) 0%, rgba(44, 195, 139, 0.6755952380952381) 100%);
+            display: block;
+            padding: 13px 17px;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.4;
+            padding-right: 45px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .croslink a {
+                padding: 13px 24px;
+                font-size: 12px;
+                padding-right: 0;
+            }
+        }
+
+        .read__content strong {
+            font-weight: 700;
+        }
+
+        .editor__text span {
+            font-weight: 600;
+        }
+
+        .entry__tags {
+            margin-top: 30px;
+        }
+
+        .entry__tags i {
+            font-size: 12px;
+        }
+
+        .entry__tags-label {
+            color: #171821;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            margin-right: 8px;
+            margin-left: 3px;
+        }
+
+        .style-politics .entry__tags a {
+            font-family: Poppins, sans-serif;
+        }
+
+        .entry__tags a {
+            float: none;
+            color: #2cc38b;
+        }
+
+        .entry__tags a {
+            padding: 6px 10px;
+            line-height: 1;
+            margin: 0 8px 8px 0;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: #f7f7f7;
+            font-family: "Source Sans Pro", sans-serif;
+            display: inline-block;
+        }
+
+        .ui-tags:before {
+            content: '\e808';
+        }
     </style>
-
-
-
 </head>
 
-<body class="">
+<body class="style-politics">
     <!-- Bg Overlay -->
     <div class="content-overlay"></div>
 
@@ -2012,7 +2350,8 @@
         <header class="sidenav" id="sidenav" style="display: flex; align-item: strech; flex-direction: column;">
             <!-- Side Menu Button -->
             <nav style="margin-top: 5px; width:100%; display: flex; flex-direction: column; align-items: end;">
-                <div class="menu-toggle" tabindex="0" role="button" on="tap:sidenav.toggleClass(class='sidenav--is-open')">
+                <div class="menu-toggle" tabindex="0" role="button"
+                    on="tap:sidenav.toggleClass(class='sidenav--is-open')">
                     Close
                 </div>
             </nav>
@@ -2086,12 +2425,8 @@
                 </div>
             </div> <!-- end container -->
         </header> <!-- end header -->
-
-
-
-
         <!-- Navigation -->
-        <header class="" id="scroll" style="padding-top: 10px;">
+        <header class="" id="scroll">
             <div class="nav__holder nav--sticky">
                 <div class="container relative">
                     <div class="flex-parent">
@@ -2103,7 +2438,8 @@
                             </div>
                             <!-- Side Menu Button -->
                             <nav style="margin-top: 5px">
-                                <div class="menu-toggle" tabindex="0" role="button" on="tap:sidenav.toggleClass(class='sidenav--is-open')">
+                                <div class="menu-toggle" tabindex="0" role="button"
+                                    on="tap:sidenav.toggleClass(class='sidenav--is-open')">
                                     <span></span>
                                     <span></span>
                                     <span></span>
@@ -2131,8 +2467,7 @@
                         <!-- Logo Mobile -->
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none"
                             style="height: 100%; margin-top: 5px;">
-                            <amp-img class="logo__img" style="" height="30"
-                                width="120"
+                            <amp-img class="logo__img" style="" height="30" width="120"
                                 src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
                                 alt="logo">
                         </a>
@@ -2146,14 +2481,14 @@
         </header> <!-- end navigation -->
 
         <!-- Ad Banner 728 -->
-        <div class="container">
+        {{-- <div class="container">
             <div class="text-center ads__banner">
                 <a href="#">
                     <amp-img width="728" height="230"
                         src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
                 </a>
             </div>
-        </div>
+        </div> --}}
 
         {{-- konten --}}
         @yield('content')
@@ -2166,7 +2501,8 @@
                             <div class="footer__logo">
                                 <a target="_self" href="https://zonasurabayaraya.pikiran-rakyat.com/">
                                     <amp-img class=" ls-is-cached lazyloaded"
-                                        src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907" alt="Zona Surabaya Raya" height="100" width="300">
+                                        src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
+                                        alt="Zona Surabaya Raya" height="100" width="300">
                                 </a>
                             </div>
                             <div class="footer__contact">
@@ -2191,7 +2527,7 @@
                                         </a>
                                         <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
                                             target="_blank" aria-label="twitter">
-                                            <amp-img  src="{{ url('assets/frontend/img/icons/') }}/twitter.png"
+                                            <amp-img src="{{ url('assets/frontend/img/icons/') }}/twitter.png"
                                                 width="20" height="20"></amp-img>
 
                                         </a>
@@ -2244,12 +2580,12 @@
                             <div class="footer__verifikasi" style="display: flex; align-items:center;">
                                 <amp-img class="ls-is-cached lazyloaded"
                                     src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
-                                    height="40" alt="PRMN Centang Biru"  data-loaded="true">
+                                    height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 </amp-img>
-                                    <label>
-                                        <b>Telah Terverifikasi Dewan Pers</b>
-                                        <b>Sertifikat Nomor <br><i>{{ get_setting('no_sertification') }}</i></b>
-                                    </label>
+                                <label>
+                                    <b>Telah Terverifikasi Dewan Pers</b>
+                                    <b>Sertifikat Nomor <br><i>{{ get_setting('no_sertification') }}</i></b>
+                                </label>
                             </div>
                         </div>
                         <div class="footer__copyright col-lg-12 col-md-6">

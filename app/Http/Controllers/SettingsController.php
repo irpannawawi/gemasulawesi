@@ -42,6 +42,7 @@ class SettingsController extends Controller
             'security_user' => Setting::where('key', 'security_user')->first(),
             'job' => Setting::where('key', 'job')->first(),
         ];
+        $data['extras'] = Setting::where('key', 'like', 'extra--%')->orderBy('setting_id', 'desc')->get();
         return view('settings.footer', $data);
     }
 
@@ -87,7 +88,12 @@ class SettingsController extends Controller
         return redirect()->back()->with('success', 'Berhasil update web setting');
     }
 
-    public function menuAdd()
+    public function addMenu(Request $request)
     {
+        $request->validate([
+            'key' => 'required|regex:/^[A-Za-z0-9\s]+$/',
+        ]);
+        Setting::create(['key'=>'extra--'.str_replace(' ', '-', $request->key)]);
+        return redirect()->back()->with('success', 'Berhasil menambah menu baru');
     }
 }

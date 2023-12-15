@@ -10,3 +10,4 @@ Route::get('/kode-perilaku-pers', [FooterController::class, 'kodepers'])->name('
 Route::get('/pedoman-media-siber', [FooterController::class, 'pedoman'])->name('pedoman.index');
 Route::get('/perlindungan-data-pengguna', [FooterController::class, 'perlindungan'])->name('perlindungan.index');
 Route::get('/lowongan-kerja', [FooterController::class, 'lowongan'])->name('lowongan.index');
+Route::get('/extra/{id}', [FooterController::class, 'extra'])->name('extra');

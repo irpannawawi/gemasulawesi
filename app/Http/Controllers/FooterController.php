@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class FooterController extends Controller
@@ -33,5 +34,12 @@ class FooterController extends Controller
     public function lowongan()
     {
         return view('footer.lowongan');
+    }
+
+    
+    public function extra($id)
+    {
+        $data['extra'] = Setting::find($id);
+        return view('footer.extra', $data);
     }
 }

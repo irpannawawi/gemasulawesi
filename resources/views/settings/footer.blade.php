@@ -13,7 +13,7 @@
         <form method="POST" action="{{ route('setting.general.update') }}">
             @csrf
             @method('PUT')
-            <div class="card-body" style="min-height: 400px">
+            <div class="card-body" id="listForm" style="min-height: 400px">
                 <div class="form-group">
                     <label>Tentang Kami</label>
                     <textarea name="our_about" id="our_about" class="editor form-control">{{ @old('our_about', $our_about->value) }}</textarea>
@@ -38,9 +38,28 @@
                     <label>Perlindungan Data Pengguna</label>
                     <textarea name="security_user" id="security_user" class="editor form-control">{{ @old('security_user', $security_user->value) }}</textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-4" style="">
                     <label>Lowongan Kerja</label>
                     <textarea name="job" id="job" class="editor form-control">{{ @old('job', $job->value) }}</textarea>
+                </div>
+                @if ($extras->count()>0)
+                <div class="form-group">
+                    <h3>Menu Tambahan</h3>
+                </div>
+                @endif
+                @foreach ($extras as $extra)
+                    @php
+                        $extra_key = $extra->key;
+                        $extra_label = Str::replace('-', ' ', explode('--', $extra->key)[1]);
+                        $extra_label = Str::ucfirst($extra_label);
+                    @endphp
+                    <div class="form-group border p-4">
+                        <label for="{{$extra->key}}">{{$extra_label}} <small><a href="" class="delete-btn text-danger">Hapus</a></small></label>
+                        <textarea name="{{ $extra_key }}" id="{{ $extra_key }}" class="editor form-control">{{ @old($extra_key, $extra->value) }}</textarea>
+                    </div>
+                @endforeach
+                <div class="form-group">
+                    <button role="button" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalAddMenu">+ Tambah menu</button>
                 </div>
             </div>
             <div class="card-footer">
@@ -50,26 +69,30 @@
             </div>
         </form>
     </div>
-    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addRubrikModalLabel"
+
+
+    {{-- Modal add menu --}}
+    <div class="modal fade" id="modalAddMenu" tabindex="-1" role="dialog" aria-labelledby="modalAddMenuLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addRubrikModalLabel">Tambah menu</h5>
+                    <h5 class="modal-title" id="modalAddMenuLabel">Tambah data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" method="POST">
+                    <form action="{{ route('setting.addMenu') }}" method="POST">
                         @csrf
-                        <div class="form-group mb-2">
-                            <label for="menu">Nama menu</label>
-                            <input type="text" name="name_menu" class="form-control" required autocomplete="off">
+                        <div class="form-group">
+                            <label for="key">Nama Menu</label>
+                            <input type="text" name="key" id="key" class="form-control" required
+                            autocomplete="off" id="key">
                         </div>
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="submit" id="modalAddMenuButton" class="btn btn-primary">Simpan</button>
 
                         </div>
                     </form>
@@ -77,6 +100,7 @@
             </div>
         </div>
     </div>
+    {{-- ./Modal add menu --}}
     @push('custom-scripts')
         <script src="{{ url('/') }}/build/public/js/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
         <script>

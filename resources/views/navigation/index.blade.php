@@ -29,11 +29,14 @@
                     <h3>List Menu</h3>
                     <div class="list-group" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
-                            href="#list-home" role="tab" style="padding:8px;" aria-controls="home">Home</a>
+                            href="#list-home" role="tab" style="padding:8px;" aria-controls="home">1. Home</a>
+                            @php
+                                $n=2;
+                            @endphp
                         @foreach ($navs as $nav)
                             <a class="list-group-item list-group-item-action" id="list-nav-{{ $nav->nav_id }}"
                                 data-toggle="list" href="#nav-{{ $nav->nav_id }}" role="tab" style="padding:8px;"
-                                aria-controls="{{ $nav->nav_id }}">{{ $nav->nav_name }} <span
+                                aria-controls="{{ $nav->nav_id }}">{{ $n++.'. '.$nav->nav_name }} <span
                                     class="badge badge-secondary">{{ $nav->nav_type == 'normal' ? '' : 'Dropdown' }}</span></a>
                         @endforeach
                         <a class="list-group-item" role="button" data-toggle="modal" data-target="#addMenuModal">+

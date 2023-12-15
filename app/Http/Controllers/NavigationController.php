@@ -16,6 +16,7 @@ class NavigationController extends Controller
             'rubriks' => Rubrik::whereNotIn('rubrik_id', function($query){
                 $query->select('rubrik_id')->from('navigation_links');
             })->get(),
+            'rubriksAll' => Rubrik::all(),
         ];
         return view('navigation.index', $data);
     }

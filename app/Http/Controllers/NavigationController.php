@@ -23,9 +23,9 @@ class NavigationController extends Controller
 
     public function list_rubrik(Request $request, $id)
     {
-        $nav = Navigation::find($id);
-
-        return response()->json($nav->navlinks);
+        $nav = Navigation::with('navlinks.rubrik')->find($id);
+        
+        return response()->json($nav);
     }
 
     public function insert(Request $request)

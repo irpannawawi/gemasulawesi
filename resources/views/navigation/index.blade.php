@@ -30,13 +30,13 @@
                     <div class="list-group" id="list-tab" role="tablist">
                         <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list"
                             href="#list-home" role="tab" style="padding:8px;" aria-controls="home">1. Home</a>
-                            @php
-                                $n=2;
-                            @endphp
+                        @php
+                            $n = 2;
+                        @endphp
                         @foreach ($navs as $nav)
                             <a class="list-group-item list-group-item-action" id="list-nav-{{ $nav->nav_id }}"
                                 data-toggle="list" href="#nav-{{ $nav->nav_id }}" role="tab" style="padding:8px;"
-                                aria-controls="{{ $nav->nav_id }}">{{ $n++.'. '.$nav->nav_name }} <span
+                                aria-controls="{{ $nav->nav_id }}">{{ $n++ . '. ' . $nav->nav_name }} <span
                                     class="badge badge-secondary">{{ $nav->nav_type == 'normal' ? '' : 'Dropdown' }}</span></a>
                         @endforeach
                         <a class="list-group-item" role="button" data-toggle="modal" data-target="#addMenuModal">+
@@ -53,18 +53,26 @@
                             <div class="tab-pane fade" id="nav-{{ $nav->nav_id }}" role="tabpanel"
                                 aria-labelledby="list-nav-{{ $nav->nav_id }}">
 
-                                <div class="row" style="display: flex; justify-content: space-between; align-items: center">
+                                <div class="row"
+                                    style="display: flex; justify-content: space-between; align-items: center">
                                     <div class="col-4">
                                         <p style="float: left">Order priority
-                                            <a href="{{route('nav.up', ['id'=>$nav->nav_id])}}"><i class="fa fa-arrow-up"></i></a>
-                                            <a href="{{route('nav.down', ['id'=>$nav->nav_id])}}"><i class="fa fa-arrow-down"></i></a>
+                                            <a href="{{ route('nav.up', ['id' => $nav->nav_id]) }}"><i
+                                                    class="fa fa-arrow-up"></i></a>
+                                            <a href="{{ route('nav.down', ['id' => $nav->nav_id]) }}"><i
+                                                    class="fa fa-arrow-down"></i></a>
                                         </p>
                                     </div>
                                     <div class="col-4">
                                         <p class="text-end">
-                                            <a class="" role="button" onclick="fillNavId('{{$nav->nav_id}}','{{$nav->nav_name}}')" data-toggle="modal" data-target="#modalEditNav"> <i class="fa fa-edit"></i></a>
-                                            <a class="delete-btn  text-danger" href="{{route('nav.delete', ['id'=>$nav->nav_id])}}"> <i class="fa fa-trash"></i></a>
-                                            
+                                            <a class="" role="button"
+                                                onclick="fillNavId('{{ $nav->nav_id }}','{{ $nav->nav_name }}')"
+                                                data-toggle="modal" data-target="#modalEditNav"> <i
+                                                    class="fa fa-edit"></i></a>
+                                            <a class="delete-btn  text-danger"
+                                                href="{{ route('nav.delete', ['id' => $nav->nav_id]) }}"> <i
+                                                    class="fa fa-trash"></i></a>
+
                                         </p>
                                     </div>
                                 </div>
@@ -72,7 +80,8 @@
                                 <p style="display: inline-block;"><b>Contains rubrik: </b></p>
                                 <ol class="list-group col-lg-5 col-md-5">
                                     @foreach ($nav->navlinks as $links)
-                                        <li class="list-group-item"><i class="fa fa-arrow-right"></i> {{ $links->rubrik->rubrik_name }}</li>
+                                        <li class="list-group-item"><i class="fa fa-arrow-right"></i>
+                                            {{ $links->rubrik->rubrik_name }}</li>
                                     @endforeach
                                     @if ($nav->nav_type == 'dropdown')
                                         <li><a href="#" role="button" data-toggle="modal"
@@ -149,32 +158,35 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('nav.addRubrik')}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="nav_id" id="nav_id" class="form-control" required
-                    autocomplete="off" id="navId">
+                    <form action="{{ route('nav.addRubrik') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="nav_id" id="nav_id" class="form-control" required
+                            autocomplete="off" id="navId">
+                        <div id="checkContainer">
+                            @foreach ($rubriks as $rubrik)
+    
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" name="rubriks[]" type="checkbox"
+                                        value="{{ $rubrik->rubrik_id }}" id="flexCheck{{ $rubrik->rubrik_id }}">
+                                    <label class="form-check-label" for="flexCheck{{ $rubrik->rubrik_id }}">
+                                        {{ $rubrik->rubrik_name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="form-group mb-2">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" id="addRubrikButton" class="btn btn-primary">Simpan</button>
 
-                    @foreach ($rubriksAll as $rubrik)
-                    <div class="form-check mb-2">
-                        <input class="form-check-input" name="rubriks[]" type="checkbox" value="{{$rubrik->rubrik_id}}" id="flexCheck{{$rubrik->rubrik_id}}">
-                        <label class="form-check-label" for="flexCheck{{$rubrik->rubrik_id}}">
-                            {{$rubrik->rubrik_name}}
-                        </label>
-                    </div>
-                    @endforeach
-                    <div class="form-group mb-2">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" id="addRubrikButton" class="btn btn-primary">Simpan</button>
-                        
-                    </div>
-                </form>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-        {{-- Modal edit rubrik --}}
-        <div class="modal fade" id="modalEditNav" tabindex="-1" role="dialog" aria-labelledby="modalEditNavLabel"
+    {{-- Modal edit rubrik --}}
+    <div class="modal fade" id="modalEditNav" tabindex="-1" role="dialog" aria-labelledby="modalEditNavLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -185,22 +197,22 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('nav.update')}}" method="POST">
-                    @csrf
-                    @method('put')
-                    <input type="hidden" name="nav_id" id="nav_id_edit" class="form-control" required
-                    autocomplete="off" id="navId">
+                    <form action="{{ route('nav.update') }}" method="POST">
+                        @csrf
+                        @method('put')
+                        <input type="hidden" name="nav_id" id="nav_id_edit" class="form-control" required
+                            autocomplete="off" id="navId">
 
-                    <div class="form-group">
-                        <label for="nav_name">Nama Menu</label>
-                        <input type="text" name="nav_name" id="nav_name_edit" class="form-control">
-                    </div>
-                    <div class="form-group mb-2">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" id="modalEditNavButton" class="btn btn-primary">Simpan</button>
-                        
-                    </div>
-                </form>
+                        <div class="form-group">
+                            <label for="nav_name">Nama Menu</label>
+                            <input type="text" name="nav_name" id="nav_name_edit" class="form-control">
+                        </div>
+                        <div class="form-group mb-2">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            <button type="submit" id="modalEditNavButton" class="btn btn-primary">Simpan</button>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -208,11 +220,19 @@
 
     @push('custom-scripts')
         <script>
-            function fillNavId(id, name=null) {
-                $.get('{{url('/nav/list_rubrik')}}/'+id, {}, (res)=>{
-                    res.forEach(element => {
-                        console.log(element.rubrik_id)
-                        $('#flexCheck'+element.rubrik_id).attr('checked', true)
+            function fillNavId(id, name = null) {
+                $.get('{{ url('/nav/list_rubrik') }}/' + id, {}, (res) => {
+                    console.log(res)
+                    res.navlinks.forEach(element => {
+                        console.log(element.rubrik);
+                        // prepend data
+                        $('#checkContainer').prepend(`<div class="form-check mb-2">
+                                    <input class="form-check-input" name="rubriks[]" type="checkbox"
+                                        value="${element.rubrik.rubrik_id}" id="flexCheck${element.rubrik.rubrik_id}" checked>
+                                    <label class="form-check-label" for="flexCheck${element.rubrik.rubrik_id}">
+                                        ${element.rubrik.rubrik_name}
+                                    </label>
+                                </div>`)
                     });
                 })
                 $('#nav_id').val(id)
@@ -229,8 +249,8 @@
                         $('#navRubrik').hide();
                     }
                 });
-                @if(Session::has('last_load'))
-                   $('#list-nav-{{ session('last_load') }}').click() 
+                @if (Session::has('last_load'))
+                    $('#list-nav-{{ session('last_load') }}').click()
                 @endif
                 $('#listMenu').Treeview()
             });

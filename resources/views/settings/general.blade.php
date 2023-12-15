@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Favicon Website</label>
-                                    <img src="{{ @Storage::url('favicon/') }}" class="img-thumbnail mb-3">
+                                    <img src="{{ @Storage::url('favicon/'.$favicon->value) }}" class="img-thumbnail mb-3">
                                     <div class="custom-file">
                                         <input type="file" class="form-control" id="favicon" name="favicon">
                                         <label class="custom-file-label" for="favicon">Pilih file</label>

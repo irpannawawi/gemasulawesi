@@ -50,28 +50,34 @@ class SettingsController extends Controller
         // Ambil nilai dari tombol yang diklik
         $action = $request->input('action');
         if ($action == 'updategeneral') {
+            foreach ($request->all() as $key => $value) {
+                $value = $value ?: null;
+                Setting::updateOrCreate(['key' => $key], ['value' => $value]);
+            }
+
             // Pastikan file ada sebelum melakukan operasi upload
             if ($request->hasFile('logo_web')) {
+                
+                $old = Setting::where('key', 'logo_web')->first();
+                Storage::delete('public/logo/'.$old->favicon);
                 $file = $request->file('logo_web');
                 $imageName = date('dmY') . '.' . $file->getClientOriginalExtension();
-                $path = $file->storeAs('public/logo', $imageName);
-
+                $request->file('logo_web')->storeAs('public/logo', $imageName);
                 Setting::updateOrCreate(['key' => 'logo_web'], ['value' => $imageName]);
             }
 
             // Pastikan file ada sebelum melakukan operasi upload favicon
             if ($request->hasFile('favicon')) {
+                //remove old image
+                $old = Setting::where('key', 'favicon')->first();
+                Storage::delete('public/favicon/'.$old->favicon);
                 $file = $request->file('favicon');
                 $faviconImageName = $file->getClientOriginalName();
-                $path = $file->storeAs('public/favicon', $faviconImageName);
+                $file->storeAs('public/favicon', $faviconImageName);
 
-                Setting::updateOrCreate(['key' => 'favicon'], ['value' => $faviconImageName]);
+                $res = Setting::updateOrCreate(['key' => 'favicon'], ['value' => $faviconImageName]);
             }
-
-            foreach ($request->all() as $key => $value) {
-                $value = $value ?: null;
-                Setting::updateOrCreate(['key' => $key], ['value' => $value]);
-            }
+            
         } elseif ($action == 'updatefooter') {
             foreach ($request->all() as $key => $value) {
                 $value = $value ?: null;

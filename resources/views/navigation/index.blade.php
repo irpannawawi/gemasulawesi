@@ -151,7 +151,7 @@
                     <input type="hidden" name="nav_id" id="nav_id" class="form-control" required
                     autocomplete="off" id="navId">
 
-                    @foreach ($rubriks as $rubrik)
+                    @foreach ($rubriksAll as $rubrik)
                     <div class="form-check mb-2">
                         <input class="form-check-input" name="rubriks[]" type="checkbox" value="{{$rubrik->rubrik_id}}" id="flexCheck{{$rubrik->rubrik_id}}">
                         <label class="form-check-label" for="flexCheck{{$rubrik->rubrik_id}}">

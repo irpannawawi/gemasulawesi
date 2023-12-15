@@ -1555,6 +1555,10 @@
             float: left;
         }
 
+        .trending-now__label svg {
+            color: #fff;
+        }
+
         .trending-now__text {
             margin-left: 5px;
         }
@@ -2236,7 +2240,8 @@
 
         .marquee-content {
             display: inline-block;
-            animation: marquee 10s linear infinite;
+            animation-duration: 20s;
+            animation: tickerh linear 35s infinite;
         }
 
         /* lanjutan sandi */
@@ -2665,9 +2670,9 @@
     <main class="main oh" id="main"style="background: #fff">
         <!-- Trending Now -->
         @if ($breakingNews->count() > 0)
-            <div class="container" style="position: sticky; height: 30px; display:flex; align-items:center;">
+            <div style="position: sticky; height: 30px; display:flex; align-items:center;">
                 <div class="col-2 trending-now__label" style="height:100%">
-                    <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    <svg fill="#fff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px"
                         viewBox="0 0 96.258 96.258" xml:space="preserve">
                         <g>
@@ -2695,7 +2700,7 @@
         <!-- Sidenav -->
         <header class="sidenav" id="sidenav" style="display: flex; align-item: strech; flex-direction: column; ">
             <!-- Side Menu Button -->
-            <nav style="margin-top: 5px; width:100%; display: flex; flex-direction: column; align-items: end;">
+            <nav style="margin: 5px 27px 0 0; width:100%; display: flex; flex-direction: column; align-items: end;">
                 <div class="menu-toggle" tabindex="0" role="button"
                     on="tap:sidenav.toggleClass(class='sidenav--is-open')">
                     Close

@@ -2153,7 +2153,6 @@
         }
 
         nav {
-            display: flex;
             align-items: center;
         }
 
@@ -2704,7 +2703,7 @@
             </nav>
 
             <!-- Nav -->
-            <nav class="sidenav__menu-container" style="margin-top:20px; width: 100%;">
+            <nav class="sidenav__menu-container" style="margin-top:20px; width: 100%; overflow: scroll;">
                 @php
                     $rubriks = Rubrik::get();
                 @endphp

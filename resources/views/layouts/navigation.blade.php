@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:; padding-bottom: 40px;">
     <!-- Brand Logo -->
     <a href="{{ url('dashboard') }}" class="brand-link">
         <img src="{{ Storage::url('public/avatars/' . Auth::user()->avatar) }}" alt="avatar"
@@ -24,7 +24,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                data-accordion="false">
+                data-accordion="true">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
@@ -35,7 +35,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{Request::segment(1)=='editorial'?'menu-open':''}}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -76,7 +76,12 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item 
+                {{Request::segment(1)=='wp-headline-management'?'menu-open':''}}
+                {{Request::segment(1)=='rubrik-headline-management'?'menu-open':''}}
+                {{Request::segment(1)=='topik-khusus'?'menu-open':''}}
+                {{Request::segment(1)=='rubrik'?'menu-open':''}}
+                {{Request::segment(1)=='editor-choice'?'menu-open':''}}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-clipboard-list"></i>
                         <p>
@@ -91,7 +96,7 @@
                                 <p>Headline WP</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item {{Request::segment(1)=='rubrik-headline-management'?'menu-open':''}}">
                             <a href="javascript:void(0)" class="nav-link">
                                 <i class="fas fa-bars nav-icon"></i>
                                 <p>Headline Rubrik</p>
@@ -156,7 +161,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item {{Request::segment(1)=='report'?'menu-open':''}}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-chart-bar"></i>
                         <p>
@@ -200,7 +205,7 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                <li class="nav-item {{Request::segment(1)=='photo'?'menu-open':''}} {{Request::segment(1)=='videos'?'menu-open':''}}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-database"></i>
                         <p>
@@ -253,6 +258,13 @@
                                 <a href="{{ route('setting.general.index') }}" class="nav-link">
                                     <i class="fas fa-spell-check nav-icon"></i>
                                     <p>General</p>
+                                </a>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a href="{{ route('nav') }}" class="nav-link">
+                                    <i class="fa fa-sitemap nav-icon"></i>
+                                    <p>Menu / Navigation</p>
                                 </a>
                             </li>
                             <li class="nav-item">

@@ -15,22 +15,25 @@
                     Refresh</a>
             </div>
             <div class="float-right">
-                <div class="form-inline">
-                    <div class="form-group">
-                        <select name="uploader" class=" form-control input-sm">
-                            <option value="0">- All -</option>
-                            @foreach (\App\Models\User::all() as $user)
-                            
-                            <option value="{{$user->id}}">{{$user->display_name}}</option>
-                            @endforeach
-                        </select>
+                <form action="{{$_SERVER['REQUEST_URI']}}" id="formSearch">
+                    @csrf
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <select name="uploader" id="authorSelect" class=" form-control input-sm">
+                                <option value="">- All -</option>
+                                @foreach (\App\Models\User::all() as $user)
+                                
+                                <option {{$uploader==$user->id?'selected':''}} value="{{$user->id}}">{{$user->display_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input id="input_search" name="q" type="text" class="form-control input-sm"
+                                placeholder="Search..." value="{{$q}}" autocomplete="off">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input id="input_search" type="text" class="form-control input-sm"
-                            placeholder="Search..." data-url="https://editor.promediateknologi.id/photo/index"
-                            data-query-string="" value="">
-                    </div>
-                </div>
+
+                </form>
             </div>
         </div>
         <div class="card-body">
@@ -60,7 +63,7 @@
                                     href="{{ route('assets.video.edit', ['id' => $video->video_id]) }}"><i
                                         class="fa fa-edit"></i> Edit</a>
 
-                                <a class="btn btn-default btn-xs"
+                                <a class="btn btn-xs delete-btn btn-danger"
                                     href="{{ route('assets.video.delete', ['id' => $video->video_id]) }}"><i
                                         class="fa fa-trash delete-btn"></i>
                                     Delete</a>
@@ -75,4 +78,22 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            $('#authorSelect').on('change', function() {
+                $('#formSearch').submit()
+            })
+            // insert image 
+            function sendBacaJuga(title, url) {
+
+                window.parent.postMessage({
+                    mceAction: 'insertHTML',
+                    data: {
+                        title: title,
+                        url: url
+                    }
+                }, "*")
+            }
+        });
+    </script>
 </x-app-layout>

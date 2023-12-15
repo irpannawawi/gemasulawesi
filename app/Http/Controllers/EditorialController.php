@@ -202,8 +202,6 @@ class EditorialController extends Controller
         $post->article = $article;
         $post->allow_comment = $request->allow_comment;
         $post->view_in_welcome_page = $request->view_in_welcome_page;
-        $post->author_id = Auth::user()->id;
-        $post->editor_id = 1;
         $post->status = $status;
         $post->related_articles = $related;
         $post->tags = $tags;

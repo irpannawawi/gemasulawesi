@@ -43,8 +43,8 @@
 
         .nav-sidebar .nav-item>.nav-link {
             padding: 7px;
-            padding-top: 6px;
-            padding-bottom: 6px;
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
 
         .nav-sidebar .nav-treeview {

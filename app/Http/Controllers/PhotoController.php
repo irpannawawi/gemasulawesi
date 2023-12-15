@@ -11,10 +11,28 @@ use Illuminate\Support\Facades\Storage;
 
 class PhotoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $photos = Image::orderBy('image_id', 'DESC')->where('image_sc_type', 'original')->paginate(20);
-        return view('assets.photo.index', compact('photos'));
+        $photos = Image::orderBy('image_id', 'DESC')->where('image_sc_type', 'original');
+        $uploader = $request->uploader;
+        $q = $request->q;
+        if($uploader!=''){
+            $photos->where('uploader_id', $uploader);
+        }
+
+        if($q!=''){
+            $photos->where('caption', 'like', '%'.$q.'%');
+            $photos->orWhere('credit', 'like', '%'.$q.'%');
+            $photos->orWhere('source', 'like', '%'.$q.'%');
+            $photos->orWhere('author', 'like', '%'.$q.'%');
+        }
+
+        $data = [
+            'q'=>$q,
+            'uploader'=>$uploader,
+            'photos'=>$photos->paginate(20),
+        ];
+        return view('assets.photo.index',$data);
     }
 
     public function edit($id)
@@ -182,8 +200,8 @@ class PhotoController extends Controller
         $image = Image::find($id);
 
         // insert to file table
-        // $image->delete();
         $asset_id = $image->asset_id;
+        $image->delete();
         Asset::where(['asset_id' => $asset_id])->delete();
 
         return redirect()->back()->with('success', 'Photo deleted successfully.');

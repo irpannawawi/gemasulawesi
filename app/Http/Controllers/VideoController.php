@@ -11,7 +11,20 @@ class VideoController extends Controller
 
     public function index(Request $request)
     {
-        $data['list_video'] = Video::orderBy('video_id', 'DESC')->paginate(20);
+        $uploader = $request->uploader;
+        $q = $request->q;
+        $video = Video::orderBy('video_id', 'DESC');
+        if($uploader!=''){
+            $video->where('uploader_id', $uploader);
+        }
+
+        if($q!=''){
+            $video->where('title', 'like', '%'.$q.'%');
+            $video->where('description', 'like', '%'.$q.'%');
+        }
+        $data['list_video'] = $video->paginate(20);
+        $data['q'] = $q;
+        $data['uploader'] = $uploader;
         return view('assets.video.view', $data);
     }
 

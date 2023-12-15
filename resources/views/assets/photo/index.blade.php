@@ -15,21 +15,28 @@
                     Refresh</a>
             </div>
             
+            
             <div class="float-right">
-                <form action="{{route('browseImage')}}">
-                @csrf
-                <div class="form-inline">
-                    <div class="form-group">
+                <form action="{{$_SERVER['REQUEST_URI']}}" id="formSearch">
+                    @csrf
+                    <div class="form-inline">
+                        <div class="form-group">
+                            <select name="uploader" id="authorSelect" class=" form-control input-sm">
+                                <option value="">- All -</option>
+                                @foreach (\App\Models\User::all() as $user)
+                                
+                                <option {{$uploader==$user->id?'selected':''}} value="{{$user->id}}">{{$user->display_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input id="input_search" name="q" type="text" class="form-control input-sm"
+                                placeholder="Search..." value="{{$q}}" autocomplete="off">
+                        </div>
+                    </div>
 
-                    </div>
-                    <div class="form-group">
-                        <input id="input_search" type="search" class="form-control input-sm" placeholder="Search..."
-                            name="q" value="{{!empty($q)?$q:''}}">
-                        <button class="btn"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
                 </form>
-            </div>  
+            </div> 
         </div>
         <div class="card-body">
             <div class="row box-photo-upload">
@@ -106,4 +113,14 @@
             </div>
         </form>
     </x-bs-modal>
+
+
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            $('#authorSelect').on('change', function() {
+                $('#formSearch').submit()
+            })
+        });
+    </script>
 </x-app-layout>

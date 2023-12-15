@@ -2342,7 +2342,7 @@
             color: #000;
         }
 
-        .read__content {
+        .read__content p{
             text-align: left;
         }
 

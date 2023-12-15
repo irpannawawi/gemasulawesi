@@ -9,79 +9,53 @@
 @endphp
 
 <head>
+    
+    @php
+        $subTitle = get_setting('sub_title');
+        if (request()->is('/')) {
+            $metaTitle = get_setting('title') . ' - ' . $subTitle;
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('category/*')) {
+            $metaTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
+            $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('tags/*')) {
+            $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
+            $metaDeskripsi = $post->description ?? '';
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('gallery')) {
+            $metaTitle = 'Gallery Berita Terkini' . ' - ' . $subTitle;
+            $metaDeskripsi = get_setting('meta_google');
+            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $type = 'website';
+        } elseif (request()->is('galery/detail/*')) {
+            $metaTitle = $galery->galery_name . ' - ' . $subTitle;
+            $metaDeskripsi = $galery->galery_description;
+            $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
+            $type = 'article';
+        } else {
+            $postTitle = $post->title ?? '';
+            $metaTitle = $postTitle . ' - ' . $subTitle;
+            $metaDeskripsi = $post->description;
+            $imagePath = get_post_image($post->post_id) ?? '';
+            $metaImage = asset($imagePath);
+            $type = 'article';
+            $category = $post->rubrik->rubrik_name;
+            $tags = $post->tags;
+        }
+    @endphp
+
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-    <title>Hello, AMPs</title>
+    <title itemprop="name">{{ $metaTitle }}</title>
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <style amp-boilerplate>
-        body {
-            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
-            animation: -amp-start 8s steps(1, end) 0s 1 normal both
-        }
-
-        @-webkit-keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-
-            to {
-                visibility: visible
-            }
-        }
-
-        @-moz-keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-
-            to {
-                visibility: visible
-            }
-        }
-
-        @-ms-keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-
-            to {
-                visibility: visible
-            }
-        }
-
-        @-o-keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-
-            to {
-                visibility: visible
-            }
-        }
-
-        @keyframes -amp-start {
-            from {
-                visibility: hidden
-            }
-
-            to {
-                visibility: visible
-            }
-        }
-    </style><noscript>
-        <style amp-boilerplate>
-            body {
-                -webkit-animation: none;
-                -moz-animation: none;
-                -ms-animation: none;
-                animation: none
-            }
-        </style>
-    </noscript>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
 
     <style amp-custom>
         /* Reset some default styles */
@@ -1255,6 +1229,38 @@
             color: #fff;
         }
 
+        .social-whatsapp {
+            background-color: #25d366;
+        }
+
+        .social-whatsapp:hover {
+            background-color: #1db153;
+            color: #fff;
+        }
+
+        .social-telegram {
+            background-color: #089be4;
+        }
+
+        .social-telegram:hover {
+            background-color: #0985c4;
+            color: #fff;
+        }
+
+        .social-copy {
+            background-color: #04a4a4;
+        }
+
+        .social-copy:hover {
+            background-color: #048585;
+            color: #fff;
+        }
+
+        .social-post {
+            text-align: center;
+            margin-top: 22px;
+        }
+
         .trending-now {
             background-color: #fff;
             position: relative;
@@ -1867,7 +1873,7 @@
         header {
             background-color: #fff;
             color: #2cc38b;
-            padding: 10px;
+            padding-top: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -1965,70 +1971,313 @@
             animation: marquee 10s linear infinite;
         }
 
-        .rounded-button {
-            display: inline-block;
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 2px solid #2cc38b;
-            /* Warna outline hijau */
-            border-radius: 50%;
-            /* Membuat bentuk bulat */
-            color: #2cc38b;
-            float: left;
-            margin-left: 4px;
-            /* Warna teks hijau */
-            transition: background-color 0.3s, color 0.3s;
-            /* Animasi perubahan warna */
+        /* lanjutan sandi */
+
+        .blog__content {
+            width: 100%;
         }
 
-        .next-page-button {
-            display: inline-block;
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 2px solid #2cc38b;
-            /* Warna outline hijau */
-            border-radius: 23px 23px 23px 23px;
-            /* Membuat bentuk bulat */
-            color: #2cc38b;
-            float: left;
-            margin-left: 4px;
-            /* Warna teks hijau */
-            transition: background-color 0.3s, color 0.3s;
-            /* Animasi perubahan warna */
+        .title-single-post {
+            letter-spacing: normal;
+            line-height: 1.2;
+            color: #000;
+            text-align: center;
+            font-weight: 700;
+            font-size: 26px;
         }
-        /* Style untuk hover */
-        .rounded-button:hover {
-            background-color: #2cc38b;
-            /* Mengisi hijau saat di-hover */
+
+        .col-lg-8 {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .entry__meta-holder {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .entry__meta-holder .entry__meta {
+            margin-top: 0;
+        }
+
+        .entry__meta li {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .entry__meta-author:after {
+            content: "-";
+            display: inline-block;
+            margin: 0 3px;
+        }
+
+        h1 {
+            font-family: Poppins, sans-serif;
+        }
+
+        *,
+        :after,
+        :before {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .image-single-post .photo {
+            margin-bottom: 0;
+        }
+
+        .image-single-post img {
+            border-radius: 15px;
+        }
+
+        .image-single-post img {
+            height: 260px;
+            width: 100%;
+        }
+
+        body img {
+            border: none;
+            max-width: 100%;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .photo__caption {
+            margin-top: 0;
+            padding: 10px 0;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 400;
+            color: #999;
+            line-height: 1.5;
+        }
+
+        .read__content {
+            padding: 0 0 20px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #000;
+        }
+
+        .read__content {
+            text-align: left;
+        }
+
+        .style-politics {
+            font-family: Poppins, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            vertical-align: top;
+        }
+
+        p {
+            font-size: 16px;
+            color: #000;
+            font-weight: normal;
+            line-height: 26px;
+            margin: 0 0 10px;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        .breadcrumbs {
+            margin-top: 24px;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumbs__item {
+            font-weight: 700;
+            display: inline-block;
+            font-size: 18px;
+            background-color: #eff0f6;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .breadcrumbs__item:last-child:after {
+            display: none;
+        }
+
+        .breadcrumbs__url {
+            color: #333439;
+        }
+
+        .thumb {
+            margin-top: 18px;
+        }
+
+        .halaman {
+            padding: 5px 0;
+            position: relative;
+            display: flex;
+        }
+
+        .halaman__teaser {
+            padding: 15px 0 0;
+            width: 80px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .halaman__wrap {
+            position: relative;
+            align-items: center;
+        }
+
+        .halaman__item {
+            display: inline-block;
+            margin: 5px 2px;
+            vertical-align: middle;
+        }
+
+        .entry__article a {
+            color: #2cc38b;
+            text-decoration: none;
+        }
+
+        .pagination__page {
+            font-size: 15px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 1px solid #2cc38b;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            margin: 5px 1px;
+            text-align: center;
+            color: #171821;
+            background-color: #fff;
+            vertical-align: middle;
+        }
+
+        .halaman__all {
+            float: right;
+            margin: 5px 2px;
+            padding-top: 5px;
+        }
+
+        .halaman__all a {
+            color: #000;
+        }
+
+        .halaman__selanjutnya {
+            padding: 7px 11px;
+            display: block;
+            line-height: 1;
+            border-radius: 20px;
+            background: #d2d2d2;
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .halaman__item .pagination__page--current {
             color: #fff;
-            /* Mengubah warna teks menjadi putih saat di-hover */
+            background-color: #2cc38b;
         }
-        /* Style untuk class "active" */
-    .rounded-button.active {
-      background-color: #ddd; /* Warna latar belakang abu saat aktif */
-      border-color: #999; /* Warna outline abu saat aktif */
-      color: #999; /* Warna teks abu saat aktif */
-      pointer-events: none; /* Menonaktifkan klik saat aktif */
-    }
-    .croslink{
-        border-radius: 23px; 
-        background-color: #2cc38b;
-        padding: 20px;
-        color: #fff;
-    }
-    
-    .tag-button{
-        border-radius: 23px; 
-        background-color: #2cc38b;
-        padding: 8px;
-        margin: 2px;
-        color: #fff;
-    }
 
-    .croslink a{
-        color: #fff;
-    }
-    .flex-container{
+        .pagination__page--current {
+            background-color: #2cc38b;
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* google news */
+        .croslink {
+            margin: 15px 0 27px;
+            position: relative;
+        }
+
+        .croslink a {
+            color: #fff;
+            border-radius: 20px;
+            border: solid 5px #e4e4e4;
+            background: rgb(14, 147, 97);
+            background: linear-gradient(50deg, rgba(14, 147, 97, 0.756827731092437) 0%, rgba(44, 195, 139, 0.6755952380952381) 100%);
+            display: block;
+            padding: 13px 17px;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.4;
+            padding-right: 45px;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .croslink a {
+                padding: 13px 24px;
+                font-size: 12px;
+                padding-right: 0;
+            }
+        }
+
+        .read__content strong {
+            font-weight: 700;
+        }
+
+        .editor__text span {
+            font-weight: 600;
+        }
+
+        .entry__tags {
+            margin-top: 30px;
+        }
+
+        .entry__tags i {
+            font-size: 12px;
+        }
+
+        .entry__tags-label {
+            color: #171821;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            margin-right: 8px;
+            margin-left: 3px;
+        }
+
+        .style-politics .entry__tags a {
+            font-family: Poppins, sans-serif;
+        }
+
+        .entry__tags a {
+            float: none;
+            color: #2cc38b;
+        }
+
+        .entry__tags a {
+            padding: 6px 10px;
+            line-height: 1;
+            margin: 0 8px 8px 0;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            background-color: #f7f7f7;
+            font-family: "Source Sans Pro", sans-serif;
+            display: inline-block;
+        }
+
+        .ui-tags:before {
+            content: '\e808';
+        }
+        .flex-container{
         display: flex;
         flex-direction: column;
     }
@@ -2039,12 +2288,10 @@
     .bootom-widget{
         display: flex;
         flex-direction: column;
-
     }
     .berita-terkini-container{
         display: flex; 
         flex-direction: column;
-
     }
     .berita-terkini{
         display: flex;
@@ -2065,11 +2312,9 @@
         padding: 10px;
     }
     </style>
-
-
 </head>
 
-<body class="">
+<body class="style-politics">
     <!-- Bg Overlay -->
     <div class="content-overlay"></div>
 
@@ -2108,33 +2353,31 @@
 
         @endif
         <!-- Sidenav -->
-        <header class="sidenav" id="sidenav" style="display: flex; flex-direction: column; align-items:end;">
+        <header class="sidenav" id="sidenav" style="display: flex; align-item: strech; flex-direction: column; ">
             <!-- Side Menu Button -->
-            <div class="menu-toggle" tabindex="0" role="button"
-                on="tap:sidenav.toggleClass(class='sidenav--is-open')">
-                Close
-            </div>
+            <nav style="margin-top: 5px; width:100%; display: flex; flex-direction: column; align-items: end;">
+                <div class="menu-toggle" tabindex="0" role="button"
+                    on="tap:sidenav.toggleClass(class='sidenav--is-open')">
+                    Close
+                </div>
+            </nav>
+
             <!-- Nav -->
-            <nav class="sidenav__menu-container" style="overflow: scroll; margin-top:20px; display: flex; flex-direction: column; position: fixed; text-align: right;">
-                <div class="strip" style="width:100%; height:3px; background: #000; margin-top: 30px; margin-bottom: 20px;"></div>
-                <h3>Menu</h3>
+            <nav class="sidenav__menu-container" style="margin-top:20px; width: 100%;">
                 @php
                     $rubriks = Rubrik::get();
                 @endphp
                 <ul class="sidenav__menu" role="menubar">
                     <!-- Categories -->
                     <li>
-                        <a href="{{ url('') }}" class="sidenav__menu-url">Home</a>
+                        <a href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
                     </li>
                     @foreach ($rubriks as $rubrik)
-                    <li>
-                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                            class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
-                        </li>
-                        @endforeach
                         <li>
-                            <a href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
+                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
                         </li>
+                    @endforeach
                 </ul>
             </nav>
         </header> <!-- end sidenav -->
@@ -2188,12 +2431,8 @@
                 </div>
             </div> <!-- end container -->
         </header> <!-- end header -->
-
-
-
-
         <!-- Navigation -->
-        <header class="" id="scroll" style="padding-top: 10px;">
+        <header class="" id="scroll">
             <div class="nav__holder nav--sticky">
                 <div class="container relative">
                     <div class="flex-parent">
@@ -2248,14 +2487,14 @@
         </header> <!-- end navigation -->
 
         <!-- Ad Banner 728 -->
-        <div class="container">
+        {{-- <div class="container">
             <div class="text-center ads__banner">
                 <a href="#">
                     <amp-img width="728" height="230"
                         src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
                 </a>
             </div>
-        </div>
+        </div> --}}
 
         {{-- konten --}}
         @yield('content')

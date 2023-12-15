@@ -4,7 +4,9 @@
     <div class="container">
         <ul class="breadcrumbs">
             <li class="breadcrumbs__item">
-                <a href="{{ url('/') }}" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
+                <a href="{{ url('/') }}" class="breadcrumbs__url"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+                    <path d="M 25 1.0507812 C 24.7825 1.0507812 24.565859 1.1197656 24.380859 1.2597656 L 1.3808594 19.210938 C 0.95085938 19.550938 0.8709375 20.179141 1.2109375 20.619141 C 1.5509375 21.049141 2.1791406 21.129062 2.6191406 20.789062 L 4 19.710938 L 4 46 C 4 46.55 4.45 47 5 47 L 19 47 L 19 29 L 31 29 L 31 47 L 45 47 C 45.55 47 46 46.55 46 46 L 46 19.710938 L 47.380859 20.789062 C 47.570859 20.929063 47.78 21 48 21 C 48.3 21 48.589063 20.869141 48.789062 20.619141 C 49.129063 20.179141 49.049141 19.550938 48.619141 19.210938 L 25.619141 1.2597656 C 25.434141 1.1197656 25.2175 1.0507812 25 1.0507812 z M 35 5 L 35 6.0507812 L 41 10.730469 L 41 5 L 35 5 z"></path>
+                </svg></a>
             </li>
             <li class="breadcrumbs__item">
                 <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik->rubrik_name)]) }}"
@@ -16,90 +18,118 @@
     <div class="main-container container" id="main-container">
 
         <!-- Content -->
-        <article class="row" style="padding: 10px;">
-            <div class="flex-container">
-                <div class="flex-item post-title">
-                    <h1>
+        <div class="row" style="padding: 8px">
+
+            <!-- post content -->
+            <div class="col-lg-8 blog__content mb-3">
+                <div class="meta-single-post">
+                    <h1 class="title-single-post single-post__title-single-post">
                         {{ $post->title }}
                     </h1>
-                </div>
-                <div class="flex-item post-author">
-                    <span>Tim Gema</span> | {{ convert_date_to_ID($post->created_at) }}
-                </div>
-                <div class="flex-item">
-                    <amp-img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" layout="responsive"
-                        height="320" width="480"></amp-img>
-                    <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!}</p>
-                </div>
-                <div class="flex-item main-content">
-                    @php
-                        $article = $post->article;
-                        $article = str_replace('../', '' . url('') . '/', $article);
-                    @endphp
-                    {!! $article !!}
-                </div>
-                <div class="flex-item">
-                    <div class="croslink">
-                        <a href="https://news.google.com/search?q=gemasulawesi.com&hl=id&gl=ID&ceid=ID%3Aid" target="_blank"
-                            rel="noopener noreferrer">Ikuti Update Berita Terkini Gemasulawesi
-                            di: <strong>Google News</strong></a>
+                    <div class="entry__meta-holder">
+                        <ul class="entry__meta">
+                            <li class="entry__meta-author">
+                                <span>Tim Gema</span>
+                            </li>
+                            <li class="entry__meta-date">
+                                {{ convert_date_to_ID($post->created_at) }}
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Entry Image -->
+                    <div class="thumb image-single-post">
+                        <amp-img 
+                        src="{{ get_post_image($post->post_id) }}" 
+                        alt="{{ $post->title }}" 
+                        height="320"
+                        width="480"
+                        layout="responsive"></amp-img>
+                        <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!}</p>
                     </div>
                 </div>
-                <div class="flex-item">
-                    <div class="editor__text">
-                        <span>Editor: {{ $post->editor->display_name }}</span>
-                    </div>
-                </div>
-                <div class="flex-item post-links" style="margin-top: 12px;">
-                    <h2>Halaman:</h2>
-                    <div class="halaman__wrap" style="position: relative; display: block;">
-                        @for ($i = 1; $i <= $totalPages; $i++)
-                            <div class="halaman__item">
-                                <a href="{{ route('singlePost', [
-                                    'rubrik' => Str::slug($post->rubrik->rubrik_name),
-                                    'post_id' => $post->post_id,
-                                    'slug' => $post->slug,
-                                    'page' => $i,
-                                ]) }}"
-                                    class="rounded-button {{ $currentPage == $i ? 'active' : '' }}">
-                                    {{ $i }}
-                                </a>
-                            </div>
-                        @endfor
-                        @if ($currentPage < $totalPages)
-                            <div class="halaman__all">
-                                <a href="{{ route('singlePost', [
-                                    'rubrik' => Str::slug($post->rubrik->rubrik_name),
-                                    'post_id' => $post->post_id,
-                                    'slug' => $post->slug,
-                                    'page' => $currentPage + 1,
-                                ]) }}"
-                                    class="next-page-button">Selanjutnya</a>
-                            </div>
-                        @endif
-                    </div>
-                </div>
-                <!-- tags -->
-                <div class="flex-item" style="margin-top: 12px;">
-                    <h2>Tags:</h2>
-                    <div class="tags" style="display: flex; flex-wrap: wrap;">
-                        @php
-                            if ($post->tags != null and $post->tags != 'null') {
-                                foreach (json_decode($post->tags) as $tags) {
-                                    $tag = \App\Models\Tags::find($tags);
-                                    echo '<a class="tag-button" href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
-                                }
-                            }
-                        @endphp
-                    </div>
-                </div> <!-- end tags -->
-            </div>
 
+                <!-- standard post -->
+                <article class="entry mb-0">
+                    <div class="entry__article-wrap mt-0">
+                        <div class="entry__article">
+                            <article class="read__content">
+                                @php
+                                    $article = $post->article;
+                                    $article = str_replace('../', '' . url('') . '/', $article);
+                                @endphp
+
+                                {!! $article !!}
+
+                                <!-- halaman -->
+                                <div class="halaman">
+                                    <div class="halaman__teaser">Halaman: </div>
+                                    <div class="halaman__wrap">
+                                        @for ($i = 1; $i <= $totalPages; $i++)
+                                            <div class="halaman__item">
+                                                <a href="{{ route('singlePost', [
+                                                    'rubrik' => Str::slug($post->rubrik->rubrik_name),
+                                                    'post_id' => $post->post_id,
+                                                    'slug' => $post->slug,
+                                                    'page' => $i,
+                                                ]) }}"
+                                                    class="pagination__page {{ $currentPage == $i ? 'pagination__page--current' : '' }}">
+                                                    {{ $i }}
+                                                </a>
+                                            </div>
+                                        @endfor
+                                        <div class="halaman__all">
+                                            @if ($currentPage < $totalPages)
+                                                <a href="{{ route('singlePost', [
+                                                    'rubrik' => Str::slug($post->rubrik->rubrik_name),
+                                                    'post_id' => $post->post_id,
+                                                    'slug' => $post->slug,
+                                                    'page' => $currentPage + 1,
+                                                ]) }}"
+                                                    class="halaman__selanjutnya">Selanjutnya</a>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="croslink">
+                                    <a href="https://news.google.com/search?q=gemasulawesi.com&hl=id&gl=ID&ceid=ID%3Aid"
+                                        target="_blank" rel="noopener noreferrer">Ikuti Update Berita Terkini Gemasulawesi
+                                        di: <strong>Google News</strong></a>
+                                </div>
+
+                                <div class="editor__text">
+                                    <span>Editor: {{ $post->editor->display_name }}</span>
+                                </div>
+
+                                <!-- tags -->
+                                <div class="entry__tags">
+                                    <span class="entry__tags-label">Tags:</span>
+
+                                    @php
+                                        if ($post->tags != null and $post->tags != 'null') {
+                                            foreach (json_decode($post->tags) as $tags) {
+                                                $tag = \App\Models\Tags::find($tags);
+                                                echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                            }
+                                        }
+                                    @endphp
+                                </div> <!-- end tags -->
+                            </article>
+
+                        </div> <!-- end entry article -->
+                    </div> <!-- end entry article wrap -->
+
+
+                </article> <!-- end standard post -->
+
+                @if ($post->allow_comment == 1)
+                    <x-comment />
+                @endif
+            </div> <!-- end post content -->
 
             <!-- end sidebar -->
 
-        </article> <!-- end content -->
-
+        </div> <!-- end content -->
         <div class="row bottom-widget" style="margin-top: 12px;">
             @if ($post->related_articles != null and $post->related_articles != 'null')
                 <div class="berita-terkini-container">
@@ -162,8 +192,5 @@
                             </div>
                         @endif
                     @endforeach
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

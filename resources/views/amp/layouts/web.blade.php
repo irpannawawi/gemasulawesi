@@ -9,7 +9,7 @@
 @endphp
 
 <head>
-    
+
     @php
         $subTitle = get_setting('sub_title');
         if (request()->is('/')) {
@@ -17,26 +17,6 @@
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
             $type = 'website';
-        } elseif (request()->is('category/*')) {
-            $metaTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
-            $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
-        } elseif (request()->is('tags/*')) {
-            $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
-            $metaDeskripsi = $post->description ?? '';
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
-        } elseif (request()->is('gallery')) {
-            $metaTitle = 'Gallery Berita Terkini' . ' - ' . $subTitle;
-            $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
-        } elseif (request()->is('galery/detail/*')) {
-            $metaTitle = $galery->galery_name . ' - ' . $subTitle;
-            $metaDeskripsi = $galery->galery_description;
-            $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
-            $type = 'article';
         } else {
             $postTitle = $post->title ?? '';
             $metaTitle = $postTitle . ' - ' . $subTitle;
@@ -48,14 +28,303 @@
             $tags = $post->tags;
         }
     @endphp
-
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     <title itemprop="name">{{ $metaTitle }}</title>
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <link href="{{ $metaImage }}" itemprop="image" />
+    <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
+    <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="title" content="{{ $metaTitle }}" />
+    <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
+    <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
+    <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
+    <meta name="base" content="https://www.gemasulawesi.com/" />
+    <meta name="robots" content="index,follow" />
+    <meta name="googlebot-news" content="index,follow" />
+    <meta name="googlebot" content="index,follow" />
+    <meta name="language" content="id" />
+    <meta name="geo.country" content="id" />
+    <meta name="geo.region" content="ID" />
+    <meta name="geo.placename" content="Indonesia" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-language" content="In-Id" />
+    <meta property="og:type" content="{{ $type }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:title" content="{{ $metaTitle }}" />
+    <meta property="og:description" content="{{ $metaDeskripsi }}" />
+    <meta property="og:site_name" content="www.Gemasulawesi.com" />
+    <meta property="og:image" content="{{ $metaImage }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="fb:app_id" content="" />
+    <meta property="fb:pages" content="" />
+    <meta property="article:author" content="Tim Gema Sulawesi">
+    <meta property="article:section" content="">
+    <meta content="{{ url()->current() }}" itemprop="url" />
+    <!-- e: open graph -->
+
+    <!-- S:tweeter card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="{{ get_setting('x') }}" />
+    <meta name="twitter:creator" content="{{ get_setting('x') }}">
+    <meta name="twitter:title" content="{{ $metaTitle }}" />
+    <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
+    <meta name="twitter:image" content="{{ $metaImage }}" />
+    <!-- E:tweeter card -->
+
+    @if (!empty($post))
+        @php
+            $category = $post->rubrik->rubrik_name;
+            if (request()->is('/')) {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Homepage",
+                        "content_category": ""
+                    }];
+                </script>';
+            } else {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Article Page",
+                        "content_category": "'. $category .'"
+                    }];
+                </script>';
+            }
+        @endphp
+
+        @php
+            preg_match('/<img src="(.*?)">/', $post->article, $matches);
+            $imagePath = $matches[1] ?? '';
+            $image = asset($imagePath);
+            $segments = request()->segments();
+            $lastSegment = end($segments);
+            $postTitle = str_replace('-', ' ', $lastSegment);
+            $jsonLDData = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'Organization',
+                'name' => 'www.gemasulawesi.com',
+                'url' => 'https://www.gemasulawesi.com',
+                'logo' => asset('frontend/img/favicon.png'),
+                'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
+            ];
+            $jsonPost = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'WebPage',
+                'headline' => $postTitle,
+                'url' => url()->current(),
+                'datePublished' => $post->created_at,
+                'image' => $image,
+                'thumbnailUrl' => $image,
+            ];
+
+            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+            $jsonP = json_encode($jsonPost, JSON_PRETTY_PRINT);
+            if (request()->is('/*')) {
+                echo '<script type="application/ld+json">
+        ' . $jsonLD . '
+        </script>';
+            } else {
+                echo '<script type="application/ld+json">
+        ' . $jsonP . '
+        </script>';
+            }
+        @endphp
+
+        @php
+            $excludedUrls = ['search/', 'indeks-berita/', 'topik-khusus/detail/*', 'tentang-kami', 'kode-etik'];
+
+            $shouldDisplayJsonLD = true;
+            foreach ($excludedUrls as $url) {
+                if (str_contains(request()->url(), $url)) {
+                    $shouldDisplayJsonLD = false;
+                    break;
+                }
+            }
+
+            if ($shouldDisplayJsonLD) {
+                preg_match('/<img src="(.*?)">/', $post->article, $matches);
+                $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+                $image = asset($imagePath);
+                $segments = request()->segments();
+                $lastSegment = end($segments);
+                $postTitle = $post->title ?? '';
+                $jsonLDData = [
+                    '@context' => 'http://schema.org/',
+                    '@type' => 'NewsArticle',
+                    'mainEntityOfPage' => [
+                        '@type' => 'WebPage',
+                        '@id' => url()->current(),
+                        'description' => $post->description,
+                    ],
+                    'headline' => $postTitle,
+                    'image' => [
+                        '@type' => 'ImageObject',
+                        'url' => $image,
+                    ],
+                    'author' => [
+                        '@type' => 'Person',
+                        'url' => url()->current(),
+                        'name' => $post->editor->display_name ?? 'Tim Gema',
+                    ],
+                    'publisher' => [
+                        '@type' => 'Organization',
+                        'name' => 'www.gemasulawesi.com',
+                        'logo' => [
+                            '@type' => 'ImageObject',
+                            'url' => asset('frontend/img/favcion.png'),
+                        ],
+                    ],
+                    'headline' => $postTitle,
+                    'image' => $image,
+                    'datePublished' => $post->created_at,
+                    'dateModified' => $post->updated_at,
+                ];
+                $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+                echo '<script type="application/ld+json">
+                ' . $jsonLD. '
+            </script>';
+            }
+        @endphp
+
+        {{-- breadcrumb --}}
+        @php
+            $jsonLDData = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'WebSite',
+                'url' => 'https://www.gemasulawesi.com/',
+                'potentialAction' => [
+                    [
+                        '@type' => 'SearchAction',
+                        'target' => 'https://www.gemasulawesi.com/search?q={search_term_string}',
+                        'query-input' => 'required name=search_term_string',
+                    ],
+                ],
+            ];
+
+            $artikel = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 1,
+                        'item' => [
+                            '@id' => url()->current(),
+                            'name' => 'Home',
+                        ],
+                    ],
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 2,
+                        'item' => [
+                            '@id' => url()->current(),
+                            'name' => $post->rubrik->rubrik_name,
+                        ],
+                    ],
+                ],
+            ];
+
+            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+            $artikelLDData = json_encode($artikel, JSON_PRETTY_PRINT);
+
+            if (request()->is('/*')) {
+                echo '<script type="application/ld+json">
+        ' . $jsonLD . '
+        </script>';
+            } else {
+                echo '<script type="application/ld+json">
+        ' . $artikelLDData . '
+        </script>';
+            }
+        @endphp
+    @endif
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E4E99NJFQY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-E4E99NJFQY');
+    </script>
+
+    <style amp-boilerplate>
+        body {
+            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            animation: -amp-start 8s steps(1, end) 0s 1 normal both
+        }
+
+        @-webkit-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-moz-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-ms-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-o-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+    </style><noscript>
+        <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none
+            }
+        </style>
+    </noscript>
 
     <style amp-custom>
         /* Reset some default styles */
@@ -2058,6 +2327,7 @@
             font-weight: 400;
             color: #999;
             line-height: 1.5;
+            margin-left: 15px;
         }
 
         .read__content {
@@ -2120,7 +2390,7 @@
         }
 
         .thumb {
-            margin-top: 18px;
+            margin: 17px -15px;
         }
 
         .halaman {
@@ -2145,6 +2415,23 @@
             display: inline-block;
             margin: 5px 2px;
             vertical-align: middle;
+        }
+
+        .pagination__page--current,
+        .pagination__page:not(span):hover {
+            background-color: #2cc38b;
+        }
+
+        .entry__article a:hover {
+            color: #000;
+        }
+
+        .halaman__all a:hover {
+            color: #fff;
+        }
+
+        .halaman__selanjutnya:hover {
+            background: #2cc38b;
         }
 
         .entry__article a {
@@ -2274,43 +2561,97 @@
             display: inline-block;
         }
 
+        .entry__tags a:hover {
+            background-color: #2cc38b;
+            -webkit-transition: all 0.2s ease-in;
+            transition: all 0.2s ease-in;
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .berita-terkini-title {
+            border-top: none;
+            position: relative;
+            z-index: 2;
+            padding: 20px 0 15px;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .berita-terkini-title h2 {
+            color: #333;
+            text-transform: capitalize;
+            position: relative;
+            z-index: 200;
+            padding-left: 15px;
+            padding-right: 5px;
+        }
+
+        .berita-terkini-title h2:before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 4px;
+            height: calc(100% + 2px);
+            top: -1px;
+            left: -1px;
+            background-color: #2cc38b;
+        }
+
+        .berita-terkini-title:after {
+            content: "";
+            vertical-align: middle;
+            width: 20%;
+            height: 4px;
+            position: relative;
+        }
+
         .ui-tags:before {
             content: '\e808';
         }
-        .flex-container{
-        display: flex;
-        flex-direction: column;
-    }
-    .bottom-widget{
-        display: flex;
-        flex-direction: column;
-    }
-    .bootom-widget{
-        display: flex;
-        flex-direction: column;
-    }
-    .berita-terkini-container{
-        display: flex; 
-        flex-direction: column;
-    }
-    .berita-terkini{
-        display: flex;
-        flex-direction: column;
-    }
-    .berita-terkini-items{
-        display: flex;
-        margin: 6px;
-        margin-bottom: 12px;
-    }
-    .bt__date{
-        color: #5a5a5a
-    }
-    .berita-terkini-img{
-        margin-right: 18px;
-    }
-    .bottom-widget{
-        padding: 10px;
-    }
+
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bottom-widget {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bootom-widget {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .berita-terkini-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .berita-terkini {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .berita-terkini-items {
+            display: flex;
+            margin: 6px;
+            margin-bottom: 12px;
+        }
+
+        .bt__date {
+            color: #5a5a5a
+        }
+
+        .berita-terkini-img {
+            margin-right: 18px;
+        }
+
+        .bottom-widget {
+            padding: 10px;
+        }
     </style>
 </head>
 
@@ -2404,12 +2745,12 @@
                             <div class="socials socials--nobase socials--nav">
                                 <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
                                     target="_blank" aria-label="facebook">
-                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/facebook.png" width="20"
-                                        height="20"></amp-img>
+                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/facebook.png"
+                                        width="20" height="20"></amp-img>
 
                                 </a>
-                                <a class="social social-twitter" href="https://twitter.com/gemasulawesi" target="_blank"
-                                    aria-label="twitter">
+                                <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
+                                    target="_blank" aria-label="twitter">
                                     <amp-img src="{{ url('assets/frontend/img/icons/') }}/twitter.png" width="20"
                                         height="20"></amp-img>
 
@@ -2422,8 +2763,8 @@
                                 </a>
                                 <a class="social social-instagram" href="https://www.instagram.com/gema.parimo/"
                                     target="_blank" aria-label="instagram">
-                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/instagram.png" width="20"
-                                        height="20"></amp-img>
+                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/instagram.png"
+                                        width="20" height="20"></amp-img>
                                 </a>
                             </div>
                         </div>
@@ -2588,10 +2929,10 @@
                                     src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
                                     height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 </amp-img>
-                                <label>
+                                <p>
                                     <b>Telah Terverifikasi Dewan Pers</b>
                                     <b>Sertifikat Nomor <br><i>{{ get_setting('no_sertification') }}</i></b>
-                                </label>
+                                </p>
                             </div>
                         </div>
                         <div class="footer__copyright col-lg-12 col-md-6">
@@ -2601,12 +2942,6 @@
                 </div>
             </div>
         </footer>
-
-        {{-- 
-            <div id="back-to-top">
-            <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
-        </div> 
-        --}}
 
     </main> <!-- end main-wrapper -->
 

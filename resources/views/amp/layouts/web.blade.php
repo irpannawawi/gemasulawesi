@@ -5,84 +5,116 @@
     use Carbon\Carbon;
     $breakingNews = App\Models\Breakingnews::get();
     use App\Models\Rubrik;
+    $rubriks = Rubrik::get();
     $baseUrl = URL::to('');
+
+    $subTitle = get_setting('sub_title');
+    if (request()->is('/')) {
+        $metaTitle = get_setting('title') . ' - ' . $subTitle;
+        $metaDeskripsi = get_setting('meta_google');
+        $metaImage = Storage::url('logo/') . get_setting('logo_web');
+        $type = 'website';
+    } else {
+        $postTitle = $post->title ?? '';
+        $metaTitle = $postTitle . ' - ' . $subTitle;
+        $metaDeskripsi = $post->description;
+        $imagePath = get_post_image($post->post_id) ?? '';
+        $metaImage = asset($imagePath);
+        $type = 'article';
+        $category = $post->rubrik->rubrik_name;
+        $tags = $post->tags;
+    }
 @endphp
 
 <head>
-
-    @php
-        $subTitle = get_setting('sub_title');
-        if (request()->is('/')) {
-            $metaTitle = get_setting('title') . ' - ' . $subTitle;
-            $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
-            $type = 'website';
-        } else {
-            $postTitle = $post->title ?? '';
-            $metaTitle = $postTitle . ' - ' . $subTitle;
-            $metaDeskripsi = $post->description;
-            $imagePath = get_post_image($post->post_id) ?? '';
-            $metaImage = asset($imagePath);
-            $type = 'article';
-            $category = $post->rubrik->rubrik_name;
-            $tags = $post->tags;
-        }
-    @endphp
     <meta charset="utf-8">
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
-    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
     <title itemprop="name">{{ $metaTitle }}</title>
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link href="{{ $metaImage }}" itemprop="image" />
-    <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
-    <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
+    <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
+    <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="{{ $metaTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
-    <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
     <meta name="base" content="https://www.gemasulawesi.com/" />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
-    <meta name="language" content="id" />
-    <meta name="geo.country" content="id" />
-    <meta name="geo.region" content="ID" />
-    <meta name="geo.placename" content="Indonesia" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="content-language" content="In-Id" />
-    <meta property="og:type" content="{{ $type }}" />
-    <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="{{ $metaTitle }}" />
-    <meta property="og:description" content="{{ $metaDeskripsi }}" />
-    <meta property="og:site_name" content="www.Gemasulawesi.com" />
-    <meta property="og:image" content="{{ $metaImage }}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="fb:app_id" content="" />
-    <meta property="fb:pages" content="" />
-    <meta property="article:author" content="Tim Gema Sulawesi">
-    <meta property="article:section" content="">
-    <meta content="{{ url()->current() }}" itemprop="url" />
     <!-- e: open graph -->
 
-    <!-- S:tweeter card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="{{ get_setting('x') }}" />
-    <meta name="twitter:creator" content="{{ get_setting('x') }}">
-    <meta name="twitter:title" content="{{ $metaTitle }}" />
-    <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
-    <meta name="twitter:image" content="{{ $metaImage }}" />
-    <!-- E:tweeter card -->
+    {{-- amp project --}}
+    <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+    <link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
+    <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+    <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
+    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
 
+    <script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
+    </script>
+    <script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
+    <script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>
 
-
-
-
-
+    @if (!empty($post))
+        @php
+            $shouldDisplayJsonLD = true;
+            if ($shouldDisplayJsonLD) {
+                preg_match('/<img src="(.*?)">/', $post->article, $matches);
+                $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+                $image = asset($imagePath);
+                $segments = request()->segments();
+                $lastSegment = end($segments);
+                $postTitle = $post->title ?? '';
+                $jsonLDData = [
+                    '@context' => 'https://schema.org',
+                    '@type' => 'NewsArticle',
+                    'mainEntityOfPage' => url()->current(),
+                    'datePublished' => $post->created_at,
+                    'dateModified' => $post->updated_at,
+                    'description' => $post->description,
+                    'headline' => $postTitle,
+                    'author' => [
+                        '@type' => 'Person',
+                        'url' => url()->current(),
+                        'name' => $post->editor->display_name ?? 'Tim Gema',
+                    ],
+                    'publisher' => [
+                        '@type' => 'Organization',
+                        'name' => 'www.gemasulawesi.com',
+                        'logo' => [
+                            '@type' => 'ImageObject',
+                            'url' => Storage::url('favicon/') . get_setting('favicon'),
+                        ],
+                    ],
+                    'image' => [
+                        '@type' => 'ImageObject',
+                        'url' => $image,
+                    ],
+                    'vars' => [
+                        'published_date' => $post->created_at,
+                        'rubrik' => $post->rubrik->rubrik_name,
+                        'penulis' => $post->author->display_name,
+                        'editor' => '',
+                        'id' => $post->post_id,
+                        'source' => '',
+                        'topic' => '',
+                        'tag' => $post->tags,
+                        'penulis_id' => $post->author->author_id,
+                        'editor_id' => $post->author->editor_id,
+                    ],
+                ];
+                $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+                echo '<script type="application/ld+json">
+                ' . $jsonLD. '
+                </script>';
+            }
+        @endphp
+    @endif
 
     <style amp-boilerplate>
         body {
@@ -141,7 +173,9 @@
                 visibility: visible
             }
         }
-    </style><noscript>
+    </style>
+
+    <noscript>
         <style amp-boilerplate>
             body {
                 -webkit-animation: none;
@@ -2483,203 +2517,36 @@
             padding: 10px;
         }
     </style>
-    {{-- <!-- AMP Analytics --><script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script> --}}
-    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 </head>
 
 <body class="style-politics">
-    <amp-analytics type="gtag" data-credentials="include">
-
-    @if (!empty($post))
-        @php
-            $category = $post->rubrik->rubrik_name;
-            if (request()->is('/')) {
-                echo '<script>
-                    dataLayer = [{
-                        "breadcrumb_detail": "Homepage",
-                        "content_category": ""
-                    }];
-                </script>';
-            } else {
-                echo '<script>
-                    dataLayer = [{
-                        "breadcrumb_detail": "Article Page",
-                        "content_category": "'. $category .'"
-                    }];
-                </script>';
-            }
-        @endphp
-
-        @php
-            preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches[1] ?? '';
-            $image = asset($imagePath);
-            $segments = request()->segments();
-            $lastSegment = end($segments);
-            $postTitle = str_replace('-', ' ', $lastSegment);
-            $jsonLDData = [
-                '@context' => 'http://schema.org/',
-                '@type' => 'Organization',
-                'name' => 'www.gemasulawesi.com',
-                'url' => 'https://www.gemasulawesi.com',
-                'logo' => asset('frontend/img/favicon.png'),
-                'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
-            ];
-            $jsonPost = [
-                '@context' => 'http://schema.org/',
-                '@type' => 'WebPage',
-                'headline' => $postTitle,
-                'url' => url()->current(),
-                'datePublished' => $post->created_at,
-                'image' => $image,
-                'thumbnailUrl' => $image,
-            ];
-
-            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-            $jsonP = json_encode($jsonPost, JSON_PRETTY_PRINT);
-            if (request()->is('/*')) {
-                echo '<script type="application/ld+json">
-        ' . $jsonLD . '
-        </script>';
-            } else {
-                echo '<script type="application/ld+json">
-        ' . $jsonP . '
-        </script>';
-            }
-        @endphp
-
-        @php
-            $excludedUrls = ['search/', 'indeks-berita/', 'topik-khusus/detail/*', 'tentang-kami', 'kode-etik'];
-
-            $shouldDisplayJsonLD = true;
-            foreach ($excludedUrls as $url) {
-                if (str_contains(request()->url(), $url)) {
-                    $shouldDisplayJsonLD = false;
-                    break;
-                }
-            }
-
-            if ($shouldDisplayJsonLD) {
-                preg_match('/<img src="(.*?)">/', $post->article, $matches);
-                $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
-                $image = asset($imagePath);
-                $segments = request()->segments();
-                $lastSegment = end($segments);
-                $postTitle = $post->title ?? '';
-                $jsonLDData = [
-                    '@context' => 'http://schema.org/',
-                    '@type' => 'NewsArticle',
-                    'mainEntityOfPage' => [
-                        '@type' => 'WebPage',
-                        '@id' => url()->current(),
-                        'description' => $post->description,
-                    ],
-                    'headline' => $postTitle,
-                    'image' => [
-                        '@type' => 'ImageObject',
-                        'url' => $image,
-                    ],
-                    'author' => [
-                        '@type' => 'Person',
-                        'url' => url()->current(),
-                        'name' => $post->editor->display_name ?? 'Tim Gema',
-                    ],
-                    'publisher' => [
-                        '@type' => 'Organization',
-                        'name' => 'www.gemasulawesi.com',
-                        'logo' => [
-                            '@type' => 'ImageObject',
-                            'url' => asset('frontend/img/favcion.png'),
-                        ],
-                    ],
-                    'headline' => $postTitle,
-                    'image' => $image,
-                    'datePublished' => $post->created_at,
-                    'dateModified' => $post->updated_at,
-                ];
-                $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-                echo '<script type="application/ld+json">
-                ' . $jsonLD. '
-            </script>';
-            }
-        @endphp
-
-        {{-- breadcrumb --}}
-        @php
-            $jsonLDData = [
-                '@context' => 'http://schema.org/',
-                '@type' => 'WebSite',
-                'url' => 'https://www.gemasulawesi.com/',
-                'potentialAction' => [
-                    [
-                        '@type' => 'SearchAction',
-                        'target' => 'https://www.gemasulawesi.com/search?q={search_term_string}',
-                        'query-input' => 'required name=search_term_string',
-                    ],
-                ],
-            ];
-
-            $artikel = [
-                '@context' => 'http://schema.org/',
-                '@type' => 'BreadcrumbList',
-                'itemListElement' => [
-                    [
-                        '@type' => 'ListItem',
-                        'position' => 1,
-                        'item' => [
-                            '@id' => url()->current(),
-                            'name' => 'Home',
-                        ],
-                    ],
-                    [
-                        '@type' => 'ListItem',
-                        'position' => 2,
-                        'item' => [
-                            '@id' => url()->current(),
-                            'name' => $post->rubrik->rubrik_name,
-                        ],
-                    ],
-                ],
-            ];
-
-            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-            $artikelLDData = json_encode($artikel, JSON_PRETTY_PRINT);
-
-            if (request()->is('/*')) {
-                echo '<script type="application/ld+json">
-        ' . $jsonLD . '
-        </script>';
-            } else {
-                echo '<script type="application/ld+json">
-        ' . $artikelLDData . '
-        </script>';
-            }
-        @endphp
-    @endif
-        <script type="application/json">
-    {
-    "vars" : {
-    "gtag_id": "G-E4E99NJFQY",
-    "config" : {
-      "G-E4E99NJFQY": { "groups": "default" }
-    }
-    }
-    }
-    </script>
-    </amp-analytics>
-    {{-- <!-- Google Tag Manager -->
-<amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-WN2SMDTD&gtm.url=SOURCE_URL" data-credentials="include"></amp-analytics> --}}
-
-    {{-- <!-- Google Tag Manager -->
-<amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-W42TZJVB&gtm.url=SOURCE_URL" data-credentials="include"></amp-analytics> --}}
-
-    <!-- Bg Overlay -->
-    <div class="content-overlay"></div>
-
+    <!-- Google Tag Manager -->
+    <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F" data-credentials="include" />
     @php
-        $rubriks = Rubrik::get();
+        $jsonLDData = [
+            'vars' => [
+                'published_date' => $post->created_at,
+                'rubrik' => $post->rubrik->rubrik_name,
+                'penulis' => $post->author->display_name,
+                'editor' => '',
+                'id' => $post->post_id,
+                'source' => '',
+                'topic' => '',
+                'tag' => $post->tags,
+                'penulis_id' => $post->author->author_id,
+                'editor_id' => $post->author->editor_id,
+            ],
+        ];
+        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+        echo '<script type="application/json">' . $jsonLD . '</script>';
     @endphp
 
+    </amp-analytics>
+
+    <!-- Google Ads -->
+    <amp-auto-ads type="adsense" data-ad-client="ca-pub-7210727750015750"></amp-auto-ads>
+
+    <div class="content-overlay"></div>
     <main class="main oh" id="main"style="background: #fff">
         <!-- Trending Now -->
         @if ($breakingNews->count() > 0)
@@ -2754,8 +2621,8 @@
                     </div>
                     <div class="flex-item">
                         <!-- Logo -->
-                        <amp-img src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
-                            alt="logo" height="50" width="250">
+                        <amp-img src="{{ Storage::url('logo/') . get_setting('logo_web') }}" alt="logo"
+                            height="50" width="250">
                     </div>
                     <div class="flex-item" style="">
                         <div class="d-flex" style="gap: 20px;position: relative;">
@@ -2832,8 +2699,7 @@
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none"
                             style="height: 100%; margin-top: 5px;">
                             <amp-img class="logo__img" style="" height="30" width="120"
-                                src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                alt="logo">
+                                src="{{ Storage::url('logo/') . get_setting('logo_web') }}" alt="logo">
                         </a>
                     </div> <!-- end flex-parent -->
 
@@ -2863,10 +2729,10 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
                             <div class="footer__logo">
-                                <a target="_self" href="https://zonasurabayaraya.pikiran-rakyat.com/">
+                                <a target="_self" href="{{ $baseUrl }}">
                                     <amp-img class=" ls-is-cached lazyloaded"
-                                        src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
-                                        alt="Zona Surabaya Raya" height="100" width="300">
+                                        src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
+                                        alt="Gema Sulawesi" height="100" width="300">
                                 </a>
                             </div>
                             <div class="footer__contact">

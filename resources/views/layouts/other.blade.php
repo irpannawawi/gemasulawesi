@@ -5,6 +5,8 @@
     use Carbon\Carbon;
     $breakingNews = App\Models\Breakingnews::get();
     use App\Models\Rubrik;
+    use App\Models\Navigation;
+
     $baseUrl = URL::to('');
 @endphp
 
@@ -13,11 +15,11 @@
         if (request()->is('search')) {
             $metaTitle = 'Gema Sulawesi Search';
             $metaDeskripsi = 'Gema Sulawesi Search';
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('indeks-berita')) {
             $metaTitle = 'Gema Sulawesi Indeks';
             $metaDeskripsi = 'Gema Sulawesi Indeks';
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('topik-khusus/detail/*')) {
             $metaTitle = $topik->topic_name;
             $metaDeskripsi = $topik->topic_description;
@@ -25,38 +27,38 @@
         } elseif (request()->is('tentang-kami')) {
             $metaTitle = 'Tentang Kami';
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('kode-etik')) {
             $metaTitle = 'Kode Etik';
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('redaksi')) {
             $metaTitle = 'Redaksi';
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('kode-perilaku-pers')) {
             $metaTitle = 'Redaksi';
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('pedoman-media-siber')) {
             $metaTitle = 'Pedoman Media Siber';
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('perlindungan-data-pengguna')) {
             $metaTitle = 'Perlindungan Data Pengguna';
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('lowongan-kerja')) {
             $metaTitle = 'Lowongan Kerja';
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('extra/*')) {
             $extra_key = $extra->key;
             $extra_label = Str::replace('-', ' ', explode('--', $extra->key)[1]);
             $extra_label = Str::ucfirst($extra_label);
             $metaTitle = $extra_label;
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = asset('assets/frontend/img/cropped-LOGO-GEMAS-1-768x164.png.webp');
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         }
         $subTitle = get_setting('sub_title');
     @endphp
@@ -64,8 +66,8 @@
     <!-- s: open graph -->
     <title itemprop="name">{{ $metaTitle . ' - ' . $subTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
-    <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
-    <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
+    <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
+    <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="@yield('title')" />
@@ -218,15 +220,11 @@
     <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="{{ url('assets/frontend') }}/img/favicon.png">
-    <link rel="icon" href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-32x32.png"
-        sizes="32x32" />
-    <link rel="icon" href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-192x192.png"
-        sizes="192x192" />
-    <link rel="apple-touch-icon"
-        href="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-180x180.png" />
-    <meta name="msapplication-TileImage"
-        content="https://www.gemasulawesi.com/wp-content/uploads/2021/07/cropped-favicon-270x270.png" />
+    <link rel="shortcut icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
+    <link rel="icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" sizes="32x32" />
+    <link rel="icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" sizes="192x192" />
+    <link rel="apple-touch-icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
+    <meta name="msapplication-TileImage" content="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
 
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -338,10 +336,9 @@
                     <div class="flex-child text-center mt-3 mb-3">
                         <!-- Logo -->
                         <a href="{{ url('') }}" class="logo">
-                            <img class="logo__img"
-                                src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
-                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp 1x, img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
-                                alt="logo" width="280" height="280">
+                            <img class="logo__img" src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
+                                srcset="{{ Storage::url('logo/') . get_setting('logo_web') }} 1x" alt="logo"
+                                width="280" height="280">
                         </a>
                     </div>
 
@@ -408,13 +405,44 @@
                         <!-- Nav-wrap -->
                         <nav class="flex-child d-none d-lg-block">
                             <ul class="nav__menu">
-                                @foreach ($rubriks->take(get_setting('count_rubrik')) as $rubrik)
-                                    <li>
-                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                            class="link-nav__menu"
-                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                    </li>
+                                <li>
+                                    <a href="{{ url('/') }}" class="link-nav__menu"
+                                        style="white-space: nowrap;">Home</a>
+                                </li>
+                                @php
+                                    $navs = Navigation::orderBy('order_priority', 'asc')->get();
+                                @endphp
+                                @foreach ($navs as $nav)
+                                    @if ($nav->nav_type == 'normal')
+                                        <li>
+                                            <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}"
+                                                class="link-nav__menu"
+                                                style="white-space: nowrap;">{{ $nav->navlinks[0]->rubrik->rubrik_name }}</a>
+                                        </li>
+                                    @else
+                                        <li style="margin-left: 9px; margin-right:9px;">
+                                            <div class="nav__right-item nav__lainnya d-none d-lg-block">
+                                                <ul class="nav__menu menu__lainnya">
+                                                    <li class="dropdown__rubrik">
+                                                        <a href="javascript:;">
+                                                            {{ $nav->nav_name }}
+                                                        </a>
+                                                        <ul class="submenu">
+                                                            @foreach ($nav->navlinks as $links)
+                                                                <li>
+                                                                    <a href="{{ route('category', ['rubrik_name' => Str::slug($links->rubrik->rubrik_name)]) }}"
+                                                                        class="link-submenu"
+                                                                        style="white-space: nowrap;">{{ $links->rubrik->rubrik_name }}</a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    @endif
                                 @endforeach
+                                <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
                                 <li>
                                     <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
                                 </li>
@@ -424,38 +452,16 @@
 
                         <!-- Logo Mobile -->
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
-                            <img class="logo__img"
-                                src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                srcset="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 1x, {{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp 2x"
+                            <img class="logo__img" src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
+                                srcset="{{ Storage::url('logo/') . get_setting('logo_web') }} 1x, {{ Storage::url('logo/') . get_setting('logo_web') }} 2x"
                                 alt="logo">
                         </a>
                         <!-- Nav Right -->
                         <div class="flex-child">
                             <div class="nav__right">
-                                <!-- lainnya -->
-                                @if ($rubriks->count() > get_setting('count_rubrik'))
-                                    <div class="nav__right-item nav__lainnya d-none d-lg-block">
-                                        <ul class="nav__menu menu__lainnya">
-                                            <li class="dropdown__rubrik">
-                                                <a href="javascript:;">
-                                                    <i class="subicon fa-solid fa-caret-down"></i>
-                                                </a>
-                                                <ul class="submenu">
-                                                    @foreach ($rubriks->slice(get_setting('count_rubrik')) as $rubrik)
-                                                        <li>
-                                                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                                                class="link-submenu"
-                                                                style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endif
                                 <!-- Search -->
                                 <div class="nav__right-item nav__search d-block d-lg-none">
-                                    <a href="javascript:;" class="nav__search-trigger">
+                                    <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
                                         <i class="ui-search nav__search-trigger-icon"></i>
                                     </a>
                                     <div class="nav__search-box">
@@ -484,7 +490,7 @@
                         <!-- Categories -->
                         @foreach ($rubriks as $rubrik)
                             <li>
-                                <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                <a href="{{ route('category', ['rubrik_name' => Str::slug($rubrik->rubrik_name)]) }}"
                                     style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                             </li>
                         @endforeach
@@ -509,8 +515,8 @@
                             <div class="footer__logo">
                                 <a target="_self" href="{{ url('/') }}">
                                     <img class=" ls-is-cached lazyloaded"
-                                        data-src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
-                                        src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp?v=907"
+                                        data-src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
+                                        src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
                                         alt="{{ get_setting('title') }}" data-loaded="true">
                                 </a>
                             </div>

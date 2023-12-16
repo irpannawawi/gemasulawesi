@@ -58,9 +58,9 @@ class SettingsController extends Controller
 
             // Pastikan file ada sebelum melakukan operasi upload
             if ($request->hasFile('logo_web')) {
-                
+
                 $old = Setting::where('key', 'logo_web')->first();
-                Storage::delete('public/logo/'.$old->favicon);
+                Storage::delete('public/logo/' . $old->favicon);
                 $file = $request->file('logo_web');
                 $imageName = date('dmY') . '.' . $file->getClientOriginalExtension();
                 $request->file('logo_web')->storeAs('public/logo', $imageName);
@@ -71,14 +71,13 @@ class SettingsController extends Controller
             if ($request->hasFile('favicon')) {
                 //remove old image
                 $old = Setting::where('key', 'favicon')->first();
-                Storage::delete('public/favicon/'.$old->favicon);
+                Storage::delete('public/favicon/' . $old->favicon);
                 $file = $request->file('favicon');
-                $faviconImageName = $file->getClientOriginalName();
+                $faviconImageName = date('dmY') . '.' . $file->getClientOriginalName();
                 $file->storeAs('public/favicon', $faviconImageName);
 
                 $res = Setting::updateOrCreate(['key' => 'favicon'], ['value' => $faviconImageName]);
             }
-            
         } elseif ($action == 'updatefooter') {
             foreach ($request->all() as $key => $value) {
                 $value = $value ?: null;
@@ -93,7 +92,7 @@ class SettingsController extends Controller
         $request->validate([
             'key' => 'required|regex:/^[A-Za-z0-9\s]+$/',
         ]);
-        Setting::create(['key'=>'extra--'.str_replace(' ', '-', $request->key)]);
+        Setting::create(['key' => 'extra--' . str_replace(' ', '-', $request->key)]);
         return redirect()->back()->with('success', 'Berhasil menambah menu baru');
     }
 }

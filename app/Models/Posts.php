@@ -69,7 +69,7 @@ class Posts extends Model implements Sitemapable
     {
         // Return with fine-grained control:
         return Url::create("id/".Str::slug($this->rubrik->rubrik_name)."/".$this->post_id."/".$this->slug)
-            ->setLastModificationDate(Carbon::create($this->updated_at))
+            ->setLastModificationDate(Carbon::create($this->published_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
             ->setPriority(0.5);
     }

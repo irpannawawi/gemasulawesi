@@ -2521,7 +2521,7 @@
 
 <body class="style-politics">
     <!-- Google Tag Manager -->
-    <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F&gtm" data-credentials="include" />
+    <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F" data-credentials="include" />
     @php
         $jsonLDData = [
             'vars' => [

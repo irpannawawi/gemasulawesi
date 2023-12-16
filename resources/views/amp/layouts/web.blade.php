@@ -12,7 +12,7 @@
     if (request()->is('/')) {
         $metaTitle = get_setting('title') . ' - ' . $subTitle;
         $metaDeskripsi = get_setting('meta_google');
-        $metaImage = @Storage::url('logo/') . get_setting('logo_web');
+        $metaImage = Storage::url('logo/') . get_setting('logo_web');
         $type = 'website';
     } else {
         $postTitle = $post->title ?? '';
@@ -53,11 +53,178 @@
     <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
     <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
 
     <script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
     </script>
     <script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
     <script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>
+
+    @if (!empty($post))
+        @php
+            $category = $post->rubrik->rubrik_name;
+            if (request()->is('/')) {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Homepage",
+                        "content_category": ""
+                    }];
+                </script>';
+            } else {
+                echo '<script>
+                    dataLayer = [{
+                        "breadcrumb_detail": "Article Page",
+                        "content_category": "'. $category .'"
+                    }];
+                </script>';
+            }
+        @endphp
+
+        @php
+            $excludedUrls = ['search/', 'indeks-berita/', 'topik-khusus/detail/*', 'tentang-kami', 'kode-etik'];
+
+            $shouldDisplayJsonLD = true;
+            foreach ($excludedUrls as $url) {
+                if (str_contains(request()->url(), $url)) {
+                    $shouldDisplayJsonLD = false;
+                    break;
+                }
+            }
+
+            if ($shouldDisplayJsonLD) {
+                preg_match('/<img src="(.*?)">/', $post->article, $matches);
+                $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+                $image = asset($imagePath);
+                $segments = request()->segments();
+                $lastSegment = end($segments);
+                $postTitle = $post->title ?? '';
+                $jsonLDData = [
+                    '@context' => 'http://schema.org/',
+                    '@type' => 'NewsArticle',
+                    'mainEntityOfPage' => [
+                        '@type' => 'WebPage',
+                        '@id' => url()->current(),
+                        'description' => $post->description,
+                    ],
+                    'headline' => $postTitle,
+                    'image' => [
+                        '@type' => 'ImageObject',
+                        'url' => $image,
+                    ],
+                    'author' => [
+                        '@type' => 'Person',
+                        'url' => url()->current(),
+                        'name' => $post->editor->display_name ?? 'Tim Gema',
+                    ],
+                    'publisher' => [
+                        '@type' => 'Organization',
+                        'name' => 'www.gemasulawesi.com',
+                        'logo' => [
+                            '@type' => 'ImageObject',
+                            'url' => Storage::url('favicon/') . get_setting('favicon'),
+                        ],
+                    ],
+                    'headline' => $postTitle,
+                    'image' => $image,
+                    'datePublished' => $post->created_at,
+                    'dateModified' => $post->updated_at,
+                ];
+                $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+                echo '<script type="application/ld+json">
+                ' . $jsonLD. '
+                </script>';
+            }
+        @endphp
+        {{-- breadcrumb --}}
+        @php
+            $jsonLDData = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'WebSite',
+                'url' => 'https://www.gemasulawesi.com/',
+                'potentialAction' => [
+                    [
+                        '@type' => 'SearchAction',
+                        'target' => 'https://www.gemasulawesi.com/search?q={search_term_string}',
+                        'query-input' => 'required name=search_term_string',
+                    ],
+                ],
+            ];
+
+            $artikel = [
+                '@context' => 'http://schema.org/',
+                '@type' => 'BreadcrumbList',
+                'itemListElement' => [
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 1,
+                        'item' => [
+                            '@id' => url()->current(),
+                            'name' => 'Home',
+                        ],
+                    ],
+                    [
+                        '@type' => 'ListItem',
+                        'position' => 2,
+                        'item' => [
+                            '@id' => url()->current(),
+                            'name' => $post->rubrik->rubrik_name,
+                        ],
+                    ],
+                ],
+            ];
+
+            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+            $artikelLDData = json_encode($artikel, JSON_PRETTY_PRINT);
+
+            if (request()->is('/*')) {
+                echo '<script type="application/ld+json">
+                ' . $jsonLD . '
+                </script>';
+            } else {
+                echo '<script type="application/ld+json">
+                ' . $artikelLDData . '
+                </script>';
+            }
+        @endphp
+    @endif
+
+    @php
+        preg_match('/<img src="(.*?)">/', $post->article, $matches);
+        $imagePath = $matches[1] ?? '';
+        $image = asset($imagePath);
+        $segments = request()->segments();
+        $lastSegment = end($segments);
+        $postTitle = str_replace('-', ' ', $lastSegment);
+        $jsonLDData = [
+            '@context' => 'http://schema.org/',
+            '@type' => 'Organization',
+            'name' => 'www.gemasulawesi.com',
+            'url' => 'https://www.gemasulawesi.com',
+            'logo' => Storage::url('favicon/') . get_setting('favicon'),
+            'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
+        ];
+        $jsonPost = [
+            '@context' => 'http://schema.org/',
+            '@type' => 'WebPage',
+            'headline' => $postTitle,
+            'url' => url()->current(),
+            'datePublished' => $post->created_at,
+            'image' => $image,
+            'thumbnailUrl' => $image,
+        ];
+
+        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+        $jsonP = json_encode($jsonPost, JSON_PRETTY_PRINT);
+        if (request()->is('/*')) {
+            echo '<script type="application/ld+json">
+        ' . $jsonLD . '
+        </script>';
+        } else {
+            echo '<script type="application/ld+json">
+        ' . $jsonP . '
+        </script>';
+        }
+    @endphp
 
 
     <style amp-boilerplate>
@@ -2465,14 +2632,30 @@
 
 <body class="style-politics">
     <!-- Google Tag Manager -->
-    {{-- <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F&gtm" data-credentials="include" />
-    {
+    <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F&gtm" data-credentials="include" />
     @php
-        $jsonLD = $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-        echo '<script type="application/ld+json">' . $jsonLD . '</script>';
+        $jsonLDData = [
+            'vars' => [
+                'published_date' => $post->created_at,
+                'rubrik' => $post->rubrik->rubrik_name,
+                'penulis' => $post->author->display_name,
+                'editor' => '',
+                'id' => $post->post_id,
+                'source' => '',
+                'topic' => '',
+                'tag' => $post->tags,
+                'penulis_id' => $post->author->author_id,
+                'editor_id' => $post->author->editor_id,
+            ],
+        ];
+        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+        echo '<script type="application/json">' . $jsonLD . '</script>';
     @endphp
-    }
-    </amp-analytics> --}}
+
+    </amp-analytics>
+
+    <!-- Google Ads -->
+    <amp-auto-ads type="adsense" data-ad-client="ca-pub-7210727750015750"></amp-auto-ads>
 
     <div class="content-overlay"></div>
     <main class="main oh" id="main"style="background: #fff">
@@ -2549,16 +2732,16 @@
                     </div>
                     <div class="flex-item">
                         <!-- Logo -->
-                        <amp-img src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-2048x437.png.webp"
-                            alt="logo" height="50" width="250">
+                        <amp-img src="Storage::url('logo/') . get_setting('logo_web').webp" alt="logo"
+                            height="50" width="250">
                     </div>
                     <div class="flex-item" style="">
                         <div class="d-flex" style="gap: 20px;position: relative;">
                             <div class="socials socials--nobase socials--nav">
                                 <a class="social social-facebook" href="https://web.facebook.com/gemasulawesi/"
                                     target="_blank" aria-label="facebook">
-                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/facebook.png" width="20"
-                                        height="20"></amp-img>
+                                    <amp-img src="{{ url('assets/frontend/img/icons/') }}/facebook.png"
+                                        width="20" height="20"></amp-img>
 
                                 </a>
                                 <a class="social social-twitter" href="https://twitter.com/gemasulawesi"
@@ -2627,8 +2810,7 @@
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none"
                             style="height: 100%; margin-top: 5px;">
                             <amp-img class="logo__img" style="" height="30" width="120"
-                                src="{{ url('assets/frontend') }}/img/cropped-LOGO-GEMAS-1-768x164.png.webp"
-                                alt="logo">
+                                src="{{ Storage::url('logo/') . get_setting('logo_web') }}" alt="logo">
                         </a>
                     </div> <!-- end flex-parent -->
 
@@ -2660,7 +2842,7 @@
                             <div class="footer__logo">
                                 <a target="_self" href="{{ $baseUrl }}">
                                     <amp-img class=" ls-is-cached lazyloaded"
-                                        src="{{ @Storage::url('logo/') . get_setting('logo_web') }}"
+                                        src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
                                         alt="Gema Sulawesi" height="100" width="300">
                                 </a>
                             </div>

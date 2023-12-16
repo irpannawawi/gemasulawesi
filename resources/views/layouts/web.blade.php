@@ -50,8 +50,8 @@
     <!-- s: open graph -->
     <title itemprop="name">{{ $metaTitle }}</title>
     <link href="{{ $metaImage }}" itemprop="image" />
-    <link href="{{ url('assets/frontend/img') }}/cropped-favicon-32x32.png?v=892" rel="icon" type="image/ico" />
-    <link rel="apple-touch-icon-precomposed" href="{{ url('assets/frontend/img') }}/cropped-favicon-192x192.png?v=892">
+    <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
+    <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
     <link rel="canonical" href="{{ url()->current() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="{{ $metaTitle }}" />
@@ -658,26 +658,26 @@
                                                 style="white-space: nowrap;">{{ $nav->navlinks[0]->rubrik->rubrik_name }}</a>
                                         </li>
                                     @else
-                                    <li style="margin-left: 9px; margin-right:9px;">
-                                        <div class="nav__right-item nav__lainnya d-none d-lg-block">
-                                            <ul class="nav__menu menu__lainnya">
-                                                <li class="dropdown__rubrik">
-                                                    <a href="javascript:;">
-                                                        {{$nav->nav_name}}
-                                                    </a>
-                                                    <ul class="submenu">
-                                                        @foreach ($nav->navlinks as $links)
-                                                            <li>
-                                                                <a href="{{ route('category', ['rubrik_name' => Str::slug($links->rubrik->rubrik_name)]) }}"
-                                                                    class="link-submenu"
-                                                                    style="white-space: nowrap;">{{ $links->rubrik->rubrik_name }}</a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                        <li style="margin-left: 9px; margin-right:9px;">
+                                            <div class="nav__right-item nav__lainnya d-none d-lg-block">
+                                                <ul class="nav__menu menu__lainnya">
+                                                    <li class="dropdown__rubrik">
+                                                        <a href="javascript:;">
+                                                            {{ $nav->nav_name }}
+                                                        </a>
+                                                        <ul class="submenu">
+                                                            @foreach ($nav->navlinks as $links)
+                                                                <li>
+                                                                    <a href="{{ route('category', ['rubrik_name' => Str::slug($links->rubrik->rubrik_name)]) }}"
+                                                                        class="link-submenu"
+                                                                        style="white-space: nowrap;">{{ $links->rubrik->rubrik_name }}</a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
                                     @endif
                                 @endforeach
                                 <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
@@ -820,17 +820,19 @@
                                         rel="noreferred">Lowongan Kerja</a>
                                 </div>
                                 @php
-                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')->orderBy('setting_id', 'asc')->get();
+                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')
+                                        ->orderBy('setting_id', 'asc')
+                                        ->get();
                                 @endphp
                                 @foreach ($extras as $extra)
-                                @php
-                                    $extra_key = $extra->key;
-                                    $extra_label = Str::replace('-', ' ', explode('--', $extra->key)[1]);
-                                    $extra_label = Str::ucfirst($extra_label);
-                                @endphp
+                                    @php
+                                        $extra_key = $extra->key;
+                                        $extra_label = Str::replace('-', ' ', explode('--', $extra->key)[1]);
+                                        $extra_label = Str::ucfirst($extra_label);
+                                    @endphp
                                     <div class="footer__item">
-                                        <a href="{{ route('extra', ['id'=>$extra->setting_id]) }}" class="footer__link"
-                                            rel="noreferred">{{$extra_label}}</a>
+                                        <a href="{{ route('extra', ['id' => $extra->setting_id]) }}"
+                                            class="footer__link" rel="noreferred">{{ $extra_label }}</a>
                                     </div>
                                 @endforeach
                             </div>

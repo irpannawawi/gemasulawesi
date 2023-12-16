@@ -235,6 +235,14 @@
                         <p>Ads</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('profile') }}" class="nav-link">
+                        <i class="nav-icon fa fa-user"></i>
+                        <p>
+                            Profile
+                        </p>
+                    </a>
+                </li>
                 @if (Auth::user()->role != 'author')
                     <li class="nav-item">
                         <a href="{{ route('users') }}" class="nav-link">
@@ -244,6 +252,7 @@
                             </p>
                         </a>
                     </li>
+                    
 
                     <li class="nav-item">
                         <a href="javascript:void(0)" class="nav-link">

@@ -14,7 +14,8 @@
     {{-- <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/plugins/fontawesome-free/css/all.min.css"> --}}
     <!-- Theme style -->
     {{-- <link rel="stylesheet" href="{{ url('assets/AdminLTE') }}/dist/css/adminlte.min.css"> --}}
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('extra-css')
@@ -145,11 +146,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @if ($message = Session::get('success'))
         <script>
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ $message }},
-            })
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ $message }}',
+                })
+            });
         </script>
     @endif
     @if ($message = Session::get('error'))

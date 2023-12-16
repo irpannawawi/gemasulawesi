@@ -34,7 +34,8 @@
                             <td>{{ $user->display_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
-                            <td class="text-center"><img class="mx-auto" width="70"
+                            <td class="text-center">
+                                <img class="mx-auto" width="70"
                                     src="{{ Storage::url('public/avatars/' . $user->avatar) }}" alt=""></td>
                             <td>
                                 <a class="btn btn-info" href="{{ route('users.edit', ['id' => $user->id]) }}">Edit</a>

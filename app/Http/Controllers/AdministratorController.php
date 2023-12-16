@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdministratorController extends Controller
@@ -13,6 +14,13 @@ class AdministratorController extends Controller
         $data['users'] = User::orderBy('id', 'desc')->get();
         return view('administrator.view', $data);
     }
+
+    public function profile()
+    {
+        $data['user'] = User::find(Auth::user()->id);
+        return view('administrator.profile', $data);
+    }
+
 
 
 
@@ -70,10 +78,17 @@ class AdministratorController extends Controller
         $user->username =  $request->username;
         $user->display_name =  $request->display_name;
         $user->email =  $request->email;
-        $user->role =  $request->role;
+        if($request->role!=null){
+            $user->role =  $request->role;
+        }
         $user->avatar =  $filename;
         if ($user->save()) {
-            return redirect()->route('users')->with('success', 'Berhasil merubah user');
+            if($request->reff=='profile')
+            {
+                return redirect()->back()->with('success', 'Berhasil merubah profil');
+            }else{
+                return redirect()->route('users')->with('success', 'Berhasil merubah user');
+            }
         }
     }
 

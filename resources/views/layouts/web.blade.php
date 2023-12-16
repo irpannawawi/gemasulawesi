@@ -442,6 +442,9 @@
         gtag('config', 'G-E4E99NJFQY');
     </script>
 
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7210727750015750"
+        crossorigin="anonymous"></script>
+
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->

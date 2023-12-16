@@ -2465,8 +2465,14 @@
 
 <body class="style-politics">
     <!-- Google Tag Manager -->
-    <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F&gtm.url=SOURCE_URL"
-        data-credentials="include"></amp-analytics>
+    {{-- <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F&gtm" data-credentials="include" />
+    {
+    @php
+        $jsonLD = $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+        echo '<script type="application/ld+json">' . $jsonLD . '</script>';
+    @endphp
+    }
+    </amp-analytics> --}}
 
     <div class="content-overlay"></div>
     <main class="main oh" id="main"style="background: #fff">

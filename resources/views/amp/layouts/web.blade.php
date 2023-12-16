@@ -62,35 +62,7 @@
 
     @if (!empty($post))
         @php
-            $category = $post->rubrik->rubrik_name;
-            if (request()->is('/')) {
-                echo '<script>
-                    dataLayer = [{
-                        "breadcrumb_detail": "Homepage",
-                        "content_category": ""
-                    }];
-                </script>';
-            } else {
-                echo '<script>
-                    dataLayer = [{
-                        "breadcrumb_detail": "Article Page",
-                        "content_category": "'. $category .'"
-                    }];
-                </script>';
-            }
-        @endphp
-
-        @php
-            $excludedUrls = ['search/', 'indeks-berita/', 'topik-khusus/detail/*', 'tentang-kami', 'kode-etik'];
-
             $shouldDisplayJsonLD = true;
-            foreach ($excludedUrls as $url) {
-                if (str_contains(request()->url(), $url)) {
-                    $shouldDisplayJsonLD = false;
-                    break;
-                }
-            }
-
             if ($shouldDisplayJsonLD) {
                 preg_match('/<img src="(.*?)">/', $post->article, $matches);
                 $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
@@ -99,18 +71,13 @@
                 $lastSegment = end($segments);
                 $postTitle = $post->title ?? '';
                 $jsonLDData = [
-                    '@context' => 'http://schema.org/',
+                    '@context' => 'https://schema.org',
                     '@type' => 'NewsArticle',
-                    'mainEntityOfPage' => [
-                        '@type' => 'WebPage',
-                        '@id' => url()->current(),
-                        'description' => $post->description,
-                    ],
+                    'mainEntityOfPage' => url()->current(),
+                    'datePublished' => $post->created_at,
+                    'dateModified' => $post->updated_at,
+                    'description' => $post->description,
                     'headline' => $postTitle,
-                    'image' => [
-                        '@type' => 'ImageObject',
-                        'url' => $image,
-                    ],
                     'author' => [
                         '@type' => 'Person',
                         'url' => url()->current(),
@@ -124,10 +91,22 @@
                             'url' => Storage::url('favicon/') . get_setting('favicon'),
                         ],
                     ],
-                    'headline' => $postTitle,
-                    'image' => $image,
-                    'datePublished' => $post->created_at,
-                    'dateModified' => $post->updated_at,
+                    'image' => [
+                        '@type' => 'ImageObject',
+                        'url' => $image,
+                    ],
+                    'vars' => [
+                        'published_date' => $post->created_at,
+                        'rubrik' => $post->rubrik->rubrik_name,
+                        'penulis' => $post->author->display_name,
+                        'editor' => '',
+                        'id' => $post->post_id,
+                        'source' => '',
+                        'topic' => '',
+                        'tag' => $post->tags,
+                        'penulis_id' => $post->author->author_id,
+                        'editor_id' => $post->author->editor_id,
+                    ],
                 ];
                 $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
                 echo '<script type="application/ld+json">
@@ -135,97 +114,7 @@
                 </script>';
             }
         @endphp
-        {{-- breadcrumb --}}
-        @php
-            $jsonLDData = [
-                '@context' => 'http://schema.org/',
-                '@type' => 'WebSite',
-                'url' => 'https://www.gemasulawesi.com/',
-                'potentialAction' => [
-                    [
-                        '@type' => 'SearchAction',
-                        'target' => 'https://www.gemasulawesi.com/search?q={search_term_string}',
-                        'query-input' => 'required name=search_term_string',
-                    ],
-                ],
-            ];
-
-            $artikel = [
-                '@context' => 'http://schema.org/',
-                '@type' => 'BreadcrumbList',
-                'itemListElement' => [
-                    [
-                        '@type' => 'ListItem',
-                        'position' => 1,
-                        'item' => [
-                            '@id' => url()->current(),
-                            'name' => 'Home',
-                        ],
-                    ],
-                    [
-                        '@type' => 'ListItem',
-                        'position' => 2,
-                        'item' => [
-                            '@id' => url()->current(),
-                            'name' => $post->rubrik->rubrik_name,
-                        ],
-                    ],
-                ],
-            ];
-
-            $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-            $artikelLDData = json_encode($artikel, JSON_PRETTY_PRINT);
-
-            if (request()->is('/*')) {
-                echo '<script type="application/ld+json">
-                ' . $jsonLD . '
-                </script>';
-            } else {
-                echo '<script type="application/ld+json">
-                ' . $artikelLDData . '
-                </script>';
-            }
-        @endphp
     @endif
-
-    @php
-        preg_match('/<img src="(.*?)">/', $post->article, $matches);
-        $imagePath = $matches[1] ?? '';
-        $image = asset($imagePath);
-        $segments = request()->segments();
-        $lastSegment = end($segments);
-        $postTitle = str_replace('-', ' ', $lastSegment);
-        $jsonLDData = [
-            '@context' => 'http://schema.org/',
-            '@type' => 'Organization',
-            'name' => 'www.gemasulawesi.com',
-            'url' => 'https://www.gemasulawesi.com',
-            'logo' => Storage::url('favicon/') . get_setting('favicon'),
-            'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
-        ];
-        $jsonPost = [
-            '@context' => 'http://schema.org/',
-            '@type' => 'WebPage',
-            'headline' => $postTitle,
-            'url' => url()->current(),
-            'datePublished' => $post->created_at,
-            'image' => $image,
-            'thumbnailUrl' => $image,
-        ];
-
-        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-        $jsonP = json_encode($jsonPost, JSON_PRETTY_PRINT);
-        if (request()->is('/*')) {
-            echo '<script type="application/ld+json">
-        ' . $jsonLD . '
-        </script>';
-        } else {
-            echo '<script type="application/ld+json">
-        ' . $jsonP . '
-        </script>';
-        }
-    @endphp
-
 
     <style amp-boilerplate>
         body {
@@ -2732,7 +2621,7 @@
                     </div>
                     <div class="flex-item">
                         <!-- Logo -->
-                        <amp-img src="Storage::url('logo/') . get_setting('logo_web').webp" alt="logo"
+                        <amp-img src="{{ Storage::url('logo/') . get_setting('logo_web') }}" alt="logo"
                             height="50" width="250">
                     </div>
                     <div class="flex-item" style="">

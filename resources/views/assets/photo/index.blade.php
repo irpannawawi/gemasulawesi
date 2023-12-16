@@ -14,65 +14,61 @@
                 <a href="{{ route('assets.photo.index') }}" class="btn btn-default btn-sm"><i class="fa fa-reload"></i>
                     Refresh</a>
             </div>
-            
-            
+
+
             <div class="float-right">
-                <form action="{{$_SERVER['REQUEST_URI']}}" id="formSearch">
+                <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
                     @csrf
                     <div class="form-inline">
                         <div class="form-group">
                             <select name="uploader" id="authorSelect" class=" form-control input-sm">
                                 <option value="">- All -</option>
                                 @foreach (\App\Models\User::all() as $user)
-                                
-                                <option {{$uploader==$user->id?'selected':''}} value="{{$user->id}}">{{$user->display_name}}</option>
+                                    <option {{ $uploader == $user->id ? 'selected' : '' }} value="{{ $user->id }}">
+                                        {{ $user->display_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <input id="input_search" name="q" type="text" class="form-control input-sm"
-                                placeholder="Search..." value="{{$q}}" autocomplete="off">
+                                placeholder="Search..." value="{{ $q }}" autocomplete="off">
                         </div>
                     </div>
 
                 </form>
-            </div> 
+            </div>
         </div>
         <div class="card-body">
             <div class="row box-photo-upload">
-                <div class="row">
-                    @foreach ($photos as $photo)
-                        <div id="{{ $photo->image_id }}" class="photo-list float-left">
-                            <div style="margin-left:15px;margin-bottom:15px;position:relative">
-                                <div class="img-thumbnail overlay-wrapper">
-                                    <img src="{{ url('storage/photos/' . $photo->asset->file_name) }}" alt=""
-                                        title="" class="img-responsive" style="width:214px;height:95px">
-                                    <div style="margin-top:5px">
-                                        <small title="">&nbsp;</small><br>
-                                        <small title="Uploader"><b>by: {{@$photo->uploader->display_name}}</b></small>
-                                        <br><small title="Zona Bandung">{{$photo->author}}</small>
-                                        <div class="float-right">
-                                            <a  href="{{route('assets.photo.edit', ['id'=>$photo->image_id])}}" class="btn btn-xs btn-default btn-edit"
-                                                 title="Edit"><i class="fa fa-edit"
-                                                    aria-hidden="true"></i>
-                                            </a><a type="button"
-                                                class="btn btn-xs btn-danger text-white bg-danger btn-hapus delete-btn"
-                                                href="{{ route('assets.photo.delete', ['id' => $photo->image_id]) }}"
-                                                title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                        </div>
-                                    </div>
+                @foreach ($photos as $photo)
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+                        <div class="card p-1">
+                            <div class="img-thumbnail">
+                                <img src="{{ url('storage/photos/' . $photo->asset->file_name) }}" alt=""
+                                    title="" class="img-responsive"
+                                    style="width:100%; height:95px; margin: 0px auto;">
+                            </div>
+                            <div class="img-detail">
+                                <small title="">{{@Str::substr($photo->caption, 0, 20)}}...</small><br>
+                                <small title="Uploader"><b>by: {{ @$photo->uploader->display_name }}</b></small>
+                            </div>
+                            <div class="img-action">
+                                <div class="float-right">
+                                    <a href="{{ route('assets.photo.edit', ['id' => $photo->image_id]) }}"
+                                        class="btn btn-xs btn-info btn-edit" title="Edit"><i
+                                            class="fa fa-edit" aria-hidden="true"></i>
+                                    </a> <a type="button"
+                                         class="btn btn-xs btn-danger text-white bg-danger btn-hapus delete-btn"
+                                        href="{{ route('assets.photo.delete', ['id' => $photo->image_id]) }}"
+                                        title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </div>
                             </div>
-                            <div class="imagedata" style="display:none">
-                                {"id":7381762,"caption":"","author":"","source":"","credit":"","src":"https:\/\/assets-e.promediateknologi.id\/photo\/p1\/120\/2023\/08\/25\/photostudio_1692978514289-877277862.jpg","crop":"","watermark":0,"status":1,"site_id":120,"created_date":"2023-08-25
-                                22:48:47","modified_date":"2023-08-25 22:48:47","created_by":"4488","modified_by":""}
-                            </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
             <div class="row mt-2">
-                {{$photos->links('vendor.pagination.bootstrap-4')}}
+                {{ $photos->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
     </div>
@@ -115,7 +111,7 @@
     </x-bs-modal>
 
 
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             $('#authorSelect').on('change', function() {

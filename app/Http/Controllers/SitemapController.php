@@ -20,6 +20,8 @@ class SitemapController extends Controller
         ->add(Topic::all())
         ->add(Posts::where('status', 'published')->orderBy('published_at', 'desc')->get())
         ->writeToFile(public_path('sitemap.xml'));
-        dd($res);
+        if($res){
+            return response()->json(['status'=>'ok']);
+        }
     }
 }

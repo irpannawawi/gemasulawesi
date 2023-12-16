@@ -5,6 +5,8 @@
     use Carbon\Carbon;
     $breakingNews = App\Models\Breakingnews::get();
     use App\Models\Rubrik;
+    use App\Models\Navigation;
+
     $baseUrl = URL::to('');
 @endphp
 
@@ -408,13 +410,44 @@
                         <!-- Nav-wrap -->
                         <nav class="flex-child d-none d-lg-block">
                             <ul class="nav__menu">
-                                @foreach ($rubriks->take(get_setting('count_rubrik')) as $rubrik)
-                                    <li>
-                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                            class="link-nav__menu"
-                                            style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                    </li>
+                                <li>
+                                    <a href="{{ url('/') }}" class="link-nav__menu"
+                                        style="white-space: nowrap;">Home</a>
+                                </li>
+                                @php
+                                    $navs = Navigation::orderBy('order_priority', 'asc')->get();
+                                @endphp
+                                @foreach ($navs as $nav)
+                                    @if ($nav->nav_type == 'normal')
+                                        <li>
+                                            <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}"
+                                                class="link-nav__menu"
+                                                style="white-space: nowrap;">{{ $nav->navlinks[0]->rubrik->rubrik_name }}</a>
+                                        </li>
+                                    @else
+                                        <li style="margin-left: 9px; margin-right:9px;">
+                                            <div class="nav__right-item nav__lainnya d-none d-lg-block">
+                                                <ul class="nav__menu menu__lainnya">
+                                                    <li class="dropdown__rubrik">
+                                                        <a href="javascript:;">
+                                                            {{ $nav->nav_name }}
+                                                        </a>
+                                                        <ul class="submenu">
+                                                            @foreach ($nav->navlinks as $links)
+                                                                <li>
+                                                                    <a href="{{ route('category', ['rubrik_name' => Str::slug($links->rubrik->rubrik_name)]) }}"
+                                                                        class="link-submenu"
+                                                                        style="white-space: nowrap;">{{ $links->rubrik->rubrik_name }}</a>
+                                                                </li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    @endif
                                 @endforeach
+                                <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
                                 <li>
                                     <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
                                 </li>
@@ -432,30 +465,9 @@
                         <!-- Nav Right -->
                         <div class="flex-child">
                             <div class="nav__right">
-                                <!-- lainnya -->
-                                @if ($rubriks->count() > get_setting('count_rubrik'))
-                                    <div class="nav__right-item nav__lainnya d-none d-lg-block">
-                                        <ul class="nav__menu menu__lainnya">
-                                            <li class="dropdown__rubrik">
-                                                <a href="javascript:;">
-                                                    <i class="subicon fa-solid fa-caret-down"></i>
-                                                </a>
-                                                <ul class="submenu">
-                                                    @foreach ($rubriks->slice(get_setting('count_rubrik')) as $rubrik)
-                                                        <li>
-                                                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                                                                class="link-submenu"
-                                                                style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @endif
                                 <!-- Search -->
                                 <div class="nav__right-item nav__search d-block d-lg-none">
-                                    <a href="javascript:;" class="nav__search-trigger">
+                                    <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
                                         <i class="ui-search nav__search-trigger-icon"></i>
                                     </a>
                                     <div class="nav__search-box">
@@ -484,7 +496,7 @@
                         <!-- Categories -->
                         @foreach ($rubriks as $rubrik)
                             <li>
-                                <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                <a href="{{ route('category', ['rubrik_name' => Str::slug($rubrik->rubrik_name)]) }}"
                                     style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                             </li>
                         @endforeach

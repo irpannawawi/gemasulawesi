@@ -3,6 +3,8 @@
 /public/hot
 /public/sitemap.xml
 /public/storage
+/public/storage/favicon/*
+/public/storage/logo/*
 /public/storage/photos/*
 /storage/*.key
 /storage/app/public/photos/thumbnails/*

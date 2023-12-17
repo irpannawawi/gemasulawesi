@@ -2728,13 +2728,6 @@
                 <div class="footer__widgets">
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
-                            <div class="footer__logo">
-                                <a target="_self" href="{{ $baseUrl }}">
-                                    <amp-img class=" ls-is-cached lazyloaded"
-                                        src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
-                                        alt="Gema Sulawesi" height="100" width="300">
-                                </a>
-                            </div>
                             <div class="footer__contact">
                                 <p>{{ get_setting('alamat') }}<br>
                                 </p>

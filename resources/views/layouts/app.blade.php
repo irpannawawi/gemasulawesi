@@ -70,6 +70,17 @@
             width: 50px;
             height: 50px;
         }
+
+        /* Ganti warna border pada input select2 menjadi hitam */
+        .select2-search--inline{
+            border: 0px !important;
+        }
+        .select2-search-search_field{
+            border: 0px !important;
+        }
+        [type='search']:focus{
+            --tw-ring-color: #b9b9b934;
+        }
     </style>
 
 </head>

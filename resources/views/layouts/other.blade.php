@@ -177,13 +177,13 @@
     {{-- breadcrumb --}}
     @php
         $jsonLDData = [
-            '@context' => 'http://schema.org/',
+            '@context' => 'https://schema.org',
             '@type' => 'WebSite',
-            'url' => url()->current(),
+            'url' => 'https://www.gemasulawesi.com/',
             'potentialAction' => [
                 [
                     '@type' => 'SearchAction',
-                    'target' => url()->current(),
+                    'target' => 'https://www.gemasulawesi.com/search?q={search_term_string}',
                     'query-input' => 'required name=search_term_string',
                 ],
             ],

@@ -258,7 +258,7 @@
             $lastSegment = end($segments);
             $postTitle = str_replace('-', ' ', $lastSegment);
             $jsonLDData = [
-                '@context' => 'http://schema.org/',
+                '@context' => 'https://schema.org',
                 '@type' => 'Organization',
                 'name' => 'www.gemasulawesi.com',
                 'url' => 'https://www.gemasulawesi.com',
@@ -266,7 +266,7 @@
                 'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
             ];
             $jsonPost = [
-                '@context' => 'http://schema.org/',
+                '@context' => 'https://schema.org',
                 '@type' => 'WebPage',
                 'headline' => $postTitle,
                 'url' => url()->current(),
@@ -323,7 +323,7 @@
                 $lastSegment = end($segments);
                 $postTitle = $post->title ?? '';
                 $jsonLDData = [
-                    '@context' => 'http://schema.org/',
+                    '@context' => 'https://schema.org',
                     '@type' => 'NewsArticle',
                     'mainEntityOfPage' => [
                         '@type' => 'WebPage',
@@ -363,7 +363,7 @@
         {{-- breadcrumb --}}
         @php
             $jsonLDData = [
-                '@context' => 'http://schema.org/',
+                '@context' => 'https://schema.org',
                 '@type' => 'WebSite',
                 'url' => 'https://www.gemasulawesi.com/',
                 'potentialAction' => [
@@ -376,7 +376,7 @@
             ];
 
             $artikel = [
-                '@context' => 'http://schema.org/',
+                '@context' => 'https://schema.org',
                 '@type' => 'BreadcrumbList',
                 'itemListElement' => [
                     [

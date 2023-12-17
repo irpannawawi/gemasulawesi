@@ -41,11 +41,6 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>Jumlah Rubrik</label>
-                                    <input type="number"name="count_rubrik" id="count_rubrik" class="form-control"
-                                        value="{{ @old('count_rubrik', $count_rubrik->value) }}">
-                                </div>
-                                <div class="form-group">
                                     <label>Nomor HP</label>
                                     <input type="number"name="no_hp" id="no_hp" class="form-control"
                                         value="{{ @old('no_hp', $no_hp->value) }}">
@@ -62,7 +57,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Favicon Website</label>
-                                    <img src="{{ @Storage::url('favicon/'.$favicon->value) }}" class="img-thumbnail mb-3">
+                                    <img src="{{ @Storage::url('favicon/'.$favicon->value) }}" class="img img-responsive mt-2 mb-2" style="max-width: 50px">
                                     <div class="custom-file">
                                         <input type="file" class="form-control" id="favicon" name="favicon">
                                         <label class="custom-file-label" for="favicon">Pilih file</label>
@@ -94,7 +89,7 @@
                                 <div class="form-group">
                                     <label>Logo Website</label>
                                     <img src="{{ @Storage::url('logo/' . $logo_web->value) }}"
-                                        class="img-thumbnail mb-3">
+                                        class="img-thumbnail mb-3" class="img img-responsive">
                                     <div class="custom-file">
                                         <input type="file" class="form-control" id="logo_web" name="logo_web">
                                         <label class="custom-file-label" for="logo_web">Pilih file</label>

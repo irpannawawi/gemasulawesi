@@ -4,6 +4,7 @@ use App\Http\Controllers\AdController;
 Route::middleware('auth')->group(function () {
     Route::resource('ads', AdController::class); 
     Route::get('/ads/create/big_hero', [AdController::class, 'create_big_hero'])->name('ads.create_big_hero');
+    Route::get('/ads/load_page/{page}', [AdController::class, 'load_page'])->name('ads.load_page');
     Route::post('/ads/store/big_hero', [AdController::class, 'store_big_hero'])->name('ads.store_big_hero');
     Route::get('/ads/clear/big_hero', [AdController::class, 'clear_big_hero'])->name('ads.clear_big_hero');
     Route::get('/ads/delete/{ad}', [AdController::class, 'destroy'])->name('ads.delete');

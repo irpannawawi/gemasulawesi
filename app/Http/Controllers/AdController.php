@@ -21,6 +21,28 @@ class AdController extends Controller
         return view('ads.create_big_hero');
     }
 
+    public function load_page($page_name)
+    {
+        switch ($page_name) {
+            case 'top_page':
+                $data['title'] = "Top Page";
+                break;
+            case 'below_headline':
+                $data['title'] = "Below Headline";
+                break;
+            case 'in_article_list':
+                $data['title'] = "In Article List";
+                break;
+            case 'footer':
+                $data['title'] = "Footer";
+                break;
+            default:
+                break;
+        }
+        $data['ads'] = Ad::get();
+        return view('ads.pages.list', $data);
+    }
+
     public function create()
     {
         return view('ads.create');

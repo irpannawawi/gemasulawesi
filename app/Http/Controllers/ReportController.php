@@ -68,13 +68,13 @@ class ReportController extends Controller
 
     public function articles(Request $request)
     {
-        if ($request->daterange != null) {
+        if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0] . ' 00:00:00';
+            $end_date = $daterange[1] . ' 23:59:59';
         } else {
-            $start_date = date('Y-m');
-            $end_date = date('Y-m');
+            $start_date = date('Y-m-01 00:00:00');
+            $end_date = date('Y-m-t 23:59:59');
         }
 
         $data = [
@@ -88,13 +88,13 @@ class ReportController extends Controller
 
     public function section(Request $request)
     {
-        if ($request->daterange != null) {
+        if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0] . ' 00:00:00';
+            $end_date = $daterange[1] . ' 23:59:59';
         } else {
-            $start_date = date('Y-m');
-            $end_date = date('Y-m');
+            $start_date = date('Y-m-01 00:00:00');
+            $end_date = date('Y-m-t 23:59:59');
         }
 
         $data = [
@@ -125,14 +125,15 @@ class ReportController extends Controller
     // exporter
     public function editor_export(Request $request)
     {
-        if ($request->daterange != null) {
+        if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0] . ' 00:00:00';
+            $end_date = $daterange[1] . ' 23:59:59';
         } else {
-            $start_date = date('Y-m');
-            $end_date = date('Y-m');
+            $start_date = date('Y-m-01 00:00:00');
+            $end_date = date('Y-m-t 23:59:59');
         }
+
         $users = User::whereHas('postsAuthor', function ($query) use ($start_date, $end_date) {
             return $query->where([
                 ['status', '=', 'published']
@@ -166,14 +167,15 @@ class ReportController extends Controller
 
     public function author_export(Request $request)
     {
-        if ($request->daterange != null) {
+        if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0] . ' 00:00:00';
+            $end_date = $daterange[1] . ' 23:59:59';
         } else {
-            $start_date = date('Y-m');
-            $end_date = date('Y-m');
+            $start_date = date('Y-m-01 00:00:00');
+            $end_date = date('Y-m-t 23:59:59');
         }
+
         $users = User::whereHas('postsAuthor', function ($query) use ($start_date, $end_date) {
             return $query->where([
                 ['status', '=', 'published']
@@ -208,13 +210,13 @@ class ReportController extends Controller
     
     public function articles_export(Request $request)
     {
-        if ($request->daterange != null) {
+        if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0] . ' 00:00:00';
+            $end_date = $daterange[1] . ' 23:59:59';
         } else {
-            $start_date = date('Y-m');
-            $end_date = date('Y-m');
+            $start_date = date('Y-m-01 00:00:00');
+            $end_date = date('Y-m-t 23:59:59');
         }
         $articles = Posts::whereHas('rubrik')->where([
             ['status', '=', 'published']
@@ -250,13 +252,13 @@ class ReportController extends Controller
     }    
     public function section_export(Request $request)
     {
-        if ($request->daterange != null) {
+        if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0] . ' 00:00:00';
+            $end_date = $daterange[1] . ' 23:59:59';
         } else {
-            $start_date = date('Y-m');
-            $end_date = date('Y-m');
+            $start_date = date('Y-m-01 00:00:00');
+            $end_date = date('Y-m-t 23:59:59');
         }
         $sections = Rubrik::whereHas('posts', function ($query) use ($start_date, $end_date) {
             return $query->where([
@@ -292,13 +294,13 @@ class ReportController extends Controller
     
     public function articles_user_export(Request $request)
     {
-        if ($request->daterange != null) {
+        if (!empty($request->daterange)) {
             $daterange = explode(' - ', $request->daterange);
-            $start_date = $daterange[0];
-            $end_date = $daterange[1];
+            $start_date = $daterange[0] . ' 00:00:00';
+            $end_date = $daterange[1] . ' 23:59:59';
         } else {
-            $start_date = date('Y-m');
-            $end_date = date('Y-m');
+            $start_date = date('Y-m-01 00:00:00');
+            $end_date = date('Y-m-t 23:59:59');
         }
         $articles = Posts::where('author_id', $request->id)->orWhere('editor_id', $request->id)->get();
         $spreadsheet = new Spreadsheet();

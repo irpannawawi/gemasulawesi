@@ -9,6 +9,8 @@
 /storage/*.key
 /storage/app/public/photos/thumbnails/*
 /storage/app/public/photos
+/storage/app/public/logo
+/storage/app/public/favicon
 /vendor
 /secret/*
 .env

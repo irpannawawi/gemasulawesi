@@ -22,7 +22,7 @@
                                     $users = App\Models\User::all();
                                     @endphp
                                 @foreach ($users as $user)
-                                <option value="{{$user->id}}">{{$user->display_name}}</option>
+                                <option value="{{$user->id}}" {{@$id==$user->id?'selected':''}}>{{$user->display_name}}</option>
                                     
                                 @endforeach
                             </select>

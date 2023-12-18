@@ -1395,11 +1395,12 @@ iframe {
 	opacity: 0;
 }
 .ads__parallax {
-    background-image: url('/assets/frontend/img/iklan/placeholder_728.jpg');
+    
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100px;
+    background-size: contain;
+    min-height: 350px;
     position: relative;
     overflow: hidden;
 }

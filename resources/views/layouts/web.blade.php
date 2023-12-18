@@ -572,8 +572,8 @@
                     <div class="flex-child text-center mt-3 mb-3">
                         <!-- Logo -->
                         <a href="{{ url('') }}" class="logo">
-                            <img class="logo__img" src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
-                                srcset="{{ Storage::url('logo/') . get_setting('logo_web') }}" alt="logo"
+                            <img class="logo__img" src="https://gemasulawesi.b-cdn.net/storage/logo/{{ get_setting('logo_web') }}"
+                                srcset="https://gemasulawesi.b-cdn.net/storage/logo/{{ get_setting('logo_web') }}" alt="logo"
                                 width="280" height="280">
                         </a>
                     </div>
@@ -688,8 +688,8 @@
 
                         <!-- Logo Mobile -->
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
-                            <img class="logo__img" src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
-                                srcset="{{ Storage::url('logo/') . get_setting('logo_web') }} 1x, {{ Storage::url('logo/') . get_setting('logo_web') }} 2x"
+                            <img class="logo__img" src="https://gemasulawesi.b-cdn.net/storage/logo/{{  get_setting('logo_web') }}"
+                                srcset="https://gemasulawesi.b-cdn.net/storage/logo/{{  get_setting('logo_web') }} 1x, {{  get_setting('logo_web') }} 2x"
                                 alt="logo">
                         </a>
                         <!-- Nav Right -->

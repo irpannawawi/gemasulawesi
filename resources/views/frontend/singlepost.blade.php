@@ -58,21 +58,41 @@
                     <div class="entry__article-wrap mt-0">
                         <div class="entry__article">
                             <article class="read__content">
-                                @php
+                                {{-- @php
                                     $article = $post->article;
-                                    // if ($post->tags != null) {
-                                    //     foreach (json_decode($post->tags) as $tags) {
-                                    //         $tag = \App\Models\Tags::find($tags);
-                                    //         $search = $tag->tag_name;
-                                    //         $re = '/' . $search . '(?![^<]*>)/'; // skip html tag
-                                    //         $replacement = "<a href=\"" . route('tags', ['tag_name' => $tag->tag_name]) . "\" >" . $tag->tag_name . '</a>';
-                                    //         // $article = preg_replace($re, $replacement, $article);
-                                    //     }
-                                    // }
-                                    // $article = str_replace('../', '' . url('') . '/', $article);
                                 @endphp
 
-                                {!! $article !!}
+                                {!! $article !!} --}}
+                                <p>
+                                    Di akun medsos menjadi alternatif pilihan bagi pemilik akun Fb Joko tole.
+                                    Berkat postingan data dan kondisi para warga pengungsi korban gempa bumi berkekuatan 7,7
+                                    SR, melalui Akun Facebooknya akhirnya ACT memberikan respon positif.
+                                    Pemilik akun Facebook Joko Tole, Edy Joko Waluyo (36) merupakan warga asal kota
+                                    Jemberana Bali.
+                                </p>
+
+                                <!-- Ad Banner 728 -->
+                                <div id="adsParallax" class="ads__parallax text-center"></div>
+
+                                <p>
+                                    Kesehariannya berprofesi sebagai pedagang sayur keliling dan pengumpul barang bekas di
+                                    seputaran Kota Parigi.
+                                    Gempa bumi yang diakibatkan pergeseran sesar Palu Koro berpusat di Teluk Palu, membuat
+                                    kerusakan parah sejumlah rumah warga di wilayah Kota Parigi.
+                                    Beberapa saat pasca gempa tersebut, kabar Tsunami pun berhembus kencang. Hal ini sontak
+                                    menimbulkan kepanikan warga saat itu.
+                                </p>
+
+                                <div class="parallax-container">
+                                    <div class="parallax-bg" data-speed="fast"
+                                        style="background-image: url('/path/to/your/image.jpg');"></div>
+                                    <div class="parallax-content">
+                                        <!-- Isi konten parallax di sini -->
+                                        <p>
+                                            Konten artikel Anda...
+                                        </p>
+                                    </div>
+                                </div>
 
                                 <!-- halaman -->
                                 <div class="halaman">
@@ -143,8 +163,9 @@
                                     aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href="#" target="_blank" class="social social-twitter" id="share-twitter-bottom"
                                     aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp-bottom"
-                                    aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                                <a href="#" target="_blank" class="social social-whatsapp"
+                                    id="share-whatsapp-bottom" aria-label="whatsapp"><i
+                                        class="fa-brands fa-whatsapp"></i></a>
                                 <a href="#" target="_blank" class="social social-telegram"
                                     id="share-telegram-bottom" aria-label="telegram"><i
                                         class="fa-brands fa-telegram"></i></a>

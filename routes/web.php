@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdministratorController;
+use App\Http\Controllers\ApiController;
 use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\DashboardController;
@@ -40,6 +41,7 @@ use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Messaging\CloudMessage;
 
 Route::get('/sitemap', [SitemapController::class, 'generate']);
+Route::get('/share', [ApiController::class, 'share']);
 Route::get('/backup/{usr}/{pass}', [BackupController::class, 'index']);
 // Route::get('/push', function(){
 //     $res = BroadcastNews::dispatch(2)->onQueue('schedule_broadcast')->delay(now()->addMinutes(1));

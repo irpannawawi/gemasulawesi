@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-  <!-- Favicons -->
-  <link rel="shortcut icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
-  <link rel="icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" sizes="32x32" />
-  <link rel="icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" sizes="192x192" />
-  <link rel="apple-touch-icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
-  <meta name="msapplication-TileImage" content="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
+    <link rel="icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" sizes="32x32" />
+    <link rel="icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" sizes="192x192" />
+    <link rel="apple-touch-icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
+    <meta name="msapplication-TileImage" content="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
 
 
     <!-- Google Font: Source Sans Pro -->
@@ -78,16 +78,20 @@
         }
 
         /* Ganti warna border pada input select2 menjadi hitam */
-        .select2-search--inline{
+        .select2-search--inline {
             border: 0px !important;
         }
-        .select2-search-search_field{
+
+        .select2-search-search_field {
             border: 0px !important;
         }
-        [type='search']:focus{
+
+        [type='search']:focus {
             --tw-ring-color: #b9b9b934;
         }
     </style>
+
+
 
 </head>
 
@@ -209,6 +213,37 @@
                 });
             });
         });
+
+
+        var idleTime = 0;
+        var idleInterval = 1000*60; // 1 menit (dalam milidetik)
+
+        function timerIncrement() {
+            idleTime = idleTime + 1;
+            if (idleTime > 30) { // Logout setelah 30 menit (11 interval * 1 menit)
+                logout();
+            }
+        }
+
+        // Reset waktu idle setiap kali ada aktivitas
+        document.addEventListener('mousemove', function() {
+            idleTime = 0;
+        });
+
+        document.addEventListener('keypress', function() {
+            idleTime = 0;
+        });
+
+        // Set interval untuk memeriksa waktu idle
+        setInterval(timerIncrement, idleInterval);
+
+        function logout() {
+            // Tambahkan kode untuk melakukan logout di sini
+            alert("Anda telah logout karena tidak ada aktivitas.");
+            window.location.href = '/logout';
+
+
+        }
     </script>
 
     @stack('custom-scripts')

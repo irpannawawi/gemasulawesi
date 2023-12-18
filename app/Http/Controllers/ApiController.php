@@ -16,13 +16,27 @@ use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
-    public function insert(Request $request)
+    public function share(Request $request)
     {
-        $articleData =  json_decode(json_encode($request->all()), FALSE);
-
-        $job = MigrateJob::dispatch($articleData);
-        
-
-        return response()->json($job);
+        $key = env('DLVR_KEY');
+        $url = 'https://api.dlvrit.com/1/accounts.json';
+        $res = Http::withQueryParameters(['key'=>$key])->get($url)->object();
+        foreach($res->accounts as $account)
+        {
+            $id = $account->id;
+            // post to account
+            $params = [
+                'key'=>$key,
+                'id'=>$id,
+                'msg'=>'Ini adalah contoh share https://www.gemasulawesi.com/id/kesehatan/21910/dijuluki-sebagai-the-miracle-tree-berbagai-manfaat-secara-kesehatan-ini-bisa-diperoleh-dari-mengonsumsi-daun-kelor',
+                // 'shared'=>1,
+                'queue'=>1,
+                // 'media'=>Storage::get('public/photos/1aditya-penderita-tumor-langka-stadium-empat.jpeg'),
+                'title'=>'Auto Share test'
+            ];
+            dd($params);
+            $res = Http::withQueryParameters($params)->get('https://api.dlvrit.com/1/postToAccoun.json');
+        }
+        dd($res->object());
     }
 }

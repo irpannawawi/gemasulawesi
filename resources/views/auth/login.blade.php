@@ -22,8 +22,7 @@
                         icon: 'success',
                         title: 'Berhasil',
                         text: 'Authentikasi berhasil',
-                    }).then(()=>{
-
+                    }).then(() => {
                         window.location.href = '/dashboard';
                     });
                 } else {
@@ -32,6 +31,7 @@
                         title: 'Oops...',
                         text: res.message,
                     })
+                    grecaptcha.reset();
                 }
 
             }).fail((res) => {
@@ -41,8 +41,10 @@
                     title: 'Oops...',
                     text: res.responseJSON.message,
                 })
+                grecaptcha.reset();
             });
         }
+        
     </script>
     <script async src="https://www.google.com/recaptcha/api.js"></script>
     <!-- Session Status -->

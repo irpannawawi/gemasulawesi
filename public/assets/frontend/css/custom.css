@@ -1394,7 +1394,7 @@ iframe {
 .mfp-fade.mfp-wrap.mfp-removing .mfp-content {
 	opacity: 0;
 }
-#adsParallax {
+.ads__parallax {
     background-image: url('/assets/frontend/img/iklan/placeholder_728.jpg');
     background-attachment: fixed;
     background-position: center;
@@ -1404,7 +1404,7 @@ iframe {
     overflow: hidden;
 }
 
-#adsParallax::before {
+.ads__parallax::before {
     content: '';
     position: absolute;
     top: 0;

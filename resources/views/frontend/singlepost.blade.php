@@ -58,12 +58,12 @@
                     <div class="entry__article-wrap mt-0">
                         <div class="entry__article">
                             <article class="read__content">
-                                {{-- @php
+                                @php
                                     $article = $post->article;
                                 @endphp
 
-                                {!! $article !!} --}}
-                                <p>
+                                {!! $article !!}
+                                {{-- <p>
                                     Di akun medsos menjadi alternatif pilihan bagi pemilik akun Fb Joko tole.
                                     Berkat postingan data dan kondisi para warga pengungsi korban gempa bumi berkekuatan 7,7
                                     SR, melalui Akun Facebooknya akhirnya ACT memberikan respon positif.
@@ -72,7 +72,9 @@
                                 </p>
 
                                 <!-- Ad Banner 728 -->
-                                <div id="adsParallax" class="ads__parallax text-center"></div>
+                                <div class="ads__parallax">
+                                    <img src="{{ url('assets/frontend') }}/img/iklan/placeholder_728.jpg" alt="">
+                                </div>
 
                                 <p>
                                     Kesehariannya berprofesi sebagai pedagang sayur keliling dan pengumpul barang bekas di
@@ -81,7 +83,7 @@
                                     kerusakan parah sejumlah rumah warga di wilayah Kota Parigi.
                                     Beberapa saat pasca gempa tersebut, kabar Tsunami pun berhembus kencang. Hal ini sontak
                                     menimbulkan kepanikan warga saat itu.
-                                </p>
+                                </p> --}}
 
                                 <div class="parallax-container">
                                     <div class="parallax-bg" data-speed="fast"
@@ -163,9 +165,8 @@
                                     aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href="#" target="_blank" class="social social-twitter" id="share-twitter-bottom"
                                     aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a href="#" target="_blank" class="social social-whatsapp"
-                                    id="share-whatsapp-bottom" aria-label="whatsapp"><i
-                                        class="fa-brands fa-whatsapp"></i></a>
+                                <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp-bottom"
+                                    aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                                 <a href="#" target="_blank" class="social social-telegram"
                                     id="share-telegram-bottom" aria-label="telegram"><i
                                         class="fa-brands fa-telegram"></i></a>

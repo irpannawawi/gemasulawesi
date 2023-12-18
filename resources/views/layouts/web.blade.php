@@ -449,11 +449,11 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/custom.css" />
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
+    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/font-icons.css" />
+    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/style.css" />
+    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/custom.css" />
+    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/colors/tosca.css" />
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
@@ -466,10 +466,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     {{-- magnific --}}
-    <link rel="{{ url('assets/frontend/css/magnific.css') }}">
+    <link rel="https://gemasulawesi.b-cdn.net/assets/frontendmagnific.css') }}">
 
     <!-- Lazyload (must be placed in head in order to work) -->
-    <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/lazysizes.min.js"></script>
 </head>
 
 <body class="home style-politics ">
@@ -572,8 +572,8 @@
                     <div class="flex-child text-center mt-3 mb-3">
                         <!-- Logo -->
                         <a href="{{ url('') }}" class="logo">
-                            <img class="logo__img" src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
-                                srcset="{{ Storage::url('logo/') . get_setting('logo_web') }}" alt="logo"
+                            <img class="logo__img" src="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp"
+                                srcset="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp" alt="logo"
                                 width="280" height="280">
                         </a>
                     </div>
@@ -688,8 +688,8 @@
 
                         <!-- Logo Mobile -->
                         <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
-                            <img class="logo__img" src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
-                                srcset="{{ Storage::url('logo/') . get_setting('logo_web') }} 1x, {{ Storage::url('logo/') . get_setting('logo_web') }} 2x"
+                            <img class="logo__img" src="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp"
+                                srcset="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp 1x, https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp 2x"
                                 alt="logo">
                         </a>
                         <!-- Nav Right -->
@@ -751,8 +751,8 @@
                             <div class="footer__logo">
                                 <a target="_self" href="{{ url('/') }}">
                                     <img class=" ls-is-cached lazyloaded"
-                                        data-src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
-                                        src="{{ Storage::url('logo/') . get_setting('logo_web') }}"
+                                        data-src="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp"
+                                        src="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp"
                                         alt="{{ get_setting('title') }}" data-loaded="true">
                                 </a>
                             </div>
@@ -837,8 +837,8 @@
                         <div class="col-lg-5 col-md-6">
                             <div class="footer__verifikasi">
                                 <img class=" ls-is-cached lazyloaded"
-                                    data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
-                                    src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
+                                    data-src="https://gemasulawesi.b-cdn.net/assets/frontend/img/centang-biru.png"
+                                    src="https://gemasulawesi.b-cdn.net/assets/frontend/img/centang-biru.png" width="40"
                                     height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 <p>
                                     <b>Telah di Verifikasi Dewan Pers</b>
@@ -861,20 +861,20 @@
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
-    <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/bootstrap.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/easing.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/owl-carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/flickity.pkgd.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/twitterFetcher_min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.sticky-kit.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.newsTicker.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/modernizr.min.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/scripts.js"></script>
 
     {{-- magnific --}}
-    <script src="{{ url('assets/frontend/js/magnific.js') }}"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontendagnific.js') }}"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>

@@ -16,7 +16,7 @@ class Backup extends Command
     public function handle()
     {
         $backupPath = storage_path('app/backup');
-        $backupFilename = $backupPath.'/backup_' . Carbon::now()->format('Y-m-d_H-i-s') . '.zip';
+        $backupFilename = 'backup.zip';
 
         // dump mysql 
         // $dumpFile = storage_path('app').'/database.sql';

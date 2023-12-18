@@ -16,12 +16,12 @@ class Backup extends Command
     public function handle()
     {
         $backupPath = storage_path('app/backup');
-        $backupFilename = 'backup_' . Carbon::now()->format('Y-m-d_H-i-s') . '.zip';
+        $backupFilename = $backupPath.'/backup_' . Carbon::now()->format('Y-m-d_H-i-s') . '.zip';
 
         // dump mysql 
-        $dumpFile = storage_path('app').'/database.sql';
-        $command = "mysqldump -h ".env('DB_HOST')." -u ".env('DB_USERNAME')." -p".env('DB_PASSWORD')." ".env('DB_DATABASE')." > ".$dumpFile;
-        exec($command);
+        // $dumpFile = storage_path('app').'/database.sql';
+        // $command = "mysqldump -h ".env('DB_HOST')." -u ".env('DB_USERNAME')." -p".env('DB_PASSWORD')." ".env('DB_DATABASE')." > ".$dumpFile;
+        // exec($command);
         
         // Proses backup (contoh backup direktori storage)
         $command = "7z a -tzip $backupFilename " . storage_path('app');

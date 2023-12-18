@@ -58,32 +58,18 @@
                     <div class="entry__article-wrap mt-0">
                         <div class="entry__article">
                             <article class="read__content">
-                                {{-- @php
+                                @php
                                     $article = $post->article;
                                 @endphp
 
-                                {!! $article !!} --}}
-                                <p>
-                                    Di akun medsos menjadi alternatif pilihan bagi pemilik akun Fb Joko tole.
-                                    Berkat postingan data dan kondisi para warga pengungsi korban gempa bumi berkekuatan 7,7
-                                    SR, melalui Akun Facebooknya akhirnya ACT memberikan respon positif.
-                                    Pemilik akun Facebook Joko Tole, Edy Joko Waluyo (36) merupakan warga asal kota
-                                    Jemberana Bali.
-                                </p>
+                                {!! $article !!}
+                                
 
                                 <!-- Ad Banner 728 -->
-                                <div id="adsParallax" class="ads__parallax text-center"></div>
+                                {{-- <div id="adsParallax" class="ads__parallax text-center"></div> --}}
 
-                                <p>
-                                    Kesehariannya berprofesi sebagai pedagang sayur keliling dan pengumpul barang bekas di
-                                    seputaran Kota Parigi.
-                                    Gempa bumi yang diakibatkan pergeseran sesar Palu Koro berpusat di Teluk Palu, membuat
-                                    kerusakan parah sejumlah rumah warga di wilayah Kota Parigi.
-                                    Beberapa saat pasca gempa tersebut, kabar Tsunami pun berhembus kencang. Hal ini sontak
-                                    menimbulkan kepanikan warga saat itu.
-                                </p>
 
-                                <div class="parallax-container">
+                                {{-- <div class="parallax-container">
                                     <div class="parallax-bg" data-speed="fast"
                                         style="background-image: url('/path/to/your/image.jpg');"></div>
                                     <div class="parallax-content">
@@ -92,7 +78,7 @@
                                             Konten artikel Anda...
                                         </p>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- halaman -->
                                 <div class="halaman">

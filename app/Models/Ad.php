@@ -12,6 +12,8 @@ class Ad extends Model
         'value',
         'type',
         'position',
+        'order',
+        'link',
     ];
 
     protected $primaryKey ='ads_id';

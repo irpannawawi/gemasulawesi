@@ -10,15 +10,8 @@ class AdController extends Controller
 {
     public function index()
     {
-        $data['ad_units'] = Ad::where('position', 'small')->get();
-        $data['ad_script'] = Ad::where('position', 'scripts')->get();
-        $data['big_hero'] = Ad::where('position', 'big_hero')->get();
-        return view('ads.index', $data);
-    }
 
-    public function create_big_hero()
-    {
-        return view('ads.create_big_hero');
+        return view('ads.index');
     }
 
     public function load_page($page_name)
@@ -36,71 +29,65 @@ class AdController extends Controller
             case 'footer':
                 $data['title'] = "Footer";
                 break;
+                // Sidebar
+            case 'above_sidebar':
+                $data['title'] = "Above Sidebar";
+                break;
+            case 'below_sidebar':
+                $data['title'] = "Below Sidebar";
+                break;
+
+                // single page
+            case 'above_content':
+                $data['title'] = "Above Content";
+                break;
+            case 'below_heading':
+                $data['title'] = "Below Heading";
+                break;
+            case 'content':
+                $data['title'] = "Content";
+                break;
+            case 'below_content':
+                $data['title'] = "Below Content";
+                break;
+            // pop up
+                case 'pop_up':
+                    $data['title'] = "Pop Up Ad";
+                    break;
+
+            // head html
+            case 'html_script':
+                $data['title'] = "HTML Script";
+                break;
             default:
                 break;
         }
-        $data['ads'] = Ad::get();
+
+        $data['page_name'] = $page_name;
+        $data['ads'] = Ad::where('position', $page_name)->get();
         return view('ads.pages.list', $data);
-    }
-
-    public function create()
-    {
-        return view('ads.create');
-    }
-
-    public function create_script()
-    {
-        return view('ads.create_script');
     }
 
     public function store_script(Request $request)
     {
         $this->validate($request, [
             'title' => 'required',
-            'value' => 'required',
             'type' => 'required',
+            'value' => 'required'
         ]);
 
         Ad::create([
             'title' => $request->title,
             'value' => $request->value,
             'type' => $request->type,
-            'position' => 'scripts',
+            'link' => $request->link,
+            'position' => $request->page_name,
         ]);
 
-        return redirect()->route('ads.index')->with('success', 'Ad created successfully.');
-    }
-
-    public function store_big_hero(Request $request)
-    {
-        $this->validate($request, [
-            'title' => 'required',
-            'type' => 'required',
-            'image' => 'required_if:type,img|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'script' => 'required_if:type,script',
-        ]);
-
-        if ($request->type == 'img') {
-            $value = 'big_hero.jpeg';
-            $path = Storage::putFileAs('public/ads', $request->file('image'), $value);
-        } else {
-            $value = $request->script;
-        }
-
-        Ad::create([
-            'title' => $request->title,
-            'value' => $value,
-            'type' => $request->type,
-            'position' => 'big_hero',
-        ]);
-
-        return redirect()->route('ads.index')->with('success', 'Ad created successfully.');
-    }
-
-    public function clear_big_hero()
-    {
-        Ad::where('position', 'big_hero')->delete();
-        return redirect()->route('ads.index');
+        return redirect()
+            ->route('ads.index')
+            ->with('last_load', $request->page_name)
+            ->with('success', 'Ad created successfully.');
     }
 
     public function store(Request $request)
@@ -108,34 +95,32 @@ class AdController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'type' => 'required',
-            'image' => 'required_if:type,img|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'script' => 'required_if:type,script',
+            'image' => 'required_if:type,img|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        if ($request->type == 'img') {
-            $value = date('dmYhis') . '.jpeg';
-            $path = Storage::putFileAs('public/ads', $request->file('image'), $value);
-        } else {
-            $value = $request->script;
-        }
+        $value = date('Ymdhis') . '.jpeg';
+        $path = Storage::putFileAs('public/ads', $request->file('image'), $value);
+
 
         Ad::create([
             'title' => $request->title,
             'value' => $value,
             'type' => $request->type,
-            'position' => 'small',
+            'link' => $request->link,
+            'position' => $request->page_name,
         ]);
 
-        return redirect()->route('ads.index')->with('success', 'Ad created successfully.');
+        return redirect()
+            ->route('ads.index')
+            ->with('last_load', $request->page_name)
+            ->with('success', 'Ad created successfully.');
     }
+
+
 
     // Metode edit dan update untuk small ads disertakan dalam contoh di atas.
 
-    public function edit_script($ad)
-    {
-        $data['ad'] = Ad::find($ad);
-        return view('ads.edit_script', $data);
-    }
+
 
     public function update_script(Request $request, Ad $ad)
     {
@@ -157,8 +142,12 @@ class AdController extends Controller
 
     public function destroy(Ad $ad)
     {
+        $page = $ad->position;
         $ad->delete();
 
-        return redirect()->route('ads.index')->with('success', 'Ad deleted successfully.');
+        return redirect()
+            ->route('ads.index')
+            ->with('last_load', $page)
+            ->with('success', 'Ad deleted successfully.');
     }
 }

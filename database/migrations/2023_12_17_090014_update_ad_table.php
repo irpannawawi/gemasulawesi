@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::table('ads', function (Blueprint $table) {
             $table->string('position')->change();
-            $table->integer('order');
+            $table->string('link')->nullable();
+            $table->integer('order')->default(0);
         });
         
     }
@@ -25,6 +26,7 @@ return new class extends Migration
     {
         Schema::table('ads', function (Blueprint $table) {
             $table->dropColumn('order');
+            $table->dropColumn('link');
         });
     }
 };

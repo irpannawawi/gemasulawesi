@@ -149,9 +149,8 @@
                                     aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href="#" target="_blank" class="social social-twitter" id="share-twitter-bottom"
                                     aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a href="#" target="_blank" class="social social-whatsapp"
-                                    id="share-whatsapp-bottom" aria-label="whatsapp"><i
-                                        class="fa-brands fa-whatsapp"></i></a>
+                                <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp-bottom"
+                                    aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                                 <a href="#" target="_blank" class="social social-telegram"
                                     id="share-telegram-bottom" aria-label="telegram"><i
                                         class="fa-brands fa-telegram"></i></a>

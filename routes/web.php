@@ -34,19 +34,14 @@ use App\Jobs\BroadcastNews;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Messaging\CloudMessage;
 
 Route::get('/sitemap', [SitemapController::class, 'generate']);
-Route::post('/siteverify', function (Request $request) {
-    $url = 'https://www.google.com/recaptcha/api/siteverify';
-    $data = [
-        'secret'=>env('RECAPTCHA_SECRET_KEY'),
-        'response'=>$request->response, 
-    ];
-    $resp = Http::asForm()->post($url, $data);
-    
-    return response()->json(['status'=>true, 'data'=>$resp->json()]);
+Route::get('/bucket', function (Request $request) {
+    $files = Storage::disk('s3')->files('backup');
+    dd($files);
 });
 // Route::get('/push', function(){
 //     $res = BroadcastNews::dispatch(2)->onQueue('schedule_broadcast')->delay(now()->addMinutes(1));

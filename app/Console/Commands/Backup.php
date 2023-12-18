@@ -27,7 +27,7 @@ class Backup extends Command
         shell_exec($command);
 
         // Upload backup ke S3
-        $s3Path = 'backup/' . $backupFilename;
+        $s3Path = 'backups/' . $backupFilename;
         $res = Storage::disk('s3')->put($s3Path, file_get_contents($backupFilename));
         // Hapus file backup lokal jika diinginkan
         unlink($backupFilename);

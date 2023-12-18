@@ -21,11 +21,11 @@ class Backup extends Command
         // dump mysql 
         $dumpFile = storage_path('app').'/database.sql';
         $command = "mysqldump -h ".env('DB_HOST')." -u ".env('DB_USERNAME')." -p".env('DB_PASSWORD')." ".env('DB_DATABASE')." > ".$dumpFile;
-        shell_exec($command);
+        exec($command);
+        
         // Proses backup (contoh backup direktori storage)
         $command = "7z a -tzip $backupFilename " . storage_path('app');
-        shell_exec($command);
-
+        $res = exec($command);
         // Upload backup ke S3
         $s3Path = 'backups/' . $backupFilename;
         $res = Storage::disk('s3')->put($s3Path, file_get_contents($backupFilename));

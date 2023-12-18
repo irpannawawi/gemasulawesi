@@ -35,7 +35,6 @@ class FooterController extends Controller
     {
         return view('footer.lowongan');
     }
-
     public function extra($id)
     {
         $data['extra'] = Setting::find($id);

@@ -22,7 +22,6 @@ class Backup extends Command
         $dumpFile = storage_path('app').'/database.sql';
         $command = "mysqldump -h ".env('DB_HOST')." -u ".env('DB_USERNAME')." -p".env('DB_PASSWORD')." ".env('DB_DATABASE')." > ".$dumpFile;
         shell_exec($command);
-        dd('p');
         // Proses backup (contoh backup direktori storage)
         $command = "7z a -tzip $backupFilename " . storage_path('app');
         shell_exec($command);

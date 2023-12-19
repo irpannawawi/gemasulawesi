@@ -1,16 +1,18 @@
 @extends('layouts.web')
 @push('custom-css')
     <style>
-       .parallax {
+        .parallax {
             /* Set a specific height */
             height: 50vh;
-            width: 100%; /* Menggunakan lebar 100% untuk responsif */
+            width: 100%;
+            /* Menggunakan lebar 100% untuk responsif */
             /* Create the parallax scrolling effect */
             background-attachment: fixed;
             background-position: bottom;
             background-repeat: no-repeat;
             background-size: 100% auto;
-            margin-left: auto; /* Untuk memastikan posisi elemen ditengah layar */
+            margin-left: auto;
+            /* Untuk memastikan posisi elemen ditengah layar */
             margin-right: auto;
             overflow: hidden;
             position: relative;
@@ -54,7 +56,6 @@
                         </ul>
                     </div>
                     <x-ad-item position='below_heading' />
-
                     <div class="social-post socials--medium socials--rounded">
                         <a href="#" target="_blank" class="social social-facebook" id="share-facebook-top"
                             aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -90,13 +91,13 @@
                                     $ad = get_ad_content();
                                 @endphp
                                 <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
-    <div class="parallax"
-    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
-    data-velocity="0.5">
-</div>
-                                    {{-- <div class="parallax"
+                                <div class="parallax"
+                                    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
+                                    data-velocity="0.5">
+                                </div>
+                                {{-- <div class="parallax"
                                     style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"></div> --}}
-                                    {!! $article !!}
+                                {!! $article !!}
 
 
                                 <!-- halaman -->

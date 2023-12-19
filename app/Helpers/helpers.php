@@ -235,6 +235,7 @@ function get_ad_content()
    $ad = Ad::where('position', 'content')->get();
    if($ad->count()<1){
     return null;
-   }
-   return $ad[0];
+   }else{
+       return $ad[0];
+    }
 }

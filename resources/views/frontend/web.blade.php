@@ -281,17 +281,18 @@
 
     <!-- Modal -->
     @php
-        $popup = App\Models\Ad::where('position','pop_up')->first();
+        $popup = App\Models\Ad::where('position','pop_up')->get();
     @endphp
-    {{-- @if ($popup->count() > 0)
+    @if ($popup->count() > 0)
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-centered" style="">
                 <div class="modal-content">
-                    <div class="modal-body" style="height: 90vh; background-position: contain; background-image: url('{{Storage::url('public/ads/'.$popup->value)}}')">
-
-                        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                    <div class="modal-body p-0" style="">
+                        <button type="button" style="position: absolute; right: 10px;" class="close m-2 text-dark" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
+                        </button>
+                        <img class="img img-responsive" style="width: 100%" src="{{Storage::url('public/ads/'.$popup[0]->value)}}" alt="">
                     </div>
                 </div>
             </div>
@@ -302,5 +303,5 @@
                 $('#exampleModal').modal('toggle')
             </script>
         @endpush
-    @endif --}}
+    @endif
 @endsection

@@ -1,19 +1,28 @@
 @extends('layouts.web')
 @push('custom-css')
     <style>
-       .parallax {
+        .parallax {
             /* Set a specific height */
-            height: 50vh;
-            width: 100%; /* Menggunakan lebar 100% untuk responsif */
+            height: 350px;
+            width: 100%;
+            /* Menggunakan lebar 100% untuk responsif */
             /* Create the parallax scrolling effect */
             background-attachment: fixed;
-            background-position: bottom;
+            background-position: 20% 40%;
             background-repeat: no-repeat;
-            background-size: 100% auto;
-            margin-left: auto; /* Untuk memastikan posisi elemen ditengah layar */
+            background-size: auto;
+            margin-left: auto;
+            /* Untuk memastikan posisi elemen ditengah layar */
             margin-right: auto;
             overflow: hidden;
             position: relative;
+
+        }
+
+        @media only screen and (max-width: 766px) {
+            .parallax {
+                background-position: 20vw 10vh;
+            }
         }
     </style>
 @endpush
@@ -81,22 +90,45 @@
                             <article class="read__content">
                                 @php
                                     $article = $post->article;
+                                    // Buat objek DOMDocument
+                                    $dom = new DOMDocument();
+                                    // Muat string HTML ke dalam objek DOMDocument
+                                    $dom->loadHTML($article);
 
+                                    // Ambil semua elemen paragraf
+                                    $paragraphs = $dom->getElementsByTagName('p');
+                                    // Hitung jumlah paragraf
+                                    $totalParagraphs = $paragraphs->length;
+
+                                    // Tentukan jumlah paragraf per bagian
+                                    $paragrafPerBagian = ceil($totalParagraphs / 2);
+
+                                    // Bagian pertama
+                                    $bagian1 = '';
+                                    for ($i = 0; $i < $paragrafPerBagian; $i++) {
+                                        $bagian1 .= $dom->saveHTML($paragraphs->item($i));
+                                    }
+
+                                    // Bagian kedua
+                                    $bagian2 = '';
+                                    for ($i = $paragrafPerBagian; $i < $totalParagraphs; $i++) {
+                                        $bagian2 .= $dom->saveHTML($paragraphs->item($i));
+                                    }
                                 @endphp
 
-                                {!! $article !!}
+                                {!! $bagian1 !!}
                                 <!-- Ad Banner 728 -->
                                 @php
                                     $ad = get_ad_content();
                                 @endphp
                                 <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
-    <div class="parallax"
-    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
-    data-velocity="0.5">
-</div>
-                                    {{-- <div class="parallax"
+                                <div class="parallax"
+                                    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
+                                    data-velocity="0.5">
+                                </div>
+                                {{-- <div class="parallax"
                                     style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"></div> --}}
-                                    {!! $article !!}
+                                {!! $bagian2 !!}
 
 
                                 <!-- halaman -->

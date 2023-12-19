@@ -33,6 +33,7 @@ class GenerateSitemap extends Command
     {
         Sitemap::create()
         ->add(Url::create(config('app.url')))
+        ->add(Url::create(config('app.url').'/index-berita'))
         ->add(Rubrik::all())
         ->add(Topic::all())
         ->add(Posts::where('status', 'published')->orderBy('published_at', 'desc')->get())

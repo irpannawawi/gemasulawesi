@@ -18,10 +18,19 @@
             position: relative;
 
         }
-
         @media only screen and (max-width: 766px) {
             .parallax {
-                background-position: 20vw 10vh;
+                background-position: 20vw 50vh;
+                margin-left: 0px;
+                background-size: 100% ;
+            }
+        }
+        @media only screen and (max-width: 480px) {
+            .parallax {
+                background-position: left;
+                margin-left: 0px;
+                background-size: 100% ;
+
             }
         }
     </style>

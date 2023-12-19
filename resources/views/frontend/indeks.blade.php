@@ -10,6 +10,7 @@
 
             <!-- slider -->
             <div class="col-lg-8 order-lg-2">
+                <x-ad-item position='top_page'/>
 
                 <section>
                     <!-- Pencarian -->
@@ -70,13 +71,9 @@
                                     @endif
                                 </ul>
 
-                                <!-- Ad Banner 728 -->
-                                <div class="text-center pb-48">
-                                    <a href="#">
-                                        <img src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg"
-                                            alt="">
-                                    </a>
-                                </div>
+            <x-ad-item position='in_article_list' num="0" />
+            <x-ad-item position='in_article_list' num="1" />
+                                
 
                                 <ul class="post-list-small post-list-small--2 mb-32">
                                     @if (isset($beritaTerkini[0]))
@@ -124,10 +121,13 @@
                     </div>
                 </section>
             </div> <!-- end slider -->
-
+            
             <!-- Sidebar -->
             <x-sidebar />
             <!-- end sidebar -->
         </div> <!-- end content -->
+        <div class="col-lg-8">
+            <x-ad-item position='footer' />
+        </div>
     </div> <!-- end main container -->
 @endsection

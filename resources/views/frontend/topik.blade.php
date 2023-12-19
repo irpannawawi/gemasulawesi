@@ -6,6 +6,7 @@
 
             <!-- slider -->
             <div class="col-lg-8 order-lg-2">
+                <x-ad-item position='top_page' />
 
                 <section>
                     {{-- Headline Topik --}}
@@ -112,12 +113,17 @@
                         </div>
                     </div>
                 </section>
+                <x-ad-item position='below_headline' />
+                
             </div> <!-- end slider -->
-
+            
             <!-- Sidebar -->
             <x-sidebar />
             <!-- end sidebar -->
+            
         </div> <!-- end content -->
-
+        <div class="col-lg-8">
+            <x-ad-item position='footer' />
+        </div>
     </div> <!-- end main container -->
 @endsection

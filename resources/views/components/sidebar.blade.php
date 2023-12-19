@@ -14,6 +14,7 @@
             </div>
         </div>
     </div>
+    <x-ad-item position='above_sidebar'/>
     <!-- Widget Popular Posts -->
     <section class="mt-4">
         <h3 class="title-sidebar">
@@ -37,4 +38,6 @@
             @endforeach
         </div>
     </section>
+    <x-ad-item position='below_sidebar'/>
+
 </aside>

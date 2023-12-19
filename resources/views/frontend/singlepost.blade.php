@@ -1,17 +1,24 @@
 @extends('layouts.web')
+@push('custom-css')
+    <style>
+       .parallax {
+            /* Set a specific height */
+            height: 50vh;
+            width: 100%; /* Menggunakan lebar 100% untuk responsif */
+            /* Create the parallax scrolling effect */
+            background-attachment: fixed;
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            margin-left: auto; /* Untuk memastikan posisi elemen ditengah layar */
+            margin-right: auto;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- Breadcrumbs -->
-    <div class="container">
-        <ul class="breadcrumbs">
-            <li class="breadcrumbs__item">
-                <a href="{{ url('/') }}" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
-            </li>
-            <li class="breadcrumbs__item">
-                <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik->rubrik_name)]) }}"
-                    class="breadcrumbs__url">{{ $post->rubrik->rubrik_name }}</a>
-            </li>
-        </ul>
-    </div>
 
     <div class="main-container container" id="main-container">
 
@@ -20,6 +27,18 @@
 
             <!-- post content -->
             <div class="col-lg-8 blog__content mb-3">
+                <x-ad-item position='above_content' />
+                <div class="container">
+                    <ul class="breadcrumbs">
+                        <li class="breadcrumbs__item">
+                            <a href="{{ url('/') }}" class="breadcrumbs__url"><i class="fa-solid fa-house"></i></a>
+                        </li>
+                        <li class="breadcrumbs__item">
+                            <a href="{{ route('category', ['rubrik_name' => Str::slug($post->rubrik->rubrik_name)]) }}"
+                                class="breadcrumbs__url">{{ $post->rubrik->rubrik_name }}</a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="meta-single-post">
                     <h1 class="title-single-post single-post__title-single-post">
                         {{ $post->title }}
@@ -34,6 +53,8 @@
                             </li>
                         </ul>
                     </div>
+                    <x-ad-item position='below_heading' />
+
                     <div class="social-post socials--medium socials--rounded">
                         <a href="#" target="_blank" class="social social-facebook" id="share-facebook-top"
                             aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -60,15 +81,22 @@
                             <article class="read__content">
                                 @php
                                     $article = $post->article;
+
                                 @endphp
 
                                 {!! $article !!}
                                 <!-- Ad Banner 728 -->
-                                    @php
-                                        $ad = get_ad_content();
-                                    @endphp
-
-                                <div id="adsParallax" class="ads__parallax text-center" style="background-image: url('{{Storage::url('public/ads/'.$ad->value)}}');"></div>
+                                @php
+                                    $ad = get_ad_content();
+                                @endphp
+                                <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
+    <div class="parallax"
+    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
+    data-velocity="0.5">
+</div>
+                                    {{-- <div class="parallax"
+                                    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"></div> --}}
+                                    {!! $article !!}
 
 
                                 <!-- halaman -->
@@ -140,9 +168,8 @@
                                     aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href="#" target="_blank" class="social social-twitter" id="share-twitter-bottom"
                                     aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a href="#" target="_blank" class="social social-whatsapp"
-                                    id="share-whatsapp-bottom" aria-label="whatsapp"><i
-                                        class="fa-brands fa-whatsapp"></i></a>
+                                <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp-bottom"
+                                    aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
                                 <a href="#" target="_blank" class="social social-telegram"
                                     id="share-telegram-bottom" aria-label="telegram"><i
                                         class="fa-brands fa-telegram"></i></a>
@@ -152,6 +179,7 @@
                         </div>
 
                     </section> <!-- end related posts -->
+                    <x-ad-item position='below_heading' />
 
                 </article> <!-- end standard post -->
 
@@ -241,6 +269,10 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+        <div class="col-lg-8">
+            <x-ad-item position='footer' />
         </div>
     </div>
 @endsection

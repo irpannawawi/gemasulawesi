@@ -1,12 +1,13 @@
 @extends('layouts.web')
 @section('content')
     <div class="main-container container" id="main-container">
-
+        
         <!-- Content -->
         <div class="row row-20">
-
+            
             <!-- slider -->
             <div class="col-lg-8 order-lg-2">
+                <x-ad-item position='top_page'/>
 
                 <section>
                     <!-- #TagName -->
@@ -110,11 +111,15 @@
                         </div>
                     </div>
                 </section>
+                
             </div> <!-- end slider -->
-
+            
             <!-- Sidebar -->
             <x-sidebar />
             <!-- end sidebar -->
         </div> <!-- end content -->
+        <div class="col-lg-8">
+            <x-ad-item position='footer' />
+        </div>
     </div> <!-- end main container -->
 @endsection

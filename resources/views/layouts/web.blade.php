@@ -476,6 +476,7 @@
     {{-- jquery --}}
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.min.js"></script>
 
+@stack('custom-css')
 </head>
 
 <body class="home style-politics ">
@@ -931,11 +932,11 @@
         $lastSegment = end($segments);
         $postTitle = str_replace('-', ' ', $lastSegment);
     @endphp
-    <script async defer>
-        function encodeURL(url) {
-            return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
+    <script async defer>        
+        document.addEventListener('DOMContentLoaded', function() {
+            function encodeURL(url) {
+                return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
         }
-
         const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
         const currentURL = window.location.href;
 
@@ -1004,7 +1005,7 @@
             alert('Artikel Berhasil disalin!');
         });
     </script>
-    <script>
+            <script>
         $(document).ready(function() {
             $('.popup-youtube').magnificPopup({
                 disableOn: 700,
@@ -1015,10 +1016,10 @@
                 gallery: {
                     enabled: true
                 },
-
+                
                 fixedContentPos: false
             });
-
+            
             $('.zoom-gallery').magnificPopup({
                 delegate: 'a',
                 type: 'image',
@@ -1043,6 +1044,7 @@
         });
     </script>
 
+@stack('extra-js')
 </body>
 
 </html>

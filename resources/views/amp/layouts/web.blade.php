@@ -56,7 +56,7 @@
     <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
 
     <script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
-    </script>
+
     <script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
     <script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>
 
@@ -2517,6 +2517,34 @@
         .bottom-widget {
             padding: 10px;
         }
+
+        .parallax {
+            height: 350px;
+            width: 100%;
+            background-attachment: fixed;
+            background-position: 10vw 30vh;
+            background-repeat: no-repeat;
+            background-size: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media only screen and (max-width: 766px) {
+            .parallax {
+                background-position: 20vw 50vh;
+                margin-left: 0px;
+                background-size: 100%;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .parallax {
+                background-position: left;
+                margin-left: 0px;
+                background-size: 100%;
+
+            }
+        }
     </style>
 </head>
 
@@ -2723,7 +2751,10 @@
 
         {{-- konten --}}
         @yield('content')
-
+        <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-7210727750015750"
+            {{-- data-ad-slot="7046626912" --}} data-auto-format="rspv" data-full-width>
+            <div overflow></div>
+        </amp-ad>
         <footer class="footer">
             <div class="container">
                 <div class="footer__widgets">

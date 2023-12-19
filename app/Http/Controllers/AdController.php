@@ -16,6 +16,7 @@ class AdController extends Controller
 
     public function load_page($page_name)
     {
+        $data['alert'] = '';
         switch ($page_name) {
             case 'top_page':
                 $data['title'] = "Top Page";
@@ -45,7 +46,8 @@ class AdController extends Controller
                 $data['title'] = "Below Heading";
                 break;
             case 'content':
-                $data['title'] = "Content <small class=\"text-danger\">Gunakan gambar dengan ukuran 600x350px";
+                $data['title'] = "Content";
+                $data['alert'] = "Gunakan gambar dengan ukuran 600x350px";
                 break;
             case 'below_content':
                 $data['title'] = "Below Content";

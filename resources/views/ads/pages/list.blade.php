@@ -1,6 +1,6 @@
 <div class="card card-outline card-info">
     <div class="card-header">
-        <h2 class="card-title">{{ $title }}</h2>
+        <h2 class="card-title">{{ $title }} <small class="text-danger"><sup>{{$alert}}</sup></small></h2>
         <div class="card-tools">
             <!-- Collapse Button -->
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>

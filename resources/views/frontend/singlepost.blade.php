@@ -120,11 +120,13 @@
                                 @php
                                     $ad = get_ad_content();
                                 @endphp
-                                <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
-                                <div class="parallax"
-                                    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
-                                    data-velocity="0.5">
-                                </div>
+                                @if ($ad != null)
+                                    <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
+                                    <div class="parallax"
+                                        style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
+                                        data-velocity="0.5">
+                                    </div>
+                                @endif
                                 {{-- <div class="parallax"
                                     style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"></div> --}}
                                 {!! $bagian2 !!}

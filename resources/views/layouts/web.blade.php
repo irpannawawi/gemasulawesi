@@ -931,7 +931,6 @@
             return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
             const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
             const currentURL = window.location.href;
 
@@ -999,7 +998,6 @@
 
                 alert('Artikel Berhasil disalin!');
             });
-        });
     </script>
     <script>
         $(document).ready(function() {
@@ -1015,9 +1013,7 @@
 
                 fixedContentPos: false
             });
-        });
 
-        $(document).ready(function() {
             $('.zoom-gallery').magnificPopup({
                 delegate: 'a',
                 type: 'image',

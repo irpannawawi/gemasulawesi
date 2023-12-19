@@ -232,9 +232,9 @@ if (!function_exists('get_setting')) {
 
 function get_ad_content()
 {
-   $ad = Ad::where('position', 'content')->first();
+   $ad = Ad::where('position', 'content')->get();
    if($ad->count()<1){
     return null;
    }
-   return $ad;
+   return $ad[0];
 }

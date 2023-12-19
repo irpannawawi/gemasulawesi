@@ -926,7 +926,7 @@
         $lastSegment = end($segments);
         $postTitle = str_replace('-', ' ', $lastSegment);
     @endphp
-    <script>
+    <script async defer>
         function encodeURL(url) {
             return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
         }

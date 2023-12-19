@@ -11,7 +11,7 @@
 /storage/app/public/photos
 /storage/app/public/logo
 /storage/app/public/favicon
-/storage/app/public/ads
+# /storage/app/public/ads
 /vendor
 /secret/*
 .env

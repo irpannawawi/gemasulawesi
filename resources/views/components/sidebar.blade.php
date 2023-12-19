@@ -10,7 +10,7 @@
     <div class="ads">
         <div class="ads__box">
             <div class="div-gpt-ad-giant">
-                <img src="{{ Storage::url('ads/festival_hijau.jpg') }}" alt="Iklan" style="width:100%;">
+                <img src="{{ Storage::url('ads/festival_hijau.webp') }}" alt="Iklan" style="width:100%;">
             </div>
         </div>
     </div>

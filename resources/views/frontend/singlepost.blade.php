@@ -2,26 +2,24 @@
 @push('custom-css')
     <style>
         .parallax {
-            /* Set a specific height */
             height: 350px;
-            width: 100%;
-            /* Menggunakan lebar 100% untuk responsif */
-            /* Create the parallax scrolling effect */
             background-attachment: fixed;
-            background-position: 20% 40%;
+            background-position: center;
             background-repeat: no-repeat;
-            background-size: auto;
-            margin-left: auto;
-            /* Untuk memastikan posisi elemen ditengah layar */
-            margin-right: auto;
+            background-size: contain;
             overflow: hidden;
             position: relative;
-
         }
 
         @media only screen and (max-width: 766px) {
             .parallax {
-                background-position: 20vw 10vh;
+                height: 350px;
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                overflow: hidden;
+                position: relative;
             }
         }
     </style>

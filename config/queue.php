@@ -33,11 +33,11 @@ return [
             'driver' => 'rabbitmq',
             'hosts' => [
                 [
-                    'host' => env('RABBITMQ_HOST', '103.52.114.170'),
+                    'host' => env('RABBITMQ_HOST', '8.215.33.172'),
                     'port' => env('RABBITMQ_PORT', 5672),
-                    'user' => env('RABBITMQ_USER', 'irpan'),
-                    'password' => env('RABBITMQ_PASSWORD', 'Katasandi1990'),
-                    'vhost' => env('RABBITMQ_VHOST', 'gema'),
+                    'user' => env('RABBITMQ_USER', 'gemasulawesi'),
+                    'password' => env('RABBITMQ_PASSWORD', 'Indonesia1979OKE'),
+                    'vhost' => env('RABBITMQ_VHOST', 'gemanews'),
                 ],
                 // ...
             ],

@@ -281,19 +281,29 @@
 
     <!-- Modal -->
     @php
-        $popup = App\Models\Ad::where('position','pop_up')->get();
+        $popup = App\Models\Ad::where('position', 'pop_up')->get();
     @endphp
     @if ($popup->count() > 0)
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="adModal" tabindex="-1" aria-labelledby="adModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" style="">
                 <div class="modal-content">
                     <div class="modal-body p-0" style="">
-                        <button type="button" style="position: absolute; right: 10px;" class="close m-2 text-dark" data-dismiss="modal" aria-label="Close">
+                        <button type="button" style="position: absolute; right: 10px;" class="close m-2 text-dark"
+                            data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <img class="img img-responsive" style="width: 100%" src="{{Storage::url('public/ads/'.$popup[0]->value)}}" alt="">
-                        <input type="checkbox" id="disableAd" />
+                        <img class="img img-responsive" style="width: 100%"
+                            src="{{ Storage::url('public/ads/' . $popup[0]->value) }}" alt="">
+                    </div>
+                    <div class="modal-footer p-0">
+                        <div class="input-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" id="disableAd">
+                                <label class="form-check-label" for="disableAd">
+                                    Matikan pop up hari ini
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -301,7 +311,55 @@
 
         @push('extra-js')
             <script>
-                $('#exampleModal').modal('toggle')
+                function setWithExpiry(key, value) {
+                    const now = new Date()
+
+                    // `item` is an object which contains the original value
+                    // as well as the time when it's supposed to expire
+                    const item = {
+                        value: value,
+                        expiry: now.getTime() + 1000 * 60 * 60 * 24,
+                    }
+                    localStorage.setItem(key, JSON.stringify(item))
+                }
+
+                function getWithExpiry(key) {
+                    const itemStr = localStorage.getItem(key)
+                    // if the item doesn't exist, return null
+                    if (!itemStr) {
+                        return null
+                    }
+                    const item = JSON.parse(itemStr)
+                    const now = new Date()
+                    // compare the expiry time of the item with the current time
+                    if (now.getTime() > item.expiry) {
+                        // If the item is expired, delete the item from storage
+                        // and return null
+                        localStorage.removeItem(key)
+                        return null
+                    }
+                    return item.value
+                }
+
+
+
+                // display ad
+                // cek kuki jika disabled maka jangan tampilkan
+
+                if(getWithExpiry('disableAd') == null){
+                    $('#adModal').modal('toggle');
+                }
+
+                $("#adModal").on("hide.bs.modal", function() {
+                    // check value checkbox
+                    var disableAd = $('#disableAd').prop('checked');
+
+                    if (disableAd) {
+                        // If checkbox is checked, set a cookie to disable ads for one day
+                        setWithExpiry('disableAd', true)
+                        console.log('disabled for 1 day')
+                    }
+                });
             </script>
         @endpush
     @endif

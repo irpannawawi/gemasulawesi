@@ -5,6 +5,8 @@
         <div class="row row-20">
             <!-- slider -->
             <div class="col-lg-8 order-lg-2">
+                <x-ad-item position='top_page' />
+
                 <section>
                     <div class="title-list-berita">
                         <span>{{ $rubrik_name }}</span>
@@ -66,6 +68,7 @@
                         </div>
                     @endif
                     {{-- Headline rubrik --}}
+                    <x-ad-item position='below_headline' />
 
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
@@ -122,8 +125,11 @@
                                             alt="">
                                     </a>
                                 </div> --}}
+                                <x-ad-item position='in_article_list' num="0" />
 
                                 <x-topik_khusus :$topikKhusus />
+                                <x-ad-item position='in_article_list' num="1" />
+
                             </div>
                         </div>
                     </div>
@@ -188,6 +194,8 @@
                         </div>
                     </div>
                 </section> <!-- end carousel posts -->
+            <x-ad-item position='footer' />
+
             </div>
 
         </div>

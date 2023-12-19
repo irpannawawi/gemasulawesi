@@ -7,6 +7,7 @@
 
             <!-- slider -->
             <div class="col-lg-8 order-lg-2">
+                <x-ad-item position='top_page' />
 
                 <section>
                     <div class="wrapper-owl">
@@ -17,7 +18,7 @@
                             @foreach ($headlineWp as $headline)
                                 <article class="entry thumb--size-3 mb-0">
                                     <div class="entry__img-holder homehead thumb__img-holder"
-                                        style="background-image: url('{{ env('CDN_DOMAIN').'/storage/photos/' . $headline->post->image->asset->file_name }}');">
+                                        style="background-image: url('{{ env('CDN_DOMAIN') . '/storage/photos/' . $headline->post->image->asset->file_name }}');">
                                         <div class="bottom-gradient"></div>
                                         <div class="thumb-text-holder thumb-text-holder--3">
                                             <ul class="entry__meta">
@@ -80,6 +81,8 @@
                             </div>
                         @endforeach
                     </div>
+
+                    <x-ad-item position='below_headline' />
 
                     <div class="pilihan-editor">
                         <div class="title-post">
@@ -187,6 +190,7 @@
                                         </li>
                                     @endforeach
                                 </ul>
+                                <x-ad-item position='in_article_list' num="0" />
 
                                 <x-topik_khusus :$topikKhusus />
 
@@ -199,9 +203,12 @@
                                 </div> --}}
 
                             </div>
+
                         </div>
                     </div>
                 </section>
+
+
             </div> <!-- end slider -->
 
             <!-- Sidebar -->
@@ -214,10 +221,11 @@
         {{-- row bawah --}}
         <div class="row row-20 row__bawah">
             <div class="col-lg-8 order-lg-2">
+                <x-ad-item position='in_article_list' num="1" />
+
                 <section>
                     <div class="row">
                         <div class="col">
-
                             <ul class="post-list-small post-list-small--2 mb-32">
                                 @foreach ($beritaTerkini[1] as $post)
                                     <li class="post-list-small__item">
@@ -258,6 +266,9 @@
                             <div class="loadmore">
                                 <a href="{{ url('indeks-berita') }}" class="tombolmore">Lihat Semua</a>
                             </div>
+
+                            <x-ad-item position='footer' />
+
                         </div>
                     </div>
                 </section> <!-- end carousel posts -->
@@ -265,4 +276,31 @@
 
         </div>
     </div> <!-- end main container -->
+
+
+
+    <!-- Modal -->
+    @php
+        $popup = App\Models\Ad::where('position','pop_up')->first();
+    @endphp
+    @if ($popup->count() > 0)
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body" style="height: 90vh; background-position: contain; background-image: url('{{Storage::url('public/ads/'.$popup->value)}}')">
+
+                        <button type="button" class="close text-dark" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @push('extra-js')
+            <script>
+                $('#exampleModal').modal('toggle')
+            </script>
+        @endpush
+    @endif
 @endsection

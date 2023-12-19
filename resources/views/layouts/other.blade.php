@@ -234,6 +234,10 @@
 
     {{-- rangedate --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    {{-- jquery js --}}
+    <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
+
 </head>
 
 <body class="home style-politics ">
@@ -625,19 +629,18 @@
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
-    <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
+    {{-- <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script> --}}
     {{-- <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script> --}}
+    {{-- <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script> --}}
+    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

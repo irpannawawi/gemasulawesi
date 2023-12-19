@@ -465,11 +465,17 @@
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    {{-- magnific --}}
-    <link rel="https://gemasulawesi.b-cdn.net/assets/frontendmagnific.css') }}">
+    {{-- magnific css --}}
+    <link rel="https://gemasulawesi.b-cdn.net/assets/frontend/css/magnific.css') }}">
 
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/lazysizes.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+    {{-- jquery --}}
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.min.js"></script>
+
 @stack('custom-css')
 </head>
 
@@ -839,8 +845,8 @@
                             <div class="footer__verifikasi">
                                 <img class=" ls-is-cached lazyloaded"
                                     data-src="https://gemasulawesi.b-cdn.net/assets/frontend/img/centang-biru.png"
-                                    src="https://gemasulawesi.b-cdn.net/assets/frontend/img/centang-biru.png" width="40"
-                                    height="40" alt="PRMN Centang Biru" data-loaded="true">
+                                    src="https://gemasulawesi.b-cdn.net/assets/frontend/img/centang-biru.png"
+                                    width="40" height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 <p>
                                     <b>Telah di Verifikasi Dewan Pers</b>
                                     <br>
@@ -862,20 +868,19 @@
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
-    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.min.js"></script>
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/bootstrap.min.js"></script>
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/easing.min.js"></script>
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/owl-carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
-    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/flickity.pkgd.min.js"></script>
-    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/twitterFetcher_min.js"></script>
+
+    {{-- <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script> --}}
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/modernizr.min.js"></script>
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.sticky-kit.min.js"></script>
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.newsTicker.min.js"></script>
-    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/modernizr.min.js"></script>
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/scripts.js"></script>
 
     {{-- magnific --}}
-    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/magnific.js"></script>
+    <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/magnific.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
@@ -932,76 +937,74 @@
             function encodeURL(url) {
                 return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
         }
+        const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
+        const currentURL = window.location.href;
 
-            const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
-            const currentURL = window.location.href;
-            
-            // Share ke Facebook (atas dan bawah)
-            const facebookButtonTop = document.getElementById('share-facebook-top');
-            facebookButtonTop.href =
+        // Share ke Facebook (atas dan bawah)
+        const facebookButtonTop = document.getElementById('share-facebook-top');
+        facebookButtonTop.href =
             `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
-            const facebookButtonBottom = document.getElementById('share-facebook-bottom');
-            facebookButtonBottom.href =
+        const facebookButtonBottom = document.getElementById('share-facebook-bottom');
+        facebookButtonBottom.href =
             `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
-            
-            // Share ke Twitter (atas dan bawah)
-            const twitterButtonTop = document.getElementById('share-twitter-top');
-            twitterButtonTop.href =
-                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
-            const twitterButtonBottom = document.getElementById('share-twitter-bottom');
-            twitterButtonBottom.href =
+
+        // Share ke Twitter (atas dan bawah)
+        const twitterButtonTop = document.getElementById('share-twitter-top');
+        twitterButtonTop.href =
             `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
-            
-            // Share ke WhatsApp (atas dan bawah)
-            const whatsappButtonTop = document.getElementById('share-whatsapp-top');
-            whatsappButtonTop.href =
-                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
-            const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
-            whatsappButtonBottom.href =
-                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+        const twitterButtonBottom = document.getElementById('share-twitter-bottom');
+        twitterButtonBottom.href =
+            `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
 
-                // Share ke Telegram (atas dan bawah)
-                const telegramButtonTop = document.getElementById('share-telegram-top');
-                telegramButtonTop.href =
-                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
-            const telegramButtonBottom = document.getElementById('share-telegram-bottom');
-            telegramButtonBottom.href =
+        // Share ke WhatsApp (atas dan bawah)
+        const whatsappButtonTop = document.getElementById('share-whatsapp-top');
+        whatsappButtonTop.href =
+            `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+        const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
+        whatsappButtonBottom.href =
+            `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+
+        // Share ke Telegram (atas dan bawah)
+        const telegramButtonTop = document.getElementById('share-telegram-top');
+        telegramButtonTop.href =
             `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
-            
-            // Copy ke Clipboard (atas dan bawah)
-            const copyButtonTop = document.getElementById('share-copy-top');
-            copyButtonTop.addEventListener('click', function(event) {
-                event.preventDefault();
-                
-                const copyText = `${articleTitle} | ${currentURL}`;
-                const textArea = document.createElement('textarea');
-                textArea.value = copyText;
-                
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                
-                alert('Artikel Berhasil disalin!');
-            });
-            
-            const copyButtonBottom = document.getElementById('share-copy-bottom');
-            copyButtonBottom.addEventListener('click', function(event) {
-                event.preventDefault();
-                
-                const copyText = `${articleTitle} | ${currentURL}`;
-                const textArea = document.createElement('textarea');
-                textArea.value = copyText;
-                
-                document.body.appendChild(textArea);
-                textArea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textArea);
-                
-                alert('Artikel Berhasil disalin!');
-            });
+        const telegramButtonBottom = document.getElementById('share-telegram-bottom');
+        telegramButtonBottom.href =
+            `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+
+        // Copy ke Clipboard (atas dan bawah)
+        const copyButtonTop = document.getElementById('share-copy-top');
+        copyButtonTop.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const copyText = `${articleTitle} | ${currentURL}`;
+            const textArea = document.createElement('textarea');
+            textArea.value = copyText;
+
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            alert('Artikel Berhasil disalin!');
         });
-            </script>
+
+        const copyButtonBottom = document.getElementById('share-copy-bottom');
+        copyButtonBottom.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const copyText = `${articleTitle} | ${currentURL}`;
+            const textArea = document.createElement('textarea');
+            textArea.value = copyText;
+
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            alert('Artikel Berhasil disalin!');
+        });
+    </script>
             <script>
         $(document).ready(function() {
             $('.popup-youtube').magnificPopup({

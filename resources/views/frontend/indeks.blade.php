@@ -1,3 +1,6 @@
+@push('extra-css')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+@endpush
 @extends('layouts.other')
 @section('content')
     <div class="main-container container" id="main-container">

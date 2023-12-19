@@ -7,6 +7,13 @@
     // dd($hotPost);
 @endphp
 <aside class="col-lg sidebar order-lg-3 mb-4">
+    <div class="ads">
+        <div class="ads__box">
+            <div class="div-gpt-ad-giant">
+                <img src="{{ Storage::url('ads/festival_hijau.webp') }}" alt="Iklan" style="width:100%;">
+            </div>
+        </div>
+    </div>
     <x-ad-item position='above_sidebar'/>
     <!-- Widget Popular Posts -->
     <section class="mt-4">

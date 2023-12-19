@@ -3,10 +3,11 @@
     <style>
         .parallax {
             height: 350px;
+            width: 100%;
             background-attachment: fixed;
-            background-position: center;
+            background-position: 10vw 30vh;
             background-repeat: no-repeat;
-            background-size: contain;
+            background-size: auto;
             overflow: hidden;
             position: relative;
         }

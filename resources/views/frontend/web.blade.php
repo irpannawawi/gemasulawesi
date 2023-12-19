@@ -293,6 +293,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <img class="img img-responsive" style="width: 100%" src="{{Storage::url('public/ads/'.$popup[0]->value)}}" alt="">
+                        <input type="checkbox" id="disableAd" />
                     </div>
                 </div>
             </div>

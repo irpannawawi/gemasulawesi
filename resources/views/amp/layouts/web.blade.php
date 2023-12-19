@@ -1646,6 +1646,7 @@
 
         .nav__search:hover .nav__search-box {
             display: block;
+            z-index: 99;
         }
 
         /*-------------------------------------------------------*/

@@ -63,7 +63,6 @@
                         </ul>
                     </div>
                     <x-ad-item position='below_heading' />
-
                     <div class="social-post socials--medium socials--rounded">
                         <a href="#" target="_blank" class="social social-facebook" id="share-facebook-top"
                             aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>

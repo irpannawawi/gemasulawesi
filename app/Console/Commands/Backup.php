@@ -30,6 +30,14 @@ class Backup extends Command
         $command = "zip -r $backupFilename " . storage_path('app')." && chown gema backup.zip && chmod 766 backup.zip";
         $res = exec($command);
         $this->info('complete...');
+        
+        $this->info('Moving to temp folder');
+        $tempFilePath = 'temp/backup.zip';
+        // Menyalin file lokal ke penyimpanan sementara
+        Storage::disk('temp')->put($tempFilePath, file_get_contents($backupFilename));
+        $this->info('Moving to temp folder complete');
+
+
         $this->info('Uploading to s3 bucket...');
         // Upload backup ke S3
         $s3Path = 'backups/' . $backupFilename;

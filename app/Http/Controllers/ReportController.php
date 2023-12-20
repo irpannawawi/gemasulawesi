@@ -80,7 +80,8 @@ class ReportController extends Controller
         $data = [
             "posts" => Posts::whereHas('rubrik')->where([
                 ['status', '=', 'published']
-            ])->whereBetween('published_at', [$start_date, $end_date])->orderBy('published_at', 'desc')->get(),
+            ])->whereBetween('published_at', [$start_date, $end_date])
+            ->orderBy('published_at', 'desc')->paginate(20)->withQueryString(),
         ];
         $data['daterange'] = $request->daterange;
         return view("report.articles", $data);

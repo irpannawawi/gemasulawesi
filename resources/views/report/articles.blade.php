@@ -41,23 +41,33 @@
                         <th>Section</th>
                         <th>Author</th>
                         <th>Editor</th>
+                        <th>Published at</th>
+                        <th>Visitor</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
                     @php
                         $n = 1;
+                        if($_GET['page']!='' && $_GET['page']>1){
+                            $n= $_GET['page']*20+1;
+                        }
                     @endphp
                     @foreach ($posts as $post)
                         <tr>
                             <td>{{ $n++ }}</td>
-                            <td class="text-left">{{ $post->title }}</td>
+                            <td class="text-left" style="width: 40%">{{ $post->title }}</td>
                             <td>{{ $post->rubrik->rubrik_name }}</td>
                             <td>{{ $post->author->display_name }}</td>
                             <td>{{ $post->editor->display_name }}</td>
+                            <td>{{ $post->published_at }}</td>
+                            <td>{{ $post->visit }}</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
+        <div class="card-footer">
+            {{$posts->links('vendor.pagination.bootstrap-4')}}
         </div>
     </div>
 

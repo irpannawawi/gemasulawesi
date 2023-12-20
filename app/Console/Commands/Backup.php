@@ -41,10 +41,11 @@ class Backup extends Command
         $this->info('Uploading to s3 bucket...');
         // Upload backup ke S3
         $s3Path = 'backups/' . $backupFilename;
-        $res = Storage::disk('s3')->put($s3Path, file_get_contents($backupFilename));
+        Storage::disk('s3')->put($s3Path, Storage::disk('temp')->get($tempFilePath));
         // Hapus file backup lokal jika diinginkan
         $this->info('Uploading to s3 bucket complete');
         unlink($backupFilename);
+        unlink($tempFilePath);
 
         $this->info('Daily backup completed successfully.');
         ini_set('memory_limit', '256M');

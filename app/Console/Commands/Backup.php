@@ -20,7 +20,7 @@ class Backup extends Command
 
         // dump mysql 
         $dumpFile = storage_path('app').'/database.sql';
-        $command = "mysqldump -h ".env('DB_HOST')." -u gema_backup -p Indonesia1979OKE ".env('DB_DATABASE')." > ".$dumpFile;
+        $command = "mysqldump -h ".env('DB_HOST')." -u gema_backup -pIndonesia1979OKE ".env('DB_DATABASE')." > ".$dumpFile;
         exec($command);
         
         // Proses backup (contoh backup direktori storage)

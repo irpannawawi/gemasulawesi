@@ -499,7 +499,7 @@
     @php
         $segments = request()->segments();
         $lastSegment = end($segments);
-        $postTitle = str_replace('-', ' ', $lastSegment);
+        $postTitle = @$post->title;
     @endphp
     <script>
         function encodeURL(url) {

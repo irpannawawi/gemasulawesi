@@ -48,8 +48,11 @@
                 <tbody class="text-center">
                     @php
                         $n = 1;
-                        if($_GET['page']!='' && $_GET['page']>1){
-                            $n= $_GET['page']*20+1;
+                        if(!empty($_GET['page'])){
+
+                            if($_GET['page']!='' && $_GET['page']>1){
+                                $n= $_GET['page']*20+1;
+                            }
                         }
                     @endphp
                     @foreach ($posts as $post)

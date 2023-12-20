@@ -36,24 +36,24 @@ class BackupController extends Controller
     public function make()
     {
         $backupFilename = 'backup.zip';
-        $this->info('preparing to dump sql');
+        echo('preparing to dump sql');
         // dump mysql 
         $dumpFile = storage_path('app').'/database.sql';
         $command = "mysqldump -h ".env('DB_HOST')." -u gema_backup -pIndonesia1979OKE ".env('DB_DATABASE')." > ".$dumpFile;
         exec($command);
-        $this->info('sql dump complete');
+        echo('sql dump complete');
         
-        $this->info('archiving files...');
+        echo('archiving files...');
         // Proses backup (contoh backup direktori storage)
         $command = "zip -r $backupFilename " . storage_path('app')." && chown gema backup.zip && chmod 766 backup.zip";
         $res = exec($command);
-        $this->info('complete...');
+        echo('complete...');
         
-        $this->info('Moving to temp folder');
+        echo('Moving to temp folder');
         $tempFilePath = 'temp/backup.zip';
         // Menyalin file lokal ke penyimpanan sementara
         Storage::disk('temp')->put($tempFilePath, file_get_contents($backupFilename));
-        $this->info('Moving to temp folder complete');
+        echo('Moving to temp folder complete');
 
     }
 
@@ -65,10 +65,10 @@ class BackupController extends Controller
         $s3Path = 'backups/' . $backupFilename;
         Storage::disk('s3')->put($s3Path, Storage::disk('temp')->get($tempFilePath));
         // Hapus file backup lokal jika diinginkan
-        $this->info('Uploading to s3 bucket complete');
+        echo('Uploading to s3 bucket complete');
         unlink($backupFilename);
         unlink($tempFilePath);
 
-        $this->info('Daily backup completed successfully.');
+        echo('Daily backup completed successfully.');
     }
 }

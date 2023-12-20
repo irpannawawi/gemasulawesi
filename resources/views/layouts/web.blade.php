@@ -45,7 +45,7 @@
             $type = 'article';
             $category = $post->rubrik->rubrik_name;
             $tags = $post->tags;
-            $author = $post->author->display_name;
+            $author = $post->author?->display_name;
         }
     @endphp
     <!-- s: open graph -->
@@ -82,7 +82,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="fb:app_id" content="" />
     <meta property="fb:pages" content="" />
-    {{-- <meta property="article:author" content="{{ $author }}"> --}}
+    <meta property="article:author" content="{{@$author }}">
     <meta property="article:section" content="">
     <meta content="{{ url()->current() }}" itemprop="url" />
     <meta charset="utf-8">

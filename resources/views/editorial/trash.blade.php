@@ -7,36 +7,39 @@
 
     <div class="card">
         <div class="card-header">
-                <a class="btn border btn-xs" href="{{ route('editorial.trash') }}"><i class="fa fa-sync"></i> Refresh</a>
-                <div class="col-6 float-right">
-                    <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
-                        @csrf
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="input-group-append">
-                                    <select name="rubrik" id="rubrikSelect" class="form-control">
-                                        @php
-                                            $rubriks = \App\Models\Rubrik::all();
-                                        @endphp
-                                            <option {{@$rubrikId==''?'selected':''}} value="">All</option>
-                                        @foreach ($rubriks as $rubrik)
-                                            <option {{@$rubrikId==$rubrik->rubrik_id?'selected':''}} value="{{$rubrik->rubrik_id}}">{{$rubrik->rubrik_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+            <a class="btn border btn-xs" href="{{ route('editorial.trash') }}"><i class="fa fa-sync"></i> Refresh</a>
+            <div class="col-6 float-right">
+                <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
+                    @csrf
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="input-group-append">
+                                <select name="rubrik" id="rubrikSelect" class="form-control">
+                                    @php
+                                        $rubriks = \App\Models\Rubrik::all();
+                                    @endphp
+                                    <option {{ @$rubrikId == '' ? 'selected' : '' }} value="">All</option>
+                                    @foreach ($rubriks as $rubrik)
+                                        <option {{ @$rubrikId == $rubrik->rubrik_id ? 'selected' : '' }}
+                                            value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                            <div class="col-8">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="q"
-                                        aria-label="Search" value="{{ !empty($q) ? $q : '' }}" aria-describedby="basic-addon1">
-                                    <div class="input-group-prepend">
-                                        <button class="input-group-text btn btn-default" id="basic-addon1"><i class="fa fa-search"></i></button>
-                                    </div>
+                        </div>
+                        <div class="col-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search" name="q"
+                                    aria-label="Search" value="{{ !empty($q) ? $q : '' }}"
+                                    aria-describedby="basic-addon1">
+                                <div class="input-group-prepend">
+                                    <button class="input-group-text btn btn-default" id="basic-addon1"><i
+                                            class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div> 
+                    </div>
+                </form>
+            </div>
 
         </div>
         <div class="card-body table-responsive">
@@ -70,6 +73,8 @@
                             <td>{{ $post->published_at }}</td>
                             <td>
                                 <div class="btn-group">
+                                    <a href="{{ route('editorial.restore', ['id' => $post->post_id]) }}"
+                                        class="btn btn-sm btn-primary delete-btn">Restore</a>
                                     <a href="{{ route('editorial.hardDelete', ['id' => $post->post_id]) }}"
                                         class="btn btn-sm btn-danger delete-btn">Hapus</a>
                                 </div>

@@ -17,6 +17,8 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WebController;
 use App\Models\Image;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -149,7 +151,7 @@ Route::get('/{slug}', function($slug){
     if($post){
 
         return redirect()->route('singlePost', [
-            'rubrik'=>$post->rubrik->rubrik_name,
+            'rubrik'=>Str::slug($post->rubrik->rubrik_name),
             'post_id'=>$post->post_id,
             'slug'=>$post->slug,
         ]);

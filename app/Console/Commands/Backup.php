@@ -15,7 +15,6 @@ class Backup extends Command
 
     public function handle()
     {
-        ini_set('memory_limit', '2048M');
         $backupPath = storage_path('app/backup');
         $backupFilename = 'backup.zip';
         $this->info('preparing to dump sql');
@@ -48,6 +47,5 @@ class Backup extends Command
         unlink($tempFilePath);
 
         $this->info('Daily backup completed successfully.');
-        ini_set('memory_limit', '256M');
     }
 }

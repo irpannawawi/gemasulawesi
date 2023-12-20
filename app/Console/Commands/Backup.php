@@ -18,19 +18,24 @@ class Backup extends Command
         ini_set('memory_limit', '2048M');
         $backupPath = storage_path('app/backup');
         $backupFilename = 'backup.zip';
-
+        $this->info('preparing to dump sql');
         // dump mysql 
         $dumpFile = storage_path('app').'/database.sql';
         $command = "mysqldump -h ".env('DB_HOST')." -u gema_backup -pIndonesia1979OKE ".env('DB_DATABASE')." > ".$dumpFile;
         exec($command);
+        $this->info('sql dump complete');
         
+        $this->info('archiving files...');
         // Proses backup (contoh backup direktori storage)
         $command = "zip -r $backupFilename " . storage_path('app')." && chown gema backup.zip && chmod 766 backup.zip";
         $res = exec($command);
+        $this->info('complete...');
+        $this->info('Uploading to s3 bucket...');
         // Upload backup ke S3
         $s3Path = 'backups/' . $backupFilename;
         $res = Storage::disk('s3')->put($s3Path, file_get_contents($backupFilename));
         // Hapus file backup lokal jika diinginkan
+        $this->info('Uploading to s3 bucket complete');
         unlink($backupFilename);
 
         $this->info('Daily backup completed successfully.');

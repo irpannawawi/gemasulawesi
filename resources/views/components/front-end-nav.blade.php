@@ -186,7 +186,7 @@
                             <i class="subicon fa-solid fa-caret-down"></i>
                         </a>
 
-                        <ul class="nav-mobile-dropdown" style="z-index: 99;">
+                        <ul class="nav-mobile-dropdown" style="z-index: 100;">
                             @foreach ($nav->navlinks as $nv)
                                 <li class="nav-item">
                                     <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"

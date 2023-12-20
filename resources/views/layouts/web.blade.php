@@ -933,77 +933,79 @@
         $postTitle = str_replace('-', ' ', $lastSegment);
     @endphp
     <script async defer>
+        function encodeURL(url) {
+            return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-                    function encodeURL(url) {
-                        return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
-                    }
-                    const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
-                    const currentURL = window.location.href;
+            const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
+            const currentURL = window.location.href;
 
-                    // Share ke Facebook (atas dan bawah)
-                    const facebookButtonTop = document.getElementById('share-facebook-top');
-                    facebookButtonTop.href =
-                        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
-                    const facebookButtonBottom = document.getElementById('share-facebook-bottom');
-                    facebookButtonBottom.href =
-                        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+            // Share ke Facebook (atas dan bawah)
+            const facebookButtonTop = document.getElementById('share-facebook-top');
+            facebookButtonTop.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
+            const facebookButtonBottom = document.getElementById('share-facebook-bottom');
+            facebookButtonBottom.href =
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentURL)}`;
 
-                    // Share ke Twitter (atas dan bawah)
-                    const twitterButtonTop = document.getElementById('share-twitter-top');
-                    twitterButtonTop.href =
-                        `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
-                    const twitterButtonBottom = document.getElementById('share-twitter-bottom');
-                    twitterButtonBottom.href =
-                        `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+            // Share ke Twitter (atas dan bawah)
+            const twitterButtonTop = document.getElementById('share-twitter-top');
+            twitterButtonTop.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
+            const twitterButtonBottom = document.getElementById('share-twitter-bottom');
+            twitterButtonBottom.href =
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentURL)}&text=${encodeURIComponent(articleTitle)}`;
 
-                    // Share ke WhatsApp (atas dan bawah)
-                    const whatsappButtonTop = document.getElementById('share-whatsapp-top');
-                    whatsappButtonTop.href =
-                        `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
-                    const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
-                    whatsappButtonBottom.href =
-                        `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+            // Share ke WhatsApp (atas dan bawah)
+            const whatsappButtonTop = document.getElementById('share-whatsapp-top');
+            whatsappButtonTop.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
+            const whatsappButtonBottom = document.getElementById('share-whatsapp-bottom');
+            whatsappButtonBottom.href =
+                `https://api.whatsapp.com/send/?text=${encodeURIComponent(articleTitle + ' | ' + currentURL)}`;
 
-                    // Share ke Telegram (atas dan bawah)
-                    const telegramButtonTop = document.getElementById('share-telegram-top');
-                    telegramButtonTop.href =
-                        `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
-                    const telegramButtonBottom = document.getElementById('share-telegram-bottom');
-                    telegramButtonBottom.href =
-                        `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+            // Share ke Telegram (atas dan bawah)
+            const telegramButtonTop = document.getElementById('share-telegram-top');
+            telegramButtonTop.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
+            const telegramButtonBottom = document.getElementById('share-telegram-bottom');
+            telegramButtonBottom.href =
+                `https://t.me/share/url?url=${encodeURIComponent(articleTitle)}&text=${encodeURIComponent(currentURL)}`;
 
-                    // Copy ke Clipboard (atas dan bawah)
-                    const copyButtonTop = document.getElementById('share-copy-top');
-                    copyButtonTop.addEventListener('click', function(event) {
-                        event.preventDefault();
+            // Copy ke Clipboard (atas dan bawah)
+            const copyButtonTop = document.getElementById('share-copy-top');
+            copyButtonTop.addEventListener('click', function(event) {
+                event.preventDefault();
 
-                        const copyText = `${articleTitle} | ${currentURL}`;
-                        const textArea = document.createElement('textarea');
-                        textArea.value = copyText;
+                const copyText = `${articleTitle} | ${currentURL}`;
+                const textArea = document.createElement('textarea');
+                textArea.value = copyText;
 
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
 
-                        alert('Artikel Berhasil disalin!');
-                    });
+                alert('Artikel Berhasil disalin!');
+            });
 
-                    const copyButtonBottom = document.getElementById('share-copy-bottom');
-                    copyButtonBottom.addEventListener('click', function(event) {
-                        event.preventDefault();
+            const copyButtonBottom = document.getElementById('share-copy-bottom');
+            copyButtonBottom.addEventListener('click', function(event) {
+                event.preventDefault();
 
-                        const copyText = `${articleTitle} | ${currentURL}`;
-                        const textArea = document.createElement('textarea');
-                        textArea.value = copyText;
+                const copyText = `${articleTitle} | ${currentURL}`;
+                const textArea = document.createElement('textarea');
+                textArea.value = copyText;
 
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
 
-                        alert('Artikel Berhasil disalin!');
-                    });
+                alert('Artikel Berhasil disalin!');
+            });
+        });
     </script>
     <script>
         $(document).ready(function() {

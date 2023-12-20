@@ -24,7 +24,7 @@ class Backup extends Command
         exec($command);
         
         // Proses backup (contoh backup direktori storage)
-        $command = "zip -r $backupFilename " . storage_path('app');
+        $command = "zip -r $backupFilename " . storage_path('app')." && chown gema backup.zip && chmod 766 backup.zip";
         $res = exec($command);
         // Upload backup ke S3
         $s3Path = 'backups/' . $backupFilename;

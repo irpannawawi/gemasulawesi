@@ -60,7 +60,7 @@ class BackupController extends Controller
     public function upload()
     {
         $backupFilename = 'backup.zip';
-        $tempFilePath = 'temp/backup.zip';
+        $tempFilePath = 'temp/temp/backup.zip';
 
         $s3Path = 'backups/' . $backupFilename;
         Storage::disk('s3')->put($s3Path, Storage::disk('temp')->get($tempFilePath));

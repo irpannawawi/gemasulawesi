@@ -1991,7 +1991,7 @@ screen and (max-height: 300px) {
 
 .socials--dark .social-twitter:hover,
 .socials--dark .social-twitter:focus {
-    color: #55acee !important;
+    color: #000 !important;
 }
 
 .socials--dark .social-google-plus:hover,
@@ -2130,11 +2130,10 @@ screen and (max-height: 300px) {
 }
 
 .social-twitter {
-    background-color: #55acee;
+    background-color: #000;
 }
-
 .social-twitter:hover {
-    background-color: #3ea1ec !important;
+    background-color: #1c1c1c !important;
     color: #fff !important;
 }
 

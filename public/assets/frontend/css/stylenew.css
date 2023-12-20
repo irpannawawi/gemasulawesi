@@ -1792,7 +1792,7 @@ img.mfp-img {
 }
 .socials--dark .social-twitter:hover,
 .socials--dark .social-twitter:focus {
-    color: #55acee !important;
+    color: #000 !important;
 }
 .socials--dark .social-google-plus:hover,
 .socials--dark .social-google-plus:focus {
@@ -1898,10 +1898,10 @@ img.mfp-img {
     color: #fff !important;
 }
 .social-twitter {
-    background-color: #55acee;
+    background-color: #000;
 }
 .social-twitter:hover {
-    background-color: #3ea1ec !important;
+    background-color: #1c1c1c !important;
     color: #fff !important;
 }
 .social-google-plus {

@@ -4,92 +4,68 @@
 
 @endphp
 
-@push('custom-css')
-    <style>
-        .nav-mobile-container {
-            position: relative;
-        }
-
-        .nav-mobile-content {
-            width: 10em;
-            max-height: 5em;
-            overflow: scroll;
-        }
-
-        .nav-mobile-dropdown {
-            position: absolute;
-            background-color: #CCC;
-            overflow: visible;
-            display: none;
-        }
-
-        :hover>.nav-mobile-dropdown {
-            display: block;
-        }
-    </style>
-@endpush
 <!-- Header -->
 <header class="header d-lg-block d-none">
-    <div class="flex-parent">
+    <div class="container">
+        <div class="flex-parent">
 
-        <!-- Date -->
-        <nav class="flex-child header__menu d-none d-lg-block">
-            <ul class="header__menu-list">
-                <li><a>{{ Carbon::now()->locale('id_ID')->isoFormat('dddd, DD MMMM YYYY') }}</a></li>
-            </ul>
-        </nav>
+            <!-- Date -->
+            <nav class="flex-child header__menu d-none d-lg-block">
+                <ul class="header__menu-list">
+                    <li><a>{{ Carbon::now()->locale('id_ID')->isoFormat('dddd, DD MMMM YYYY') }}</a></li>
+                </ul>
+            </nav>
 
-        <!-- end date -->
+            <!-- end date -->
 
-        <div class="flex-child text-center mt-3 mb-3">
-            <!-- Logo -->
-            <a href="{{ url('') }}" class="logo">
-                <img class="logo__img" src="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp"
-                    srcset="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp" alt="logo" width="280"
-                    height="280">
-            </a>
-        </div>
+            <div class="flex-child text-center mt-3 mb-3">
+                <!-- Logo -->
+                <a href="{{ url('') }}" class="logo">
+                    <img class="logo__img" src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
+                        srcset="{{ Storage::url('public/logo/') . get_setting('logo_web') }}" alt="logo"
+                        width="280" height="280">
+                </a>
+            </div>
 
-        <!-- Socials -->
-        <div class="flex-child">
-            <div class="d-flex align-items-center" style="gap: 20px;position: relative;">
-                <div class="nav__right-item nav__search">
-                    <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
-                        <i class="ui-search nav__search-trigger-icon"></i>
-                    </a>
-                    <div class="nav__search-box" style="right: 0%;z-index: 121;">
-                        <form class="nav__search-form" action="{{ route('search') }}">
-                            <input type="text" name="q" placeholder="Search..." class="nav__search-input"
-                                value="{{ request('q') }}">
-                            <button type="submit" class="search-button btn btn-lg btn-color btn-button">
-                                <i class="ui-search "></i>
-                            </button>
-                        </form>
+            <!-- Socials -->
+            <div class="flex-child">
+                <div class="d-flex align-items-center" style="gap: 20px;position: relative;">
+                    <div class="nav__right-item nav__search">
+                        <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
+                            <i class="ui-search nav__search-trigger-icon"></i>
+                        </a>
+                        <div class="nav__search-box" style="right: 0%;z-index: 121;">
+                            <form class="nav__search-form" action="{{ route('search') }}">
+                                <input type="text" name="q" placeholder="Search..." class="nav__search-input"
+                                    value="{{ request('q') }}">
+                                <button type="submit" class="search-button btn btn-lg btn-color btn-button">
+                                    <i class="ui-search "></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="socials socials--nobase socials--nav socials--dark justify-content-end">
+                        <a class="social social-facebook" href="https://{{ get_setting('facebook') }}" target="_blank"
+                            aria-label="facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                        <a class="social social-twitter" href="https://{{ get_setting('instagram') }}" target="_blank"
+                            aria-label="twitter">
+                            <i class="fa-brands fa-square-x-twitter"></i>
+                        </a>
+                        <a class="social social-youtube" href="https://{{ get_setting('youtube') }}" target="_blank"
+                            aria-label="youtube">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a class="social social-instagram" href="https://{{ get_setting('instagram') }}" target="_blank"
+                            aria-label="instagram">
+                            <i class="fa-brands fa-square-instagram"></i>
+                        </a>
                     </div>
                 </div>
-                <div class="socials socials--nobase socials--nav socials--dark justify-content-end">
-                    <a class="social social-facebook" href="https://{{ get_setting('facebook') }}" target="_blank"
-                        aria-label="facebook">
-                        <i class="fa-brands fa-facebook"></i>
-                    </a>
-                    <a class="social social-twitter" href="https://{{ get_setting('instagram') }}" target="_blank"
-                        aria-label="twitter">
-                        <i class="fa-brands fa-square-x-twitter"></i>
-                    </a>
-                    <a class="social social-youtube" href="https://{{ get_setting('youtube') }}" target="_blank"
-                        aria-label="youtube">
-                        <i class="fa-brands fa-youtube"></i>
-                    </a>
-                    <a class="social social-instagram" href="https://{{ get_setting('instagram') }}" target="_blank"
-                        aria-label="instagram">
-                        <i class="fa-brands fa-square-instagram"></i>
-                    </a>
-                </div>
             </div>
-        </div>
 
-    </div>
-    <div class="container">
+        </div>
     </div> <!-- end container -->
 </header> <!-- end header -->
 
@@ -160,8 +136,8 @@
 
                 <!-- Logo Mobile -->
                 <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
-                    <img class="logo__img" src="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp"
-                        srcset="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp 1x, https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp 2x"
+                    <img class="logo__img" src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
+                        srcset="{{ Storage::url('public/logo/') . get_setting('logo_web') }} 1x, {{ Storage::url('public/logo/') . get_setting('logo_web') }} 2x"
                         alt="logo">
                 </a>
                 <!-- Nav Right -->
@@ -194,76 +170,34 @@
         $navs = Navigation::orderBy('order_priority', 'asc')->get();
     @endphp
     {{-- Baruuu --}}
-    <nav class="nav-mobile-container d-lg-none d-xl-none" style="width: 100%; background: #2cc38b;">
-        <ul class="nav justify-content-center col-12 nav-mobile-content d-flex flex-row"
-            style="overflow-x: scroll; overflow-y: hidden;">
-            @foreach ($navs as $nav)
-                @if ($nav->nav_type == 'normal')
-                    <li class="nav-item p-1">
-                        <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}" class="nav-link text-nowrap nav-link-mobile">{{$nav->nav_name}}</a>
-                    </li>
-                @else
-                    <li class="nav-item p-1">
-                        <a href="#" class="nav-link nav-link-mobile text-nowrap">{{$nav->nav_name}}</a>
-                        
-                        <ul class="nav-mobile-dropdown" style="z-index: 2;">
-                            @foreach ($nav->navlinks as $nv)
-                            <li class="nav-item">
-                                <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}" class="nav-link nav-link-dropdown">{{$nv->rubrik->rubrik_name}}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endif
-            @endforeach
-        </ul>
-    </nav>
+    <div class="overflow-auto py-2 nav-mobile-container d-sm-none">
+        <div class="container">
+            <ul class="d-flex">
+                @foreach ($navs as $nav)
+                    @if ($nav->nav_type == 'normal')
+                        <li class="nav-item">
+                            <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}"
+                                class="nav-link text-nowrap nav-link-mobile"
+                                style="padding: 8px;">{{ $nav->nav_name }}</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="#" class="nav-link nav-link-mobile text-nowrap">{{ $nav->nav_name }} <i
+                                    class="subicon fa-solid fa-caret-down"></i></a>
 
-    {{-- Baruu --}}
-    {{-- nav mobile lama --}}
-    <!--
-    <div class="nav-mobile-container py-1 category_under_nav d-lg-none d-xl-none"
-        style="width: 100%; position: relative">
-        <ul class="nav__menu nav-mobile-content overflow-auto">
-            <li>
-                <a href="{{ url('/') }}" class="link-nav__menu" style="white-space: nowrap;">Home</a>
-            </li>
-            @php
-                $navs = Navigation::orderBy('order_priority', 'asc')->get();
-            @endphp
-            @foreach ($navs as $nav)
-                @if ($nav->nav_type == 'normal')
-                    <li>
-                        <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}"
-                            class="link-nav__menu"
-                            style="white-space: nowrap;">{{ $nav->navlinks[0]->rubrik->rubrik_name }}</a>
-                    </li>
-                @else
-                    {{-- ini drop down --}}
-                    <li>
-                        <a href="javascript:;">
-                            {{ $nav->nav_name }}
-                        </a>
-                        <ul class="submenu nav-mobile-dropdown"
-                            style="position: absolute; top: 100%; left: 0; z-index: 91;">
-                            @foreach ($nav->navlinks as $links)
-                                <li>
-                                    <a href="{{ route('category', ['rubrik_name' => Str::slug($links->rubrik->rubrik_name)]) }}"
-                                        class="link-submenu"
-                                        style="white-space: nowrap;  color:black;">{{ $links->rubrik->rubrik_name }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    {{-- ini drop down --}}
-                @endif
-            @endforeach
-            <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
-            <li>
-                <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
-            </li>
-        </ul>
+                            <ul class="nav-mobile-dropdown" style="z-index: 2;">
+                                @foreach ($nav->navlinks as $nv)
+                                    <li class="nav-item">
+                                        <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"
+                                            class="nav-link nav-link-dropdown">{{ $nv->rubrik->rubrik_name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
     </div>
-    {{-- Nav Mobile lamaa --}}
-    -->
+    {{-- end Baruu --}}
 </header> <!-- end navigation -->

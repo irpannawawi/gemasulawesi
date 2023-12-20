@@ -485,33 +485,42 @@
     @stack('custom-css')
     <style>
         .nav-mobile-container {
-            position: relative;
-        }       
+            background-color: #2cc38b
+        }
+
         .nav-mobile-content {
-            overflow: scroll;
-        }       
+            overflow-x: scroll;
+            white-space: nowrap;
+        }
+
         .nav-mobile-dropdown {
             width: inherit;
             position: absolute;
             background-color: #fff;
-            border-radius: 8px 8px 8px 8px;
+            border-radius: 8px;
             overflow: visible;
             display: none;
-        }       
+        }
+
         :hover>.nav-mobile-dropdown {
             display: block;
-        }    
-        
-        .nav-link-mobile{
+            border: 1px solid #eff0f6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-link-mobile {
             color: #fff;
             font-weight: bold;
-            padding: 10px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
-        .nav-link-dropdown{
-            font-weight: bold;
+
+        .nav-link-dropdown {
             color: #000;
         }
-        :hover>.nav-link-dropdown{
+
+        .nav-link-dropdown:hover {
             color: #2cc38b;
         }
     </style>
@@ -540,10 +549,9 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="footer__logo">
                                 <a target="_self" href="{{ url('/') }}">
-                                    <img class=" ls-is-cached lazyloaded"
-                                        data-src="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp"
-                                        src="https://gemasulawesi.b-cdn.net/storage/logo/16122023.webp"
-                                        alt="{{ get_setting('title') }}" data-loaded="true">
+                                    <img class=" ls-is-cached lazyloaded" data-src="{{ get_setting('logo_web') }}"
+                                        src="{{ get_setting('logo_web') }}" alt="{{ get_setting('title') }}"
+                                        data-loaded="true">
                                 </a>
                             </div>
                             <div class="footer__contact">
@@ -713,7 +721,7 @@
     @php
         $segments = request()->segments();
         $lastSegment = end($segments);
-        $postTitle = Str::slug('-', ' ', $lastSegment);
+        $postTitle = @$post->title;
     @endphp
     <script async defer>
         function encodeURL(url) {

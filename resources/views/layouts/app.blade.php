@@ -216,7 +216,7 @@
 
 
         var idleTime = 0;
-        var idleInterval = 1000*60; // 1 menit (dalam milidetik)
+        var idleInterval = 1000 * 60; // 1 menit (dalam milidetik)
 
         function timerIncrement() {
             idleTime = idleTime + 1;

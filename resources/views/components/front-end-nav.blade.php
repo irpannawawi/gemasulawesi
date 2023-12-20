@@ -171,7 +171,7 @@
     @endphp
     {{-- Baruuu --}}
     <div class="overflow-auto py-2 nav-mobile-container d-sm-none">
-        <div class="container">
+        <div class="container p-1">
             <ul class="d-flex">
                 @foreach ($navs as $nav)
                     @if ($nav->nav_type == 'normal')

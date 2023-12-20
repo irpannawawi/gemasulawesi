@@ -637,7 +637,7 @@
 
     {{-- <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script> --}}
     {{-- <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script> --}}
-    {{-- <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script> --}}
+    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>

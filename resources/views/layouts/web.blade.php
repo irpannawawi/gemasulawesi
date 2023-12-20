@@ -930,7 +930,7 @@
     @php
         $segments = request()->segments();
         $lastSegment = end($segments);
-        $postTitle = str_replace('-', ' ', $lastSegment);
+        $postTitle = Str::slug('-', ' ', $lastSegment);
     @endphp
     <script async defer>
         function encodeURL(url) {

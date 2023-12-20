@@ -500,6 +500,9 @@
             border-radius: 8px;
             overflow: visible;
             display: none;
+            /* top: ; */
+            left: 0;
+            width: 100vw;
         }
 
         :hover>.nav-mobile-dropdown {

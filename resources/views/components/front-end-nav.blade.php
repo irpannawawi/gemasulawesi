@@ -171,35 +171,33 @@
     @endphp
     {{-- Baruuu --}}
     <div class="overflow-auto py-2 nav-mobile-container d-sm-none">
-        <div class="container p-1">
-            <ul class="d-flex">
-                @foreach ($navs as $nav)
-                    @if ($nav->nav_type == 'normal')
-                        <li class="nav-item">
-                            <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}"
-                                class="nav-link text-nowrap nav-link-mobile"
-                                style="padding: 8px;">{{ $nav->nav_name }}</a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a href="javascript:;" class="nav-link nav-link-mobile text-nowrap">
-                                {{ $nav->nav_name }}
-                                <i class="subicon fa-solid fa-caret-down"></i>
-                            </a>
+        <ul class="d-flex">
+            @foreach ($navs as $nav)
+                @if ($nav->nav_type == 'normal')
+                    <li class="nav-item">
+                        <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}"
+                            class="nav-link text-nowrap nav-link-mobile"
+                            style="padding: 8px;">{{ $nav->nav_name }}</a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a href="javascript:;" class="nav-link nav-link-mobile text-nowrap">
+                            {{ $nav->nav_name }}
+                            <i class="subicon fa-solid fa-caret-down"></i>
+                        </a>
 
-                            <ul class="nav-mobile-dropdown" style="z-index: 99;">
-                                @foreach ($nav->navlinks as $nv)
-                                    <li class="nav-item">
-                                        <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"
-                                            class="nav-link nav-link-dropdown">{{ $nv->rubrik->rubrik_name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </li>
-                    @endif
-                @endforeach
-            </ul>
-        </div>
+                        <ul class="nav-mobile-dropdown" style="z-index: 99;">
+                            @foreach ($nav->navlinks as $nv)
+                                <li class="nav-item">
+                                    <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"
+                                        class="nav-link nav-link-dropdown">{{ $nv->rubrik->rubrik_name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endif
+            @endforeach
+        </ul>
     </div>
     {{-- end Baruu --}}
 </header> <!-- end navigation -->

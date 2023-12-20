@@ -5377,7 +5377,7 @@ header .flex-child {
 .nav--colored .nav__search-trigger,
 .nav--colored .nav__right a:hover,
 .nav--colored .nav__right a:focus {
-    color: #fff;
+    color: #2cc38b;
 }
 
 .nav--colored .nav__menu>li>a:hover {

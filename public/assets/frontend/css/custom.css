@@ -778,6 +778,8 @@
 }
 .ads{
     position: relative;
+    border: 1px solid #eff0f6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 .ads__box{
     text-align: center;

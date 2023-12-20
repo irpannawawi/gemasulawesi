@@ -11,18 +11,20 @@
             overflow: hidden;
             position: relative;
         }
+
         @media only screen and (max-width: 766px) {
             .parallax {
-                background-position: 20vw 50vh;
+                background-position: cover;
                 margin-left: 0px;
-                background-size: 100% ;
+                background-size: cover;
             }
         }
+
         @media only screen and (max-width: 480px) {
             .parallax {
                 background-position: left;
                 margin-left: 0px;
-                background-size: 100% ;
+                background-size: 100%;
 
             }
         }

@@ -5388,13 +5388,6 @@ header .flex-child {
 
 @media only screen and (max-width: 480px) {
 
-    .nav--colored .nav__menu>li>a,
-    .nav--colored .nav__menu>li>a:hover,
-    .nav--colored .nav__search-trigger,
-    .nav--colored .nav__right a:hover,
-    .nav--colored .nav__right a:focus {
-        color: #2cc38b;
-    }
 }
 
 .nav--colored .nav-icon-toggle__inner,

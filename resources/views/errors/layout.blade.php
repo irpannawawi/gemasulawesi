@@ -77,19 +77,29 @@
         <!-- Nav -->
         <nav class="sidenav__menu-container">
             @php
-                $rubriks = Rubrik::get();
+                $navs = Navigation::orderBy('order_priority', 'asc')->get();
             @endphp
             <ul class="sidenav__menu" role="menubar">
                 <!-- Categories -->
+                @foreach ($navs as $nav)
+                    @if ($nav->nav_type == 'normal')
+                        <li>
+                            <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}"
+                                class="sidenav__menu-url">{{ $nav->navlinks[0]->rubrik->rubrik_name }}</a>
+                        </li>
+                    @else
+                        @foreach ($nav->navlinks as $links)
+                        
+                        <li>
+                            <a href="{{ route('category', ['rubrik_name' => Str::slug($links->rubrik->rubrik_name)]) }}"
+                                class="sidenav__menu-url">{{ $links->rubrik->rubrik_name }}</a>
+                        </li>
+                        @endforeach
+                    @endif
+                @endforeach
                 <li>
                     <a href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
                 </li>
-                @foreach ($rubriks as $rubrik)
-                    <li>
-                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
-                            class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
-                    </li>
-                @endforeach
             </ul>
         </nav>
 
@@ -309,14 +319,45 @@
             {{-- nav mobile --}}
             <div class="overflow-auto py-2 category_under_nav d-sm-none">
                 <div class="container">
-                    <ul class="d-flex" style="gap: 20px;">
-                        <!-- Categories -->
-                        @foreach ($rubriks as $rubrik)
-                            <li>
-                                <a href="{{ route('category', ['rubrik_name' => Str::slug($rubrik->rubrik_name)]) }}"
-                                    style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
-                            </li>
+                    <ul class="nav__menu">
+                        <li>
+                            <a href="{{ url('/') }}" class="link-nav__menu"
+                                style="white-space: nowrap;">Home</a>
+                        </li>
+                        @php
+                            $navs = Navigation::orderBy('order_priority', 'asc')->get();
+                        @endphp
+                        @foreach ($navs as $nav)
+                            @if ($nav->nav_type == 'normal')
+                                <li>
+                                    <a href="{{ route('category', ['rubrik_name' => Str::slug($nav->navlinks[0]->rubrik->rubrik_name)]) }}"
+                                        class="link-nav__menu"
+                                        style="white-space: nowrap;">{{ $nav->navlinks[0]->rubrik->rubrik_name }}</a>
+                                </li>
+                            @else
+                                <li style="margin-left: 9px; margin-right:9px;">
+                                    <div class="nav__right-item nav__lainnya d-none d-lg-block">
+                                        <ul class="nav__menu menu__lainnya">
+                                            <li class="dropdown__rubrik">
+                                                <a href="javascript:;">
+                                                    {{ $nav->nav_name }}
+                                                </a>
+                                                <ul class="submenu">
+                                                    @foreach ($nav->navlinks as $links)
+                                                        <li>
+                                                            <a href="{{ route('category', ['rubrik_name' => Str::slug($links->rubrik->rubrik_name)]) }}"
+                                                                class="link-submenu"
+                                                                style="white-space: nowrap;">{{ $links->rubrik->rubrik_name }}</a>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            @endif
                         @endforeach
+                        <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
                         <li>
                             <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
                         </li>

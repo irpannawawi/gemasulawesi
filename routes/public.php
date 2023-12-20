@@ -25,5 +25,7 @@ Route::get('/search', [WebController::class, 'search'])->name('search');
 Route::get('/topik-khusus/detail/{topic_id}/{slug}', [WebController::class, 'topikkhusus'])->name('topikkhusus');
 Route::get('/subs', [WebController::class, 'subscribe'])->name('subscribe');
 Route::get('/gallery', [WebGalleryController::class, 'gallery'])->name('gallery');
+Route::get('/author/{id}/{name}', [WebController::class, 'author'])->name('author');
+Route::get('/tags/{id}/{name}', [WebController::class, 'editor'])->name('editor');
 Route::get('/galery/detail/{galery_id}/{galery_name}', [WebGalleryController::class, 'galerydetail'])->name('galerydetail');
 Route::get('/sitemap_news.xml', [WebController::class, 'news_xml'])->name('newsXml');

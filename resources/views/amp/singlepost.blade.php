@@ -135,7 +135,7 @@
                                 </div>
 
                                 <div class="editor__text">
-                                    <span>Penulis: {{ $post->author->display_name }}</span>
+                                    <span>Penulis: <a href="{{route('author', ['id'=>$post->author_id, 'name'=>$post->author->display_name])}}">{{ $post->author->display_name }}</a></span>
                                 </div>
 
                                 <!-- tags -->

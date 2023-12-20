@@ -9,6 +9,7 @@ use App\Models\Posts;
 use App\Models\Rubrik;
 use App\Models\Tags;
 use App\Models\Topic;
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -201,6 +202,27 @@ class WebController extends Controller
             ->paginate(10);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.tags', $data);
+    }
+
+    
+    public function author($id, $name): View
+    {
+        $data['author'] = User::find($id);
+
+        $data['author_name'] = $data['author']->display_name;
+        $data['topikKhusus'] = Topic::get();
+
+        // posts 1-20
+        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
+            ->where(
+                [
+                    ['status', '=', 'published'],
+                    ['author_id', '=', $id ]
+                ]
+            )
+            ->paginate(10);
+        $data['beritaTerkini'] = $data['paginatedPost']->split(2);
+        return view('frontend.author', $data);
     }
 
     public function search(Request $request): View

@@ -16,7 +16,7 @@
                 height: 350px;
                 width: 100%;
                 background-attachment: fixed;
-                background-position: 10vw 30vh;
+                background-position: 25% 27vh;
                 background-repeat: no-repeat;
                 background-size: auto;
                 overflow: hidden;

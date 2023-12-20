@@ -146,7 +146,7 @@
                         <!-- Search -->
                         <div class="nav__right-item nav__search d-block d-lg-none">
                             <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
-                                <i class="ui-search nav__search-trigger-icon"></i>
+                                <i class="ui-search" style="color: #2cc38b;"></i>
                             </a>
                             <div class="nav__search-box">
                                 <form class="nav__search-form" action="{{ route('search') }}">
@@ -182,10 +182,12 @@
                         </li>
                     @else
                         <li class="nav-item">
-                            <a href="#" class="nav-link nav-link-mobile text-nowrap">{{ $nav->nav_name }} <i
-                                    class="subicon fa-solid fa-caret-down"></i></a>
+                            <a href="javascript:;" class="nav-link nav-link-mobile text-nowrap">
+                                {{ $nav->nav_name }}
+                                <i class="subicon fa-solid fa-caret-down"></i>
+                            </a>
 
-                            <ul class="nav-mobile-dropdown" style="z-index: 2;">
+                            <ul class="nav-mobile-dropdown" style="z-index: 99;">
                                 @foreach ($nav->navlinks as $nv)
                                     <li class="nav-item">
                                         <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"

@@ -1332,11 +1332,11 @@
         }
 
         .social-twitter {
-            background-color: #55acee;
+            background-color: #000;
         }
 
         .social-twitter:hover {
-            background-color: #3ea1ec;
+            background-color: #1c1c1c;
             color: #fff;
         }
 

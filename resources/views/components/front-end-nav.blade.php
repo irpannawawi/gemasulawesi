@@ -3,6 +3,26 @@
     use Illuminate\Support\Carbon;
 
 @endphp
+
+@push('custom-css')
+    <style>
+        .category_under_nav {
+    position: relative; /* Tambahkan properti ini */
+    overflow: hidden;
+}
+
+.nav__right-item {
+    position: absolute; /* Tambahkan properti ini */
+    top: 100%; /* Sesuaikan sesuai kebutuhan, ini akan menempatkannya tepat di bawah elemen induk */
+    left: 0; /* Sesuaikan sesuai kebutuhan */
+    display: none; /* Sembunyikan elemen dropdown secara default */
+}
+
+.category_under_nav:hover .nav__right-item {
+    display: block; /* Tampilkan elemen dropdown saat mouse hover pada elemen induk */
+}
+    </style>
+@endpush
 <!-- Header -->
 <header class="header d-lg-block d-none">
     <div class="container">
@@ -166,7 +186,7 @@
     </div>
 
     {{-- nav mobile --}}
-    <div class="py-1 category_under_nav d-lg-none d-xl-none" style="width: 100%;">
+    <!-- <div class="overflow-auto py-1 category_under_nav d-lg-none d-xl-none" style="width: 100%; position: relative">
         <div class="container">
             <ul class="nav__menu">
                 <li>
@@ -185,7 +205,7 @@
                     @else
                         {{-- ini drop down --}}
                         <li>
-                            <div class="nav__right-item nav__lainnya">
+                            <div class="nav__right-item nav__lainnya" style="position: absolute">
                                 <ul class="nav__menu menu__lainnya">
                                     <li class="dropdown__rubrik">
                                         <a href="javascript:;">
@@ -213,5 +233,5 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> -->
 </header> <!-- end navigation -->

@@ -16,26 +16,31 @@
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
             $type = 'website';
+            $author = '';
         } elseif (request()->is('category/*')) {
             $metaTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
             $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
             $type = 'website';
+            $author = '';
         } elseif (request()->is('tags/*')) {
             $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
             $metaDeskripsi = $post->description ?? '';
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
             $type = 'website';
+            $author = '';
         } elseif (request()->is('gallery')) {
             $metaTitle = 'Gallery Berita Terkini' . ' - ' . $subTitle;
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
             $type = 'website';
+            $author = '';
         } elseif (request()->is('galery/detail/*')) {
             $metaTitle = $galery->galery_name . ' - ' . $subTitle;
             $metaDeskripsi = $galery->galery_description;
             $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
             $type = 'article';
+            $author = '';
         } else {
             $postTitle = $post->title ?? '';
             $metaTitle = $postTitle . ' - ' . $subTitle;
@@ -82,7 +87,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="fb:app_id" content="" />
     <meta property="fb:pages" content="" />
-    <meta property="article:author" content="{{ @$author }}">
+    <meta property="article:author" content="{{ $author }}">
     <meta property="article:section" content="">
     <meta content="{{ url()->current() }}" itemprop="url" />
     <meta charset="utf-8">

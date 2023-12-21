@@ -142,7 +142,11 @@ class WebController extends Controller
     public function category($rubrik_name): View
     {
         $rubrik_name = Str::replace('-', ' ', $rubrik_name);
-        $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->get()[0];
+        $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->first();
+        if(!$rubrik){
+            return abort(404);
+        }
+
         $data['rubrik_name'] = $rubrik_name;
         $data['headlineRubrik'] = Headlinerubrik::where('rubrik_id', $rubrik->rubrik_id)->get();
         $data['topikKhusus'] = Topic::get();

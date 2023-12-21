@@ -34,7 +34,7 @@
                     <div class="entry__meta-holder">
                         <ul class="entry__meta">
                             <li class="entry__meta-author">
-                                <span>Tim Gema</span>
+                                <span><a href="{{route('author', ['id'=>$post->author_id, 'name'=>Str::slug($post->author->display_name)])}}">{{ $post->author->display_name }}</a></span>
                             </li>
                             <li class="entry__meta-date">
                                 {{ convert_date_to_ID($post->created_at) }}

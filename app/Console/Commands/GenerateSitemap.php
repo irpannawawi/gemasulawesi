@@ -37,8 +37,8 @@ class GenerateSitemap extends Command
         ->add(Url::create(config('app.url').'/index-berita'))
         ->add(Rubrik::all())
         ->add(Topic::all())
-        ->add(Posts::where('status', 'published')->orderBy('published_at', 'desc')->get())
-        ->add(Amp::where('status', 'published')->orderBy('published_at', 'desc')->get())
+        ->add(Posts::where('status', 'published')->orderBy('published_at', 'desc')->limit(10000)->get())
+        ->add(Amp::where('status', 'published')->orderBy('published_at', 'desc')->limit(10000)->get())
         ->writeToFile(public_path('sitemap.xml'));
     }
 }

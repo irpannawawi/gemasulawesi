@@ -2518,22 +2518,35 @@
             padding: 10px;
         }
 
+        /* Parallax */
         .parallax {
-            height: 350px;
-            width: 100%;
-            background-attachment: fixed;
-            background-position: 10vw 30vh;
-            background-repeat: no-repeat;
-            background-size: auto;
-            overflow: hidden;
-            position: relative;
+                height: 350px;
+                width: 100%;
+                background-attachment: fixed;
+                background-position: 23vw 10vh;
+                background-repeat: no-repeat;
+                background-size: auto;
+                overflow: hidden;
+                position: relative;
+            }
+        @media only screen and (max-width: 1440px) {
+            .parallax {
+                height: 350px;
+                width: 100%;
+                background-attachment: fixed;
+                background-position: 18% 27vh;
+                background-repeat: no-repeat;
+                background-size: auto;
+                overflow: hidden;
+                position: relative;
+            }
         }
 
         @media only screen and (max-width: 766px) {
             .parallax {
-                background-position: 20vw 50vh;
+                background-position: cover;
                 margin-left: 0px;
-                background-size: 100%;
+                background-size: cover;
             }
         }
 
@@ -2545,6 +2558,7 @@
 
             }
         }
+    
     </style>
 </head>
 

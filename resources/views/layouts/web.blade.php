@@ -14,25 +14,25 @@
         if (request()->is('/')) {
             $metaTitle = get_setting('title') . ' - ' . $subTitle;
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = Storage::url('logo/') . get_setting('logo_web');
+            $metaImage = env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('category/*')) {
             $metaTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
             $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
-            $metaImage = Storage::url('logo/') . get_setting('logo_web');
+            $metaImage = env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('tags/*')) {
             $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
             $metaDeskripsi = $post->description ?? '';
-            $metaImage = Storage::url('logo/') . get_setting('logo_web');
+            $metaImage = env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('gallery')) {
             $metaTitle = 'Gallery Berita Terkini' . ' - ' . $subTitle;
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = Storage::url('logo/') . get_setting('logo_web');
+            $metaImage = env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('galery/detail/*')) {
@@ -552,9 +552,10 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="footer__logo">
                                 <a target="_self" href="{{ url('/') }}">
-                                    <img class=" ls-is-cached lazyloaded" data-src="{{ env('CDN_DOMAIN').'/storage/logo/'.get_setting('logo_web') }}"
-                                        src="{{ env('CDN_DOMAIN').'/storage/logo/'.get_setting('logo_web') }}" alt="{{ get_setting('title') }}"
-                                        data-loaded="true">
+                                    <img class=" ls-is-cached lazyloaded"
+                                        data-src="{{ env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web') }}"
+                                        src="{{ env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web') }}"
+                                        alt="{{ get_setting('title') }}" data-loaded="true">
                                 </a>
                             </div>
                             <div class="footer__contact">

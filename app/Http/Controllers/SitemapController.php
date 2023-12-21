@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posts;
+use App\Models\Amp;
 use App\Models\Rubrik;
 use App\Models\Topic;
 use Illuminate\Http\Request;
@@ -19,6 +20,7 @@ class SitemapController extends Controller
         ->add(Rubrik::all())
         ->add(Topic::all())
         ->add(Posts::where('status', 'published')->orderBy('published_at', 'desc')->get())
+        ->add(Amp::where('status', 'published')->orderBy('published_at', 'desc')->get())
         ->writeToFile(public_path('sitemap.xml'));
         if($res){
             return response()->json(['status'=>'ok']);

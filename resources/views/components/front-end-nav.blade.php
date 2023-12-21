@@ -145,7 +145,7 @@
                 <div class="flex-child">
                     <div class="nav__right">
                         <!-- Search -->
-                        <div class="nav__right-item nav__search d-block d-lg-none">
+                        <div class="nav__right-item nav__search d-block d-lg-none d-xl-none">
                             <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg"
                                 onclick="toggleSearch()">
                                 <i class="ui-search nav__search-trigger-icon" style="color: #2cc38b;"></i>

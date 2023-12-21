@@ -29,7 +29,7 @@
 
             <!-- Socials -->
             <div class="flex-child">
-                <div class="d-flex align-items-center" style="gap: 20px;position: relative;">
+                <div class="d-flex align-items-center" style="gap: 20px; position: relative;">
                     <div class="nav__right-item nav__search">
                         <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
                             <i class="ui-search nav__search-trigger-icon"></i>
@@ -145,16 +145,17 @@
                 <div class="flex-child">
                     <div class="nav__right">
                         <!-- Search -->
-                        <div class="nav__right-item nav__search d-block d-lg-none">
-                            <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg">
-                                <i class="ui-search" style="color: #2cc38b;"></i>
+                        <div class="nav__right-item nav__search d-block d-lg-none d-xl-none">
+                            <a href="javascript:;" class="nav__search-trigger nav__search-trigger-lg"
+                                onclick="toggleSearch()">
+                                <i class="ui-search nav__search-trigger-icon" style="color: #2cc38b;"></i>
                             </a>
-                            <div class="nav__search-box">
+                            <div class="nav__search-box" id="navSearchBox">
                                 <form class="nav__search-form" action="{{ route('search') }}">
                                     <input type="text" name="q" placeholder="Search..."
                                         class="nav__search-input" value="{{ request('q') }}">
                                     <button type="submit" class="search-button btn btn-lg btn-color btn-button">
-                                        <i class="ui-search "></i>
+                                        <i class="ui-search"></i>
                                     </button>
                                 </form>
                             </div>
@@ -182,12 +183,13 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="javascript:;" class="nav-link nav-link-mobile toggle-mobile-dropdown text-nowrap">
+                        <a href="javascript:;" class="nav-link nav-link-mobile text-nowrap dropbtn"
+                            onclick="subMenu()">
                             {{ $nav->nav_name }}
                             <i class="subicon fa-solid fa-caret-down"></i>
                         </a>
 
-                        <ul class="nav-mobile-dropdown" style="z-index: 100;">
+                        <ul class="nav-mobile-dropdown" style="z-index: 100;" id="toggle-mobile-dropdown">
                             @foreach ($nav->navlinks as $nv)
                                 <li class="nav-item">
                                     <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"
@@ -199,7 +201,8 @@
                 @endif
             @endforeach
             <li class="nav-item">
-                <a class="nav-link nav-link-mobile" href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                <a class="nav-link nav-link-mobile" href="{{ route('gallery') }}"
+                    style="white-space: nowrap;">Gallery</a>
             </li>
         </ul>
     </div>
@@ -207,8 +210,35 @@
 </header> <!-- end navigation -->
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    function subMenu() {
+        var dropdown = document.getElementById("toggle-mobile-dropdown");
+        dropdown.classList.toggle("show");
+    }
 
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("nav-mobile-dropdown");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
 
-    });
+    function toggleSearch() {
+        var searchBox = document.getElementById("navSearchBox");
+        searchBox.style.display = (searchBox.style.display === 'none' || searchBox.style.display === '') ? 'block' :
+            'none';
+    }
+
+    // Close the search box if the user clicks outside of it
+    window.onclick = function(event) {
+        var searchBox = document.getElementById("navSearchBox");
+        if (event.target.closest('.nav__search') === null && searchBox.style.display === 'block') {
+            searchBox.style.display = 'none';
+        }
+    }
 </script>

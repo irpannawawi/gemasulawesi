@@ -233,6 +233,9 @@
     font-size: 14px;
     color: #fff;
 }
+.nav__search-trigger-icon{
+    color: #2cc38b;
+}
 .search input {
     border-radius: 10px;
     border-bottom: 2px solid #2cc38b;
@@ -1038,7 +1041,7 @@
     margin-right: 10px;
 } */
 .submenu {
-    right: -65px;
+    right: -20px;
     border-radius: 5px;
     z-index: 99;
     display: none;

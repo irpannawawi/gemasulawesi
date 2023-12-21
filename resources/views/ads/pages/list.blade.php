@@ -71,7 +71,7 @@
                                     <a class="btn btn-sm btn-info" role="button" 
                                         data-toggle="modal"
                                         data-target="#modalEdit"
-                                        href="#" onclick="fillEdit('{{$ad->type}}', '{{$page_name}}', '{{$ad->ads_id}}','{{$ad->title}}', '{{$ad->value}}')"><i
+                                        href="#" onclick="fillEdit('{{$ad->type}}', '{{$page_name}}', '{{$ad->ads_id}}','{{$ad->link}}','{{$ad->title}}', '{{$ad->value}}')"><i
                                             class="fa fa-edit"></i></a>
                                     <a class="btn btn-sm btn-danger" style="color: white;" onclick="return confirm('Hapus ad?')"
                                         href="{{ route('ads.delete', ['ad' => $ad->ads_id]) }}"><i
@@ -197,10 +197,16 @@
                         <label for="scriptEdit">Isi script</label>
                         <textarea name="script" id="scriptEdit" class="form-control" rows="10"></textarea>
                     </div>
+                    <div id="formImageEdit">
+                        <div class="form-group mb-2" >
+                            <label for="linkUrlEdit">Link url</label>
+                            <input type="text" name="link" id="linkUrlEdit" class="form-control"  >
+                        </div>
 
-                    <div class="form-group mb-2" id="formImageEdit">
-                        <label for="imageEdit">Image</label>
-                        <input type="file" name="image" id="imageEdit" class="form-control" rows="10" >
+                        <div class="form-group mb-2">
+                            <label for="imageEdit">Image</label>
+                            <input type="file" name="image" id="imageEdit" class="form-control" >
+                        </div>
                     </div>
 
                     <div class="form-group">

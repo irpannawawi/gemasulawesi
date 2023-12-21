@@ -113,12 +113,13 @@
 
 
 
-            function fillEdit(type, page, id, title, value = '') {
+            function fillEdit(type, page, id, link, title, value = '') {
                 console.log('page:'+page+' id:'+id+' title'+title+' '+value)
                 $('#ad_type').val(type)
                 $('#page_name').val(page)
                 $('#formTitleEdit').val(title)
                 $('#ad_id').val(id)
+                $('#linkUrlEdit').val(link)
 
                 if (type == 'img') {
                     // show form image

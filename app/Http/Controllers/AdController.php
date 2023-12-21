@@ -137,6 +137,7 @@ class AdController extends Controller
             Storage::putFileAs('public/ads', $request->file('image'), $value);
             Storage::delete('public/ads/'.$ad->value);
             $ad->value = $value;
+            $ad->link = $request->link;
         }else{
             $ad->value=$request->script;
         }

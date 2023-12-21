@@ -171,7 +171,7 @@
     @endphp
     {{-- Baruuu --}}
     <div class="overflow-auto py-2 nav-mobile-container d-block w-100 d-lg-none">
-        <ul class="d-flex justify-content-center">
+        <ul class="d-flex">
             @foreach ($navs as $nav)
                 @if ($nav->nav_type == 'normal')
                     <li class="nav-item">
@@ -196,7 +196,11 @@
                         </ul>
                     </li>
                 @endif
-            @endforeach
+                @endforeach
+                <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
+                        <li>
+                            <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                        </li>
         </ul>
     </div>
     {{-- end Baruu --}}

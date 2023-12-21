@@ -135,8 +135,8 @@
                 </nav>
 
                 <!-- Logo Mobile -->
-                <a href="{{ url('') }}" class="logo logo-mobile d-lg-none">
-                    <img class="logo__img" src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
+                <a href="{{ url('') }}" class="logo logo-mobile d-lg-none" style="">
+                    <img class="logo__img img img-responsive" style="max-height: 55px;" src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
                         srcset="{{ Storage::url('public/logo/') . get_setting('logo_web') }} 1x, {{ Storage::url('public/logo/') . get_setting('logo_web') }} 2x"
                         alt="logo">
                 </a>
@@ -170,8 +170,8 @@
         $navs = Navigation::orderBy('order_priority', 'asc')->get();
     @endphp
     {{-- Baruuu --}}
-    <div class="overflow-auto py-2 nav-mobile-container d-sm-none">
-        <ul class="d-flex">
+    <div class="overflow-auto py-2 nav-mobile-container d-block w-100 d-lg-none">
+        <ul class="d-flex justify-content-center">
             @foreach ($navs as $nav)
                 @if ($nav->nav_type == 'normal')
                     <li class="nav-item">

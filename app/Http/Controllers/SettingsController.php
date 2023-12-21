@@ -95,4 +95,10 @@ class SettingsController extends Controller
         Setting::create(['key' => 'extra--' . str_replace(' ', '-', $request->key)]);
         return redirect()->back()->with('success', 'Berhasil menambah menu baru');
     }
+    
+    public function delete($id)
+    {
+        Setting::where('setting_id', $id)->delete();
+        return redirect()->back()->with('success', 'Berhasil menghapus menu');
+    }
 }

@@ -8,3 +8,4 @@ Route::put('/generalSetting/update', [SettingsController::class, 'update'])->nam
 Route::get('/footersetting', [SettingsController::class, 'footer'])->name('setting.footer.index');
 Route::put('/footersetting/update', [SettingsController::class, 'update'])->name('setting.footer.update');
 Route::post('/setting/addMenu', [SettingsController::class, 'addMenu'])->name('setting.addMenu');
+Route::get('/setting/delete/{id}', [SettingsController::class, 'delete'])->name('setting.delete');

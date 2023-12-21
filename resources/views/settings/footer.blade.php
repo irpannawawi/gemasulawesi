@@ -54,7 +54,7 @@
                         $extra_label = Str::ucfirst($extra_label);
                     @endphp
                     <div class="form-group border p-4">
-                        <label for="{{$extra->key}}">{{$extra_label}} <small><a href="" class="delete-btn text-danger">Hapus</a></small></label>
+                        <label for="{{$extra->key}}">{{$extra_label}} <small><a href="{{route('setting.delete', ['id'=>$extra->setting_id])}}" class="delete-btn text-danger">Hapus</a></small></label>
                         <textarea name="{{ $extra_key }}" id="{{ $extra_key }}" class="editor form-control">{{ @old($extra_key, $extra->value) }}</textarea>
                     </div>
                 @endforeach

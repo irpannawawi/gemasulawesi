@@ -527,6 +527,10 @@
         .show {
             display: block !important;
         }
+
+        .nav__search:hover .nav__search-box {
+            top: 54px;
+        }
     </style>
 </head>
 

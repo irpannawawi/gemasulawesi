@@ -189,7 +189,7 @@
                             <i class="subicon fa-solid fa-caret-down"></i>
                         </a>
 
-                        <ul class="nav-mobile-dropdown" style="z-index: 100;" id="toggle-mobile-dropdown">
+                        <ul class="nav-mobile-dropdown" style="z-index: 98;" id="toggle-mobile-dropdown">
                             @foreach ($nav->navlinks as $nv)
                                 <li class="nav-item">
                                     <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"
@@ -217,7 +217,7 @@
 
     // Close the dropdown if the user clicks outside of it
     window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
+        if (!event.target.matches('.dropbtn') && !event.target.closest('.nav-mobile-dropdown')) {
             var dropdowns = document.getElementsByClassName("nav-mobile-dropdown");
             for (var i = 0; i < dropdowns.length; i++) {
                 var openDropdown = dropdowns[i];

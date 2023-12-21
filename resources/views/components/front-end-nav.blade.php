@@ -49,7 +49,7 @@
                             aria-label="facebook">
                             <i class="fa-brands fa-facebook"></i>
                         </a>
-                        <a class="social social-twitter" href="https://{{ get_setting('x    ') }}" target="_blank"
+                        <a class="social social-twitter" href="https://{{ get_setting('x') }}" target="_blank"
                             aria-label="twitter">
                             <i class="fa-brands fa-square-x-twitter"></i>
                         </a>

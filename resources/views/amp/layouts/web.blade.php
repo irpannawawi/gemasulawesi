@@ -2520,15 +2520,16 @@
 
         /* Parallax */
         .parallax {
-                height: 350px;
-                width: 100%;
-                background-attachment: fixed;
-                background-position: 23vw 10vh;
-                background-repeat: no-repeat;
-                background-size: auto;
-                overflow: hidden;
-                position: relative;
-            }
+            height: 350px;
+            width: 100%;
+            background-attachment: fixed;
+            background-position: 23vw 10vh;
+            background-repeat: no-repeat;
+            background-size: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
         @media only screen and (max-width: 1440px) {
             .parallax {
                 height: 350px;
@@ -2558,7 +2559,6 @@
 
             }
         }
-    
     </style>
 </head>
 

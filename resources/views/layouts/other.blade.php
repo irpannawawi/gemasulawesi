@@ -73,7 +73,7 @@
     <meta name="title" content="@yield('title')" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
-    <meta name="author" content="www.Gemasulawesi.com" itemprop="author">
+    <meta name="author" content="www.gemasulawesi.com" itemprop="author">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="base" content="https://www.gemasulawesi.com/" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -92,7 +92,7 @@
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
-    <meta property="og:site_name" content="www.Gemasulawesi.com" />
+    <meta property="og:site_name" content="www.gemasulawesi.com" />
     <meta property="og:image" content="{{ $metaImage }}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

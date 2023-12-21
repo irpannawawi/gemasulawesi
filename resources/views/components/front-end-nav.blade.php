@@ -199,9 +199,8 @@
                     </li>
                 @endif
             @endforeach
-            <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
-            <li>
-                <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+            <li class="nav-item">
+                <a class="nav-link nav-link-mobile" href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
             </li>
         </ul>
     </div>

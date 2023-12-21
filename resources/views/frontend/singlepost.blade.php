@@ -2,15 +2,16 @@
 @push('custom-css')
     <style>
         .parallax {
-                height: 350px;
-                width: 100%;
-                background-attachment: fixed;
-                background-position: 23vw 10vh;
-                background-repeat: no-repeat;
-                background-size: auto;
-                overflow: hidden;
-                position: relative;
-            }
+            height: 350px;
+            width: 100%;
+            background-attachment: fixed;
+            background-position: 23vw 10vh;
+            background-repeat: no-repeat;
+            background-size: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
         @media only screen and (max-width: 1440px) {
             .parallax {
                 height: 350px;
@@ -71,7 +72,8 @@
                     <div class="entry__meta-holder">
                         <ul class="entry__meta">
                             <li class="entry__meta-author">
-                                <span><a href="{{route('author', ['id'=>$post->author_id, 'name'=>Str::slug($post->author->display_name)])}}">{{ $post->author->display_name }}</a></span>
+                                <span><a
+                                        href="{{ route('author', ['id' => $post->author_id, 'name' => Str::slug($post->author->display_name)]) }}">{{ $post->author->display_name }}</a></span>
                             </li>
                             <li class="entry__meta-date">
                                 {{ convert_date_to_ID($post->published_at) }}
@@ -143,8 +145,7 @@
                                         data-velocity="0.5">
                                     </div>
                                 @endif
-                                {{-- <div class="parallax"
-                                    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"></div> --}}
+
                                 {!! $bagian2 !!}
 
 
@@ -186,7 +187,7 @@
                                 </div>
 
                                 <div class="editor__text">
-                                    <span>Editor: {{$post->editor->display_name}}</span>
+                                    <span>Editor: {{ $post->editor->display_name }}</span>
                                 </div>
 
                                 <!-- tags -->
@@ -217,8 +218,9 @@
                                     aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
                                 <a href="#" target="_blank" class="social social-twitter" id="share-twitter-bottom"
                                     aria-label="twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                                <a href="#" target="_blank" class="social social-whatsapp" id="share-whatsapp-bottom"
-                                    aria-label="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                                <a href="#" target="_blank" class="social social-whatsapp"
+                                    id="share-whatsapp-bottom" aria-label="whatsapp"><i
+                                        class="fa-brands fa-whatsapp"></i></a>
                                 <a href="#" target="_blank" class="social social-telegram"
                                     id="share-telegram-bottom" aria-label="telegram"><i
                                         class="fa-brands fa-telegram"></i></a>

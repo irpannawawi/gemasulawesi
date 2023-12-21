@@ -136,7 +136,8 @@
 
                 <!-- Logo Mobile -->
                 <a href="{{ url('') }}" class="logo mt-1 logo-mobile d-lg-none" style="">
-                    <img class="logo__img img img-responsive" style="max-height: 55px;" src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
+                    <img class="logo__img img img-responsive" style="max-height: 55px;"
+                        src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
                         srcset="{{ Storage::url('public/logo/') . get_setting('logo_web') }} 1x, {{ Storage::url('public/logo/') . get_setting('logo_web') }} 2x"
                         alt="logo">
                 </a>
@@ -181,7 +182,8 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="javascript:;" class="nav-link nav-link-mobile text-nowrap">
+                        <a href="javascript:;" 
+                            class="nav-link nav-link-mobile toggle-mobile-dropdown text-nowrap">
                             {{ $nav->nav_name }}
                             <i class="subicon fa-solid fa-caret-down"></i>
                         </a>
@@ -196,12 +198,19 @@
                         </ul>
                     </li>
                 @endif
-                @endforeach
-                <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
-                        <li>
-                            <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
-                        </li>
+            @endforeach
+            <li class="text-white" style="margin-left: 9px; margin-right:9px;">|</li>
+            <li>
+                <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+            </li>
         </ul>
     </div>
     {{-- end Baruu --}}
 </header> <!-- end navigation -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        
+    });
+</script>

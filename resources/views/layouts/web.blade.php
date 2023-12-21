@@ -552,8 +552,8 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="footer__logo">
                                 <a target="_self" href="{{ url('/') }}">
-                                    <img class=" ls-is-cached lazyloaded" data-src="{{ get_setting('logo_web') }}"
-                                        src="{{ get_setting('logo_web') }}" alt="{{ get_setting('title') }}"
+                                    <img class=" ls-is-cached lazyloaded" data-src="{{ env('CDN_DOMAIN').'/storage/logo/'.get_setting('logo_web') }}"
+                                        src="{{ env('CDN_DOMAIN').'/storage/logo/'.get_setting('logo_web') }}" alt="{{ get_setting('title') }}"
                                         data-loaded="true">
                                 </a>
                             </div>
@@ -803,6 +803,12 @@
     </script>
     <script>
         $(document).ready(function() {
+            // toggle dropdown 
+            $('.toggle-mobile-dropdown').on('click', (el) => {
+                console.log(el)
+            })
+
+
             $('.popup-youtube').magnificPopup({
                 disableOn: 700,
                 type: 'iframe',

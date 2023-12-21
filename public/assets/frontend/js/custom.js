@@ -48,4 +48,5 @@ $(function() {
         var endDate = $('#selectedEndDate').val();
         window.location.replace(window.location.origin+'/indeks-berita?start_date='+startDate+'&end_date='+endDate)
     }
+
 });

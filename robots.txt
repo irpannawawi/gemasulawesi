@@ -15,3 +15,4 @@ User-agent: GPTBot
 Disallow: /
 
 Sitemap: https://www.gemasulawesi.com/sitemap.xml 
+Sitemap: https://www.gemasulawesi.com/sitemap_news.xml

@@ -10,7 +10,7 @@ class BreakingNewsController extends Controller
 {
     public function index()
     {
-        $data['breakingNews'] = Breakingnews::orderBy('breaking_news_id', 'desc')->with('post', )->get();
+        $data['breakingNews'] = Breakingnews::orderBy('breaking_news_id', 'desc')->with('post', )->paginate(20);
         return view('breaking-news.index', $data);
     }
 

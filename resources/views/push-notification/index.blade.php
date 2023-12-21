@@ -55,6 +55,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="card-footer">
+            {{$pushNotification->links('vendor.pagination.bootstrap-4')}}
+        </div>
     </div>
 
 

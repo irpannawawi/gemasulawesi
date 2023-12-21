@@ -44,6 +44,9 @@
                 </tbody>
             </table>
         </div>
+        <div class="card-footer">
+            {{$breakingNews->links('vendor.pagination.bootstrap-4')}}
+        </div>
     </div>
 
 

@@ -68,7 +68,7 @@ class PushNotificationController extends Controller
 
     public function index()
     {
-        $data['pushNotification'] = PushNotification::orderBy('notif_id', 'desc')->get();
+        $data['pushNotification'] = PushNotification::orderBy('notif_id', 'desc')->paginate(20);
         return view('push-notification.index', $data);
     }    
     

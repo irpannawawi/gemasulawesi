@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Amp;
 use App\Models\Posts;
 use App\Models\Rubrik;
 use App\Models\Topic;
@@ -37,6 +38,7 @@ class GenerateSitemap extends Command
         ->add(Rubrik::all())
         ->add(Topic::all())
         ->add(Posts::where('status', 'published')->orderBy('published_at', 'desc')->get())
+        ->add(Amp::where('status', 'published')->orderBy('published_at', 'desc')->get())
         ->writeToFile(public_path('sitemap.xml'));
     }
 }

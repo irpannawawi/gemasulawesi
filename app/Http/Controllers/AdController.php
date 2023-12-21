@@ -118,6 +118,35 @@ class AdController extends Controller
             ->with('success', 'Ad created successfully.');
     }
 
+    
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'ad_id' => 'required',
+            'title' => 'required',
+            'type' => 'required',
+        ]);
+
+        $ad = Ad::find($request->ad_id);
+        $ad->title = $request->title;
+        if($request->type=='img'){
+            // update image
+            $value = date('Ymdhis') . '.jpeg';
+            $this->validate($request, ['image'=>'required']);
+            Storage::putFileAs('public/ads', $request->file('image'), $value);
+            Storage::delete('public/ads/'.$ad->value);
+            $ad->value = $value;
+        }else{
+            $ad->value=$request->script;
+        }
+        $ad->save();
+        
+        return redirect()
+            ->route('ads.index')
+            ->with('last_load', $request->page_name)
+            ->with('success', 'Ad updated successfully.');
+    }
 
 
     // Metode edit dan update untuk small ads disertakan dalam contoh di atas.

@@ -8,11 +8,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/ads/store', [AdController::class, 'store'])->name('ads.store');
     Route::post('/ads/store/script', [AdController::class, 'store_script'])->name('ads.store_script');
     Route::get('/ads/delete/{ad}', [AdController::class, 'destroy'])->name('ads.delete');
+    Route::post('/ads/edit', [AdController::class, 'update'])->name('ads.update');
     
     
     Route::get('/ads/clear/big_hero', [AdController::class, 'clear_big_hero'])->name('ads.clear_big_hero');
 
     Route::get('/ads/create/script', [AdController::class, 'create_script'])->name('ads.create_script');
-    Route::get('/ads/edit/script/{ad}', [AdController::class, 'edit_script'])->name('ads.edit_script');
     Route::put('/ads/update/script/{ad}', [AdController::class, 'update_script'])->name('ads.update_script');
 });

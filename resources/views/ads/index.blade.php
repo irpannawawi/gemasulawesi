@@ -25,28 +25,36 @@
                             </div>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="in_article" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false">Article</a>
+                            <a class="nav-link dropdown-toggle" id="in_article" data-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="true" aria-expanded="false">Article</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" onclick="load_page('above_content')" id="above_content" href="#">Above Content</a>
-                                <a class="dropdown-item" onclick="load_page('below_heading')" id="below_heading" href="#">Below Heading</a>
-                                <a class="dropdown-item" onclick="load_page('content')" id="content" href="#">Content</a>
-                                <a class="dropdown-item" onclick="load_page('below_content')" id="below_content" href="#">Below Content</a>
+                                <a class="dropdown-item" onclick="load_page('above_content')" id="above_content"
+                                    href="#">Above Content</a>
+                                <a class="dropdown-item" onclick="load_page('below_heading')" id="below_heading"
+                                    href="#">Below Heading</a>
+                                <a class="dropdown-item" onclick="load_page('content')" id="content"
+                                    href="#">Content</a>
+                                <a class="dropdown-item" onclick="load_page('below_content')" id="below_content"
+                                    href="#">Below Content</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link dropdown-toggle" id="sidebar" data-toggle="dropdown" href="#" role="button"
-                                aria-haspopup="true" aria-expanded="false">Sidebar</a>
+                            <a class="nav-link dropdown-toggle" id="sidebar" data-toggle="dropdown" href="#"
+                                role="button" aria-haspopup="true" aria-expanded="false">Sidebar</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" onclick="load_page('above_sidebar')" id="above_sidebar" href="#">Above Sidebar</a>
-                                <a class="dropdown-item" onclick="load_page('below_sidebar')" id="below_sidebar" href="#">Below Sidebar</a>
+                                <a class="dropdown-item" onclick="load_page('above_sidebar')" id="above_sidebar"
+                                    href="#">Above Sidebar</a>
+                                <a class="dropdown-item" onclick="load_page('below_sidebar')" id="below_sidebar"
+                                    href="#">Below Sidebar</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="load_page('pop_up')" id="pop_up">Popup Ads</a>
+                            <a class="nav-link" href="#" onclick="load_page('pop_up')" id="pop_up">Popup
+                                Ads</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="load_page('html_script')" id="html_script">Scripts</a>
+                            <a class="nav-link" href="#" onclick="load_page('html_script')"
+                                id="html_script">Scripts</a>
                         </li>
                     </ul>
                 </div>
@@ -72,10 +80,10 @@
                     wraper.html(res);
                     $('.dropdown-item').removeClass('active')
                     $('#' + page_name).addClass('active')
-                    
+
 
                     // nav active
-                    
+
                     $('.nav-link').removeClass('active')
                     if (home_pages.includes(page_name)) {
                         $('#home_page').addClass('active')
@@ -88,11 +96,11 @@
                     if (single_page.includes(page_name)) {
                         $('#in_article').addClass('active')
                     }
-                    if (page_name=='pop_up') {
+                    if (page_name == 'pop_up') {
                         $('#pop_up').addClass('active')
                     }
-                    
-                    if (page_name=='html_script') {
+
+                    if (page_name == 'html_script') {
                         $('#html_script').addClass('active')
                     }
                 });
@@ -102,6 +110,28 @@
             @else
                 load_page('top_page')
             @endif
+
+
+
+            function fillEdit(type, page, id, title, value = '') {
+                console.log('page:'+page+' id:'+id+' title'+title+' '+value)
+                $('#ad_type').val(type)
+                $('#page_name').val(page)
+                $('#formTitleEdit').val(title)
+                $('#ad_id').val(id)
+
+                if (type == 'img') {
+                    // show form image
+                    $('#formScriptEdit').hide()
+                    $('#formImageEdit').show()
+                } else {
+                    // show form script
+                    $('#scriptEdit').val(value)
+
+                    $('#formScriptEdit').show()
+                    $('#formImageEdit').hide()
+                }
+            }
         </script>
     @endpush
 </x-app-layout>

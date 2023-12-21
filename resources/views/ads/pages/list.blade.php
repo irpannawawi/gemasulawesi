@@ -68,9 +68,11 @@
                             </td>
                             <td class="text-center"> 
                                 <div class="btn-group">
-                                    {{-- <a class="btn btn-sm btn-warning " --}}
-                                        {{-- href="{{ route('ads.edit_script', ['ad' => $ad->ads_id]) }}"><i
-                                            class="fa fa-edit"></i></a> --}}
+                                    <a class="btn btn-sm btn-info" role="button" 
+                                        data-toggle="modal"
+                                        data-target="#modalEdit"
+                                        href="#" onclick="fillEdit('{{$ad->type}}', '{{$page_name}}', '{{$ad->ads_id}}','{{$ad->title}}', '{{$ad->value}}')"><i
+                                            class="fa fa-edit"></i></a>
                                     <a class="btn btn-sm btn-danger" style="color: white;" onclick="return confirm('Hapus ad?')"
                                         href="{{ route('ads.delete', ['ad' => $ad->ads_id]) }}"><i
                                             class="fa fa-trash"></i></a>
@@ -167,3 +169,49 @@
         </div>
     </div>
 </div>
+
+{{-- modal edit --}}
+<!-- Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="modalEdit"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalEdit">Edit Ads</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" enctype="multipart/form-data" action="{{ route('ads.update') }}">
+                    @csrf
+                    <div class="form-group mb-2">
+                        <label for="formTitleEdit">Title <sup>*</sup></label>
+                        <input type="text" name="title" id="formTitleEdit" class="form-control" required>
+                        <input type="hidden" name="ad_id" id="ad_id" >
+                        <input type="hidden" name="type" id="ad_type" >
+                        <input type="hidden" name="page_name" id="page_name" value="{{ $page_name }}">
+                    </div>
+
+                    <div class="form-group mb-2" id="formScriptEdit">
+                        <label for="scriptEdit">Isi script</label>
+                        <textarea name="script" id="scriptEdit" class="form-control" rows="10"></textarea>
+                    </div>
+
+                    <div class="form-group mb-2" id="formImageEdit">
+                        <label for="imageEdit">Image</label>
+                        <input type="file" name="image" id="imageEdit" class="form-control" rows="10" >
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" name="submit" class="btn btn-primary form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

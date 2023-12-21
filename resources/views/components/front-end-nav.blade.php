@@ -21,8 +21,8 @@
             <div class="flex-child text-center mt-3 mb-3 d-flex align-items-center">
                 <!-- Logo -->
                 <a href="{{ url('') }}" class="logo ">
-                    <img class="logo__img" src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
-                        srcset="{{ Storage::url('public/logo/') . get_setting('logo_web') }}" alt="logo"
+                    <img class="logo__img" src="{{ env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web') }}"
+                        srcset="{{ env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web') }}" alt="logo"
                         width="280" height="280">
                 </a>
             </div>
@@ -137,8 +137,8 @@
                 <!-- Logo Mobile -->
                 <a href="{{ url('') }}" class="logo mt-1 logo-mobile d-lg-none" style="">
                     <img class="logo__img img img-responsive" style="max-height: 55px;"
-                        src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
-                        srcset="{{ Storage::url('public/logo/') . get_setting('logo_web') }} 1x, {{ Storage::url('public/logo/') . get_setting('logo_web') }} 2x"
+                        src="{{ env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web') }}"
+                        srcset="{{ env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web') }} 1x, {{ env('CDN_DOMAIN') . '/storage/logo/' . get_setting('logo_web') }} 2x"
                         alt="logo">
                 </a>
                 <!-- Nav Right -->
@@ -182,8 +182,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="javascript:;" 
-                            class="nav-link nav-link-mobile toggle-mobile-dropdown text-nowrap">
+                        <a href="javascript:;" class="nav-link nav-link-mobile toggle-mobile-dropdown text-nowrap">
                             {{ $nav->nav_name }}
                             <i class="subicon fa-solid fa-caret-down"></i>
                         </a>
@@ -210,6 +209,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        
+
     });
 </script>

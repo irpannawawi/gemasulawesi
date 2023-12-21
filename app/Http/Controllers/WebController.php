@@ -178,8 +178,12 @@ class WebController extends Controller
 
     public function tags($tag_name): View
     {
-        $tag_id = Tags::where('tag_name', $tag_name)->get()[0]->tag_id;
-
+        $tag = Tags::where('tag_name', $tag_name)->first();
+        if(!$tag)
+        {
+            return abort(404);
+        }
+        $tag_id = $tag->tag_id;
         $data['tag_name'] = $tag_name;
         $data['topikKhusus'] = Topic::get();
 

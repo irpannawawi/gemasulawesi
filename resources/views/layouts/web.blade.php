@@ -63,7 +63,7 @@
     <meta name="title" content="{{ $metaTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
-    <meta name="author" content="www.gemasulawesi.com" itemprop="author">
+    <meta name="author" content="{{ @$author }}" itemprop="author">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="base" content="https://www.gemasulawesi.com/" />
     <meta name="robots" content="index,follow" />
@@ -344,7 +344,7 @@
                     'author' => [
                         '@type' => 'Person',
                         'url' => url()->current(),
-                        'name' => $post->editor->display_name ?? 'Tim Gema',
+                        'name' => @$post->editor->display_name,
                     ],
                     'publisher' => [
                         '@type' => 'Organization',

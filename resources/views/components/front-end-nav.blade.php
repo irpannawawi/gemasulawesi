@@ -7,7 +7,7 @@
 <!-- Header -->
 <header class="header d-lg-block d-none">
     <div class="container">
-        <div class="flex-parent">
+        <div class="flex-parent align-items-center">
 
             <!-- Date -->
             <nav class="flex-child header__menu d-none d-lg-block">
@@ -18,9 +18,9 @@
 
             <!-- end date -->
 
-            <div class="flex-child text-center mt-3 mb-3">
+            <div class="flex-child text-center mt-3 mb-3 d-flex align-items-center">
                 <!-- Logo -->
-                <a href="{{ url('') }}" class="logo">
+                <a href="{{ url('') }}" class="logo ">
                     <img class="logo__img" src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
                         srcset="{{ Storage::url('public/logo/') . get_setting('logo_web') }}" alt="logo"
                         width="280" height="280">
@@ -135,7 +135,7 @@
                 </nav>
 
                 <!-- Logo Mobile -->
-                <a href="{{ url('') }}" class="logo logo-mobile d-lg-none" style="">
+                <a href="{{ url('') }}" class="logo mt-1 logo-mobile d-lg-none" style="">
                     <img class="logo__img img img-responsive" style="max-height: 55px;" src="{{ Storage::url('public/logo/') . get_setting('logo_web') }}"
                         srcset="{{ Storage::url('public/logo/') . get_setting('logo_web') }} 1x, {{ Storage::url('public/logo/') . get_setting('logo_web') }} 2x"
                         alt="logo">

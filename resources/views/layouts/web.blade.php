@@ -458,7 +458,7 @@
     <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/font-icons.css" />
     <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/style.css" />
-    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net//css/custom.css" />
+    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/custom.css" />
     <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/colors/tosca.css" />
 
     <!-- Favicons -->

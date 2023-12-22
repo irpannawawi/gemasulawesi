@@ -215,7 +215,7 @@
                                             'slug' => $post_item->slug,
                                         ]) }}">
                                         <amp-img src="{{ get_post_image($post_item->post_id) }}" alt="{{ $post->title }}"
-                                            class="lazyload" class="" height="100" width="100">
+                                            class="lazyload" height="100" width="100">
                                     </a>
                                 </div>
                                 <div class="title-post">

@@ -51,14 +51,10 @@
     <script async src="https://cdn.ampproject.org/v0.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
     <script async custom-element="amp-social-share" src="https://cdn.ampproject.org/v0/amp-social-share-0.1.js"></script>
-    <script async custom-element="amp-youtube" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
-    <script async custom-element="amp-auto-ads" src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"></script>
 
     <script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
 
-    <script async custom-element="amp-twitter" src="https://cdn.ampproject.org/v0/amp-twitter-0.1.js"></script>
-    <script async custom-element="amp-facebook" src="https://cdn.ampproject.org/v0/amp-facebook-0.1.js"></script>
 
     @if (!empty($post))
         @php
@@ -2587,7 +2583,7 @@
     </amp-analytics>
 
     <!-- Google Ads -->
-    <amp-auto-ads type="adsense" data-ad-client="ca-pub-7210727750015750"></amp-auto-ads>
+    {{-- <amp-auto-ads type="adsense" data-ad-client="ca-pub-7210727750015750"></amp-auto-ads> --}}
 
     <div class="content-overlay"></div>
     <main class="main oh" id="main"style="background: #fff">
@@ -2607,12 +2603,12 @@
                 <div class="marquee-container">
                     <div class="marquee-content">
                         @foreach ($breakingNews as $news)
-                            <a href="{{ route('singlePost', [
+                            <a role="link" href="{{ route('singlePost', [
                                 'rubrik' => $news->post->rubrik->rubrik_name,
                                 'post_id' => $news->post->post_id,
                                 'slug' => $news->post->slug,
                             ]) }}"
-                                class="newsticker__item-url">{{ $news->title }}</a>
+                                class="newsticker__item-url amp-link" role="link">{{ $news->title }}</a>
                         @endforeach
                     </div>
                 </div>
@@ -2638,11 +2634,11 @@
                 <ul class="sidenav__menu" role="menubar">
                     <!-- Categories -->
                     <li>
-                        <a href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
+                        <a role="link" href="{{ route('gallery') }}" class="sidenav__menu-url">Gallery</a>
                     </li>
                     @foreach ($rubriks as $rubrik)
                         <li>
-                            <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                            <a role="link" href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                 class="sidenav__menu-url">{{ $rubrik->rubrik_name }}</a>
                         </li>
                     @endforeach
@@ -2706,7 +2702,7 @@
                     <div class="flex-parent">
                         <div class="flex-parent">
                             <div class="nav__home">
-                                <a href="{{ url('/') }}" title="Home">
+                                <a role="link" href="{{ url('/') }}" title="Home">
                                     Home
                                 </a>
                             </div>
@@ -2725,21 +2721,21 @@
                             <ul class="nav__menu">
                                 @foreach ($rubriks->take(get_setting('count_rubrik')) as $rubrik)
                                     <li>
-                                        <a href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                        <a role="link" href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                             class="link-nav__menu"
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
 
                                 <li>
-                                    <a href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                                    <a role="link" href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
                                 </li>
                             </ul>
                             <!-- end menu -->
                         </nav>
 
                         <!-- Logo Mobile -->
-                        <a href="{{ url('') }}" class="logo logo-mobile d-lg-none"
+                        <a role="link" href="{{ url('') }}" class="logo logo-mobile d-lg-none"
                             style="height: 100%; margin-top: 5px;">
                             <amp-img class="logo__img" style="" height="30" width="120"
                                 src="{{ Storage::url('logo/') . get_setting('logo_web') }}" alt="logo">
@@ -2756,7 +2752,7 @@
         <!-- Ad Banner 728 -->
         {{-- <div class="container">
             <div class="text-center ads__banner">
-                <a href="#">
+                <a role="link" href="#">
                     <amp-img width="728" height="230"
                         src="{{ url('assets/frontend') }}/img/content/placeholder_728.jpg" alt="">
                 </a>
@@ -2765,8 +2761,16 @@
 
         {{-- konten --}}
         @yield('content')
-        <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-7210727750015750"
-            {{-- data-ad-slot="7046626912" --}} data-auto-format="rspv" data-full-width>
+        <amp-ad 
+            width="100vw" 
+            height="320" 
+            type="adsense" 
+            data-ad-client="ca-pub-7210727750015750"
+            data-ad-slot="7046626912" 
+            data-auto-format="rspv" 
+            data-full-width>
+            <!-- AMP content goes here -->
+
             <div overflow></div>
         </amp-ad>
         <footer class="footer">
@@ -2820,28 +2824,28 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Tentang Kami</a>
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Tentang Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Kode Etik</a>
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Kode Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Redaksi</a>
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Kode Perilaku
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Kode Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Pedoman Media
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Pedoman Media
                                         Siber</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Perlindungan Data
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Perlindungan Data
                                         Pengguna</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
                                 </div>
                             </div>
                         </div>

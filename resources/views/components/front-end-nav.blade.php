@@ -1,7 +1,7 @@
 @php
     use App\Models\Navigation;
     use Illuminate\Support\Carbon;
-
+    $navs = Navigation::orderBy('order_priority', 'asc')->get();
 @endphp
 @stack('custom-css')
 <style>
@@ -221,9 +221,6 @@
         </div>
     </div>
 
-    @php
-        $navs = Navigation::orderBy('order_priority', 'asc')->get();
-    @endphp
     {{-- Baruuu --}}
     <div class="overflow-auto py-2 nav-mobile-container d-block w-100 d-lg-none">
         <ul class="d-flex">

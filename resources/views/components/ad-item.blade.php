@@ -19,25 +19,6 @@
     }
 
 @endphp
-@push('custom-css')
-    <style>
-        .ads__banner {
-            padding-bottom: 1.5rem;
-        }
-
-        .ads {
-            position: relative;
-            border: 1px solid #eff0f6;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-            border-radius: 5px;
-        }
-
-        .ads__box {
-            text-align: center;
-            position: relative;
-        }
-    </style>
-@endpush
 
 @foreach ($ads as $ad)
     @if ($ad->type == 'img')

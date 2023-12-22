@@ -277,9 +277,7 @@
         </div>
     </div> <!-- end main container -->
 
-
-
-    <!-- Modal -->
+    <!-- Modal Ads -->
     @php
         $popup = App\Models\Ad::where('position', 'pop_up')->get();
     @endphp
@@ -346,7 +344,7 @@
                 // display ad
                 // cek kuki jika disabled maka jangan tampilkan
 
-                if(getWithExpiry('disableAd') == null){
+                if (getWithExpiry('disableAd') == null) {
                     $('#adModal').modal('toggle');
                 }
 

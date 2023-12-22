@@ -94,38 +94,70 @@
             </div>
         </div>
     </div>
-    @php
-        $modalTitle = 'Select Image';
-    @endphp
-    <x-bs-modal id="selectImage" :title="$modalTitle">
-        <form method="post" enctype="multipart/form-data" action="{{ route('galeri.collection.insert') }}">
-            @csrf
-            <div class="modal-body">
-                <div class="row">
-                    @foreach ($photos as $photo)
-                        <div class="col-md-3 text-xs-center">
-                            <label class="image-checkbox" title="England">
-                                <img loading="lazy" src="{{ Storage::url('public/photos/' . $photo->asset->file_name) }}" />
-                                <input type="checkbox" name="files[]" value="{{ $photo->image_id }}" />
-                                <input type="hidden" name="type" value="image" />
-                                <input type="hidden" name="galery_id" value="{{ $galery->galery_id }}" />
-                            </label>
-                        </div>
-                    @endforeach
+
+    
+    <!-- Modal -->
+    <div class="modal fade" id="selectImage" tabindex="-1" role="dialog" aria-labelledby="selectImageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="selectImageLabel">Select Image</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form method="post" enctype="multipart/form-data" action="{{ route('galeri.collection.insert') }}">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        @foreach ($photos as $photo)
+                            <div class="col-3 text-xs-center mb-2 p-2" style="height: 150px;">
+                                <label class="image-checkbox" title="England" style="height: 100%; width:100%;">
+                                    <img style="height: 100%; width:100%;" class="img border rounded" loading="lazy" src="{{ Storage::url('public/photos/' . $photo->asset->file_name) }}" />
+                                    <input type="checkbox" name="files[]" value="{{ $photo->image_id }}" />
+                                    <input type="hidden" name="type" value="image" />
+                                    <input type="hidden" name="galery_id" value="{{ $galery->galery_id }}" />
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                    {{$photos->links('vendor.pagination.bootstrap-4')}}
                 </div>
-                {{$photos->links('vendor.pagination.bootstrap-4')}}
+                <div class="modal-footer">
+        
+                    <div class="form-group p-0 mt-3">
+                        <button class="btn btn-sm m-1 bg-primary float-right" type="submit">Upload</button>
+                        <button class="btn btn-sm m-1 bg-danger float-right" data-dismiss="modal"
+                            type="button">Batal</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="selectImage" tabindex="-1" role="dialog" aria-labelledby="selectImageLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="selectImageLabel">Select Image</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
             </div>
             <div class="modal-footer">
-
-                <div class="form-group p-0 mt-3">
-                    <button class="btn btn-sm m-1 bg-primary float-right" type="submit">Upload</button>
-                    <button class="btn btn-sm m-1 bg-danger float-right" data-dismiss="modal"
-                        type="button">Batal</button>
-                </div>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
-        </form>
-    </x-bs-modal>
-
+          </div>
+        </div>
+      </div>
     @php
         $modalTitle = 'Select Video';
     @endphp

@@ -184,12 +184,12 @@
                 @else
                     <li class="nav-item">
                         <a href="javascript:;" class="nav-link nav-link-mobile text-nowrap dropbtn"
-                            onclick="subMenu()">
+                            onclick="subMenu(this)">
                             {{ $nav->nav_name }}
                             <i class="subicon fa-solid fa-caret-down"></i>
                         </a>
 
-                        <ul class="nav-mobile-dropdown" style="z-index: 98;" id="toggle-mobile-dropdown">
+                        <ul class="nav-mobile-dropdown" style="z-index: 98;">
                             @foreach ($nav->navlinks as $nv)
                                 <li class="nav-item">
                                     <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"
@@ -210,8 +210,9 @@
 </header> <!-- end navigation -->
 
 <script>
-    function subMenu() {
-        var dropdown = document.getElementById("toggle-mobile-dropdown");
+    function subMenu(clickedElement) {
+        var dropdown = clickedElement
+        .nextElementSibling; // Menggunakan nextElementSibling untuk mendapatkan elemen berikutnya
         dropdown.classList.toggle("show");
     }
 

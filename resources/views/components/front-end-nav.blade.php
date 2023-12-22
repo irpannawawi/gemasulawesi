@@ -263,10 +263,17 @@
 </header> <!-- end navigation -->
 
 <script>
+    var activeDropdown = null; // Tambahkan variabel global untuk melacak dropdown yang aktif
+
     function subMenu(clickedElement) {
-        var dropdown = clickedElement
-            .nextElementSibling; // Menggunakan nextElementSibling untuk mendapatkan elemen berikutnya
+        var dropdown = clickedElement.nextElementSibling;
+
+        if (activeDropdown && activeDropdown !== dropdown) {
+            activeDropdown.classList.remove("show");
+        }
+
         dropdown.classList.toggle("show");
+        activeDropdown = dropdown;
     }
 
     // Close the dropdown if the user clicks outside of it
@@ -277,6 +284,7 @@
                 var openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
+                    activeDropdown = null;
                 }
             }
         }

@@ -59,34 +59,35 @@
                                 @php
                                     $article = $post->article;
                                     $article = str_replace('../', '' . url('') . '/', $article);
-                                    $article = str_replace('iframe', 'amp-iframe', $article);
-
+                                    
                                     $dom = new DOMDocument();
                                     // Muat string HTML ke dalam objek DOMDocument
                                     $dom->loadHTML($article);
-
+                                    
                                     // Ambil semua elemen paragraf
                                     $paragraphs = $dom->getElementsByTagName('p');
                                     // Hitung jumlah paragraf
                                     $totalParagraphs = $paragraphs->length;
-
+                                    
                                     // Tentukan jumlah paragraf per bagian
                                     $paragrafPerBagian = ceil($totalParagraphs / 2);
-
+                                    
                                     // Bagian pertama
                                     $bagian1 = '';
                                     for ($i = 0; $i < $paragrafPerBagian; $i++) {
                                         $bagian1 .= $dom->saveHTML($paragraphs->item($i));
                                     }
-
+                                    
                                     // Bagian kedua
                                     $bagian2 = '';
                                     for ($i = $paragrafPerBagian; $i < $totalParagraphs; $i++) {
                                         $bagian2 .= $dom->saveHTML($paragraphs->item($i));
                                     }
-                                @endphp
+                                    $bagian1 = str_replace('iframe', 'amp-iframe', $bagian1);
+                                    $bagian2 = str_replace('iframe', 'amp-iframe', $bagian2);
+                                    @endphp
 
-                                {!! $bagian1 !!}
+{!! $bagian1 !!}
                                 @php
                                 $ad = get_ad_content();
                             @endphp

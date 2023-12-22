@@ -2766,7 +2766,7 @@
             height="320" 
             type="adsense" 
             data-ad-client="ca-pub-7210727750015750"
-            data-ad-slot="7046626912" 
+            {{-- data-ad-slot="7046626912"  --}}
             data-auto-format="rspv" 
             data-full-width>
             <!-- AMP content goes here -->

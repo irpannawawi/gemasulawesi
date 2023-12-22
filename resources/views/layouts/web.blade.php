@@ -599,7 +599,7 @@
                                     src="https://gemasulawesi.b-cdn.net/assets/frontend/img/centang-biru.png"
                                     width="40" height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 <p>
-                                    <b>Telah di Verifikasi Dewan Pers</b>
+                                    <b>Telah Diverifikasi Dewan Pers</b>
                                     <br>
                                     <b>Sertifikat Nomor <i>{{ get_setting('no_sertification') }}</i></b>
                                 </p>

@@ -3,7 +3,60 @@
     use Illuminate\Support\Carbon;
 
 @endphp
+@stack('custom-css')
+<style>
+    .nav-mobile-container {
+        background-color: #2cc38b;
+    }
 
+    .nav-mobile-content {
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
+    .nav-mobile-dropdown {
+        width: inherit;
+        position: absolute;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: visible;
+        display: none;
+        left: 0;
+        width: 100vw;
+        border: 1px solid #eff0f6;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-link-mobile {
+        color: #fff;
+        font-weight: bold;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        /* Tambahkan cursor pointer agar terlihat dapat diklik */
+    }
+
+    .nav-link-dropdown {
+        color: #000;
+    }
+
+    .nav-link-dropdown:hover {
+        color: #2cc38b;
+    }
+
+    .show {
+        display: block !important;
+    }
+
+    .nav__search:hover .nav__search-box {
+        top: 54px;
+    }
+
+    .headline {
+        z-index: 50;
+    }
+</style>
 <!-- Header -->
 <header class="header d-lg-block d-none">
     <div class="container">
@@ -184,12 +237,12 @@
                 @else
                     <li class="nav-item">
                         <a href="javascript:;" class="nav-link nav-link-mobile text-nowrap dropbtn"
-                            onclick="subMenu()">
+                            onclick="subMenu(this)">
                             {{ $nav->nav_name }}
                             <i class="subicon fa-solid fa-caret-down"></i>
                         </a>
 
-                        <ul class="nav-mobile-dropdown" style="z-index: 98;" id="toggle-mobile-dropdown">
+                        <ul class="nav-mobile-dropdown" style="z-index: 98;">
                             @foreach ($nav->navlinks as $nv)
                                 <li class="nav-item">
                                     <a href="{{ route('category', ['rubrik_name' => Str::slug($nv->rubrik->rubrik_name)]) }}"
@@ -210,9 +263,17 @@
 </header> <!-- end navigation -->
 
 <script>
-    function subMenu() {
-        var dropdown = document.getElementById("toggle-mobile-dropdown");
+    var activeDropdown = null; // Tambahkan variabel global untuk melacak dropdown yang aktif
+
+    function subMenu(clickedElement) {
+        var dropdown = clickedElement.nextElementSibling;
+
+        if (activeDropdown && activeDropdown !== dropdown) {
+            activeDropdown.classList.remove("show");
+        }
+
         dropdown.classList.toggle("show");
+        activeDropdown = dropdown;
     }
 
     // Close the dropdown if the user clicks outside of it
@@ -223,6 +284,7 @@
                 var openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
+                    activeDropdown = null;
                 }
             }
         }

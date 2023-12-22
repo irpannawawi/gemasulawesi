@@ -483,57 +483,6 @@
 
     {{-- jquery --}}
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.min.js"></script>
-
-    @stack('custom-css')
-    <style>
-        .nav-mobile-container {
-            background-color: #2cc38b;
-        }
-
-        .nav-mobile-content {
-            overflow-x: scroll;
-            white-space: nowrap;
-        }
-
-        .nav-mobile-dropdown {
-            width: inherit;
-            position: absolute;
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: visible;
-            display: none;
-            left: 0;
-            width: 100vw;
-            border: 1px solid #eff0f6;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        }
-
-        .nav-link-mobile {
-            color: #fff;
-            font-weight: bold;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            cursor: pointer;
-            /* Tambahkan cursor pointer agar terlihat dapat diklik */
-        }
-
-        .nav-link-dropdown {
-            color: #000;
-        }
-
-        .nav-link-dropdown:hover {
-            color: #2cc38b;
-        }
-
-        .show {
-            display: block !important;
-        }
-
-        .nav__search:hover .nav__search-box {
-            top: 54px;
-        }
-    </style>
 </head>
 
 <body class="home style-politics ">
@@ -729,18 +678,14 @@
     </script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
-    @php
-        $segments = request()->segments();
-        $lastSegment = end($segments);
-        $postTitle = @$post->title;
-    @endphp
+
     <script async defer>
         function encodeURL(url) {
             return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
+            const articleTitle = "{{ @$post->title }}"; // Gantilah dengan judul artikel yang sesuai
             const currentURL = window.location.href;
 
             // Share ke Facebook (atas dan bawah)

@@ -3,7 +3,60 @@
     use Illuminate\Support\Carbon;
 
 @endphp
+@stack('custom-css')
+<style>
+    .nav-mobile-container {
+        background-color: #2cc38b;
+    }
 
+    .nav-mobile-content {
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
+    .nav-mobile-dropdown {
+        width: inherit;
+        position: absolute;
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: visible;
+        display: none;
+        left: 0;
+        width: 100vw;
+        border: 1px solid #eff0f6;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .nav-link-mobile {
+        color: #fff;
+        font-weight: bold;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        /* Tambahkan cursor pointer agar terlihat dapat diklik */
+    }
+
+    .nav-link-dropdown {
+        color: #000;
+    }
+
+    .nav-link-dropdown:hover {
+        color: #2cc38b;
+    }
+
+    .show {
+        display: block !important;
+    }
+
+    .nav__search:hover .nav__search-box {
+        top: 54px;
+    }
+
+    .headline {
+        z-index: 50;
+    }
+</style>
 <!-- Header -->
 <header class="header d-lg-block d-none">
     <div class="container">
@@ -212,7 +265,7 @@
 <script>
     function subMenu(clickedElement) {
         var dropdown = clickedElement
-        .nextElementSibling; // Menggunakan nextElementSibling untuk mendapatkan elemen berikutnya
+            .nextElementSibling; // Menggunakan nextElementSibling untuk mendapatkan elemen berikutnya
         dropdown.classList.toggle("show");
     }
 

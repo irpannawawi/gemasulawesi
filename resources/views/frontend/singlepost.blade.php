@@ -1,48 +1,4 @@
 @extends('layouts.web')
-@push('custom-css')
-    <style>
-        .parallax {
-            height: 350px;
-            width: 100%;
-            background-attachment: fixed;
-            background-position: 23vw 10vh;
-            background-repeat: no-repeat;
-            background-size: auto;
-            overflow: hidden;
-            position: relative;
-        }
-
-        @media only screen and (max-width: 1440px) {
-            .parallax {
-                height: 350px;
-                width: 100%;
-                background-attachment: fixed;
-                background-position: 18% 27vh;
-                background-repeat: no-repeat;
-                background-size: auto;
-                overflow: hidden;
-                position: relative;
-            }
-        }
-
-        @media only screen and (max-width: 766px) {
-            .parallax {
-                background-position: cover;
-                margin-left: 0px;
-                background-size: cover;
-            }
-        }
-
-        @media only screen and (max-width: 480px) {
-            .parallax {
-                background-position: left;
-                margin-left: 0px;
-                background-size: 100%;
-
-            }
-        }
-    </style>
-@endpush
 @section('content')
     <!-- Breadcrumbs -->
 

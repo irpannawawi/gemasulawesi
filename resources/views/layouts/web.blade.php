@@ -457,8 +457,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/font-icons.css" />
-    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/style.css" />
-    <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/custom.css" />
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/custom.css" />
     <link rel="stylesheet" href="https://gemasulawesi.b-cdn.net/assets/frontend/css/colors/tosca.css" />
 
     <!-- Favicons -->
@@ -481,57 +481,6 @@
 
     {{-- jquery --}}
     <script src="https://gemasulawesi.b-cdn.net/assets/frontend/js/jquery.min.js"></script>
-
-    @stack('custom-css')
-    <style>
-        .nav-mobile-container {
-            background-color: #2cc38b;
-        }
-
-        .nav-mobile-content {
-            overflow-x: scroll;
-            white-space: nowrap;
-        }
-
-        .nav-mobile-dropdown {
-            width: inherit;
-            position: absolute;
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: visible;
-            display: none;
-            left: 0;
-            width: 100vw;
-            border: 1px solid #eff0f6;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
-        }
-
-        .nav-link-mobile {
-            color: #fff;
-            font-weight: bold;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            cursor: pointer;
-            /* Tambahkan cursor pointer agar terlihat dapat diklik */
-        }
-
-        .nav-link-dropdown {
-            color: #000;
-        }
-
-        .nav-link-dropdown:hover {
-            color: #2cc38b;
-        }
-
-        .show {
-            display: block !important;
-        }
-
-        .nav__search:hover .nav__search-box {
-            top: 54px;
-        }
-    </style>
 </head>
 
 <body class="home style-politics ">

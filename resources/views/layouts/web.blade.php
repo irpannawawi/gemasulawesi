@@ -436,20 +436,22 @@
     @endif
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E4E99NJFQY"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    @if (env('APP_ENV') != 'local')
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E4E99NJFQY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-        gtag('config', 'G-E4E99NJFQY');
-    </script>
+            gtag('config', 'G-E4E99NJFQY');
+        </script>
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7210727750015750"
-        crossorigin="anonymous"></script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7210727750015750"
+            crossorigin="anonymous"></script>
+    @endif
 
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>

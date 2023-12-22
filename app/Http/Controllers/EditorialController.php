@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Exception;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Sitemap\Sitemap;
 
 class EditorialController extends Controller
@@ -39,13 +40,32 @@ class EditorialController extends Controller
 
     public function insert(Request $request)
     {
-
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'title' => 'required|max:120',
             'description' => 'required|max:140|min:100',
-            'content' => 'required',
+            'content' => [
+                'required',
+                function ($attribute, $value, $fail) {
+                    // Memastikan bahwa tag <img> ada dalam konten
+                    if (!preg_match('/<img[^>]+>/i', $value)) {
+                        $fail($attribute.' harus mengandung setidaknya satu gambar.');
+                    }
+                },
+            ],
+        ], [
+            'required'=>':attribute tidak boleh kosong',
+            'max'=>':attribute melebihi batas karakter yang diizinkan',
+            'min'=>':attribute kurang dari batas minimal karakter',
         ]);
+        if ($validator->fails()) {
+            return redirect()
+            ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $article = $request->content;
+
         if ($article != null) {
 
             $dom = new DOMDocument;
@@ -56,6 +76,8 @@ class EditorialController extends Controller
                 // Remove the first <img> element
                 $firstImage = $images->item(0);
                 $firstImage->parentNode->removeChild($firstImage);
+            }else{
+
             }
 
             // Get the modified HTML

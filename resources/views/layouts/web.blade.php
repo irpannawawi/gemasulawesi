@@ -676,18 +676,14 @@
     </script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
-    @php
-        $segments = request()->segments();
-        $lastSegment = end($segments);
-        $postTitle = @$post->title;
-    @endphp
+
     <script async defer>
         function encodeURL(url) {
             return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
+            const articleTitle = "{{ @$post->title }}"; // Gantilah dengan judul artikel yang sesuai
             const currentURL = window.location.href;
 
             // Share ke Facebook (atas dan bawah)

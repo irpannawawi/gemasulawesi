@@ -468,6 +468,9 @@
             }
 
             function cb(start, end) {
+                console.log('Start Date:', start.format('YYYY-MM-DD'));
+                console.log('End Date:', end.format('YYYY-MM-DD'));
+
                 $('#reportrange span').html(start.format('DD MMMM, YYYY') + ' - ' + end.format('D MMMM, YYYY'));
                 $('#selectedStartDate').val(start.format('YYYY-MM-DD'));
                 $('#selectedEndDate').val(end.format('YYYY-MM-DD'));
@@ -496,18 +499,14 @@
             }
         });
     </script>
-    @php
-        $segments = request()->segments();
-        $lastSegment = end($segments);
-        $postTitle = @$post->title;
-    @endphp
+
     <script>
         function encodeURL(url) {
             return encodeURIComponent(url).replace(/:/g, '%3A').replace(/\//g, '%2F');
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const articleTitle = "{{ $postTitle }}"; // Gantilah dengan judul artikel yang sesuai
+            const articleTitle = "{{ @$post->title }}"; // Gantilah dengan judul artikel yang sesuai
             const currentURL = window.location.href;
 
             // Share ke Facebook (atas dan bawah)

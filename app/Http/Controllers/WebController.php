@@ -237,7 +237,14 @@ class WebController extends Controller
     {
         $keyword = $request->input('q');
 
-        $paginatedPost = Posts::search($keyword)->orderBy('published_at','desc')->where('status', 'published')->paginate(10);
+        $paginatedPost = Posts::orderBy('published_at','desc');
+        if($keyword!=''){
+            $paginatedPost = $paginatedPost->where([
+                ['title', 'like', '%'.$keyword.'%'],
+                ['article', 'like', '%'.$keyword.'%']
+            ]);
+        }
+        $paginatedPost = $paginatedPost->where('status', 'published')->paginate(10);
 
         $beritaTerkini = $paginatedPost->split(2);
 

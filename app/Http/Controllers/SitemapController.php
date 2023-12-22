@@ -20,16 +20,16 @@ class SitemapController extends Controller
     public function generate()
     {
         $sitemap = Sitemap::create();
-        $sitemap->add(config('app.url'));
-        $sitemap->add(config('app.url').'/tentang-kami');
-        $sitemap->add(config('app.url').'/kode-etik');
-        $sitemap->add(config('app.url').'/redaksi');
-        $sitemap->add(config('app.url').'/kode-prilaku-pers');
-        $sitemap->add(config('app.url').'/perlindungan-data-pengguna');
-        $sitemap->add(config('app.url').'/gallery');
+        $sitemap->add(Url::create(config('app.url')));
+        $sitemap->add(Url::create(config('app.url').'/tentang-kami')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url').'/kode-etik')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url').'/redaksi')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url').'/kode-prilaku-pers')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url').'/perlindungan-data-pengguna')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url').'/gallery')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
 
-        //posts sitemaps
-        $this->create_amps();
+        //posts sitemaps web, news, amps
+        $this->create_posts();
         $this->create_amps();
         
         $rubriks = Rubrik::all();
@@ -39,7 +39,8 @@ class SitemapController extends Controller
         }
 
         // rubrik sitemaps
-        
+        $this->create_rubriks();
+
         // tags sitemaps
         $this->create_tags();
         
@@ -51,10 +52,7 @@ class SitemapController extends Controller
         $sitemap->writeToFile(public_path('sitemap.xml'));
     }
 
-    public function create_site()
-    {
 
-    }
 
     public function create_posts()
     {
@@ -100,9 +98,13 @@ class SitemapController extends Controller
 
     public function create_rubriks()
     {
-        $res = Sitemap::create()
+        $folder_path = "public/sitemaps/rubriks/";
+        Storage::makeDirectory($folder_path);
+
+        // generate sitemap
+        Sitemap::create()
             ->add(Rubrik::all())
-            ->writeToFile(public_path('sitemap/rubriks.xml'));
+            ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml"));
         return null;
     }
 
@@ -147,8 +149,11 @@ class SitemapController extends Controller
 
     public function create_tags()
     {
-        $res = Sitemap::create()
+        $folder_path = "public/sitemaps/rubriks/";
+        // generate sitemap
+        Sitemap::create()
             ->add(Tags::all())
-            ->writeToFile(public_path('sitemap/tags.xml'));
+            ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml"));
+        return null;
     }
 }

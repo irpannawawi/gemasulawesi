@@ -59,6 +59,7 @@
                                 @php
                                     $article = $post->article;
                                     $article = str_replace('../', '' . url('') . '/', $article);
+                                    $article = str_replace('iframe', 'amp-iframe', $article);
 
                                     $dom = new DOMDocument();
                                     // Muat string HTML ke dalam objek DOMDocument

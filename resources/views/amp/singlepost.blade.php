@@ -65,38 +65,64 @@
                                     // Muat string HTML ke dalam objek DOMDocument
                                     $dom->loadHTML($article);
 
+
+                                    // validasi tag atribute href
+
+                                    $links = $dom->getElementsByTagName('a');
+
+                                    foreach ($links as $link) {
+                                        $href = $link->getAttribute('href');
+
+                                        // Validasi tautan
+                                        if (!isValidLink($href)) {
+                                            // Tindakan yang sesuai, misalnya menghapus tautan atau memberikan notifikasi
+                                            $link->setAttribute('href', config('app.url'));
+                                            // Anda dapat menggantinya dengan tindakan yang sesuai.
+                                        }
+                                    }
+                                    
+                                    $dom->saveHTML();
+                                    // Split artikel menjadi 2 bagian
                                     // Ambil semua elemen paragraf
                                     $paragraphs = $dom->getElementsByTagName('p');
                                     // Hitung jumlah paragraf
                                     $totalParagraphs = $paragraphs->length;
-
+                                    
                                     // Tentukan jumlah paragraf per bagian
                                     $paragrafPerBagian = ceil($totalParagraphs / 2);
-
+                                    
                                     // Bagian pertama
                                     $bagian1 = '';
                                     for ($i = 0; $i < $paragrafPerBagian; $i++) {
                                         $bagian1 .= $dom->saveHTML($paragraphs->item($i));
                                     }
-
+                                    
                                     // Bagian kedua
                                     $bagian2 = '';
                                     for ($i = $paragrafPerBagian; $i < $totalParagraphs; $i++) {
                                         $bagian2 .= $dom->saveHTML($paragraphs->item($i));
                                     }
+
+                                    // validadsi iframe to amp-iframe
+
                                     $bagian1 = str_replace('<iframe', '<amp-iframe', $bagian1);
                                     $bagian2 = str_replace('<iframe', '<amp-iframe', $bagian2);
                                     $bagian1 = str_replace('<amp-iframe', '<amp-iframe width="480" height="240" sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian1);
                                     $bagian2 = str_replace('<amp-iframe', '<amp-iframe width="480" height="240" sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian2);
+
+                                    
+
                                 @endphp
 
                                 {!! $bagian1 !!}
                                 @php $ad = get_ad_content(); @endphp
-                                @if ($ad != null) <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
-                                <div class="parallax"
-                                    style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
-                                    data-velocity="0.5">
-                                </div> @endif
+                                @if ($ad != null)
+                                    <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
+                                    <div class="parallax"
+                                        style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
+                                        data-velocity="0.5">
+                                    </div>
+                                @endif
                                 {!! $bagian2 !!}
                                 <!-- halaman -->
                                 <div class="halaman">

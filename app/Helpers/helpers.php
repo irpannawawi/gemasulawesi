@@ -239,3 +239,9 @@ function get_ad_content()
        return $ad[0];
     }
 }
+
+function isValidLink($url) {
+    $headers = @get_headers($url);
+
+    return $headers && strpos($headers[0], '200') !== false;
+}

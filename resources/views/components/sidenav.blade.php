@@ -1,9 +1,10 @@
- @php
-     use App\Models\Navigation;
-     use Iluminate\Support\Carbon;
- @endphp
- <!-- Sidenav -->
- <header class="sidenav" id="sidenav">
+@php
+    use App\Models\Navigation;
+    use Iluminate\Support\Carbon;
+    $navs = Navigation::orderBy('order_priority', 'asc')->get();
+@endphp
+<!-- Sidenav -->
+<header class="sidenav" id="sidenav">
 
     <!-- close -->
     <div class="sidenav__close">
@@ -14,9 +15,6 @@
 
     <!-- Nav -->
     <nav class="sidenav__menu-container">
-        @php
-            $navs = Navigation::orderBy('order_priority', 'asc')->get();
-        @endphp
         <ul class="sidenav__menu" role="menubar">
             <!-- Categories -->
             @foreach ($navs as $nav)
@@ -45,11 +43,10 @@
             aria-label="facebook">
             <i class="fa-brands fa-facebook"></i>
         </a>
-        <a class="social social-twitter" href="https://{{ get_setting('x') }}" target="_blank"
-            aria-label="twitter">
+        <a class="social social-twitter" href="https://{{ get_setting('x') }}" target="_blank" aria-label="twitter">
             <i class="fa-brands fa-square-x-twitter"></i>
         </a>
-        <a class="social social-youtube" href="https:/{{ get_setting('youtube') }}" target="_blank"
+        <a class="social social-youtube" href="https://{{ get_setting('youtube') }}" target="_blank"
             aria-label="youtube">
             <i class="fa-brands fa-youtube"></i>
         </a>

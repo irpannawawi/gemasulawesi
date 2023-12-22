@@ -14,9 +14,8 @@
 @endphp
 @stack('custom-css')
 <style>
-    /* CSS untuk tampilan mobile */
-    @media(max - width: 767 px) {
-        .most__item: nth - child(n + 6) {
+    @media (max-width: 767px) {
+        .most__item:nth-child(n+6) {
             display: none;
         }
     }

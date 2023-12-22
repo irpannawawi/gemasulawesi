@@ -10,7 +10,7 @@
 
             <!-- slider -->
             <div class="col-lg-8 order-lg-2">
-                <x-ad-item position='top_page'/>
+                <x-ad-item position='top_page' />
 
                 <section>
                     <!-- Pencarian -->
@@ -71,9 +71,9 @@
                                     @endif
                                 </ul>
 
-            <x-ad-item position='in_article_list' num="0" />
-            <x-ad-item position='in_article_list' num="1" />
-                                
+                                <x-ad-item position='in_article_list' num="0" />
+                                <x-ad-item position='in_article_list' num="1" />
+
 
                                 <ul class="post-list-small post-list-small--2 mb-32">
                                     @if (isset($beritaTerkini[0]))
@@ -121,7 +121,7 @@
                     </div>
                 </section>
             </div> <!-- end slider -->
-            
+
             <!-- Sidebar -->
             <x-sidebar />
             <!-- end sidebar -->

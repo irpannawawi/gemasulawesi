@@ -26,10 +26,10 @@ class DashboardController extends Controller
         $startDate = Carbon::now()->subMonths(12);
     $endDate = Carbon::now();
         $data = DB::table('posts')
-        ->select(DB::raw('MONTH(published_at) as month_number'), DB::raw('MONTHNAME(published_at) as month'), DB::raw('COUNT(*) as total'))
+        ->select(DB::raw('DATE_FORMAT(published_at, "%Y-%m") as month'), DB::raw('COUNT(*) as total'))
         ->whereBetween('published_at', [$startDate, $endDate])
-        ->groupBy('month')
-        ->orderBy('month_number') // Menambahkan klausul ORDER BY untuk mengurutkan berdasarkan nomor bulan
+        ->groupBy(DB::raw('DATE_FORMAT(published_at, "%Y-%m")'))
+        ->orderBy(DB::raw('DATE_FORMAT(published_at, "%Y-%m")'))
         ->get();
         return response()->json($data);
     }

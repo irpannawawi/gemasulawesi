@@ -127,8 +127,8 @@ function get_post_image($post_id)
     }
 
     // Bangun URL dengan menggunakan Storage::url
-    // $url = Storage::url('public/photos/' . $post->image->asset->file_name);
-    $url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
+    $url = Storage::url('public/photos/' . $post->image->asset->file_name);
+    //$url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
 
     return $url;
 }

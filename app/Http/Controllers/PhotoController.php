@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
+use Image as ImageMaker;
 class PhotoController extends Controller
 {
     public function index(Request $request)
@@ -101,11 +101,11 @@ class PhotoController extends Controller
 
     public function upload(Request $request)
     {
-        $path = $request->file('photo')->store('public/photos');
-        // insert to file table
-        $asset = Asset::create(['file_name' => explode('/', $path)[2]]);
+        // $path = $request->file('photo')->store('public/photos');
+        // // insert to file table
+        $image = $this->save_image($request->file('photo'));
 
-
+        $asset = Asset::create(['file_name' => $image->basename]);
         // insert image details
         $imageDetails = [
             'asset_id' => $asset->asset_id,
@@ -122,9 +122,9 @@ class PhotoController extends Controller
 
     public function browse_upload(Request $request)
     {
-        $path = $request->file('photo')->store('public/photos');
+        $image = $this->save_image($request->file('photo'));
         // insert to file table
-        $asset = Asset::create(['file_name' => explode('/', $path)[2]]);
+        $asset = Asset::create(['file_name' => $image->basename]);
 
 
         // insert image details
@@ -141,7 +141,7 @@ class PhotoController extends Controller
         return redirect()->route('browseImage');
     }
 
-    public function upload_api(Request $request)
+    public function upload_api(Request $request) //unused
     {
 
         $file_name = $request->file_name;
@@ -176,7 +176,7 @@ class PhotoController extends Controller
         }
     }
 
-    public function upload_image_only(Request $request)
+    public function upload_image_only(Request $request) // unused
     {
 
         $file_name = $request->file_name;
@@ -195,6 +195,7 @@ class PhotoController extends Controller
             ]);
         }
     }
+    
     public function delete($id)
     {
         $image = Image::find($id);
@@ -216,5 +217,18 @@ class PhotoController extends Controller
         $asset_id = $image->asset_id;
         // Asset::where(['asset_id' => $asset_id])->delete();
         return redirect()->back()->with('success', 'Photo deleted successfully.');
+    }
+
+
+    public function save_image($image)
+    {
+        $file_name = date('dmYhis').'.webp';
+        $file_path = public_path('storage/photos/'.$file_name);
+        // Kompresi gambar tanpa resize dan konversi ke format WebP
+        $compressedImage = ImageMaker::make($image->getRealPath())
+        ->encode('webp', 60) // Konversi ke WebP dengan tingkat kualitas 80
+        ->fit(740, 444) // Konversi ke WebP dengan tingkat kualitas 80
+        ->save($file_path);
+       return $compressedImage; 
     }
 }

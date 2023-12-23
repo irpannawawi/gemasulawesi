@@ -40,11 +40,11 @@
     <x-ad-item position='below_sidebar' />
 </aside>
 <script>
-    // JavaScript untuk tampilan mobile
-    if (window.innerWidth <= 767) {
-        var mostItems = document.querySelectorAll('.most__item');
-        for (var i = 5; i < mostItems.length; i++) {
-            mostItems[i].style.display = 'none';
-        }
-    }
+    // // JavaScript untuk tampilan mobile
+    // if (window.innerWidth <= 767) {
+    //     var mostItems = document.querySelectorAll('.most__item');
+    //     for (var i = 5; i < mostItems.length; i++) {
+    //         mostItems[i].style.display = 'none';
+    //     }
+    // }
 </script>

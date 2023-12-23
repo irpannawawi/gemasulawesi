@@ -44,6 +44,7 @@ class WebController extends Controller
 
     public function indeks(Request $request)
     {
+        
         VisitLog::save($request->all());
 
         // Cek apakah ada rentang tanggal yang dipilih

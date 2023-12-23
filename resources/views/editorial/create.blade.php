@@ -315,7 +315,7 @@
                 onMessage: (instance, data) => {
                     $('#postImage').val(data.data.imageId)
                     const imgHtml =
-                        `<img data-id="${data.data.imageId}" src="${data.data.imageUrl}" />`;
+                        `<img width="444" data-id="${data.data.imageId}" src="${data.data.imageUrl}" />`;
                     tinymce.activeEditor.execCommand('mceInsertContent', false, imgHtml);
 
                     instance.close();
@@ -381,7 +381,7 @@
                                 onMessage: (instance, data) => {
                                     $('#postImage').val(data.data.imageId)
                                     const imgHtml =
-                                        `<img src="${data.data.imageUrl}" data-source="${data.data.source}" data-id="${data.data.imageId}" />`;
+                                        `<img width="444" src="${data.data.imageUrl}" data-source="${data.data.source}" data-id="${data.data.imageId}" />`;
                                     tinymce.activeEditor.execCommand('mceInsertContent',
                                         false, imgHtml);
 

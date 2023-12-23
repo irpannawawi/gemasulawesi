@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\SitemapIndex;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
 
@@ -20,6 +21,7 @@ class SitemapController extends Controller
     public function generate()
     {
         $sitemap = Sitemap::create();
+        
         $sitemap->add(Url::create(config('app.url')));
         $sitemap->add(Url::create(config('app.url').'/tentang-kami')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
         $sitemap->add(Url::create(config('app.url').'/kode-etik')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
@@ -27,15 +29,20 @@ class SitemapController extends Controller
         $sitemap->add(Url::create(config('app.url').'/kode-prilaku-pers')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
         $sitemap->add(Url::create(config('app.url').'/perlindungan-data-pengguna')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
         $sitemap->add(Url::create(config('app.url').'/gallery')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
-
+        Storage::makeDirectory('public/sitemaps/site');
+        $sitemap->writeToFile(storage_path("app/public/sitemaps/site/web.xml"));
+        
         //posts sitemaps web, news, amps
         $this->create_posts();
         $this->create_amps();
+        //  Add index
+        $sitemapindex = SitemapIndex::create();
+        $sitemapindex->add('storage/sitemaps/site/web.xml');
         
         $rubriks = Rubrik::all();
         foreach ($rubriks as $rubrik) {
-            $sitemap->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
-            $sitemap->add('storage/sitemaps/amp/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
+            $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
+            $sitemapindex->add('storage/sitemaps/amp/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
         }
 
         // rubrik sitemaps
@@ -46,10 +53,10 @@ class SitemapController extends Controller
         
         $rubriks = Rubrik::all();
         foreach ($rubriks as $rubrik) {
-            $sitemap->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
+            $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
         }
 
-        $sitemap->writeToFile(public_path('sitemap.xml'));
+        $sitemapindex->writeToFile(public_path('sitemap.xml'));
     }
 
 

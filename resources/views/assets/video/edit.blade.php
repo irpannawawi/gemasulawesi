@@ -14,7 +14,7 @@
                 </div>
                 <div class="form-group">   
                     <label>Description</label>
-                    <textarea class="form-control" name="description" id="description" cols="30" rows="10">{{$video->description}}</textarea>
+                    <textarea required class="form-control" name="description" id="description" cols="30" rows="10">{{$video->description}}</textarea>
                 </div>
             </div>
             <div class="card-footer">

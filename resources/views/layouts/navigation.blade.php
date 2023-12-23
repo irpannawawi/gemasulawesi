@@ -1,10 +1,12 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:; padding-bottom: 40px;">
     <!-- Brand Logo -->
+    <div class="row">
+    <img src="{{ Storage::url('public/avatars/' . Auth::user()->avatar) }}" alt="avatar"
+    class="brand-image img-circle elevation-3 mx-auto" style="opacity: .8;">
+    </div>
     <a href="{{ url('dashboard') }}" class="brand-link">
-        <img src="{{ Storage::url('public/avatars/' . Auth::user()->avatar) }}" alt="avatar"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ Auth::user()->display_name }}</span>
+        <span style="white-space:wrap;" class=" p-1 font-weight-light text-center">{{ Auth::user()->display_name }}</span>
     </a>
 
     <!-- Sidebar -->

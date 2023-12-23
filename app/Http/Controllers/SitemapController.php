@@ -21,28 +21,29 @@ class SitemapController extends Controller
     public function generate()
     {
         $sitemap = Sitemap::create();
-        
+
         $sitemap->add(Url::create(config('app.url')));
-        $sitemap->add(Url::create(config('app.url').'/tentang-kami')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
-        $sitemap->add(Url::create(config('app.url').'/kode-etik')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
-        $sitemap->add(Url::create(config('app.url').'/redaksi')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
-        $sitemap->add(Url::create(config('app.url').'/kode-prilaku-pers')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
-        $sitemap->add(Url::create(config('app.url').'/perlindungan-data-pengguna')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
-        $sitemap->add(Url::create(config('app.url').'/gallery')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url') . '/tentang-kami')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url') . '/kode-etik')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url') . '/redaksi')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url') . '/kode-prilaku-pers')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url') . '/perlindungan-data-pengguna')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
+        $sitemap->add(Url::create(config('app.url') . '/gallery')->setchangeFrequency(Url::CHANGE_FREQUENCY_YEARLY));
         Storage::makeDirectory('public/sitemaps/site');
         $sitemap->writeToFile(storage_path("app/public/sitemaps/site/web.xml"));
-        
+
         //posts sitemaps web, news, amps
         $this->create_posts();
         $this->create_amps();
         //  Add index
         $sitemapindex = SitemapIndex::create();
         $sitemapindex->add('storage/sitemaps/site/web.xml');
-        
+
         $rubriks = Rubrik::all();
         foreach ($rubriks as $rubrik) {
             $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
-            $sitemapindex->add('storage/sitemaps/amp/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
+            $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_news.xml');
+            $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_amp.xml');
         }
 
         // rubrik sitemaps
@@ -50,7 +51,7 @@ class SitemapController extends Controller
 
         // tags sitemaps
         $this->create_tags();
-        
+
         $rubriks = Rubrik::all();
         foreach ($rubriks as $rubrik) {
             $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
@@ -70,37 +71,21 @@ class SitemapController extends Controller
             $folder_path = "public/sitemaps/{$folder_name}";
             Storage::makeDirectory($folder_path);
 
-            // generate sitemap
-            Sitemap::create()
-                ->add(Posts::where('status', 'published')
-                    ->where('category', $rubrik->rubrik_id)
-                    ->orderBy('published_at', 'desc')
-                    ->limit(200)
-                    ->get())
-                ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml")); // simpan ke storage
-
-        }
-
-        $rubriks = Rubrik::all();
-        foreach ($rubriks as $rubrik) {
-            $folder_name = Str::slug($rubrik->rubrik_name);
-            // buat folder jika belum ada
-            $folder_path = "public/sitemaps/{$folder_name}";
-            Storage::makeDirectory($folder_path);
             $data['posts'] = Posts::where('status', 'published')
-            ->where('category', $rubrik->rubrik_id)
-            ->orderBy('published_at', 'desc')
-            ->limit(200)
-            ->get();
-            // Render the view
-            $html = View::make('sitemap.google.news', $data)->render();
-    
-            // Specify the file path
-            
-            // Write the rendered HTML to the file
-            Storage::put($folder_path.'/sitemap_news.xml', $html);
+                ->where('category', $rubrik->rubrik_id)
+                ->orderBy('published_at', 'desc')
+                ->limit(200)
+                ->get();
 
+            // generate sitemap web
+            Sitemap::create()
+                ->add($data['posts'])
+                ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml")); // simpan ke storage
+            // generate sitemap news
+            $html = View::make('sitemap.google.news', $data)->render();
+            Storage::put($folder_path . '/sitemap_news.xml', $html);
         }
+
     }
 
     public function create_rubriks()

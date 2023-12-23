@@ -60,7 +60,7 @@ Route::post('/create_img_byTinymce', [PhotoController::class, 'update_image_tiny
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
+    Route::get('/chart-data', [DashboardController::class, 'chartData']);
 
     Route::get('/profile', [AdministratorController::class, 'profile'])->name('profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

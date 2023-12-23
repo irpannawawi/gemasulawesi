@@ -22,10 +22,12 @@ class DashboardController extends Controller
 
     public function chartData()
     {
+        
         $startDate = Carbon::now()->subMonths(12);
+    $endDate = Carbon::now();
         $data = DB::table('posts')
             ->select(DB::raw('MONTHNAME(published_at) as month'), DB::raw('COUNT(*) as total'))
-            ->where('published_at', '>=', $startDate)
+            ->whereBetween('published_at', [$startDate, $endDate])
             ->groupBy('month')
             ->get();
 

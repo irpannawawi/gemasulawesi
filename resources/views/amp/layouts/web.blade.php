@@ -95,12 +95,12 @@
                         'rubrik' => $post->rubrik->rubrik_name,
                         'penulis' => $post->author->display_name,
                         'editor' => '',
-                        'id' => $post->post_id,
+                        'id' => "$post->post_id",
                         'source' => '',
                         'topic' => '',
                         'tag' => $post->tags,
-                        'penulis_id' => $post->author->author_id,
-                        'editor_id' => $post->author->editor_id,
+                        'penulis_id' => "$post->author_id",
+                        'editor_id' => "$post->editor_id",
                     ],
                 ];
                 $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
@@ -2602,11 +2602,12 @@
                 <div class="marquee-container">
                     <div class="marquee-content">
                         @foreach ($breakingNews as $news)
-                            <a role="link" href="{{ route('singlePost', [
-                                'rubrik' => $news->post->rubrik->rubrik_name,
-                                'post_id' => $news->post->post_id,
-                                'slug' => $news->post->slug,
-                            ]) }}"
+                            <a role="link"
+                                href="{{ route('singlePost', [
+                                    'rubrik' => $news->post->rubrik->rubrik_name,
+                                    'post_id' => $news->post->post_id,
+                                    'slug' => $news->post->slug,
+                                ]) }}"
                                 class="newsticker__item-url amp-link" role="link">{{ $news->title }}</a>
                         @endforeach
                     </div>
@@ -2720,14 +2721,16 @@
                             <ul class="nav__menu">
                                 @foreach ($rubriks->take(get_setting('count_rubrik')) as $rubrik)
                                     <li>
-                                        <a role="link" href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
+                                        <a role="link"
+                                            href="{{ route('category', ['rubrik_name' => $rubrik->rubrik_name]) }}"
                                             class="link-nav__menu"
                                             style="white-space: nowrap;">{{ $rubrik->rubrik_name }}</a>
                                     </li>
                                 @endforeach
 
                                 <li>
-                                    <a role="link" href="{{ route('gallery') }}" style="white-space: nowrap;">Gallery</a>
+                                    <a role="link" href="{{ route('gallery') }}"
+                                        style="white-space: nowrap;">Gallery</a>
                                 </li>
                             </ul>
                             <!-- end menu -->
@@ -2760,14 +2763,8 @@
 
         {{-- konten --}}
         @yield('content')
-        <amp-ad 
-            width="100vw" 
-            height="320" 
-            type="adsense" 
-            data-ad-client="ca-pub-7210727750015750"
-            {{-- data-ad-slot="7046626912"  --}}
-            data-auto-format="rspv" 
-            data-full-width>
+        <amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-7210727750015750"
+            {{-- data-ad-slot="7046626912"  --}} data-auto-format="rspv" data-full-width>
             <!-- AMP content goes here -->
 
             <div overflow></div>
@@ -2823,28 +2820,35 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="footer__menu">
                                 <div class="footer__item">
-                                    <a role="link" href="" class="footer__link" rel="noreferred">Tentang Kami</a>
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Tentang
+                                        Kami</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a role="link" href="" class="footer__link" rel="noreferred">Kode Etik</a>
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Kode
+                                        Etik</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a role="link" href="" class="footer__link" rel="noreferred">Redaksi</a>
+                                    <a role="link" href="" class="footer__link"
+                                        rel="noreferred">Redaksi</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a role="link" href="" class="footer__link" rel="noreferred">Kode Perilaku
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Kode
+                                        Perilaku
                                         Pers</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a role="link" href="" class="footer__link" rel="noreferred">Pedoman Media
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Pedoman
+                                        Media
                                         Siber</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a role="link" href="" class="footer__link" rel="noreferred">Perlindungan Data
+                                    <a role="link" href="" class="footer__link"
+                                        rel="noreferred">Perlindungan Data
                                         Pengguna</a>
                                 </div>
                                 <div class="footer__item">
-                                    <a role="link" href="" class="footer__link" rel="noreferred">Lowongan Kerja</a>
+                                    <a role="link" href="" class="footer__link" rel="noreferred">Lowongan
+                                        Kerja</a>
                                 </div>
                             </div>
                         </div>

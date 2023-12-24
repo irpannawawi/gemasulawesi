@@ -97,7 +97,7 @@ class AdController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'type' => 'required',
-            'image' => 'required_if:type,img|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'required_if:type,img|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
         $value = date('Ymdhis') . '.jpeg';

@@ -83,7 +83,7 @@ class SitemapController extends Controller
                 ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml")); // simpan ke storage
             // generate sitemap news
             $html = View::make('sitemap.google.news', $data)->render();
-            Storage::put($folder_path . '/sitemap_news.xml', $html);
+            Storage::put('app/'.$folder_path . '/sitemap_news.xml', $html);
         }
 
     }

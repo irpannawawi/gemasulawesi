@@ -7,9 +7,9 @@
 
     <div class="card">
         <div class="card-header">
-            <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addUserModal"><i
-                    class="fa fa-plus"></i>Tambah data</button>
-            <a class="float-right text-danger" href="{{route('users.inactive')}}"><small>Inactive users({{$inactive_users}})</small></a>
+            <a class="btn btn-primary btn-xs" href="{{route('users')}}"><i
+                    class="fa fa-arrow-left"></i></a>
+                    Inactive Users
         </div>
         <div class="card-body table-responsive">
             <table class="table table-sm">

@@ -5,14 +5,15 @@
         function getToken(token) {
             $('#g-token').val(token)
         }
-
         function do_login() {
+            token = $('[name="csrf-token"]').attr('content')
+            console.log(token)
             data = {
                 gtoken: $('#g-token').val(),
                 email: $('#email').val(),
                 password: $('#password').val(),
                 remember_me: $('#remember_me').val(),
-                _token: '{{ csrf_token() }}'
+                _token: token
             }
             console.log('logingin')
             $.post('{{ route('login') }}', data, (res) => {
@@ -31,6 +32,7 @@
                         title: 'Oops...',
                         text: res.message,
                     })
+                    $('[name="csrf-token"]').attr('content', res.token)
                     grecaptcha.reset();
                 }
 
@@ -41,6 +43,7 @@
                     title: 'Oops...',
                     text: res.responseJSON.message,
                 })
+                $('[name="csrf-token"]').attr('content', res.token)
                 grecaptcha.reset();
             });
         }
@@ -50,7 +53,6 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}" id="loginForm">
         <h3 class="text-center">Login</h3>
         @csrf
 
@@ -78,5 +80,4 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
-    </form>
 </x-guest-layout>

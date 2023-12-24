@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
 
     Route::get('/users', [AdministratorController::class, 'index'])->name('users');
+    Route::get('/users/inactive', [AdministratorController::class, 'inactive_users'])->name('users.inactive');
     Route::get('/users/{id}', [AdministratorController::class, 'delete'])->name('users.delete');
     Route::post('/users', [AdministratorController::class, 'insert'])->name('users.add');
     Route::get('/users/edit/{id}', [AdministratorController::class, 'edit'])->name('users.edit');

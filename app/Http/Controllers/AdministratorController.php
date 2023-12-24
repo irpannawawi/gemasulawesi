@@ -11,8 +11,15 @@ class AdministratorController extends Controller
 {
     public function index()
     {
-        $data['users'] = User::orderBy('id', 'desc')->get();
+        $data['users'] = User::orderBy('id', 'desc')->whereNot('role','inactive')->get();
+        $data['inactive_users'] = User::where('role', 'inactive')->get()->count();
         return view('administrator.view', $data);
+    }
+
+    public function inactive_users()
+    {
+        $data['users'] = User::orderBy('id', 'desc')->where('role','inactive')->get();
+        return view('administrator.view_inactive', $data);
     }
 
     public function profile()

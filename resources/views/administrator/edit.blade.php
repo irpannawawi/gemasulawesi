@@ -45,7 +45,8 @@
                     <select name="role" id="role" class="form-control" required>
                         <option {{$user->role=='admin'?'selected':''}} value="admin">Admin</option>
                         <option {{$user->role=='editor'?'selected':''}} value="editor">Editor</option>
-                        <option {{$user->role=='author'?'selected':''}} value="author">Author</option>
+                        <option {{$user->role=='editor'?'selected':''}} value="editor">Editor</option>
+                        <option {{$user->role=='inactive'?'selected':''}} value="inactive">Inactive <small>(for disabling/soft deleting the user)</small></option>
                     </select>
                 </div>
 

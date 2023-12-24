@@ -32,7 +32,6 @@ class AuthenticatedSessionController extends Controller
         ]);
 
         if(Auth::attempt($credentials)){
-
             $url = 'https://www.google.com/recaptcha/api/siteverify';
             $data = [
                 'secret' => env('RECAPTCHA_SECRET_KEY'),
@@ -40,10 +39,15 @@ class AuthenticatedSessionController extends Controller
             ];
             $resp = Http::asForm()->post($url, $data);
             $resp = $resp->object();
-
+            
             if($resp->success){
                 $request->session()->regenerate();
-                $response = ['success'=>true];
+                if(Auth::user()->role=='inactive'){
+                    Auth::logout();
+                    $response = ['success'=>false, 'message'=>'User inactive'];
+                }else{
+                    $response = ['success'=>true];
+                }
             }else{
                 $response = ['success'=>false, 'message'=>'invalid captcha'];
             }
@@ -51,6 +55,7 @@ class AuthenticatedSessionController extends Controller
             $response = ['success'=>false, 'message'=>'user credential didn\'t match!'];
         }
         
+        $response['token'] = csrf_token();
         
         return response()->json($response);
     }

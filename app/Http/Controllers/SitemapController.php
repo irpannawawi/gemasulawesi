@@ -41,21 +41,20 @@ class SitemapController extends Controller
 
         $rubriks = Rubrik::all();
         foreach ($rubriks as $rubrik) {
-            $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
-            $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_news.xml');
-            $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_amp.xml');
+            $folder_path = 'storage/sitemaps/' . Str::slug($rubrik->rubrik_name);
+            $sitemapindex->add($folder_path . '/sitemap_web.xml');
+            $sitemapindex->add($folder_path . '/sitemap_news.xml');
+            $sitemapindex->add($folder_path . '/sitemap_amp.xml');
         }
-
+        
         // rubrik sitemaps
         $this->create_rubriks();
-
+        $sitemapindex->add('storage/sitemaps/sitemap_rubrik.xml');
+        
         // tags sitemaps
         $this->create_tags();
+        $sitemapindex->add('storage/sitemaps/sitemap_tags.xml');
 
-        $rubriks = Rubrik::all();
-        foreach ($rubriks as $rubrik) {
-            $sitemapindex->add('storage/sitemaps/' . Str::slug($rubrik->rubrik_name) . '/sitemap_web.xml');
-        }
 
         $sitemapindex->writeToFile(public_path('sitemap.xml'));
     }
@@ -74,39 +73,30 @@ class SitemapController extends Controller
             $data['posts'] = Posts::where('status', 'published')
                 ->where('category', $rubrik->rubrik_id)
                 ->orderBy('published_at', 'desc')
-                ->limit(200)
+                ->limit(500)
                 ->get();
 
             // generate sitemap web
             Sitemap::create()
                 ->add($data['posts'])
                 ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml")); // simpan ke storage
-            // generate sitemap news
+            
+            
+                // generate sitemap news
             $html = View::make('sitemap.google.news', $data)->render();
-            Storage::put('app/'.$folder_path . '/sitemap_news.xml', $html);
+            Storage::put($folder_path . '/sitemap_news.xml', $html);
+            
         }
 
     }
-
-    public function create_rubriks()
-    {
-        $folder_path = "public/sitemaps/rubriks/";
-        Storage::makeDirectory($folder_path);
-
-        // generate sitemap
-        Sitemap::create()
-            ->add(Rubrik::all())
-            ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml"));
-        return null;
-    }
-
+    
     public function create_amps()
     {
         $rubriks = Rubrik::all();
         foreach ($rubriks as $rubrik) {
             // buat folder jika belum ada
             $folder_name = Str::slug($rubrik->rubrik_name);
-            $folder_path = "public/sitemaps/amp/{$folder_name}";
+            $folder_path = "public/sitemaps/{$folder_name}";
             Storage::makeDirectory($folder_path);
 
             // generate sitemap
@@ -114,38 +104,30 @@ class SitemapController extends Controller
                 ->add(Amp::where('status', 'published')
                     ->where('category', $rubrik->rubrik_id)
                     ->orderBy('published_at', 'desc')
-                    ->limit(200)
+                    ->limit(500)
                     ->get())
-                ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml")); // simpan ke storage
-
-        }
-
-        $rubriks = Rubrik::all();
-        foreach ($rubriks as $rubrik) {
-            // buat folder jika belum ada
-            $folder_name = Str::slug($rubrik->rubrik_name);
-            $folder_path = "public/sitemaps/amp/{$folder_name}";
-            Storage::makeDirectory($folder_path);
-
-            // generate sitemap
-            Sitemap::create()
-                ->add(Amp::where('status', 'published')
-                    ->where('category', $rubrik->rubrik_id)
-                    ->orderBy('published_at', 'desc')
-                    ->limit(200)
-                    ->get())
-                ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml")); // simpan ke storage
+                ->writeToFile(storage_path("app/{$folder_path}/sitemap_amp.xml")); // simpan ke storage
 
         }
     }
+    public function create_rubriks()
+    {
+        $folder_path = "public/sitemaps/";
+        // generate sitemap
+        Sitemap::create()
+            ->add(Rubrik::all())
+            ->writeToFile(storage_path("app/public/sitemaps/sitemap_rubrik.xml"));
+        return null;
+    }
+
 
     public function create_tags()
     {
-        $folder_path = "public/sitemaps/rubriks/";
+        $folder_path = "public/sitemaps/";
         // generate sitemap
         Sitemap::create()
-            ->add(Tags::all())
-            ->writeToFile(storage_path("app/{$folder_path}/sitemap_web.xml"));
+            ->add(Tags::orderBy('created_at', 'desc')->limit(3000)->get())
+            ->writeToFile(storage_path("app/{$folder_path}/sitemap_tags.xml"));
         return null;
     }
 }

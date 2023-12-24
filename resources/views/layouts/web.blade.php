@@ -474,15 +474,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     {{-- magnific css --}}
-    <link rel="{{url('/')}}/assets/frontend/css/magnific.css') }}">
+    <link async rel="{{url('/')}}/assets/frontend/css/magnific.css') }}">
 
     <!-- Lazyload (must be placed in head in order to work) -->
-    <script src="{{url('/')}}/assets/frontend/js/lazysizes.min.js"></script>
+    <script async src="{{url('/')}}/assets/frontend/js/lazysizes.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
     {{-- jquery --}}
-    <script src="{{url('/')}}/assets/frontend/js/jquery.min.js"></script>
+    <script async src="{{url('/')}}/assets/frontend/js/jquery.min.js"></script>
 </head>
 
 <body class="home style-politics ">

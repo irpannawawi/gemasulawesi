@@ -100,7 +100,7 @@ class AdController extends Controller
             'image' => 'required_if:type,img|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
-        $value = date('Ymdhis') . '.jpeg';
+        $value = date('Ymdhis') .'.'. $request->file('image')->getClientOriginalExtension();
         $path = Storage::putFileAs('public/ads', $request->file('image'), $value);
 
 
@@ -132,7 +132,7 @@ class AdController extends Controller
         $ad->title = $request->title;
         if($request->type=='img'){
             // update image
-            $value = date('Ymdhis') . '.jpeg';
+            $value = date('Ymdhis') .'.' .$request->file('image')->getClientOriginalExtension();
             $this->validate($request, ['image'=>'required']);
             Storage::putFileAs('public/ads', $request->file('image'), $value);
             Storage::delete('public/ads/'.$ad->value);

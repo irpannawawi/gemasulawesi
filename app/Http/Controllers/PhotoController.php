@@ -227,7 +227,7 @@ class PhotoController extends Controller
         // Kompresi gambar tanpa resize dan konversi ke format WebP
         $compressedImage = ImageMaker::make($image->getRealPath())
         ->encode('webp', 70) // Konversi ke WebP dengan tingkat kualitas 60
-        ->resize(740, 444) 
+        ->resize(750, 500) 
         ->save($file_path);
        return $compressedImage; 
     }

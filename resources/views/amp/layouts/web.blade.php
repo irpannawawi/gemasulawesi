@@ -2537,12 +2537,22 @@
                 position: relative;
             }
         }
-
-        @media only screen and (max-width: 766px) {
+        @media only screen and (max-width: 1024px) {
             .parallax {
                 background-position: cover;
                 margin-left: 0px;
-                background-size: cover;
+                background-size: 60%;
+                background-position: center 4vh;
+
+            }
+        }
+        @media only screen and (max-width: 800px) {
+            .parallax {
+                background-position: cover;
+                margin-left: 0px;
+                background-size: 68%;
+                background-position: center 10vh;
+
             }
         }
 
@@ -2551,6 +2561,8 @@
                 background-position: left;
                 margin-left: 0px;
                 background-size: 100%;
+                background-position: 0vw 20vh;
+
 
             }
         }

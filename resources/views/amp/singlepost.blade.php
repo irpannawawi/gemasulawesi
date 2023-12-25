@@ -107,8 +107,8 @@
 
                                     $bagian1 = str_replace('<iframe', '<amp-iframe', $bagian1);
                                     $bagian2 = str_replace('<iframe', '<amp-iframe', $bagian2);
-                                    $bagian1 = str_replace('<amp-iframe', '<amp-iframe width="480" height="240" sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian1);
-                                    $bagian2 = str_replace('<amp-iframe', '<amp-iframe width="480" height="240" sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian2);
+                                    $bagian1 = str_replace('<amp-iframe', '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian1);
+                                    $bagian2 = str_replace('<amp-iframe', '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian2);
 
                                     
 

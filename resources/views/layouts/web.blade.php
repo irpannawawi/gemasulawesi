@@ -456,7 +456,7 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/font-icons.css" />
     <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/style.css" />

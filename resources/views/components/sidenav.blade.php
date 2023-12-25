@@ -1,7 +1,15 @@
 @php
     use App\Models\Navigation;
     use Iluminate\Support\Carbon;
-    $navs = Navigation::orderBy('order_priority', 'asc')->get();
+
+    $cachedNavs = cache('cache_navs');
+    if($cachedNavs)
+    {
+        $navs = $cachedNavs;
+    }else{
+        $navs = Navigation::orderBy('order_priority', 'asc')->get();
+        cache()->put('cache_navs', $navs, env('CACHE_DURATION'));
+    }
 @endphp
 <!-- Sidenav -->
 <header class="sidenav" id="sidenav">

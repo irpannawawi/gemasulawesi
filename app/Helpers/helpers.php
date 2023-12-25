@@ -93,14 +93,19 @@ function get_video_image($video_id)
 
 function get_post_image($post_id)
 {
-    // Periksa apakah $post_id tidak kosong dan merupakan bilangan bulat positif
-    if (empty($post_id) || !is_numeric($post_id) || $post_id <= 0) {
-        // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
-        return 'Invalid post ID';
-    }
+    
+    
+    $chachedPost = cache('post_'.$post_id);
+    $post = null;
 
-    // Coba mencari post dengan ID yang diberikan
-    $post = Posts::find($post_id);
+    if ($chachedPost) {
+        // Gunakan data dari cache
+        $post = $chachedPost;
+    } else {
+        // Data tidak ditemukan di cache, lakukan query dan simpan di cache
+        $post = Posts::where('post_id',$post_id)->select(['post_image'])->with(['image', 'image.asset'])->first();
+        cache()->put('post_'.$post_id, $post, env('CACHE_DURATION'));
+    }
 
     // Periksa apakah post ditemukan
     if (!$post) {
@@ -135,14 +140,21 @@ function get_post_image($post_id)
 
 function get_post_thumbnail($post_id)
 {
-    // Periksa apakah $post_id tidak kosong dan merupakan bilangan bulat positif
-    if (empty($post_id) || !is_numeric($post_id) || $post_id <= 0) {
-        // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
-        return 'Invalid post ID';
+
+    // CACHING strategy
+    $chachedPost = cache('post_'.$post_id);
+    $post = null;
+
+    if ($chachedPost) {
+        // Gunakan data dari cache
+        $post = $chachedPost;
+    } else {
+        // Data tidak ditemukan di cache, lakukan query dan simpan di cache
+        $post = Posts::where('post_id',$post_id)->select(['post_image'])->with(['image', 'image.asset'])->first();
+        cache()->put('post_'.$post_id, $post, env('CACHE_DURATION'));
     }
 
     // Coba mencari post dengan ID yang diberikan
-    $post = Posts::find($post_id);
 
     // Periksa apakah post ditemukan
     if (!$post) {
@@ -221,8 +233,15 @@ if (!function_exists('resize_image')) {
 if (!function_exists('get_setting')) {
     function get_setting($key, $default = null)
     {
-        // Ambil data setting dari database berdasarkan kunci
-        $setting = \App\Models\Setting::where('key', $key)->first();
+
+        $cachedSetting = cache('settingCache_'.$key);
+        if($cachedSetting){
+            $setting = $cachedSetting;
+        }else{
+            // Ambil data setting dari database berdasarkan kunci
+            $setting = \App\Models\Setting::where('key', $key)->first();
+            cache()->put('settingCache_'.$key, $setting, 60*10);
+        }
 
         // Kembalikan nilai setting atau default jika tidak ditemukan
         return $setting ? $setting->value : $default;

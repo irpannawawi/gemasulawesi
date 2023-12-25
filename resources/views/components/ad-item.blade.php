@@ -26,7 +26,7 @@
             <div class="ads__box">
                 <div class="div-gpt-ad-giant">
                     <a href="{{ $ad->link == '' ? '#' : $ad->link }}" target="__blank">
-                        <img src="{{ Storage::url('ads/' . $ad->value) }}" alt="Iklan" style="width:100%;">
+                        <img loading="lazy" src="{{ Storage::url('ads/' . $ad->value) }}" alt="Iklan" style="width:100%;">
                     </a>
                 </div>
             </div>

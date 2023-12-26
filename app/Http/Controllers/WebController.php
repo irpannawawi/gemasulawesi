@@ -17,65 +17,25 @@ use Illuminate\Support\Str;
 use Illuminate\View\View as ViewView;
 use Sarfraznawaz2005\VisitLog\Facades\VisitLog;
 use Sarfraznawaz2005\VisitLog\Models\VisitLog as VisitLogModel;
-use Illuminate\Support\Benchmark;
 
 class WebController extends Controller
 {
     public function subscribe()
     {
     }
-    public function index()
+    public function index(): View
     {
-            VisitLog::save(request()->all());
-            // EDITOR CHOICE DATA
-            $cachedEditorCoiche = cache('editor_choices');
-            if ($cachedEditorCoiche) {
-                // Gunakan data dari cache
-                $data['editorCohice'] = $cachedEditorCoiche;
-            } else {
-                // Data tidak ditemukan di cache, lakukan query dan simpan di cache
-                $data['editorCohice'] = Editorcoice::with('post')->where('post_id', '!=', 0)->get();
-                cache()->put('editor_choices', $data['editorCohice'], 60*10);
-            }
+        VisitLog::save(request()->all());
 
-            // HEADLINE WP DATA
-            $cachedHeadlineWP = cache('headline_wp');
-            if ($cachedHeadlineWP) {
-                // Gunakan data dari cache
-                $data['headlineWp'] = $cachedHeadlineWP;
-            } else {
-                // Data tidak ditemukan di cache, lakukan query dan simpan di cache
-                $data['headlineWp'] = Headlinewp::with('post')->where('post_id', '!=', 0)->get();
-                cache()->put('headline_wp', $data['headlineWp'], 60*10);
-            }
+        $data['editorCohice'] = Editorcoice::where('post_id', '!=', 0)->get();
+        $data['headlineWp'] = Headlinewp::where('post_id', '!=', 0)->get();
+        $data['topikKhusus'] = Topic::get();
 
-            // TOPIK KHUSUS DATA
-            $cachedTopikKhusus = cache('topik_khusus');
-            if ($cachedTopikKhusus) {
-                // Gunakan data dari cache
-                $data['topikKhusus'] = $cachedTopikKhusus;
-            } else {
-                // Data tidak ditemukan di cache, lakukan query dan simpan di cache
-                $data['topikKhusus'] = Topic::get();
-                cache()->put('topik_khusus', $data['topikKhusus'], 60*10);
-            }
-
-            
-            // posts 1-30
-            // PAGINATED POSTS
-            $cachedPaginatedPost = cache('paginatedPost');
-            if ($cachedPaginatedPost) {
-                // Gunakan data dari cache
-                $data['paginatedPost'] = $cachedPaginatedPost;
-            } else {
-                // Data tidak ditemukan di cache, lakukan query dan simpan di cache
-                $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
-                ->where('status', 'published')
-                ->with(['editor', 'author', 'rubrik', 'image'])
-                ->paginate(30);
-                cache()->put('paginatedPost', $data['paginatedPost'], 300);
-            }
-            $data['beritaTerkini'] = $data['paginatedPost']->split(2);
+        // posts 1-30
+        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
+            ->where('status', 'published')
+            ->paginate(30);
+        $data['beritaTerkini'] = $data['paginatedPost']->split(2);
 
         // dd($data['beritaTerkini']);
         return view('frontend.web', $data);

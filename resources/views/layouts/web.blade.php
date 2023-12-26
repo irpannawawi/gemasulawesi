@@ -456,7 +456,7 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap' rel='stylesheet'>
     <!-- Css -->
-    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/font-icons.css" />
     <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/style.css" />
@@ -624,7 +624,7 @@
     <script src="{{url('/')}}/assets/frontend/js/owl-carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
 
-    {{-- <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script> --}}
+    <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
     <script src="{{url('/')}}/assets/frontend/js/modernizr.min.js"></script>
     <script src="{{url('/')}}/assets/frontend/js/jquery.sticky-kit.min.js"></script>
     <script src="{{url('/')}}/assets/frontend/js/jquery.newsTicker.min.js"></script>

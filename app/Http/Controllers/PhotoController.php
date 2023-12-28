@@ -104,7 +104,7 @@ class PhotoController extends Controller
         // $path = $request->file('photo')->store('public/photos');
         // // insert to file table
         $image = $this->save_image($request->file('photo'));
-        $image = $this->save_image_jpeg($request->file('photo'), $image->basename);
+        $this->save_image_jpeg($request->file('photo'), $image->basename);
 
         $asset = Asset::create(['file_name' => $image->basename]);
         // insert image details
@@ -124,7 +124,7 @@ class PhotoController extends Controller
     public function browse_upload(Request $request)
     {
         $image = $this->save_image($request->file('photo'));
-        $image = $this->save_image_jpeg($request->file('photo'), $image->basename);
+        $this->save_image_jpeg($request->file('photo'), $image->basename);
         // insert to file table
         $asset = Asset::create(['file_name' => $image->basename]);
 
@@ -237,7 +237,6 @@ class PhotoController extends Controller
     public function save_image_jpeg($image, $name)
     {
         $name = str_replace('webp', 'jpeg', $name);
-        $file_name = date('dmYhis').'.jpeg';
         $file_path = public_path('storage/photos/jpeg/'.$name);
         // Kompresi gambar tanpa resize dan konversi ke format WebP
         $compressedImage = ImageMaker::make($image->getRealPath())

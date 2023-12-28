@@ -124,6 +124,7 @@ class PhotoController extends Controller
     public function browse_upload(Request $request)
     {
         $image = $this->save_image($request->file('photo'));
+        $image = $this->save_image_jpeg($request->file('photo'), $image->basename);
         // insert to file table
         $asset = Asset::create(['file_name' => $image->basename]);
 

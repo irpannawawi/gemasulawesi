@@ -135,7 +135,7 @@ class FacebookController extends Controller
         // Set the link and message data for the post
         $linkData = [
             'link' => $link,
-            'message' => $message.'\n'.$tags,
+            'message' => $message.' '.$tags,
         ];
 
         try {
@@ -145,7 +145,7 @@ class FacebookController extends Controller
             // Set the image URL and caption for the Instagram post
             $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
                 'image_url' => $image,
-                'caption' => $linkData['message'] . '\n' . $linkData['link']
+                'caption' => $linkData['message'] . ' ' . $linkData['link']
             ], $page->access_token);
             // Publish the Instagram post
             $publish = $fb->post("{$page->instagram_id}/media_publish", [
@@ -176,7 +176,7 @@ class FacebookController extends Controller
     public function share()
     {
         
-        $post = Posts::find(81);
+        $post = Posts::find(22377);
         $link = route('singlePost', [
             'rubrik' => Str::slug($post->rubrik->rubrik_name),
             'post_id' => $post->post_id,

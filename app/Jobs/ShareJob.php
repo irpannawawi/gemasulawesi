@@ -67,7 +67,7 @@ class ShareJob implements ShouldQueue
         $client->tweet()
             ->create()
             ->performRequest([
-                'text' => $message.'\n'.$tags.'\n'.$link
+                'text' => $message.' '.$tags.' '.$link
             ]);
 
         return redirect()->back();
@@ -89,7 +89,7 @@ class ShareJob implements ShouldQueue
         // Set the link and message data for the post
         $linkData = [
             'link' => $link,
-            'message' => $message.'\n'.$tags,
+            'message' => $message.' '.$tags,
         ];
 
         try {
@@ -99,7 +99,7 @@ class ShareJob implements ShouldQueue
             // Set the image URL and caption for the Instagram post
             $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
                 'image_url' => $image,
-                'caption' => $linkData['message'] . '\n' . $linkData['link']
+                'caption' => $linkData['message'] . ' ' . $linkData['link']
             ], $page->access_token);
 
             // Publish the Instagram post

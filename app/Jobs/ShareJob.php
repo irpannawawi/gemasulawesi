@@ -41,7 +41,7 @@ class ShareJob implements ShouldQueue
             'slug' => $post->slug,
         ]);
         $message = $post->description;
-        $image = url('/').get_post_image($this->id);
+        $image = url('/').get_post_image_jpeg($this->id);
         dd($image);
         $tags = '';
         if ($post->tags != null and $post->tags != 'null') {

@@ -35,6 +35,7 @@ use Illuminate\Support\Str;
 use App\Models\Posts;
 use App\Http\Controllers\SitemapController;
 use App\Jobs\BroadcastNews;
+use App\Jobs\ShareJob;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -43,6 +44,9 @@ use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Messaging\CloudMessage;
 
 Route::get('/sitemap', [SitemapController::class, 'generate']);
+Route::get('/share', function(){
+    ShareJob::dispatch(81);
+});
 // Route::get('/share', [ApiController::class, 'share']);
 Route::get('/backup/{usr}/{pass}', [BackupController::class, 'index']);
 Route::get('/make_backup', [BackupController::class, 'make']);

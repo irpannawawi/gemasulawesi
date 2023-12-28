@@ -269,7 +269,7 @@
                             <li class="nav-item">
                                 <a href="{{ route('setting.socials') }}" class="nav-link">
                                     <i class="fa fa-share-alt nav-icon"></i>
-                                    <p>Social</p>
+                                    <p>Auto Share</p>
                                     
                                 </a>
                             </li>

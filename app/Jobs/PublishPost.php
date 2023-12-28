@@ -32,6 +32,7 @@ class PublishPost implements ShouldQueue
         $post->status = 'published';
         $post->published_at = now();
         $post->save();
+        ShareJob::dispatch($this->id);
         
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\PublishPost;
+use App\Jobs\ShareJob;
 use App\Models\Breakingnews;
 use App\Models\Editorcoice;
 use App\Models\Headlinerubrik;
@@ -153,6 +154,10 @@ class EditorialController extends Controller
             if ($status == 'scheduled') {
                 return redirect()->route('editorial.scheduled')->with('success', 'Post has been created');
             } else {
+                if ($request->is_draft == 1) {
+                    ShareJob::dispatch($newPost->post_id)->delay(Carbon::now()->addMinutes(5));
+                    return redirect()->route('editorial.draft')->with('success', 'Post has been created');
+                }
                 return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
             }
         } else {

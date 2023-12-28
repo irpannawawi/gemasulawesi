@@ -4,7 +4,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-lg text-gray-800 leading-tight">
-            <i class="fa fa-share-alt nav-icon"></i> {{ __('Socials Setting') }}
+            <i class="fa fa-share-alt nav-icon"></i> {{ __('Auto Share') }}
         </h2>
     </x-slot>
 

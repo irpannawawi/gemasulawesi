@@ -98,7 +98,7 @@ class ShareJob implements ShouldQueue
 
             // Set the image URL and caption for the Instagram post
             $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
-                'image_url' => url('/').'/'.$image,
+                'image_url' => $image,
                 'caption' => $linkData['message'] . '\n' . $linkData['link']
             ], $page->access_token);
 

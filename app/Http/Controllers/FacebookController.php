@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\FbAuth;
 use App\Models\FbPages;
+use App\Models\Posts;
+use App\Models\Tags;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class FacebookController extends Controller
@@ -115,12 +118,12 @@ class FacebookController extends Controller
      * @param Request $request The request object containing the post data.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sharePostToFacebook(Request $request)
+    public function sharePostToFacebook($message, $image, $link, $tags)
     {
-        // Get the first FbAuth and FbPages objects
-        $user = FbAuth::first();
-        $page = FbPages::first();
-    
+        // Validate $user and $page objects
+        $user = FbAuth::firstOrFail();
+        $page = FbPages::firstOrFail();
+
         // Create a new Facebook object with the required credentials
         $fb = new \Facebook\Facebook([
             'app_id' => env('FACEBOOK_APP_ID'),
@@ -128,26 +131,24 @@ class FacebookController extends Controller
             'default_access_token' => $user->token,
             'default_graph_version' => 'v18.0'
         ]);
-    
+
         // Set the link and message data for the post
         $linkData = [
-            'link' => $request->link,
-            'message' => $request->message,
+            'link' => $link,
+            'message' => $message.'\n'.$tags,
         ];
-    
+
         try {
             // Post the link data to the Facebook page feed
             $fb->post("{$page->id}/feed", $linkData, $page->access_token);
-    
+
             // Set the image URL and caption for the Instagram post
-            $image_url = "https://dummyimage.com/2048x2048/000/fff.jpg&text=this+picture+originates+from+the+autoPost+app";
             $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
-                'image_url' => $image_url,
-                'caption' => $linkData['link'] . '\n' . $linkData['message']
+                'image_url' => $image,
+                'caption' => $linkData['message'] . '\n' . $linkData['link']
             ], $page->access_token);
-    
             // Publish the Instagram post
-            $fb->post("{$page->instagram_id}/media_publish", [
+            $publish = $fb->post("{$page->instagram_id}/media_publish", [
                 'creation_id' => json_decode($postToInstagramContainer->getBody())->id
             ], $page->access_token);
         } catch (\Facebook\Exceptions\FacebookResponseException $e) {
@@ -159,9 +160,9 @@ class FacebookController extends Controller
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
         }
-    
+
         // Redirect back to the previous page
-        return redirect()->back();
+        return $publish;
     }
 
     public function handleLogout()
@@ -170,5 +171,28 @@ class FacebookController extends Controller
         $fbAuth->truncate();
         $fbPages = FbPages::truncate();
         return redirect()->back();
+    }
+
+    public function share()
+    {
+        
+        $post = Posts::find(81);
+        $link = route('singlePost', [
+            'rubrik' => Str::slug($post->rubrik->rubrik_name),
+            'post_id' => $post->post_id,
+            'slug' => $post->slug,
+        ]);
+        $message = $post->description;
+        $image = url('/').get_post_image_jpeg(81);
+        $tags = '';
+        if ($post->tags != null and $post->tags != 'null') {
+            foreach (json_decode($post->tags) as $tags) {
+                $tag = Tags::find($tags);
+                $tags .= "#{$tag->tag_name} ";
+            }
+        }
+        $this->sharePostToFacebook($message, $image, $link, $tags);
+        $this->share_x($message, $link, $tags);
+        
     }
 }

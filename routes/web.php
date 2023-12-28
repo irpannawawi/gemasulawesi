@@ -6,6 +6,7 @@ use App\Http\Controllers\BackupController;
 use App\Http\Controllers\BrowseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EditorialController;
+use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RubrikController;
@@ -44,9 +45,7 @@ use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Messaging\CloudMessage;
 
 Route::get('/sitemap', [SitemapController::class, 'generate']);
-Route::get('/share', function(){
-    ShareJob::dispatch(81);
-});
+Route::get('/share', [FacebookController::class, 'share']);
 // Route::get('/share', [ApiController::class, 'share']);
 Route::get('/backup/{usr}/{pass}', [BackupController::class, 'index']);
 Route::get('/make_backup', [BackupController::class, 'make']);

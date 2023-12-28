@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FbAuth;
+use App\Models\FbPages;
 use App\Models\Setting;
+use App\Models\XAuth;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -100,5 +103,14 @@ class SettingsController extends Controller
     {
         Setting::where('setting_id', $id)->delete();
         return redirect()->back()->with('success', 'Berhasil menghapus menu');
+    }
+
+
+    public function socials()
+    {
+        $data['fbAuth'] = FbAuth::first(); 
+        $data['fbPage'] = FbPages::first(); 
+        $data['XAuth'] = XAuth::first(); 
+        return view('settings.socials', $data);
     }
 }

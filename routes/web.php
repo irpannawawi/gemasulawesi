@@ -137,6 +137,7 @@ require __DIR__ . '/settings.php';
 require __DIR__ . '/menufooter.php';
 require __DIR__ . '/navigation.php';
 require __DIR__ . '/amp.php';
+require __DIR__ . '/socials.php';
 
 
 Route::get('count_post', function () {

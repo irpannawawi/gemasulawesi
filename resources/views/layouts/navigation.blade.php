@@ -5,8 +5,8 @@
     <img src="{{ Storage::url('public/avatars/' . Auth::user()->avatar) }}" alt="avatar"
     class="brand-image img-circle elevation-3 mx-auto" style="opacity: .8;">
     </div>
-    <a href="{{ url('dashboard') }}" class="brand-link">
-        <span style="white-space:wrap;" class=" p-1 font-weight-light text-center">{{ Auth::user()->display_name }}</span>
+    <a href="{{ url('dashboard') }}" class="brand-link text-center" >
+        <span style="white-space:wrap;" class=" p-1 font-weight-light">{{ Auth::user()->display_name }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -256,7 +256,7 @@
                     </li>
                     
 
-                    <li class="nav-item">
+                    <li class="nav-item  {{in_array(Request::segment(1),['generalSetting', 'setting', 'nav', 'footersetting'])?'menu-open':''}}">
                         <a href="javascript:void(0)" class="nav-link">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
@@ -265,6 +265,14 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
+                            
+                            <li class="nav-item">
+                                <a href="{{ route('setting.socials') }}" class="nav-link">
+                                    <i class="fa fa-share-alt nav-icon"></i>
+                                    <p>Social</p>
+                                    
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a href="{{ route('setting.general.index') }}" class="nav-link">
                                     <i class="fas fa-spell-check nav-icon"></i>

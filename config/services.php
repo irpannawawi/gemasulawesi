@@ -31,4 +31,22 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_APP_ID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => env('FACEBOOK_CALLBACK'),
+    ],
+    'twitter' => [    
+        'client_id' => env('X_CLIENT_ID'),  
+        'client_secret' => env('X_CLIENT_SECRET'),  
+        'redirect' => env('X_CALLBACK') 
+      ],
+
+      
+    'linkedin' => [    
+        'client_id' => env('LINKEDIN_ID'),  
+        'client_secret' => env('LINKEDIN_SECRET'),  
+        'redirect' => env('LINKEDIN_CALLBACK') 
+      ],
 ];

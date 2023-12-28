@@ -183,7 +183,7 @@ class FacebookController extends Controller
             'slug' => $post->slug,
         ]);
         $message = $post->description;
-        $image = url('/').get_post_image_jpeg(81);
+        $image = url('/').get_post_image(22377);
         $tags = '';
         if ($post->tags != null and $post->tags != 'null') {
             foreach (json_decode($post->tags) as $tags) {

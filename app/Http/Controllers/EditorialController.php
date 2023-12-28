@@ -155,7 +155,7 @@ class EditorialController extends Controller
                 return redirect()->route('editorial.scheduled')->with('success', 'Post has been created');
             } else {
                 if ($request->is_draft != 1) {
-                    ShareJob::dispatch($newPost->post_id)->delay(Carbon::now()->addMinutes(5));
+                    ShareJob::dispatch($newPost->post_id)->delay(Carbon::now()->addMinutes(1));
                 }
                 return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
             }

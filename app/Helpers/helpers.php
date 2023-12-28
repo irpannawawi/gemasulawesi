@@ -133,6 +133,48 @@ function get_post_image($post_id)
     return $url;
 }
 
+function get_post_image_jpeg($post_id)
+{
+    // Periksa apakah $post_id tidak kosong dan merupakan bilangan bulat positif
+    if (empty($post_id) || !is_numeric($post_id) || $post_id <= 0) {
+        // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+        return 'Invalid post ID';
+    }
+
+    // Coba mencari post dengan ID yang diberikan
+    $post = Posts::find($post_id);
+
+    // Periksa apakah post ditemukan
+    if (!$post) {
+        // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+        return 'Post not found';
+    }
+
+    // Periksa apakah post memiliki properti image
+    if (!$post->image) {
+        // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+        return 'Post does not have an image';
+    }
+
+    // Periksa apakah image memiliki properti asset
+    if (!$post->image->asset) {
+        // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+        return 'Image does not have an asset';
+    }
+
+    // Periksa apakah asset memiliki properti file_name
+    if (!$post->image->asset->file_name) {
+        // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
+        return 'Image asset does not have a file name';
+    }
+
+    // Bangun URL dengan menggunakan Storage::url
+    $url = Storage::url('public/photos/jpeg/' . $post->image->asset->file_name);
+    //$url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
+
+    return $url;
+}
+
 function get_post_thumbnail($post_id)
 {
     // Periksa apakah $post_id tidak kosong dan merupakan bilangan bulat positif

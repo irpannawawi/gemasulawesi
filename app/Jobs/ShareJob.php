@@ -42,11 +42,11 @@ class ShareJob implements ShouldQueue
         ]);
         $message = $post->description;
         $image = url('/').get_post_image($this->id);
-        $tags = '';
+        $tag_list = '';
         if ($post->tags != null and $post->tags != 'null') {
             foreach (json_decode($post->tags) as $tags) {
                 $tag = Tags::find($tags);
-                $tags .= "#{$tag->tag_name} ";
+                $tag_list .= "#{$tag->tag_name} ";
             }
         }
         $this->sharePostToFacebook($message, $image, $link, $tags);

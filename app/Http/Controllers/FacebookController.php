@@ -177,7 +177,7 @@ class FacebookController extends Controller
     public function share()
     {
         
-        $post =22377;
+        $post =22446;
         ShareJob::dispatch($post);
         
     }

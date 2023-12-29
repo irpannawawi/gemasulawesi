@@ -35,12 +35,10 @@ class ShareJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Bus::chain([
-            new Facebookjob($this->id),
-            new Xjob($this->id),
-            new Instagramjob($this->id),
+            Facebookjob::dispatch($this->id);
+            Xjob::dispatch($this->id);
+            Instagramjob::dispatch($this->id);
             
-        ])->dispatch();
     }
 
 }

@@ -25,7 +25,7 @@ class DashboardController extends Controller
         $failed_jobs = DB::table('failed_jobs')->limit(20)->orderBy('failed_at', 'desc')->get();
        $n=1;
         foreach ($failed_jobs as $key) {
-           echo $n++. ' ' .json_encode($key->exeption);
+           echo $n++. ' ' .json_encode($key->exception);
            echo '<hr>';
         }
     }

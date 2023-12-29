@@ -69,10 +69,9 @@ class XController extends Controller
         
         $client = new Client($twitterSettings);
         $tweet = $client->tweet()->create();
-        $tweet->performRequest([
+        dd($tweet->performRequest([
             'text' =>"Test message"
-        ]);
-        dd($tweet);
+        ]));
         return redirect()->back();
     }
 

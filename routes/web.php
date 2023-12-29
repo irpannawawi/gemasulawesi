@@ -35,6 +35,7 @@ use Illuminate\Support\Str;
 // test queue
 use App\Models\Posts;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\XController;
 use App\Jobs\BroadcastNews;
 use App\Jobs\ShareJob;
 use App\Models\Subscriber;
@@ -46,6 +47,7 @@ use Kreait\Firebase\Messaging\CloudMessage;
 
 Route::get('/sitemap', [SitemapController::class, 'generate']);
 Route::get('/share', [FacebookController::class, 'share']);
+Route::get('/sharex', [XController::class, 'shareX']);
 // Route::get('/share', [ApiController::class, 'share']);
 Route::get('/backup/{usr}/{pass}', [BackupController::class, 'index']);
 Route::get('/make_backup', [BackupController::class, 'make']);

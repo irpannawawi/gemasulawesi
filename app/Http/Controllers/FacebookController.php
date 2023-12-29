@@ -181,4 +181,6 @@ class FacebookController extends Controller
         ShareJob::dispatch($post);
         
     }
+
+    
 }

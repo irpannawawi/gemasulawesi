@@ -74,7 +74,7 @@ class Instagramjob implements ShouldQueue
             'message' => $message.' '.$tags,
         ];
 
-        try {
+
             // Set the image URL and caption for the Instagram post
             $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
                 'image_url' => $image,
@@ -85,19 +85,6 @@ class Instagramjob implements ShouldQueue
             $publish = $fb->post("{$page->instagram_id}/media_publish", [
                 'creation_id' => json_decode($postToInstagramContainer->getBody())->id
             ], $page->access_token);
-        } catch (\Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error, display the error message
-            echo 'Graph returned an error: ' . $e->getMessage();
-            return false;
-            exit;
-        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues, display the error message
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            return false;
-            exit;
-        }
 
-        // Redirect back to the previous page
-        return $publish;
     }
 }

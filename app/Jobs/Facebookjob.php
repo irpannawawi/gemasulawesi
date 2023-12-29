@@ -78,21 +78,9 @@ class Facebookjob implements ShouldQueue
             'message' => $message.' '.$tags,
         ];
 
-        try {
+
             // Post the link data to the Facebook page feed
             $publish =  $fb->post("{$page->id}/feed", $linkData, $page->access_token);
 
-        } catch (\Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error, display the error message
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
-        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues, display the error message
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
-        }
-
-        // Redirect back to the previous page
-        return $publish;
     }
 }

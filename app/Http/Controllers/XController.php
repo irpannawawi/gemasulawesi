@@ -54,24 +54,26 @@ class XController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function share_x()
+    public function shareX()
     {
         $xCred = XAuth::first();
-        $twitterSettings['account_id'] = $xCred->id;
-        $twitterSettings['access_token'] = $xCred->token;
-        $twitterSettings['access_token_secret'] = $xCred->token_secret;
-        $twitterSettings['consumer_key'] = env('X_CLIENT_ID');
-        $twitterSettings['consumer_secret'] = env('X_CLIENT_SECRET');
-        $twitterSettings['bearer_token'] = env('X_BEARER_TOKEN');
-
+        
+        $twitterSettings = [
+            'account_id' => $xCred->id,
+            'access_token' => $xCred->token,
+            'access_token_secret' => $xCred->token_secret,
+            'consumer_key' => env('X_CLIENT_ID'),
+            'consumer_secret' => env('X_CLIENT_SECRET'),
+            'bearer_token' => env('X_BEARER_TOKEN')
+        ];
+        
         $client = new Client($twitterSettings);
-
-        $client->tweet()
-            ->create()
-            ->performRequest([
-                'text' => "Sebagai tanaman hias yang populer dan banyak digemari di seluruh dunia, banyak orang akhirnya penasaran dengan berbagai fakta menarik yang menyelimuti bunga bougenville. \n https://www.gemasulawesi.com/id/kupas-tuntas/22260/dikenal-sebagai-tanaman-hias-yang-mudah-dirawat-bunga-bougenville-punya-berbagai-fakta-menarik-untuk-anda"
-            ]);
-
+        $tweet = $client->tweet()->create();
+        dd($tweet->performRequest([
+            'text' =>"Test message"
+        ]));
         return redirect()->back();
     }
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ShareJob;
 use App\Models\FbAuth;
 use App\Models\FbPages;
 use App\Models\Posts;
@@ -176,23 +177,10 @@ class FacebookController extends Controller
     public function share()
     {
         
-        $post = Posts::find(22377);
-        $link = route('singlePost', [
-            'rubrik' => Str::slug($post->rubrik->rubrik_name),
-            'post_id' => $post->post_id,
-            'slug' => $post->slug,
-        ]);
-        $message = $post->description;
-        $image = url('/').get_post_image(22377);
-        $tags = '';
-        if ($post->tags != null and $post->tags != 'null') {
-            foreach (json_decode($post->tags) as $tags) {
-                $tag = Tags::find($tags);
-                $tags .= "#{$tag->tag_name} ";
-            }
-        }
-        $this->sharePostToFacebook($message, $image, $link, $tags);
-        $this->share_x($message, $link, $tags);
+        $post =22446;
+        ShareJob::dispatch($post);
         
     }
+
+    
 }

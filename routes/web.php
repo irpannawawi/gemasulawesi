@@ -35,6 +35,7 @@ use Illuminate\Support\Str;
 // test queue
 use App\Models\Posts;
 use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\XController;
 use App\Jobs\BroadcastNews;
 use App\Jobs\ShareJob;
 use App\Models\Subscriber;
@@ -46,6 +47,7 @@ use Kreait\Firebase\Messaging\CloudMessage;
 
 Route::get('/sitemap', [SitemapController::class, 'generate']);
 Route::get('/share', [FacebookController::class, 'share']);
+Route::get('/sharex', [XController::class, 'shareX']);
 // Route::get('/share', [ApiController::class, 'share']);
 Route::get('/backup/{usr}/{pass}', [BackupController::class, 'index']);
 Route::get('/make_backup', [BackupController::class, 'make']);
@@ -62,6 +64,7 @@ Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 Route::post('/create_img_byTinymce', [PhotoController::class, 'update_image_tinymce'])->name('assets.photo.updateTinymce');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/failed_jobs', [DashboardController::class, 'failed_jobs'])->name('failed_job');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/chart-data', [DashboardController::class, 'chartData']);
 

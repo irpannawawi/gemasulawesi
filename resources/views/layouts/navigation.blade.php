@@ -2,10 +2,10 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="position:; padding-bottom: 40px;">
     <!-- Brand Logo -->
     <div class="row">
-    <img src="{{ Storage::url('public/avatars/' . Auth::user()->avatar) }}" alt="avatar"
-    class="brand-image img-circle elevation-3 mx-auto" style="opacity: .8;">
+        <img src="{{ Storage::url('public/avatars/' . Auth::user()->avatar) }}" alt="avatar"
+            class="brand-image img-circle elevation-3 mx-auto" style="opacity: .8;">
     </div>
-    <a href="{{ url('dashboard') }}" class="brand-link text-center" >
+    <a href="{{ url('dashboard') }}" class="brand-link text-center">
         <span style="white-space:wrap;" class=" p-1 font-weight-light">{{ Auth::user()->display_name }}</span>
     </a>
 
@@ -37,7 +37,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item {{Request::segment(1)=='editorial'?'menu-open':''}}">
+                <li class="nav-item {{ Request::segment(1) == 'editorial' ? 'menu-open' : '' }}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fas fa-edit"></i>
                         <p>
@@ -78,12 +78,13 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item 
-                {{Request::segment(1)=='wp-headline-management'?'menu-open':''}}
-                {{Request::segment(1)=='rubrik-headline-management'?'menu-open':''}}
-                {{Request::segment(1)=='topik-khusus'?'menu-open':''}}
-                {{Request::segment(1)=='rubrik'?'menu-open':''}}
-                {{Request::segment(1)=='editor-choice'?'menu-open':''}}">
+                <li
+                    class="nav-item 
+                {{ Request::segment(1) == 'wp-headline-management' ? 'menu-open' : '' }}
+                {{ Request::segment(1) == 'rubrik-headline-management' ? 'menu-open' : '' }}
+                {{ Request::segment(1) == 'topik-khusus' ? 'menu-open' : '' }}
+                {{ Request::segment(1) == 'rubrik' ? 'menu-open' : '' }}
+                {{ Request::segment(1) == 'editor-choice' ? 'menu-open' : '' }}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-clipboard-list"></i>
                         <p>
@@ -98,7 +99,8 @@
                                 <p>Headline WP</p>
                             </a>
                         </li>
-                        <li class="nav-item {{Request::segment(1)=='rubrik-headline-management'?'menu-open':''}}">
+                        <li
+                            class="nav-item {{ Request::segment(1) == 'rubrik-headline-management' ? 'menu-open' : '' }}">
                             <a href="javascript:void(0)" class="nav-link">
                                 <i class="fas fa-bars nav-icon"></i>
                                 <p>Headline Rubrik</p>
@@ -163,7 +165,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{Request::segment(1)=='report'?'menu-open':''}}">
+                <li class="nav-item {{ Request::segment(1) == 'report' ? 'menu-open' : '' }}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-chart-bar"></i>
                         <p>
@@ -207,7 +209,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-item {{Request::segment(1)=='photo'?'menu-open':''}} {{Request::segment(1)=='videos'?'menu-open':''}}">
+                <li
+                    class="nav-item {{ Request::segment(1) == 'photo' ? 'menu-open' : '' }} {{ Request::segment(1) == 'videos' ? 'menu-open' : '' }}">
                     <a href="javascript:void(0)" class="nav-link">
                         <i class="nav-icon fa fa-database"></i>
                         <p>
@@ -254,9 +257,10 @@
                             </p>
                         </a>
                     </li>
-                    
 
-                    <li class="nav-item  {{in_array(Request::segment(1),['generalSetting', 'setting', 'nav', 'footersetting'])?'menu-open':''}}">
+
+                    <li
+                        class="nav-item  {{ in_array(Request::segment(1), ['generalSetting', 'setting', 'nav', 'footersetting']) ? 'menu-open' : '' }}">
                         <a href="javascript:void(0)" class="nav-link">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
@@ -265,12 +269,12 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            
+
                             <li class="nav-item">
                                 <a href="{{ route('setting.socials') }}" class="nav-link">
                                     <i class="fa fa-share-alt nav-icon"></i>
                                     <p>Auto Share</p>
-                                    
+
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -279,7 +283,7 @@
                                     <p>General</p>
                                 </a>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a href="{{ route('nav') }}" class="nav-link">
                                     <i class="fa fa-sitemap nav-icon"></i>

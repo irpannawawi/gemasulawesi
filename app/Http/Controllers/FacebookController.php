@@ -136,7 +136,57 @@ class FacebookController extends Controller
     public function share()
     {
 
-        $post = 22446;
-        ShareJob::dispatch($post);
+        
+        $post = Posts::find(22446);
+        $link = route('singlePost', [
+            'rubrik' => Str::slug($post->rubrik->rubrik_name),
+            'post_id' => $post->post_id,
+            'slug' => $post->slug,
+        ]);
+        $message = $post->description;
+        $image = url('/').get_post_image(22446);
+        $tag_list = '';
+        if ($post->tags != null and $post->tags != 'null') {
+            foreach (json_decode($post->tags) as $tags) {
+                $tag = Tags::find($tags);
+                $tag_name = str_replace(' ', '', $tag->tag_name);
+                $tag_list .= " #{$tag_name} ";
+            }
+        }
+        $this->sharePostToInstagram($message, $image, $link, $tag_list);
+    }
+
+    public function sharePostToInstagram($message, $image, $link, $tags)
+    {
+        // Validate $user and $page objects
+        $user = FbAuth::firstOrFail();
+        $page = FbPages::firstOrFail();
+
+        // Create a new Facebook object with the required credentials
+        $fb = new \Facebook\Facebook([
+            'app_id' => env('FACEBOOK_APP_ID'),
+            'app_secret' => env('FACEBOOK_SECRET'),
+            'default_access_token' => $user->token,
+            'default_graph_version' => 'v18.0'
+        ]);
+
+        // Set the link and message data for the post
+        $linkData = [
+            'link' => $link,
+            'message' => $message.' '.$tags,
+        ];
+
+
+            // Set the image URL and caption for the Instagram post
+            $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
+                'image_url' => $image,
+                'caption' => $linkData['message'] . ' ' . $linkData['link']
+            ], $page->access_token);
+
+            // Publish the Instagram post
+            $publish = $fb->post("{$page->instagram_id}/media_publish", [
+                'creation_id' => json_decode($postToInstagramContainer->getBody())->id
+            ], $page->access_token);
+
     }
 }

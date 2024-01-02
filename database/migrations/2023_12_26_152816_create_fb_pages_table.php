@@ -18,8 +18,11 @@ return new class extends Migration
             $table->string('category');
             $table->json('category_list');
             $table->json('tasks');
-            $table->bigInteger('instagram_id');
             $table->text('page_avatar');
+            $table->bigInteger('instagram_business_id');
+            $table->bigInteger('instagram_id');
+            $table->string('instagram_username');
+            $table->text('instagram_profile_pic');
             $table->timestamps();
         });
     }

@@ -111,6 +111,7 @@ class SettingsController extends Controller
         $data['fbAuth'] = FbAuth::first(); 
         $data['fbPage'] = FbPages::first(); 
         $data['XAuth'] = XAuth::first(); 
+        $data['IgAuth'] = null;//XAuth::first(); 
         return view('settings.socials', $data);
     }
 }

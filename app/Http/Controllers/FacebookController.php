@@ -165,7 +165,7 @@ class FacebookController extends Controller
         // Create a new Facebook object with the required credentials
         $fb = new \Facebook\Facebook([
             'app_id' => env('FACEBOOK_APP_ID'),
-            'app_secret' => env('FACEBOOK_SECRET'),
+            'app_secret' => env('FACEBOOK_APP_SECRET'),
             'default_access_token' => $user->token,
             'default_graph_version' => 'v18.0'
         ]);

@@ -178,13 +178,13 @@ class FacebookController extends Controller
 
 
             // Set the image URL and caption for the Instagram post
-            $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
+            $postToInstagramContainer = $fb->post("{$page->instagram_bussines_id}/media", [
                 'image_url' => $image,
                 'caption' => $linkData['message'] . ' ' . $linkData['link']
             ], $page->access_token);
 
             // Publish the Instagram post
-            $publish = $fb->post("{$page->instagram_id}/media_publish", [
+            $publish = $fb->post("{$page->instagram_bussines_id}/media_publish", [
                 'creation_id' => json_decode($postToInstagramContainer->getBody())->id
             ], $page->access_token);
 

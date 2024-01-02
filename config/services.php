@@ -34,9 +34,22 @@ return [
 
     'facebook' => [
         'client_id' => env('FACEBOOK_APP_ID'),
-        'client_secret' => env('FACEBOOK_SECRET'),
+        'client_secret' => env('FACEBOOK_APP_SECRET'),
         'redirect' => env('FACEBOOK_CALLBACK'),
     ],
+    'instagram' => [
+        'client_id' => env('INSTAGRAM_APP_ID'),
+        'client_secret' => env('INSTAGRAM_APP_SECRET'),
+        'redirect' => env('INSTAGRAM_CALLBACK'),
+    ],
+
+    
+    'instagrambasic' => [
+        'client_id' => env('INSTAGRAM_APP_ID'),
+        'client_secret' => env('INSTAGRAM_APP_SECRET'),
+        'redirect' => env('INSTAGRAM_CALLBACK_URL'),
+    ],
+
     'twitter' => [    
         'client_id' => env('X_CLIENT_ID'),  
         'client_secret' => env('X_CLIENT_SECRET'),  

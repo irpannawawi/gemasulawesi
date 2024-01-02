@@ -3,7 +3,7 @@
         @csrf
         <div class="info-box">
             <span class="info-box-icon">
-                <img src="{{ $page->picture->data->url}}" alt="">
+                <img src="{{ $page->ig->picture->data->url}}" alt="">
             </span>
             <div class="info-box-content">
                 <span class="info-box-number">{{ $page->name }}</span>

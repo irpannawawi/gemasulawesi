@@ -17,7 +17,10 @@ class FbPages extends Model
         'category_list',
         'tasks',
         'access_token',
-        'instagram_id',
         'page_avatar',
+        'instagram_id',
+        'instagram_business_id',
+        'instagram_username',
+        'instagram_profile_pic',
     ];
 }

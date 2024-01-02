@@ -74,24 +74,20 @@
                 </div>
                 <div class="tab-pane fade" id="instagram" role="tabpanel" aria-labelledby="instagram-tab">
                     <!-- Instagram content goes here -->
-                    <div class="row">
-                        @if ($fbPage)
-                            <div class="col-md-5">
-                                <b>Facebook Pages</b>
-                                <div class="info-box shadow-none">
-                                    <div class="info-box-icon">
-                                        <img src="{{ $fbPage->page_avatar }}" alt="">
-                                    </div>
-                                    <div class="info-box-content">
-                                        <span class="info-box-text">{{ $fbPage->name }}</span>
-                                        <span class="info-box-number">{{ $fbPage->category }}</span>
-                                        <span class="text-sm"><i class="fa fa-check text-success"></i> Connected to the
-                                            associated Instagram account for the page.</span>
-                                    </div>
+                    @if ($fbPage)
+                        <div class="col-md-5">
+                            <b>Instagram Account</b>
+                            <div class="info-box shadow-none">
+                                <div class="info-box-icon">
+                                    <img src="{{ $fbPage->instagram_profile_pic }}" alt="">
+                                </div>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">{{ $fbPage->instagram_username }}</span>
                                 </div>
                             </div>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
+
                 </div>
                 <div class="tab-pane fade" id="twitter" role="tabpanel" aria-labelledby="twitter-tab">
                     <!-- Twitter content goes here -->
@@ -99,9 +95,9 @@
                         <a href="{{ route('socials.x.auth') }}" class="btn btn-primary btn-sm"><i
                                 class="fa-brands fa-x-twitter"></i> Connect</a>
                     @else
-                    @php
-                        $x = json_decode($XAuth->user);
-                    @endphp
+                        @php
+                            $x = json_decode($XAuth->user);
+                        @endphp
                         <div class="row">
                             <div class="col-md-5">
                                 <b>X Accounts</b>
@@ -111,7 +107,7 @@
                                     </div>
                                     <div class="info-box-content">
                                         <span class="info-box-text">{{ $XAuth->name }}</span>
-                                        <span class="info-box-number">{{ "@".$XAuth->nickname }}</span>
+                                        <span class="info-box-number">{{ '@' . $XAuth->nickname }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -136,8 +132,11 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body" id="pagesContainer">
-
+                    <div class="modal-body">
+                        <div id="pagesContainer"></div>
+                        <div id="loading" class="overlay">
+                            <i class="fa fa-refresh fa-spin"></i>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -147,8 +146,11 @@
         </div>
         <script defer>
             function getPages() {
+                // add loading 
+                $('#loading').show()
                 $.get('{{ route('socials.facebook.addPages') }}', function(data) {
-                    $('#pageModal .modal-body').html(data)
+                    $('#pagesContainer').html(data)
+                    $('#loading').hide()
                 });
             }
         </script>

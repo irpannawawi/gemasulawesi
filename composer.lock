@@ -4,8 +4,62 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eaab65fa0e7fa349cb8ec4cb234e3779",
+    "content-hash": "902b9e5bb96fa6a34051bcb5d642478d",
     "packages": [
+        {
+            "name": "amirsarhang/instagram-php-sdk",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/amirsarhang/instagram-php-sdk.git",
+                "reference": "66914c85955ad0a814c69e8caf79336324d7d886"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/amirsarhang/instagram-php-sdk/zipball/66914c85955ad0a814c69e8caf79336324d7d886",
+                "reference": "66914c85955ad0a814c69e8caf79336324d7d886",
+                "shasum": ""
+            },
+            "require": {
+                "nickdnk/graph-sdk": "^7.0.1",
+                "php": ">=8.0",
+                "vlucas/phpdotenv": "^5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Amirsarhang\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Amirhossein Sarhangian",
+                    "email": "ah.sarhangian@gmail.com",
+                    "homepage": "https://github.com/amirsarhang/instagram-php-sdk/"
+                }
+            ],
+            "description": "It's Instagram Graph SDK for PHP. With this package you can easily make all requests to Instagram Graph API, like Auth and CRUD. Also, we will have more methods regularly.",
+            "homepage": "https://github.com/amirsarhang/instagram-php-sdk",
+            "keywords": [
+                "Instagram-Library",
+                "Instagram-PHP",
+                "graph-api",
+                "instagram",
+                "instagram-sdk"
+            ],
+            "support": {
+                "docs": "https://amirsarhang.github.io/instagram-php-sdk/",
+                "issues": "https://github.com/amirsarhang/instagram-php-sdk/issues",
+                "rss": "https://github.com/amirsarhang/instagram-php-sdk/releases.atom",
+                "source": "https://github.com/amirsarhang/instagram-php-sdk.git",
+                "wiki": "https://github.com/amirsarhang/instagram-php-sdk/wiki"
+            },
+            "time": "2022-10-06T16:49:35+00:00"
+        },
         {
             "name": "aws/aws-crt-php",
             "version": "v1.2.4",
@@ -4259,6 +4313,62 @@
             "time": "2023-10-29T21:02:13+00:00"
         },
         {
+            "name": "nickdnk/graph-sdk",
+            "version": "7.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nickdnk/php-graph-sdk.git",
+                "reference": "d7fbb76c8ade978b508e8c3ddd30712d62c456b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nickdnk/php-graph-sdk/zipball/d7fbb76c8ade978b508e8c3ddd30712d62c456b9",
+                "reference": "d7fbb76c8ade978b508e8c3ddd30712d62c456b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3 || ^8.0"
+            },
+            "conflict": {
+                "guzzlehttp/guzzle": "<6.0"
+            },
+            "replace": {
+                "facebook/graph-sdk": ">=5.7.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "^6.5.0 | ^7.5.0",
+                "mockery/mockery": "~1.5.1",
+                "phpunit/phpunit": "~9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP compatible with PHP8",
+            "homepage": "https://github.com/nickdnk/php-graph-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/nickdnk/php-graph-sdk/issues",
+                "source": "https://github.com/nickdnk/php-graph-sdk/tree/7.0.1"
+            },
+            "time": "2022-09-14T16:25:39+00:00"
+        },
+        {
             "name": "nicmart/tree",
             "version": "0.3.1",
             "source": {
@@ -5950,6 +6060,97 @@
             "description": "Facebook (facebook.com) OAuth2 Provider for Laravel Socialite",
             "support": {
                 "source": "https://github.com/SocialiteProviders/Facebook/tree/4.1.0"
+            },
+            "time": "2020-12-01T23:10:59+00:00"
+        },
+        {
+            "name": "socialiteproviders/instagram",
+            "version": "5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Instagram.git",
+                "reference": "c3ef6b6b268de6abf36cc3253b5c6a87255a3564"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Instagram/zipball/c3ef6b6b268de6abf36cc3253b5c6a87255a3564",
+                "reference": "c3ef6b6b268de6abf36cc3253b5c6a87255a3564",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4 || ^8.0",
+                "socialiteproviders/manager": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Instagram\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de"
+                }
+            ],
+            "description": "Instagram OAuth2 Provider for Laravel Socialite",
+            "keywords": [
+                "instagram",
+                "laravel",
+                "oauth",
+                "provider",
+                "socialite"
+            ],
+            "support": {
+                "docs": "https://socialiteproviders.com/instagram",
+                "issues": "https://github.com/socialiteproviders/providers/issues",
+                "source": "https://github.com/socialiteproviders/providers"
+            },
+            "time": "2023-01-03T22:48:33+00:00"
+        },
+        {
+            "name": "socialiteproviders/instagram-basic",
+            "version": "4.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/InstagramBasic.git",
+                "reference": "e7b09b99662e3aaaea42f43282dec7a60c095171"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/InstagramBasic/zipball/e7b09b99662e3aaaea42f43282dec7a60c095171",
+                "reference": "e7b09b99662e3aaaea42f43282dec7a60c095171",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.2 || ^8.0",
+                "socialiteproviders/manager": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\InstagramBasic\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Philipp Mochine",
+                    "email": "support@avidofood.com"
+                }
+            ],
+            "description": "Instagram Basic Display OAuth2 Provider for Laravel Socialite",
+            "support": {
+                "source": "https://github.com/SocialiteProviders/InstagramBasic/tree/4.1.0"
             },
             "time": "2020-12-01T23:10:59+00:00"
         },
@@ -10115,69 +10316,6 @@
             "time": "2022-12-30T00:23:10+00:00"
         },
         {
-            "name": "facebook/graph-sdk",
-            "version": "5.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facebook/php-graph-sdk.git",
-                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2d8250638b33d73e7a87add65f47fabf91f8ad9b",
-                "reference": "2d8250638b33d73e7a87add65f47fabf91f8ad9b",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.4|^7.0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "~5.0",
-                "mockery/mockery": "~0.8",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
-                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "src/Facebook/polyfills.php"
-                ],
-                "psr-4": {
-                    "Facebook\\": "src/Facebook/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Facebook Platform"
-            ],
-            "authors": [
-                {
-                    "name": "Facebook",
-                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
-                }
-            ],
-            "description": "Facebook SDK for PHP",
-            "homepage": "https://github.com/facebook/php-graph-sdk",
-            "keywords": [
-                "facebook",
-                "sdk"
-            ],
-            "support": {
-                "issues": "https://github.com/facebook/php-graph-sdk/issues",
-                "source": "https://github.com/facebook/php-graph-sdk/tree/5.7.0"
-            },
-            "abandoned": true,
-            "time": "2018-12-11T22:56:31+00:00"
-        },
-        {
             "name": "fakerphp/faker",
             "version": "v1.23.0",
             "source": {
@@ -12472,56 +12610,6 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
-            "name": "socialiteproviders/instagram",
-            "version": "5.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Instagram.git",
-                "reference": "c3ef6b6b268de6abf36cc3253b5c6a87255a3564"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Instagram/zipball/c3ef6b6b268de6abf36cc3253b5c6a87255a3564",
-                "reference": "c3ef6b6b268de6abf36cc3253b5c6a87255a3564",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.4 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Instagram\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Instagram OAuth2 Provider for Laravel Socialite",
-            "keywords": [
-                "instagram",
-                "laravel",
-                "oauth",
-                "provider",
-                "socialite"
-            ],
-            "support": {
-                "docs": "https://socialiteproviders.com/instagram",
-                "issues": "https://github.com/socialiteproviders/providers/issues",
-                "source": "https://github.com/socialiteproviders/providers"
-            },
-            "time": "2023-01-03T22:48:33+00:00"
-        },
-        {
             "name": "socialiteproviders/linkedin",
             "version": "4.2.0",
             "source": {
@@ -13059,5 +13147,5 @@
         "php": "^8.1.10"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

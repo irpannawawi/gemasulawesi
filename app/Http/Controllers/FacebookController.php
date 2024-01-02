@@ -33,7 +33,7 @@ class FacebookController extends Controller
             'attributes' => json_encode($user->attributes),
             'token' => $user->token,
         ]);
-        
+
         // Logic to create and share a post on Facebook goes here
 
         return redirect('setting/socials')->with('success', 'Account Connected Successfully');
@@ -44,32 +44,33 @@ class FacebookController extends Controller
         $user = FbAuth::first();
         $fb = new \Facebook\Facebook([
             'app_id' => env('FACEBOOK_APP_ID'),
-            'app_secret' => env('FACEBOOK_SECRET'),
+            'app_secret' => env('FACEBOOK_APP_SECRET'),
             'default_access_token' => $user->token,
             'default_graph_version' => 'v18.0'
         ]);
 
         try {
+            // get pages list
             $cacheAccounts = cache('cachedAccounts');
-            if (!$cacheAccounts) {
-                $response = $fb->get("{$user->id}/accounts?fields=id,instagram_business_account,category,category_list,tasks,name,access_token,picture{url}", $user->token);
+            if (!$cacheAccounts || true) {
+                $response = $fb->get("{$user->id}/accounts?fields=access_token,instagram_business_account,tasks,category,category_list,id,name", $user->token);
                 Cache::put('cachedAccounts', $response, 60 * 10);
             } else {
                 $response = $cacheAccounts;
             }
-
             $pages = json_decode($response->getBody(), false)->data;
             $data['pages'] = [];
 
+            // filter pages with instagram
             foreach ($pages as $page) {
                 $cacheIgId = cache('cachedIgId' . $page->id);
                 if (!$cacheIgId) {
-                    $ig_id = json_decode($fb->get("{$page->id}?fields=instagram_business_account", $page->access_token)->getBody(), false);
+                    $ig_id = json_decode($fb->get("{$page->id}?fields=picture,instagram_business_account,id,instagram_accounts{profile_pic,username}", $page->access_token)->getBody(), false);
                     cache()->put('cachedIgId' . $page->id, $ig_id, 60 * 10);
                 } else {
                     $ig_id = $cacheIgId;
                 }
-
+                
                 if (!empty($ig_id->instagram_business_account)) {
                     $page->ig = $ig_id;
                     $data['pages'][] = $page;
@@ -81,7 +82,7 @@ class FacebookController extends Controller
         } catch (\Facebook\Exceptions\FacebookSDKException $e) {
             echo 'Facebook SDK returned an error: ' . $e->getMessage();
             exit;
-        }   
+        }
         return view('settings.social_components.add_fb_pages', $data);
     }
 
@@ -97,8 +98,11 @@ class FacebookController extends Controller
                 'category_list' => json_encode($data->category_list),
                 'access_token' => $data->access_token,
                 'tasks' => json_encode($data->tasks),
-                'instagram_id' => $data->instagram_business_account->id,
-                'page_avatar' => $data->picture->data->url,
+                'page_avatar' => $data->ig->picture->data->url,
+                'instagram_business_id' => $data->ig->instagram_business_account->id,
+                'instagram_id' => $data->ig->instagram_accounts->data[0]->id,
+                'instagram_username' => $data->ig->instagram_accounts->data[0]->username,
+                'instagram_profile_pic' => $data->ig->instagram_accounts->data[0]->profile_pic,
             ]);
         } catch (\Facebook\Exceptions\FacebookResponseException $e) {
             // Handle Graph error
@@ -119,52 +123,7 @@ class FacebookController extends Controller
      * @param Request $request The request object containing the post data.
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function sharePostToFacebook($message, $image, $link, $tags)
-    {
-        // Validate $user and $page objects
-        $user = FbAuth::firstOrFail();
-        $page = FbPages::firstOrFail();
 
-        // Create a new Facebook object with the required credentials
-        $fb = new \Facebook\Facebook([
-            'app_id' => env('FACEBOOK_APP_ID'),
-            'app_secret' => env('FACEBOOK_SECRET'),
-            'default_access_token' => $user->token,
-            'default_graph_version' => 'v18.0'
-        ]);
-
-        // Set the link and message data for the post
-        $linkData = [
-            'link' => $link,
-            'message' => $message.' '.$tags,
-        ];
-
-        try {
-            // Post the link data to the Facebook page feed
-            $fb->post("{$page->id}/feed", $linkData, $page->access_token);
-
-            // Set the image URL and caption for the Instagram post
-            $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
-                'image_url' => $image,
-                'caption' => $linkData['message'] . ' ' . $linkData['link']
-            ], $page->access_token);
-            // Publish the Instagram post
-            $publish = $fb->post("{$page->instagram_id}/media_publish", [
-                'creation_id' => json_decode($postToInstagramContainer->getBody())->id
-            ], $page->access_token);
-        } catch (\Facebook\Exceptions\FacebookResponseException $e) {
-            // When Graph returns an error, display the error message
-            echo 'Graph returned an error: ' . $e->getMessage();
-            exit;
-        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-            // When validation fails or other local issues, display the error message
-            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-            exit;
-        }
-
-        // Redirect back to the previous page
-        return $publish;
-    }
 
     public function handleLogout()
     {
@@ -176,11 +135,8 @@ class FacebookController extends Controller
 
     public function share()
     {
-        
-        $post =22446;
-        ShareJob::dispatch($post);
-        
-    }
 
-    
+        $post = 22446;
+        ShareJob::dispatch($post);
+    }
 }

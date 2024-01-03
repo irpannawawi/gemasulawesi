@@ -87,7 +87,7 @@ class Posts extends Model implements Sitemapable, Feedable
         return FeedItem::create()
             ->id($this->post_id)
             ->title($this->title)
-            ->summary('<img src="'.url('/').$postThumbnail.' align="left" hspace="5" width="100" />'.$this->description)
+            ->summary('<img src="'.url('/').$postThumbnail.'" align="left" hspace="5" width="100" />'.$this->description)
             ->updated($this->updated_at)
             ->link(route('singlePost', ['rubrik' => Str::slug($this->rubrik->rubrik_name), 'post_id' => $this->post_id, 'slug' => $this->slug]))
             ->authorName($this->author->display_name)

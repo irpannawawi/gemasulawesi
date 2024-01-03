@@ -55,6 +55,7 @@
     @endphp
     <!-- s: open graph -->
     <title itemprop="name">{{ $metaTitle }}</title>
+    <x-feed-links />
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">

@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Spatie\Sitemap\Contracts\Sitemapable;
 use Spatie\Sitemap\Tags\Url;
 
-class Posts extends Model implements Sitemapable
+class Posts extends Model implements Sitemapable, Feedable
 {
     use HasFactory;
     protected $table = 'posts';
@@ -68,9 +71,36 @@ class Posts extends Model implements Sitemapable
     public function toSitemapTag(): Url | string | array
     {
         // Return with fine-grained control:
-        return Url::create("id/".Str::slug($this->rubrik->rubrik_name)."/".$this->post_id."/".$this->slug)
+        return Url::create("id/" . Str::slug($this->rubrik->rubrik_name) . "/" . $this->post_id . "/" . $this->slug)
             ->setLastModificationDate(Carbon::create($this->published_at))
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
             ->setPriority(0.5);
+    }
+
+    public function toFeedItem(): FeedItem
+    {
+        $postImage = get_post_image($this->post_id);
+        $postThumbnail = get_post_thumbnail($this->post_id);
+        $imageLength = Storage::size(str_replace('storage/', 'public/', $postImage));
+        $imageType = Storage::mimeType(str_replace('storage/', 'public/', $postImage));
+
+        return FeedItem::create()
+            ->id($this->post_id)
+            ->title($this->title)
+            ->summary('<img src="'.url('/').$postThumbnail.' align="left" hspace="5" width="100" />'.$this->description)
+            ->updated($this->updated_at)
+            ->link(route('singlePost', ['rubrik' => Str::slug($this->rubrik->rubrik_name), 'post_id' => $this->post_id, 'slug' => $this->slug]))
+            ->authorName($this->author->display_name)
+            ->enclosure(url('/').$postImage)
+            ->enclosureLength($imageLength)
+            ->enclosureType($imageType)
+            ->authorEmail($this->author->email);
+    }
+
+    public static function getAllFeedItems()
+    {
+        return Posts::limit(10)
+        // ->where('published_at', '>=', Carbon::now()->subHours(3)->toDateTimeString())
+        ->get();
     }
 }

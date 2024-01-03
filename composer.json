@@ -24,6 +24,7 @@
         "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/instagram": "^5.0",
         "socialiteproviders/instagram-basic": "^4.1",
+        "spatie/laravel-feed": "^4.3",
         "spatie/laravel-sitemap": "^7.0",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3",
         "yajra/laravel-datatables": "^10.0"

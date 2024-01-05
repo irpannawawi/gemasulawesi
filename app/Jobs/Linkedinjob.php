@@ -41,6 +41,7 @@ class Linkedinjob implements ShouldQueue
         ]);
         
         $title = $post->title;
+        $image = url('/').get_post_thumbnail($post->id);
         $description = $post->description;
         $tag_list = '';
         if ($post->tags != null and $post->tags != 'null') {
@@ -51,10 +52,10 @@ class Linkedinjob implements ShouldQueue
             }
         }
 
-        $this->share($description, $title, $tag_list, $link);
+        $this->share($title, $description, $image, $tag_list, $link);
     }
 
-    public function share($title, $description, $tag_list, $url)
+    public function share($title, $description, $image, $tag_list, $url)
     {
         $user = LinkedinAuth::first();
 
@@ -70,7 +71,22 @@ class Linkedinjob implements ShouldQueue
                     "shareCommentary" => [
                         "text" => $description .' '. $tag_list .' '. $url
                     ],
-                    "shareMediaCategory" => "NONE",
+                    "shareMediaCategory" => "ARTICLE",
+                    "media" => [
+                        [
+                            "status" => "READY",
+                            "description" => [
+                                "text" => $description
+                            ],
+                            "originalUrl" => $url,
+                            "thumbnails"=> [
+                                "url"=> $image,
+                            ],
+                            "title" => [
+                                "text" => $title
+                            ]
+                        ]
+                    ]
                 ]
             ],
             "visibility" => [

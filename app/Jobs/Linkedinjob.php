@@ -70,19 +70,7 @@ class Linkedinjob implements ShouldQueue
                     "shareCommentary" => [
                         "text" => $description .' '. $tag_list .' '. $url
                     ],
-                    "shareMediaCategory" => "ARTICLE",
-                    "media" => [
-                        [
-                            "status" => "READY",
-                            "description" => [
-                                "text" => $description
-                            ],
-                            "originalUrl" => $url,
-                            "title" => [
-                                "text" => $title
-                            ]
-                        ]
-                    ]
+                    "shareMediaCategory" => "NONE",
                 ]
             ],
             "visibility" => [

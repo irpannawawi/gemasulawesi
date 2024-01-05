@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Linkedinjob;
 use App\Models\LinkedinAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -41,42 +42,6 @@ class LinkedinController extends Controller
 
     public function share()
     {
-        $user =LinkedinAuth::first();
-        
-        $http = Http::withToken($user->token)->get('https://api.linkedin.com/v2/userinfo');
-        $prson = $http->object();
-
-        $postUrl = 'https://api.linkedin.com/v2/ugcPosts';
-        $body = [
-            "author"=> "urn:li:person:{$prson->sub}",
-            "lifecycleState"=> "PUBLISHED",
-            "specificContent"=> [
-                "com.linkedin.ugc.ShareContent"=> [
-                    "shareCommentary"=> [
-                        "text"=> "test Coment"
-                    ],
-                    "shareMediaCategory"=> "ARTICLE",
-                    "media"=> [
-                        "status"=> "READY",
-                        "description"=> [
-                            "text"=> "test Description"
-                        ],
-                        "title"=> [
-                            "text"=> "test Title"
-                        ],
-                        "originalUrl"=> "https://www.google.com/"
-                    ]
-                ]
-                    ],
-            "visibility"=> [
-                "com.linkedin.ugc.MemberNetworkVisibility"=> "PUBLIC"
-            ]
-        ];
-        $body = json_encode($body, JSON_UNESCAPED_SLASHES);
-        $postHttp = Http::withHeader('X-Restli-Protocol-Version', '2.0.0')
-        ->withBody($body)
-        ->withToken($user->token)
-                    ->post($postUrl);
-                    dd($postHttp->object());
+        Linkedinjob::dispatch(22668);
     }
 }

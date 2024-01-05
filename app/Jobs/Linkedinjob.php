@@ -39,8 +39,7 @@ class Linkedinjob implements ShouldQueue
             'post_id' => $post->post_id,
             'slug' => $post->slug,
         ]);
-        $image = get_post_image($this->id);
-
+        
         $title = $post->title;
         $description = $post->description;
         $tag_list = '';
@@ -52,42 +51,16 @@ class Linkedinjob implements ShouldQueue
             }
         }
 
-        $this->share($description, $title, $tag_list, $link, $image);
+        $this->share($description, $title, $tag_list, $link);
     }
 
-    public function share($title, $description, $tag_list, $url, $image)
+    public function share($title, $description, $tag_list, $url)
     {
         $user = LinkedinAuth::first();
 
         $http = Http::withToken($user->token)->get('https://api.linkedin.com/v2/userinfo');
         $prson = $http->object();
-        // handle media
-        $mediaUrl = 'https://api.linkedin.com/v2/assets?action=registerUpload';
-        $bodyMedia = [
-            "registerUploadRequest" => [
-                "recipes" => [
-                    "urn:li:digitalmediaRecipe:feedshare-image"
-                ],
-                "owner" => "urn:li:person:{$prson->sub}",
-                "serviceRelationships" => [
-                    [
-                        "relationshipType" => "OWNER",
-                        "identifier" => "urn:li:userGeneratedContent"
-                    ]
-                ]
-            ]
-        ];
-        $bodyMedia = json_encode($bodyMedia, JSON_UNESCAPED_SLASHES);
-        $mediaResponse = Http::withToken($user->token)
-            ->withBody($bodyMedia, 'application/json')
-            ->withHeader('X-Restli-Protocol-Version', '2.0.0')
-            ->post($mediaUrl)->object()->value;
-        $uploadUrl = $mediaResponse->uploadMechanism->uploadUrl;
-
-        // upload image
-        Http::post($uploadUrl, ['file' => fopen(public_path($image), 'r')]);
-
-        // create post
+               // create post
         $postUrl = 'https://api.linkedin.com/v2/ugcPosts';
         $body = [
             "author" => "urn:li:person:{$prson->sub}",
@@ -95,7 +68,7 @@ class Linkedinjob implements ShouldQueue
             "specificContent" => [
                 "com.linkedin.ugc.ShareContent" => [
                     "shareCommentary" => [
-                        "text" => $description . $tag_list
+                        "text" => $description .' '. $tag_list .' '. $url
                     ],
                     "shareMediaCategory" => "ARTICLE",
                     "media" => [
@@ -104,7 +77,6 @@ class Linkedinjob implements ShouldQueue
                             "description" => [
                                 "text" => $description
                             ],
-                            "media" => $mediaResponse->asset,
                             "originalUrl" => $url,
                             "title" => [
                                 "text" => $title

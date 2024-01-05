@@ -38,6 +38,7 @@ class ShareJob implements ShouldQueue
             Facebookjob::dispatch($this->id);
             Xjob::dispatch($this->id);
             Instagramjob::dispatch($this->id);
+            Linkedinjob::dispatch($this->id);
             
     }
 

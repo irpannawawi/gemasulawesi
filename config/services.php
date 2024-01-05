@@ -60,6 +60,6 @@ return [
     'linkedin' => [    
         'client_id' => env('LINKEDIN_ID'),  
         'client_secret' => env('LINKEDIN_SECRET'),  
-        'redirect' => env('LINKEDIN_CALLBACK') 
+        'redirect' => env('LINKEDIN_CALLBACK_URL') 
       ],
 ];

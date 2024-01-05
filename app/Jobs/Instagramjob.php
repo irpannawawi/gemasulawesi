@@ -41,7 +41,7 @@ class Instagramjob implements ShouldQueue
             'slug' => $post->slug,
         ]);
         $message = $post->description;
-        $image = url('/').get_post_image($this->id);
+        $image = url('/') . get_post_image($this->id);
         $tag_list = '';
         if ($post->tags != null and $post->tags != 'null') {
             foreach (json_decode($post->tags) as $tags) {
@@ -53,7 +53,30 @@ class Instagramjob implements ShouldQueue
 
         $this->sharePostToInstagram($message, $image, $link, $tag_list);
     }
+    public function sharePostToFacebook($message,  $link, $tags)
+    {
+        // Validate $user and $page objects
+        $user = FbAuth::firstOrFail();
+        $page = FbPages::firstOrFail();
 
+        // Create a new Facebook object with the required credentials
+        $fb = new \Facebook\Facebook([
+            'app_id' => env('FACEBOOK_APP_ID'),
+            'app_secret' => env('FACEBOOK_APP_SECRET'),
+            'default_access_token' => $user->token,
+            'default_graph_version' => 'v18.0'
+        ]);
+
+        // Set the link and message data for the post
+        $linkData = [
+            'link' => $link,
+            'message' => $message . ' ' . $tags,
+        ];
+
+
+        // Post the link data to the Facebook page feed
+        $publish =  $fb->post("{$page->id}/feed", $linkData, $page->access_token);
+    }
     public function sharePostToInstagram($message, $image, $link, $tags)
     {
         // Validate $user and $page objects
@@ -71,20 +94,18 @@ class Instagramjob implements ShouldQueue
         // Set the link and message data for the post
         $linkData = [
             'link' => $link,
-            'message' => $message.' '.$tags,
+            'message' => $message . ' ' . $tags,
         ];
 
+        // Set the image URL and caption for the Instagram post
+        $postToInstagramContainer = $fb->post("{$page->instagram_business_id}/media", [
+            'image_url' => $image,
+            'caption' => $linkData['message'] . ' ' . $linkData['link']
+        ], $user->token);
 
-            // Set the image URL and caption for the Instagram post
-            $postToInstagramContainer = $fb->post("{$page->instagram_id}/media", [
-                'image_url' => $image,
-                'caption' => $linkData['message'] . ' ' . $linkData['link']
-            ], $page->access_token);
-
-            // Publish the Instagram post
-            $publish = $fb->post("{$page->instagram_id}/media_publish", [
-                'creation_id' => json_decode($postToInstagramContainer->getBody())->id
-            ], $page->access_token);
-
+        // Publish the Instagram post
+        $publish = $fb->post("{$page->instagram_business_id}/media_publish", [
+            'creation_id' => json_decode($postToInstagramContainer->getBody())->id
+        ], $user->token);
     }
 }

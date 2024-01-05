@@ -287,3 +287,12 @@ function isValidLink($url) {
 
     return $headers && strpos($headers[0], '200') !== false;
 }
+
+function get_file_size($file){
+
+    $bytes = filesize($file);
+    $units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
+    $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
+    return number_format($bytes / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
+} 
+

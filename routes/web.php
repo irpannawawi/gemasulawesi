@@ -63,6 +63,8 @@ Route::get('/browse_edit_image/{id}/{source}', [PhotoController::class, 'browse_
 Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 Route::post('/create_img_byTinymce', [PhotoController::class, 'update_image_tinymce'])->name('assets.photo.updateTinymce');
 
+Route::feeds();
+
 Route::middleware('auth')->group(function () {
     Route::get('/failed_jobs', [DashboardController::class, 'failed_jobs'])->name('failed_job');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');

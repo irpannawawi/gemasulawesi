@@ -338,7 +338,7 @@
                 height: 480,
                 onMessage: (instance, data) => {
                     tinymce.activeEditor.execCommand('insertHTML', false,
-                        `<p><strong>Baca Juga: <a href="${data.data.url}" >${data.data.title}</a></strong></p>`);
+                        `<p class="baca-juga"><strong>Baca Juga: <br /><a href="${data.data.url}" >${data.data.title}</a></strong></p>`);
                     instance.close();
                 }
             };

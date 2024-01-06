@@ -69,15 +69,21 @@ class Linkedinjob implements ShouldQueue
             "specificContent" => [
                 "com.linkedin.ugc.ShareContent" => [
                     "shareCommentary" => [
-                        "text" => $description .' '. $tag_list .' '. $url
+                        "text" => $description .' '. $tag_list .' \n '. $url
                     ],
                     "shareMediaCategory" => "ARTICLE",
                     "media" => [
                         [
                             "status" => "READY",
+                            "description" => [
+                                "text" => $description
+                            ],
                             "originalUrl" => $url,
                             "thumbnails"=> [
                                 "url"=> $image,
+                            ],
+                            "title" => [
+                                "text" => $title
                             ]
                         ]
                     ]

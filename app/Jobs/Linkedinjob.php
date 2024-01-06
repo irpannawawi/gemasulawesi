@@ -75,15 +75,9 @@ class Linkedinjob implements ShouldQueue
                     "media" => [
                         [
                             "status" => "READY",
-                            "description" => [
-                                "text" => $description
-                            ],
                             "originalUrl" => $url,
                             "thumbnails"=> [
                                 "url"=> $image,
-                            ],
-                            "title" => [
-                                "text" => $title
                             ]
                         ]
                     ]

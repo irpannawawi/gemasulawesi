@@ -53,6 +53,14 @@
             $author = $post->author?->display_name;
         }
     @endphp
+
+    <link href="//securepubads.g.doubleclick.net" rel="dns-prefetch">
+    <link href="//googleads.g.doubleclick.net" rel="dns-prefetch">
+    <link href="//pagead2.googlesyndication.com" rel="dns-prefetch">
+    <link href="//fonts.googleapis.com" rel="dns-prefetch">
+    <link href="//static.promediateknologi.id" rel="dns-prefetch">
+    <link href="//www.gemasulawesi.com" rel="dns-prefetch">
+    <link href="//tpc.googlesyndication.com" rel="dns-prefetch">
     <!-- s: open graph -->
     <title itemprop="name">{{ $metaTitle }}</title>
     <x-feed-links />
@@ -72,12 +80,14 @@
     <meta name="googlebot" content="index,follow" />
     <meta name="language" content="id" />
     <meta name="geo.country" content="id" />
-    <meta name="geo.region" content="ID" />
+    <meta http-equiv="content-language" content="In-Id" />
     <meta name="geo.placename" content="Indonesia" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-language" content="In-Id" />
+    <meta content="{{ url()->current() }}" itemprop="url" />
+    <meta charset="utf-8">
     <meta property="og:type" content="{{ $type }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:title" content="{{ $metaTitle }}" />
@@ -90,8 +100,6 @@
     <meta property="fb:pages" content="" />
     <meta property="article:author" content="{{ $author }}">
     <meta property="article:section" content="">
-    <meta content="{{ url()->current() }}" itemprop="url" />
-    <meta charset="utf-8">
     <!-- e: open graph -->
 
     <!-- S:tweeter card -->
@@ -127,7 +135,7 @@
                         "content_category": "Tag"
                     }];
                 </script>';
-            } elseif (request()->is('galery')) {
+            } elseif (request()->is('gallery')) {
                 echo '<script>
                     dataLayer = [{
                         "breadcrumb_detail": "Section Page",
@@ -390,7 +398,7 @@
                         '@type' => 'ListItem',
                         'position' => 1,
                         'item' => [
-                            '@id' => url()->current(),
+                            '@id' => 'https://www.gemasulawesi.com',
                             'name' => 'Home',
                         ],
                     ],
@@ -398,7 +406,7 @@
                         '@type' => 'ListItem',
                         'position' => 2,
                         'item' => [
-                            '@id' => url()->current(),
+                            '@id' => 'https://www.gemasulawesi.com/' . $post->rubrik->rubrik_name,
                             'name' => $post->rubrik->rubrik_name,
                         ],
                     ],
@@ -436,8 +444,8 @@
         @endphp
     @endif
 
-    <!-- Google tag (gtag.js) -->
     @if (env('APP_ENV') != 'local')
+        <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-E4E99NJFQY"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
@@ -458,11 +466,11 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap' rel='stylesheet'>
     <!-- Css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/font-icons.css" />
-    <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/style.css" />
-    <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/custom.css" />
-    <link rel="stylesheet" href="{{url('/')}}/assets/frontend/css/colors/tosca.css" />
+    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/font-icons.css" />
+    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/style.css" />
+    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/custom.css" />
+    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/colors/tosca.css" />
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
@@ -475,15 +483,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     {{-- magnific css --}}
-    <link async rel="{{url('/')}}/assets/frontend/css/magnific.css') }}">
+    <link async rel="{{ url('assets/frontend') }}/css/magnific.css') }}">
 
     <!-- Lazyload (must be placed in head in order to work) -->
-    <script async src="{{url('/')}}/assets/frontend/js/lazysizes.min.js"></script>
+    <script async src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
     {{-- jquery --}}
-    <script async src="{{url('/')}}/assets/frontend/js/jquery.min.js"></script>
+    <script async src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
 </head>
 
 <body class="home style-politics ">
@@ -596,9 +604,9 @@
                         <div class="col-lg-5 col-md-6">
                             <div class="footer__verifikasi">
                                 <img class=" ls-is-cached lazyloaded"
-                                    data-src="{{url('/')}}/assets/frontend/img/centang-biru.png"
-                                    src="{{url('/')}}/assets/frontend/img/centang-biru.png"
-                                    width="40" height="40" alt="PRMN Centang Biru" data-loaded="true">
+                                    data-src="{{ url('/') }}/assets/frontend/img/centang-biru.png"
+                                    src="{{ url('/') }}/assets/frontend/img/centang-biru.png" width="40"
+                                    height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 <p>
                                     <b>Telah Diverifikasi Dewan Pers</b>
                                     <br>
@@ -620,19 +628,18 @@
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
-    <script src="{{url('/')}}/assets/frontend/js/bootstrap.min.js"></script>
-    <script src="{{url('/')}}/assets/frontend/js/easing.min.js"></script>
-    <script src="{{url('/')}}/assets/frontend/js/owl-carousel.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
-
     <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script>
-    <script src="{{url('/')}}/assets/frontend/js/modernizr.min.js"></script>
-    <script src="{{url('/')}}/assets/frontend/js/jquery.sticky-kit.min.js"></script>
-    <script src="{{url('/')}}/assets/frontend/js/jquery.newsTicker.min.js"></script>
-    <script src="{{url('/')}}/assets/frontend/js/scripts.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
     {{-- magnific --}}
-    <script src="{{url('/')}}/assets/frontend/js/magnific.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/magnific.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>

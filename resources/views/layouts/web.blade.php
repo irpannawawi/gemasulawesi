@@ -98,7 +98,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="fb:app_id" content="" />
     <meta property="fb:pages" content="" />
-    <meta property="article:author" content="{{ $author }}">
+    <meta property="article:author" content="{{ @$author }}">
     <meta property="article:section" content="">
     <!-- e: open graph -->
 

@@ -23,6 +23,10 @@
                 <a class="nav-link" id="twitter-tab" data-toggle="tab" href="#twitter" role="tab"
                     aria-controls="twitter" aria-selected="false"><i class="fa-brands fa-x-twitter"></i> Twitter</a>
             </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link" id="linkedin-tab" data-toggle="tab" href="#linkedin" role="tab"
+                    aria-controls="linkedin" aria-selected="false"><i class="fa-brands fa-linkedin"></i> Linkedin</a>
+            </li>
         </ul>
         <div class="card-body">
             <div class="tab-content" id="socialTabContent">
@@ -116,6 +120,36 @@
 
                         <a href="{{ route('socials.x.disconnect') }}" class="btn btn-danger btn-sm"><i
                                 class="fa-brands fa-x-twitter"></i> Disconnect</a>
+                    @endif
+                </div>     
+                <div class="tab-pane fade" id="linkedin" role="tabpanel" aria-labelledby="linkedin-tab">
+                    <!-- Linkedin content goes here -->
+                    @if (!$LinkedinAuth)
+                        <a href="{{ route('socials.linkedin.auth') }}" class="btn btn-primary btn-sm"><i
+                                class="fa-brands fa-linkedin"></i> Connect</a>
+                    @else
+                        <div class="row">
+                            <div class="col-md-5">
+                                <b>Linkedin Accounts</b>
+                                <div class="info-box shadow-none">
+                                    <div class="info-box-icon">
+                                        @php
+                                            $avatar = json_decode($LinkedinAuth->user, true)['profilePicture']['displayImage~']['elements'][1]['identifiers'][0]['identifier'];
+                                            
+                                        @endphp
+                                        <img src="{{ $avatar }}" alt="">
+                                    </div>
+                                    <div class="info-box-content">
+                                        <span class="info-box-number">{{ $LinkedinAuth->name }}</span>
+                                        <span class="info-box-text">{{ $LinkedinAuth->email }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <a href="{{ route('socials.linkedin.unlink') }}" class="btn btn-danger btn-sm"><i
+                                class="fa-brands fa-linkedin"></i> Disconnect</a>
                     @endif
                 </div>
             </div>

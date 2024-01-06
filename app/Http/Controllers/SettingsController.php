@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FbAuth;
 use App\Models\FbPages;
+use App\Models\LinkedinAuth;
 use App\Models\Setting;
 use App\Models\XAuth;
 use Illuminate\Database\QueryException;
@@ -111,7 +112,7 @@ class SettingsController extends Controller
         $data['fbAuth'] = FbAuth::first(); 
         $data['fbPage'] = FbPages::first(); 
         $data['XAuth'] = XAuth::first(); 
-        $data['IgAuth'] = null;//XAuth::first(); 
+        $data['LinkedinAuth'] = LinkedinAuth::first();
         return view('settings.socials', $data);
     }
 }

@@ -94,6 +94,6 @@ class Linkedinjob implements ShouldQueue
             ->withBody($body)
             ->withToken($user->token)
             ->post($postUrl);
-        return $postHttp->object();
+        $postHttp->object();
     }
 }

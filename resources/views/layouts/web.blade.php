@@ -62,6 +62,17 @@
             $publish = $post->published_at;
         }
     @endphp
+    @php
+        // Dapatkan URL saat ini
+        $currentUrl = url()->current();
+
+        // Periksa apakah URL memenuhi pola gemasulawesi.test/id/*
+        if (strpos($currentUrl, 'gemasulawesi.com/id/') !== false) {
+            // Hanya tampilkan link rel amphtml jika URL memenuhi kriteria
+            $ampUrl = preg_replace('/\/(\d+)\//', '/amp/$1/', $currentUrl);
+            echo '<link rel="amphtml" href="' . $ampUrl . '" data-component-name="amp:html:link">';
+        }
+    @endphp
 
     <link href="//securepubads.g.doubleclick.net" rel="dns-prefetch">
     <link href="//googleads.g.doubleclick.net" rel="dns-prefetch">
@@ -77,7 +88,6 @@
     <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
     <link rel="canonical" href="{{ url()->full() }}" />
-    <link rel="amphtml" href="{{ url()->full() }}" data-component-name="amp:html:link">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="{{ $metaTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
@@ -102,7 +112,7 @@
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:title" content="{{ $metaTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
-    <meta property="og:site_name" content="www.gemasulawesi.com" />
+    <meta property="og:site_name" content="{{ $metaTitle }}" />
     <meta property="og:image" content="{{ $metaImage }}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

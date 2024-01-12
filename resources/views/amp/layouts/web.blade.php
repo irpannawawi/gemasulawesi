@@ -29,7 +29,7 @@
 <head>
     <meta charset="utf-8">
     <title itemprop="name">{{ $metaTitle }}</title>
-    <link rel="canonical" href="{{ url()->current() }}" />
+    <link rel="canonical" href="{{ url()->full() }}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />

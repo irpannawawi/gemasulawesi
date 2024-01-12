@@ -35,7 +35,7 @@ class Linkedinjob implements ShouldQueue
     {
         $post = Posts::find($this->id);
 
-        $link = route('singlePost', [
+        $url = route('singlePost', [
             'rubrik' => Str::slug($post->rubrik->rubrik_name),
             'post_id' => $post->post_id,
             'slug' => $post->slug,
@@ -52,12 +52,7 @@ class Linkedinjob implements ShouldQueue
                 $tag_list .= " #{$tag_name} ";
             }
         }
-        $res = $this->share($title, $description, $image, $tag_list, $link);
-        Log::info($res);
-    }
 
-    public function share($title, $description, $image, $tag_list, $url)
-    {
         $user = LinkedinAuth::first();
 
         $http = Http::withToken($user->token)->get('https://api.linkedin.com/v2/userinfo');

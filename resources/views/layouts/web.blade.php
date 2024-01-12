@@ -64,7 +64,7 @@
     @endphp
     @php
         // Dapatkan URL saat ini
-        $currentUrl = url()->current();
+        $currentUrl = url()->full();
 
         // Periksa apakah URL memenuhi pola gemasulawesi.com/id/*
         if (strpos($currentUrl, 'gemasulawesi.com/id/') !== false) {

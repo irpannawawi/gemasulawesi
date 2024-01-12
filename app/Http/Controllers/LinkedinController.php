@@ -45,27 +45,15 @@ class LinkedinController extends Controller
 
     public function share()
     {
-        $post = Posts::find(22985);
 
-        $link = route('singlePost', [
-            'rubrik' => Str::slug($post->rubrik->rubrik_name),
-            'post_id' => $post->post_id,
-            'slug' => $post->slug,
-        ]);
+        $link = 'https://www.gemasulawesi.com/id/kupas-tuntas/22985/mengenal-hp-motorola-moto-g60-smartphone-gagah-yang-bawa-spesifikasi-mengesankan-di-kelasnya';
         
-        $title = $post->title;
-        $image = url('/').get_post_thumbnail($post->id);
-        $description = $post->description;
-        $tag_list = '';
-        if ($post->tags != null and $post->tags != 'null') {
-            foreach (json_decode($post->tags) as $tags) {
-                $tag = Tags::find($tags);
-                $tag_name = str_replace(' ', '', $tag->tag_name);
-                $tag_list .= " #{$tag_name} ";
-            }
-        }
+        $title = 'Mengenal HP Motorola Moto G60, Smartphone Gagah yang Bawa Spesifikasi Mengesankan di Kelasnya!';
+        $image = 'https://www.gemasulawesi.com/storage/photos/12012024115651.webp';
+        $description = 'mengetahui spesifikasi yang telah dibawa dan ditawarkan HP Motorola Moto G60 jika dilihat lebih mendalam dari fiturnya.';
+        $tag_list = '#KupasTuntas';
 
-        $this->share($title, $description, $image, $tag_list, $link);
+        $this->do_share($title, $description, $image, $tag_list, $link);
     }
 
     public function do_share($title, $description, $image, $tag_list, $url)

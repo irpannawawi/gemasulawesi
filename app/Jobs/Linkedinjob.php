@@ -80,7 +80,7 @@ class Linkedinjob implements ShouldQueue
                             ],
                             "originalUrl" => $url,
                             "thumbnails"=> [
-                                "url"=> $image,
+                                ["url"=> $image],
                             ],
                             "title" => [
                                 "text" => $title

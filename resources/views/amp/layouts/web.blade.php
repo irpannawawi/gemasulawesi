@@ -94,11 +94,11 @@
                         'published_date' => $post->created_at,
                         'rubrik' => $post->rubrik->rubrik_name,
                         'penulis' => $post->author->display_name,
-                        'editor' => '',
+                        'editor' => $post->editor->display_name,
                         'id' => "$post->post_id",
                         'source' => '',
                         'topic' => '',
-                        'tag' => $post->tags,
+                        'tag' => '',
                         'penulis_id' => "$post->author_id",
                         'editor_id' => "$post->editor_id",
                     ],
@@ -2537,6 +2537,7 @@
                 position: relative;
             }
         }
+
         @media only screen and (max-width: 1024px) {
             .parallax {
                 background-position: cover;
@@ -2546,6 +2547,7 @@
 
             }
         }
+
         @media only screen and (max-width: 800px) {
             .parallax {
                 background-position: cover;

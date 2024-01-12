@@ -66,7 +66,7 @@
         // Dapatkan URL saat ini
         $currentUrl = url()->current();
 
-        // Periksa apakah URL memenuhi pola gemasulawesi.test/id/*
+        // Periksa apakah URL memenuhi pola gemasulawesi.com/id/*
         if (strpos($currentUrl, 'gemasulawesi.com/id/') !== false) {
             // Hanya tampilkan link rel amphtml jika URL memenuhi kriteria
             $ampUrl = preg_replace('/\/(\d+)\//', '/amp/$1/', $currentUrl);
@@ -132,7 +132,7 @@
     <!-- S:tweeter card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="{{ '@' . get_setting('x') }}" />
-    <meta name="twitter:creator" content="{{ get_setting('x') }}">
+    <meta name="twitter:creator" content="{{ '@' . get_setting('x') }}">
     <meta name="twitter:title" content="{{ $metaTitle }}" />
     <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
     <meta name="twitter:image" content="{{ $metaImage }}" />
@@ -297,7 +297,7 @@
                     "type": "All",
                     "source": "Not Available",
                     "topic": "Not Available",
-                    "tag": $tags,
+                    "tag": {{ $tags }},
                     "penulis_id": "All",
                     "editor_id": "All"
                 }];
@@ -310,7 +310,6 @@
             $image = asset($imagePath);
             $segments = request()->segments();
             $lastSegment = end($segments);
-            $postTitle = str_replace('-', ' ', $lastSegment);
             $jsonLDData = [
                 '@context' => 'https://schema.org',
                 '@type' => 'Organization',
@@ -322,7 +321,7 @@
             $jsonPost = [
                 '@context' => 'https://schema.org',
                 '@type' => 'WebPage',
-                'headline' => $postTitle,
+                'headline' => $metaTitle,
                 'url' => url()->current(),
                 'datePublished' => $post->created_at,
                 'image' => $image,
@@ -375,24 +374,25 @@
                 $image = asset($imagePath);
                 $segments = request()->segments();
                 $lastSegment = end($segments);
-                $postTitle = $post->title ?? '';
                 $jsonLDData = [
                     '@context' => 'https://schema.org',
                     '@type' => 'NewsArticle',
                     'mainEntityOfPage' => [
                         '@type' => 'WebPage',
                         '@id' => url()->current(),
-                        'description' => $post->description,
+                        'description' => $metaDeskripsi,
                     ],
-                    'headline' => $postTitle,
+                    'headline' => $metaTitle,
                     'image' => [
                         '@type' => 'ImageObject',
                         'url' => $image,
                     ],
+                    'datePublished' => $post->created_at,
+                    'dateModified' => $post->updated_at,
                     'author' => [
                         '@type' => 'Person',
                         'url' => url()->current(),
-                        'name' => @$post->editor->display_name,
+                        'name' => @$author,
                     ],
                     'publisher' => [
                         '@type' => 'Organization',
@@ -402,10 +402,6 @@
                             'url' => asset('frontend/img/favcion.png'),
                         ],
                     ],
-                    'headline' => $postTitle,
-                    'image' => $image,
-                    'datePublished' => $post->created_at,
-                    'dateModified' => $post->updated_at,
                 ];
                 $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
                 echo '<script type="application/ld+json">

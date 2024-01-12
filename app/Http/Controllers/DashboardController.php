@@ -23,11 +23,7 @@ class DashboardController extends Controller
     public function failed_jobs()
     {
         $failed_jobs = DB::table('failed_jobs')->limit(20)->orderBy('failed_at', 'desc')->get();
-       $n=1;
-        foreach ($failed_jobs as $key) {
-           echo $n++. ' ' .$key->exception;
-           echo '<hr>';
-        }
+        return view('failed_jobs', ['failed_jobs' => $failed_jobs]);
     }
 
     public function chartData()

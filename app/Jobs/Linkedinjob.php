@@ -59,9 +59,10 @@ class Linkedinjob implements ShouldQueue
     public function share($title, $description, $image, $tag_list, $url)
     {
         $user = LinkedinAuth::first();
-
+        
         $http = Http::withToken($user->token)->get('https://api.linkedin.com/v2/userinfo');
         $prson = $http->object();
+        Cache::put('linkedin', $prson, 3600);
                // create post
         $postUrl = 'https://api.linkedin.com/v2/ugcPosts';
         $body = [
@@ -99,7 +100,6 @@ class Linkedinjob implements ShouldQueue
             ->withBody($body)
             ->withToken($user->token)
             ->post($postUrl);
-        Cache::put('linkedin', $postHttp->object(), 3600);
         return $postHttp->object();
     }
 }

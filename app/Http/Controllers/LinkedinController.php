@@ -7,6 +7,7 @@ use App\Models\LinkedinAuth;
 use App\Models\Posts;
 use App\Models\Tags;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
@@ -47,6 +48,7 @@ class LinkedinController extends Controller
     {
 
         Linkedinjob::dispatch(22985);
+        dd(Cache::get('likedin'));
     }
 
     public function do_share($title, $description, $image, $tag_list, $url)

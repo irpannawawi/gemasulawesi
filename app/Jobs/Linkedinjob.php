@@ -12,6 +12,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class Linkedinjob implements ShouldQueue
@@ -51,8 +52,8 @@ class Linkedinjob implements ShouldQueue
                 $tag_list .= " #{$tag_name} ";
             }
         }
-
-        $this->share($title, $description, $image, $tag_list, $link);
+        $res = $this->share($title, $description, $image, $tag_list, $link);
+        Log::info($res);
     }
 
     public function share($title, $description, $image, $tag_list, $url)

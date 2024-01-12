@@ -1107,7 +1107,7 @@
     }
 }
 .read__content strong {
-    font-weight: 700;
+    font-weight: 600;
 }
 .editor__text span{
     font-weight: 600;
@@ -1511,4 +1511,16 @@ iframe {
 .ads__box {
     text-align: center;
     position: relative;
+}
+
+.baca-juga{
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 10px 15px 10px 20px;
+    border-left: 5px solid #2cc38b;
+}
+.baca-juga{
+    background-color: #f7f7fc;
+    border-radius: 5px;
 }

@@ -43,7 +43,11 @@
             $author = '';
         } else {
             $postTitle = $post->title ?? '';
-            $metaTitle = $postTitle . ' - ' . $subTitle;
+            $subTitle = $subTitle;
+            $page = request()->query('page');
+            $pageSuffix = $page ? ' - Halaman ' . $page : '';
+            $metaTitle = $postTitle . ' - ' . $subTitle . $pageSuffix;
+
             $metaDeskripsi = $post->description;
             $imagePath = get_post_image($post->post_id) ?? '';
             $metaImage = asset($imagePath);
@@ -51,6 +55,11 @@
             $category = $post->rubrik->rubrik_name;
             $tags = $post->tags;
             $author = $post->author?->display_name;
+            $editor = $post->editor->display_name;
+            $post_id = $post->post_id;
+            $editor_id = $post->editor_id;
+            $author_id = $post->author_id;
+            $publish = $post->published_at;
         }
     @endphp
 
@@ -67,7 +76,8 @@
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
-    <link rel="canonical" href="{{ url()->current() }}" />
+    <link rel="canonical" href="{{ url()->full() }}" />
+    <link rel="amphtml" href="{{ url()->full() }}" data-component-name="amp:html:link">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="{{ $metaTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
@@ -99,17 +109,36 @@
     <meta property="fb:app_id" content="" />
     <meta property="fb:pages" content="" />
     <meta property="article:author" content="{{ @$author }}">
-    <meta property="article:section" content="">
+    <meta property="article:section" content="{{ @$category }}">
     <!-- e: open graph -->
+
+    <!-- dable -->
+    <meta property="dable:item_id" content="{{ @$post_id }}">
+    <meta property="dable:author" content="{{ @$author }}">
+    <meta property="article:section" content="{{ @$category }}">
+    <meta property="article:published_time" content="{{ @$publish }}">
+    <!-- end dable -->
 
     <!-- S:tweeter card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="{{ get_setting('x') }}" />
+    <meta name="twitter:site" content="{{ '@' . get_setting('x') }}" />
     <meta name="twitter:creator" content="{{ get_setting('x') }}">
     <meta name="twitter:title" content="{{ $metaTitle }}" />
     <meta name="twitter:description" content="{{ $metaDeskripsi }}" />
     <meta name="twitter:image" content="{{ $metaImage }}" />
     <!-- E:tweeter card -->
+
+    <meta name="content_PublishedDate" content="{{ @$publish }}" />
+    <meta name="content_Category" content="{{ @$category }}" />
+    <meta name="content_Author" content="{{ @$author }}" />
+    <meta name="content_Editor" content="{{ @$editor }}" />
+    <meta name="content_ID" content="{{ @$post_id }}" />
+    <meta name="content_Type" content="Standard" />
+    <meta name="content_Source" content="" />
+    <meta name="content_Lipsus" content="" />
+    <meta name="content_Tag" content="" />
+    <meta name="content_AuthorID" content="{{ @$author_id }}" />
+    <meta name="content_EditorID" content="{{ @$editor_id }}" />
 
     @if (!empty($post))
         @php
@@ -258,7 +287,7 @@
                     "type": "All",
                     "source": "Not Available",
                     "topic": "Not Available",
-                    "tag": "{{ $tags }}",
+                    "tag": $tags,
                     "penulis_id": "All",
                     "editor_id": "All"
                 }];

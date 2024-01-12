@@ -46,7 +46,7 @@ class LinkedinController extends Controller
     public function share()
     {
 
-        Linkedinjob::dispatch(22985)->delay(now()->addMinutes(1));
+        Linkedinjob::dispatch(22985);
     }
 
     public function do_share($title, $description, $image, $tag_list, $url)

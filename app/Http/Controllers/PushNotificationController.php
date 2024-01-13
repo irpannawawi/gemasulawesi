@@ -48,6 +48,7 @@ class PushNotificationController extends Controller
                 "message_id" => date('YmdHis'),
             ]
         ]);
+
         $dataCfg = [
             "title" => $news->title,
             "body" => $news->body,  
@@ -60,9 +61,11 @@ class PushNotificationController extends Controller
                     ->withData($dataCfg);
         $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
         $res = $messaging->sendMulticast($message, $FcmToken);
+        dd($res);
         $news->status='sent';
         $news->save();
         return redirect()->back(); 
+
     }
 
 

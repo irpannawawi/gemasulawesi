@@ -54,10 +54,8 @@ Route::get('/sharex', [XController::class, 'shareX']);
 Route::get('/backup/{usr}/{pass}', [BackupController::class, 'index']);
 Route::get('/make_backup', [BackupController::class, 'make']);
 Route::get('/upload_backup', [BackupController::class, 'upload']);
-// Route::get('/push', function(){
-//     $res = BroadcastNews::dispatch(2)->onQueue('schedule_broadcast')->delay(now()->addMinutes(1));
-    
-// });
+
+
 
 // route editorial
 Route::get('/browse', [PhotoController::class, 'browse'])->name('browseImage');

@@ -9,6 +9,7 @@ Route::middleware('auth')->group(function () {
     
     // crud
     Route::get('/pushNotification', [PushNotificationController::class, 'index'])->name('pushNotification.index');
+    Route::get('/push_test', [PushNotificationController::class, 'test'])->name('pushNotification.test');
     Route::get('/pushNotification/browse', [PushNotificationController::class, 'browse'])->name('pushNotification.browse');
     Route::get('/pushNotification/add', [PushNotificationController::class, 'add'])->name('pushNotification.add');
     Route::post('/pushNotification-store', [PushNotificationController::class, 'store'])->name('pushNotification.insert');

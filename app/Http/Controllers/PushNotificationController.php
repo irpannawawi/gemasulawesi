@@ -163,7 +163,7 @@ class PushNotificationController extends Controller
         $message = CloudMessage::new();
         $message = $message->withWebPushConfig($config)
                     ->withData($dataCfg);
-        $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->limit(10)->all();
+        $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
         $res = $messaging->sendMulticast($message, $FcmToken);
         dd($res);
 

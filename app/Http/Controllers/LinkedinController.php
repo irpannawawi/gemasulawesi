@@ -47,8 +47,27 @@ class LinkedinController extends Controller
     public function share()
     {
 
-        Linkedinjob::dispatch(22985);
-        dd(Cache::get('likedin'));
+        $post = Posts::find(22985);
+
+        $link = route('singlePost', [
+            'rubrik' => Str::slug($post->rubrik->rubrik_name),
+            'post_id' => $post->post_id,
+            'slug' => $post->slug,
+        ]);
+        
+        $title = $post->title;
+        $image = url('/').get_post_thumbnail($post->id);
+        $description = $post->description;
+        $tag_list = '';
+        if ($post->tags != null and $post->tags != 'null') {
+            foreach (json_decode($post->tags) as $tags) {
+                $tag = Tags::find($tags);
+                $tag_name = str_replace(' ', '', $tag->tag_name);
+                $tag_list .= " #{$tag_name} ";
+            }
+        }
+        $res = $this->do_share($title, $description, $image, $tag_list, $link);
+        dd($res);
     }
 
     public function do_share($title, $description, $image, $tag_list, $url)

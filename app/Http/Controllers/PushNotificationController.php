@@ -61,7 +61,6 @@ class PushNotificationController extends Controller
                     ->withData($dataCfg);
         $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
         $res = $messaging->sendMulticast($message, $FcmToken);
-        dd($res);
         $news->status='sent';
         $news->save();
         return redirect()->back(); 

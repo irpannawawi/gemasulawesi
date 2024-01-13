@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdcdd98ab67e0ab39c9d1cd49b40a65b",
+    "content-hash": "7bda81d1c6fb8f304e40157d5a8b9164",
     "packages": [
         {
             "name": "amirsarhang/instagram-php-sdk",
@@ -13044,5 +13044,5 @@
         "php": "^8.1.10"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

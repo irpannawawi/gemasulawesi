@@ -31,7 +31,7 @@
                         autocomplete="off">
                 </div>
                 <div class="form-group mb-2">
-                    <a  class="btn btn-secondary" href="{{ route('breakingNews') }}">Batal</button>
+                    <a  class="btn btn-secondary" href="{{ route('breakingNews') }}">Batal</a>
                     <button type="submit" class="btn btn-primary">Simpan</button>
 
                 </div>

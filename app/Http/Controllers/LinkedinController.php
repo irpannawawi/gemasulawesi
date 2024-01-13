@@ -66,8 +66,8 @@ class LinkedinController extends Controller
                 $tag_list .= " #{$tag_name} ";
             }
         }
-        dd([$title, $description, $image, $tag_list, $link]);
         $res = $this->do_share($title, $description, $image, $tag_list, $link);
+        dd([[$title, $description, $image, $tag_list, $link],[$res]]);
     }
 
     public function do_share($title, $description, $image, $tag_list, $url)

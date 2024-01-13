@@ -31,7 +31,7 @@
                         autocomplete="off">
                 </div>
                 <div class="form-group mb-2">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a  class="btn btn-secondary" href="{{ route('breakingNews') }}">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
 
                 </div>

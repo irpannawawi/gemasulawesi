@@ -29,7 +29,11 @@
 <head>
     <meta charset="utf-8">
     <title itemprop="name">{{ $metaTitle }}</title>
-    <link rel="canonical" href="{{ url()->full() }}" />
+    <link rel="canonical" href="{{ route('singlePost', [
+        'rubrik' => Str::slug($post->rubrik->rubrik_name),
+        'post_id' => $post->post_id,
+        'slug' => $post->slug,
+    ]) }}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />

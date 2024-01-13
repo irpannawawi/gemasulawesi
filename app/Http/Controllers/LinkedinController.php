@@ -56,7 +56,7 @@ class LinkedinController extends Controller
         ]);
         
         $title = $post->title;
-        $image = url('/').get_post_thumbnail($post->id);
+        $image = url('/').get_post_image($post->id);
         $description = $post->description;
         $tag_list = '';
         if ($post->tags != null and $post->tags != 'null') {

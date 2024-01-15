@@ -213,7 +213,7 @@ class WebController extends Controller
             ->orWhere(
                 [
                     ['status', '=', 'published'],
-                    ['tags', 'like', '%,"' . $tag_id . '",%']
+                    ['tags', 'like', '%"' . $tag_id . '"%']
                 ]
             )
             ->orWhere(

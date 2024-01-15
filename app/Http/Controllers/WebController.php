@@ -228,6 +228,12 @@ class WebController extends Controller
                     ['tags', 'like', '%,"' . $tag_id . '"]']
                 ]
             )
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '%' . $tag_id . '%']
+                ]
+            )
 
             ->paginate(15);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);

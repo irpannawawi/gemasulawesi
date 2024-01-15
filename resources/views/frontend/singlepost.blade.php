@@ -66,6 +66,9 @@
                                     // Buat objek DOMDocument
                                     $dom = new DOMDocument();
                                     // Muat string HTML ke dalam objek DOMDocument
+                                    if($article == null){
+                                        $article = '';
+                                    }
                                     $dom->loadHTML($article);
 
                                     // Ambil semua elemen paragraf

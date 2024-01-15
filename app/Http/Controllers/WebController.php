@@ -229,7 +229,7 @@ class WebController extends Controller
                 ]
             )
 
-            ->paginate(10);
+            ->paginate(15);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.tags', $data);
     }

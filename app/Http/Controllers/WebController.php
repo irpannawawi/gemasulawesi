@@ -184,6 +184,7 @@ class WebController extends Controller
         {
             return abort(404);
         }
+
         $tag_id = $tag->tag_id;
         $data['tag_name'] = $tag_name;
         $data['topikKhusus'] = Topic::get();
@@ -208,6 +209,26 @@ class WebController extends Controller
                     ['tags', 'like', '%,' . $tag_id . ']']
                 ]
             )
+
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '%,"' . $tag_id . '",%']
+                ]
+            )
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '["' . $tag_id . '",%']
+                ]
+            )
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '%,"' . $tag_id . '"]']
+                ]
+            )
+
             ->paginate(10);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.tags', $data);

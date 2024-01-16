@@ -69,8 +69,8 @@
                                     if($article == null){
                                         $article = '';
                                     }
-                                    $dom->loadHTML($article);
                                     dd($article);
+                                    $dom->loadHTML($article);
                                     if($_GET['page']==3){
                                     }
                                     // Ambil semua elemen paragraf

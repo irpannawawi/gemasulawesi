@@ -65,7 +65,9 @@
                                     $article = $post->article;
                                     $bagian1 = '';
                                     $bagian2 = '';
-
+                                    if($article == "\n"){
+                                        $article = '<p></p>';
+                                    }
                                     // Buat objek DOMDocument
                                     $dom = new DOMDocument();
                                     if ($dom->loadHTML($article) && !empty($article)) {

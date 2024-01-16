@@ -66,13 +66,11 @@
                                     // Buat objek DOMDocument
                                     $dom = new DOMDocument();
                                     // Muat string HTML ke dalam objek DOMDocument
-                                    if($article == null){
+                                    if($article == null || $article == '\n') {
                                         $article = '';
                                     }
-                                    dd($article);
+                                    
                                     $dom->loadHTML($article);
-                                    if($_GET['page']==3){
-                                    }
                                     // Ambil semua elemen paragraf
                                     $paragraphs = $dom->getElementsByTagName('p');
                                     // Hitung jumlah paragraf

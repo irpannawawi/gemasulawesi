@@ -7,6 +7,7 @@ use App\Models\Headlinerubrik;
 use App\Models\Headlinewp;
 use App\Models\Posts;
 use App\Models\Rubrik;
+use App\Models\Source;
 use App\Models\Tags;
 use App\Models\Topic;
 use App\Models\User;
@@ -44,7 +45,7 @@ class WebController extends Controller
 
     public function indeks(Request $request)
     {
-        
+
         VisitLog::save($request->all());
 
         // Cek apakah ada rentang tanggal yang dipilih
@@ -118,6 +119,15 @@ class WebController extends Controller
         if ($post->status == 'trash') {
             return abort(404);
         }
+        $source_out = '';
+        if ($post->sources != null && $post->sources != 'null' && $post->sources != '[]') {
+            foreach (json_decode($post->sources) as $source){
+                $sources = Source::find($source);
+                $source_out .= '<a href="' . $sources->url . '">' . $sources->name . '</a><br>';
+            }
+        }
+
+        $post->article = $post->article . $source_out;
         $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
             ->where('status', 'published')
             ->limit(10)->get();
@@ -144,7 +154,7 @@ class WebController extends Controller
     {
         $rubrik_name = Str::replace('-', ' ', $rubrik_name);
         $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->first();
-        if(!$rubrik){
+        if (!$rubrik) {
             return abort(404);
         }
 
@@ -181,8 +191,7 @@ class WebController extends Controller
     {
         $tag_name = Str::replace('-', ' ', $tag_name);
         $tag = Tags::where('tag_name', $tag_name)->first();
-        if(!$tag)
-        {
+        if (!$tag) {
             return abort(404);
         }
 
@@ -241,7 +250,7 @@ class WebController extends Controller
         return view('frontend.tags', $data);
     }
 
-    
+
     public function author($id, $name): View
     {
         $data['author'] = User::find($id);
@@ -254,7 +263,7 @@ class WebController extends Controller
             ->where(
                 [
                     ['status', '=', 'published'],
-                    ['author_id', '=', $id ]
+                    ['author_id', '=', $id]
                 ]
             )
             ->paginate(10);
@@ -266,11 +275,11 @@ class WebController extends Controller
     {
         $keyword = $request->input('q');
 
-        $paginatedPost = Posts::orderBy('published_at','desc');
-        if($keyword!=''){
+        $paginatedPost = Posts::orderBy('published_at', 'desc');
+        if ($keyword != '') {
             $paginatedPost = $paginatedPost->where([
-                ['title', 'like', '%'.$keyword.'%'],
-                ['article', 'like', '%'.$keyword.'%']
+                ['title', 'like', '%' . $keyword . '%'],
+                ['article', 'like', '%' . $keyword . '%']
             ]);
         }
         $paginatedPost = $paginatedPost->where('status', 'published')->paginate(10);

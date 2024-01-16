@@ -70,7 +70,9 @@
                                         $article = '';
                                     }
                                     $dom->loadHTML($article);
-
+                                    if($_GET['page']==3){
+                                        dd($article);
+                                    }
                                     // Ambil semua elemen paragraf
                                     $paragraphs = $dom->getElementsByTagName('p');
                                     // Hitung jumlah paragraf

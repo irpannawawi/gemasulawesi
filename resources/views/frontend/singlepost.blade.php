@@ -163,7 +163,7 @@
                                         if ($post->sources != null and $post->sources != 'null') {
                                             foreach (json_decode($post->sources) as $source) {
                                                 $source = \App\Models\Source::find($source);
-                                                echo '<a href="'.$source->source_website.'" rel="source">' . $source->source_name . '</a>';
+                                                echo $source->source_name;
                                             }
                                         }
                                     @endphp

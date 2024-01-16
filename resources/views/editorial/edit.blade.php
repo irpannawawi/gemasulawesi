@@ -118,7 +118,7 @@
                         <div class="form-group">
                             <label for="select2Source">Source</label>
                             <select class="form-control" id="select2Source" name="sources[]" multiple>
-                                @if ($post->sources != null && $post->sources!='null')
+                                @if ($post->sources != null && $post->sources!='null' && $post->sources != '[]')
                                     @foreach (json_decode($post->source) as $source)
                                         @php
                                             $articleData = App\Models\sources::find($source);

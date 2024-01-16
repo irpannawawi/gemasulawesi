@@ -63,6 +63,7 @@
                             <article class="read__content">
                                 @php
                                     $article = $post->article;
+                                    dd($article);
                                     // Buat objek DOMDocument
                                     $dom = new DOMDocument();
                                     

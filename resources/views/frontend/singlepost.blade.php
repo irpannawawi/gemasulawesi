@@ -65,33 +65,32 @@
                                     $article = $post->article;
                                     $bagian1 = '';
                                     $bagian2 = '';
-                                    
+
                                     // Buat objek DOMDocument
                                     $dom = new DOMDocument();
-                                    if($dom->loadHTML($article)){
-
+                                    if ($dom->loadHTML($article) && !empty($article)) {
                                         // Muat string HTML ke dalam objek DOMDocument
                                         $dom->loadHTML($article);
 
-                                    // Ambil semua elemen paragraf
-                                    $paragraphs = $dom->getElementsByTagName('p');
+                                        // Ambil semua elemen paragraf
+                                        $paragraphs = $dom->getElementsByTagName('p');
 
-                                    // Hitung jumlah paragraf
-                                    $totalParagraphs = $paragraphs->length;
-                                    
-                                    // Tentukan jumlah paragraf per bagian
-                                    $paragrafPerBagian = ceil($totalParagraphs / 2);
-                                    
-                                    // Bagian pertama
-                                    for ($i = 0; $i < $paragrafPerBagian; $i++) {
-                                        $bagian1 .= $dom->saveHTML($paragraphs->item($i));
+                                        // Hitung jumlah paragraf
+                                        $totalParagraphs = $paragraphs->length;
+
+                                        // Tentukan jumlah paragraf per bagian
+                                        $paragrafPerBagian = ceil($totalParagraphs / 2);
+
+                                        // Bagian pertama
+                                        for ($i = 0; $i < $paragrafPerBagian; $i++) {
+                                            $bagian1 .= $dom->saveHTML($paragraphs->item($i));
+                                        }
+
+                                        // Bagian kedua
+                                        for ($i = $paragrafPerBagian; $i < $totalParagraphs; $i++) {
+                                            $bagian2 .= $dom->saveHTML($paragraphs->item($i));
+                                        }
                                     }
-                                    
-                                    // Bagian kedua
-                                    for ($i = $paragrafPerBagian; $i < $totalParagraphs; $i++) {
-                                        $bagian2 .= $dom->saveHTML($paragraphs->item($i));
-                                    }
-                                }
                                 @endphp
 
                                 {!! $bagian1 !!}

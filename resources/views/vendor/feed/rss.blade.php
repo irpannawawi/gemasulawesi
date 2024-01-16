@@ -18,9 +18,7 @@
             <item>
                 <title>{!! \Spatie\Feed\Helpers\Cdata::out($item->title) !!}</title>
                 <link>{{ url($item->link) }}</link>
-                <author>{!! \Spatie\Feed\Helpers\Cdata::out(
-                    $item->authorName . (empty($item->authorEmail) ? '' : ' <' . $item->authorEmail . '>'),
-                ) !!}</author>
+                <author>{!! \Spatie\Feed\Helpers\Cdata::out($item->authorEmail) !!}</author>
                 <description>{!! \Spatie\Feed\Helpers\Cdata::out($item->summary) !!}</description>
                 <guid>{{ url($item->link) }}</guid>
                 <pubDate>{{ $item->timestamp() }}</pubDate>

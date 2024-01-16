@@ -70,8 +70,8 @@
                                         $article = '';
                                     }
                                     $dom->loadHTML($article);
+                                    dd($article);
                                     if($_GET['page']==3){
-                                        dd($article);
                                     }
                                     // Ambil semua elemen paragraf
                                     $paragraphs = $dom->getElementsByTagName('p');

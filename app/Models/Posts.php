@@ -84,7 +84,7 @@ class Posts extends Model implements Sitemapable, Feedable
         $imageLength = Storage::size(str_replace('storage/', 'public/', $postImage));
         $imageType = Storage::mimeType(str_replace('storage/', 'public/', $postImage));
 
-        return FeedItem::create()
+        return FeedItem::create(['content'=>$this->article])
             ->id($this->post_id)
             ->title($this->title)
             ->summary('<img src="'.url('/').$postThumbnail.'" align="left" hspace="5" width="100" />'.$this->description)
@@ -100,8 +100,8 @@ class Posts extends Model implements Sitemapable, Feedable
     public static function getAllFeedItems()
     {
         return Posts::orderBy('published_at', 'desc')
-        ->limit(15)
-        ->where('published_at', '>=', Carbon::now()->subHours(12)->toDateTimeString())
+        ->limit(5)
+        // ->where('published_at', '>=', Carbon::now()->subHours(12)->toDateTimeString())
         ->get();
     }
 }

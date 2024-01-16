@@ -53,11 +53,11 @@
                 <!-- Entry Image -->
                 <div class="thumb image-single-post">
                     <img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500" width="700">
-                    <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!} (
+                    <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!}
                         {{!empty($post->image->credit)?"Credit: ".strip_tags($post->image->credit):""}} /
                         {{-- {{!empty($post->image->author)?"Author: ".strip_tags($post->image->author):""}} / --}}
                         {{!empty($post->image->source)?"Source: ".strip_tags($post->image->source):""}}
-                        )</p>
+                        </p>
                 </div>
 
                 <!-- standard post -->

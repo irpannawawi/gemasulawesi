@@ -11,7 +11,6 @@ use App\Models\Tags;
 use App\Models\Topic;
 use App\Models\User;
 use App\Models\Video;
-use DOMDocument;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -45,7 +44,7 @@ class WebController extends Controller
 
     public function indeks(Request $request)
     {
-
+        
         VisitLog::save($request->all());
 
         // Cek apakah ada rentang tanggal yang dipilih
@@ -124,33 +123,20 @@ class WebController extends Controller
             ->limit(10)->get();
         $data['beritaTerkini'] = $data['paginatedPost'];
 
+        // Membagi konten artikel menjadi beberapa paragraf
+        $paragraphs = preg_split('/<\/p>/', $post->article, -1, PREG_SPLIT_NO_EMPTY);
+
         // Menentukan jumlah paragraf per halaman
         $paragraphsPerPage = 10; // Ubah nilai ini sesuai dengan kebutuhan.
 
-        $dom = new DOMDocument;
-        libxml_use_internal_errors(true);
-        $dom->loadHTML($post->article);
-        $paragraphs = $dom->getElementsByTagName('p');
-        $output = '';
-
-        // ambil jumlah paragraf
-        $totalParagraph = count($dom->getElementsByTagName('p'));
-        
-        
-        
-        
         // Menandai paragraf
         $currentPage = $request->query('page', 1);
-        
-        // Ambil hanya 10 paragraf pertama
-        for ($i = $currentPage-1; $i < $totalParagraph*$currentPage; $i++) {
-            $output .= $dom->saveHTML($paragraphs->item($i));
-        }
-        $post->article = $output;
-        $data['currentPage'] = $currentPage;
-        $data['totalPages'] = ceil($totalParagraph / $paragraphsPerPage);
-        
+        $pagedParagraphs = array_slice($paragraphs, ($currentPage - 1) * $paragraphsPerPage, $paragraphsPerPage);
+        $post->article = implode('</p>', $pagedParagraphs);
+
         $data['post'] = $post;
+        $data['currentPage'] = $currentPage;
+        $data['totalPages'] = ceil(count($paragraphs) / $paragraphsPerPage);
         return view('frontend.singlepost', $data);
     }
 
@@ -158,7 +144,7 @@ class WebController extends Controller
     {
         $rubrik_name = Str::replace('-', ' ', $rubrik_name);
         $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->first();
-        if (!$rubrik) {
+        if(!$rubrik){
             return abort(404);
         }
 
@@ -194,7 +180,8 @@ class WebController extends Controller
     public function tags($tag_name): View
     {
         $tag = Tags::where('tag_name', $tag_name)->first();
-        if (!$tag) {
+        if(!$tag)
+        {
             return abort(404);
         }
 
@@ -241,13 +228,19 @@ class WebController extends Controller
                     ['tags', 'like', '%,"' . $tag_id . '"]']
                 ]
             )
+            ->orWhere(
+                [
+                    ['status', '=', 'published'],
+                    ['tags', 'like', '%' . $tag_id . '%']
+                ]
+            )
 
             ->paginate(15);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.tags', $data);
     }
 
-
+    
     public function author($id, $name): View
     {
         $data['author'] = User::find($id);
@@ -260,7 +253,7 @@ class WebController extends Controller
             ->where(
                 [
                     ['status', '=', 'published'],
-                    ['author_id', '=', $id]
+                    ['author_id', '=', $id ]
                 ]
             )
             ->paginate(10);
@@ -272,11 +265,11 @@ class WebController extends Controller
     {
         $keyword = $request->input('q');
 
-        $paginatedPost = Posts::orderBy('published_at', 'desc');
-        if ($keyword != '') {
+        $paginatedPost = Posts::orderBy('published_at','desc');
+        if($keyword!=''){
             $paginatedPost = $paginatedPost->where([
-                ['title', 'like', '%' . $keyword . '%'],
-                ['article', 'like', '%' . $keyword . '%']
+                ['title', 'like', '%'.$keyword.'%'],
+                ['article', 'like', '%'.$keyword.'%']
             ]);
         }
         $paginatedPost = $paginatedPost->where('status', 'published')->paginate(10);

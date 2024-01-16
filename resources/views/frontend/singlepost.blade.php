@@ -153,7 +153,22 @@
                                 <div class="editor__text">
                                     <span>Editor: {{ $post->editor->display_name }}</span>
                                 </div>
+                                @if($post->sources != null)
+                                <!-- Sources -->
+                                <div class="entry__tags">
+                                    <i class="ui-tags"></i>
+                                    <span class="entry__tags-label">Source:</span>
 
+                                    @php
+                                        if ($post->sources != null and $post->sources != 'null') {
+                                            foreach (json_decode($post->sources) as $source) {
+                                                $source = \App\Models\Source::find($source);
+                                                echo '<a href="'.$source->source_website.'" rel="tag">' . $source->source_name . '</a>';
+                                            }
+                                        }
+                                    @endphp
+                                </div> <!-- end source -->
+                                @endif
                                 <!-- tags -->
                                 <div class="entry__tags">
                                     <i class="ui-tags"></i>

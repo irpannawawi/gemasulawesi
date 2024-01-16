@@ -119,15 +119,7 @@ class WebController extends Controller
         if ($post->status == 'trash') {
             return abort(404);
         }
-        $source_out = '';
-        if ($post->sources != null && $post->sources != 'null' && $post->sources != '[]') {
-            foreach (json_decode($post->sources) as $source){
-                $sources = Source::find($source);
-                $source_out .= '<a href="' . $sources->url . '">' . $sources->name . '</a><br>';
-            }
-        }
-
-        $post->article = $post->article . $source_out;
+        
         $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
             ->where('status', 'published')
             ->limit(10)->get();

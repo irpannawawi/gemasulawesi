@@ -121,7 +121,7 @@
                                 @if ($post->sources != null && $post->sources!='null' && $post->sources != '[]')
                                     @foreach (json_decode($post->sources) as $source)
                                         @php
-                                            $articleData = App\Models\sources::find($source);
+                                            $articleData = App\Models\Source::find($source);
                                         @endphp
                                         <option value="{{ $source }}" selected>{{ $articleData->source_name }}
                                         </option>

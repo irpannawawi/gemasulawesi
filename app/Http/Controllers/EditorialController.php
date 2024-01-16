@@ -104,11 +104,19 @@ class EditorialController extends Controller
         } else {
             $related = $request->related;
         }
+        
         if (!empty($request->tags)) {
             $tags = json_encode($request->tags);
         } else {
             $tags = $request->tags;
+        }   
+
+        if (!empty($request->sources)) {
+            $sources = json_encode($request->sources);
+        } else {
+            $sources = $request->sources;
         }
+
         if (!empty($request->topics)) {
             $topics = json_encode($request->topics);
         } else {
@@ -129,6 +137,7 @@ class EditorialController extends Controller
             'status' => $status,
             'related_articles' => $related,
             'tags' => $tags,
+            'sources' => $sources,
             'topics' => $topics,
             'schedule_time' => $request->schedule_time,
             'published_at' => $publishat,

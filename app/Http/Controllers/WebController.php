@@ -179,6 +179,7 @@ class WebController extends Controller
 
     public function tags($tag_name): View
     {
+        $tag_name = Str::replace('-', ' ', $tag_name);
         $tag = Tags::where('tag_name', $tag_name)->first();
         if(!$tag)
         {

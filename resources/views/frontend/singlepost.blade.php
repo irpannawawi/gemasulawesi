@@ -163,7 +163,7 @@
                                         if ($post->tags != null and $post->tags != 'null') {
                                             foreach (json_decode($post->tags) as $tags) {
                                                 $tag = \App\Models\Tags::find($tags);
-                                                echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                echo '<a href="' . route('tags', ['tag_name' => Str::slug($tag->tag_name)]) . '" rel="tag">' . $tag->tag_name . '</a>';
                                             }
                                         }
                                     @endphp

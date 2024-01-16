@@ -223,6 +223,11 @@ class EditorialController extends Controller
         } else {
             $tags = $request->tags;
         }
+        if (!empty($request->sources)) {
+            $sources = json_encode($request->sources);
+        } else {
+            $sources = $request->sources;
+        }
         if (!empty($request->topics)) {
             $topics = json_encode($request->topics);
         } else {
@@ -240,6 +245,7 @@ class EditorialController extends Controller
         $post->status = $status;
         $post->related_articles = $related;
         $post->tags = $tags;
+        $post->sources = $sources;
         $post->topics = $topics;
         $post->schedule_time = $request->schedule_time;
         $post->is_deleted = $request->is_deleted;

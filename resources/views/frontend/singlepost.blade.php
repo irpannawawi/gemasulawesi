@@ -54,8 +54,8 @@
                 <div class="thumb image-single-post">
                     <img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="500" width="700">
                     <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!}
-                        {{!empty($post->image->source)?"Source: ".strip_tags($post->image->source):""}}
-                        </p>
+                        {{ !empty($post->image->source) ? 'Source: ' . strip_tags($post->image->source) : '' }}
+                    </p>
                 </div>
 
                 <!-- standard post -->
@@ -67,7 +67,7 @@
                                     $article = $post->article;
                                     $bagian1 = '';
                                     $bagian2 = '';
-                                    if($article == "\n"){
+                                    if ($article == "\n") {
                                         $article = '<p></p>';
                                     }
                                     // Buat objek DOMDocument
@@ -153,21 +153,20 @@
                                 <div class="editor__text">
                                     <span>Editor: {{ $post->editor->display_name }}</span>
                                 </div>
-                                @if($post->sources != null)
-                                <!-- Sources -->
-                                <div class="entry__tags">
-                                    <i class="ui-tags"></i>
-                                    <span class="entry__tags-label">Source:</span>
-
-                                    @php
-                                        if ($post->sources != null and $post->sources != 'null') {
-                                            foreach (json_decode($post->sources) as $source) {
-                                                $source = \App\Models\Source::find($source);
-                                                echo $source->source_name;
-                                            }
-                                        }
-                                    @endphp
-                                </div> <!-- end source -->
+                                @if ($post->sources != null)
+                                    <!-- Sources -->
+                                    <div class="editor__text">
+                                        <span class="entry__tags-label">Sumber: 
+                                            @php
+                                                if ($post->sources != null and $post->sources != 'null') {
+                                                    foreach (json_decode($post->sources) as $source) {
+                                                        $source = \App\Models\Source::find($source);
+                                                        echo $source->source_name. ' ';
+                                                    }
+                                                }
+                                            @endphp
+                                        </span>
+                                    </div> <!-- end source -->
                                 @endif
                                 <!-- tags -->
                                 <div class="entry__tags">

@@ -32,6 +32,7 @@ class Posts extends Model implements Sitemapable, Feedable
         'editor_id',
         'status',
         'tags',
+        'sources',
         'related_articles',
         'topics',
         'schedul_time',

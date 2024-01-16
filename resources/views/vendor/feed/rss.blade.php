@@ -22,7 +22,7 @@
                     $item->authorName . (empty($item->authorEmail) ? '' : ' <' . $item->authorEmail . '>'),
                 ) !!}</author>
                 <description>{!! \Spatie\Feed\Helpers\Cdata::out($item->summary) !!}</description>
-                <guid>{{ $item->id }}</guid>
+                <guid>{{ url($item->link) }}</guid>
                 <pubDate>{{ $item->timestamp() }}</pubDate>
                 @foreach ($item->category as $category)
                     <category>{{ $category }}</category>

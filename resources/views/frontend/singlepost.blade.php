@@ -145,7 +145,7 @@
                                 </div>
 
                                 <div class="croslink">
-                                    <a href="https://news.google.com/search?q=gemasulawesi.com&hl=id&gl=ID&ceid=ID%3Aid"
+                                    <a href="https://news.google.com/publications/CAAiECetNQk0Vqf3knWgGD12R6oqFAgKIhAnrTUJNFan95J1oBg9dkeq?hl=id&gl=ID&ceid=ID:id "
                                         target="_blank" rel="noopener noreferrer">Ikuti Update Berita Terkini Gemasulawesi
                                         di: <strong>Google News</strong></a>
                                 </div>

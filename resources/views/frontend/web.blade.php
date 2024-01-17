@@ -19,12 +19,15 @@
                                 <article class="entry thumb--size-3 mb-0">
                                     <div class="entry__img-holder homehead thumb__img-holder"
                                         style="background-image: url('{{ url('/') . '/storage/photos/' . $headline->post->image->asset->file_name }}');">
+                                        <img src="{{ url('/') . '/storage/photos/' . $headline->post->image->asset->file_name }}"
+                                            loading="lazy" alt="Deskripsi gambar">
                                         <div class="bottom-gradient"></div>
                                         <div class="thumb-text-holder thumb-text-holder--3">
                                             <ul class="entry__meta">
                                                 <li>
                                                     <a href="{{ route('category', ['rubrik_name' => Str::slug($headline->post->rubrik->rubrik_name)]) }}"
-                                                        class="entry__meta-category entry__meta-category--label entry__meta-category--tosca" style="font-size: 12px;">{{ $headline->post->rubrik->rubrik_name }}</a>
+                                                        class="entry__meta-category entry__meta-category--label entry__meta-category--tosca"
+                                                        style="font-size: 12px;">{{ $headline->post->rubrik->rubrik_name }}</a>
                                                 </li>
                                             </ul>
                                             <h2 class="thumb-entry-title">

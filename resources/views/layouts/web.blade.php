@@ -74,6 +74,13 @@
         }
     @endphp
 
+    {{-- periksa apakah terdaat headline --}}
+    @if (isset($headlineWp))
+        @foreach ($headlineWp as $headline)
+        <link rel="preload" href="{{url('/') . '/storage/photos/' . $headline->post->image->asset->file_name}}" as="image">
+        @endforeach
+    @endif
+{{-- check headline --}}
     <link href="//securepubads.g.doubleclick.net" rel="dns-prefetch">
     <link href="//googleads.g.doubleclick.net" rel="dns-prefetch">
     <link href="//pagead2.googlesyndication.com" rel="dns-prefetch">

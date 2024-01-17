@@ -236,7 +236,7 @@ class EditorialController extends Controller
 
 
         $post->title = $request->title;
-        $post->slug = Str::slug($request->title);
+        // $post->slug = Str::slug($request->title);
         $post->category = $request->rubrik;
         $post->description = $request->description;
         $post->article = $article;

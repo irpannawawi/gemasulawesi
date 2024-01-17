@@ -507,6 +507,15 @@
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap' rel='stylesheet'>
     <!-- Css -->
+    {{-- preload assets --}}
+    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/bootstrap.min.css" />
+    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/font-icons.css" />
+    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/style.css" />
+    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/custom.css" />
+    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/colors/tosca.css" />
+
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/font-icons.css" />
@@ -522,6 +531,7 @@
     <meta name="msapplication-TileImage" content="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
 
     <!-- icon -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     {{-- magnific css --}}

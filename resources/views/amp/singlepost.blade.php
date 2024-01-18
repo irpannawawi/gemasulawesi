@@ -48,7 +48,7 @@
                     <div class="thumb image-single-post">
                         <amp-img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="320"
                             width="480" layout="responsive"></amp-img>
-                        <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!}</p>
+                        <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!} {{ !empty($post->image->source) ? 'Source: ' . strip_tags($post->image->source) : '' }}</p>
                     </div>
                 </div>
 

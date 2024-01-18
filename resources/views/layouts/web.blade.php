@@ -77,10 +77,11 @@
     {{-- periksa apakah terdaat headline --}}
     @if (isset($headlineWp))
         @foreach ($headlineWp as $headline)
-        <link rel="preload" href="{{url('/') . '/storage/photos/' . $headline->post->image->asset->file_name}}" as="image">
+            <link rel="preload" href="{{ url('/') . '/storage/photos/' . $headline->post->image->asset->file_name }}"
+                as="image">
         @endforeach
     @endif
-{{-- check headline --}}
+    {{-- check headline --}}
     <link href="//securepubads.g.doubleclick.net" rel="dns-prefetch">
     <link href="//googleads.g.doubleclick.net" rel="dns-prefetch">
     <link href="//pagead2.googlesyndication.com" rel="dns-prefetch">
@@ -508,14 +509,15 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap' rel='stylesheet'>
     <!-- Css -->
     {{-- preload assets --}}
-    <link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="preload" as="style"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/bootstrap.min.css" />
     <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/font-icons.css" />
     <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/style.css" />
     <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/custom.css" />
     <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/colors/tosca.css" />
 
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/font-icons.css" />
@@ -698,13 +700,13 @@
     <script async defer>
         // Your web app's Firebase configuration
         const firebaseConfig = {
-            apiKey: "{{ env('FIREBASE_API_KEY') }}",
-            authDomain: "{{ env('FIREBASE_AUTH_DOMAIN') }}",
-            databaseURL: "{{ env('FIREBASE_DATABASE_URL') }}",
-            projectId: "{{ env('FIREBASE_PROJECT_ID') }}",
-            storageBucket: "{{ env('FIREBASE_STORAGE_BUCKET') }}",
-            messagingSenderId: "{{ env('FIREBASE_MESSAGING_SENDER_ID') }}",
-            appId: "{{ env('FIREBASE_APP_ID') }}",
+            apiKey: "AIzaSyCHEcDVmlF_ni0fzzg6f4SULNeZGVfY1Ns",
+            authDomain: "hybrid-chariot-348003.firebaseapp.com",
+            projectId: "hybrid-chariot-348003",
+            storageBucket: "hybrid-chariot-348003.appspot.com",
+            messagingSenderId: "623989308125",
+            appId: "1:623989308125:web:0615f108d18e5e1fceb934",
+            measurementId: "G-W3HX3FLNHS"
         };
 
         // Initialize Firebase
@@ -735,28 +737,34 @@
         initFirebaseMessagingRegistration();
 
 
-        const registerServiceWorker = async () => {
-            if ("serviceWorker" in navigator) {
-                try {
-                    const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js", {
-                        scope: "/",
-                    });
-                    if (registration.installing) {
-                        console.log("Service worker installing");
-                    } else if (registration.waiting) {
-                        console.log("Service worker installed");
-                    } else if (registration.active) {
-                        console.log("Service worker active");
-                    }
-                } catch (error) {
-                    console.error(`Registration failed with ${error}`);
-                }
-            }
-        };
+        // const registerServiceWorker = async () => {
+        //     if ("serviceWorker" in navigator) {
+        //         try {
+        //             const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js", {
+        //                 scope: "/",
+        //             });
+        //             if (registration.installing) {
+        //                 console.log("Service worker installing");
+        //             } else if (registration.waiting) {
+        //                 console.log("Service worker installed");
+        //             } else if (registration.active) {
+        //                 console.log("Service worker active");
+        //             }
+        //         } catch (error) {
+        //             console.error(`Registration failed with ${error}`);
+        //         }
+        //     }
+        // };
 
         // …
 
-        registerServiceWorker();
+        // registerServiceWorker();
+
+        messaging.onMessage((payload) => {
+            new Notification(payload.data.title, {
+                body: payload.data.body,
+            })
+        })
     </script>
     <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->

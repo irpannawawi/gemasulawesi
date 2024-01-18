@@ -11,6 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Kreait\Firebase\Messaging\WebPushConfig;
 use Kreait\Firebase\Messaging\CloudMessage;
+use Kreait\Firebase\Messaging\Notification;
 
 class PushNotificationController extends Controller
 {
@@ -58,10 +59,11 @@ class PushNotificationController extends Controller
 
         $message = CloudMessage::new();
         $message = $message->withWebPushConfig($config)
-                    ->withData($dataCfg);
+                    ->withData($dataCfg)->withNotification(Notification::create('News', $news->title));
         $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
         $res = $messaging->sendMulticast($message, $FcmToken);
         $news->status='sent';
+        dd($res);
         $news->save();
         return redirect()->back(); 
 

@@ -77,7 +77,7 @@
     {{-- periksa apakah terdaat headline --}}
     @if (isset($headlineWp))
         @foreach ($headlineWp as $headline)
-            <link rel="preload" href="{{ get_post_thumbnail($headline->post->post_id) }}"
+            <link rel="preload" href="{{ get_post_image($headline->post->post_id) }}"
                 as="image">
         @endforeach
     @endif

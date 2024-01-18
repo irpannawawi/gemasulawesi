@@ -290,7 +290,9 @@
             @php
                 if ($post->tags != null and $post->tags != 'null') {
                     foreach (json_decode($post->tags) as $tags) {
-                        $tag = \App\Models\Tags::find($tags);
+                        $tag = cache()->remember('tag-' . $tags, env('CACHE_DURATION'), function() use ($tags){
+                            return \App\Models\Tags::find($tags);
+                        }); 
                         $tags = $tags . $tag->tag_name . ', ';
                     }
                 }
@@ -637,9 +639,11 @@
                                         rel="noreferred">Lowongan Kerja</a>
                                 </div>
                                 @php
-                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')
+                                    $extras = cache()->remember('extra', env('CACHE_DURATION'), function() {
+                                        return App\Models\Setting::where('key', 'like', 'extra--%')
                                         ->orderBy('setting_id', 'asc')
                                         ->get();
+                                    })
                                 @endphp
                                 @foreach ($extras as $extra)
                                     @php

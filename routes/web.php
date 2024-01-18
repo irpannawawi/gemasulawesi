@@ -39,6 +39,7 @@ use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\XController;
 use App\Jobs\BroadcastNews;
 use App\Jobs\ShareJob;
+use App\Models\Navigation;
 use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -54,6 +55,7 @@ Route::get('/sharex', [XController::class, 'shareX']);
 Route::get('/backup/{usr}/{pass}', [BackupController::class, 'index']);
 Route::get('/make_backup', [BackupController::class, 'make']);
 Route::get('/upload_backup', [BackupController::class, 'upload']);
+
 
 
 
@@ -155,16 +157,16 @@ Route::get('count_post', function () {
     return view('count_post', $data);
 });
 
-Route::get('/{slug}', function($slug){
+Route::get('/{slug}', function ($slug) {
     $post = Posts::where('slug', $slug)->first();
-    if($post){
+    if ($post) {
 
         return redirect()->route('singlePost', [
-            'rubrik'=>Str::slug($post->rubrik->rubrik_name),
-            'post_id'=>$post->post_id,
-            'slug'=>$post->slug,
+            'rubrik' => Str::slug($post->rubrik->rubrik_name),
+            'post_id' => $post->post_id,
+            'slug' => $post->slug,
         ]);
-    }else{
+    } else {
         return abort(404);
     }
 });

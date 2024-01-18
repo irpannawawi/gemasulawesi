@@ -1,8 +1,10 @@
 @php
     use App\Models\Navigation;
     use Illuminate\Support\Carbon;
-    $navs = Navigation::orderBy('order_priority', 'asc')->get();
-@endphp
+    $navs = cache()->remember('frontend-nav', env('CACHE_DURATION'), function(){
+        return Navigation::with(['navlinks.rubrik'])->orderBy('order_priority', 'asc')->get();
+    });
+    @endphp
 <!-- Header -->
 <header class="header d-lg-block d-none">
     <div class="container">
@@ -92,9 +94,6 @@
                         <li>
                             <a href="{{ url('/') }}" class="link-nav__menu" style="white-space: nowrap;">Home</a>
                         </li>
-                        @php
-                            $navs = Navigation::orderBy('order_priority', 'asc')->get();
-                        @endphp
                         @foreach ($navs as $nav)
                             @if ($nav->nav_type == 'normal')
                                 <li>

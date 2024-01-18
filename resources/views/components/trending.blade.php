@@ -1,5 +1,7 @@
 @php
-    $breakingNews = App\Models\Breakingnews::get();
+    $breakingNews = cache()->remember('breakingNews', 120, function(){
+        return App\Models\Breakingnews::with(['post.rubrik'])->get();
+    }); 
 @endphp
 
         <!-- Trending Now -->

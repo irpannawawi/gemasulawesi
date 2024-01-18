@@ -3,6 +3,7 @@
 use App\Models\Ad;
 use App\Models\Posts;
 use App\Models\Video;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -100,8 +101,9 @@ function get_post_image($post_id)
     }
 
     // Coba mencari post dengan ID yang diberikan
-    $post = Posts::find($post_id);
-
+    $post = Cache::remember('post_image_'.$post_id, env('CACHE_DURATION'),function() use($post_id){
+        return Posts::with(['image.asset', 'image'])->find($post_id);
+    }); 
     // Periksa apakah post ditemukan
     if (!$post) {
         // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
@@ -142,7 +144,9 @@ function get_post_image_jpeg($post_id)
     }
 
     // Coba mencari post dengan ID yang diberikan
-    $post = Posts::find($post_id);
+    $post = Cache::remember('post_image_'.$post_id, env('CACHE_DURATION'),function() use($post_id){
+        return Posts::find($post_id);
+    }); 
 
     // Periksa apakah post ditemukan
     if (!$post) {
@@ -184,8 +188,9 @@ function get_post_thumbnail($post_id)
     }
 
     // Coba mencari post dengan ID yang diberikan
-    $post = Posts::find($post_id);
-
+    $post = Cache::remember('post_image_'.$post_id, env('CACHE_DURATION'),function() use($post_id){
+        return Posts::with(['image.asset', 'image'])->find($post_id);
+    }); 
     // Periksa apakah post ditemukan
     if (!$post) {
         // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
@@ -264,7 +269,9 @@ if (!function_exists('get_setting')) {
     function get_setting($key, $default = null)
     {
         // Ambil data setting dari database berdasarkan kunci
-        $setting = \App\Models\Setting::where('key', $key)->first();
+        $setting = cache()->remember('setting_' . $key, env('CACHE_DURATION'), function () use ($key) {
+            return \App\Models\Setting::where('key', $key)->first();
+        });
 
         // Kembalikan nilai setting atau default jika tidak ditemukan
         return $setting ? $setting->value : $default;
@@ -274,7 +281,9 @@ if (!function_exists('get_setting')) {
 
 function get_ad_content()
 {
-   $ad = Ad::where('position', 'content')->get();
+   $ad = Cache::remember('ad_content', env('CACHE_DURATION'),function(){
+       return Ad::where('position', 'content')->get();
+   }); 
    if($ad->count()<1){
     return null;
    }else{

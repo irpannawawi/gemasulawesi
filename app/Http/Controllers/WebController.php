@@ -14,6 +14,7 @@ use App\Models\User;
 use App\Models\Video;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Illuminate\View\View as ViewView;
 use Sarfraznawaz2005\VisitLog\Facades\VisitLog;
@@ -28,14 +29,23 @@ class WebController extends Controller
     {
         VisitLog::save(request()->all());
 
-        $data['editorCohice'] = Editorcoice::where('post_id', '!=', 0)->get();
-        $data['headlineWp'] = Headlinewp::where('post_id', '!=', 0)->get();
-        $data['topikKhusus'] = Topic::get();
+        $data['editorCohice'] = Cache::remember('editorChoice', 120, function(){
+            return Editorcoice::with(['post.rubrik', 'post.image.asset'])->where('post_id', '!=', 0)->get();
+        });
+        $data['headlineWp'] = Cache::remember('headlineWp', 120, function(){
+            return Headlinewp::with(['post.rubrik', 'post.image.asset'])->where('post_id', '!=', 0)->get();
+        }); 
+        $data['topikKhusus'] = Cache::remember('topikKhusus', 120, function(){
+            return Topic::get();
+        }); 
 
         // posts 1-30
-        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
+        $data['paginatedPost'] = Cache::remember('index_paginated_posts', 70, function(){
+            return Posts::orderBy('published_at', 'DESC')
             ->where('status', 'published')
+            ->with(['rubrik', 'image.asset'])
             ->paginate(30);
+        }); 
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
 
         // dd($data['beritaTerkini']);
@@ -105,14 +115,21 @@ class WebController extends Controller
             $post->visit += 1;
             $post->save();
         }
-        $rubrik = Rubrik::where('rubrik_name', str_replace('-', ' ', $rubrik_name))->first();
+
+        $rubrik = Cache::remember('rubrik_'.str_replace('-', ' ', $rubrik_name), env('CACHE_DURATION'), function () use ($rubrik_name) {
+            return Rubrik::where('rubrik_name', str_replace('-', ' ', $rubrik_name))->first();
+        });
 
         if ($rubrik != null) {
             $rubrik_id = $rubrik->rubrik_id;
         } else {
             $rubrik_id = 0;
         }
-        $post = Posts::where(['post_id' => $post_id])->first();
+
+        $post = Cache::remember('post'.$post_id, env('CACHE_DURATION'), function() use ($post_id) { 
+            return Posts::with(['rubrik'])->where(['post_id' => $post_id])->first(); 
+        }); 
+
         if ($post == null) {
             return abort(404);
         }
@@ -120,9 +137,14 @@ class WebController extends Controller
             return abort(404);
         }
         
-        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
+        $data['paginatedPost'] = Cache::remember('posts_list'.$post_id, env('CACHE_DURATION'), function() {
+            return Posts::orderBy('published_at', 'DESC')
+                ->with(['rubrik'])    
             ->where('status', 'published')
-            ->limit(10)->get();
+                ->limit(10)->get();
+            
+        });
+
         $data['beritaTerkini'] = $data['paginatedPost'];
 
         // Membagi konten artikel menjadi beberapa paragraf

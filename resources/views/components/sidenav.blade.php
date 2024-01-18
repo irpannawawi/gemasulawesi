@@ -1,7 +1,9 @@
 @php
     use App\Models\Navigation;
     use Iluminate\Support\Carbon;
-    $navs = Navigation::orderBy('order_priority', 'asc')->get();
+    $navs = cache()->remember('frontend-nav', env('CACHE_DURATION'), function(){
+        return Navigation::with(['navlinks.rubrik'])->orderBy('order_priority', 'asc')->get();
+    });
 @endphp
 <!-- Sidenav -->
 <header class="sidenav" id="sidenav">

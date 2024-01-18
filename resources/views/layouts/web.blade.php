@@ -77,7 +77,7 @@
     {{-- periksa apakah terdaat headline --}}
     @if (isset($headlineWp))
         @foreach ($headlineWp as $headline)
-            <link rel="preload" href="{{ url('/') . '/storage/photos/' . $headline->post->image->asset->file_name }}"
+            <link rel="preload" href="{{ get_post_thumbnail($headline->post->post_id) }}"
                 as="image">
         @endforeach
     @endif

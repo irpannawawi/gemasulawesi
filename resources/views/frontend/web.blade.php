@@ -63,7 +63,7 @@
                                             'post_id' => $headline->post->post_id,
                                             'slug' => $headline->post->slug,
                                         ]) }}">
-                                        <img src="{{ get_post_image($headline->post->post_id) }}"
+                                        <img src="{{ get_post_thumbnail($headline->post->post_id) }}"
                                             style="object-fit: cover;object-position: top;"
                                             alt="{{ $headline->post->title }}">
                                     </a>

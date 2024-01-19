@@ -35,7 +35,7 @@ class Posts extends Model implements Sitemapable, Feedable
         'sources',
         'related_articles',
         'topics',
-        'schedul_time',
+        'schedule_time',
         'published_at',
         'is_deleted',
         'post_image',

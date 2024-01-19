@@ -124,6 +124,7 @@ class EditorialController extends Controller
         }
 
         
+        
         $postData = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
@@ -139,13 +140,12 @@ class EditorialController extends Controller
             'tags' => $tags,
             'sources' => $sources,
             'topics' => $topics,
-            'schedule_time' => $request->schedule_time,
+            'schedule_time' => Str::replace('T', ' ', $request->schedule_time),
             'published_at' => $publishat,
             'is_deleted' => $request->is_deleted,
             'post_image' => $request->post_image,
 
         ];
-
         // Insert the post into the database
         $newPost = Posts::create($postData);
 
@@ -250,7 +250,6 @@ class EditorialController extends Controller
         $post->schedule_time = $request->schedule_time;
         $post->is_deleted = $request->is_deleted;
         $post->post_image = $request->post_image;
-
 
          // save the post into the database
 

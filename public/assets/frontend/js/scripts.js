@@ -367,11 +367,11 @@
         }
       }
     });
-    $('#prevPost3').on('click', function(){
+    $('#prevPost3t').on('click', function(){
         console.log('adadad');
          $('#owl-topik-khusus .owl-prev').trigger('prev.owl.carousel');
     });
-    $('#nextPost3').on('click', function(){
+    $('#nextPost3t').on('click', function(){
          $('#owl-topik-khusus .owl-next').trigger('next.owl.carousel');
     });
 
@@ -434,7 +434,7 @@
       loop: true,
       nav: false,
       dots: false,
-      lazyLoad: true,
+      // lazyLoad: true,
       navSpeed: 500,
       navText: ['<i class="ui-arrow-left">','<i class="ui-arrow-right">']
     });

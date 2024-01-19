@@ -340,11 +340,11 @@
         }
       }
     });
-    $('.prevPost3').on('click', function(){
+    $('#prevPost3').on('click', function(){
         console.log('adadad');
          $('#owl-pilihan-editor .owl-prev').trigger('prev.owl.carousel');
     });
-    $('.nextPost3').on('click', function(){
+    $('#nextPost3').on('click', function(){
          $('#owl-pilihan-editor .owl-next').trigger('next.owl.carousel');
     });
 
@@ -367,11 +367,11 @@
         }
       }
     });
-    $('.prevPost3').on('click', function(){
+    $('#prevPost3').on('click', function(){
         console.log('adadad');
          $('#owl-topik-khusus .owl-prev').trigger('prev.owl.carousel');
     });
-    $('.nextPost3').on('click', function(){
+    $('#nextPost3').on('click', function(){
          $('#owl-topik-khusus .owl-next').trigger('next.owl.carousel');
     });
 
@@ -394,11 +394,11 @@
         }
       }
     });
-    $('.prevPost3').on('click', function(){
+    $('#prevPost3').on('click', function(){
         console.log('adadad');
          $('#owl-gallery .owl-prev').trigger('prev.owl.carousel');
     });
-    $('.nextPost3').on('click', function(){
+    $('#nextPost3').on('click', function(){
          $('#owl-gallery .owl-next').trigger('next.owl.carousel');
     });
 

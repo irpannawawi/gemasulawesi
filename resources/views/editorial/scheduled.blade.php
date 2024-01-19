@@ -77,7 +77,7 @@
                             <td>{{ $post->author->display_name }}</td>
                             <td>{{ $post->editor->display_name }}</td>
                             <td>{{ $post->created_at }}</td>
-                            <td>{{ $post->schedule_time }}</td>
+                            <td>{{ Str::replace('T', ' ',$post->schedule_time) }}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ route('editorial.edit', ['id' => $post->post_id]) }}"

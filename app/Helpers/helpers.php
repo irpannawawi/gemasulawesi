@@ -10,12 +10,23 @@ use Intervention\Image\Facades\Image;
 function getYoutubeData($url)
 {
     $parsedUrl = parse_url($url);
-    parse_str($parsedUrl['query'], $query_ouput);
 
-    $videoId = $query_ouput['v'];
+    // jika live stream
+    if(str_contains($url, 'live')){
+        $url = explode('/', $url);
+        $videoId = end($url);
+    }else{
+
+        if(!isset($parsedUrl['query'])) {   
+            parse_str($parsedUrl['query'], $query_ouput);
+        }
+        
+        $videoId = $query_ouput['v'];
+    }
 
     $apikey = 'AIzaSyBsmJTs3VEQZB52KszlQRtdQzTtm01nZcE';
     $googleApiUrl = 'https://www.googleapis.com/youtube/v3/videos?id=' . $videoId . '&key=' . $apikey . '&part=snippet';
+
 
     $ch = curl_init();
 

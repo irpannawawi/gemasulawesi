@@ -46,7 +46,7 @@ class VideoController extends Controller
         $value = getYoutubeData($url)->snippet;
         $title = $value->title;
         $description = $value->description;
-
+        
         $dataVideo = [
             'uploader_id' => $user_id,
             'url' => $url,

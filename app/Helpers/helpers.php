@@ -13,13 +13,12 @@ function getYoutubeData($url)
 
     // jika live stream
     if(str_contains($url, 'live')){
+        $url = strtok($url, '?');
         $url = explode('/', $url);
         $videoId = end($url);
     }else{
 
-        if(!isset($parsedUrl['query'])) {   
-            parse_str($parsedUrl['query'], $query_ouput);
-        }
+        parse_str($parsedUrl['query'], $query_ouput);
         
         $videoId = $query_ouput['v'];
     }

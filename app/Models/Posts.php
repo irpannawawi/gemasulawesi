@@ -101,7 +101,7 @@ class Posts extends Model implements Sitemapable, Feedable
     public static function getAllFeedItems()
     {
         return Posts::orderBy('published_at', 'desc')
-        ->limit(2)
+        ->limit(1)
         ->where('published_at', '>=', Carbon::now()->subHours(12)->toDateTimeString())
         ->get();
     }

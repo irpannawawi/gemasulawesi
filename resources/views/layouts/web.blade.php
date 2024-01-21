@@ -293,7 +293,7 @@
                         $tag = cache()->remember('tag-' . $tags, env('CACHE_DURATION'), function() use ($tags){
                             return \App\Models\Tags::find($tags);
                         }); 
-                        if($tags){
+                        if($tags!=null){
                             $tags = $tags . $tag->tag_name . ', ';
                         }
                     }

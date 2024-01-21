@@ -16,8 +16,12 @@
         $type = 'website';
     } else {
         $postTitle = $post->title ?? '';
-        $metaTitle = $postTitle . ' - ' . $subTitle;
-        $metaDeskripsi = $post->description;
+        $subTitle = $subTitle;
+        $page = request()->query('page');
+        $pageSuffix = $page ? ' - Halaman ' . $page : '';
+        $metaTitle = $postTitle . ' - ' . $subTitle . $pageSuffix;
+
+        $metaDeskripsi = $post->description . $pageSuffix;
         $imagePath = get_post_image($post->post_id) ?? '';
         $metaImage = asset($imagePath);
         $type = 'article';
@@ -29,11 +33,12 @@
 <head>
     <meta charset="utf-8">
     <title itemprop="name">{{ $metaTitle }}</title>
-    <link rel="canonical" href="{{ route('singlePost', [
-        'rubrik' => Str::slug($post->rubrik->rubrik_name),
-        'post_id' => $post->post_id,
-        'slug' => $post->slug,
-    ]) }}" />
+    <link rel="canonical"
+        href="{{ route('singlePost', [
+            'rubrik' => Str::slug($post->rubrik->rubrik_name),
+            'post_id' => $post->post_id,
+            'slug' => $post->slug,
+        ]) }}" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />

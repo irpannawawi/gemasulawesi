@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Collection;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -79,6 +80,7 @@ class VideoController extends Controller
     public function delete($id)
     {
         Video::where('video_id', $id)->delete();
+        Collection::where('file_id', $id)->delete();
         return redirect()->route('assets.video.index');
     }
 }

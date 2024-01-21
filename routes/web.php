@@ -41,7 +41,9 @@ use App\Jobs\BroadcastNews;
 use App\Jobs\ShareJob;
 use App\Models\Navigation;
 use App\Models\Subscriber;
+use App\Models\Tags;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Kreait\Firebase\Messaging\WebPushConfig;
@@ -64,7 +66,21 @@ Route::get('/browse', [PhotoController::class, 'browse'])->name('browseImage');
 Route::get('/browse_edit_image/{id}/{source}', [PhotoController::class, 'browse_edit_image'])->name('browseEditImage');
 Route::get('/browse_baca_juga', [BrowseController::class, 'browseBacaJuga']);
 Route::post('/create_img_byTinymce', [PhotoController::class, 'update_image_tinymce'])->name('assets.photo.updateTinymce');
+Route::get('/update_tags', function(){
+    $tags = Tags::select('tag_name', DB::raw('count(*) as total'))->groupBy('tag_name')->having('total', '>', 1)->get(); 
+    foreach($tags as $tag){
+        // tag lama list
+        $tag_utama = Tags::where('tag_name', $tag->tag_name)->first();
+        $tag_lama = Tags::where('tag_name', $tag->tag_name)->where('tag_id', '!=', $tag_utama->tag_id)->get()->pluck('tag_id')->all();
+        
+        foreach($tag_lama as $tag_id){
+            Posts::where('tags', 'like', '%'.$tag->tag_name.'%')
+            ->update(['tags' => DB::raw("REPLACE(tags, $tag_id, $tag_utama->tag_id)")]);
+        }
+        Tags::where('tag_name', $tag->tag_name)->where('tag_id', '!=', $tag_utama->tag_id)->delete();
 
+    };
+});
 Route::feeds();
 
 Route::middleware('auth')->group(function () {

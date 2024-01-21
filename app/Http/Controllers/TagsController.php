@@ -23,10 +23,11 @@ class TagsController extends Controller
 
     public function insert(Request $request)
     {
-        if(Tags::where('tag_name', $request->tag_name)->first()){
+        $tag_name = ucfirst($request->tag_name);
+        if(Tags::where('tag_name', $tag_name)->first()){
             return redirect()->back()->with('error', 'Tag sudah ada');
         }else{
-            if (Tags::create(['tag_name' => $request->tag_name])) {
+            if (Tags::create(['tag_name' => $tag_name])) {
                 return redirect()->back()->with('success', 'Berhasil menambah tag');
             }
         }

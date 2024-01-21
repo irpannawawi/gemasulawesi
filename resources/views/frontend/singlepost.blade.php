@@ -179,8 +179,9 @@
                                                 $tag = cache()->remember('tags'.$tags, env('CACHE_DURATION'), function() use ($tags){
                                                     return \App\Models\Tags::find($tags);
                                                 }); 
-
-                                                echo '<a href="' . route('tags', ['tag_name' => Str::slug($tag->tag_name)]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                if($tag){
+                                                    echo '<a href="' . route('tags', ['tag_name' => Str::slug($tag->tag_name)]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                }
                                             }
                                         }
                                     @endphp

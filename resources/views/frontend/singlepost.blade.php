@@ -176,7 +176,7 @@
                                     @php
                                         if ($post->tags != null and $post->tags != 'null') {
                                             foreach (json_decode($post->tags) as $tags) {
-                                                $tag = cache()->remember('tags'.$post->post_id, env('CACHE_DURATION'), function() use ($tags){
+                                                $tag = cache()->remember('tags'.$tags, env('CACHE_DURATION'), function() use ($tags){
                                                     return \App\Models\Tags::find($tags);
                                                 }); 
 
@@ -237,7 +237,7 @@
                         <ul class="terkait__list">
                             @foreach (json_decode($post->related_articles) as $related)
                                 @php
-                                    $related = cache()->remember('related'.$post->post_id, env('CACHE_DURATION'), function() use($related){
+                                    $related = cache()->remember('related'.$related, env('CACHE_DURATION'), function() use($related){
                                         return \App\Models\Posts::with(['rubrik'])->find($related);
                                     }); 
                                 @endphp

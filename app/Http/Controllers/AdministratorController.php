@@ -47,6 +47,7 @@ class AdministratorController extends Controller
                 'display_name' => $request->display_name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'post_limit' => $request->post_limit,
                 'role' => $request->role,
                 'avatar' => $filename,
             ]);
@@ -85,6 +86,7 @@ class AdministratorController extends Controller
         $user->username =  $request->username;
         $user->display_name =  $request->display_name;
         $user->email =  $request->email;
+        $user->post_limit =  $request->post_limit;
         if($request->role!=null){
             $user->role =  $request->role;
         }

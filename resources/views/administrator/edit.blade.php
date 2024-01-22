@@ -30,6 +30,12 @@
                     <input type="email" id="email" name="email" class="form-control" required autocomplete="off" value="{{$user->email}}">
                 </div>
 
+                                
+                <div class="form-group mb-2">
+                    <label for="post_limit">Post Limit<sup>*</sup></label>
+                    <input type="number" id="post_limit" name="post_limit" class="form-control" required autocomplete="off" value="{{$user->post_limit}}">
+                </div>
+
                 
                 <div class="form-group mb-2">
                     <label for="password">Katasandi</label>

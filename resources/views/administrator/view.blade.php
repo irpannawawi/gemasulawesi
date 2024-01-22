@@ -20,6 +20,7 @@
                         <th>Full Name</th>
                         <th>Email</th>
                         <th>Role</th>
+                        <th>Post Limit</th>
                         <th>Avatar</th>
                         <th>Aksi</th>
                     </tr>
@@ -35,6 +36,7 @@
                             <td>{{ $user->display_name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->role }}</td>
+                            <td>{{ $user->post_limit }}</td>
                             <td class="text-center">
                                 <img class="mx-auto" width="70"
                                     src="{{ Storage::url('public/avatars/' . $user->avatar) }}" alt=""></td>
@@ -85,6 +87,10 @@
                                 autocomplete="off">
                         </div>
 
+                        <div class="form-group mb-2">
+                            <label for="post_limit">Post Limit<sup>*</sup></label>
+                            <input type="number" id="post_limit" name="post_limit" class="form-control" required autocomplete="off" value="15">
+                        </div>
 
                         <div class="form-group mb-2">
                             <label for="password">Katasandi<sup>*</sup></label>

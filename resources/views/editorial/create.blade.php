@@ -33,6 +33,7 @@
     </div>
 @endif
     <div class="card">
+        @if(Auth::user()->post_limit > 0 AND Auth::user()->post_limit > Auth::user()->posts()->where('published_at', 'like', '%' . date('Y-m-d') . '%')->count())
         <form id="article-form" method="POST" action="{{ route('editorial.insert') }}">
             @csrf
             {{-- POST IMAGE --}}
@@ -185,6 +186,9 @@
                     Simpan</button>
             </div>
         </form>
+        @else
+        <h1>Anda telah mencapai batas limitasi posting harian</h1>
+        @endif
     </div>
 
 

@@ -6,6 +6,11 @@
 /public/storage/favicon/*
 /public/storage/logo/*
 /public/storage/photos/*
+/public/.htaccess
+/public/.ht*
+/public/robots.txt
+/public/*.txt
+
 /storage/*.key
 /storage/app/public/photos/thumbnails/*
 /storage/app/public/photos
@@ -17,8 +22,6 @@
 /secret/*
 .env
 .env.backup
-/public/.htaccess
-/public/robots.txt
 .env.production
 .phpunit.result.cache
 Homestead.json

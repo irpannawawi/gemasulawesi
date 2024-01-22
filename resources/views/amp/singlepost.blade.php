@@ -48,7 +48,8 @@
                     <div class="thumb image-single-post">
                         <amp-img src="{{ get_post_image($post->post_id) }}" alt="{{ $post->title }}" height="320"
                             width="480" layout="responsive"></amp-img>
-                        <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!} {{ !empty($post->image->source) ? 'Source: ' . strip_tags($post->image->source) : '' }}</p>
+                        <p class="photo__caption">{!! !empty($post->image) ? strip_tags($post->image->caption) : '' !!}
+                            {{ !empty($post->image->source) ? 'Source: ' . strip_tags($post->image->source) : '' }}</p>
                     </div>
                 </div>
 
@@ -65,7 +66,6 @@
                                     // Muat string HTML ke dalam objek DOMDocument
                                     $dom->loadHTML($article);
 
-
                                     // validasi tag atribute href
 
                                     $links = $dom->getElementsByTagName('a');
@@ -80,23 +80,23 @@
                                             // Anda dapat menggantinya dengan tindakan yang sesuai.
                                         }
                                     }
-                                    
+
                                     $dom->saveHTML();
                                     // Split artikel menjadi 2 bagian
                                     // Ambil semua elemen paragraf
                                     $paragraphs = $dom->getElementsByTagName('p');
                                     // Hitung jumlah paragraf
                                     $totalParagraphs = $paragraphs->length;
-                                    
+
                                     // Tentukan jumlah paragraf per bagian
                                     $paragrafPerBagian = ceil($totalParagraphs / 2);
-                                    
+
                                     // Bagian pertama
                                     $bagian1 = '';
                                     for ($i = 0; $i < $paragrafPerBagian; $i++) {
                                         $bagian1 .= $dom->saveHTML($paragraphs->item($i));
                                     }
-                                    
+
                                     // Bagian kedua
                                     $bagian2 = '';
                                     for ($i = $paragrafPerBagian; $i < $totalParagraphs; $i++) {
@@ -110,19 +110,15 @@
                                     $bagian1 = str_replace('<amp-iframe', '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian1);
                                     $bagian2 = str_replace('<amp-iframe', '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian2);
 
-                                    
-
                                 @endphp
 
                                 {!! $bagian1 !!}
                                 @php $ad = get_ad_content(); @endphp
-                                @if ($ad != null)
-                                    <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
+                                @if ($ad != null) <!-- Entry Image (modifikasi untuk menambahkan efek paralaks) -->
                                     <div class="parallax"
                                         style="background-image: url('{{ Storage::url('public/ads/' . $ad->value) }}');"
                                         data-velocity="0.5">
-                                    </div>
-                                @endif
+                                    </div> @endif
                                 {!! $bagian2 !!}
                                 <!-- halaman -->
                                 <div class="halaman">
@@ -174,7 +170,9 @@
                                         if ($post->tags != null and $post->tags != 'null') {
                                             foreach (json_decode($post->tags) as $tags) {
                                                 $tag = \App\Models\Tags::find($tags);
-                                                echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                if ($tag != null) {
+                                                    echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                }
                                             }
                                         }
                                     @endphp

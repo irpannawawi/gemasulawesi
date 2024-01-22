@@ -17,6 +17,7 @@
 /secret/*
 .env
 .env.backup
+/public/.htaccess
 .env.production
 .phpunit.result.cache
 Homestead.json

@@ -37,7 +37,7 @@
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('kode-perilaku-pers')) {
-            $metaTitle = 'Redaksi';
+            $metaTitle = 'Kode  Prilaku Pers';
             $metaDeskripsi = get_setting('meta_google');
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('pedoman-media-siber')) {

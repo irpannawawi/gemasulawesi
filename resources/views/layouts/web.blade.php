@@ -288,7 +288,11 @@
                 if ($post->tags != null and $post->tags != 'null') {
                     foreach (json_decode($post->tags) as $tags) {
                         $tag = \App\Models\Tags::find($tags);
-                        $tags = $tags . $tag->tag_name . ', ';
+                        if($tag == null){
+                            $tags = ' ';
+                        }else{
+                            $tags = $tags . $tag->tag_name . ', ';
+                        }
                     }
                 }
             @endphp

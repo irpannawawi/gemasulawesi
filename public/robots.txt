@@ -1,12 +1,11 @@
 User-agent: *
 Disallow:
+Sitemap: https://www.gemasulawesi.com/sitemap.xml
 
-User-agent: *
 User-agent: Googlebot
 Allow: /
 
 User-agent: ChatGPT-User
-Disallow: /tags
 
 User-agent: ChatGPT-User
 Disallow: /

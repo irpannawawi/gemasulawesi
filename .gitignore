@@ -18,6 +18,7 @@
 .env
 .env.backup
 /public/.htaccess
+/public/robots.txt
 .env.production
 .phpunit.result.cache
 Homestead.json

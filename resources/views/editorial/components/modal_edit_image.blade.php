@@ -46,7 +46,7 @@
                                     id="credit">
                             </div>
                             <div class="form-group p-0 mb-1">
-                                <label for="author">Author</label>
+                                <label for="author">Penulis</label>
                                 <input type="text" class="form-control" value="{{ @$image->author }}"
                                     name="author" id="author">
                             </div>

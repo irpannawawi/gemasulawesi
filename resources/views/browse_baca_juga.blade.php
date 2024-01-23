@@ -58,7 +58,7 @@
                                 <th>Title</th>
                                 <th>Status</th>
                                 <th>Rubrik</th>
-                                <th>Author</th>
+                                <th>Penulis</th>
                                 <th>Editor</th>
                                 <th>Published Date</th>
 

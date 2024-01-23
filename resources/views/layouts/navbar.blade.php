@@ -12,7 +12,7 @@
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-          Limit Posting Harian: {{Auth::user()->post_limit}} | Posting: {{Auth::user()->posts()->where('published_at', 'like', '%' . date('Y-m-d') . '%')->count()}}
+          Limit Posting Harian: {{Auth::user()->post_limit}} | Posting: {{Auth::user()->postsAuthor()->where('published_at', 'like', '%' . date('Y-m-d') . '%')->count()}}
         </a>
       </li>
 

@@ -33,7 +33,7 @@
     </div>
 @endif
     <div class="card">
-        @if(Auth::user()->post_limit > 0 AND Auth::user()->post_limit > Auth::user()->posts()->where('published_at', 'like', '%' . date('Y-m-d') . '%')->count())
+        @if(Auth::user()->post_limit > 0 AND Auth::user()->post_limit > Auth::user()->postsAuthor()->where('published_at', 'like', date('Y-m-d') . '%')->count())
         <form id="article-form" method="POST" action="{{ route('editorial.insert') }}">
             @csrf
             {{-- POST IMAGE --}}
@@ -110,7 +110,7 @@
 
                         {{-- Author input --}}
                         <div class="form-group">
-                            <label for="select2Author">Author</label>
+                            <label for="select2Author">Penulis</label>
                             <select class="form-control select2-multiple" id="select2Author" name="author" multiple>
                                 <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->display_name }}
                                 </option>

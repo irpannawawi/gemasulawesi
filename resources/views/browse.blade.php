@@ -49,7 +49,7 @@
                                     <div style="margin-top:5px">
                                         <small title="">{{substr($photo->caption, 0,28)}}...</small><br>
                                         <small title="Uploader"><b>by: Uploader</b></small>
-                                        <br><small title="Zona Bandung">Author Name</small>
+                                        <br><small title="Zona Bandung">Penulis</small>
                                         <div class="float-right">
                                             <button type="button" class="btn btn-xs bg-primary btn-primary btn-edit"
                                                 onclick="sendImageData('{{ $photo->image_id }}', '{{ url('storage/photos') . '/' . $photo->asset->file_name }}', 'original')"

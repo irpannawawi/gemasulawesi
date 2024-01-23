@@ -137,7 +137,7 @@
 
                         {{-- Author input --}}
                         <div class="form-group">
-                            <label for="select2Author">Author</label>
+                            <label for="select2Author">Penulis</label>
                             <select class="form-control select2-multiple" id="select2Author" name="author" multiple>
                                 <option value="{{ Auth::user()->id }}" selected>{{ Auth::user()->display_name }}
                                 </option>

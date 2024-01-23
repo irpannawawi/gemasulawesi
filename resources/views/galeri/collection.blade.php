@@ -53,7 +53,7 @@
                                         <div style="margin-top:5px">
                                             <small title="">&nbsp;</small><br>
                                             <small title="Uploader"><b>by: Uploader</b></small>
-                                            <br><small title="Zona Bandung">Author Name</small>
+                                            <br><small title="Zona Bandung">Penulis</small>
                                             <div class="float-right">
                                                 <a type="button"
                                                     class="btn btn-xs btn-danger text-white bg-danger btn-hapus"

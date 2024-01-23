@@ -39,7 +39,7 @@
                         <th>No</th>
                         <th>Title</th>
                         <th>Section</th>
-                        <th>Author</th>
+                        <th>Penulis</th>
                         <th>Editor</th>
                         <th>Published at</th>
                         <th>Visitor</th>

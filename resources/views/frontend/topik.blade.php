@@ -62,7 +62,7 @@
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
                         <div class="title-list-berita">
-                            <span>Berita Terkini</span>
+                            <h1>Berita Terkini</h1>
                         </div>
                         <div class="row">
                             <div class="col">

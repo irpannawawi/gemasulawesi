@@ -10,7 +10,7 @@
                 <section>
                     <div class="berita-terkini">
                         <div class="title-list-berita">
-                            <span>Gallery Berita Terkini</span>
+                            <h1>Gallery Berita Terkini</h1>
                         </div>
                         <div class="pilihan-editor">
                             <div class="title-post">

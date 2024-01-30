@@ -13,7 +13,7 @@
                     <!-- #TagName -->
                     <div class="berita-terkini">
                         <div class="title-list-berita">
-                            <span>Penulis: {{ $author->display_name }}</span>
+                            <h1>Penulis: {{ $author->display_name }}</h1>
                         </div>
                         <div class="row">
                             <div class="col">

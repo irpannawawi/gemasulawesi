@@ -12,7 +12,7 @@
                     <!-- #TagName -->
                     <div class="berita-terkini">
                         <div class="title-list-berita">
-                            <span>#{{ $tag_name }}</span>
+                            <h1>#{{ $tag_name }}</h1>
                         </div>
                         <div class="row">
                             <div class="col">

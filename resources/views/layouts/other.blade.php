@@ -26,38 +26,38 @@
             $metaImage = get_post_thumbnail($topik->topic_id);
         } elseif (request()->is('tentang-kami')) {
             $metaTitle = 'Tentang Kami';
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('kode-etik')) {
             $metaTitle = 'Kode Etik';
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('redaksi')) {
             $metaTitle = 'Redaksi';
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('kode-perilaku-pers')) {
             $metaTitle = 'Kode  Prilaku Pers';
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('pedoman-media-siber')) {
             $metaTitle = 'Pedoman Media Siber';
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('perlindungan-data-pengguna')) {
             $metaTitle = 'Perlindungan Data Pengguna';
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('lowongan-kerja')) {
             $metaTitle = 'Lowongan Kerja';
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('extra/*')) {
             $extra_key = $extra->key;
             $extra_label = Str::replace('-', ' ', explode('--', $extra->key)[1]);
             $extra_label = Str::ucfirst($extra_label);
             $metaTitle = $extra_label;
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
         }
         $subTitle = get_setting('sub_title');
@@ -69,7 +69,7 @@
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
-    <link rel="canonical" href="{{ url()->current() }}" />
+    <link rel="canonical" href="{{ url()->full() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="@yield('title')" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
@@ -90,7 +90,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-language" content="In-Id" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:url" content="{{ url()->full() }}" />
     <meta property="og:title" content="{{ $metaTitle . ' - ' . $subTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
     <meta property="og:site_name" content="www.gemasulawesi.com" />
@@ -102,7 +102,7 @@
     <meta property="article:author" content="Tim Gema Sulawesi">
     <meta property="article:section" content="">
     <meta property="article:tag" content="">
-    <meta content="{{ url()->current() }}" itemprop="url" />
+    <meta content="{{ url()->full() }}" itemprop="url" />
     <meta charset="utf-8">
     <!-- e: open graph -->
 

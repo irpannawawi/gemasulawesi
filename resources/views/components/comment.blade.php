@@ -1,7 +1,7 @@
 <!-- Comments -->
 <div class="entry-comments">
     <div class="title-list-berita">
-        <span>3 comments</span>
+        <h1>3 comments</h1>
     </div>
     <ul class="comment-list">
         <li class="comment">

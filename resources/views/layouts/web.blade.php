@@ -25,7 +25,7 @@
             $author = '';
         } elseif (request()->is('tags/*')) {
             $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
-            $metaDeskripsi = $post->description ?? '';
+            $metaDeskripsi = $post->description . ' - ' . $subTitle ?? '';
             $metaImage = url('/') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
@@ -37,7 +37,7 @@
             $author = '';
         } elseif (request()->is('galery/detail/*')) {
             $metaTitle = $galery->galery_name . ' - ' . $subTitle;
-            $metaDeskripsi = $galery->galery_description;
+            $metaDeskripsi = $galery->galery_description . ' - ' . $subTitle ?? '';
             $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
             $type = 'article';
             $author = '';
@@ -48,18 +48,28 @@
             $pageSuffix = $page ? ' - Halaman ' . $page : '';
             $metaTitle = $postTitle . ' - ' . $subTitle . $pageSuffix;
 
-            $metaDeskripsi = $post->description . $pageSuffix;
+            $metaDeskripsi = str::limit($post->description, 140, '...') . $pageSuffix;
             $imagePath = get_post_image($post->post_id) ?? '';
             $metaImage = asset($imagePath);
             $type = 'article';
             $category = $post->rubrik->rubrik_name;
-            $tags = $post->tags;
             $author = $post->author?->display_name;
             $editor = $post->editor->display_name;
             $post_id = $post->post_id;
             $editor_id = $post->editor_id;
             $author_id = $post->author_id;
             $publish = $post->published_at;
+            $tagNames = [];
+
+            foreach (json_decode($post->tags) as $tagId) {
+                $tag = cache()->remember('tags' . $tagId, env('CACHE_DURATION'), function () use ($tagId) {
+                    return \App\Models\Tags::find($tagId);
+                });
+
+                if ($tag) {
+                    $tagNames[] = $tag->tag_name;
+                }
+            }
         }
     @endphp
     @php
@@ -111,10 +121,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="content-language" content="In-Id" />
-    <meta content="{{ url()->current() }}" itemprop="url" />
+    <meta content="{{ url()->full() }}" itemprop="url" />
     <meta charset="utf-8">
     <meta property="og:type" content="{{ $type }}" />
-    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:url" content="{{ url()->full() }}" />
     <meta property="og:title" content="{{ $metaTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
     <meta property="og:site_name" content="{{ $metaTitle }}" />
@@ -176,7 +186,7 @@
                 echo '<script>
                     dataLayer = [{
                         "breadcrumb_detail": "Section Page",
-                        "content_category": "Tag"
+                        "content_category": "'. $tag_name .'"
                     }];
                 </script>';
             } elseif (request()->is('gallery')) {
@@ -223,7 +233,7 @@
             <script>
                 dataLayer = [{
                     "published_date": "All",
-                    "rubrik": "All", // Ganti dengan variabel yang sesuai
+                    "rubrik": "All",
                     "penulis": "All",
                     "editor": "All",
                     "id": "All",
@@ -284,18 +294,6 @@
                 }];
             </script>
         @else
-            @php
-                if ($post->tags != null and $post->tags != 'null') {
-                    foreach (json_decode($post->tags) as $tags) {
-                        $tag = \App\Models\Tags::find($tags);
-                        if($tag == null){
-                            $tags = ' ';
-                        }else{
-                            $tags = $tags . $tag->tag_name . ', ';
-                        }
-                    }
-                }
-            @endphp
             <script>
                 dataLayer = [{
                     "published_date": "All",
@@ -306,7 +304,7 @@
                     "type": "All",
                     "source": "Not Available",
                     "topic": "Not Available",
-                    "tag": {{ $tags }},
+                    "tag": {{ implode(', ', $tagNames) }},
                     "penulis_id": "All",
                     "editor_id": "All"
                 }];
@@ -314,25 +312,24 @@
         @endif
 
         @php
-            preg_match('/<img src="(.*?)">/', $post->article, $matches);
-            $imagePath = $matches[1] ?? '';
+            $imagePath = get_post_image($post->post_id) ?? '';
             $image = asset($imagePath);
             $segments = request()->segments();
             $lastSegment = end($segments);
             $jsonLDData = [
                 '@context' => 'https://schema.org',
                 '@type' => 'Organization',
-                'name' => 'www.gemasulawesi.com',
-                'url' => 'https://www.gemasulawesi.com',
+                'name' => 'Gema Sulawesi',
+                'url' => url()->full(),
                 'logo' => asset('frontend/img/favicon.png'),
-                'potentialAction' => [['https://web.facebook.com/gemasulawesi', 'https://instagram.com/gema.parimo', 'https://twitter.com/gemasulawesi']],
+                'sameAs' => ['', '', ''],
             ];
             $jsonPost = [
                 '@context' => 'https://schema.org',
                 '@type' => 'WebPage',
                 'headline' => $metaTitle,
-                'url' => url()->current(),
-                'datePublished' => $post->created_at,
+                'url' => url()->full(),
+                'datePublished' => $post->published_at,
                 'image' => $image,
                 'thumbnailUrl' => $image,
             ];
@@ -378,39 +375,38 @@
             }
 
             if ($shouldDisplayJsonLD) {
-                preg_match('/<img src="(.*?)">/', $post->article, $matches);
-                $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+                $imagePath = get_post_image($post->post_id) ?? '';
                 $image = asset($imagePath);
-                $segments = request()->segments();
-                $lastSegment = end($segments);
                 $jsonLDData = [
                     '@context' => 'https://schema.org',
                     '@type' => 'NewsArticle',
                     'mainEntityOfPage' => [
                         '@type' => 'WebPage',
-                        '@id' => url()->current(),
-                        'description' => $metaDeskripsi,
+                        '@id' => url()->full(),
                     ],
                     'headline' => $metaTitle,
                     'image' => [
                         '@type' => 'ImageObject',
                         'url' => $image,
                     ],
-                    'datePublished' => $post->created_at,
-                    'dateModified' => $post->updated_at,
+                    'datePublished' => $post->published_at,
+                    'dateModified' => Carbon::parse($post->updated_at)->format('Y-m-d H:i:s'),
                     'author' => [
                         '@type' => 'Person',
-                        'url' => url()->current(),
+                        'url' => url()->full(),
                         'name' => @$author,
                     ],
                     'publisher' => [
                         '@type' => 'Organization',
-                        'name' => 'www.gemasulawesi.com',
+                        'name' => 'Gema Sulawesi',
                         'logo' => [
                             '@type' => 'ImageObject',
-                            'url' => asset('frontend/img/favcion.png'),
+                            'url' => Storage::url('favicon/') . get_setting('favicon'),
+                            'width' => 600,
+                            'height' => 60,
                         ],
                     ],
+                    'description' => $metaDeskripsi,
                 ];
                 $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
                 echo '<script type="application/ld+json">
@@ -424,7 +420,7 @@
             $jsonLDData = [
                 '@context' => 'https://schema.org',
                 '@type' => 'WebSite',
-                'url' => 'https://www.gemasulawesi.com/',
+                'url' => url()->full(),
                 'potentialAction' => [
                     [
                         '@type' => 'SearchAction',

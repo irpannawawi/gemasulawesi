@@ -13,7 +13,7 @@
                     <!-- Pencarian -->
                     <div class="berita-terkini">
                         <div class="title-list-berita">
-                            <span>Pencarian</span>
+                            <h1>Pencarian</h1>
                         </div>
                         <!-- Search form -->
                         <form class="form-inline search mt-2 mb-3" action="{{ route('search') }}">

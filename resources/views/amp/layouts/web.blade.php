@@ -27,6 +27,7 @@
         $type = 'article';
         $category = $post->rubrik->rubrik_name;
         $tags = $post->tags;
+        $author = $post->author->display_name;
     }
 @endphp
 
@@ -46,11 +47,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="{{ $metaTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">
+    <meta name="author" content="{{ @$author }}">
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
-    <meta name="base" content="https://www.gemasulawesi.com/" />
     <meta name="robots" content="index,follow" />
-    <meta name="googlebot-news" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
+    <meta name="googlebot-news" content="index,follow" />
     <!-- e: open graph -->
 
     {{-- amp project --}}
@@ -63,51 +64,68 @@
     <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
     <script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
 
-
     @if (!empty($post))
         @php
             $shouldDisplayJsonLD = true;
             if ($shouldDisplayJsonLD) {
                 preg_match('/<img src="(.*?)">/', $post->article, $matches);
-                $imagePath = $matches[1] ?? ''; // Jika tidak ada gambar, setel ke string kosong
+                $imagePath = $matches[1] ?? '';
                 $image = asset($imagePath);
                 $segments = request()->segments();
                 $lastSegment = end($segments);
                 $postTitle = $post->title ?? '';
+
+                $tagNames = [];
+
+                foreach (json_decode($post->tags) as $tagId) {
+                    $tag = cache()->remember('tags' . $tagId, env('CACHE_DURATION'), function () use ($tagId) {
+                        return \App\Models\Tags::find($tagId);
+                    });
+
+                    if ($tag) {
+                        $tagNames[] = $tag->tag_name;
+                    }
+                }
                 $jsonLDData = [
                     '@context' => 'https://schema.org',
                     '@type' => 'NewsArticle',
-                    'mainEntityOfPage' => url()->current(),
-                    'datePublished' => $post->created_at,
-                    'dateModified' => $post->updated_at,
-                    'description' => $post->description,
+                    'mainEntityOfPage' => [
+                        '@type' => 'WebPage',
+                        '@id' => url()->full(),
+                    ],
                     'headline' => $postTitle,
-                    'author' => [
-                        '@type' => 'Person',
-                        'url' => url()->current(),
-                        'name' => $post->editor->display_name ?? 'Tim Gema',
-                    ],
-                    'publisher' => [
-                        '@type' => 'Organization',
-                        'name' => 'www.gemasulawesi.com',
-                        'logo' => [
-                            '@type' => 'ImageObject',
-                            'url' => Storage::url('favicon/') . get_setting('favicon'),
-                        ],
-                    ],
                     'image' => [
                         '@type' => 'ImageObject',
                         'url' => $image,
                     ],
+                    'datePublished' => $post->published_at,
+                    'dateModified' => Carbon::parse($post->updated_at)->format('Y-m-d H:i:s'),
+                    'author' => [
+                        '@type' => 'Person',
+                        'url' => url()->full(),
+                        'name' => $post->author->display_name ?? 'Tim Gema',
+                    ],
+                    'publisher' => [
+                        '@type' => 'Organization',
+                        'name' => 'Gema Sulawesi',
+                        'logo' => [
+                            '@type' => 'ImageObject',
+                            'url' => Storage::url('favicon/') . get_setting('favicon'),
+                            'width' => 600,
+                            'height' => 60,
+                        ],
+                    ],
+                    'description' => $metaDeskripsi,
                     'vars' => [
-                        'published_date' => $post->created_at,
+                        'published_date' => $post->published_at,
                         'rubrik' => $post->rubrik->rubrik_name,
                         'penulis' => $post->author->display_name,
                         'editor' => $post->editor->display_name,
                         'id' => "$post->post_id",
+                        'type' => 'Standard',
                         'source' => '',
                         'topic' => '',
-                        'tag' => '',
+                        'tag' => implode(', ', $tagNames),
                         'penulis_id' => "$post->author_id",
                         'editor_id' => "$post->editor_id",
                     ],
@@ -2586,7 +2604,7 @@
     @php
         $jsonLDData = [
             'vars' => [
-                'published_date' => $post->created_at,
+                'published_date' => $post->published_at,
                 'rubrik' => $post->rubrik->rubrik_name,
                 'penulis' => $post->author->display_name,
                 'editor' => '',

@@ -24,7 +24,8 @@
                                             <ul class="entry__meta">
                                                 <li>
                                                     <a href="{{ route('category', ['rubrik_name' => Str::slug($headline->post->rubrik->rubrik_name)]) }}"
-                                                        class="entry__meta-category entry__meta-category--label entry__meta-category--tosca" style="font-size: 12px;">{{ $headline->post->rubrik->rubrik_name }}</a>
+                                                        class="entry__meta-category entry__meta-category--label entry__meta-category--tosca"
+                                                        style="font-size: 12px;">{{ $headline->post->rubrik->rubrik_name }}</a>
                                                 </li>
                                             </ul>
                                             <h2 class="thumb-entry-title">
@@ -148,7 +149,7 @@
                     <!-- Berita Terkini -->
                     <div class="berita-terkini">
                         <div class="title-list-berita">
-                            <span>Berita Terkini</span>
+                            <h1>Berita Terkini</h1>
                         </div>
                         <div class="row">
                             <div class="col">

@@ -16,7 +16,7 @@
                     <!-- Pencarian -->
                     <div class="berita-terkini">
                         <div class="title-list-berita">
-                            <span>Indeks Berita</span>
+                            <h1>Indeks Berita</h1>
                         </div>
                         <div class="filter-box">
                             <span>Lihat Berdasarkan Tanggal</span>

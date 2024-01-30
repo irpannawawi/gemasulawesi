@@ -273,8 +273,6 @@
 
 /* title-list-berita */
 .title-list-berita {
-    font-size: 17px;
-    font-weight: 800;
     text-transform: uppercase;
     color: #222;
     border-bottom: 2px solid #d6d6d6;
@@ -282,11 +280,13 @@
     line-height: 19px;
     margin-bottom: 23px;
 }
-.title-list-berita span{
+.title-list-berita > h1{
+    font-size: 17px;
+    font-weight: 800;
     border-bottom: 2px solid #2cc38b;
     display: inline-block;
     line-height: 17px;
-    height: 25px;
+    height: 27px;
     font-style: italic;
 }
 

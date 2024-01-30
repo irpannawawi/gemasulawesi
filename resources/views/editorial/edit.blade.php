@@ -43,9 +43,9 @@
                     <div class="col-lg-8 col-md-8">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" value="{{ $post->title }}" maxlength="120" name="title"
+                            <input type="text" value="{{ $post->title }}" maxlength="140" name="title"
                                 class="form-control" placeholder="Enter title ...">
-                            <span class="badge badge-info">120 Character</span>
+                            <span class="badge badge-info">140 Character</span>
 
                         </div>
                         <div class="form-group">
@@ -213,12 +213,12 @@
             <div class="card-footer">
                 <button class="btn btn-primary bg-primary" id="publishBtn" type="submit"><i
                         class="fa fa-paper-plane"></i>
-                    Publish</button>
+                    Update</button>
 
                 <input type="hidden" id="isDraft" name="is_draft">
                 <button id="saveDraft" class="btn btn-secondary bg-secondary" type="button"><i
                         class="fa fa-save"></i>
-                    Simpan</button>
+                    Simpan ke draft</button>
             </div>
         </form>
     </div>

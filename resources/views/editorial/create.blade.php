@@ -33,7 +33,16 @@
     </div>
 @endif
     <div class="card">
-        @if(Auth::user()->post_limit > 0 AND Auth::user()->post_limit > Auth::user()->postsAuthor()->where('published_at', 'like', date('Y-m-d') . '%')->count())
+        @if(
+            ((Auth::user()->post_limit > 0) 
+            && 
+            (Auth::user()->post_limit > Auth::user()
+                                            ->postsAuthor()
+                                            ->where('published_at', 'like', date('Y-m-d') . '%')
+                                            ->count()))
+                                            OR
+            (Auth::user()->post_limit == -1)
+            )
         <form id="article-form" method="POST" action="{{ route('editorial.insert') }}">
             @csrf
             {{-- POST IMAGE --}}
@@ -43,9 +52,9 @@
                     <div class="col-lg-9 col-md-9">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" maxlength="120" name="title" class="form-control"
+                            <input type="text" maxlength="140" name="title" class="form-control"
                                 placeholder="Enter title ..." value="{{old('title')}}">
-                            <span class="badge badge-info">120 Character</span>
+                            <span class="badge badge-info">140 Character</span>
 
                         </div>
                         <div class="form-group">

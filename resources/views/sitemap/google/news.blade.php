@@ -25,7 +25,9 @@
                             @php
                                 $tag = \App\Models\Tags::find($tags);
                             @endphp
+                            @if($tag)
                             {{ $tag->tag_name . ',' }}
+                            @endif
                         @endforeach
                     </news:keywords>
                 @endif

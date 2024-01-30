@@ -73,7 +73,7 @@ class SitemapController extends Controller
             $data['posts'] = Posts::where('status', 'published')
                 ->where('category', $rubrik->rubrik_id)
                 ->orderBy('published_at', 'desc')
-                ->limit(500)
+                ->limit(3000)
                 ->get();
 
             // generate sitemap web
@@ -104,7 +104,7 @@ class SitemapController extends Controller
                 ->add(Amp::where('status', 'published')
                     ->where('category', $rubrik->rubrik_id)
                     ->orderBy('published_at', 'desc')
-                    ->limit(500)
+                    ->limit(3000)
                     ->get())
                 ->writeToFile(storage_path("app/{$folder_path}/sitemap_amp.xml")); // simpan ke storage
 
@@ -126,7 +126,7 @@ class SitemapController extends Controller
         $folder_path = "public/sitemaps/";
         // generate sitemap
         Sitemap::create()
-            ->add(Tags::orderBy('created_at', 'desc')->limit(3000)->get())
+            ->add(Tags::limit(5000)->get())
             ->writeToFile(storage_path("app/{$folder_path}/sitemap_tags.xml"));
         return null;
     }

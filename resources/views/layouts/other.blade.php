@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 @php
     use Illuminate\Support\Str;
     use Carbon\Carbon;

@@ -19,6 +19,9 @@ Route::get('/id/{rubrik}/{post_id}/{slug}', [WebController::class, 'singlePost']
     ->name('singlePost');
 Route::get('/category/{rubrik_name}', [WebController::class, 'category'])->name('category');
 Route::get('/tags/{tag_name}', [WebController::class, 'tags'])->name('tags');
+Route::get('/tag/{tag_name}',function($tag_name){
+    return Redirect::to('/tags/'.$tag_name);
+})->name('old-tags');
 Route::get('/search', [WebController::class, 'search'])->name('search');
 Route::get('/indeks-berita', [WebController::class, 'indeks'])->name('indeks');
 Route::get('/search', [WebController::class, 'search'])->name('search');

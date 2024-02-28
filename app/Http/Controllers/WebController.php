@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Illuminate\View\View as ViewView;
 use Sarfraznawaz2005\VisitLog\Facades\VisitLog;
+use App\Models\Visitlg;
 use Sarfraznawaz2005\VisitLog\Models\VisitLog as VisitLogModel;
 
 class WebController extends Controller
@@ -108,8 +109,8 @@ class WebController extends Controller
 
         // visitor counter
         // jika ip sudah mengunjungi do nothing
+        $this->count_visit();
         $logResult = VisitLog::save(request()->all());
-
         if (is_array($logResult) && isset($logResult['type']) && $logResult['type'] == 'create') {
             $post = Posts::find($post_id);
             $post->visit += 1;
@@ -201,11 +202,17 @@ class WebController extends Controller
         return view('frontend.topik', $data);
     }
 
-    public function tags($tag_name): View
+    public function tags($tag_name)
     {
+        
+        if (strpos($tag_name, '%20') !== false || strpos($tag_name, ' ') !== false) {
+            // string contains '%20' or space
+            return redirect()->route('tags', ['tag_name' => Str::replace(' ', '-',Str::replace('%20', '-', ($tag_name)))]);
+        } 
+
         $tag_name = Str::replace('-', ' ', $tag_name);
         $tag = Tags::where('tag_name', $tag_name)->first();
-        if (!$tag) {
+        if (!$tag || $tag == null) {
             return abort(404);
         }
 
@@ -260,6 +267,11 @@ class WebController extends Controller
             )
 
             ->paginate(15);
+
+        if (count($data['paginatedPost']) == 0) {
+            return abort(404);
+        }
+        
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.tags', $data);
     }
@@ -313,5 +325,13 @@ class WebController extends Controller
         return response()->view('sitemap.google.news', [
             'posts' => $posts,
         ])->header('Content-Type', 'text/xml');
+    }
+
+    public function count_visit(){
+
+        if(Visitlg::count()>6000){
+            Visitlg::truncate();
+        }
+        return null;
     }
 }

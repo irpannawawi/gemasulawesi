@@ -44,7 +44,7 @@ class SitemapController extends Controller
             $folder_path = 'storage/sitemaps/' . Str::slug($rubrik->rubrik_name);
             $sitemapindex->add($folder_path . '/sitemap_web.xml');
             $sitemapindex->add($folder_path . '/sitemap_news.xml');
-            $sitemapindex->add($folder_path . '/sitemap_amp.xml');
+            // $sitemapindex->add($folder_path . '/sitemap_amp.xml');
         }
         
         // rubrik sitemaps

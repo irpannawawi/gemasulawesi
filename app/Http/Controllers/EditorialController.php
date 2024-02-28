@@ -341,6 +341,12 @@ class EditorialController extends Controller
         return view('editorial.trash', $data);
     }
 
+    public function empty_trash(Request $request)
+    {
+        Posts::where('status', 'trash')->delete();
+        return redirect()->route('editorial.trash');
+    }
+
     public function published(Request $request)
     {
         $q = $request->q;

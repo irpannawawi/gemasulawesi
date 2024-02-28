@@ -7,7 +7,8 @@
 
     <div class="card">
         <div class="card-header">
-            <a class="btn border btn-xs" href="{{ route('editorial.trash') }}"><i class="fa fa-sync"></i> Refresh</a>
+            <a class="btn border btn-xs" href="{{ route('editorial.trash') }}"><i class="fa fa-sync"></i> Refresh</a> &nbsp;&nbsp;&nbsp;&nbsp; 
+            <a class="btn border btn-xs btn-danger" onclick="return confirm('Are you sure?')" href="{{ route('editorial.emptyTrash') }}"><i class="fa fa-trash"></i> Empty Trash</a>
             <div class="col-6 float-right">
                 <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
                     @csrf

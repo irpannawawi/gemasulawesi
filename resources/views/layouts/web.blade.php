@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 @php
     use Illuminate\Support\Str;
     use Carbon\Carbon;
@@ -10,6 +10,7 @@
 
 <head>
     @php
+    
         $subTitle = get_setting('sub_title');
         if (request()->is('/')) {
             $metaTitle = get_setting('title') . ' - ' . $subTitle;
@@ -25,7 +26,7 @@
             $author = '';
         } elseif (request()->is('tags/*')) {
             $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
-            $metaDeskripsi = $post->description . ' - ' . $subTitle ?? '';
+            $metaDeskripsi = 'Berita ' . $tag_name . ' Terbaru dan Terkini ';
             $metaImage = url('/') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
@@ -60,14 +61,15 @@
             $author_id = $post->author_id;
             $publish = $post->published_at;
             $tagNames = [];
-
-            foreach (json_decode($post->tags) as $tagId) {
-                $tag = cache()->remember('tags' . $tagId, env('CACHE_DURATION'), function () use ($tagId) {
-                    return \App\Models\Tags::find($tagId);
-                });
-
-                if ($tag) {
-                    $tagNames[] = $tag->tag_name;
+            if($post->tags){
+                foreach (json_decode($post->tags) as $tagId) {
+                    $tag = cache()->remember('tags' . $tagId, env('CACHE_DURATION'), function () use ($tagId) {
+                        return \App\Models\Tags::find($tagId);
+                    });
+    
+                    if ($tag) {
+                        $tagNames[] = $tag->tag_name;
+                    }
                 }
             }
         }
@@ -129,8 +131,8 @@
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
     <meta property="og:site_name" content="{{ $metaTitle }}" />
     <meta property="og:image" content="{{ $metaImage }}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    {{-- <meta property="og:image:width" content="1200" /> Causing an error --}}
+    {{-- <meta property="og:image:height" content="630" /> Causing an error --}}
     <meta property="fb:app_id" content="" />
     <meta property="fb:pages" content="" />
     <meta property="article:author" content="{{ @$author }}">
@@ -322,7 +324,7 @@
                 'name' => 'Gema Sulawesi',
                 'url' => url()->full(),
                 'logo' => asset('frontend/img/favicon.png'),
-                'sameAs' => ['', '', ''],
+                // 'sameAs' => ['', '', ''], // causing warning
             ];
             $jsonPost = [
                 '@context' => 'https://schema.org',

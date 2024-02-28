@@ -63,6 +63,7 @@
                                     $article = str_replace('../', '' . url('') . '/', $article);
 
                                     $dom = new DOMDocument();
+                                    libxml_use_internal_errors(true);
                                     // Muat string HTML ke dalam objek DOMDocument
                                     $dom->loadHTML($article);
 
@@ -170,8 +171,8 @@
                                         if ($post->tags != null and $post->tags != 'null') {
                                             foreach (json_decode($post->tags) as $tags) {
                                                 $tag = \App\Models\Tags::find($tags);
-                                                if ($tag != null) {
-                                                    echo '<a href="' . route('tags', ['tag_name' => $tag->tag_name]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                if ($tag) {
+                                                    echo '<a href="' . route('tags', ['tag_name' => Str::slug($tag->tag_name)]) . '" rel="tag">' . $tag->tag_name . '</a>';
                                                 }
                                             }
                                         }
@@ -208,12 +209,14 @@
                                     $related = \App\Models\Posts::find($related);
                                 @endphp
                                 <li>
+                                    @if($related)
                                     <a href="{{ route('singlePost', [
                                         'rubrik' => Str::slug($related->rubrik->rubrik_name),
                                         'post_id' => $related->post_id,
                                         'slug' => $related->slug,
                                     ]) }}"
                                         class="terkait__link">{{ $related->title }}</a>
+                                        @endif
                                 </li>
                             @endforeach
                         </ol>

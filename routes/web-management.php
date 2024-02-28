@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HeadlineController;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\TopicController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/topik-khusus', [TopicController::class, 'insert'])->name('topik-khusus.add');
     Route::put('/topik-khusus', [TopicController::class, 'edit'])->name('topik-khusus.edit');
     
+    Route::get('/tags_delete/{id}', [TagsController::class, 'delete'])->name('tags.destroy');
 });
 Route::prefix('admin')->group(function(){
 

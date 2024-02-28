@@ -72,6 +72,7 @@
                                     }
                                     // Buat objek DOMDocument
                                     $dom = new DOMDocument();
+                                    libxml_use_internal_errors(true);
                                     if ($dom->loadHTML($article) && !empty($article)) {
                                         // Muat string HTML ke dalam objek DOMDocument
                                         $dom->loadHTML($article);
@@ -244,12 +245,14 @@
                                 @endphp
                                 <li>
                                     <h2 class="terkait__title">
+                                        @if($related)
                                         <a href="{{ route('singlePost', [
                                             'rubrik' => Str::slug($related->rubrik->rubrik_name),
                                             'post_id' => $related->post_id,
                                             'slug' => $related->slug,
                                         ]) }}"
                                             class="terkait__link">{{ $related->title }}</a>
+                                        @endif
                                     </h2>
                                 </li>
                             @endforeach

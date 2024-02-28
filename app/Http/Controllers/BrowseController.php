@@ -27,7 +27,8 @@ class BrowseController extends Controller
         $data['q'] = $q;
         $data['posts'] = Posts::orderBy('published_at', 'DESC')->where([
             ['category', 'like', '%'.$rubrik.'%'],
-            ['title', 'like', '%'.$q.'%']
+            ['title', 'like', '%'.$q.'%'],
+            ['status', 'published']
         ])->paginate(20);
         return view('browse_baca_juga', $data);
     }

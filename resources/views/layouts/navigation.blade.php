@@ -136,6 +136,12 @@
                                 <p>Rubrik Managament</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('tags.index') }}" class="nav-link">
+                                <i class="fa fa-hashtag nav-icon"></i>
+                                <p>Tags Managament</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">

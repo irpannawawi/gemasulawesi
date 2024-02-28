@@ -3,9 +3,9 @@
     <div class="main-container container" id="main-container">
         <!-- Content -->
         <div class="row row-20">
-            
+
             <div class="col-lg-8 order-lg-2">
-                <x-ad-item position='top_page'/>
+                <x-ad-item position='top_page' />
 
                 <section>
                     <div class="berita-terkini">
@@ -107,8 +107,8 @@
             <x-sidebar />
         </div>
         <!-- end content -->
-    <div class="col-lg-8">
-        <x-ad-item position='footer' />
-    </div>
+        <div class="col-lg-8">
+            <x-ad-item position='footer' />
+        </div>
     </div> <!-- end main container -->
 @endsection

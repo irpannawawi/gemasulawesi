@@ -230,9 +230,6 @@
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- Lazyload (must be placed in head in order to work) -->
-    <script src="{{ url('assets/frontend') }}/js/lazysizes.min.js"></script>
-
     {{-- rangedate --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
@@ -331,9 +328,7 @@
                                         rel="noreferred">Lowongan Kerja</a>
                                 </div>
                                 @php
-                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')
-                                        ->orderBy('setting_id', 'asc')
-                                        ->get();
+                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')->orderBy('setting_id', 'asc')->get();
                                 @endphp
                                 @foreach ($extras as $extra)
                                     @php
@@ -369,25 +364,21 @@
             </div>
         </footer>
 
-        {{-- <div id="back-to-top">
-            <a href="#top" aria-label="Go to top"><i class="ui-arrow-up"></i></a>
-        </div> --}}
-
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
+    {{-- <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script> --}}
     {{-- <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script> --}}
     {{-- <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script> --}}
-    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/owl-carousel.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/jquery.newsTicker.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/leafo/sticky-kit@v1.1.2/jquery.sticky-kit.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.0.1/lazysizes.min.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>

@@ -3,14 +3,14 @@
 
     $today = Carbon::today();
     $yesterday = Carbon::yesterday();
-    $hotPost = cache()->remember('hotTopics', 120, function()use($today, $yesterday){
+    $hotPost = cache()->remember('hotTopics', 120, function () use ($today, $yesterday) {
         return App\Models\Posts::orderBy('visit', 'desc')
             ->where(['status' => 'published'])
             ->where('published_at', '>=', $yesterday)
             ->where('published_at', '<=', $today)
             ->limit(10)
             ->get();
-    }); 
+    });
     $n = 1;
     // dd($hotPost);
 @endphp

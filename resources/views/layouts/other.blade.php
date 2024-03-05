@@ -328,7 +328,9 @@
                                         rel="noreferred">Lowongan Kerja</a>
                                 </div>
                                 @php
-                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')->orderBy('setting_id', 'asc')->get();
+                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')
+                                        ->orderBy('setting_id', 'asc')
+                                        ->get();
                                 @endphp
                                 @foreach ($extras as $extra)
                                     @php
@@ -366,18 +368,14 @@
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
-    <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
-
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    {{-- <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script> --}}
-    {{-- <script src="{{ url('assets/frontend') }}/js/flickity.pkgd.min.js"></script> --}}
-    {{-- <script src="{{ url('assets/frontend') }}/js/twitterFetcher_min.js"></script> --}}
+    <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/leafo/sticky-kit@v1.1.2/jquery.sticky-kit.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
+    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.0.1/lazysizes.min.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

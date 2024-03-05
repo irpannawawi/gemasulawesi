@@ -30,23 +30,23 @@ class WebController extends Controller
     {
         VisitLog::save(request()->all());
 
-        $data['editorCohice'] = Cache::remember('editorChoice', 120, function(){
+        $data['editorCohice'] = Cache::remember('editorChoice', 120, function () {
             return Editorcoice::with(['post.rubrik', 'post.image.asset'])->where('post_id', '!=', 0)->get();
         });
-        $data['headlineWp'] = Cache::remember('headlineWp', 120, function(){
+        $data['headlineWp'] = Cache::remember('headlineWp', 120, function () {
             return Headlinewp::with(['post.rubrik', 'post.image.asset'])->where('post_id', '!=', 0)->get();
-        }); 
-        $data['topikKhusus'] = Cache::remember('topikKhusus', 120, function(){
+        });
+        $data['topikKhusus'] = Cache::remember('topikKhusus', 120, function () {
             return Topic::get();
-        }); 
+        });
 
         // posts 1-30
-        $data['paginatedPost'] = Cache::remember('index_paginated_posts', 70, function(){
+        $data['paginatedPost'] = Cache::remember('index_paginated_posts', 70, function () {
             return Posts::orderBy('published_at', 'DESC')
-            ->where('status', 'published')
-            ->with(['rubrik', 'image.asset'])
-            ->paginate(30);
-        }); 
+                ->where('status', 'published')
+                ->with(['rubrik', 'image.asset'])
+                ->paginate(30);
+        });
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
 
         // dd($data['beritaTerkini']);
@@ -61,6 +61,7 @@ class WebController extends Controller
 
         // Cek apakah ada rentang tanggal yang dipilih
         if ($request->has('start_date') && $request->has('end_date')) {
+            // jika ada tanggal yang dipilih, tampilkan berita sesuai rentang
             $startDate = $request->input('start_date') . ' 00:00:00';
             $endDate = $request->input('end_date') . ' 23:59:59';
 
@@ -78,7 +79,6 @@ class WebController extends Controller
 
             // Paginate the latest posts with 10 posts per page
             $paginatedPosts = $this->paginate($latestPosts, 10);
-
             $data['paginatedPost'] = $paginatedPosts;
         }
 
@@ -89,12 +89,13 @@ class WebController extends Controller
 
     private function paginate($items, $perPage)
     {
-        $currentPage = \Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPage();
-        $currentItems = $items->slice(($currentPage - 1) * $perPage, $perPage);
+        $currentPage = \Illuminate\Pagination\Paginator::resolveCurrentPage();
+        $currentItems = $items->forPage($currentPage, $perPage);
         $paginatedItems = new \Illuminate\Pagination\LengthAwarePaginator($currentItems, $items->count(), $perPage);
-        $paginatedItems->setPath(\Illuminate\Pagination\LengthAwarePaginator::resolveCurrentPath());
+        $paginatedItems->setPath(\Illuminate\Pagination\Paginator::resolveCurrentPath());
         return $paginatedItems;
     }
+
 
     public function showCategory(): View
     {
@@ -117,7 +118,7 @@ class WebController extends Controller
             $post->save();
         }
 
-        $rubrik = Cache::remember('rubrik_'.str_replace('-', ' ', $rubrik_name), env('CACHE_DURATION'), function () use ($rubrik_name) {
+        $rubrik = Cache::remember('rubrik_' . str_replace('-', ' ', $rubrik_name), env('CACHE_DURATION'), function () use ($rubrik_name) {
             return Rubrik::where('rubrik_name', str_replace('-', ' ', $rubrik_name))->first();
         });
 
@@ -127,9 +128,9 @@ class WebController extends Controller
             $rubrik_id = 0;
         }
 
-        $post = Cache::remember('post'.$post_id, env('CACHE_DURATION'), function() use ($post_id) { 
-            return Posts::with(['rubrik'])->where(['post_id' => $post_id])->first(); 
-        }); 
+        $post = Cache::remember('post' . $post_id, env('CACHE_DURATION'), function () use ($post_id) {
+            return Posts::with(['rubrik'])->where(['post_id' => $post_id])->first();
+        });
 
         if ($post == null) {
             return abort(404);
@@ -137,13 +138,12 @@ class WebController extends Controller
         if ($post->status == 'trash') {
             return abort(404);
         }
-        
-        $data['paginatedPost'] = Cache::remember('posts_list'.$post_id, env('CACHE_DURATION'), function() {
+
+        $data['paginatedPost'] = Cache::remember('posts_list' . $post_id, env('CACHE_DURATION'), function () {
             return Posts::orderBy('published_at', 'DESC')
-                ->with(['rubrik'])    
-            ->where('status', 'published')
+                ->with(['rubrik'])
+                ->where('status', 'published')
                 ->limit(10)->get();
-            
         });
 
         $data['beritaTerkini'] = $data['paginatedPost'];
@@ -204,11 +204,11 @@ class WebController extends Controller
 
     public function tags($tag_name)
     {
-        
+
         if (strpos($tag_name, '%20') !== false || strpos($tag_name, ' ') !== false) {
             // string contains '%20' or space
-            return redirect()->route('tags', ['tag_name' => Str::replace(' ', '-',Str::replace('%20', '-', ($tag_name)))]);
-        } 
+            return redirect()->route('tags', ['tag_name' => Str::replace(' ', '-', Str::replace('%20', '-', ($tag_name)))]);
+        }
 
         $tag_name = Str::replace('-', ' ', $tag_name);
         $tag = Tags::where('tag_name', $tag_name)->first();
@@ -271,7 +271,7 @@ class WebController extends Controller
         if (count($data['paginatedPost']) == 0) {
             return abort(404);
         }
-        
+
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.tags', $data);
     }
@@ -327,9 +327,10 @@ class WebController extends Controller
         ])->header('Content-Type', 'text/xml');
     }
 
-    public function count_visit(){
+    public function count_visit()
+    {
 
-        if(Visitlg::count()>6000){
+        if (Visitlg::count() > 6000) {
             Visitlg::truncate();
         }
         return null;

@@ -677,13 +677,11 @@
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
-    {{-- <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script> --}}
-    {{-- <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script> --}}
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/leafo/sticky-kit@v1.1.2/jquery.sticky-kit.js"></script>
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>

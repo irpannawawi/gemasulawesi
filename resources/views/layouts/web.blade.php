@@ -10,7 +10,7 @@
 
 <head>
     @php
-    
+
         $subTitle = get_setting('sub_title');
         if (request()->is('/')) {
             $metaTitle = get_setting('title') . ' - ' . $subTitle;
@@ -20,7 +20,8 @@
             $author = '';
         } elseif (request()->is('category/*')) {
             $metaTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
-            $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
+            $metaDeskripsi =
+                'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
             $metaImage = url('/') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
@@ -61,12 +62,12 @@
             $author_id = $post->author_id;
             $publish = $post->published_at;
             $tagNames = [];
-            if($post->tags){
+            if ($post->tags) {
                 foreach (json_decode($post->tags) as $tagId) {
                     $tag = cache()->remember('tags' . $tagId, env('CACHE_DURATION'), function () use ($tagId) {
                         return \App\Models\Tags::find($tagId);
                     });
-    
+
                     if ($tag) {
                         $tagNames[] = $tag->tag_name;
                     }
@@ -633,7 +634,9 @@
                                         rel="noreferred">Lowongan Kerja</a>
                                 </div>
                                 @php
-                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')->orderBy('setting_id', 'asc')->get();
+                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')
+                                        ->orderBy('setting_id', 'asc')
+                                        ->get();
                                 @endphp
                                 @foreach ($extras as $extra)
                                     @php
@@ -671,13 +674,11 @@
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
-    {{-- <script src="{{ url('assets/frontend') }}/js/easing.min.js"></script> --}}
-    {{-- <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.min.js"></script> --}}
     <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/jquery.sticky-kit.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/leafo/sticky-kit@v1.1.2/jquery.sticky-kit.js"></script>
     <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
     <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>

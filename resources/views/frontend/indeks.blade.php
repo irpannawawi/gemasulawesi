@@ -115,7 +115,7 @@
                                         @endforeach
                                     @endif
                                 </ul>
-                                {{ $paginatedPost->onEachSide(1)->links() }}
+                                {{ $paginatedPost->appends(request()->query())->links() }}
                             </div>
                         </div>
                     </div>

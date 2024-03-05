@@ -13,7 +13,9 @@ class AdItem extends Component
      */
     public function __construct(
         public string $position,
-        public string $num=''
+        public string $num='',
+        public string $width='',
+        public string $height='',
     ) {
     }
 

@@ -12,7 +12,9 @@
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          @if(Auth::user()->level == 'Admin')
           Limit Posting Harian: {{Auth::user()->post_limit}} | Posting: {{Auth::user()->postsAuthor()->where('published_at', 'like', '%' . date('Y-m-d') . '%')->count()}}
+          @endif
         </a>
       </li>
 

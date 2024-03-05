@@ -18,7 +18,10 @@
         $postTitle = $post->title ?? '';
         $subTitle = $subTitle;
         $page = request()->query('page');
-        $pageSuffix = $page ? ' - Halaman ' . $page : '';
+        $pageSuffix = '';
+        if ($page>1) {
+            $pageSuffix = $page ? ' - Halaman ' . $page : '';
+        }
         $metaTitle = $postTitle . ' - ' . $subTitle . $pageSuffix;
 
         $metaDeskripsi = $post->description . $pageSuffix;

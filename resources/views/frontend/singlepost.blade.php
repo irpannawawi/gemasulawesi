@@ -9,7 +9,7 @@
 
             <!-- post content -->
             <div class="col-lg-8 blog__content mb-3">
-                <x-ad-item position='above_content' />
+                <x-ad-item position='above_content' :width="970" :height="250" />
                 <div class="container">
                     <ul class="breadcrumbs">
                         <li class="breadcrumbs__item">
@@ -36,7 +36,8 @@
                             </li>
                         </ul>
                     </div>
-                    <x-ad-item position='below_heading' />
+                    
+                    <x-ad-item position='below_heading' :width="970" :height="250"/>
                     <div class="social-post socials--medium socials--rounded">
                         <a href="#" target="_blank" class="social social-facebook" id="share-facebook-top"
                             aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -119,13 +120,16 @@
                                     <div class="halaman__teaser">Halaman: </div>
                                     <div class="halaman__wrap">
                                         @for ($i = 1; $i <= $totalPages; $i++)
+                                            @php
+                                                $pg = $i ==1?null:1;
+                                            @endphp
                                             <div class="halaman__item">
-                                                <a href="{{ route('singlePost', [
+                                                <a href="{{ Str::replace('?page=1','',route('singlePost', [
                                                     'rubrik' => Str::slug($post->rubrik->rubrik_name),
                                                     'post_id' => $post->post_id,
                                                     'slug' => $post->slug,
                                                     'page' => $i,
-                                                ]) }}"
+                                                ])) }}"
                                                     class="pagination__page {{ $currentPage == $i ? 'pagination__page--current' : '' }}">
                                                     {{ $i }}
                                                 </a>

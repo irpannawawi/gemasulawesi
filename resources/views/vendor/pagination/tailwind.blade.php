@@ -25,12 +25,12 @@
                     @foreach ($element as $page => $url)
                         @if ($page == $paginator->currentPage())
                             <div class="paging__item">
-                                <a href="{{ $url }}"
+                                <a href="#"
                                     class="paging__link paging__link--active">{{ $page }}</a>
                             </div>
                         @else
                             <div class="paging__item">
-                                <a href="{{ $url }}" class="paging__link">{{ $page }}</a>
+                                <a href="{{ $url }} {{isset($_GET['start_date'])?'&start_date='.$_GET['start_date'].'&end_date='.$_GET['end_date']:''}}" class="paging__link">{{ $page }}</a>
                             </div>
                         @endif
                     @endforeach
@@ -40,7 +40,7 @@
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
                 <div class="paging__item">
-                    <a href="{{ $paginator->nextPageUrl() }}" class="paging__link paging__link--next">Next</a>
+                    <a href="{{ $paginator->nextPageUrl() }} {{isset($_GET['start_date'])?'&start_date='.$_GET['start_date'].'&end_date='.$_GET['end_date']:''}}" class="paging__link paging__link--next">Next</a>
                 </div>
             @else
             @endif

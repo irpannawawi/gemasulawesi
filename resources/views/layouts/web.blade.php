@@ -10,7 +10,7 @@
 
 <head>
     @php
-    
+
         $subTitle = get_setting('sub_title');
         if (request()->is('/')) {
             $metaTitle = get_setting('title') . ' - ' . $subTitle;
@@ -20,7 +20,8 @@
             $author = '';
         } elseif (request()->is('category/*')) {
             $metaTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
-            $metaDeskripsi = 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
+            $metaDeskripsi =
+                'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
             $metaImage = url('/') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
@@ -46,7 +47,10 @@
             $postTitle = $post->title ?? '';
             $subTitle = $subTitle;
             $page = request()->query('page');
-            $pageSuffix = $page ? ' - Halaman ' . $page : '';
+            $pageSuffix = '';
+            if ($page > 1) {
+                $pageSuffix = $page ? ' - Halaman ' . $page : '';
+            }
             $metaTitle = $postTitle . ' - ' . $subTitle . $pageSuffix;
 
             $metaDeskripsi = str::limit($post->description, 140, '...') . $pageSuffix;
@@ -61,12 +65,12 @@
             $author_id = $post->author_id;
             $publish = $post->published_at;
             $tagNames = [];
-            if($post->tags){
+            if ($post->tags) {
                 foreach (json_decode($post->tags) as $tagId) {
                     $tag = cache()->remember('tags' . $tagId, env('CACHE_DURATION'), function () use ($tagId) {
                         return \App\Models\Tags::find($tagId);
                     });
-    
+
                     if ($tag) {
                         $tagNames[] = $tag->tag_name;
                     }
@@ -633,7 +637,9 @@
                                         rel="noreferred">Lowongan Kerja</a>
                                 </div>
                                 @php
-                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')->orderBy('setting_id', 'asc')->get();
+                                    $extras = App\Models\Setting::where('key', 'like', 'extra--%')
+                                        ->orderBy('setting_id', 'asc')
+                                        ->get();
                                 @endphp
                                 @foreach ($extras as $extra)
                                     @php

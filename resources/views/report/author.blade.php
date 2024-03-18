@@ -4,7 +4,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800   leading-tight">
-            {{ __('Report Author') }}
+            {{ __('Report Penulis') }}
         </h2>
     </x-slot>
 
@@ -37,7 +37,7 @@
                 <thead class="text-center">
                     <tr>
                         <th>No</th>
-                        <th>Editor</th>
+                        <th>Penulis</th>
                         <th>Articles</th>
                     </tr>
                 </thead>

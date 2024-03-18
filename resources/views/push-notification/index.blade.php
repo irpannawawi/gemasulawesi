@@ -30,7 +30,7 @@
                 </thead>
                 <tbody class="text-center">
                     @php
-                        $n = 1;
+                        $n = !empty(request()->get('page')) ? (request()->get('page') - 1) * $pushNotification->perPage() + 1 : 1;
                     @endphp
                     @foreach ($pushNotification as $news)
                         <tr>

@@ -44,7 +44,7 @@
                     </thead>
                     <tbody>
                         @php
-                            $i = 1;
+                        $n = !empty($_GET['page']) ? $_GET['page'] * 25 - 24 : 1;
                         @endphp
                         @foreach ($tags as $tag)
                             <tr>
@@ -52,13 +52,13 @@
                                     <input onchange="check_tags(this, {{ $tag->tag_id }}, '{{ $tag->tag_name }}')"
                                         type="checkbox" name="tagSelection[]" class="" id="{{ $tag->tag_id }}" value="1">
                                 </td>
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $n++ }}</td>
                                 <td>{{ $tag->tag_name }}</td>
                                 <td>
-                                    <button class="btn btn-default " data-toggle="modal" data-target="#editTagModal"
+                                    <button class="btn btn-sm btn-default " data-toggle="modal" data-target="#editTagModal"
                                         onclick="edit_tag('{{ $tag->tag_id }}', '{{ $tag->tag_name }}')"><i
                                             class="fa fa-edit"></i></button>
-                                    <button class="btn btn-danger bg-danger"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-danger bg-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach

@@ -36,6 +36,7 @@ class DashboardController extends Controller
         ->whereBetween('published_at', [$startDate, $endDate])
         ->groupBy(DB::raw('DATE_FORMAT(published_at, "%Y-%m")'))
         ->orderBy(DB::raw('DATE_FORMAT(published_at, "%Y-%m")'))
+        ->where('status', 'published')
         ->get();
         return response()->json($data);
     }

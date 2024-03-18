@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Breakingnews;
 use App\Models\Posts;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class BreakingNewsController extends Controller
@@ -23,16 +24,7 @@ class BreakingNewsController extends Controller
     
     public function browse(Request $request)
     {
-        $q = $request->q;
-        
-        $data['q'] = $q;
-        $posts = Posts::where('status', 'published')->orderBy('published_at', 'DESC');
-        if(!empty($q)){
-            $posts = $posts->where('title', 'LIKE', '%' . $q . '%');
-        }
-        if(!empty($request->rubrik)){
-            $posts = $posts->where('category', '=', $request->rubrik);
-        }
+       $posts = $this->getPost($request, 'published');
         $data['posts'] = $posts->paginate(20);
         return view('breaking-news.browse_article', $data);
     }
@@ -80,5 +72,43 @@ class BreakingNewsController extends Controller
             return redirect('breakingNews')->with('message', 'Berhasil menghapus breaking news');
         }
         
+    }
+
+    
+    private function getPost($request, $status)
+    {
+        $q = $request->q;
+        $data['q'] = $q;
+
+        // chek if sorted
+        $posts = Posts::where('status', $status);
+
+        if (!empty($request->sort_by)) {
+            $posts = $posts->orderBy( $request->sort_by, $request->order);
+        }else{
+            $posts = $posts->orderBy('published_at', 'DESC');
+        }
+        // chek if has query string
+        if (!empty($q)) {
+            $posts = $posts->where('title', 'LIKE', '%' . $q . '%');
+        }
+        // chek if filtered category
+        if (!empty($request->rubrik)) {
+            $posts = $posts->where('category', '=', $request->rubrik);
+        }
+        // chek if filtered author
+        
+        if (!empty($request->author)) {
+            $posts = $posts->where('author_id', '=', $request->author);
+        }
+        // chek if filtered date
+        if (!empty($request->dates)) {
+            $dates = explode(' - ', $request->dates);
+            $start_date = Carbon::createFromFormat('m/d/Y', $dates[0])->format('Y-m-d 00:00:00');
+            $end_date = Carbon::createFromFormat('m/d/Y', $dates[1])->format('Y-m-d 23:59:59');
+            $posts = $posts->whereBetween('published_at', [$start_date, $end_date]);
+        }
+
+        return $posts;
     }
 }

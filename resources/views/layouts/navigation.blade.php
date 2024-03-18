@@ -189,7 +189,7 @@
                         <li class="nav-item">
                             <a href="{{ route('report.author') }}" class="nav-link">
                                 <i class="far fa-user nav-icon"></i>
-                                <p>Author</p>
+                                <p>Penulis</p>
                             </a>
                         </li>
                         <li class="nav-item">

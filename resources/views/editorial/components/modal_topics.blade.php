@@ -44,7 +44,7 @@
                     </thead>
                     <tbody>
                         @php
-                            $i = 1;
+                        $n = !empty($_GET['page']) ? $_GET['page'] * 20 - 19 : 1;
                         @endphp
                         @foreach ($topics as $topic)
                             <tr>
@@ -52,15 +52,15 @@
                                     <input onchange="check_topics(this, {{ $topic->topic_id }}, '{{ $topic->topic_name }}')"
                                         type="checkbox" name="topicSelection[]" class="form-control" value="1">
                                 </td>
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $n++ }}</td>
                                 <td>{{ $topic->topic_name }}</td>
                                 <td>{{ $topic->topic_description }}</td>
                                 <td><img src="{{ $topic->topic_image }}" alt="Topik images" class="img-fluid"></td>
-                                <td>
-                                    <button class="btn btn-default " data-toggle="modal" data-target="#editTopicModal-ds"
+                                <td style="font-size: 10px;">
+                                    <button class="btn btn-xs btn-default " data-toggle="modal" data-target="#editTopicModal-ds"
                                         onclick="edit_topic('{{ $topic->topic_id }}', '{{ $topic->topic_name }}', '{{ $topic->topic_description }}')"><i
                                             class="fa fa-edit"></i></button>
-                                    <button class="btn btn-danger bg-danger"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-xs btn-danger bg-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach

@@ -76,7 +76,7 @@
 
 
                                 <ul class="post-list-small post-list-small--2 mb-32">
-                                    @if (isset($beritaTerkini[0]))
+                                    @if (isset($beritaTerkini[1]))
                                         @foreach ($beritaTerkini[1] as $post)
                                             <li class="post-list-small__item">
                                                 <article class="post-list-small__entry clearfix">

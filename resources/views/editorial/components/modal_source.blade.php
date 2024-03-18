@@ -25,7 +25,8 @@
                         <input type="text" class="form-control" placeholder="Search" name="q"
                             aria-label="Search" value="{{ !empty($q) ? $q : '' }}" aria-describedby="basic-addon1">
                         <div class="input-group-prepend">
-                            <button class="input-group-text btn btn-default" id="basic-addon1"><i class="fa fa-search"></i></button>
+                            <button class="input-group-text btn btn-default" id="basic-addon1"><i
+                                    class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </form>
@@ -44,21 +45,22 @@
                     </thead>
                     <tbody>
                         @php
-                            $i = 1;
+                            $n = !empty($_GET['page']) ? $_GET['page'] * 20 - 19 : 1;
                         @endphp
                         @foreach ($sources as $source)
                             <tr>
                                 <td>
-                                    <input onchange="check_sources(this, {{ $source->source_id }}, '{{ $source->source_name }}')"
+                                    <input
+                                        onchange="check_sources(this, {{ $source->source_id }}, '{{ $source->source_name }}')"
                                         type="checkbox" name="sourceSelection[]" class="" value="1">
                                 </td>
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $n++ }}</td>
                                 <td>{{ $source->source_name }}</td>
                                 <td>
-                                    <button class="btn btn-default " data-toggle="modal" data-target="#editsourceModal"
+                                    <button class="btn btn-sm btn-default " data-toggle="modal" data-target="#editsourceModal"
                                         onclick="edit_source('{{ $source->source_id }}', '{{ $source->source_name }}', '{{ $source->source_alias }}', '{{ $source->source_website }}', '{{ $source->source_logo_url }}')"><i
                                             class="fa fa-edit"></i></button>
-                                    <button class="btn btn-danger bg-danger"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-danger bg-danger"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         @endforeach
@@ -86,22 +88,22 @@
                             <div class="form-group mb-2">
                                 <label for="sourceName">Name <sup>* </sup></label>
                                 <input type="text" id="sourceName" name="source_name" class="form-control" required
-                                    autocomplete="off" >
+                                    autocomplete="off">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="sourcealias">Alias</label>
-                                <input type="text" id="sourcealias" name="source_alias" class="form-control" 
-                                    autocomplete="off" >
+                                <input type="text" id="sourcealias" name="source_alias" class="form-control"
+                                    autocomplete="off">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="sourcewebsite">Website</label>
-                                <input type="text" id="sourcewebsite" name="source_website" class="form-control" 
-                                    autocomplete="off" >
+                                <input type="text" id="sourcewebsite" name="source_website" class="form-control"
+                                    autocomplete="off">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="sourcelogo_url">Logo url</label>
-                                <input type="url" id="sourcelogo_url" name="source_logo_url" class="form-control" 
-                                    autocomplete="off" >
+                                <input type="url" id="sourcelogo_url" name="source_logo_url" class="form-control"
+                                    autocomplete="off">
                             </div>
                             <div class="form-group mb-2">
                                 <button type="button" class="btn bg-secondary btn-secondary"
@@ -116,8 +118,8 @@
         </div>
 
         {{-- Modal edit source --}}
-        <div class="modal fade" id="editsourceModal" tabindex="-1" role="dialog" aria-labelledby="editsourceModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="editsourceModal" tabindex="-1" role="dialog"
+            aria-labelledby="editsourceModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -132,21 +134,25 @@
                             @method('put')
                             <div class="form-group mb-2">
                                 <label for="source">Name <sup>*</sup></label>
-                                <input type="text" name="source_name" class="form-control" required autocomplete="off" id="input-source-name">
-                                <input type="hidden" name="source_id" class="form-control" required autocomplete="off"
-                                    id="input-source-id">
+                                <input type="text" name="source_name" class="form-control" required
+                                    autocomplete="off" id="input-source-name">
+                                <input type="hidden" name="source_id" class="form-control" required
+                                    autocomplete="off" id="input-source-id">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="sourcealias">Alias</label>
-                                <input type="text" name="source_alias" class="form-control"  autocomplete="off" id="input-source-alias">
+                                <input type="text" name="source_alias" class="form-control" autocomplete="off"
+                                    id="input-source-alias">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="sourcewebsite">Website</label>
-                                <input type="text" name="source_website" class="form-control"  autocomplete="off" id="input-source-website">
+                                <input type="text" name="source_website" class="form-control" autocomplete="off"
+                                    id="input-source-website">
                             </div>
                             <div class="form-group mb-2">
                                 <label for="sourcelogo">Logo</label>
-                                <input type="text" name="source_logo" class="form-control"  autocomplete="off" id="input-source-logo">
+                                <input type="text" name="source_logo" class="form-control" autocomplete="off"
+                                    id="input-source-logo">
                             </div>
                             <div class="form-group mb-2">
                                 <button type="button" class="btn bg-secondary btn-secondary"

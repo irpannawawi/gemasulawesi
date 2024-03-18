@@ -42,7 +42,7 @@
                             </li>
                         </ul>
                     </div>
-                    <x-amp-ads position='above_content' />
+                    <x-amp-ads position='below_heading' />
 
                     <!-- Entry Image -->
                     <div class="thumb image-single-post">

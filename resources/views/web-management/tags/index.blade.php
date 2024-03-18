@@ -37,7 +37,7 @@
                             </thead>
                             <tbody>
                                 @php
-                                    $i = 1;
+                                    $i = !empty(request()->get('page')) ? (request()->get('page') - 1) * $tags->perPage() + 1 : 1;
                                 @endphp
                                 @foreach ($tags as $tag)
                                     <tr>

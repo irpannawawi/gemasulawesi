@@ -10,7 +10,24 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <style>
+        .table-value {
+            font-size: 13px;
+            text-align: left;
+        }
 
+        @if (!isset($_GET['rubrik']) || empty($_GET['rubrik'])) {
+            #filter-post {
+                display: none;
+            }
+        }
+
+        #filter-btn {
+            background-color: #0010bc;
+            color: #fff;
+        }
+    </style>
+    </style>
 </head>
 
 <body>

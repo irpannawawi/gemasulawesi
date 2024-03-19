@@ -89,6 +89,18 @@
         [type='search']:focus {
             --tw-ring-color: #b9b9b934;
         }
+
+        @if (!isset($_GET['rubrik']) && empty($_GET['rubrik']))
+
+            #filter-post {
+                display: none;
+            }
+        @endif
+
+        #filter-btn {
+            background-color: #0010bc;
+            color: #fff;
+        }
     </style>
 
 

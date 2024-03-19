@@ -10,7 +10,19 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+    <style>
+        @if (!isset($_GET['rubrik']) && empty($_GET['rubrik']))
+            
+        #filter-post {
+            display: none;
+        }
+        @endif
 
+        #filter-btn {
+            background-color: #0010bc;
+            color: #fff;
+        }
+    </style>
 </head>
 
 <body>
@@ -245,19 +257,19 @@
         $end_date = request()->get('dates') ? explode('-', request()->get('dates'))[1] : '';
     @endphp
     <script>
-         document.addEventListener("DOMContentLoaded", () => {
-                $('#rubrikSelect, #authorSelect').on('change', function() {
-                    $('#formSearch').submit()
-                })
-                
-                $('input[name="dates"]').daterangepicker({
-                    @if (!empty($_GET['dates']))
+        document.addEventListener("DOMContentLoaded", () => {
+            $('#rubrikSelect, #authorSelect').on('change', function() {
+                $('#formSearch').submit()
+            })
+
+            $('input[name="dates"]').daterangepicker({
+                @if (!empty($_GET['dates']))
                     startDate: '{{ $start_date }}',
                     endDate: '{{ $end_date }}',
                     autoUpdateInput: true
-                    @else
+                @else
                     autoUpdateInput: false
-                    @endif ,
+                @endif ,
                 locale: {
                     cancelLabel: 'Clear'
                 },
@@ -267,7 +279,7 @@
                 $(this).val(picker.startDate.format('L') + ' - ' + picker.endDate.format('L'));
                 $('#formDate').submit()
             });
-            
+
             $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
                 $(this).val('');
                 $('#formDate').submit()
@@ -276,7 +288,7 @@
             $('#filter-btn').on('click', function() {
                 $('#filter-post').slideToggle('slow');
             })
-            
+
         });
     </script>
 </body>

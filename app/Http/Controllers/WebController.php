@@ -306,6 +306,8 @@ class WebController extends Controller
             $paginatedPost = $paginatedPost->where([
                 ['title', 'like', '%' . $keyword . '%'],
                 ['article', 'like', '%' . $keyword . '%']
+            ])->orWhere([
+                ['title', 'like', '%' . $keyword . '%']
             ]);
         }
         $paginatedPost = $paginatedPost->where('status', 'published')->paginate(10);

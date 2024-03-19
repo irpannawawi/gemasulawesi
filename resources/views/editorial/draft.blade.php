@@ -10,7 +10,7 @@
             <a class="btn btn-primary btn-xs" href="{{ route('editorial.create') }}"><i class="fa fa-edit"></i>Tambah
                 data</a>
             <a class="btn border btn-xs" href="{{ route('editorial.draft') }}"><i class="fa fa-sync"></i> Refresh</a>
-            <a href="#" class="btn border btn-xs float-right" id="filter-btn">Seaarch/Filter</a>
+            <button class="btn border btn-xs float-right" id="filter-btn">Seaarch/Filter</button>
             <div class="row" id="filter-post">
                 <div class="col-12 border-top border-primary mt-3 mb-0 p-0">
                 </div>

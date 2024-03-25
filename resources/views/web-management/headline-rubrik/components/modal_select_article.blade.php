@@ -16,11 +16,11 @@
             text-align: left;
         }
 
-        @if (!isset($_GET['rubrik']) || empty($_GET['rubrik'])) {
+        @if (!isset($_GET['rubrik']) || empty($_GET['rubrik']))
             #filter-post {
                 display: none;
             }
-        }
+        @endif
 
         #filter-btn {
             background-color: #0010bc;

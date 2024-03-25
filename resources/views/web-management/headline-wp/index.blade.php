@@ -6,18 +6,17 @@
     </x-slot>
 
     <div class="card">
-        <div class="card-body">
-            <div class="row col-12" style="padding: 0px;">
-
+        <div class="card-body d-flex flex-row">
                 {{-- Headline 1  --}}
-                <div class="card col m-1">
-                    <div class="card-body p-1">
+                <div class="card m-1">
+
+                    <div class="card-body p-1" style="min-height: 200px;">
                         <label>Headline 1</label>
                         <img id="imgheadline1"
                             src="{{@get_post_image($headline[0]->post->post_id)}}"
-                            class="img-responsive"
+                            class="img img-responsive"
                             title="{{@$headline[0]->post->title}}"
-                            style="height:150px !important">
+                            style="height: 160px; width:100%;">
                         <input id="hdheadline1" type="hidden" name="hdHeadline[]" value="9606620">
                         <input type="text" class="form-control p-1" name="title[]"
                             title="{{@$headline[0]->post->title}}"
@@ -34,17 +33,18 @@
                     </div>
                 </div>
                 {{-- ./ Headline 1 --}}
-    
-                {{-- Headline 2  --}}
-                <div class="card col m-1">
-                    <div class="card-body p-1">
+
+                {{-- Headline 2 --}}
+                <div class="card m-1">
+
+                    <div class="card-body p-1" style="min-height: 200px;">
                         <label>Headline 2</label>
-                        <img id="imgheadline1"
+                        <img id="imgheadline2"
                             src="{{@get_post_image($headline[1]->post->post_id)}}"
-                            class="img-responsive"
+                            class="img img-responsive"
                             title="{{@$headline[1]->post->title}}"
-                            style="height:150px !important">
-                        <input id="hdheadline1" type="hidden" name="hdHeadline[]" value="9606620">
+                            style="height: 160px; width:100%;">
+                        <input id="hdheadline2" type="hidden" name="hdHeadline[]" value="9606621">
                         <input type="text" class="form-control p-1" name="title[]"
                             title="{{@$headline[1]->post->title}}"
                             value="{{@$headline[1]->post->title}}"
@@ -60,17 +60,17 @@
                     </div>
                 </div>
                 {{-- ./ Headline 2 --}}
-    
-                {{-- Headline 3  --}}
-                <div class="card col m-1">
-                    <div class="card-body p-1">
+                {{-- Headline 3 --}}
+                <div class="card m-1">
+
+                    <div class="card-body p-1" style="min-height: 200px;">
                         <label>Headline 3</label>
-                        <img id="imgheadline1"
+                        <img id="imgheadline3"
                             src="{{@get_post_image($headline[2]->post->post_id)}}"
-                            class="img-responsive"
+                            class="img img-responsive"
                             title="{{@$headline[2]->post->title}}"
-                            style="height:150px !important">
-                        <input id="hdheadline1" type="hidden" name="hdHeadline[]" value="9606620">
+                            style="height: 160px; width:100%;">
+                        <input id="hdheadline3" type="hidden" name="hdHeadline[]" value="9606622">
                         <input type="text" class="form-control p-1" name="title[]"
                             title="{{@$headline[2]->post->title}}"
                             value="{{@$headline[2]->post->title}}"
@@ -79,24 +79,24 @@
                             <div class="btn-group">
                                 <button id="select_article" class="btn btn-default btn-sm btn-flat btn-dialog" title="Select Section Headline" onclick="wp_id_selection(2)" data-toggle="modal" data-target="#modalArticle"><i class="fa fa-external-link"></i> Choose</button>
                                 <button type="button" onclick="return delete_headline('2')"
-                                    class="btn btn-danger bg-danger btn-sm btn-flat " ><i
+                                    class="btn btn-danger bg-danger btn-sm btn-flat "><i
                                         class="fa fa-trash"></i> Delete</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 {{-- ./ Headline 3 --}}
-    
-                {{-- Headline 4  --}}
-                <div class="card col m-1">
-                    <div class="card-body p-1">
+                {{-- Headline 4 --}}
+                <div class="card m-1">
+
+                    <div class="card-body p-1" style="min-height: 200px;">
                         <label>Headline 4</label>
-                        <img id="imgheadline1"
+                        <img id="imgheadline4"
                             src="{{@get_post_image($headline[3]->post->post_id)}}"
-                            class="img-responsive"
+                            class="img img-responsive"
                             title="{{@$headline[3]->post->title}}"
-                            style="height:150px !important">
-                        <input id="hdheadline1" type="hidden" name="hdHeadline[]" value="9606620">
+                            style="height: 160px; width:100%;">
+                        <input id="hdheadline4" type="hidden" name="hdHeadline[]" value="9606623">
                         <input type="text" class="form-control p-1" name="title[]"
                             title="{{@$headline[3]->post->title}}"
                             value="{{@$headline[3]->post->title}}"
@@ -105,7 +105,7 @@
                             <div class="btn-group">
                                 <button id="select_article" class="btn btn-default btn-sm btn-flat btn-dialog" title="Select Section Headline" onclick="wp_id_selection(3)" data-toggle="modal" data-target="#modalArticle"><i class="fa fa-external-link"></i> Choose</button>
                                 <button type="button" onclick="return delete_headline('3')"
-                                    class="btn btn-danger bg-danger btn-sm btn-flat " data-no="1"><i
+                                    class="btn btn-danger bg-danger btn-sm btn-flat "><i
                                         class="fa fa-trash"></i> Delete</button>
                             </div>
                         </div>

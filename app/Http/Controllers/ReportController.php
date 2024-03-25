@@ -30,7 +30,7 @@ class ReportController extends Controller
             "users" => User::with(['posts'=>function ($query) use ($start_date, $end_date) {
                 $query->where('status', '=', 'published')
                 ->whereBetween('published_at', [$start_date, $end_date]);
-            }])->get(),
+            }])->whereNot('role',  'inactive')->get(),
         ];
 
         // dd($query);
@@ -55,7 +55,7 @@ class ReportController extends Controller
             "users" => User::with(['postsAuthor' => function ($query) use ($start_date, $end_date) {
                 $query->where('status', '=', 'published')
                     ->whereBetween('published_at', [$start_date, $end_date]);
-            }])->get(),
+            }])->whereNot('role',  'inactive')->get(),
         ];
         
         $queryLog = DB::getQueryLog();

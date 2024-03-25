@@ -11,13 +11,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     <style>
-        @if (!isset($_GET['rubrik']) && empty($_GET['rubrik']))
+    @if (!isset($_GET['rubrik']) && empty($_GET['rubrik']))
             
         #filter-post {
             display: none;
         }
         @endif
-
         #filter-btn {
             background-color: #0010bc;
             color: #fff;
@@ -160,7 +159,7 @@
                         </thead>
                         <tbody>
                             @php
-                                $n = 1;
+                                $n = !empty(request()->get('page')) ? (request()->get('page') - 1) * $posts->perPage() + 1 : 1;
                             @endphp
                             @foreach ($posts as $post)
                                 <tr>

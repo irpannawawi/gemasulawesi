@@ -169,7 +169,7 @@
 .owl-thumb-item .card img {
     border-radius: 100%;
     height: 165px;
-    border: 6px solid #2cc38b;
+    border: 6px solid #000;
 }
 
 .owl-dots {
@@ -1540,6 +1540,6 @@ iframe {
     border-radius: 5px;
 }
 .nav--colored .nav__holder {
-    background-color: #8a0096; /* Warna ungu tua */
-    background-image: linear-gradient(to left, #8a0096, #8a0096 20%, #000000);
+    background-color: #000; /* Warna ungu tua */
+    background-image: linear-gradient(to left, #000, #8a0096);
 }

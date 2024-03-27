@@ -328,14 +328,13 @@
                 'name' => 'Gema Sulawesi',
                 'url' => url()->full(),
                 'logo' => asset('frontend/img/favicon.png'),
-                // 'sameAs' => ['', '', ''], // causing warning
             ];
             $jsonPost = [
                 '@context' => 'https://schema.org',
                 '@type' => 'WebPage',
                 'headline' => $metaTitle,
                 'url' => url()->full(),
-                'datePublished' => $post->published_at,
+                'datePublished' => $post->published_at . ' WITA',
                 'image' => $image,
                 'thumbnailUrl' => $image,
             ];
@@ -395,8 +394,8 @@
                         '@type' => 'ImageObject',
                         'url' => $image,
                     ],
-                    'datePublished' => $post->published_at,
-                    'dateModified' => Carbon::parse($post->updated_at)->format('Y-m-d H:i:s'),
+                    'datePublished' => $post->published_at . ' WITA',
+                    'dateModified' => Carbon::parse($post->updated_at)->format('Y-m-d H:i:s') . ' WITA',
                     'author' => [
                         '@type' => 'Person',
                         'url' => url()->full(),
@@ -415,9 +414,7 @@
                     'description' => $metaDeskripsi,
                 ];
                 $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
-                echo '<script type="application/ld+json">
-                    ' . $jsonLD. '
-                </script>';
+                echo '<script type="application/ld+json">' . $jsonLD. '</script>';
             }
         @endphp
 

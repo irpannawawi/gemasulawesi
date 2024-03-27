@@ -67,8 +67,8 @@
     <title itemprop="name">{{ $metaTitle . ' - ' . $subTitle }}</title>
     <x-feed-links />
     <link href="{{ $metaImage }}" itemprop="image" />
-    <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
-    <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
+    <link href="{{ env('APP_CDN').Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
+    <link rel="apple-touch-icon-precomposed" href="{{ env('APP_CDN').Storage::url('favicon/') . get_setting('favicon') }}">
     <link rel="canonical" href="{{ url()->full() }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="@yield('title')" />
@@ -214,18 +214,18 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet'>
     <!-- Css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/font-icons.css" />
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/style.css" />
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/custom.css" />
-    <link rel="stylesheet" href="{{ url('assets/frontend') }}/css/colors/tosca.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN').('/assets/frontend') }}/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN').('/assets/frontend') }}/css/font-icons.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN').('/assets/frontend') }}/css/style.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN').('/assets/frontend') }}/css/custom.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN').('/assets/frontend') }}/css/colors/tosca.css" />
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
-    <link rel="icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" sizes="32x32" />
-    <link rel="icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" sizes="192x192" />
-    <link rel="apple-touch-icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
-    <meta name="msapplication-TileImage" content="{{ Storage::url('favicon/') . get_setting('favicon') }}" />
+    <link rel="shortcut icon" href="{{ env('APP_CDN').Storage::url('favicon/') . get_setting('favicon') }}">
+    <link rel="icon" href="{{ env('APP_CDN').Storage::url('favicon/') . get_setting('favicon') }}" sizes="32x32" />
+    <link rel="icon" href="{{ env('APP_CDN').Storage::url('favicon/') . get_setting('favicon') }}" sizes="192x192" />
+    <link rel="apple-touch-icon" href="{{ env('APP_CDN').Storage::url('favicon/') . get_setting('favicon') }}" />
+    <meta name="msapplication-TileImage" content="{{ env('APP_CDN').Storage::url('favicon/') . get_setting('favicon') }}" />
 
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -234,7 +234,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
     {{-- jquery js --}}
-    <script src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
+    <script src="{{ env('APP_CDN').('/assets/frontend') }}/js/jquery.min.js"></script>
 
 </head>
 
@@ -348,8 +348,8 @@
                         <div class="col-lg-5 col-md-6">
                             <div class="footer__verifikasi">
                                 <img class=" ls-is-cached lazyloaded"
-                                    data-src="{{ url('assets/frontend') }}/img/centang-biru.png"
-                                    src="{{ url('assets/frontend') }}/img/centang-biru.png" width="40"
+                                    data-src="{{ env('APP_CDN').('/assets/frontend') }}/img/centang-biru.png"
+                                    src="{{ env('APP_CDN').('/assets/frontend') }}/img/centang-biru.png" width="40"
                                     height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 <p>
                                     <b>Telah Diverifikasi Dewan Pers</b>
@@ -371,11 +371,11 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-    <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
+    <script src="{{ env('APP_CDN').('/assets/frontend') }}/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/leafo/sticky-kit@v1.1.2/jquery.sticky-kit.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
+    <script src="{{ env('APP_CDN').('/assets/frontend') }}/js/modernizr.min.js"></script>
+    <script src="{{ env('APP_CDN').('/assets/frontend') }}/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.0.1/lazysizes.min.js"></script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->

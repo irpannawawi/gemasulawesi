@@ -15,26 +15,26 @@
         if (request()->is('/')) {
             $metaTitle = get_setting('title') . ' - ' . $subTitle;
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = url('/') . '/storage/logo/' . get_setting('logo_web');
+            $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('category/*')) {
             $metaTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
             $metaDeskripsi =
                 'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
-            $metaImage = url('/') . '/storage/logo/' . get_setting('logo_web');
+            $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('tags/*')) {
             $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
             $metaDeskripsi = 'Berita ' . $tag_name . ' Terbaru dan Terkini ';
-            $metaImage = url('/') . '/storage/logo/' . get_setting('logo_web');
+            $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('gallery')) {
             $metaTitle = 'Gallery Berita Terkini' . ' - ' . $subTitle;
             $metaDeskripsi = get_setting('meta_google');
-            $metaImage = url('/') . '/storage/logo/' . get_setting('logo_web');
+            $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('galery/detail/*')) {
@@ -92,7 +92,7 @@
     {{-- periksa apakah terdaat headline --}}
     @if (isset($headlineWp))
         @foreach ($headlineWp as $headline)
-            <link rel="preload" href="{{ url('/') . '/storage/photos/' . $headline->post->image->asset->file_name }}"
+            <link rel="preload" href="{{ env('APP_CDN') . '/storage/photos/' . $headline->post->image->asset->file_name }}"
                 as="image">
         @endforeach
     @endif
@@ -511,18 +511,18 @@
     {{-- preload assets --}}
     <link rel="preload" as="style"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/bootstrap.min.css" />
-    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/font-icons.css" />
-    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/style.css" />
-    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/custom.css" />
-    <link rel="preload" as="style" href="{{ url('/') }}/assets/frontend/css/colors/tosca.css" />
+    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/bootstrap.min.css" />
+    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/font-icons.css" />
+    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/style.css" />
+    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/custom.css" />
+    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/colors/tosca.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/font-icons.css" />
-    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/style.css" />
-    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/custom.css" />
-    <link rel="stylesheet" href="{{ url('/') }}/assets/frontend/css/colors/tosca.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/font-icons.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/style.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/custom.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/colors/tosca.css" />
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
@@ -535,10 +535,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
     {{-- magnific css --}}
-    <link async rel="{{ url('assets/frontend') }}/css/magnific.css') }}">
+    <link async rel="{{ env('APP_CDN') }}/assets/frontend/css/magnific.css') }}">
 
     {{-- jquery --}}
-    <script async src="{{ url('assets/frontend') }}/js/jquery.min.js"></script>
+    <script async src="{{ env('APP_CDN') }}/assets/frontend/js/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
@@ -566,10 +566,10 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-6">
                             <div class="footer__logo">
-                                <a target="_self" href="{{ url('/') }}">
+                                <a target="_self" href="{{ env('APP_CDN') }}">
                                     <img class=" ls-is-cached lazyloaded"
-                                        data-src="{{ url('/') . '/storage/logo/' . get_setting('logo_web') }}"
-                                        src="{{ url('/') . '/storage/logo/' . get_setting('logo_web') }}"
+                                        data-src="{{ env('APP_CDN') . '/storage/logo/' . get_setting('logo_web') }}"
+                                        src="{{ env('APP_CDN') . '/storage/logo/' . get_setting('logo_web') }}"
                                         alt="{{ get_setting('title') }}" data-loaded="true">
                                 </a>
                             </div>
@@ -654,8 +654,8 @@
                         <div class="col-lg-5 col-md-6">
                             <div class="footer__verifikasi">
                                 <img class=" ls-is-cached lazyloaded"
-                                    data-src="{{ url('/') }}/assets/frontend/img/centang-biru.png"
-                                    src="{{ url('/') }}/assets/frontend/img/centang-biru.png" width="40"
+                                    data-src="{{ env('APP_CDN') }}/assets/frontend/img/centang-biru.png"
+                                    src="{{ env('APP_CDN') }}/assets/frontend/img/centang-biru.png" width="40"
                                     height="40" alt="PRMN Centang Biru" data-loaded="true">
                                 <p>
                                     <b>Telah Diverifikasi Dewan Pers</b>
@@ -674,13 +674,13 @@
 
     </main> <!-- end main-wrapper -->
     <!-- jQuery Scripts -->
-    <script src="{{ url('assets/frontend') }}/js/bootstrap.min.js"></script>
+    <script src="{{ env('APP_CDN') }}/assets/frontend/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/leafo/sticky-kit@v1.1.2/jquery.sticky-kit.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/modernizr.min.js"></script>
-    <script src="{{ url('assets/frontend') }}/js/scripts.js"></script>
+    <script src="{{ env('APP_CDN') }}/assets/frontend/js/modernizr.min.js"></script>
+    <script src="{{ env('APP_CDN') }}/assets/frontend/js/scripts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
     <!-- Lazyload (must be placed in head in order to work) -->

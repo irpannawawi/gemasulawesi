@@ -139,8 +139,8 @@ function get_post_image($post_id)
     }
 
     // Bangun URL dengan menggunakan Storage::url
-    $url = Storage::url('public/photos/' . $post->image->asset->file_name);
-    //$url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
+    // $url = Storage::url('public/photos/' . $post->image->asset->file_name);
+    $url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
 
     return $url;
 }
@@ -183,8 +183,8 @@ function get_post_image_jpeg($post_id)
     }
 
     // Bangun URL dengan menggunakan Storage::url
-    $url = Storage::url('public/photos/jpeg/' . $post->image->asset->file_name);
-    //$url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
+    // $url = Storage::url('public/photos/jpeg/' . $post->image->asset->file_name);
+    $url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
 
     return $url;
 }
@@ -240,7 +240,7 @@ function get_post_thumbnail($post_id)
 
         return $resizedImagePath;
     } else {
-        return Storage::url($url);
+        return env('APP_CDN'). Storage::url($url);
     }
 }
 

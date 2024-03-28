@@ -30,7 +30,7 @@
             <div class="ads__box">
                 <div class="div-gpt-ad-giant">
                     <a href="{{ $ad->link == '' ? '#' : $ad->link }}" target="__blank">
-                        <img class="lazyload" src="{{ Storage::url('ads/' . $ad->value) }}" alt="Iklan"
+                        <img class="lazyload" src="{{ env('APP_URL') . Storage::url('ads/' . $ad->value) }}" alt="Iklan"
                             style="width: {{$width}}px; ">
                     </a>
                 </div>

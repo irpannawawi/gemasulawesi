@@ -289,6 +289,12 @@
                                     <p>General</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('backup') }}" class="nav-link">
+                                    <i class="fa fa-database nav-icon"></i>
+                                    <p>Backup/Restore</p>
+                                </a>
+                            </li>
 
                             <li class="nav-item">
                                 <a href="{{ route('nav') }}" class="nav-link">

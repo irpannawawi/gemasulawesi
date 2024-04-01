@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Exception;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Sitemap\Sitemap;
 
@@ -73,6 +74,7 @@ class EditorialController extends Controller
             $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $images = $dom->getElementsByTagName('img');
             // Check if there is at least one <img> element
+            dd($images->length);
             if ($images->length > 0) {
                 // Remove the first <img> element
                 $firstImage = $images->item(0);
@@ -196,14 +198,14 @@ class EditorialController extends Controller
                 $firstImage = $images->item(0);
                 $firstImage->parentNode->removeChild($firstImage);
             }
-
+            
             // Get the modified HTML
             $modifiedHtml = $dom->saveHTML();
             $article = $modifiedHtml;
         }
-
         $article = str_replace('"../../id/', '"https://gemasulawesi.com/id/', $article);
         $article = str_replace('"../id/', '"https://gemasulawesi.com/id/', $article);
+        $article = str_replace('"../../', '"https://www.gemasulawesi.com/', $article);
         // select status published, draft or scheduled
         if ($request->is_draft == "1") {
             $status = 'draft';
@@ -252,10 +254,11 @@ class EditorialController extends Controller
         $post->post_image = $request->post_image;
 
          // save the post into the database
-
          
          // Check if the post was successfully created
          if ($post->save()) {
+            // clear cache
+            Cache::forget('post'.$post->post_id);
              if ($post->status == 'scheduled') {
                  // add update job
                  $publishDate = str_replace('T', ' ', $request->schedule_time);

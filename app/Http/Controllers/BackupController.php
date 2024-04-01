@@ -2,73 +2,89 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Backup;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\Artisan;
+use ZipArchive;
+
 class BackupController extends Controller
 {
     public function index()
     {
-        $output=null;
-        Artisan::call('backup:daily',[], $output);
-        // $backupPath = storage_path('app/backup');
-        // $backupFilename = 'backup_' . Carbon::now()->format('Y-m-d_H-i-s') . '.zip';
-        // // dump mysql 
-        // $dumpFile = storage_path('app').'/database.sql';
-        
-        // // $command = "mysqldump -h ".env('DB_HOST')." -u ".env('DB_USERNAME')." -p".env('DB_PASSWORD')." ".env('DB_DATABASE')." > ".$dumpFile;
-        // // exec($command);
-
-        // // Proses backup (contoh backup direktori storage)
-        // $command = "7z a -tzip $backupFilename " . storage_path('app');
-        // exec($command);
-
-        // // Upload backup ke S3
-        // $s3Path = 'backups/' . $backupFilename;
-        // $res = Storage::disk('s3')->put($s3Path, file_get_contents($backupFilename));
-        // // Hapus file backup lokal jika diinginkan
-        // unlink($backupFilename);
-       return response()->json(['message'=>'Daily backup completed successfully.', 'out'=>$output]);
+        return view('backup.index', ['backups'=>Backup::all()]);
     }
 
     public function make()
     {
-        $backupFilename = 'backup.zip';
-        echo('preparing to dump sql');
-        // dump mysql 
-        $dumpFile = storage_path('app').'/database.sql';
-        $command = "mysqldump -h ".env('DB_HOST')." -u gema_backup -pIndonesia1979OKE ".env('DB_DATABASE')." > ".$dumpFile;
-        exec($command);
-        echo('sql dump complete');
         
-        echo('archiving files...');
-        // Proses backup (contoh backup direktori storage)
-        $command = "zip -r $backupFilename " . storage_path('app')." && chown gema backup.zip && chmod 766 backup.zip";
-        $res = exec($command);
-        echo('complete...');
+        $time_stamp = date('d-m-Y_his');
+        if(!Storage::exists('backup'))Storage::makeDirectory('backup');
+        echo ('preparing to dump sql');
+        Artisan::call('snapshot:create database_'.$time_stamp);
         
-        echo('Moving to temp folder');
-        $tempFilePath = 'temp/backup.zip';
+        $this->zip($time_stamp);
+        ini_set('memory_limit', '5096M');
+
+        // moving database so backup storage
+        $s3Path = $time_stamp.'/database_'.$time_stamp.'.sql';
+        $res = Storage::disk('s3')->put($s3Path, file_get_contents(base_path().'/database/snapshots/database_'.$time_stamp.'.sql'));
+
+        // // moving assets so backup storage
+        $s3Path = $time_stamp.'/assets_'.$time_stamp.'.zip';
+        Storage::disk('s3')->put($s3Path, file_get_contents(base_path().'/storage/app/backup/assets_'.$time_stamp.'.zip'));
+
+ 
+        // insert log to database 
+        function human_filesize($bytes, $decimals = 2) {
+            $factor = floor((strlen($bytes) - 1) / 3);
+            if ($factor > 0) $sz = 'KMGT';
+            return sprintf("%.{$decimals}f", $bytes / pow(1024, $factor)) . @$sz[$factor - 1] . 'B';
+        }
+
+        $total_size = filesize(base_path().'/database/snapshots/database_'.$time_stamp.'.sql')+
+        filesize(base_path().'/storage/app/backup/assets_'.$time_stamp.'.zip');
+        
+        Backup::create(['name'=>$time_stamp, 'size'=>human_filesize($total_size, 1)]);
+        echo ('complete...');
         // Menyalin file lokal ke penyimpanan sementara
-        Storage::disk('temp')->put($tempFilePath, file_get_contents($backupFilename));
-        echo('Moving to temp folder complete');
+        return redirect()->back();
+    }
+
+
+    private function zip($time_stamp)
+    {
+        $zipcreated = storage_path('app/backup/assets_'.$time_stamp.'.zip');
+        $basePath = storage_path('app/');
+        $zip = new ZipArchive();
+        if($zip -> open($zipcreated, ZipArchive::CREATE ) === TRUE) { 
+
+            // Store the path into the variable 
+            foreach(Storage::allFiles('/public') as $file){
+                $zip ->addFile($basePath.$file, $file);
+            }
+
+            $zip ->close(); 
+        }
 
     }
 
-    public function upload()
+    public function delete($backupFilename)
     {
-        $backupFilename = 'backup.zip';
-        $tempFilePath = 'temp/temp/backup.zip';
+        // unlink file
+        if(file_exists(base_path().'/database/snapshots/database_'.$backupFilename.'.sql')){
+            Storage::disk('s3')->delete($backupFilename.'/database_'.$backupFilename.'.sql');
+            unlink(base_path().'/database/snapshots/database_'.$backupFilename.'.sql');
+        }
 
-        $s3Path = 'backups/' . $backupFilename;
-        Storage::disk('s3')->put($s3Path, Storage::disk('temp')->get($tempFilePath));
-        // Hapus file backup lokal jika diinginkan
-        echo('Uploading to s3 bucket complete');
-        unlink($backupFilename);
-        unlink($tempFilePath);
+        if(file_exists(base_path().'/storage/app/backup/assets_'.$backupFilename.'.zip')){
+            unlink(base_path().'/storage/app/backup/assets_'.$backupFilename.'.zip');   
+        }
 
-        echo('Daily backup completed successfully.');
+        // remove daatabase
+        Backup::where('name', $backupFilename)->delete();
+        return redirect()->back();
     }
 }

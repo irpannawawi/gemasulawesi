@@ -24,101 +24,101 @@
                 data</a>
             <a class="btn border btn-xs" href="{{ route('editorial.published') }}"><i class="fa fa-sync"></i>
                 Refresh</a>
-                <a href="#" class="btn border btn-xs float-right" id="filter-btn">Seaarch/Filter</a>
-                <div class="row" id="filter-post">
-                    <div class="col-12 border-top border-primary mt-3 mb-0 p-0">
-                    </div>
-                    <div class="col-12 float-right mt-0 p-0">
-                        <div class="row">
-                            <div class="col-3">
-                                <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formDate" method="GET">
-                                    @csrf
-                                    <label for="dates">Date Range</label>
-                                    <input type="text" name="dates" class="input-sm form-control" value=""
-                                        placeholder="MM/DD/YYYY - MM/DD/YYYY" autocomplete="off">
-    
-                                    <input type="hidden" name="q"
-                                        value="{{ !empty(request()->get('q')) ? request()->get('q') : '' }}">
-                                    <input type="hidden" name="author"
-                                        value="{{ !empty(request()->get('author')) ? request()->get('author') : '' }}">
-                                    <input type="hidden" name="rubrik"
-                                        value="{{ !empty(request()->get('rubrik')) ? request()->get('rubrik') : '' }}">
-                                </form>
-                            </div>
-                            <div class="col-9">
-                                <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
-                                    @csrf
-                                    <input type="hidden" name="dates"
-                                        value="{{ !empty(request()->get('dates')) ? request()->get('dates') : '' }}">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label for="filter-author">Penulis</label>
-                                            <div class="input-group-append">
-                                                <select name="author" id="authorSelect" class="form-control">
-                                                    @php
-                                                        $authors = \App\Models\User::whereIn('role', [
-                                                            'author',
-                                                            'editor',
-                                                            'admin',
-                                                        ])->get();
-                                                        $authorId = !empty(request()->query('author'))
-                                                            ? request()->query('author')
-                                                            : '';
-                                                    @endphp
-                                                    <option {{ @$authorId == '' ? 'selected' : '' }} value="">All
+            <a href="#" class="btn border btn-xs float-right" id="filter-btn">Seaarch/Filter</a>
+            <div class="row" id="filter-post">
+                <div class="col-12 border-top border-primary mt-3 mb-0 p-0">
+                </div>
+                <div class="col-12 float-right mt-0 p-0">
+                    <div class="row">
+                        <div class="col-3">
+                            <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formDate" method="GET">
+                                @csrf
+                                <label for="dates">Date Range</label>
+                                <input type="text" name="dates" class="input-sm form-control" value=""
+                                    placeholder="MM/DD/YYYY - MM/DD/YYYY" autocomplete="off">
+
+                                <input type="hidden" name="q"
+                                    value="{{ !empty(request()->get('q')) ? request()->get('q') : '' }}">
+                                <input type="hidden" name="author"
+                                    value="{{ !empty(request()->get('author')) ? request()->get('author') : '' }}">
+                                <input type="hidden" name="rubrik"
+                                    value="{{ !empty(request()->get('rubrik')) ? request()->get('rubrik') : '' }}">
+                            </form>
+                        </div>
+                        <div class="col-9">
+                            <form action="{{ $_SERVER['REQUEST_URI'] }}" id="formSearch">
+                                @csrf
+                                <input type="hidden" name="dates"
+                                    value="{{ !empty(request()->get('dates')) ? request()->get('dates') : '' }}">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <label for="filter-author">Penulis</label>
+                                        <div class="input-group-append">
+                                            <select name="author" id="authorSelect" class="form-control">
+                                                @php
+                                                    $authors = \App\Models\User::whereIn('role', [
+                                                        'author',
+                                                        'editor',
+                                                        'admin',
+                                                    ])->get();
+                                                    $authorId = !empty(request()->query('author'))
+                                                        ? request()->query('author')
+                                                        : '';
+                                                @endphp
+                                                <option {{ @$authorId == '' ? 'selected' : '' }} value="">All
+                                                </option>
+                                                @foreach ($authors as $author)
+                                                    <option {{ @$authorId == $author->id ? 'selected' : '' }}
+                                                        value="{{ $author->id }}">{{ $author->display_name }}
                                                     </option>
-                                                    @foreach ($authors as $author)
-                                                        <option {{ @$authorId == $author->id ? 'selected' : '' }}
-                                                            value="{{ $author->id }}">{{ $author->display_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <label for="filter-rubrik">Rubrik</label>
-                                            <div class="input-group-append">
-                                                <select name="rubrik" id="rubrikSelect" class="form-control">
-                                                    @php
-                                                        $rubriks = \App\Models\Rubrik::all();
-                                                        $rubrikId = !empty(request()->query('rubrik'))
-                                                            ? request()->query('rubrik')
-                                                            : '';
-                                                    @endphp
-                                                    <option {{ @$rubrikId == '' ? 'selected' : '' }} value="">All
-                                                    </option>
-                                                    @foreach ($rubriks as $rubrik)
-                                                        <option {{ @$rubrikId == $rubrik->rubrik_id ? 'selected' : '' }}
-                                                            value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <label for="q">Search</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" placeholder="Search"
-                                                    name="q" aria-label="Search" aria-describedby="basic-addon1">
-                                                <div class="input-group-prepend">
-                                                    <button class="input-group-text btn btn-default" id="basic-addon1"><i
-                                                            class="fa fa-search"></i></button>
-                                                </div>
-                                            </div>
-                                            <small>
-                                                @if (!empty(request()->query('q')))
-                                                    Search for <b>{{ request()->query('q') }}</b>
-                                                @endif
-                                            </small>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                                    <div class="col-4">
+                                        <label for="filter-rubrik">Rubrik</label>
+                                        <div class="input-group-append">
+                                            <select name="rubrik" id="rubrikSelect" class="form-control">
+                                                @php
+                                                    $rubriks = \App\Models\Rubrik::all();
+                                                    $rubrikId = !empty(request()->query('rubrik'))
+                                                        ? request()->query('rubrik')
+                                                        : '';
+                                                @endphp
+                                                <option {{ @$rubrikId == '' ? 'selected' : '' }} value="">All
+                                                </option>
+                                                @foreach ($rubriks as $rubrik)
+                                                    <option {{ @$rubrikId == $rubrik->rubrik_id ? 'selected' : '' }}
+                                                        value="{{ $rubrik->rubrik_id }}">{{ $rubrik->rubrik_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="q">Search</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Search"
+                                                name="q" aria-label="Search" aria-describedby="basic-addon1">
+                                            <div class="input-group-prepend">
+                                                <button class="input-group-text btn btn-default" id="basic-addon1"><i
+                                                        class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                        <small>
+                                            @if (!empty(request()->query('q')))
+                                                Search for <b>{{ request()->query('q') }}</b>
+                                            @endif
+                                        </small>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <small>Showing {{ $posts->firstItem() }} to {{ $posts->lastItem() }} of {{ $posts->total() }}
-                        entries</small>
                 </div>
+                <small>Showing {{ $posts->firstItem() }} to {{ $posts->lastItem() }} of {{ $posts->total() }}
+                    entries</small>
+            </div>
 
         </div>
         <div class="card-body table-responsive p-3">
@@ -168,7 +168,7 @@
                             <td class="table-value" class="text-left">{{ $post->title }} <a target="__blank"
                                     rel="noreferrer"
                                     href="{{ route('singlePost', [
-                                        'rubrik' => str_replace(' ', '-', $post->rubrik->rubrik_name),
+                                        'rubrik' => Str::slug($post->rubrik->rubrik_name),
                                         'post_id' => $post->post_id,
                                         'slug' => $post->slug,
                                     ]) }}"><i

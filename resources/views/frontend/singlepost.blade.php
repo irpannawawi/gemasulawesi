@@ -36,8 +36,8 @@
                             </li>
                         </ul>
                     </div>
-                    
-                    <x-ad-item position='below_heading' :width="970" :height="250"/>
+
+                    <x-ad-item position='below_heading' :width="970" :height="250" />
                     <div class="social-post socials--medium socials--rounded">
                         <a href="#" target="_blank" class="social social-facebook" id="share-facebook-top"
                             aria-label="facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -121,15 +121,19 @@
                                     <div class="halaman__wrap">
                                         @for ($i = 1; $i <= $totalPages; $i++)
                                             @php
-                                                $pg = $i ==1?null:1;
+                                                $pg = $i == 1 ? null : 1;
                                             @endphp
                                             <div class="halaman__item">
-                                                <a href="{{ Str::replace('?page=1','',route('singlePost', [
-                                                    'rubrik' => Str::slug($post->rubrik->rubrik_name),
-                                                    'post_id' => $post->post_id,
-                                                    'slug' => $post->slug,
-                                                    'page' => $i,
-                                                ])) }}"
+                                                <a href="{{ Str::replace(
+                                                    '?page=1',
+                                                    '',
+                                                    route('singlePost', [
+                                                        'rubrik' => Str::slug($post->rubrik->rubrik_name),
+                                                        'post_id' => $post->post_id,
+                                                        'slug' => $post->slug,
+                                                        'page' => $i,
+                                                    ]),
+                                                ) }}"
                                                     class="pagination__page {{ $currentPage == $i ? 'pagination__page--current' : '' }}">
                                                     {{ $i }}
                                                 </a>
@@ -161,12 +165,12 @@
                                 @if ($post->sources != null)
                                     <!-- Sources -->
                                     <div class="editor__text">
-                                        <span class="entry__tags-label">Sumber: 
+                                        <span class="entry__tags-label">Sumber:
                                             @php
                                                 if ($post->sources != null and $post->sources != 'null') {
                                                     foreach (json_decode($post->sources) as $source) {
                                                         $source = \App\Models\Source::find($source);
-                                                        echo $source->source_name. ' ';
+                                                        echo $source->source_name . ' ';
                                                     }
                                                 }
                                             @endphp
@@ -181,11 +185,19 @@
                                     @php
                                         if ($post->tags != null and $post->tags != 'null') {
                                             foreach (json_decode($post->tags) as $tags) {
-                                                $tag = cache()->remember('tags'.$tags, env('CACHE_DURATION'), function() use ($tags){
-                                                    return \App\Models\Tags::find($tags);
-                                                }); 
-                                                if($tag){
-                                                    echo '<a href="' . route('tags', ['tag_name' => Str::slug($tag->tag_name)]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                $tag = cache()->remember(
+                                                    'tags' . $tags,
+                                                    env('CACHE_DURATION'),
+                                                    function () use ($tags) {
+                                                        return \App\Models\Tags::find($tags);
+                                                    },
+                                                );
+                                                if ($tag) {
+                                                    echo '<a href="' .
+                                                        route('tags', ['tag_name' => Str::slug($tag->tag_name)]) .
+                                                        '" rel="tag">' .
+                                                        $tag->tag_name .
+                                                        '</a>';
                                                 }
                                             }
                                         }
@@ -243,19 +255,23 @@
                         <ul class="terkait__list">
                             @foreach (json_decode($post->related_articles) as $related)
                                 @php
-                                    $related = cache()->remember('related'.$related, env('CACHE_DURATION'), function() use($related){
-                                        return \App\Models\Posts::with(['rubrik'])->find($related);
-                                    }); 
+                                    $related = cache()->remember(
+                                        'related' . $related,
+                                        env('CACHE_DURATION'),
+                                        function () use ($related) {
+                                            return \App\Models\Posts::with(['rubrik'])->find($related);
+                                        },
+                                    );
                                 @endphp
                                 <li>
                                     <h2 class="terkait__title">
-                                        @if($related)
-                                        <a href="{{ route('singlePost', [
-                                            'rubrik' => Str::slug($related->rubrik->rubrik_name),
-                                            'post_id' => $related->post_id,
-                                            'slug' => $related->slug,
-                                        ]) }}"
-                                            class="terkait__link">{{ $related->title }}</a>
+                                        @if ($related)
+                                            <a href="{{ route('singlePost', [
+                                                'rubrik' => Str::slug($related->rubrik->rubrik_name),
+                                                'post_id' => $related->post_id,
+                                                'slug' => $related->slug,
+                                            ]) }}"
+                                                class="terkait__link">{{ $related->title }}</a>
                                         @endif
                                     </h2>
                                 </li>

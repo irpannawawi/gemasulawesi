@@ -53,10 +53,7 @@ Route::get('/sitemap', [SitemapController::class, 'generate']);
 Route::get('/share', [FacebookController::class, 'share']);
 Route::get('/shareL', [LinkedinController::class, 'share']);
 Route::get('/sharex', [XController::class, 'shareX']);
-// Route::get('/share', [ApiController::class, 'share']);
-Route::get('/backup/{usr}/{pass}', [BackupController::class, 'index']);
-Route::get('/make_backup', [BackupController::class, 'make']);
-Route::get('/upload_backup', [BackupController::class, 'upload']);
+
 
 
 
@@ -142,6 +139,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/video/edit/{id}', [VideoController::class, 'edit'])->name('assets.video.edit');
     Route::put('/video/edit', [VideoController::class, 'update'])->name('assets.video.update');
     Route::get('/video/delete/{id}', [VideoController::class, 'delete'])->name('assets.video.delete');
+
+    // backup
+    Route::get('/backup', [BackupController::class, 'index'])->name('backup');
+    Route::get('/make_backup', [BackupController::class, 'make'])->name('backup.create');
+    Route::get('/delete_backup/{backupFilename}', [BackupController::class, 'delete'])->name('backup.delete');
+    Route::get('/upload_backup', [BackupController::class, 'upload']);
+    
+    
 });
 
 

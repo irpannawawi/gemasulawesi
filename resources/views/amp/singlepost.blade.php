@@ -108,8 +108,16 @@
 
                                     $bagian1 = str_replace('<iframe', '<amp-iframe', $bagian1);
                                     $bagian2 = str_replace('<iframe', '<amp-iframe', $bagian2);
-                                    $bagian1 = str_replace('<amp-iframe', '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian1);
-                                    $bagian2 = str_replace('<amp-iframe', '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ', $bagian2);
+                                    $bagian1 = str_replace(
+                                        '<amp-iframe',
+                                        '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ',
+                                        $bagian1,
+                                    );
+                                    $bagian2 = str_replace(
+                                        '<amp-iframe',
+                                        '<amp-iframe sandbox="allow-scripts allow-same-origin" layout="responsive" frameborder="0" ',
+                                        $bagian2,
+                                    );
 
                                 @endphp
 
@@ -160,7 +168,7 @@
 
                                 <div class="editor__text">
                                     <span>Penulis: <a
-                                            href="{{ route('author', ['id' => $post->author_id, 'name' => $post->author->display_name]) }}">{{ $post->author->display_name }}</a></span>
+                                            href="{{ route('author', ['id' => $post->author_id, 'name' => Str::slug($post->author->display_name)]) }}">{{ $post->author->display_name }}</a></span>
                                 </div>
 
                                 <!-- tags -->
@@ -172,7 +180,11 @@
                                             foreach (json_decode($post->tags) as $tags) {
                                                 $tag = \App\Models\Tags::find($tags);
                                                 if ($tag) {
-                                                    echo '<a href="' . route('tags', ['tag_name' => Str::slug($tag->tag_name)]) . '" rel="tag">' . $tag->tag_name . '</a>';
+                                                    echo '<a href="' .
+                                                        route('tags', ['tag_name' => Str::slug($tag->tag_name)]) .
+                                                        '" rel="tag">' .
+                                                        $tag->tag_name .
+                                                        '</a>';
                                                 }
                                             }
                                         }
@@ -209,14 +221,14 @@
                                     $related = \App\Models\Posts::find($related);
                                 @endphp
                                 <li>
-                                    @if($related)
-                                    <a href="{{ route('singlePost', [
-                                        'rubrik' => Str::slug($related->rubrik->rubrik_name),
-                                        'post_id' => $related->post_id,
-                                        'slug' => $related->slug,
-                                    ]) }}"
-                                        class="terkait__link">{{ $related->title }}</a>
-                                        @endif
+                                    @if ($related)
+                                        <a href="{{ route('singlePost', [
+                                            'rubrik' => Str::slug($related->rubrik->rubrik_name),
+                                            'post_id' => $related->post_id,
+                                            'slug' => $related->slug,
+                                        ]) }}"
+                                            class="terkait__link">{{ $related->title }}</a>
+                                    @endif
                                 </li>
                             @endforeach
                         </ol>

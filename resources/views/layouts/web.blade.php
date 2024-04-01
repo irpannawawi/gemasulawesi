@@ -19,15 +19,42 @@
             $type = 'website';
             $author = '';
         } elseif (request()->is('category/*')) {
-            $metaTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
-            $metaDeskripsi =
-                'Berita ' . $rubrik_name . ' Terbaru Hari Ini, Menyajikan Berita dan Kabar Terkini ' . $rubrik_name;
+            $postTitle = 'Berita Seputar ' . $rubrik_name . ' Hari Ini' . ' - ' . $subTitle;
+            $page = request()->query('page');
+            $pageSuffix = '';
+            if ($page > 1) {
+                $pageSuffix = $page ? ' - Halaman ' . $page : '';
+            }
+
+            $metaTitle = $postTitle . $pageSuffix;
+            $metaDeskripsi = $rubrik_name;
+            $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
+            $type = 'website';
+            $author = '';
+        } elseif (request()->is('author/*')) {
+            $postTitle =
+                'Berita Penulis ' . $post->author?->display_name . ' Terbaru dan Terkini Hari Ini' . ' - ' . $subTitle;
+            $page = request()->query('page');
+            $pageSuffix = '';
+            if ($page > 1) {
+                $pageSuffix = $page ? ' - Halaman ' . $page : '';
+            }
+
+            $metaTitle = $postTitle . $pageSuffix;
+            $metaDeskripsi = 'Gema Sulawesi ';
             $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('tags/*')) {
-            $metaTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini';
-            $metaDeskripsi = 'Berita ' . $tag_name . ' Terbaru dan Terkini ';
+            $postTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini' ?? '';
+            $page = request()->query('page');
+            $pageSuffix = '';
+            if ($page > 1) {
+                $pageSuffix = $page ? ' - Halaman ' . $page : '';
+            }
+
+            $metaTitle = $postTitle . $pageSuffix;
+            $metaDeskripsi = 'Berita ' . $tag_name . ' Terbaru dan Terkini' . $pageSuffix;
             $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
@@ -92,7 +119,8 @@
     {{-- periksa apakah terdaat headline --}}
     @if (isset($headlineWp))
         @foreach ($headlineWp as $headline)
-            <link rel="preload" href="{{ env('APP_CDN') . '/storage/photos/' . $headline->post->image->asset->file_name }}"
+            <link rel="preload"
+                href="{{ env('APP_CDN') . '/storage/photos/' . $headline->post->image->asset->file_name }}"
                 as="image">
         @endforeach
     @endif
@@ -129,20 +157,20 @@
     <meta http-equiv="content-language" content="In-Id" />
     <meta content="{{ url()->full() }}" itemprop="url" />
     <meta charset="utf-8">
+
+    <!-- o: open graph -->
     <meta property="og:type" content="{{ $type }}" />
     <meta property="og:url" content="{{ url()->full() }}" />
     <meta property="og:title" content="{{ $metaTitle }}" />
     <meta property="og:description" content="{{ $metaDeskripsi }}" />
     <meta property="og:site_name" content="{{ $metaTitle }}" />
     <meta property="og:image" content="{{ $metaImage }}" />
-    {{-- <meta property="og:image:width" content="1200" /> Causing an error --}}
-    {{-- <meta property="og:image:height" content="630" /> Causing an error --}}
     <meta property="fb:app_id" content="" />
     <meta property="fb:pages" content="" />
     <meta property="article:author" content="{{ @$author }}">
     <meta property="article:section" content="{{ @$category }}">
-    <!-- e: open graph -->
-
+    {{-- <meta property="og:image:width" content="1200" /> Causing an error --}}
+    {{-- <meta property="og:image:height" content="630" /> Causing an error --}}
     <!-- dable -->
     <meta property="dable:item_id" content="{{ @$post_id }}">
     <meta property="dable:author" content="{{ @$author }}">
@@ -267,6 +295,22 @@
                     "editor_id": "All"
                 }];
             </script>
+        @elseif (request()->is('author/*'))
+            <script>
+                dataLayer = [{
+                    "published_date": "All",
+                    "rubrik": "All",
+                    "penulis": "All",
+                    "editor": "All",
+                    "id": "All",
+                    "type": "All",
+                    "source": "Not Available",
+                    "topic": "Not Available",
+                    "tag": "Berita, {{ $author }} , Terbaru, Terkini, Hari Ini",
+                    "penulis_id": "All",
+                    "editor_id": "All"
+                }];
+            </script>
         @elseif (request()->is('galery'))
             <script>
                 dataLayer = [{
@@ -334,7 +378,9 @@
                 '@type' => 'WebPage',
                 'headline' => $metaTitle,
                 'url' => url()->full(),
-                'datePublished' => $post->published_at . ' WITA',
+                'datePublished' => Carbon::parse($post->published_at)
+                    ->setTimezone('UTC')
+                    ->format('Y-m-d\TH:i:sP'),
                 'image' => $image,
                 'thumbnailUrl' => $image,
             ];
@@ -368,12 +414,27 @@
             }
         @endphp
 
+        {{-- Artikel --}}
         @php
-            $excludedUrls = ['search/', 'indeks-berita/', 'topik-khusus/detail/*', 'tentang-kami', 'kode-etik'];
+            $currentUrl = url()->current();
+            $baseUrl = url('/');
 
-            $shouldDisplayJsonLD = true;
-            foreach ($excludedUrls as $url) {
-                if (str_contains(request()->url(), $url)) {
+            // Mengecualikan base URL
+            $shouldDisplayJsonLD = $currentUrl !== $baseUrl;
+
+            // Mengecualikan URL yang Anda inginkan
+            $excludedUrls = [
+                '/search*',
+                '/indeks-berita*',
+                '/topik-khusus*',
+                '/tentang-kami',
+                '/kode-etik',
+                '/category*',
+                '/gallery*',
+            ];
+
+            foreach ($excludedUrls as $excludedUrl) {
+                if (str_starts_with($currentUrl, $excludedUrl)) {
                     $shouldDisplayJsonLD = false;
                     break;
                 }
@@ -387,19 +448,21 @@
                     '@type' => 'NewsArticle',
                     'mainEntityOfPage' => [
                         '@type' => 'WebPage',
-                        '@id' => url()->full(),
+                        '@id' => $currentUrl,
                     ],
                     'headline' => $metaTitle,
                     'image' => [
                         '@type' => 'ImageObject',
                         'url' => $image,
                     ],
-                    'datePublished' => $post->published_at . ' WITA',
-                    'dateModified' => Carbon::parse($post->updated_at)->format('Y-m-d H:i:s') . ' WITA',
+                    'datePublished' => Carbon::parse($post->published_at)->format('Y-m-d\TH:i:sP'),
+                    'dateModified' => Carbon::parse($post->updated_at)
+                        ->setTimezone('UTC')
+                        ->format('Y-m-d\TH:i:sP'),
                     'author' => [
                         '@type' => 'Person',
-                        'url' => url()->full(),
                         'name' => @$author,
+                        'url' => $currentUrl,
                     ],
                     'publisher' => [
                         '@type' => 'Organization',

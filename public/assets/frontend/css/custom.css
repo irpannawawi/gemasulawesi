@@ -1543,3 +1543,17 @@ iframe {
     background-color: #000; /* Warna ungu tua */
     background-image: linear-gradient(to left, #000, #8a0096);
 }
+
+@media only screen and (max-width: 760px) {
+    .nav--colored .nav__holder {
+        background-color: #fff;
+        background-image: none;
+    }
+    .nav-mobile-container {
+        background-color: #000; /* Warna ungu tua */
+        background-image: linear-gradient(to left, #000, #8a0096);
+    }
+    .nav-link-mobile:hover {
+        color: #fff;
+    }
+}

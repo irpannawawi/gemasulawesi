@@ -5389,9 +5389,6 @@ header .flex-child {
     color: #f1efef;
 }
 
-@media only screen and (max-width: 480px) {
-}
-
 .nav--colored .nav-icon-toggle__inner,
 .nav--colored .nav-icon-toggle__inner:before,
 .nav--colored .nav-icon-toggle__inner:after,

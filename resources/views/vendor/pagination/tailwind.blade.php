@@ -28,8 +28,13 @@
                                 <a href="javascript:;" class="paging__link paging__link--active">{{ $page }}</a>
                             </div>
                         @else
+                            @php
+                                $cleanUrl = Str::contains($url, '?page=1')
+                                    ? Str::replaceFirst('?page=1', '', $url)
+                                    : $url;
+                            @endphp
                             <div class="paging__item">
-                                <a href="{{ Str::replace('?page=1', '', $url) }} {{ isset($_GET['start_date']) ? '&start_date=' . $_GET['start_date'] . '&end_date=' . $_GET['end_date'] : '' }}"
+                                <a href="{{ $cleanUrl }} {{ isset($_GET['start_date']) ? '&start_date=' . $_GET['start_date'] . '&end_date=' . $_GET['end_date'] : '' }}"
                                     class="paging__link">{{ $page }}</a>
                             </div>
                         @endif

@@ -1471,9 +1471,9 @@ iframe {
 
 .nav-mobile-dropdown {
     width: inherit;
+    top: 154px;
     position: absolute;
     background-color: #fff;
-    border-radius: 8px;
     overflow: visible;
     display: none;
     left: 0;

@@ -32,8 +32,8 @@
             $type = 'website';
             $author = '';
         } elseif (request()->is('author/*')) {
-            $postTitle =
-                'Berita Penulis ' . $post->author?->display_name . ' Terbaru dan Terkini Hari Ini' . ' - ' . $subTitle;
+            $author_name = $post->author?->display_name;
+            $postTitle = "Berita Penulis $author_name Terbaru dan Terkini Hari Ini - $subTitle";
             $page = request()->query('page');
             $pageSuffix = '';
             if ($page > 1) {
@@ -41,7 +41,7 @@
             }
 
             $metaTitle = $postTitle . $pageSuffix;
-            $metaDeskripsi = 'Gema Sulawesi ';
+            $metaDeskripsi = "Indeks Halaman Timeline Berita Terbaru $author_name Penulis Media Nasional di www.gemasulawesi.com$pageSuffix";
             $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';

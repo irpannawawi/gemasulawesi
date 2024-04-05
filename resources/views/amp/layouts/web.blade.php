@@ -19,7 +19,7 @@
         $subTitle = $subTitle;
         $page = request()->query('page');
         $pageSuffix = '';
-        if ($page>1) {
+        if ($page > 1) {
             $pageSuffix = $page ? ' - Halaman ' . $page : '';
         }
         $metaTitle = $postTitle . ' - ' . $subTitle . $pageSuffix;
@@ -2610,14 +2610,47 @@
                 'published_date' => $post->published_at,
                 'rubrik' => $post->rubrik->rubrik_name,
                 'penulis' => $post->author->display_name,
-                'editor' => '',
-                'id' => $post->post_id,
+                'editor' => $post->editor->display_name,
+                'id' => "$post->post_id",
                 'source' => '',
                 'topic' => '',
-                'tag' => $post->tags,
-                'penulis_id' => $post->author->author_id,
-                'editor_id' => $post->author->editor_id,
+                'tag' => implode(', ', $tagNames),
+                'penulis_id' => "$post->author_id",
+                'editor_id' => "$post->editor_id",
+            ]
+        ];
+        $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
+        echo '<script type="application/json">' . $jsonLD . '</script>';
+    @endphp
+    </amp-analytics>
+
+    <amp-analytics type="googleanalytics" config="https://amp.analytics-debugger.com/ga4.json" data-credentials="include">
+    @php
+        $jsonLDData = [
+            'vars' => [
+                'GA4_MEASUREMENT_ID' => "G-E4E99NJFQY",
+                'GA4_ENDPOINT_HOSTNAME' => "amp-analytics-debugger.com",
+                'DEFAULT_PAGEVIEW_ENABLED' => true,
+                'GOOGLE_CONSENT_ENABLED' => false,
+                'WEBVITALS_TRACKING' => false,
+                'PERFORMANCE_TIMING_TRACKING' => false,
+                'SEND_DOUBLECLICK_BEACON' => false,
+                'ENABLE_REGIONAL_DATA_COLLECTION' => true
             ],
+            'extraUrlParams' => [
+                'event__str_publish_date' => $post->published_at,
+                'event__str_rubrik' => $post->rubrik->rubrik_name,
+                'event__str_penulis' => $post->author->display_name,
+                'event__str_editor' => $post->editor->display_name,
+                'event__str_id' => "$post->post_id",
+                'event__str_sumber_artikel' => "",
+                'event__str_topic' => "",
+                'event__str_tag' => implode(', ', $tagNames),
+                'event__str_penulis_id' => "$post->author_id",
+                'event__str_editor_id' => "$post->editor_id",
+                'event__str_page_title' => $post->title,
+                'event__str_amp' => url()->full()
+            ]
         ];
         $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
         echo '<script type="application/json">' . $jsonLD . '</script>';

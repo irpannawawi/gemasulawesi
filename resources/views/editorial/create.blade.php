@@ -474,7 +474,13 @@
                     localStorage.removeItem('tinymce-autosave-/editorial/create-content-time')
                     localStorage.removeItem('tinymce-autosave-/editorial/create-content-draft')
                     $('#article-form').submit()
+                    $('#publishBtn').addClass('disabled')
+                    setTimeout(() => {
+                        $('#publishBtn').removeClass('disabled')
+                    }, 30000)
                 })
+                
+                
 
                 // schedule time
                 var checkbox_schedule = $('#schedule')

@@ -35,14 +35,10 @@
             $author_name = $post->author?->display_name;
             $postTitle = "Berita Penulis $author_name Terbaru dan Terkini Hari Ini - $subTitle";
             $page = request()->query('page');
-            $metaDeskripsi = "Berita Penulis $author_name Terbaru dan Terkini Hari Ini - $subTitle";
-            $pageSuffix = '';
-            if ($page > 1) {
-                $pageSuffix = $page ? ' - Halaman ' . $page : '';
-            }
+            $pageSuffix = $page && $page > 1 ? " - Halaman $page" : '';
 
             $metaTitle = $postTitle . $pageSuffix;
-            $metaDeskripsi = "Indeks Halaman Timeline Berita Terbaru $author_name Penulis Media Nasional di www.gemasulawesi.com$pageSuffix";
+            $metaDeskripsi = $post->description . $pageSuffix;
             $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';

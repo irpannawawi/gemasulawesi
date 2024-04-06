@@ -120,19 +120,6 @@
                         ],
                     ],
                     'description' => $metaDeskripsi,
-                    'vars' => [
-                        'published_date' => $post->published_at,
-                        'rubrik' => $post->rubrik->rubrik_name,
-                        'penulis' => $post->author->display_name,
-                        'editor' => $post->editor->display_name,
-                        'id' => "$post->post_id",
-                        'type' => 'Standard',
-                        'source' => '',
-                        'topic' => '',
-                        'tag' => implode(', ', $tagNames),
-                        'penulis_id' => "$post->author_id",
-                        'editor_id' => "$post->editor_id",
-                    ],
                 ];
                 $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
                 echo '<script type="application/ld+json">
@@ -2595,8 +2582,6 @@
                 margin-left: 0px;
                 background-size: 100%;
                 background-position: 0vw 20vh;
-
-
             }
         }
     </style>
@@ -2604,7 +2589,7 @@
 
 <body class="style-politics">
     <!-- Google Tag Manager -->
-    <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F" data-credentials="include" />
+    {{-- <amp-analytics config="https://www.googletagmanager.com/amp.json?id=GTM-NGZBR9F" data-credentials="include" />
     @php
         $jsonLDData = [
             'vars' => [
@@ -2656,8 +2641,7 @@
         $jsonLD = json_encode($jsonLDData, JSON_PRETTY_PRINT);
         echo '<script type="application/json">' . $jsonLD . '</script>';
     @endphp
-
-    </amp-analytics>
+    </amp-analytics> --}}
 
     <!-- Google Ads -->
     {{-- <amp-auto-ads type="adsense" data-ad-client="ca-pub-7210727750015750"></amp-auto-ads> --}}

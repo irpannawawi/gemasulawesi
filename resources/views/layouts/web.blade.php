@@ -582,7 +582,7 @@
     <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/font-icons.css" />
     <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/style.min.css" />
     <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/custom.min.css" />
-    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/colors/tosca.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/colors/tosca.min.css" />
 
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">

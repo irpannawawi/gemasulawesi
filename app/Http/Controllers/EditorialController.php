@@ -74,7 +74,6 @@ class EditorialController extends Controller
             $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $images = $dom->getElementsByTagName('img');
             // Check if there is at least one <img> element
-            dd($images->length);
             if ($images->length > 0) {
                 // Remove the first <img> element
                 $firstImage = $images->item(0);

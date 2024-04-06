@@ -1,7 +1,7 @@
 @extends('layouts.web')
 @section('content')
     <div class="main-container container" id="main-container">
-
+        
         <!-- Content -->
         <div class="row row-20">
 

@@ -35,6 +35,7 @@
             $author_name = $post->author?->display_name;
             $postTitle = "Berita Penulis $author_name Terbaru dan Terkini Hari Ini - $subTitle";
             $page = request()->query('page');
+            $metaDeskripsi = "Berita Penulis $author_name Terbaru dan Terkini Hari Ini - $subTitle";
             $pageSuffix = '';
             if ($page > 1) {
                 $pageSuffix = $page ? ' - Halaman ' . $page : '';

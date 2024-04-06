@@ -79,14 +79,15 @@
                 $postTitle = $post->title ?? '';
 
                 $tagNames = [];
-
-                foreach (json_decode($post->tags) as $tagId) {
-                    $tag = cache()->remember('tags' . $tagId, env('CACHE_DURATION'), function () use ($tagId) {
-                        return \App\Models\Tags::find($tagId);
-                    });
-
-                    if ($tag) {
-                        $tagNames[] = $tag->tag_name;
+                if($post->tags!=null){
+                    foreach (json_decode($post->tags) as $tagId) {
+                        $tag = cache()->remember('tags' . $tagId, env('CACHE_DURATION'), function () use ($tagId) {
+                            return \App\Models\Tags::find($tagId);
+                        });
+    
+                        if ($tag) {
+                            $tagNames[] = $tag->tag_name;
+                        }
                     }
                 }
                 $jsonLDData = [

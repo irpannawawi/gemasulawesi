@@ -229,7 +229,7 @@
                         </div>
 
                     </section> <!-- end related posts -->
-                    <x-ad-item position='below_heading' />
+                    <x-ad-item position='below_heading' :width="970" :height="250" />
 
                 </article> <!-- end standard post -->
 
@@ -330,7 +330,7 @@
 
         </div>
         <div class="col-lg-8">
-            <x-ad-item position='footer' />
+            <x-ad-item position='footer' :width="970" :height="250" />
         </div>
     </div>
 @endsection

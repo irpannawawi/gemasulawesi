@@ -12,7 +12,10 @@ class AmpAds extends Component
      * Create a new component instance.
      */
     public function __construct(public string $position,
-    public string $num='')
+    public string $num='', 
+    public string $width='',
+    public string $height='',
+    )
     {
         //
     }

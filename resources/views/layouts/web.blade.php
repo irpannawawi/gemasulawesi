@@ -577,15 +577,15 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/bootstrap.min.css" />
     <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/font-icons.css" />
-    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/style.css" />
-    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/custom.css" />
+    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/style.min.css" />
+    <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/custom.min.css" />
     <link rel="preload" as="style" href="{{ env('APP_CDN') }}/assets/frontend/css/colors/tosca.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/font-icons.css" />
-    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/style.css" />
-    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/custom.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/style.min.css" />
+    <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/custom.min.css" />
     <link rel="stylesheet" href="{{ env('APP_CDN') }}/assets/frontend/css/colors/tosca.css" />
 
     <!-- Favicons -->

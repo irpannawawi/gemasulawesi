@@ -11,7 +11,7 @@
 
             <!-- post content -->
             <div class="col-lg-8 blog__content mb-3">
-                <x-amp-ads position='above_content' />
+                <x-amp-ads position='above_content' :width="970" :height="250" />
 
                 <ul class="breadcrumbs">
                     <li class="breadcrumbs__item">
@@ -42,7 +42,7 @@
                             </li>
                         </ul>
                     </div>
-                    <x-amp-ads position='below_heading' />
+                    <x-amp-ads position='below_heading' :width="970" :height="250" />
 
                     <!-- Entry Image -->
                     <div class="thumb image-single-post">

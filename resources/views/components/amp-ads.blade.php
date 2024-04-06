@@ -31,9 +31,8 @@
                         <amp-img layout="responsive"
                          src="{{ Storage::url('ads/' . $ad->value) }}" 
                          alt="Iklan" 
-                         height="260"
-                         width="480"
-                         style="width:100%;"></amp-img>
+                         height="150"
+                         width="480"></amp-img>
                     </a>
                 </div>
             </div>

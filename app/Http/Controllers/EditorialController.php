@@ -177,6 +177,7 @@ class EditorialController extends Controller
 
     public function update(Request $request, $id)
     {
+        cache()->forget('posts'.$id);
         $request->validate([
             'title' => 'required|max:140',
             'description' => 'required|max:140|min:100',

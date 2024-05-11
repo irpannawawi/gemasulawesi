@@ -36,6 +36,10 @@
             $metaTitle = 'Redaksi';
             $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = Storage::url('logo/') . get_setting('logo_web');
+        }elseif (request()->is('gallery')) {
+            $metaTitle = 'Gallery';
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
+            $metaImage = Storage::url('logo/') . get_setting('logo_web');
         } elseif (request()->is('kode-perilaku-pers')) {
             $metaTitle = 'Kode  Prilaku Pers';
             $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;

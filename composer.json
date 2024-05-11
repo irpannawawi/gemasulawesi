@@ -7,6 +7,12 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/OneSignal/onesignal-php-api.git"
+        }
+      ],
     "require": {
         "php": "^8.1.10",
         "amirsarhang/instagram-php-sdk": "^2.0",
@@ -29,7 +35,8 @@
         "spatie/laravel-feed": "^4.3",
         "spatie/laravel-sitemap": "^7.0",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^13.3",
-        "yajra/laravel-datatables": "^10.0"
+        "yajra/laravel-datatables": "^10.0",
+        "onesignal/onesignal-php-api": "*@dev"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",

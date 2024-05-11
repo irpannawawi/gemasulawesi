@@ -155,7 +155,7 @@
                             <td>{{ $n++ }}</td>
                             <td>{{ $post->title }}</td>
                             <td><span class="badge badge-warning">{{ $post->status }}</span></td>
-                            <td><span class="badge badge-secondary">{{ $post->rubrik->rubrik_name }}</span></td>
+                            <td><span class="badge badge-secondary">{{ strtolower($post->rubrik->rubrik_name) }}</span></td>
                             <td>{{ $post->author->display_name }}</td>
                             <td>{{ $post->editor->display_name }}</td>
                             <td>{{ $post->created_at }}</td>

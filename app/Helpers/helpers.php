@@ -12,14 +12,14 @@ function getYoutubeData($url)
     $parsedUrl = parse_url($url);
 
     // jika live stream
-    if(str_contains($url, 'live')){
+    if (str_contains($url, 'live')) {
         $url = strtok($url, '?');
         $url = explode('/', $url);
         $videoId = end($url);
-    }else{
+    } else {
 
         parse_str($parsedUrl['query'], $query_ouput);
-        
+
         $videoId = $query_ouput['v'];
     }
 
@@ -55,10 +55,13 @@ function get_string_between($string, $start, $end)
 
 function convert_date_to_ID($date)
 {
+    // Set locale for Carbon and the system
     setlocale(LC_TIME, 'id_ID');
     \Carbon\Carbon::setLocale('id');
-    $converted = \Carbon\Carbon::parse($date);
-    return $converted->isoFormat('D MMMM Y H:mm [WIB]');
+
+    // Parse the date and format it according to the requirements
+    $carbonDate = \Carbon\Carbon::parse($date);
+    return $carbonDate->isoFormat('D MMM Y H:mm [WIB]');
 }
 
 function get_video_image($video_id)
@@ -111,9 +114,9 @@ function get_post_image($post_id)
     }
 
     // Coba mencari post dengan ID yang diberikan
-    $post = Cache::remember('post_image_'.$post_id, env('CACHE_DURATION'),function() use($post_id){
+    $post = Cache::remember('post_image_' . $post_id, env('CACHE_DURATION'), function () use ($post_id) {
         return Posts::with(['image.asset', 'image'])->find($post_id);
-    }); 
+    });
     // Periksa apakah post ditemukan
     if (!$post) {
         // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
@@ -140,7 +143,7 @@ function get_post_image($post_id)
 
     // Bangun URL dengan menggunakan Storage::url
     // $url = Storage::url('public/photos/' . $post->image->asset->file_name);
-    $url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
+    $url = env('CDN_DOMAIN') . '/storage/photos/' . $post->image->asset->file_name;
 
     return $url;
 }
@@ -154,9 +157,9 @@ function get_post_image_jpeg($post_id)
     }
 
     // Coba mencari post dengan ID yang diberikan
-    $post = Cache::remember('post_image_'.$post_id, env('CACHE_DURATION'),function() use($post_id){
+    $post = Cache::remember('post_image_' . $post_id, env('CACHE_DURATION'), function () use ($post_id) {
         return Posts::find($post_id);
-    }); 
+    });
 
     // Periksa apakah post ditemukan
     if (!$post) {
@@ -184,7 +187,7 @@ function get_post_image_jpeg($post_id)
 
     // Bangun URL dengan menggunakan Storage::url
     // $url = Storage::url('public/photos/jpeg/' . $post->image->asset->file_name);
-    $url = env('CDN_DOMAIN').'/storage/photos/' . $post->image->asset->file_name;
+    $url = env('CDN_DOMAIN') . '/storage/photos/' . $post->image->asset->file_name;
 
     return $url;
 }
@@ -198,9 +201,9 @@ function get_post_thumbnail($post_id)
     }
 
     // Coba mencari post dengan ID yang diberikan
-    $post = Cache::remember('post_image_'.$post_id, env('CACHE_DURATION'),function() use($post_id){
+    $post = Cache::remember('post_image_' . $post_id, env('CACHE_DURATION'), function () use ($post_id) {
         return Posts::with(['image.asset', 'image'])->find($post_id);
-    }); 
+    });
     // Periksa apakah post ditemukan
     if (!$post) {
         // Anda dapat mengganti pesan kesalahan sesuai kebutuhan
@@ -240,7 +243,7 @@ function get_post_thumbnail($post_id)
 
         return $resizedImagePath;
     } else {
-        return env('APP_CDN'). Storage::url($url);
+        return env('APP_CDN') . Storage::url($url);
     }
 }
 
@@ -291,27 +294,28 @@ if (!function_exists('get_setting')) {
 
 function get_ad_content()
 {
-   $ad = Cache::remember('ad_content', env('CACHE_DURATION'),function(){
-       return Ad::where('position', 'content')->get();
-   }); 
-   if($ad->count()<1){
-    return null;
-   }else{
-       return $ad[0];
+    $ad = Cache::remember('ad_content', env('CACHE_DURATION'), function () {
+        return Ad::where('position', 'content')->get();
+    });
+    if ($ad->count() < 1) {
+        return null;
+    } else {
+        return $ad[0];
     }
 }
 
-function isValidLink($url) {
+function isValidLink($url)
+{
     $headers = @get_headers($url);
 
     return $headers && strpos($headers[0], '200') !== false;
 }
 
-function get_file_size($file){
+function get_file_size($file)
+{
 
     $bytes = filesize($file);
     $units = array('B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
     $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
     return number_format($bytes / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
-} 
-
+}

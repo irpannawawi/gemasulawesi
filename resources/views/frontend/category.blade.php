@@ -194,7 +194,7 @@
                         </div>
                     </div>
                 </section> <!-- end carousel posts -->
-            <x-ad-item position='footer' />
+                <x-ad-item position='footer' />
 
             </div>
 

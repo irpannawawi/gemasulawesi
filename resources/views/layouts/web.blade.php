@@ -37,11 +37,11 @@
             $page = request()->query('page');
             $pageSuffix = $page && $page > 1 ? " - Halaman $page" : '';
 
-            $metaTitle = $postTitle . $pageSuffix;
+            $metaTitle = "Indeks Berita Penulis $author_name Media Nasional di www.gemasulawesi.com$pageSuffix";
             $metaDeskripsi = $post->description . $pageSuffix;
             $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
-            $author = '';
+            $author = $author_name;
         } elseif (request()->is('tags/*')) {
             $postTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini' ?? '';
             $page = request()->query('page');

@@ -175,7 +175,7 @@
                                         class="fa fa-external-link-alt"></i></a></td>
                             <td class="table-value"><span class="badge badge-success">{{ $post->status }}</span></td>
                             <td class="table-value"><span
-                                    class="badge badge-secondary">{{ $post->rubrik->rubrik_name }}</span></td>
+                                    class="badge badge-secondary">{{ strtolower($post->rubrik->rubrik_name) }}</span></td>
                             <td class="table-value">{{ $post->author->display_name }}</td>
                             <td class="table-value">{{ $post->editor->display_name }}</td>
                             <td class="table-value">{{ Str::substr($post->created_at, 0, 16) }}</td>

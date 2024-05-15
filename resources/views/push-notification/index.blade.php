@@ -12,7 +12,7 @@
         <div class="card-header">
             <a class="btn btn-primary btn-xs" href="{{ route('pushNotification.add') }}"><i class="fa fa-plus"></i>Tambah
                 data</a>
-            <p class="float-right">Subscribers: {{ App\Models\Subscriber::get()->count() }}</p>
+            <p class="float-right">Subscribers: {{ $players->messageable_players }}</p>
         </div>
         <div class="card-body table-responsive">
             <table class="table table-sm">

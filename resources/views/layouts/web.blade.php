@@ -9,6 +9,78 @@
 @endphp
 
 <head>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.init({
+      appId: "56d38667-b3e2-4a80-af97-1ce96a331c23",
+      safari_web_id: "web.onesignal.auto.37a647a2-1bdc-46a8-a505-4f4cc6400a46",
+      notifyButton: {
+        enable: true,
+      },
+      promptOptions: {
+      slidedown: {
+        prompts: [{
+            type: "smsAndEmail",
+            autoPrompt: false,
+            text: {
+              emailLabel: "Insert Email Address",
+              smsLabel: "Insert Phone Number",
+              acceptButton: "Submit",
+              cancelButton: "No Thanks",
+              actionMessage: "Receive the latest news, updates and offers as they happen.",
+              updateMessage: "Update your push notification subscription preferences.",
+              confirmMessage: "Thank You!",
+              positiveUpdateButton: "Save Preferences",
+              negativeUpdateButton: "Cancel",
+            },
+            delay: {
+              pageViews: 1,
+              timeDelay: 20
+            },
+          },
+          {
+            type: "category",
+            autoPrompt: true,
+            text: {
+              actionMessage: "We'd like to show you notifications for the latest news and updates.",
+              acceptButton: "Allow",
+              cancelButton: "Cancel",
+
+              /* CATEGORY SLIDEDOWN SPECIFIC TEXT */
+              negativeUpdateButton: "Cancel",
+              positiveUpdateButton: "Save Preferences",
+              updateMessage: "Update your push notification subscription preferences.",
+            },
+            delay: {
+              pageViews: 3,
+              timeDelay: 20
+            },
+            categories: [{
+                tag: "politics",
+                label: "Politics"
+              },
+              {
+                tag: "local_news",
+                label: "Local News"
+              },
+              {
+                tag: "world_news",
+                label: "World News",
+              },
+              {
+                tag: "culture",
+                label: "Culture"
+              },
+            ]
+          }
+        ]
+      }
+    },
+    });
+  });
+</script>
     @php
 
         $subTitle = get_setting('sub_title');
@@ -57,7 +129,7 @@
             $author = '';
         } elseif (request()->is('gallery')) {
             $metaTitle = 'Gallery Berita Terkini' . ' - ' . $subTitle;
-            $metaDeskripsi = get_setting('meta_google');
+            $metaDeskripsi = get_setting('meta_google') . ' - '.$metaTitle;
             $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
@@ -738,7 +810,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel2.thumbs@0.1.8/dist/owl.carousel2.thumbs.min.js"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.2/sticky-kit.min.js"></script>
     <script src="{{ env('APP_CDN') }}/assets/frontend/js/modernizr.min.js"></script>
     <script src="{{ env('APP_CDN') }}/assets/frontend/js/scripts.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
@@ -746,72 +818,7 @@
     <!-- Lazyload (must be placed in head in order to work) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/4.0.1/lazysizes.min.js"></script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-messaging.js"></script>
-    <script async defer>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "{{ env('FIREBASE_API_KEY') }}",
-            authDomain: "{{ env('FIREBASE_AUTH_DOMAIN') }}",
-            databaseURL: "{{ env('FIREBASE_DATABASE_URL') }}",
-            projectId: "{{ env('FIREBASE_PROJECT_ID') }}",
-            storageBucket: "{{ env('FIREBASE_STORAGE_BUCKET') }}",
-            messagingSenderId: "{{ env('FIREBASE_MESSAGING_SENDER_ID') }}",
-            appId: "{{ env('FIREBASE_APP_ID') }}",
-        };
-
-        // Initialize Firebase
-        msg = firebase.initializeApp(firebaseConfig);
-
-        const messaging = firebase.messaging();
-
-        function initFirebaseMessagingRegistration() {
-            messaging.requestPermission().then(function() {
-                return messaging.getToken();
-            }).then(function(token) {
-
-                let url = "{{ route('subscribe') }}";
-                let data = {
-                    _method: "PATCH",
-                    token: token,
-                    _token: "{{ csrf_token() }}"
-                };
-
-                $.post(url, data, function(data) {
-                    console.log(data);
-                });
-
-            }).catch(function(err) {
-                console.log(`Token Error :: ${err}`);
-            });
-        }
-        initFirebaseMessagingRegistration();
-
-
-        const registerServiceWorker = async () => {
-            if ("serviceWorker" in navigator) {
-                try {
-                    const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js", {
-                        scope: "/",
-                    });
-                    if (registration.installing) {
-                        console.log("Service worker installing");
-                    } else if (registration.waiting) {
-                        console.log("Service worker installed");
-                    } else if (registration.active) {
-                        console.log("Service worker active");
-                    }
-                } catch (error) {
-                    console.error(`Registration failed with ${error}`);
-                }
-            }
-        };
-
-        // …
-
-        registerServiceWorker();
-    </script>
+    {{-- <script type="module" src="{{ env('APP_CDN') }}/assets/frontend/js/firebase-init.js"></script> --}}
     <!-- TODO: Add SDKs for Firebase products that you want to use
     https://firebase.google.com/docs/web/setup#available-libraries -->
 

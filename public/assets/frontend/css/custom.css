@@ -72,10 +72,11 @@
         width: 100%;
     }
 }
+
 @media only screen and (min-width: 768px) {
     .pilihan-editor {
-        margin-top: 32px;
-        margin-bottom: 32px;
+        margin-top: 15px;
+        margin-bottom: 25px;
         padding: 0 20px 20px 20px;
         width: 100%;
     }

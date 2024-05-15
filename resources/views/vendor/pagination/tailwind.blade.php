@@ -7,7 +7,13 @@
                 {{-- kosong --}}
             @else
                 <div class="paging__item">
-                    <a href="{{ $paginator->previousPageUrl() }}" class="paging__link paging__link--prev">Prev</a>
+                    @php
+                        $prevUrl = $paginator->previousPageUrl();
+                        $cleanPrevUrl = Str::contains($prevUrl, '?page=1')
+                            ? Str::replaceFirst('?page=1', '', $prevUrl)
+                            : $prevUrl;
+                    @endphp
+                    <a href="{{ $cleanPrevUrl }}" class="paging__link paging__link--prev">Prev</a>
                 </div>
             @endif
 

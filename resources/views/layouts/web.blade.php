@@ -212,7 +212,7 @@
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnazilUrl" />
     <meta name="author" content="{{ @$author }}" itemprop="author">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="base" content="https://www.gemasulawesi.com/" />
+    <meta name="base" content="https://www.gemasulawesi.com" />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />
     <meta name="googlebot" content="index,follow" />

@@ -168,19 +168,17 @@ class WebController extends Controller
     public function category($rubrik_name): View
     {
         $rubrik_name = Str::replace('-', ' ', $rubrik_name);
-        $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->first();
-        if (!$rubrik) {
-            return abort(404);
-        }
+        $rubrik = Rubrik::where('rubrik_name', $rubrik_name)->firstOrFail();
 
-        $data['rubrik_name'] = $rubrik_name;
-        $data['headlineRubrik'] = Headlinerubrik::where('rubrik_id', $rubrik->rubrik_id)->get();
-        $data['topikKhusus'] = Topic::get();
+        $data = [
+            'rubrik_name' => $rubrik_name,
+            'headlineRubrik' => Headlinerubrik::where('rubrik_id', $rubrik->rubrik_id)->get(),
+            'topikKhusus' => Topic::get(),
+            'paginatedPost' => Posts::where(['status' => 'published', 'category' => $rubrik->rubrik_id])
+                ->orderBy('published_at', 'DESC')
+                ->paginate(20),
+        ];
 
-        // posts 1-20
-        $data['paginatedPost'] = Posts::orderBy('published_at', 'DESC')
-            ->where(['status' => 'published', 'category' => $rubrik->rubrik_id])
-            ->paginate(20);
         $data['beritaTerkini'] = $data['paginatedPost']->split(2);
         return view('frontend.category', $data);
     }

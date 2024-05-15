@@ -11,12 +11,12 @@ class RemovePageOneParameter
         // Periksa apakah parameter "page" ada dan bernilai 1
         if ($request->query('page') === '1') {
             // Buat URL tanpa parameter "page"
-            $urlWithoutPage = $request->url();
+            $urlTanpaPage = $request->url();
             // Hapus parameter "page=1"
-            $urlWithoutPage = preg_replace('/[&?]page=1/', '', $urlWithoutPage);
+            $urlTanpaPage = preg_replace('/[&?]page=1/', '', $urlTanpaPage);
 
             // Redirect ke URL baru tanpa parameter "page"
-            return redirect($urlWithoutPage, 301); // Redirect permanen (optional)
+            return redirect($urlTanpaPage, 301); // Redirect permanen (optional)
         }
 
         return $next($request);

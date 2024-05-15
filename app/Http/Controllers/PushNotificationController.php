@@ -218,7 +218,7 @@ class PushNotificationController extends Controller
     {
         $heading = new StringMap();
         $content = new StringMap();
-        $imageUrl = get_post_thumbnail($post->post_id);
+        $imageUrl = env('APP_URL').get_post_image($post->post_id);
         $heading->setEn($post->title);
         $heading->setId($post->title);
         $content->setEn($post->description);

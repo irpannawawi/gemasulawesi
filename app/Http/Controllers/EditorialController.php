@@ -43,7 +43,7 @@ class EditorialController extends Controller
     public function insert(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'title' => 'required|max:140',
+            'title' => 'required|unique:posts,title|max:140',
             'description' => 'required|max:140|min:100',
             'content' => [
                 'required',

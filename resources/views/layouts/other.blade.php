@@ -80,7 +80,7 @@
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnailUrl" />
     <meta name="author" content="www.gemasulawesi.com" itemprop="author">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="base" content="https://www.gemasulawesi.com/" />
+    <meta name="base" content="https://www.gemasulawesi.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />

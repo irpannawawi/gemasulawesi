@@ -54,7 +54,7 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="owl-thumbs row mb-3 d-none d-md-flex w-100 mx-auto" data-slider-id="5">
+                    <div class="owl-thumbs row d-none d-md-flex w-100 mx-auto" data-slider-id="5">
                         @foreach ($headlineWp as $headline)
                             <div class="owl-thumb-item col-3 p-0">
                                 <div class="card mt-3" style="border: none;">

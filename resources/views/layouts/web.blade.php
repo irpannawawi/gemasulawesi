@@ -109,11 +109,11 @@
             $page = request()->query('page');
             $pageSuffix = $page && $page > 1 ? " - Halaman $page" : '';
 
-            $metaTitle = $postTitle . $pageSuffix;
+            $metaTitle = "Indeks Berita Penulis $author_name Media Nasional di www.gemasulawesi.com$pageSuffix";
             $metaDeskripsi = $post->description . $pageSuffix;
             $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
-            $author = '';
+            $author = $author_name;
         } elseif (request()->is('tags/*')) {
             $postTitle = 'Berita Seputar ' . $tag_name . ' Terbaru dan Terkini Hari Ini' ?? '';
             $page = request()->query('page');
@@ -212,7 +212,7 @@
     <meta name="thumbnailUrl" content="{{ $metaImage }}" itemprop="thumbnazilUrl" />
     <meta name="author" content="{{ @$author }}" itemprop="author">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="base" content="https://www.gemasulawesi.com/" />
+    <meta name="base" content="https://www.gemasulawesi.com" />
     <meta name="robots" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />
     <meta name="googlebot" content="index,follow" />

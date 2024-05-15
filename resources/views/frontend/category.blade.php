@@ -109,7 +109,7 @@
                                                             ]) }}"
                                                                 class="post-title">{{ $post->title }}</a>
                                                         </h3>
-                                                        <p class="bt__date">{{ convert_date_to_ID($post->publihed_at) }}
+                                                        <p class="bt__date">{{ convert_date_to_ID($post->published_at) }}
                                                         </p>
                                                     </div>
                                                 </article>
@@ -194,7 +194,7 @@
                         </div>
                     </div>
                 </section> <!-- end carousel posts -->
-            <x-ad-item position='footer' />
+                <x-ad-item position='footer' />
 
             </div>
 

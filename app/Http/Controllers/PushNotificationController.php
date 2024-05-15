@@ -143,36 +143,7 @@ class PushNotificationController extends Controller
         }
     }
 
-    public function test(Request $request)
-    {
 
-
-        // $FcmToken = 'ePaWIv3c7aquAsdhPlPvpS:APA91bFk5OgyOSeGwD4g3NWvIKDRV6FBYDc3gNfAVmaWBB0ALSt7-5B7diSFZ5_4JInly4s4ILJqdrZG4sMd45J27Uq6xg1FxQ0a11-dqJM0jdEETR_OEChP6r5fP0A1zb9CzgWVbidc';
-        $FcmToken = Subscriber::whereNotNull('token')->pluck('token')->all();
-        dd($FcmToken);
-        $messaging = app('firebase.messaging');
-
-        $config = WebPushConfig::fromArray([
-            "data" => [
-                "title" => 'Title',
-                "body" => 'Body',
-                "click_action" => str_replace('http://', 'https://', 'https://google.com'),
-                "message_id" => date('YmdHis'),
-            ]
-        ]);
-
-        $dataCfg = [
-            "title" => '$news->title',
-            "body" => '$news->body',
-            "click_action" => str_replace('http://', 'https://', '$news->url'),
-            "message_id" => date('YmdHis'),
-        ];
-
-        $message = CloudMessage::new();
-        $message = $message->withWebPushConfig($config)
-            ->withData($dataCfg);
-        $res = $messaging->sendMulticast($message, $FcmToken);
-    }
 
 
     private function getPost($request, $status)
@@ -240,7 +211,7 @@ class PushNotificationController extends Controller
         $time = Str::replace('T', ' ', $schedule);
         $carbonTime = Carbon::createFromFormat('Y-m-d H:i', $time);
         $notification->setSendAfter($carbonTime);
-
+        $notification->setCollapseId($post->post_id);
         $notification->setUrl($postUrl);
         $segment = env('APP_ENV') == 'local' ? 'Test Segment' : 'Active Subscriptions';
         $notification->setIncludedSegments([$segment]);

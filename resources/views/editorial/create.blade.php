@@ -392,6 +392,7 @@
                                 width: 720,
                                 height: 480,
                                 onMessage: (instance, data) => {
+                                    
                                     $('#postImage').val(data.data.imageId)
                                     const imgHtml =
                                         `<img width="444" src="${data.data.imageUrl}" data-source="${data.data.source}" data-id="${data.data.imageId}" />`;
@@ -403,20 +404,18 @@
                                         case 'insertImage':
                                             break;
                                     }
+                                    find_first_image();
                                 }
                             });
                         },
                     });
 
-                    function find_image() {
+                    function find_first_image() {
                         // list images 
-                        var arr = new Array();
-                        $(tinyMCE.activeEditor.dom.getRoot()).find('img').each(
-                            function() {
-                                console.log($(this).attr("src"));
-                            });
-
+                        var imgs = $(tinyMCE.activeEditor.dom.getRoot()).find('img');
+                        $('#postImage').val(imgs[0].dataset.id);
                     }
+
 
                     // insert baca juga
                     editor.ui.registry.addButton('dialog-insert-baca-juga', {

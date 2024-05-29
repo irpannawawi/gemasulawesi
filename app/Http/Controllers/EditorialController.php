@@ -42,7 +42,7 @@ class EditorialController extends Controller
 
     public function insert(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'title' => 'required|unique:posts,title|max:140',
             'description' => 'required|max:140|min:100',
             'content' => [
@@ -50,18 +50,18 @@ class EditorialController extends Controller
                 function ($attribute, $value, $fail) {
                     // Memastikan bahwa tag <img> ada dalam konten
                     if (!preg_match('/<img[^>]+>/i', $value)) {
-                        $fail($attribute.' harus mengandung setidaknya satu gambar.');
+                        $fail($attribute . ' harus mengandung setidaknya satu gambar.');
                     }
                 },
             ],
         ], [
-            'required'=>':attribute tidak boleh kosong',
-            'max'=>':attribute melebihi batas karakter yang diizinkan',
-            'min'=>':attribute kurang dari batas minimal karakter',
+            'required' => ':attribute tidak boleh kosong',
+            'max' => ':attribute melebihi batas karakter yang diizinkan',
+            'min' => ':attribute kurang dari batas minimal karakter',
         ]);
         if ($validator->fails()) {
             return redirect()
-            ->back()
+                ->back()
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -73,22 +73,25 @@ class EditorialController extends Controller
             $dom = new DOMDocument;
             $dom->loadHTML($article, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
             $images = $dom->getElementsByTagName('img');
+            
             // Check if there is at least one <img> element
             if ($images->length > 0) {
                 // Remove the first <img> element
                 $firstImage = $images->item(0);
                 $firstImage->parentNode->removeChild($firstImage);
-            }else{
-
+            } else {
             }
 
             // Get the modified HTML
             $modifiedHtml = $dom->saveHTML();
             $article = $modifiedHtml;
         }
-        $article = str_replace('"../../id/', '"https://gemasulawesi.com/id/', $article);
-        $article = str_replace('"../id/', '"https://gemasulawesi.com/id/', $article);
         
+        
+        $article = str_replace('"../../id/', '"'.env('APP_URL').'/', $article);
+        $article = str_replace('"../id/', '"'.env('APP_URL').'/', $article);
+        $article = str_replace('"../', '"'.env('APP_URL').'/', $article);
+
         // select status published, draft or scheduled
         $publishat = null;
         if ($request->is_draft == "1") {
@@ -105,12 +108,12 @@ class EditorialController extends Controller
         } else {
             $related = $request->related;
         }
-        
+
         if (!empty($request->tags)) {
             $tags = json_encode($request->tags);
         } else {
             $tags = $request->tags;
-        }   
+        }
 
         if (!empty($request->sources)) {
             $sources = json_encode($request->sources);
@@ -124,8 +127,8 @@ class EditorialController extends Controller
             $topics = $request->topics;
         }
 
-        
-        
+
+
         $postData = [
             'title' => $request->title,
             'slug' => Str::slug($request->title),
@@ -165,7 +168,7 @@ class EditorialController extends Controller
                 return redirect()->route('editorial.scheduled')->with('success', 'Post has been created');
             } else {
                 if ($request->is_draft != 1) {
-                    ShareJob::dispatch($newPost->post_id)->delay(Carbon::now()->addMinutes(1));
+                    // ShareJob::dispatch($newPost->post_id)->delay(Carbon::now()->addMinutes(1));
                 }
                 return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
             }
@@ -177,7 +180,7 @@ class EditorialController extends Controller
 
     public function update(Request $request, $id)
     {
-        cache()->forget('posts'.$id);
+        cache()->forget('posts' . $id);
         $request->validate([
             'title' => 'required|max:140',
             'description' => 'required|max:140|min:100',
@@ -198,7 +201,7 @@ class EditorialController extends Controller
                 $firstImage = $images->item(0);
                 $firstImage->parentNode->removeChild($firstImage);
             }
-            
+
             // Get the modified HTML
             $modifiedHtml = $dom->saveHTML();
             $article = $modifiedHtml;
@@ -206,6 +209,8 @@ class EditorialController extends Controller
         $article = str_replace('"../../id/', '"https://gemasulawesi.com/id/', $article);
         $article = str_replace('"../id/', '"https://gemasulawesi.com/id/', $article);
         $article = str_replace('"../../', '"https://www.gemasulawesi.com/', $article);
+        $article = str_replace('"../', '"'.env('APP_URL').'/', $article);
+        
         // select status published, draft or scheduled
         if ($request->is_draft == "1") {
             $status = 'draft';
@@ -253,28 +258,28 @@ class EditorialController extends Controller
         $post->is_deleted = $request->is_deleted;
         $post->post_image = $request->post_image;
 
-         // save the post into the database
-         
-         // Check if the post was successfully created
-         if ($post->save()) {
-            // clear cache
-            Cache::forget('post'.$post->post_id);
-             if ($post->status == 'scheduled') {
-                 // add update job
-                 $publishDate = str_replace('T', ' ', $request->schedule_time);
-                 $job = PublishPost::dispatch($post->post_id)->delay(Carbon::createFromFormat('Y-m-d H:i', $publishDate));
-             }
+        // save the post into the database
 
-             // Redirect based on the post's status
-             if ($status == 'scheduled') {
-                 return redirect()->route('editorial.scheduled')->with('success', 'Post has been created');
-             } else {
-                 return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been created');
-             }
-         } else {
-             // Handle the case where post creation fails
-             return back()->withInput()->withErrors(['error' => 'Failed to create the post.']);
-         }
+        // Check if the post was successfully created
+        if ($post->save()) {
+            // clear cache
+            Cache::forget('post' . $post->post_id);
+            if ($post->status == 'scheduled') {
+                // add update job
+                $publishDate = str_replace('T', ' ', $request->schedule_time);
+                $job = PublishPost::dispatch($post->post_id)->delay(Carbon::createFromFormat('Y-m-d H:i', $publishDate));
+            }
+
+            // Redirect based on the post's status
+            if ($status == 'scheduled') {
+                return redirect()->route('editorial.scheduled')->with('success', 'Post has been updated');
+            } else {
+                return redirect()->route($request->is_draft == 1 ? 'editorial.draft' : 'editorial.published')->with('success', 'Post has been updated');
+            }
+        } else {
+            // Handle the case where post creation fails
+            return back()->withInput()->withErrors(['error' => 'Failed to create the post.']);
+        }
 
         // dd($request->all());
     }
@@ -298,7 +303,7 @@ class EditorialController extends Controller
     public function scheduled(Request $request)
 
     {
-       $posts = $this->getPost($request, 'scheduled');
+        $posts = $this->getPost($request, 'scheduled');
         $data['posts'] = $posts->paginate(20);
 
         return view('editorial.scheduled', $data);
@@ -438,8 +443,8 @@ class EditorialController extends Controller
         $posts = Posts::where('status', $status);
 
         if (!empty($request->sort_by)) {
-            $posts = $posts->orderBy( $request->sort_by, $request->order);
-        }else{
+            $posts = $posts->orderBy($request->sort_by, $request->order);
+        } else {
             $posts = $posts->orderBy('published_at', 'DESC');
         }
         // chek if has query string
@@ -451,7 +456,7 @@ class EditorialController extends Controller
             $posts = $posts->where('category', '=', $request->rubrik);
         }
         // chek if filtered author
-        
+
         if (!empty($request->author)) {
             $posts = $posts->where('author_id', '=', $request->author);
         }

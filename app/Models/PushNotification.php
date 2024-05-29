@@ -18,9 +18,12 @@ class PushNotification extends Model
         'title',
         'body',
         'url',
-        'image',	
-        'status',	
+        'image',
+        'status',
         'scheduled_at',	
+        'created_at',
+        'updated_at',
+        'one_signal_id',
     ];
 
     public function post(): HasOne

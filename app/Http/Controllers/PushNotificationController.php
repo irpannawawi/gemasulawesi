@@ -72,9 +72,10 @@ class PushNotificationController extends Controller
     {
         $players = $this->apiInstance()->getApp(APP_ID);
         $data['players'] = json_decode($players);
-
-
         $data['pushNotification'] = PushNotification::orderBy('notif_id', 'desc')->paginate(20);
+
+        $data['notifications'] = json_decode($this->apiInstance()->getNotifications(APP_ID, $limit=20, $offset=0), true)['notifications'];
+
         return view('push-notification.index', $data);
     }
 
@@ -103,6 +104,7 @@ class PushNotificationController extends Controller
     {
         $post = Posts::find($request->post_id);
         $notification = $this->createNotification($post, $request->schedule);
+        $result = $this->apiInstance()->createNotification($notification);
         $data = [
             'post_id' => $request->post_id,
             'title' => $request->title,
@@ -113,23 +115,14 @@ class PushNotificationController extends Controller
                 'slug' => $post->slug,
             ]),
             'status' => 'queue',
-            'scheduled_at' => Str::replace('T', ' ', $request->schedule)
+            'scheduled_at' => Str::replace('T', ' ', $request->schedule),
+            'one_signal_id'=> json_decode($result)->id,
         ];
 
         $message = PushNotification::create($data);
-        $result = $this->apiInstance()->createNotification($notification);
         if ($message && $result) {
             return redirect('pushNotification')->with('message', 'Berhasil tambah');
         }
-
-
-        // $message = PushNotification::create($data);
-        // if ($message) {
-        //     // add to schedule
-        //     $time = Str::replace('T', ' ', $request->schedule);
-        //     $carbonTime = Carbon::createFromFormat('Y-m-d H:i', $time);
-        //     BroadcastNews::dispatch($message->notif_id)->onQueue('schedule_broadcast')->delay($carbonTime);
-        // }
     }
 
 
@@ -189,7 +182,7 @@ class PushNotificationController extends Controller
     {
         $heading = new StringMap();
         $content = new StringMap();
-        $imageUrl = env('APP_URL').get_post_image($post->post_id);
+        $imageUrl = env('APP_URL') . get_post_image($post->post_id);
         $heading->setEn($post->title);
         $heading->setId($post->title);
         $content->setEn($post->description);
@@ -212,10 +205,10 @@ class PushNotificationController extends Controller
         $carbonTime = Carbon::createFromFormat('Y-m-d H:i', $time);
         $notification->setSendAfter($carbonTime);
         $notification->setCollapseId($post->post_id);
+        $notification->setWebPushTopic('gemasulawesi'.$post->post_id);
         $notification->setUrl($postUrl);
         $segment = env('APP_ENV') == 'local' ? 'Test Segment' : 'Active Subscriptions';
         $notification->setIncludedSegments([$segment]);
-
         return $notification;
     }
 

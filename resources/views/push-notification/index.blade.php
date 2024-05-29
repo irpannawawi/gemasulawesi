@@ -37,7 +37,13 @@
                             <td>{{ $n++ }}</td>
                             <td class="text-left">{{ $news->title }}</td>
                             <td class="text-left">{{ $news->body }}</td>
-                            <td class="text-center">{{ strtoupper($news->status) }}</td>
+                            <td class="text-center">
+                                @foreach ($notifications as $notif)
+                                    @if ($notif['id'] == $news->one_signal_id)
+                                        {{ $notif['successful']>0?'Sent':'Queued' }}
+                                    @endif
+                                @endforeach
+                            </td>
                             <td class="text-center">{{ $news->scheduled_at }}</td>
                             <td class="text-center">{{ $news->updated_at }}</td>
                             <td class="text-center">{{ $news->created_at }}</td>

@@ -55,6 +55,18 @@
     <meta name="robots" content="index,follow" />
     <meta name="googlebot" content="index,follow" />
     <meta name="googlebot-news" content="index,follow" />
+
+    <!-- o: open graph -->
+    <meta property="og:type" content="{{ $type }}" />
+    <meta property="og:url" content="{{ url()->full() }}" />
+    <meta property="og:title" content="{{ $metaTitle }}" />
+    <meta property="og:description" content="{{ $metaDeskripsi }}" />
+    <meta property="og:site_name" content="{{ $metaTitle }}" />
+    <meta property="og:image" content="{{ $metaImage }}" />
+    <meta property="fb:app_id" content="" />
+    <meta property="fb:pages" content="" />
+    <meta property="article:author" content="{{ @$author }}">
+    <meta property="article:section" content="{{ @$category }}">
     <!-- e: open graph -->
 
     {{-- amp project --}}

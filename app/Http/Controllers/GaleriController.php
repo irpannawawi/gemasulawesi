@@ -73,15 +73,41 @@ class GaleriController extends Controller
         return view('galeri.collection', $data);
     }
 
+    public function galeri_modal(Request $request, $id)
+    {
+        $data['collections'] = Collection::where('galery_id', $id)->orderBy('collection_id', 'desc')->pluck('file_id')->toArray();
+        $data['galery'] = Galeri::find($id);
+
+        $photo = 
+        Image::whereNotIn('image_id', $data['collections'])
+        ->orderBy('image_id', 'DESC');
+        if(isset($request->q)){
+            $photo = $photo->where('caption', 'LIKE', '%' . $request->q . '%');
+            $photo = $photo->orWhere('author', 'LIKE', '%' . $request->q . '%');
+            $photo = $photo->orWhere('credit', 'LIKE', '%' . $request->q . '%');
+            $photo = $photo->orWhere('source', 'LIKE', '%' . $request->q . '%');
+            $data['q'] = $request->q;
+        }
+        $data['photos'] = $photo->paginate(20);
+        
+        $data['videos'] = Video::orderBy('video_id', 'DESC')->paginate(20);
+
+        // dd($data['collections'][1]->photo->image_id);
+        return view('galeri.modal', $data);
+    }
+
     public function collection_insert(Request $request)
     {
         $type = $request->type;
         $files = $request->get('files');
         foreach ($files as $file) {
-            Collection::create(['type' => $type, 'file_id' => $file, 'galery_id' => $request->galery_id]);
+            // if image != exits on collection
+            if (!Collection::where('galery_id', $request->galery_id)->where('file_id', $file)->exists()){
+                Collection::create(['type' => $type, 'file_id' => $file, 'galery_id' => $request->galery_id]);
+            }
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'success');
     }
 
     public function collection_delete($id)

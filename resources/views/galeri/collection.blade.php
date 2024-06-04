@@ -1,23 +1,5 @@
 <x-app-layout>
     @push('extra-css')
-        <style>
-            .image-checkbox {
-                cursor: pointer;
-                box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                -webkit-box-sizing: border-box;
-                border: 4px solid transparent;
-                outline: 0;
-            }
-
-            .image-checkbox input[type="checkbox"] {
-                display: none;
-            }
-
-            .image-checkbox-checked {
-                border-color: #f58723;
-            }
-        </style>
     @endpush
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800   leading-tight">
@@ -51,11 +33,10 @@
                                             alt="" title="" class="img-responsive"
                                             style="width:214px;height:95px">
                                         <div style="margin-top:5px">
-                                            <small title="">&nbsp;</small><br>
-                                            <small title="Uploader"><b>by: Uploader</b></small>
-                                            <br><small title="Zona Bandung">Penulis</small>
+                                            <small title="">{{ @substr($collect->photo->caption, 0, 25) }}{{ strlen($collect->photo->caption) > 25 ? '...' : '' }}</small><br>
                                             <div class="float-right">
                                                 <a type="button"
+                                                style="position: absolute; right: 5px; bottom: 5px; "
                                                     class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
                                                     href="{{ route('galeri.collection.delete', ['id' => $collect->collection_id]) }}"
                                                     onclick="return confirm('Hapus foto?')" title="Delete"><i
@@ -76,16 +57,16 @@
                             @endphp
                             <div class="col-md-3 text-xs-center">
                                 <label class="image-checkbox" title="England">
-                                    <img src="{{ $youtubeData->thumbnails->medium->url }}" alt="{{ $collect->video->title }}"
-                                        class="img-responsive" title="{{ $collect->video->title }}">
+                                    <img src="{{ $youtubeData->thumbnails->medium->url }}"
+                                        alt="{{ $collect->video->title }}" class="img-responsive"
+                                        title="{{ $collect->video->title }}">
                                 </label>
-                                
+
                                 <div class="float-right">
-                                    <a type="button"
-                                        class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
+                                    <a type="button" class="btn btn-xs btn-danger text-white bg-danger btn-hapus"
                                         href="{{ route('galeri.collection.delete', ['id' => $collect->collection_id]) }}"
-                                        onclick="return confirm('Hapus foto?')" title="Delete"><i
-                                            class="fa fa-trash" aria-hidden="true"></i></a>
+                                        onclick="return confirm('Hapus foto?')" title="Delete"><i class="fa fa-trash"
+                                            aria-hidden="true"></i></a>
                                 </div>
                             </div>
                         @endif
@@ -95,69 +76,47 @@
         </div>
     </div>
 
-    
-    <!-- Modal -->
-    <div class="modal fade" id="selectImage" tabindex="-1" role="dialog" aria-labelledby="selectImageLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="selectImageLabel">Select Image</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form method="post" enctype="multipart/form-data" action="{{ route('galeri.collection.insert') }}">
-                @csrf
-                <div class="modal-body">
-                    <div class="row">
-                        @foreach ($photos as $photo)
-                            <div class="col-3 text-xs-center mb-2 p-2" style="height: 150px;">
-                                <label class="image-checkbox" title="England" style="height: 100%; width:100%;">
-                                    <img style="height: 100%; width:100%;" class="img border rounded" loading="lazy" src="{{ Storage::url('public/photos/' . $photo->asset->file_name) }}" />
-                                    <input type="checkbox" name="files[]" value="{{ $photo->image_id }}" />
-                                    <input type="hidden" name="type" value="image" />
-                                    <input type="hidden" name="galery_id" value="{{ $galery->galery_id }}" />
-                                </label>
-                            </div>
-                        @endforeach
-                    </div>
-                    {{$photos->links('vendor.pagination.bootstrap-4')}}
-                </div>
-                <div class="modal-footer">
-        
-                    <div class="form-group p-0 mt-3">
-                        <button class="btn btn-sm m-1 bg-primary float-right" type="submit">Upload</button>
-                        <button class="btn btn-sm m-1 bg-danger float-right" data-dismiss="modal"
-                            type="button">Batal</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="selectImage" tabindex="-1" role="dialog" aria-labelledby="selectImageLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="selectImageLabel">Select Image</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+    <div class="modal fade" id="selectImage" tabindex="-1" role="dialog" aria-labelledby="selectImageLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="selectImageLabel">Select Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe width="100%" height="400px"
+                        src="{{ route('galeri.modal', ['id' => $galery->galery_id]) }}" frameborder="0"></iframe>
+                </div>
             </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="selectImage" tabindex="-1" role="dialog" aria-labelledby="selectImageLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="selectImageLabel">Select Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @php
         $modalTitle = 'Select Video';
     @endphp
@@ -194,31 +153,12 @@
     </x-bs-modal>
 
     @push('custom-scripts')
-        <script type="text/javascript">
-            document.addEventListener("DOMContentLoaded",()=>{
-                jQuery(function($) {
-                    // init the state from the input
-                    $(".image-checkbox").each(function() {
-                        if ($(this).find('input[type="checkbox"]').first().attr("checked")) {
-                            $(this).addClass('image-checkbox-checked');
-                        } else {
-                            $(this).removeClass('image-checkbox-checked');
-                        }
-                    });
-    
-                    // sync the state to the input
-                    $(".image-checkbox").on("click", function(e) {
-                        if ($(this).hasClass('image-checkbox-checked')) {
-                            $(this).removeClass('image-checkbox-checked');
-                            $(this).find('input[type="checkbox"]').first().removeAttr("checked");
-                        } else {
-                            $(this).addClass('image-checkbox-checked');
-                            $(this).find('input[type="checkbox"]').first().attr("checked", "checked");
-                        }
-    
-                        e.preventDefault();
-                    });
-                });
+        <script>
+            window.addEventListener('message', function(event) {
+                var msg = event.data // Message received from child
+                if(msg == 'refresh') {
+                    window.location.reload();
+                }
             });
         </script>
     @endpush

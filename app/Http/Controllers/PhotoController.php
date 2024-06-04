@@ -123,6 +123,10 @@ class PhotoController extends Controller
 
     public function browse_upload(Request $request)
     {
+        $validatedData = $request->validate([
+            'photo' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
+        ]);
+
         $image = $this->save_image($request->file('photo'));
         $this->save_image_jpeg($request->file('photo'), $image->basename);
         // insert to file table
@@ -140,7 +144,7 @@ class PhotoController extends Controller
 
         ];
         Image::create($imageDetails);
-        return redirect()->route('browseImage');
+        return redirect()->back()->with('success', 'Photo uploaded successfully!');
     }
 
     public function upload_api(Request $request) //unused

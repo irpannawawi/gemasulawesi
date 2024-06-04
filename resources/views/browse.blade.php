@@ -8,7 +8,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    
+
 
 </head>
 
@@ -23,18 +23,18 @@
                     Refresh</a>
             </div>
             <div class="float-right">
-                <form action="{{route('browseImage')}}">
-                @csrf
-                <div class="form-inline">
-                    <div class="form-group">
+                <form action="{{ route('browseImage') }}">
+                    @csrf
+                    <div class="form-inline">
+                        <div class="form-group">
 
+                        </div>
+                        <div class="form-group">
+                            <input id="input_search" type="search" class="form-control input-sm"
+                                placeholder="Search..." name="q" value="{{ !empty($q) ? $q : '' }}">
+                            <button class="btn"><i class="fa fa-search"></i></button>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input id="input_search" type="search" class="form-control input-sm" placeholder="Search..."
-                            name="q" value="{{!empty($q)?$q:''}}">
-                        <button class="btn"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
                 </form>
             </div>
         </div>
@@ -48,7 +48,7 @@
                                     <img src="{{ url('storage/photos/' . $photo->asset->file_name) }}" alt=""
                                         title="" class="img-responsive" style="width:214px;height:95px">
                                     <div style="margin-top:5px">
-                                        <small title="">{{substr($photo->caption, 0,28)}}...</small><br>
+                                        <small title="">{{ substr($photo->caption, 0, 28) }}...</small><br>
                                         <small title="Uploader"><b>by: Uploader</b></small>
                                         <br><small title="Zona Bandung">Penulis</small>
                                         <div class="float-right">
@@ -112,7 +112,7 @@
 
 
                 <div class="form-group p-0 mt-3">
-                    <button class="btn btn-sm m-1 bg-primary float-right" type="submit">Upload</button>
+                    <button id="uploadBtn" class="btn btn-sm m-1 bg-primary float-right" type="submit">Upload</button>
                     <button class="btn btn-sm m-1 bg-danger float-right" data-dismiss="modal"
                         type="button">Batal</button>
                 </div>
@@ -128,6 +128,11 @@
 
 
     <script>
+        $('#uploadBtn').on('click', function() {
+            var button = this;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        });
+
         function sendImageData(id, url, source) {
             console.log({
                 id: id,

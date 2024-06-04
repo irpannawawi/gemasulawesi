@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
 
     Route::get('/galeri', [GaleriController::class, 'galeri'])->name('galeri');
+    Route::get('/galeri/modal/{id}', [GaleriController::class, 'galeri_modal'])->name('galeri.modal');
     Route::get('/galeri/{id}', [GaleriController::class, 'delete'])->name('galeri.delete');
     Route::post('/galeri', [GaleriController::class, 'insert'])->name('galeri.add');
     Route::put('/galeri', [GaleriController::class, 'edit'])->name('galeri.edit');

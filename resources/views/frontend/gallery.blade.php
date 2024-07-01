@@ -1,4 +1,6 @@
 @extends('layouts.web')
+@section('css')
+@endsection
 @section('content')
     <div class="main-container container" id="main-container">
         <!-- Content -->
@@ -13,13 +15,27 @@
                             <h1>Gallery Berita Terkini</h1>
                         </div>
                         <div class="pilihan-editor">
-                            <div class="title-post">
-                                <span>Gallery</span>
-                            </div>
-                            <!-- Slider -->
-                            <div class="wrap-owl">
-                                <div id="owl-topik-khusus" class="owl-carousel owl-theme owl-carousel--arrows-outside">
-                                    @foreach ($gallery as $key)
+                            <!-- Hihglit -->
+                            <div class="pt-3 d-flex flex-row">
+                                    @foreach ($gallery->slice(0, 2) as $key)
+                                        <div class="col-6">
+                                            <div class="card text-white">
+                                                <a
+                                                    href="{{ route('galerydetail', [
+                                                        'galery_id' => $key->galery_id,
+                                                        'galery_name' => Str::slug($key->galery_name),
+                                                    ]) }}">
+                                                    <img src="{{ Storage::url('galery-images/' . $key->galery_thumbnail) }}"
+                                                        class="card-img" alt="Card image">
+                                                    <div class="card-caption mt-1 p-2">
+                                                        <p class="card-title m-0"><b>{{ $key->galery_name }}</b></p>
+                                                        <p><small>{{ convert_date_to_ID($key->created_at) }}</small></p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                    {{-- @foreach ($gallery->slice(0, 3) as $key)
                                         <article class="entry" style="background-color: white; border-radius:10px;">
                                             <div class="entry__img-editorial mb-0">
                                                 <a
@@ -28,10 +44,9 @@
                                                         'galery_name' => Str::slug($key->galery_name),
                                                     ]) }}">
                                                     <div class="thumb-container thumb-65">
-                                                        <img data-src="{{ Storage::url('galery-images/' . $key->galery_thumbnail) }}"
+                                                        <img src="{{ Storage::url('galery-images/' . $key->galery_thumbnail) }}"
                                                             src="{{ url('assets/frontend') }}/img/empty.jpg"
-                                                            class="entry__img lazyload"
-                                                            alt="{{ $key->galery_description }}">
+                                                            class="entry__img" alt="{{ $key->galery_description }}">
                                                     </div>
                                                 </a>
                                             </div>
@@ -48,20 +63,34 @@
                                                 </div>
                                             </div>
                                         </article>
-                                    @endforeach
-                                </div> <!-- end slider -->
-                                <div class="wrap-btn-slider">
-                                    <div class="btn-slider">
-                                        <a href="javascript:;" class="btn-prev" id="prevPost3"><i
-                                                class="ui-arrow-left"></i></a>
-                                        <a href="javascript:;" class="btn-nect" id="nextPost3"><i
-                                                class="ui-arrow-right"></i></a>
-                                    </div>
-                                </div>
+                                    @endforeach --}}
                             </div>
                         </div>
-
-                        {{-- <div class="row">
+                        {{-- ./end highlit --}}
+                        <div class="row mb-3 p-2">
+                            @php
+                                $for_sliders = $galery;
+                            @endphp
+                            @foreach ($for_sliders->slice(2) as $galery)
+                                <div class="col-lg-4 col-md-6 col-sm-6 p-1 m-0">
+                                    <div class="card text-white">
+                                        <a
+                                            href="{{ route('galerydetail', [
+                                                'galery_id' => $galery->galery_id,
+                                                'galery_name' => Str::slug($galery->galery_name),
+                                            ]) }}">
+                                            <img src="{{ Storage::url('galery-images/' . $galery->galery_thumbnail) }}"
+                                                class="card-img" alt="Card image">
+                                            <div class="card-caption mt-1 p-2">
+                                                <p class="card-title m-0"><b>{{ $galery->galery_name }}</b></p>
+                                                <p><small>{{ convert_date_to_ID($galery->created_at) }}</small></p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                            {{-- </div>
+                        <div class="row">
                             <div class="col">
                                 <ul class="post-list-small post-list-small--2 mb-32">
                                     @foreach ($galery as $galery)
@@ -101,7 +130,7 @@
                                 {{ $pagination->onEachSide(1)->links() }}
                             </div>
                         </div> --}}
-                    </div>
+                        </div>
                 </section>
             </div>
             <x-sidebar />

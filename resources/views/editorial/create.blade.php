@@ -180,6 +180,12 @@
                                 <input type="datetime-local" id="schedule_time" class="form-control" name="schedule_time">
                             </div>
                         </div>
+                        <div class="form-group mb-1 mt-1" id="form-published-time">
+                            <div class="checkbox">
+                                <label>Publish date</label>
+                                <input type="datetime-local" value="{{ date('Y-m-d').'T'.date('H:i') }}" id="publish_date" class="form-control" name="published_at">
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -226,8 +232,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- Modal Source-->
     <div class="modal fade" id="modalSource" tabindex="-1" role="dialog" aria-labelledby="modalSourceLabel"
@@ -314,8 +318,10 @@
                 width: 980,
                 height: 520,
                 onMessage: (instance, data) => {
+                    const fullUrl = new URL(data.data.url, window.location.origin).href;
+                    
                     tinymce.activeEditor.execCommand('insertHTML', false,
-                        `<p class="baca-juga"><strong>Baca Juga: <br /><a href="${data.data.url}" >${data.data.title}</a></strong></p>`);
+                        `<p class="baca-juga"><strong>Baca Juga: <br /><a href="${fullUrl}" >${data.data.title}</a></strong></p>`);
                     instance.close();
                 }
             };

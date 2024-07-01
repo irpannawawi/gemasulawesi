@@ -130,7 +130,7 @@
                     <label for="source">Source</label>
                     <input type="text" class="form-control" name="source" id="source">
                 </div>
-
+                <input type="hidden" name="is_original" value="1" />
 
                 <div class="form-group p-0 mt-3">
                     <button id="uploadBtn" class="btn btn-sm m-1 bg-primary float-right"

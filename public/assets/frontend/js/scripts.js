@@ -394,12 +394,14 @@
         }
       }
     });
+
+    // Galeri
     $('#prevPost3').on('click', function(){
         console.log('adadad');
-         $('#owl-gallery .owl-prev').trigger('prev.owl.carousel');
+         $('#owl-topik-khusus .owl-prev').trigger('prev.owl.carousel');
     });
     $('#nextPost3').on('click', function(){
-         $('#owl-gallery .owl-next').trigger('next.owl.carousel');
+         $('#owl-topik-khusus .owl-next').trigger('next.owl.carousel');
     });
 
     $("#owl-posts-4-items").owlCarousel({

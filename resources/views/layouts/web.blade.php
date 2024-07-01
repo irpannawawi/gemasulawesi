@@ -139,6 +139,12 @@
             $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
             $type = 'article';
             $author = '';
+        }elseif (request()->is('infografis')) {
+            $metaTitle = $galery->galery_name . ' - ' . $subTitle;
+            $metaDeskripsi = $galery->galery_description . ' - ' . $subTitle ?? '';
+            $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
+            $type = 'article';
+            $author = '';
         } else {
             $postTitle = $post->title ?? '';
             $subTitle = $subTitle;
@@ -674,6 +680,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
+    @yield('css')
 </head>
 
 <body class="home style-politics ">

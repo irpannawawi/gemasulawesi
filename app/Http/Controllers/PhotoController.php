@@ -102,10 +102,11 @@ class PhotoController extends Controller
     public function upload(Request $request)
     {
         // $path = $request->file('photo')->store('public/photos');
+        $is_original = $request->is_original;
         // // insert to file table
-        $image = $this->save_image($request->file('photo'));
+        $image = $this->save_image($request->file('photo'), $is_original);
         $this->save_image_jpeg($request->file('photo'), $image->basename);
-
+        
         $asset = Asset::create(['file_name' => $image->basename]);
         // insert image details
         $imageDetails = [
@@ -124,10 +125,10 @@ class PhotoController extends Controller
     public function browse_upload(Request $request)
     {
         $validatedData = $request->validate([
-            'photo' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
+            'photo' => 'required|mimes:jpeg,jpg,webp,png,gif|max:10000',
         ]);
-
-        $image = $this->save_image($request->file('photo'));
+        $is_original = $request->is_original;
+        $image = $this->save_image($request->file('photo'), $is_original);
         $this->save_image_jpeg($request->file('photo'), $image->basename);
         // insert to file table
         $asset = Asset::create(['file_name' => $image->basename]);
@@ -226,15 +227,21 @@ class PhotoController extends Controller
     }
 
 
-    public function save_image($image)
+    public function save_image($image, $is_original)
     {
+
         $file_name = date('dmYhis').'.webp';
         $file_path = public_path('storage/photos/'.$file_name);
+        $compressedImage = ImageMaker::make($image->getPathname())
+        ->encode('webp', 70); // Konversi ke WebP dengan tingkat kualitas 60
+
+        if($is_original){
+            $compressedImage->save($file_path);
+        }else{
+            $compressedImage->resize(750, 500) 
+            ->save($file_path);
+        }
         // Kompresi gambar tanpa resize dan konversi ke format WebP
-        $compressedImage = ImageMaker::make($image->getRealPath())
-        ->encode('webp', 70) // Konversi ke WebP dengan tingkat kualitas 60
-        ->resize(750, 500) 
-        ->save($file_path);
        return $compressedImage; 
     }
 
@@ -243,7 +250,7 @@ class PhotoController extends Controller
         $name = str_replace('webp', 'jpeg', $name);
         $file_path = public_path('storage/photos/jpeg/'.$name);
         // Kompresi gambar tanpa resize dan konversi ke format WebP
-        $compressedImage = ImageMaker::make($image->getRealPath())
+        $compressedImage = ImageMaker::make($image->getPathname())
         ->encode('jpeg', 70) // Konversi ke WebP dengan tingkat kualitas 60
         ->resize(750, 500) 
         ->save($file_path);

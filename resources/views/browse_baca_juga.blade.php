@@ -172,7 +172,7 @@
                                     <td>{{ $post->created_at }}</td>
                                     <td>
                                         <button class="btn btn-default btn-sm"
-                                            onclick="sendBacaJuga('{{ $post->title }}', 'https:\/\/{{ $_SERVER['SERVER_NAME'] }}/id/{{ str_replace(' ', '-', $post->rubrik->rubrik_name) }}/{{ $post->post_id }}/{{ $post->slug }}')">Choose</button>
+                                            onclick="sendBacaJuga('{{ $post->title }}', '{{env('APP_URL')}}/id/{{ str_replace(' ', '-', Str::slug($post->rubrik->rubrik_name)) }}/{{ $post->post_id }}/{{ $post->slug }}')">Choose</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -243,7 +243,7 @@
                 mceAction: 'insertHTML',
                 data: {
                     title: title,
-                    url: url
+                    url: String(url)
                 }
             }, "*")
         }

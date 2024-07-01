@@ -206,6 +206,13 @@
                                 <input type="datetime-local" id="schedule_time" class="form-control" name="schedule_time">
                             </div>
                         </div>
+                        
+                        <div class="form-group mb-1 mt-1" id="form-published-time">
+                            <div class="checkbox">
+                                <label>Publish date</label>
+                                <input type="datetime-local" id="publish_date" value="{{ Str::replace(' ', 'T', $post->published_at) }}" class="form-control" name="published_at">
+                            </div>
+                        </div>
 
                     </div>
                 </div>

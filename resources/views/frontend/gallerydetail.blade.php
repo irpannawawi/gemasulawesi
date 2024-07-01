@@ -62,7 +62,7 @@
                                             <a href="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}"
                                                 class="gallery__item" title="{{ $collect->photo->caption }}"
                                                 data-src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}">
-                                                <img class="d-block w-100"
+                                                <img style="height: 100%" class="d-block w-100"
                                                     src="{{ url('storage/photos/' . $collect->photo->asset->file_name) }}">
                                             </a>
                                         </div>

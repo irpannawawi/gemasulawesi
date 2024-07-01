@@ -88,19 +88,25 @@ class EditorialController extends Controller
         }
         
         
-        $article = str_replace('"../../id/', '"'.env('APP_URL').'/', $article);
-        $article = str_replace('"../id/', '"'.env('APP_URL').'/', $article);
+        $article = str_replace('"../../id/', '"'.env('APP_URL').'/id/', $article);
+        $article = str_replace('"../id/', '"'.env('APP_URL').'/id/', $article);
         $article = str_replace('"../', '"'.env('APP_URL').'/', $article);
 
         // select status published, draft or scheduled
         $publishat = null;
+
+        
         if ($request->is_draft == "1") {
             $status = 'draft';
         } elseif ($request->schedule == "1") {
             $status = 'scheduled';
         } else {
             $status = 'published';
-            $publishat = date('Y-m-d H:i:s');
+            if($request->published_at == null){
+                $publishat = date('Y-m-d H:i:s');
+            }else{
+                $publishat = Carbon::createFromDate($request->published_at);
+            }
         }
 
         if (!empty($request->related)) {
@@ -206,8 +212,8 @@ class EditorialController extends Controller
             $modifiedHtml = $dom->saveHTML();
             $article = $modifiedHtml;
         }
-        $article = str_replace('"../../id/', '"https://gemasulawesi.com/id/', $article);
-        $article = str_replace('"../id/', '"https://gemasulawesi.com/id/', $article);
+        $article = str_replace('"../../id/', '"https://www.gemasulawesi.com/id/', $article);
+        $article = str_replace('"../id/', '"https://www.gemasulawesi.com/id/', $article);
         $article = str_replace('"../../', '"https://www.gemasulawesi.com/', $article);
         $article = str_replace('"../', '"'.env('APP_URL').'/', $article);
         
@@ -241,6 +247,13 @@ class EditorialController extends Controller
             $topics = $request->topics;
         }
 
+        if($request->published_at == null)
+        {
+            $published_at = date('Y-m-d H:i');
+        }else{
+            $dt = Str::replace('T', ' ', $request->published_at); 
+            $published_at = Carbon::createFromDate(Str::replace('T', ' ', $request->published_at));
+        }
 
         $post->title = $request->title;
         // $post->slug = Str::slug($request->title);
@@ -257,6 +270,7 @@ class EditorialController extends Controller
         $post->schedule_time = $request->schedule_time;
         $post->is_deleted = $request->is_deleted;
         $post->post_image = $request->post_image;
+        $post->published_at = $published_at;
 
         // save the post into the database
 

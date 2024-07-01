@@ -99,7 +99,10 @@
                     <label for="source">Source</label>
                     <input type="text" class="form-control" name="source" id="source">
                 </div>
-
+                <div class="form-group p-o mb-1">
+                    <input type="checkbox" id="is_original" name="is_original" value="1" />
+                    <label for="is_original"> Original Size</label>
+                </div>
 
                 <div class="form-group p-0 mt-3">
                     <button class="btn btn-sm m-1 bg-primary float-right" type="submit">Upload</button>

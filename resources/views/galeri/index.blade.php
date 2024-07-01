@@ -41,7 +41,7 @@
                                         class="fa fa-images"></i></a>
                                 <div class="btn-group">
                                     <button class="btn btn-warning" data-target="#editgaleriModal" data-toggle="modal"
-                                        onclick="edit_galeri('{{ $galeri->galery_id }}','{{ $galeri->galery_name }}','{{ $galeri->galery_description }}')">Edit</button>
+                                        onclick="edit_galeri('{{ $galeri->galery_id }}','{{ $galeri->galery_name }}','{{ $galeri->galery_description }}', '{{ Illuminate\Support\Carbon::createFromDate($galeri->created_at)->format('Y-m-d H:i') }}')">Edit</button>
                                     <a class="btn btn-danger delete-btn"
                                         href="{{ route('galeri.delete', ['id' => $galeri->galery_id]) }}">Hapus</a>
                                 </div>
@@ -54,7 +54,7 @@
     </div>
 
 
-    {{-- Modals add rubrik --}}
+    {{-- Modals add galeri --}}
 
     <div class="modal fade" id="addgaleriModal" tabindex="-1" role="dialog" aria-labelledby="addgaleriModalLabel"
         aria-hidden="true">
@@ -81,6 +81,13 @@
                             <label for="galery_thumbnail">Gambar</label>
                             <input type="file" name="galery_thumbnail" class="form-control" required>
                         </div>
+                        <div class="form-group mb-1 mt-1" id="form-published-time">
+                            <div class="checkbox">
+                                <label>Publish date</label>
+                                <input type="datetime-local" value="{{ date('Y-m-d') . 'T' . date('H:i') }}" class="form-control" name="created_at">
+                            </div>
+                        </div>
+
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
@@ -122,6 +129,15 @@
                             <label for="galery_thumbnail">Gambar</label>
                             <input type="file" name="galery_thumbnail" class="form-control">
                         </div>
+
+                        <div class="form-group mb-1 mt-1" id="form-published-time">
+                            <div class="checkbox">
+                                <label>Publish date</label>
+                                <input type="datetime-local"
+                                    id="input-created_at" class="form-control" name="created_at">
+                            </div>
+                        </div>
+
                         <div class="form-group mb-2">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-primary">Simpan</button>
@@ -135,10 +151,12 @@
 
     @push('custom-scripts')
         <script>
-            function edit_galeri(id, name, description) {
+            function edit_galeri(id, name, description, publish_date) {
                 $('#input-galery-name').val(name)
                 $('#input-galery-description').val(description)
                 $('#input-galery-id').val(id)
+                $('#input-created_at').val(publish_date)
+
             }
         </script>
     @endpush

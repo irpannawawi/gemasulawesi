@@ -7,6 +7,7 @@ use App\Models\Galeri;
 use App\Models\Image;
 use App\Models\Video;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Storage;
 
 class GaleriController extends Controller
@@ -24,7 +25,8 @@ class GaleriController extends Controller
         $galeryData = [
             'galery_name' => $request->galery_name,
             'galery_description' => $request->galery_description,
-            'galery_thumbnail' => $filename
+            'galery_thumbnail' => $filename,
+            'created_at'=>Carbon::createFromDate($request->created_at)
         ];
 
         // upload image
@@ -48,7 +50,7 @@ class GaleriController extends Controller
 
         $galery->galery_name = $request->galery_name;
         $galery->galery_description = $request->galery_description;
-
+        $galery->created_at = Carbon::createFromDate($request->created_at);
         if ($galery->save()) {
             return redirect()->back()->with('success', 'Berhasil merubah galeri');
         }

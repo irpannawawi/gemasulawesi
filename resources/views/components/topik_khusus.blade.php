@@ -7,7 +7,7 @@
     <div class="wrap-owl">
         <div id="owl-topik-khusus" class="owl-carousel owl-theme owl-carousel--arrows-outside">
             @foreach ($topikKhusus as $topik)
-                <article class="entry" style="background-color: white; border-radius:10px;">
+                <article class="entry" style="min-height:240px; background-color: white; border-radius:10px;">
                     <div class="entry__img-editorial mb-0">
                         <a
                             href="{{ route('topikkhusus', [
@@ -30,7 +30,7 @@
                                         'slug' => $topik->slug,
                                     ]) }}">{{ $topik->topic_name }}</a>
                             </h2>
-                            <p class="bt__date">{{ convert_date_to_ID($topik->created_at) }}</p>
+                            <p class="bt__date mt-3">{{ convert_date_to_ID($topik->created_at) }}</p>
                         </div>
                     </div>
                 </article>

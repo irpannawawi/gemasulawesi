@@ -17,7 +17,8 @@ class Galeri extends Model
         'galery_id',
         'galery_name',	
         'galery_description',	
-        'galery_thumbnail',	
+        'galery_thumbnail',
+        'created_at'
     ];
 
 

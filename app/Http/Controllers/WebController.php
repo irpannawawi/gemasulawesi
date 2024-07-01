@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
 use Illuminate\View\View as ViewView;
 use Sarfraznawaz2005\VisitLog\Facades\VisitLog;
 use App\Models\Visitlg;
+use Illuminate\Support\Facades\Cookie;
 use Sarfraznawaz2005\VisitLog\Models\VisitLog as VisitLogModel;
 
 class WebController extends Controller
@@ -28,8 +29,7 @@ class WebController extends Controller
     }
     public function index(): View
     {
-        VisitLog::save(request()->all());
-
+        
         $data['editorCohice'] = Cache::remember('editorChoice', 120, function () {
             return Editorcoice::with(['post.rubrik', 'post.image.asset'])->where('post_id', '!=', 0)->get();
         });
@@ -108,16 +108,7 @@ class WebController extends Controller
     public function singlePost(Request $request, $rubrik_name, $post_id, $slug): View
     {
 
-        // visitor counter
-        // jika ip sudah mengunjungi do nothing
-        $this->count_visit();
-        $logResult = VisitLog::save(request()->all());
-        if (is_array($logResult) && isset($logResult['type']) && $logResult['type'] == 'create') {
-            $post = Posts::find($post_id);
-            $post->visit += 1;
-            $post->save();
-        }
-
+        
         $rubrik = Cache::remember('rubrik_' . str_replace('-', ' ', $rubrik_name), env('CACHE_DURATION'), function () use ($rubrik_name) {
             return Rubrik::where('rubrik_name', str_replace('-', ' ', $rubrik_name))->first();
         });

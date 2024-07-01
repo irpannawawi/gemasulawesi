@@ -1,0 +1,5 @@
+[
+    {
+      "pattern": "^(http:\\/\\/www\\.google\\.co\\.uk\\/url\\?sa=t&source=web&cd=1)$"
+    }
+]

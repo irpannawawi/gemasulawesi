@@ -10,77 +10,77 @@
 
 <head>
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
-<script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(function(OneSignal) {
-    OneSignal.init({
-      appId: "56d38667-b3e2-4a80-af97-1ce96a331c23",
-      safari_web_id: "web.onesignal.auto.37a647a2-1bdc-46a8-a505-4f4cc6400a46",
-      notifyButton: {
-        enable: true,
-      },
-      promptOptions: {
-      slidedown: {
-        prompts: [{
-            type: "smsAndEmail",
-            autoPrompt: false,
-            text: {
-              emailLabel: "Insert Email Address",
-              smsLabel: "Insert Phone Number",
-              acceptButton: "Submit",
-              cancelButton: "No Thanks",
-              actionMessage: "Receive the latest news, updates and offers as they happen.",
-              updateMessage: "Update your push notification subscription preferences.",
-              confirmMessage: "Thank You!",
-              positiveUpdateButton: "Save Preferences",
-              negativeUpdateButton: "Cancel",
-            },
-            delay: {
-              pageViews: 1,
-              timeDelay: 20
-            },
-          },
-          {
-            type: "category",
-            autoPrompt: true,
-            text: {
-              actionMessage: "We'd like to show you notifications for the latest news and updates.",
-              acceptButton: "Allow",
-              cancelButton: "Cancel",
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+                appId: "56d38667-b3e2-4a80-af97-1ce96a331c23",
+                safari_web_id: "web.onesignal.auto.37a647a2-1bdc-46a8-a505-4f4cc6400a46",
+                notifyButton: {
+                    enable: true,
+                },
+                promptOptions: {
+                    slidedown: {
+                        prompts: [{
+                                type: "smsAndEmail",
+                                autoPrompt: false,
+                                text: {
+                                    emailLabel: "Insert Email Address",
+                                    smsLabel: "Insert Phone Number",
+                                    acceptButton: "Submit",
+                                    cancelButton: "No Thanks",
+                                    actionMessage: "Receive the latest news, updates and offers as they happen.",
+                                    updateMessage: "Update your push notification subscription preferences.",
+                                    confirmMessage: "Thank You!",
+                                    positiveUpdateButton: "Save Preferences",
+                                    negativeUpdateButton: "Cancel",
+                                },
+                                delay: {
+                                    pageViews: 1,
+                                    timeDelay: 20
+                                },
+                            },
+                            {
+                                type: "category",
+                                autoPrompt: true,
+                                text: {
+                                    actionMessage: "We'd like to show you notifications for the latest news and updates.",
+                                    acceptButton: "Allow",
+                                    cancelButton: "Cancel",
 
-              /* CATEGORY SLIDEDOWN SPECIFIC TEXT */
-              negativeUpdateButton: "Cancel",
-              positiveUpdateButton: "Save Preferences",
-              updateMessage: "Update your push notification subscription preferences.",
-            },
-            delay: {
-              pageViews: 3,
-              timeDelay: 20
-            },
-            categories: [{
-                tag: "politics",
-                label: "Politics"
-              },
-              {
-                tag: "local_news",
-                label: "Local News"
-              },
-              {
-                tag: "world_news",
-                label: "World News",
-              },
-              {
-                tag: "culture",
-                label: "Culture"
-              },
-            ]
-          }
-        ]
-      }
-    },
-    });
-  });
-</script>
+                                    /* CATEGORY SLIDEDOWN SPECIFIC TEXT */
+                                    negativeUpdateButton: "Cancel",
+                                    positiveUpdateButton: "Save Preferences",
+                                    updateMessage: "Update your push notification subscription preferences.",
+                                },
+                                delay: {
+                                    pageViews: 3,
+                                    timeDelay: 20
+                                },
+                                categories: [{
+                                        tag: "politics",
+                                        label: "Politics"
+                                    },
+                                    {
+                                        tag: "local_news",
+                                        label: "Local News"
+                                    },
+                                    {
+                                        tag: "world_news",
+                                        label: "World News",
+                                    },
+                                    {
+                                        tag: "culture",
+                                        label: "Culture"
+                                    },
+                                ]
+                            }
+                        ]
+                    }
+                },
+            });
+        });
+    </script>
     @php
 
         $subTitle = get_setting('sub_title');
@@ -129,17 +129,17 @@
             $author = '';
         } elseif (request()->is('gallery')) {
             $metaTitle = 'Gallery Berita Terkini' . ' - ' . $subTitle;
-            $metaDeskripsi = get_setting('meta_google') . ' - '.$metaTitle;
+            $metaDeskripsi = get_setting('meta_google') . ' - ' . $metaTitle;
             $metaImage = env('APP_CDN') . '/storage/logo/' . get_setting('logo_web');
             $type = 'website';
             $author = '';
         } elseif (request()->is('galery/detail/*')) {
             $metaTitle = $galery->galery_name . ' - ' . $subTitle;
             $metaDeskripsi = $galery->galery_description . ' - ' . $subTitle ?? '';
-            $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
+            $metaImage = env('APP_CDN') . Storage::url('galery-images/' . $galery->galery_thumbnail);
             $type = 'article';
             $author = '';
-        }elseif (request()->is('infografis')) {
+        } elseif (request()->is('infografis')) {
             $metaTitle = $galery->galery_name . ' - ' . $subTitle;
             $metaDeskripsi = $galery->galery_description . ' - ' . $subTitle ?? '';
             $metaImage = Storage::url('galery-images/' . $galery->galery_thumbnail);
@@ -211,7 +211,7 @@
     <link href="{{ $metaImage }}" itemprop="image" />
     <link href="{{ Storage::url('favicon/') . get_setting('favicon') }}" rel="icon" type="image/ico" />
     <link rel="apple-touch-icon-precomposed" href="{{ Storage::url('favicon/') . get_setting('favicon') }}">
-    <link rel="canonical" href="{{ url()->full() }}" />
+    <link rel="canonical" href="{{ explode('?', url()->full())[0] }}" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="title" content="{{ $metaTitle }}" />
     <meta name="description" content="{{ $metaDeskripsi }}" itemprop="description">

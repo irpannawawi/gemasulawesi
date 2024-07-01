@@ -54,7 +54,15 @@ Route::get('/share', [FacebookController::class, 'share']);
 Route::get('/shareL', [LinkedinController::class, 'share']);
 Route::get('/sharex', [XController::class, 'shareX']);
 
+Route::get('/test', function () {
+    $ipdata = Http::get('http://ip-api.com/json/'.$_SERVER['REMOTE_ADDR']);
+    
+});
 
+// drop this route
+Route::get('/id/kupas-tuntas/27979/menguak-keindahan-tersembunyi-dan-serunya-bermain-air-di-wisata-sungai-pancar-wonotirto-blitar-yang-menenangkan', function () {    
+    return response('', 203);
+});
 
 
 
@@ -81,9 +89,11 @@ Route::get('/update_tags', function(){
 Route::feeds();
 
 Route::middleware('auth')->group(function () {
+
     Route::get('/failed_jobs', [DashboardController::class, 'failed_jobs'])->name('failed_job');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/chart-data', [DashboardController::class, 'chartData']);
+    Route::get('/chart-data-visitor', [DashboardController::class, 'chartDataVisitor']);
 
     Route::get('/profile', [AdministratorController::class, 'profile'])->name('profile');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

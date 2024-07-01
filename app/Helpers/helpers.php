@@ -319,3 +319,7 @@ function get_file_size($file)
     $power = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
     return number_format($bytes / pow(1024, $power), 2, '.', ',') . ' ' . $units[$power];
 }
+
+function visit(){
+    return $_REQUEST;
+}
